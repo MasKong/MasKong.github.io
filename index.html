@@ -229,6 +229,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Recommendation-System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/Recommendation-System/" itemprop="url">Recommendation_System</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T23:26:50+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Notes:</p>
+<p>Item features could also be represented by tags. But it is tedious to get tags data.</p>
+<p>Our ultimate goal for content-based recommendation is to create both an item profile consisting of feature-value pairs and a user profile summarizing the pref- erences of the user, based of their row of the utility matrix.<br>Discretize numerical data to nominal data would lose the structure implicit in numbers. That is, two ratings that are close but not identical should be considered more similar than widely differing ratings.<br>There is no harm if some components of the vectors are Boolean and others are real-valued or integer-valued. But it is necessary to somehow normalize the data so that the scale would not affect the result too much.<br>Machine learning technique: ML algorithm to predict the empty entries in the utility matrix. Training set is the data. Optimize the loss.<br>i.e. classification algorithm: build a decision tree to classify the data as like or don’t like for a particular user group.</p>
+<p>Recommendation System:<br>Our recommendation system employs a modified version of collaborative filtering. In traditional recommendation system, in order to avoid constructing user and item profile which is a tedious and tricky step, rows and columns of utility matrix are utilized to estimate similarity of item and user as well as empty entries in the utility matrix.</p>
+<p>a utility matrix, giving for each user-item pair, a value that represents what is known about the degree of preference of that user for that item. Values come from an ordered set. We assume that the matrix is sparse, meaning that most entries are “unknown.” An unknown rating implies that we have no explicit information about the user’s preference for the item. </p>
+<p>Target of recommendation system:<br>It is not necessary to predict every blank entry in a utility matrix. Rather, it is only necessary to discover some entries in each row that are likely to be high. In most applications, the recommendation system does not offer users a ranking of all items, but rather suggests a few that the user should value highly. It may not even be necessary to find all items with the highest expected ratings, but only to find a large subset of those with the highest ratings.<br>A bigger picture:<br>Collaborative filtering: use columns and rows of utility matrix to identify similar items or users and then do recommendation</p>
+<p>Content based:<br>Utility matrix: ranked item is 1(Boolean) or actual rating(numerical) * normalizing factor. Others are represented by 0 or blank. </p>
+<p>User Profile: aggregation of utility matrix which represent connection between users and items.</p>
+<p>After getting user profile, make recommendation according to proximity between unseen object and content in user profile. (cosine similarity)</p>
+<p>The process of identifying similar users and recommending what similar users like is called collaborative filtering.<br>Cosine distance treat empty entries as 0.<br>Preprocessing:<br>round the data: round ratings to 0 or 1.<br>Normalize the data and apply proximity measure.</p>
+<p>User-based: tailer-made, accurate.      Association analysis. Not easy to measure similarity<br>Item-based: 可靠， 广泛推荐</p>
+<p>Collaborative filtering:<br>Use columns of utility matrix.<br>To estimate empty entry, one possible way is to find n similar users and count their normalized ratings. Another possible way is to find the rating of similar items given by the same user.</p>
+<p>Measuring similarity:<br>Jaccard distance: may emit important information like the scale of rating.<br>Cosine distance</p>
+<p>The Duality of Similarity </p>
+<p>To estimate an entry, for item-based, find the most similar m items, and average them to get an estimate of rating for the entry(item).</p>
+<p>After cluster, get the entry for that item clusters by averaging the item</p>
+<p>Since there is user and ad profile, try to do clustering first.</p>
+<p>Data is large, initialize small cluster first to summarize the data points.</p>
+<p>Curse of dimensionality: in high dimension, cosine similarity approaches to 0, which means that random vectors are orthogonal. Distance and density become meaningless because distance is very far away compared to low dimensionality.</p>
+<p>Clustering:<br>Euclidean space in which the cluster could be represented by a center.<br>Clustroid: the closest point to other points in the cluster<br>Centroid: the arithmetic center point calculated.</p>
+<p>Hierarchical:<br>Merge clusters. Each unassigned point is a cluster.<br>The measurements are diameter, radius, average distance, minimum distance.<br>Radius: the maximum distance from any points to centroid.<br>Diameter: maximum distance between any two points.</p>
+<p>Point assignment:</p>
+<p>K-means:<br>initialize several points which are as far away as possible from each other as centroid of clusters.<br>Assign the points to these different clusters and recompute the centroids.</p>
+<p>Mahalanobis distance is distance between x and y divided by square root of covariance, which is undistorting the ellipse to make a circle</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Maximum-Subarray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,19 +443,11 @@
       
         
           
-            <p>test:</p>
-<h1 id="DP-O-n"><a href="#DP-O-n" class="headerlink" title="DP    O(n)"></a>DP    O(n)</h1><p>class Solution:<br>    def maxSubArray(self, nums):<br>        “””<br>        :type nums: List[int]<br>        :type k: int<br>        :rtype: float<br>        “””<br>        if len(nums) == 1:<br>            return nums[0]<br>        l = [nums[0]]<br>        for i in range(1,len(nums)):</p>
-<pre><code>    # if nums[i] &lt;0:
-    if l[i-1] &gt;0:
-        l.append(nums[i] + l[i-1])
-    else:
-        l.append(nums[i])
-return max(l)
-    # else:
-</code></pre><p>s = Solution()</p>
-<h1 id="leg-s-maxSubArray-1-2-3-6-8"><a href="#leg-s-maxSubArray-1-2-3-6-8" class="headerlink" title="leg = s.maxSubArray([-1,2,3,-6,8])"></a>leg = s.maxSubArray([-1,2,3,-6,8])</h1><p>leg = s.maxSubArray([-2,1,-3,4,-1,2,1,-5,4])</p>
-<h1 id="leg-s-max-cross-2-1-3-4-1-2-1-5-4"><a href="#leg-s-max-cross-2-1-3-4-1-2-1-5-4" class="headerlink" title="leg = s.max_cross([-2,1,-3,4,-1,2,1,-5,4])"></a>leg = s.max_cross([-2,1,-3,4,-1,2,1,-5,4])</h1><p>print(leg)</p>
-
+            <h3 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h3><p>Time Complexity: O(n)</p>
+<p>Store the first value. Traverse the array. If the last value of maximum subarray l is greater than 0, add the current value to it and store it. Else store it directly. Because if the last value of maximum subarray l is less than 0, no need to add the current value to it. If the last value of maximum subarray l is greater than 0, add the current value to it. Next time we check it, if it greater than 0, we add next value to it, else we discard it because it could not be the maximum subarray.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maxSubArray(self, nums):</span><br><span class="line">        <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        "</span><span class="string">""</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) == 1:</span><br><span class="line">            <span class="built_in">return</span> nums[0]</span><br><span class="line">        l = [nums[0]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(1,len(nums)):</span><br><span class="line">            <span class="comment"># if nums[i] &lt;0:</span></span><br><span class="line">            <span class="keyword">if</span> l[i-1] &gt;0:</span><br><span class="line">                l.append(nums[i] + l[i-1])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l.append(nums[i])</span><br><span class="line">        <span class="built_in">return</span> max(l)</span><br><span class="line">            <span class="comment"># else:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s = Solution()</span><br><span class="line"><span class="comment"># leg = s.maxSubArray([-1,2,3,-6,8])</span></span><br><span class="line">leg = s.maxSubArray([-2,1,-3,4,-1,2,1,-5,4])</span><br><span class="line"><span class="comment"># leg = s.max_cross([-2,1,-3,4,-1,2,1,-5,4])</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(leg)</span><br></pre></td></tr></table></figure>
+<h3 id="divide-and-conquer"><a href="#divide-and-conquer" class="headerlink" title="divide and conquer"></a>divide and conquer</h3><p>recursively divide a problem into subproblems.<br>Time complexity: O(nlogn)<br>logn: Each time divide the problem into two parts, so an array of size N could construct a log2N levels tree. Each level needs at most N time to solve.</p>
+<h4 id="Reference-Introduction-to-Algorithm-Cha-4-1"><a href="#Reference-Introduction-to-Algorithm-Cha-4-1" class="headerlink" title="Reference: Introduction to Algorithm Cha 4.1"></a>Reference: Introduction to Algorithm Cha 4.1</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def maxSubArray(self, nums):</span><br><span class="line">        <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        "</span><span class="string">""</span></span><br><span class="line">        left = 0</span><br><span class="line">        right = len(nums)-1     <span class="comment">#index of the last item</span></span><br><span class="line">        <span class="comment"># if right == 0:</span></span><br><span class="line">        <span class="comment">#     return None</span></span><br><span class="line">        <span class="keyword">if</span> right == left:     <span class="comment">#only one element</span></span><br><span class="line">            <span class="built_in">return</span> nums[0]</span><br><span class="line">        mid = int(len(nums) / 2)</span><br><span class="line">        <span class="comment"># print("mid",mid, left, right)</span></span><br><span class="line">        <span class="comment"># print(self.max_cross(nums),</span></span><br><span class="line">        <span class="comment">#       self.maxSubArray(nums[left:mid]), self.maxSubArray(nums[mid:right]),)</span></span><br><span class="line">        m = self.max_cross(nums)</span><br><span class="line">        l = self.maxSubArray(nums[left:mid])</span><br><span class="line">        r = self.maxSubArray(nums[mid:right+1])</span><br><span class="line">        <span class="built_in">return</span> max(m,l,r)</span><br><span class="line">        <span class="comment"># return r</span></span><br><span class="line"></span><br><span class="line">    def max_cross(self, nums):</span><br><span class="line">        mid = int(len(nums)/2)</span><br><span class="line">        left = 0</span><br><span class="line">        right = len(nums)-1</span><br><span class="line">        left_sum_max, right_sum_max = <span class="built_in">float</span>(<span class="string">"-inf"</span>), <span class="built_in">float</span>(<span class="string">"-inf"</span>)</span><br><span class="line">        left_sum, right_sum = 0,0</span><br><span class="line">        left_index, right_index = -1,-1</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(mid-1,left-1,-1):</span><br><span class="line">            left_sum += nums[i]</span><br><span class="line">            <span class="keyword">if</span> left_sum&gt;left_sum_max:</span><br><span class="line">                left_index = i</span><br><span class="line">                left_sum_max = left_sum</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(mid,right+1):</span><br><span class="line">            right_sum += nums[i]</span><br><span class="line">            <span class="keyword">if</span> right_sum&gt;right_sum_max:</span><br><span class="line">                right_index = i</span><br><span class="line">                right_sum_max = right_sum</span><br><span class="line">        <span class="built_in">return</span> left_sum_max+right_sum_max</span><br></pre></td></tr></table></figure>
           
         
       
@@ -521,7 +656,7 @@ return max(l)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -529,6 +664,15 @@ return max(l)
 
             
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
