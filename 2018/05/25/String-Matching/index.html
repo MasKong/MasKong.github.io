@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="String Matching: The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation e">
+<meta name="description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="String_Matching">
 <meta property="og:url" content="http://yoursite.com/2018/05/25/String-Matching/index.html">
 <meta property="og:site_name" content="Home of MasKong">
-<meta property="og:description" content="String Matching: The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation e">
+<meta property="og:description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-25T09:57:26.818Z">
+<meta property="og:updated_time" content="2018-05-26T18:22:12.106Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="String_Matching">
-<meta name="twitter:description" content="String Matching: The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation e">
+<meta name="twitter:description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
 
 
 
@@ -300,11 +300,16 @@
       
 
       
-        <p>String Matching:</p>
-<p>The Rabin-Karp algorithm<br>Intuition:<br>Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation efficiently, we induce mod so as to reduce the computation complexity dramatically. </p>
+        <p>##String Matching:</p>
+<p>###The Rabin-Karp algorithm<br>Intuition:<br>Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation efficiently, we induce mod so as to reduce the computation complexity dramatically. </p>
 <p>In general, with a d-ary alphabet {0,1,2… d-1}, we choose q so that d*q fits within a computer word.<br>d is the length of the alphabet set.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''please input pattern and string'''</span></span><br><span class="line">p = input()</span><br><span class="line">s = input()</span><br><span class="line">d = int(input())</span><br><span class="line">q = int(input())</span><br><span class="line">l_p = len(p)</span><br><span class="line">h = d**(l_p<span class="number">-1</span>) % q</span><br><span class="line"><span class="string">'''Preprocessing'''</span></span><br><span class="line">p_sum, s_sum = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,l_p):</span><br><span class="line">    p_sum = (d*p_sum + int(p[i])) %q</span><br><span class="line">    s_sum = (d * s_sum + int(s[i])) %q</span><br><span class="line">    <span class="comment"># p_sum = (p_sum+(d*p_sum + int(p[i]))) % q</span></span><br><span class="line">    <span class="comment"># s_sum = (s_sum+(d * s_sum + int(s[i]))) % q</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,len(s)-l_p+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> p_sum == s_sum:</span><br><span class="line">        <span class="keyword">if</span> s[j:j+l_p] == p:</span><br><span class="line">            print(s[j:j+l_p])</span><br><span class="line">    <span class="keyword">if</span> j &lt; len(s)-l_p:</span><br><span class="line">        s_sum = (d*(s_sum-int(s[j])*h) + int(s[j+l_p])) % q</span><br></pre></td></tr></table></figure>
 <p>Worst case: the string and pattern have all same character. O((n-m+1)*m)<br>Best case: O(n) + O(m(v+n/q))</p>
+<p>###KMP algorithm</p>
+<p>Each time the given string match with the pattern, by utilizing the information contains in the pattern string, the algorithm may skip several matching without affecting the correctness. Let’s assume current position of the string is s. Length of matched string is q. There may exists a k&lt;q(if k &gt; q, we don’t know what’s them outside the pattern window) such that P[1…k] = T[s’+1…s’+k]. s’ is the new position of pointer. K is the length that the substring T[s’] starting from s’ matches with P[1..k].<br>So s’ = s+q-k</p>
+<p>Preprocessing:<br>Find the longest prefix of the matched string such that it is also the suffix of the matched string.</p>
+<p>Time complexity: O(n)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_prefix</span><span class="params">(p)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>] * len(p)</span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(p)):</span><br><span class="line">        <span class="string">'''#This line decrease k. because 0 &lt; k &lt; i, the total time that i has been increased &lt; len(p),</span></span><br><span class="line"><span class="string">        so the total time that while loop execute would &lt; len(p)'''</span></span><br><span class="line">        <span class="keyword">while</span> k&gt;<span class="number">0</span> <span class="keyword">and</span> p[i] != p[k]:</span><br><span class="line">            k = l[k]</span><br><span class="line">        <span class="keyword">if</span> p[i] == p[k]:</span><br><span class="line">            k += <span class="number">1</span>                          <span class="comment"># this increase k</span></span><br><span class="line">        l[i] = k</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP_Match</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    l = compute_prefix(p)</span><br><span class="line">    <span class="comment"># print(l)</span></span><br><span class="line">    q = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(s)):</span><br><span class="line">        <span class="keyword">while</span> q &gt; <span class="number">0</span> <span class="keyword">and</span> p[q] != s[i]:</span><br><span class="line">            q = l[q]</span><br><span class="line">        <span class="keyword">if</span> p[q] == s[i]:</span><br><span class="line">            q += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> q == len(p):</span><br><span class="line">            print(s[i-q+<span class="number">1</span>:i+<span class="number">1</span>])</span><br><span class="line">            q = l[q<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -344,6 +349,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/27/Sentence-Similarity/" rel="prev" title="Sentence_Similarity">
+                Sentence_Similarity <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -411,7 +420,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -424,7 +433,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
