@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Algorithm," />
+  <meta name="keywords" content="NLP," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
-<meta name="keywords" content="Algorithm">
+<meta name="description" content="Max Matching AlgorithmIt is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms. It works especially well on Chinese. I think it is because that Chinese word">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="String_Matching">
-<meta property="og:url" content="http://yoursite.com/2018/05/25/String-Matching/index.html">
+<meta property="og:title" content="Max_Matching">
+<meta property="og:url" content="http://yoursite.com/2018/06/25/Max-Matching/index.html">
 <meta property="og:site_name" content="Home of MasKong">
-<meta property="og:description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
+<meta property="og:description" content="Max Matching AlgorithmIt is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms. It works especially well on Chinese. I think it is because that Chinese word">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-26T18:22:12.106Z">
+<meta property="og:updated_time" content="2018-06-25T15:40:55.075Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="String_Matching">
-<meta name="twitter:description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
+<meta name="twitter:title" content="Max_Matching">
+<meta name="twitter:description" content="Max Matching AlgorithmIt is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms. It works especially well on Chinese. I think it is because that Chinese word">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/25/String-Matching/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/25/Max-Matching/"/>
 
 
 
 
 
-  <title>String_Matching | Home of MasKong</title>
+  <title>Max_Matching | Home of MasKong</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/String-Matching/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Max-Matching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK LEE">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">String_Matching</h1>
+          <h1 class="post-title" itemprop="name headline">Max_Matching</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-25T17:52:37+08:00">
-                2018-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-25T23:36:22+08:00">
+                2018-06-25
               </time>
             
 
@@ -300,16 +300,9 @@
       
 
       
-        <p>##String Matching:</p>
-<p>###The Rabin-Karp algorithm<br>Intuition:<br>Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation efficiently, we induce mod so as to reduce the computation complexity dramatically. </p>
-<p>In general, with a d-ary alphabet {0,1,2… d-1}, we choose q so that d*q fits within a computer word.<br>d is the length of the alphabet set.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''please input pattern and string'''</span></span><br><span class="line">p = input()</span><br><span class="line">s = input()</span><br><span class="line">d = int(input())</span><br><span class="line">q = int(input())</span><br><span class="line">l_p = len(p)</span><br><span class="line">h = d**(l_p<span class="number">-1</span>) % q</span><br><span class="line"><span class="string">'''Preprocessing'''</span></span><br><span class="line">p_sum, s_sum = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,l_p):</span><br><span class="line">    p_sum = (d*p_sum + int(p[i])) %q</span><br><span class="line">    s_sum = (d * s_sum + int(s[i])) %q</span><br><span class="line">    <span class="comment"># p_sum = (p_sum+(d*p_sum + int(p[i]))) % q</span></span><br><span class="line">    <span class="comment"># s_sum = (s_sum+(d * s_sum + int(s[i]))) % q</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,len(s)-l_p+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> p_sum == s_sum:</span><br><span class="line">        <span class="keyword">if</span> s[j:j+l_p] == p:</span><br><span class="line">            print(s[j:j+l_p])</span><br><span class="line">    <span class="keyword">if</span> j &lt; len(s)-l_p:</span><br><span class="line">        s_sum = (d*(s_sum-int(s[j])*h) + int(s[j+l_p])) % q</span><br></pre></td></tr></table></figure>
-<p>Worst case: the string and pattern have all same character. O((n-m+1)*m)<br>Best case: O(n) + O(m(v+n/q))</p>
-<p>###KMP algorithm</p>
-<p>Each time the given string match with the pattern, by utilizing the information contains in the pattern string, the algorithm may skip several matching without affecting the correctness. Let’s assume current position of the string is s. Length of matched string is q. There may exists a k&lt;q(if k &gt; q, we don’t know what’s them outside the pattern window) such that P[1…k] = T[s’+1…s’+k]. s’ is the new position of pointer. K is the length that the substring T[s’] starting from s’ matches with P[1..k].<br>So s’ = s+q-k</p>
-<p>Preprocessing:<br>Find the longest prefix of the matched string such that it is also the suffix of the matched string.</p>
-<p>Time complexity: O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_prefix</span><span class="params">(p)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>] * len(p)</span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(p)):</span><br><span class="line">        <span class="string">'''#This line decrease k. because 0 &lt; k &lt; i, the total time that i has been increased &lt; len(p),</span></span><br><span class="line"><span class="string">        so the total time that while loop execute would &lt; len(p)'''</span></span><br><span class="line">        <span class="keyword">while</span> k&gt;<span class="number">0</span> <span class="keyword">and</span> p[i] != p[k]:</span><br><span class="line">            k = l[k]</span><br><span class="line">        <span class="keyword">if</span> p[i] == p[k]:</span><br><span class="line">            k += <span class="number">1</span>                          <span class="comment"># this increase k</span></span><br><span class="line">        l[i] = k</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP_Match</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    l = compute_prefix(p)</span><br><span class="line">    <span class="comment"># print(l)</span></span><br><span class="line">    q = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(s)):</span><br><span class="line">        <span class="keyword">while</span> q &gt; <span class="number">0</span> <span class="keyword">and</span> p[q] != s[i]:</span><br><span class="line">            q = l[q]</span><br><span class="line">        <span class="keyword">if</span> p[q] == s[i]:</span><br><span class="line">            q += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> q == len(p):</span><br><span class="line">            print(s[i-q+<span class="number">1</span>:i+<span class="number">1</span>])</span><br><span class="line">            q = l[q<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+        <h2 id="Max-Matching-Algorithm"><a href="#Max-Matching-Algorithm" class="headerlink" title="Max Matching Algorithm"></a>Max Matching Algorithm</h2><p>It is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms.</p>
+<p>It works especially well on Chinese. I think it is because that Chinese words are single word that could not be took apart while English words are sequences of characters.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_words</span><span class="params">(file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(file) <span class="keyword">as</span> f:</span><br><span class="line">        l = f.readlines()</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_matching</span><span class="params">(text, dictionary)</span>:</span></span><br><span class="line">    <span class="comment"># l = []</span></span><br><span class="line">    w = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text),<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        word = text[:i]</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> dictionary:</span><br><span class="line">            w += word+<span class="string">' '</span></span><br><span class="line"></span><br><span class="line">            w += max_matching(text[i:],dictionary) + <span class="string">' '</span></span><br><span class="line">            <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">if</span> len(text) != <span class="number">0</span>:</span><br><span class="line">        w = text[<span class="number">0</span>]+<span class="string">' '</span></span><br><span class="line">        w += max_matching(text[<span class="number">1</span>:],dictionary) + <span class="string">' '</span></span><br><span class="line">        <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    file = <span class="string">'/Users/lmk/Documents/NLP/word.csv'</span></span><br><span class="line">    l = read_words(file)</span><br><span class="line">    <span class="comment"># l = read_words(file)</span></span><br><span class="line">    l = list(map(<span class="keyword">lambda</span> i: i[<span class="number">3</span>:<span class="number">-1</span>], l))</span><br><span class="line">    l[<span class="number">0</span>] = l[<span class="number">0</span>][<span class="number">1</span>:]</span><br><span class="line">    dic = l</span><br><span class="line">    <span class="comment"># s = "ilovechina"</span></span><br><span class="line">    s = <span class="string">"is also possible to use a list as a queue, where the first"</span></span><br><span class="line">    sentence = max_matching(s,dic)</span><br><span class="line">    token = sentence.split()</span><br><span class="line">    <span class="comment"># flatten = lambda l: [item for sublist in l for item in sentence]</span></span><br><span class="line">    <span class="comment"># flat_list = [item for sublist in l for item in sublist]</span></span><br><span class="line">    print(sentence)</span><br><span class="line">    print(token)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -327,7 +320,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
           
         </div>
       
@@ -340,8 +333,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/24/Recommendation-System/" rel="next" title="Recommendation_System">
-                <i class="fa fa-chevron-left"></i> Recommendation_System
+              <a href="/2018/06/25/Minimum-Edit-Distance/" rel="next" title="Minimum_Edit_Distance">
+                <i class="fa fa-chevron-left"></i> Minimum_Edit_Distance
               </a>
             
           </div>
@@ -349,10 +342,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/27/Sentence-Similarity/" rel="prev" title="Sentence_Similarity">
-                Sentence_Similarity <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -404,8 +393,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -456,6 +454,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Matching-Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Max Matching Algorithm</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
