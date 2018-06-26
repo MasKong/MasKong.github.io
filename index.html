@@ -478,7 +478,8 @@
 <p>$$\lambda(w_{i-n+1}\cdots w_{i-1})=\frac{d}{C_{KN}(w_{i-n+1}\cdots w_{i-1})}\cdot \lvert {w:C_{KN}(w_{i-n+1} \cdots w_{i-1}w)&gt;0}\rvert$$</p>
 <p>where the definition of the count $c_{KN}$ depends on whether we are counting the highest-order N-gram being interpolated (for example trigram if we are interpolat- ing trigram, bigram, and unigram) or one of the lower-order N-grams (bigram or unigram if we are interpolating trigram, bigram, and unigram):</p>
 <p>$$C_{KN}(\cdot)=\begin{cases}count(\cdot) &amp;,\text{for the highest order}\<br>continuationcount(\cdot) &amp;,for\quad all\quad other\quad lower\quad orders<br>\end{cases}$$</p>
-<p>$$<br>    X(m,n) = \left{\begin{array}{lr}<br>        x(n), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1<br>        \end{array}\right} = xy<br>  $$</p>
+<p>$$<br>    X(m,n) = \left{\begin{array}{lr}<br>        x(n), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1<br>        \end{array}\right} = xy<br>$$</p>
+<p>test</p>
 <p>$$<br>\begin{cases}<br>    2x+y=3\<br>    2x-y=1\<br>    \end{cases}<br>$$</p>
 <p>The continuation count is the number of unique single word contexts for ·.<br>At the termination of the recursion, unigrams are interpolated with the uniform<br> distribution, where the parameter ε is the empty string:</p>
 <p> $$P_{KN}(w)=\frac{max(c_{KN}(w)-d,0)}{\sum_{w’}c_{KN}(w’)} +\lambda(\epsilon)\frac{1}{V}$$</p>
