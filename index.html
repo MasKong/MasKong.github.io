@@ -232,6 +232,281 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/NLP-Notation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Home of MasKong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/26/NLP-Notation/" itemprop="url">NLP_Notation</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T18:59:05+08:00">
+                2018-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>$$ w_1^n$$ is a sequence of N words from word 1 to word N.</p>
+<p>A held-out corpus is an additional training corpus that we use to set hyperparameters</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/Smoothing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Home of MasKong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/26/Smoothing/" itemprop="url">Smoothing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T17:47:27+08:00">
+                2018-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>#Smoothing:<br>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
+<h3 id="Laplace-Smoothing"><a href="#Laplace-Smoothing" class="headerlink" title="Laplace Smoothing"></a>Laplace Smoothing</h3><p>Also called add-one smoothing.</p>
+<p>the unsmoothed maximum likelihood estimate of the unigram probability of the word wi is its count ci normalized by the total number of word tokens N</p>
+<p>$$ p(w_i)= \frac{c_i}{N}$$</p>
+<p>Laplace smoothing merely adds one to each count. Denominator is also adjusted by adding V(number of observations). If the demoninator is still unchanged, the sum of all probability would exceed 1.</p>
+<p>$$ p_{Laplace}(w_i)= \frac{c_i+1}{N+V}$$</p>
+<p><strong>adjusted count</strong>: describe how a smoothing algorithm affects the numerator</p>
+<p>$$ c_i^* = \frac{c_i+1}{N+V} \times{N} = p_{Laplace}(w_i) \times{N}$$</p>
+<p>the ratio of the discounted counts to the original counts describe a smoothing algorithm in terms of a relative discount dc:</p>
+<p>$$ d_c= \frac{c^*}{c}$$</p>
+<p>Normal bigram probabilities are computed by normalizing each row of counts by the unigram count:</p>
+<p>$$ p(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)}{c(w_{n-1})}$$</p>
+<p>After smoothing:</p>
+<p>$$ p_{Laplace}(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+1}{c(w_{n-1})+V}$$</p>
+<p>These adjusted counts can be computed by equation below to show the reconstructed counts.</p>
+<p>$$ c^*(w_{n-1}w_n) = \frac{c(w_{n-1}w_n)+1}{c(w_{n-1)}+V} \times{c(w_{n-1})} = p_{Laplace}(w_n|w_{n-1}) \times{c(w_{n-1})}$$</p>
+<p>###Add-k smoothing: add k rather than one; </p>
+<p>$$ p_{Add-k}^*(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+k}{c(w_{n-1})+kV}$$</p>
+<p>chosse k by optimizing on a devset.</p>
+<p>Although add-k is useful for some tasks (including text classification), it turns out that it still doesn’t work well for language modeling, generating counts with poor variances and often inappropriate discounts</p>
+<p>###Backoff and Interpolation<br><strong>backoff</strong>: If there is zero evidence for a higher-order N-gram, use lower-order N-gram instead. </p>
+<p>i.e.: If we are trying to compute $$P(w_n|w_{n−2}w_{n−1})$$ but we have no examples of a particular trigram wn−2wn−1wn, we can instead estimate its probability by using the bigram probability $$P(w_n|w_{n−1})$$.</p>
+<p><strong><em>interpolation</em></strong>: we always mix the probability estimates from all the N-gram estimators, weighing and combining the trigram, bigram, and unigram counts.</p>
+<p>In a slightly more sophisticated version of linear interpolation, each λ weight is computed by conditioning on the context. This way, if we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams based on this bigram will be more trustworthy, so we can make the λs for those trigrams higher and thus give that trigram more weight in the interpolation.</p>
+<p>$$\widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 (w_{n-2}^{n-1})p(w_n|w_{n-2}w_{n-1}) + \lambda_2 (w_{n-2}^{n-1})p(w_n|w_{n-1}) +\lambda_3 (w_{n-2}^{n-1})p(w_n) $$ </p>
+<p>simple interpolation:</p>
+<p>$$\widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 p(w_n|w_{n-2}w_{n-1}) + \lambda_2 p(w_n|w_{n-1}) +\lambda_3 p(w_n) $$ </p>
+<p>In both kinds of interpolation:</p>
+<p>$$\sum_i \lambda_i = 1$$</p>
+<p>Both the simple interpolation and conditional interpolation λ are learned from a held-out corpus. choose the λ values that maximize the likelihood of the held-out corpus.There are various ways to find this optimal set of λs. One way is to use the EM algorithm, which is an iterative learning algorithm that converges on locally optimal λs</p>
+<p>In terms of <strong>quality of N-gram model</strong>: quadrigram &gt; trigram &gt; bigram &gt; unigram</p>
+<p>In order for a backoff model to give a correct probability distribution, we have to discount the higher-order N-grams to save some probability mass for the lower order N-grams. In addition to this explicit discount factor, we’ll need a function α to distribute this probability mass to the lower order N-grams.</p>
+<p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability $$P^∗$$ if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
+<p>$$\begin{cases}<br>       P^*(w_n|w_{n-N+1}^{n-1})\quad \text{if}\;C(w_{n-N+1}^{n-1}) &gt; 0 \<br>       \alpha(w_{n-N+1}^{n-1})P_{BO}(w_n|w_{n-N+2}^{n-1})\quad \text{otherwise}<br>    \end{cases} $$</p>
+<p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the P∗ and α values.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Max-Matching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1242,260 +1517,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Maximum-Subarray/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Home of MasKong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/24/Maximum-Subarray/" itemprop="url">Maximum_Subarray</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T17:27:35+08:00">
-                2018-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h3><p>Time Complexity: O(n)</p>
-<p>Store the first value. Traverse the array. If the last value of maximum subarray l is greater than 0, add the current value to it and store it. Else store it directly. Because if the last value of maximum subarray l is less than 0, no need to add the current value to it. If the last value of maximum subarray l is greater than 0, add the current value to it. Next time we check it, if it greater than 0, we add next value to it, else we discard it because it could not be the maximum subarray.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def maxSubArray(self, nums):</span><br><span class="line">        <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        "</span><span class="string">""</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) == 1:</span><br><span class="line">            <span class="built_in">return</span> nums[0]</span><br><span class="line">        l = [nums[0]]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(1,len(nums)):</span><br><span class="line">            <span class="comment"># if nums[i] &lt;0:</span></span><br><span class="line">            <span class="keyword">if</span> l[i-1] &gt;0:</span><br><span class="line">                l.append(nums[i] + l[i-1])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l.append(nums[i])</span><br><span class="line">        <span class="built_in">return</span> max(l)</span><br><span class="line">            <span class="comment"># else:</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">s = Solution()</span><br><span class="line"><span class="comment"># leg = s.maxSubArray([-1,2,3,-6,8])</span></span><br><span class="line">leg = s.maxSubArray([-2,1,-3,4,-1,2,1,-5,4])</span><br><span class="line"><span class="comment"># leg = s.max_cross([-2,1,-3,4,-1,2,1,-5,4])</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(leg)</span><br></pre></td></tr></table></figure>
-<h3 id="divide-and-conquer"><a href="#divide-and-conquer" class="headerlink" title="divide and conquer"></a>divide and conquer</h3><p>recursively divide a problem into subproblems.<br>Time complexity: O(nlogn)<br>logn: Each time divide the problem into two parts, so an array of size N could construct a log2N levels tree. Each level needs at most N time to solve.</p>
-<h4 id="Reference-Introduction-to-Algorithm-Cha-4-1"><a href="#Reference-Introduction-to-Algorithm-Cha-4-1" class="headerlink" title="Reference: Introduction to Algorithm Cha 4.1"></a>Reference: Introduction to Algorithm Cha 4.1</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def maxSubArray(self, nums):</span><br><span class="line">        <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: float</span></span><br><span class="line"><span class="string">        "</span><span class="string">""</span></span><br><span class="line">        left = 0</span><br><span class="line">        right = len(nums)-1     <span class="comment">#index of the last item</span></span><br><span class="line">        <span class="comment"># if right == 0:</span></span><br><span class="line">        <span class="comment">#     return None</span></span><br><span class="line">        <span class="keyword">if</span> right == left:     <span class="comment">#only one element</span></span><br><span class="line">            <span class="built_in">return</span> nums[0]</span><br><span class="line">        mid = int(len(nums) / 2)</span><br><span class="line">        <span class="comment"># print("mid",mid, left, right)</span></span><br><span class="line">        <span class="comment"># print(self.max_cross(nums),</span></span><br><span class="line">        <span class="comment">#       self.maxSubArray(nums[left:mid]), self.maxSubArray(nums[mid:right]),)</span></span><br><span class="line">        m = self.max_cross(nums)</span><br><span class="line">        l = self.maxSubArray(nums[left:mid])</span><br><span class="line">        r = self.maxSubArray(nums[mid:right+1])</span><br><span class="line">        <span class="built_in">return</span> max(m,l,r)</span><br><span class="line">        <span class="comment"># return r</span></span><br><span class="line"></span><br><span class="line">    def max_cross(self, nums):</span><br><span class="line">        mid = int(len(nums)/2)</span><br><span class="line">        left = 0</span><br><span class="line">        right = len(nums)-1</span><br><span class="line">        left_sum_max, right_sum_max = <span class="built_in">float</span>(<span class="string">"-inf"</span>), <span class="built_in">float</span>(<span class="string">"-inf"</span>)</span><br><span class="line">        left_sum, right_sum = 0,0</span><br><span class="line">        left_index, right_index = -1,-1</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(mid-1,left-1,-1):</span><br><span class="line">            left_sum += nums[i]</span><br><span class="line">            <span class="keyword">if</span> left_sum&gt;left_sum_max:</span><br><span class="line">                left_index = i</span><br><span class="line">                left_sum_max = left_sum</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(mid,right+1):</span><br><span class="line">            right_sum += nums[i]</span><br><span class="line">            <span class="keyword">if</span> right_sum&gt;right_sum_max:</span><br><span class="line">                right_index = i</span><br><span class="line">                right_sum_max = right_sum</span><br><span class="line">        <span class="built_in">return</span> left_sum_max+right_sum_max</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Home of MasKong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/24/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T16:38:34+08:00">
-                2018-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1539,7 +1567,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

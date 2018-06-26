@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Algorithm," />
+  <meta name="keywords" content="NLP," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
-<meta name="keywords" content="Algorithm">
+<meta name="description" content="#Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximu">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="String_Matching">
-<meta property="og:url" content="http://yoursite.com/2018/05/25/String-Matching/index.html">
+<meta property="og:title" content="Smoothing">
+<meta property="og:url" content="http://yoursite.com/2018/06/26/Smoothing/index.html">
 <meta property="og:site_name" content="Home of MasKong">
-<meta property="og:description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
+<meta property="og:description" content="#Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximu">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-26T18:22:12.106Z">
+<meta property="og:updated_time" content="2018-06-26T11:35:40.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="String_Matching">
-<meta name="twitter:description" content="##String Matching: ###The Rabin-Karp algorithmIntuition:Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computat">
+<meta name="twitter:title" content="Smoothing">
+<meta name="twitter:description" content="#Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximu">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/25/String-Matching/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/26/Smoothing/"/>
 
 
 
 
 
-  <title>String_Matching | Home of MasKong</title>
+  <title>Smoothing | Home of MasKong</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/String-Matching/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/Smoothing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK LEE">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">String_Matching</h1>
+          <h1 class="post-title" itemprop="name headline">Smoothing</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-25T17:52:37+08:00">
-                2018-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T17:47:27+08:00">
+                2018-06-26
               </time>
             
 
@@ -300,16 +300,41 @@
       
 
       
-        <p>##String Matching:</p>
-<p>###The Rabin-Karp algorithm<br>Intuition:<br>Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation efficiently, we induce mod so as to reduce the computation complexity dramatically. </p>
-<p>In general, with a d-ary alphabet {0,1,2… d-1}, we choose q so that d*q fits within a computer word.<br>d is the length of the alphabet set.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''please input pattern and string'''</span></span><br><span class="line">p = input()</span><br><span class="line">s = input()</span><br><span class="line">d = int(input())</span><br><span class="line">q = int(input())</span><br><span class="line">l_p = len(p)</span><br><span class="line">h = d**(l_p<span class="number">-1</span>) % q</span><br><span class="line"><span class="string">'''Preprocessing'''</span></span><br><span class="line">p_sum, s_sum = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,l_p):</span><br><span class="line">    p_sum = (d*p_sum + int(p[i])) %q</span><br><span class="line">    s_sum = (d * s_sum + int(s[i])) %q</span><br><span class="line">    <span class="comment"># p_sum = (p_sum+(d*p_sum + int(p[i]))) % q</span></span><br><span class="line">    <span class="comment"># s_sum = (s_sum+(d * s_sum + int(s[i]))) % q</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,len(s)-l_p+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> p_sum == s_sum:</span><br><span class="line">        <span class="keyword">if</span> s[j:j+l_p] == p:</span><br><span class="line">            print(s[j:j+l_p])</span><br><span class="line">    <span class="keyword">if</span> j &lt; len(s)-l_p:</span><br><span class="line">        s_sum = (d*(s_sum-int(s[j])*h) + int(s[j+l_p])) % q</span><br></pre></td></tr></table></figure>
-<p>Worst case: the string and pattern have all same character. O((n-m+1)*m)<br>Best case: O(n) + O(m(v+n/q))</p>
-<p>###KMP algorithm</p>
-<p>Each time the given string match with the pattern, by utilizing the information contains in the pattern string, the algorithm may skip several matching without affecting the correctness. Let’s assume current position of the string is s. Length of matched string is q. There may exists a k&lt;q(if k &gt; q, we don’t know what’s them outside the pattern window) such that P[1…k] = T[s’+1…s’+k]. s’ is the new position of pointer. K is the length that the substring T[s’] starting from s’ matches with P[1..k].<br>So s’ = s+q-k</p>
-<p>Preprocessing:<br>Find the longest prefix of the matched string such that it is also the suffix of the matched string.</p>
-<p>Time complexity: O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_prefix</span><span class="params">(p)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>] * len(p)</span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(p)):</span><br><span class="line">        <span class="string">'''#This line decrease k. because 0 &lt; k &lt; i, the total time that i has been increased &lt; len(p),</span></span><br><span class="line"><span class="string">        so the total time that while loop execute would &lt; len(p)'''</span></span><br><span class="line">        <span class="keyword">while</span> k&gt;<span class="number">0</span> <span class="keyword">and</span> p[i] != p[k]:</span><br><span class="line">            k = l[k]</span><br><span class="line">        <span class="keyword">if</span> p[i] == p[k]:</span><br><span class="line">            k += <span class="number">1</span>                          <span class="comment"># this increase k</span></span><br><span class="line">        l[i] = k</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP_Match</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    l = compute_prefix(p)</span><br><span class="line">    <span class="comment"># print(l)</span></span><br><span class="line">    q = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(s)):</span><br><span class="line">        <span class="keyword">while</span> q &gt; <span class="number">0</span> <span class="keyword">and</span> p[q] != s[i]:</span><br><span class="line">            q = l[q]</span><br><span class="line">        <span class="keyword">if</span> p[q] == s[i]:</span><br><span class="line">            q += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> q == len(p):</span><br><span class="line">            print(s[i-q+<span class="number">1</span>:i+<span class="number">1</span>])</span><br><span class="line">            q = l[q<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+        <p>#Smoothing:<br>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
+<h3 id="Laplace-Smoothing"><a href="#Laplace-Smoothing" class="headerlink" title="Laplace Smoothing"></a>Laplace Smoothing</h3><p>Also called add-one smoothing.</p>
+<p>the unsmoothed maximum likelihood estimate of the unigram probability of the word wi is its count ci normalized by the total number of word tokens N</p>
+<p>$$ p(w_i)= \frac{c_i}{N}$$</p>
+<p>Laplace smoothing merely adds one to each count. Denominator is also adjusted by adding V(number of observations). If the demoninator is still unchanged, the sum of all probability would exceed 1.</p>
+<p>$$ p_{Laplace}(w_i)= \frac{c_i+1}{N+V}$$</p>
+<p><strong>adjusted count</strong>: describe how a smoothing algorithm affects the numerator</p>
+<p>$$ c_i^* = \frac{c_i+1}{N+V} \times{N} = p_{Laplace}(w_i) \times{N}$$</p>
+<p>the ratio of the discounted counts to the original counts describe a smoothing algorithm in terms of a relative discount dc:</p>
+<p>$$ d_c= \frac{c^*}{c}$$</p>
+<p>Normal bigram probabilities are computed by normalizing each row of counts by the unigram count:</p>
+<p>$$ p(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)}{c(w_{n-1})}$$</p>
+<p>After smoothing:</p>
+<p>$$ p_{Laplace}(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+1}{c(w_{n-1})+V}$$</p>
+<p>These adjusted counts can be computed by equation below to show the reconstructed counts.</p>
+<p>$$ c^*(w_{n-1}w_n) = \frac{c(w_{n-1}w_n)+1}{c(w_{n-1)}+V} \times{c(w_{n-1})} = p_{Laplace}(w_n|w_{n-1}) \times{c(w_{n-1})}$$</p>
+<p>###Add-k smoothing: add k rather than one; </p>
+<p>$$ p_{Add-k}^*(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+k}{c(w_{n-1})+kV}$$</p>
+<p>chosse k by optimizing on a devset.</p>
+<p>Although add-k is useful for some tasks (including text classification), it turns out that it still doesn’t work well for language modeling, generating counts with poor variances and often inappropriate discounts</p>
+<p>###Backoff and Interpolation<br><strong>backoff</strong>: If there is zero evidence for a higher-order N-gram, use lower-order N-gram instead. </p>
+<p>i.e.: If we are trying to compute $$P(w_n|w_{n−2}w_{n−1})$$ but we have no examples of a particular trigram wn−2wn−1wn, we can instead estimate its probability by using the bigram probability $$P(w_n|w_{n−1})$$.</p>
+<p><strong><em>interpolation</em></strong>: we always mix the probability estimates from all the N-gram estimators, weighing and combining the trigram, bigram, and unigram counts.</p>
+<p>In a slightly more sophisticated version of linear interpolation, each λ weight is computed by conditioning on the context. This way, if we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams based on this bigram will be more trustworthy, so we can make the λs for those trigrams higher and thus give that trigram more weight in the interpolation.</p>
+<p>$$\widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 (w_{n-2}^{n-1})p(w_n|w_{n-2}w_{n-1}) + \lambda_2 (w_{n-2}^{n-1})p(w_n|w_{n-1}) +\lambda_3 (w_{n-2}^{n-1})p(w_n) $$ </p>
+<p>simple interpolation:</p>
+<p>$$\widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 p(w_n|w_{n-2}w_{n-1}) + \lambda_2 p(w_n|w_{n-1}) +\lambda_3 p(w_n) $$ </p>
+<p>In both kinds of interpolation:</p>
+<p>$$\sum_i \lambda_i = 1$$</p>
+<p>Both the simple interpolation and conditional interpolation λ are learned from a held-out corpus. choose the λ values that maximize the likelihood of the held-out corpus.There are various ways to find this optimal set of λs. One way is to use the EM algorithm, which is an iterative learning algorithm that converges on locally optimal λs</p>
+<p>In terms of <strong>quality of N-gram model</strong>: quadrigram &gt; trigram &gt; bigram &gt; unigram</p>
+<p>In order for a backoff model to give a correct probability distribution, we have to discount the higher-order N-grams to save some probability mass for the lower order N-grams. In addition to this explicit discount factor, we’ll need a function α to distribute this probability mass to the lower order N-grams.</p>
+<p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability $$P^∗$$ if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
+<p>$$\begin{cases}<br>       P^*(w_n|w_{n-N+1}^{n-1})\quad \text{if}\;C(w_{n-N+1}^{n-1}) &gt; 0 \<br>       \alpha(w_{n-N+1}^{n-1})P_{BO}(w_n|w_{n-N+2}^{n-1})\quad \text{otherwise}<br>    \end{cases} $$</p>
+<p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the P∗ and α values.</p>
 
       
     </div>
@@ -327,7 +352,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
           
         </div>
       
@@ -340,8 +365,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/24/Recommendation-System/" rel="next" title="Recommendation_System">
-                <i class="fa fa-chevron-left"></i> Recommendation_System
+              <a href="/2018/06/25/Max-Matching/" rel="next" title="Max_Matching">
+                <i class="fa fa-chevron-left"></i> Max_Matching
               </a>
             
           </div>
@@ -350,8 +375,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/27/Sentence-Similarity/" rel="prev" title="Sentence_Similarity">
-                Sentence_Similarity <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/26/NLP-Notation/" rel="prev" title="NLP_Notation">
+                NLP_Notation <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -404,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -456,6 +490,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Laplace-Smoothing"><span class="nav-number">1.</span> <span class="nav-text">Laplace Smoothing</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
