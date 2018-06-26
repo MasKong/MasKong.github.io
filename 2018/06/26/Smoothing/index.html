@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-26T16:50:27.538Z">
+<meta property="og:updated_time" content="2018-06-26T17:02:32.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smoothing">
 <meta name="twitter:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
@@ -356,11 +356,11 @@
 <p>$$C_{KN}(\cdot)=\begin{cases}count(\cdot) &amp;,\text{for the highest order}\<br>continuationcount(\cdot) &amp;,for\quad all\quad other\quad lower\quad orders<br>\end{cases}$$</p>
 <p>$$<br>    X(m,n) = \left{\begin{array}{lr}<br>        x(n), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1<br>        \end{array}\right} = xy<br>$$</p>
 <p>test</p>
-<p>$$<br>\begin{cases}<br>    2x+y=3\<br>    2x-y=1\<br>    \end{cases}<br>$$</p>
 <p>The continuation count is the number of unique single word contexts for ·.<br>At the termination of the recursion, unigrams are interpolated with the uniform<br> distribution, where the parameter ε is the empty string:</p>
 <p> $$P_{KN}(w)=\frac{max(c_{KN}(w)-d,0)}{\sum_{w’}c_{KN}(w’)} +\lambda(\epsilon)\frac{1}{V}$$</p>
-<p> If we want to include an unknown word <unk>, it’s just included as a regular vo-<br>cabulary entry with count zero, and hence its probability will be a lambda-weighted<br>uniform distribution $\lambda(\epsilon)\frac{1}{V}$.</unk></p>
-<p>The best-performing version of Kneser-Ney smoothing is called modified Kneser- Ney smoothing. Rather than use a single fixed discount d, modified Kneser-Ney uses three different discounts d1, d2, and $d3_+$ for N-grams with counts of 1, 2 and three or more, respectively.</p>
+<p> If we want to include an unknown word <unk>, it’s just included as a regular vo-<br>cabulary entry with count zero, and hence its probability will be a lambda-weighted<br>uniform distribution ($$\lambda(\epsilon)\frac{1}{V}$$).</unk></p>
+<p>[$$x_i$$]</p>
+<p>The best-performing version of Kneser-Ney smoothing is called modified Kneser- Ney smoothing. Rather than use a single fixed discount d, modified Kneser-Ney uses three different discounts d1, d2, and $$d3_+$$ for N-grams with counts of 1, 2 and three or more, respectively.</p>
 <h3 id="Entropy"><a href="#Entropy" class="headerlink" title="Entropy"></a>Entropy</h3><p><strong>Entropy</strong> is the minimum number of bits(if log base 2 is used) that is needed to encode(represent) information in the optimal coding scheme.</p>
 <p><strong>Entropy rate</strong> the entropy of a sequence divided by the number of words.</p>
 <p>To measure entropy rate of a language, entropy rate of a infinite sequence needs to be calculated.</p>
