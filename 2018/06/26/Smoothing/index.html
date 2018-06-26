@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-26T11:47:59.713Z">
+<meta property="og:updated_time" content="2018-06-26T13:16:57.042Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smoothing">
 <meta name="twitter:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
@@ -335,7 +335,25 @@
 <p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability $P^∗$ if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
 <p>$$\begin{cases}<br>       P^*(w_n|w_{n-N+1}^{n-1})\quad \text{if}\;C(w_{n-N+1}^{n-1}) &gt; 0 \<br>       \alpha(w_{n-N+1}^{n-1})P_{BO}(w_n|w_{n-N+2}^{n-1})\quad \text{otherwise}<br>    \end{cases} $$</p>
 <p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the $P^*$ and α values.</p>
-<p>###Kneser-Ney Smoothing</p>
+<h3 id="Kneser-Ney-Smoothing"><a href="#Kneser-Ney-Smoothing" class="headerlink" title="Kneser-Ney Smoothing"></a>Kneser-Ney Smoothing</h3><h3 id="Entropy"><a href="#Entropy" class="headerlink" title="Entropy"></a>Entropy</h3><p><strong>Entropy</strong> is the minimum number of bits(if log base 2 is used) that is needed to encode(represent) information in the optimal coding scheme.</p>
+<p><strong>Entropy rate</strong> the entropy of a sequence divided by the number of words.</p>
+<p>To measure entropy rate of a language, entropy rate of a infinite sequence needs to be calculated.</p>
+<p>$$H(L) = −\lim_{n\to\infty} \frac{1}{n}H(w_1,w_2,…,w_n)<br>= −\lim_{n\to\infty}\sum_{W\in L} p(w_1,…,w_n)\frac{1}{n} \log p(w_1,…,w_n)$$</p>
+<p>The Shannon-McMillan-Breiman theorem states that if the language is rboth stationary and ergodic</p>
+<p>$$H(L) = \lim_{n\to\infty}-\frac{1}{n}\log p(w_1,…,w_n)$$</p>
+<p>The intuition of the Shannon-McMillan-Breiman theorem is that a long-enough sequence of words will contain many other shorter sequences and that each of these shorter sequences will reoccur in the longer sequence according to their probabilities.That is, we can take a single sequence that is long enough instead of summing over all possible sequences. </p>
+<p>A stochastic process is said to be stationary if the probability distribution for words at time t is the same as the probability distribution at time t + 1. Markov models, and hence N-grams, are stationary. Natural language is not stationary, the probability of upcoming words can be dependent on events that were arbitrarily distant and time dependent. Thus, our statistical models only give an approximation to the correct distributions and entropies of natural language.<br>To summarize, by making some incorrect but convenient simplifying assumptions, we can compute the entropy of some stochastic process by taking a very long sample of the output and computing its average log probability.</p>
+<p>The cross-entropy is useful when we don’t know the actual probability distribution p that generated some data. It allows us to use some m, which is a model of p (i.e., an approximation to p) to approximate the real entropy. The<br>cross-entropy of m on p is defined by</p>
+<p>$$H(p,m) = \lim_{n\to\infty}\sum_{W\in L}- p(w_1,…,w_n)\frac{1}{n} \log m(w_1,…,w_n)$$</p>
+<p>That is, we draw sequences according to the probability distribution p, but sum the log of their probabilities according to m.<br>Again, following the Shannon-McMillan-Breiman theorem, for a stationary ergodic process:</p>
+<p>$$H(p,m) = \lim_{n\to\infty}-\frac{1}{n}\log m(w_1,…,w_n)$$</p>
+<p>This means that, as for entropy, we can estimate the cross-entropy of a model m on some distribution p by taking a single sequence that is long enough instead of summing over all possible sequences.<br>What makes the cross-entropy useful is that the cross-entropy H(p,m) is an upper bound on the entropy H(p).<br>For any model m:</p>
+<p>$$H(p) ≤ H(p,m)$$</p>
+<p>This means that we can use some simplified model m to estimate the true entropy of a sequence of symbols drawn according to probability p. The more accurate m is, the closer the cross-entropy H(p,m) will be to the true entropy H(p). Thus, the difference between H(p,m) and H(p) is a measure of how accurate a model is. The lower the cross-entropy, the better is the model(better approximation of the true entropy). The cross-entropy can never be lower than the true entropy, so a model cannot err by underestimating the true entropy.</p>
+<p>Cross-entropy is defined in the limit, as the length of the observed word sequence goes to infinity. A (sufficiently long) sequence of fixed length N is employed to  approximate the cross-entropy of a model M = $ P(w_i|w_{i−N+1}…w_{i−1}) $(N is the N of a N-gram model) on a sequence of words W is</p>
+<p>$$H(W) = -\frac{1}{N}\log p(w_1,…,w_n)$$</p>
+<p>The perplexity of a model P on a sequence of words W is now formally defined as the exp of this cross-entropy:</p>
+<p>$$Perplexity(W) = 2^{H(W)} = P(w_1,…,w_n)^{-\frac{1}<br>{N}}$$</p>
 
       
     </div>
@@ -501,7 +519,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Smoothing"><span class="nav-number">1.</span> <span class="nav-text">Smoothing:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Laplace-Smoothing"><span class="nav-number">1.0.1.</span> <span class="nav-text">Laplace Smoothing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-k-smoothing"><span class="nav-number">1.0.2.</span> <span class="nav-text">Add-k smoothing:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backoff-and-Interpolation"><span class="nav-number">1.0.3.</span> <span class="nav-text">Backoff and Interpolation</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Smoothing"><span class="nav-number">1.</span> <span class="nav-text">Smoothing:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Laplace-Smoothing"><span class="nav-number">1.0.1.</span> <span class="nav-text">Laplace Smoothing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Add-k-smoothing"><span class="nav-number">1.0.2.</span> <span class="nav-text">Add-k smoothing:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Backoff-and-Interpolation"><span class="nav-number">1.0.3.</span> <span class="nav-text">Backoff and Interpolation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kneser-Ney-Smoothing"><span class="nav-number">1.0.4.</span> <span class="nav-text">Kneser-Ney Smoothing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Entropy"><span class="nav-number">1.0.5.</span> <span class="nav-text">Entropy</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
