@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-26T17:02:32.225Z">
+<meta property="og:updated_time" content="2018-06-26T17:06:12.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smoothing">
 <meta name="twitter:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
@@ -332,34 +332,31 @@
 <p>Both the simple interpolation and conditional interpolation λ are learned from a held-out corpus. choose the λ values that maximize the likelihood of the held-out corpus.There are various ways to find this optimal set of λs. One way is to use the EM algorithm, which is an iterative learning algorithm that converges on locally optimal λs</p>
 <p>In terms of <strong>quality of N-gram model</strong>: quadrigram &gt; trigram &gt; bigram &gt; unigram</p>
 <p>In order for a backoff model to give a correct probability distribution, we have to discount the higher-order N-grams to save some probability mass for the lower order N-grams. In addition to this explicit discount factor, we’ll need a function α to distribute this probability mass to the lower order N-grams.</p>
-<p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability $P^∗$ if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
+<p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability $$P^∗$$ if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
 <p>$$\begin{cases}<br>       P^*(w_n|w_{n-N+1}^{n-1})\quad \text{if}\;C(w_{n-N+1}^{n-1}) &gt; 0 \<br>       \alpha(w_{n-N+1}^{n-1})P_{BO}(w_n|w_{n-N+2}^{n-1})\quad \text{otherwise}<br>    \end{cases} $$</p>
-<p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the $P^*$ and α values.</p>
-<h3 id="Kneser-Ney-Smoothing"><a href="#Kneser-Ney-Smoothing" class="headerlink" title="Kneser-Ney Smoothing"></a>Kneser-Ney Smoothing</h3><p>Novel continuation means the first time that the word $w_{i-1}$ preceeds the word $w_{i}$.</p>
+<p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the $$P^*$$ and α values.</p>
+<h3 id="Kneser-Ney-Smoothing"><a href="#Kneser-Ney-Smoothing" class="headerlink" title="Kneser-Ney Smoothing"></a>Kneser-Ney Smoothing</h3><p>Novel continuation means the first time that the word $$w_{i-1}$$ preceeds the word $$w_{i}$$.</p>
 <p>The number of times a word w appears as a novel continuation can be expressed as:</p>
 <p>$$P_{continuation}(w_i)\propto \lvert {w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert$$</p>
-<p>$w_i$ is the current word. $w_{i-1}$ is the words occur before the current word(also called preceeding word).</p>
+<p>$$w_i$$ is the current word. $$w_{i-1}$$ is the words occur before the current word(also called preceeding word).</p>
 <p>To turn this count into a probability, we normalize by the total number of bigram word. In summary:</p>
 <p>$$P_{continuation}(w_i)=\frac{\lvert {w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}{\lvert{(w_{j-1},w_j):c(w_{j-1}w_j)&gt;0}\rvert}$$</p>
 <p>Or normalized by the number of words preceding all words as follows:</p>
 <p>$$P_{continuation}(w_i)=\frac{\lvert { w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}<br>{\sum_{w’<em>i} \lvert{w’</em>{i-1}:C(w’_{i-1}w’_i)&gt;0}\rvert}$$</p>
-<p>The number of words preceeding all words is:<br>given word $w’<em>i$,the number of word $w’</em>{i-1}$ that preceed $w’_i$. $w’_i$ are all words in the corpus. So The number of words preceeding all words = the total number of bigram word.</p>
+<p>The number of words preceeding all words is:<br>given word $$w’<em>i$$,the number of word $$w’</em>{i-1}$$ that preceed $$w’_i$$. $$w’_i$$ are all words in the corpus. So The number of words preceeding all words = the total number of bigram word.</p>
 <p>The final equation for <strong>Interpolated Kneser-Ney smoothing</strong> for bigrams is then:</p>
 <p>$$P_{KN}(w_i|w_{i-1})=\frac{max(C(w_{i-1}w_i)-d,0)}{C(w_{i-1})}<br>+\lambda(w_{i-1})P_{continuation}(w_i)$$</p>
 <p>The λ is a normalizing constant that is used to distribute the probability mass that is discounted:</p>
 <p>$$\lambda(w_{i-1})=\frac{d}{C(w_{i-1})}\cdot \lvert {w:C(w_{i-1},w)&gt;0}\rvert$$</p>
-<p>The first term $\frac{d}{C(w_{i-1})}$ is the normalized discount. The second term $\lvert {w:C(w_{i-1},w)&gt;0}\rvert$<br>is the number of word types that can follow $w_{i−1}$ or, equivalently, the number of word types that we discounted; in other words, the number of times we applied the normalized discount.</p>
+<p>The first term $$\frac{d}{C(w_{i-1})}$$ is the normalized discount. The second term $$\lvert {w:C(w_{i-1},w)&gt;0}\rvert$$<br>is the number of word types that can follow $$w_{i−1}$$ or, equivalently, the number of word types that we discounted; in other words, the number of times we applied the normalized discount.</p>
 <p>The general recursive formulation is as follows:</p>
 <p>$$P_{KN}(w_i|w_{i-n+1}\cdots w_{i-1})=\frac{max(0,C_{KN}(w_{i-n+1} \cdots w_i) - d)}{C_{KN}(w_{i-n+1}\cdots w_{i-1})}<br>+\lambda(w_{i-n+1}\cdots w_{i-1})\cdot P_{KN}(w_i|w_{i-n+2}\cdots w_{i-1})$$</p>
 <p>$$\lambda(w_{i-n+1}\cdots w_{i-1})=\frac{d}{C_{KN}(w_{i-n+1}\cdots w_{i-1})}\cdot \lvert {w:C_{KN}(w_{i-n+1} \cdots w_{i-1}w)&gt;0}\rvert$$</p>
 <p>where the definition of the count $c_{KN}$ depends on whether we are counting the highest-order N-gram being interpolated (for example trigram if we are interpolat- ing trigram, bigram, and unigram) or one of the lower-order N-grams (bigram or unigram if we are interpolating trigram, bigram, and unigram):</p>
-<p>$$C_{KN}(\cdot)=\begin{cases}count(\cdot) &amp;,\text{for the highest order}\<br>continuationcount(\cdot) &amp;,for\quad all\quad other\quad lower\quad orders<br>\end{cases}$$</p>
-<p>$$<br>    X(m,n) = \left{\begin{array}{lr}<br>        x(n), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1\<br>        x(n-1), &amp; \text{for } 0\leq n\leq 1<br>        \end{array}\right} = xy<br>$$</p>
-<p>test</p>
+<p>$$C_{KN}(\cdot)=\begin{cases}count(\cdot) &amp;,\text{for the highest order}\<br>continuationcount(\cdot) &amp;,\text{for all other lower orders}<br>\end{cases}$$</p>
 <p>The continuation count is the number of unique single word contexts for ·.<br>At the termination of the recursion, unigrams are interpolated with the uniform<br> distribution, where the parameter ε is the empty string:</p>
 <p> $$P_{KN}(w)=\frac{max(c_{KN}(w)-d,0)}{\sum_{w’}c_{KN}(w’)} +\lambda(\epsilon)\frac{1}{V}$$</p>
-<p> If we want to include an unknown word <unk>, it’s just included as a regular vo-<br>cabulary entry with count zero, and hence its probability will be a lambda-weighted<br>uniform distribution ($$\lambda(\epsilon)\frac{1}{V}$$).</unk></p>
-<p>[$$x_i$$]</p>
+<p> If we want to include an unknown word <unk>, it’s just included as a regular vo-<br>cabulary entry with count zero, and hence its probability will be a lambda-weighted<br>uniform distribution $$\lambda(\epsilon)\frac{1}{V}$$.</unk></p>
 <p>The best-performing version of Kneser-Ney smoothing is called modified Kneser- Ney smoothing. Rather than use a single fixed discount d, modified Kneser-Ney uses three different discounts d1, d2, and $$d3_+$$ for N-grams with counts of 1, 2 and three or more, respectively.</p>
 <h3 id="Entropy"><a href="#Entropy" class="headerlink" title="Entropy"></a>Entropy</h3><p><strong>Entropy</strong> is the minimum number of bits(if log base 2 is used) that is needed to encode(represent) information in the optimal coding scheme.</p>
 <p><strong>Entropy rate</strong> the entropy of a sequence divided by the number of words.</p>
