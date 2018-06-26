@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="#Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximu">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-26T11:37:31.796Z">
+<meta property="og:updated_time" content="2018-06-26T11:38:15.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smoothing">
 <meta name="twitter:description" content="#Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximu">
@@ -303,28 +303,28 @@
         <p>#Smoothing:<br>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
 <h3 id="Laplace-Smoothing"><a href="#Laplace-Smoothing" class="headerlink" title="Laplace Smoothing"></a>Laplace Smoothing</h3><p>Also called add-one smoothing.</p>
 <p>the unsmoothed maximum likelihood estimate of the unigram probability of the word wi is its count ci normalized by the total number of word tokens N</p>
-<p>$$ p(w_i)= \frac{c_i}{N}$$</p>
+<p>$$ p(w_i)= \frac{c_i}{N} $$</p>
 <p>Laplace smoothing merely adds one to each count. Denominator is also adjusted by adding V(number of observations). If the demoninator is still unchanged, the sum of all probability would exceed 1.</p>
-<p>$$ p_{Laplace}(w_i)= \frac{c_i+1}{N+V}$$</p>
+<p>$$ p_{Laplace}(w_i)= \frac{c_i+1}{N+V} $$</p>
 <p><strong>adjusted count</strong>: describe how a smoothing algorithm affects the numerator</p>
-<p>$$ c_i^* = \frac{c_i+1}{N+V} \times{N} = p_{Laplace}(w_i) \times{N}$$</p>
+<p>$$ c_i^* = \frac{c_i+1}{N+V} \times{N} = p_{Laplace}(w_i) \times{N} $$</p>
 <p>the ratio of the discounted counts to the original counts describe a smoothing algorithm in terms of a relative discount dc:</p>
-<p>$$ d_c= \frac{c^*}{c}$$</p>
+<p>$$ d_c= \frac{c^*}{c} $$</p>
 <p>Normal bigram probabilities are computed by normalizing each row of counts by the unigram count:</p>
-<p>$$ p(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)}{c(w_{n-1})}$$</p>
+<p>$$ p(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)}{c(w_{n-1})} $$</p>
 <p>After smoothing:</p>
-<p>$$ p_{Laplace}(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+1}{c(w_{n-1})+V}$$</p>
+<p>$$ p_{Laplace}(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+1}{c(w_{n-1})+V} $$</p>
 <p>These adjusted counts can be computed by equation below to show the reconstructed counts.</p>
-<p>$$ c^*(w_{n-1}w_n) = \frac{c(w_{n-1}w_n)+1}{c(w_{n-1)}+V} \times{c(w_{n-1})} = p_{Laplace}(w_n|w_{n-1}) \times{c(w_{n-1})}$$</p>
+<p>$$ c^*(w_{n-1}w_n) = \frac{c(w_{n-1}w_n)+1}{c(w_{n-1)}+V} \times{c(w_{n-1})} = p_{Laplace}(w_n|w_{n-1}) \times{c(w_{n-1})} $$</p>
 <p>###Add-k smoothing: add k rather than one; </p>
-<p>$$ p_{Add-k}^*(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+k}{c(w_{n-1})+kV}$$</p>
+<p>$$ p_{Add-k}^*(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+k}{c(w_{n-1})+kV} $$</p>
 <p>chosse k by optimizing on a devset.</p>
 <p>Although add-k is useful for some tasks (including text classification), it turns out that it still doesn’t work well for language modeling, generating counts with poor variances and often inappropriate discounts</p>
 <p>###Backoff and Interpolation<br><strong>backoff</strong>: If there is zero evidence for a higher-order N-gram, use lower-order N-gram instead. </p>
-<p>i.e.: If we are trying to compute $$P(w_n|w_{n−2}w_{n−1})$$ but we have no examples of a particular trigram wn−2wn−1wn, we can instead estimate its probability by using the bigram probability $$P(w_n|w_{n−1})$$.</p>
+<p>i.e.: If we are trying to compute $$ P(w_n|w_{n−2}w_{n−1}) $$ but we have no examples of a particular trigram wn−2wn−1wn, we can instead estimate its probability by using the bigram probability $$ P(w_n|w_{n−1}) $$.</p>
 <p><strong><em>interpolation</em></strong>: we always mix the probability estimates from all the N-gram estimators, weighing and combining the trigram, bigram, and unigram counts.</p>
 <p>In a slightly more sophisticated version of linear interpolation, each λ weight is computed by conditioning on the context. This way, if we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams based on this bigram will be more trustworthy, so we can make the λs for those trigrams higher and thus give that trigram more weight in the interpolation.</p>
-<p>$$\widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 (w_{n-2}^{n-1})p(w_n|w_{n-2}w_{n-1}) + \lambda_2 (w_{n-2}^{n-1})p(w_n|w_{n-1}) +\lambda_3 (w_{n-2}^{n-1})p(w_n) $$ </p>
+<p>$$ \widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 (w_{n-2}^{n-1})p(w_n|w_{n-2}w_{n-1}) + \lambda_2 (w_{n-2}^{n-1})p(w_n|w_{n-1}) +\lambda_3 (w_{n-2}^{n-1})p(w_n)  $$ </p>
 <p>simple interpolation:</p>
 <p>$$ \widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 p(w_n|w_{n-2}w_{n-1}) + \lambda_2 p(w_n|w_{n-1}) +\lambda_3 p(w_n) $$ </p>
 <p>In both kinds of interpolation:</p>
