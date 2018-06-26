@@ -303,7 +303,7 @@
       
         
           
-            <p>$$ w_1^n$$ is a sequence of N words from word 1 to word N.</p>
+            <p>$ w_1^n$ is a sequence of N words from word 1 to word N.</p>
 <p>A held-out corpus is an additional training corpus that we use to set hyperparameters</p>
 
           
@@ -424,7 +424,7 @@
       
         
           
-            <p>#Smoothing:<br>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
+            <h1 id="Smoothing"><a href="#Smoothing" class="headerlink" title="Smoothing:"></a>Smoothing:</h1><p>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
 <h3 id="Laplace-Smoothing"><a href="#Laplace-Smoothing" class="headerlink" title="Laplace Smoothing"></a>Laplace Smoothing</h3><p>Also called add-one smoothing.</p>
 <p>the unsmoothed maximum likelihood estimate of the unigram probability of the word wi is its count ci normalized by the total number of word tokens N</p>
 <p>$$ p(w_i)= \frac{c_i}{N} $$</p>
@@ -440,11 +440,11 @@
 <p>$$ p_{Laplace}(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+1}{c(w_{n-1})+V} $$</p>
 <p>These adjusted counts can be computed by equation below to show the reconstructed counts.</p>
 <p>$$ c^*(w_{n-1}w_n) = \frac{c(w_{n-1}w_n)+1}{c(w_{n-1)}+V} \times{c(w_{n-1})} = p_{Laplace}(w_n|w_{n-1}) \times{c(w_{n-1})} $$</p>
-<p>###Add-k smoothing: add k rather than one; </p>
+<h3 id="Add-k-smoothing"><a href="#Add-k-smoothing" class="headerlink" title="Add-k smoothing:"></a>Add-k smoothing:</h3><p>add k rather than one; </p>
 <p>$$ p_{Add-k}^*(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+k}{c(w_{n-1})+kV} $$</p>
 <p>chosse k by optimizing on a devset.</p>
 <p>Although add-k is useful for some tasks (including text classification), it turns out that it still doesn’t work well for language modeling, generating counts with poor variances and often inappropriate discounts</p>
-<p>###Backoff and Interpolation<br><strong>backoff</strong>: If there is zero evidence for a higher-order N-gram, use lower-order N-gram instead. </p>
+<h3 id="Backoff-and-Interpolation"><a href="#Backoff-and-Interpolation" class="headerlink" title="Backoff and Interpolation"></a>Backoff and Interpolation</h3><p><strong>backoff</strong>: If there is zero evidence for a higher-order N-gram, use lower-order N-gram instead. </p>
 <p>i.e.: If we are trying to compute $$ P(w_n|w_{n−2}w_{n−1}) $$ but we have no examples of a particular trigram wn−2wn−1wn, we can instead estimate its probability by using the bigram probability $$ P(w_n|w_{n−1}) $$.</p>
 <p><strong><em>interpolation</em></strong>: we always mix the probability estimates from all the N-gram estimators, weighing and combining the trigram, bigram, and unigram counts.</p>
 <p>In a slightly more sophisticated version of linear interpolation, each λ weight is computed by conditioning on the context. This way, if we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams based on this bigram will be more trustworthy, so we can make the λs for those trigrams higher and thus give that trigram more weight in the interpolation.</p>
@@ -456,9 +456,9 @@
 <p>Both the simple interpolation and conditional interpolation λ are learned from a held-out corpus. choose the λ values that maximize the likelihood of the held-out corpus.There are various ways to find this optimal set of λs. One way is to use the EM algorithm, which is an iterative learning algorithm that converges on locally optimal λs</p>
 <p>In terms of <strong>quality of N-gram model</strong>: quadrigram &gt; trigram &gt; bigram &gt; unigram</p>
 <p>In order for a backoff model to give a correct probability distribution, we have to discount the higher-order N-grams to save some probability mass for the lower order N-grams. In addition to this explicit discount factor, we’ll need a function α to distribute this probability mass to the lower order N-grams.</p>
-<p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability $$P^∗$$ if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
+<p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability $P^∗$ if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
 <p>$$\begin{cases}<br>       P^*(w_n|w_{n-N+1}^{n-1})\quad \text{if}\;C(w_{n-N+1}^{n-1}) &gt; 0 \<br>       \alpha(w_{n-N+1}^{n-1})P_{BO}(w_n|w_{n-N+2}^{n-1})\quad \text{otherwise}<br>    \end{cases} $$</p>
-<p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the P∗ and α values.</p>
+<p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the $P^*$ and α values.</p>
 <p>###Kneser-Ney Smoothing</p>
 
           
