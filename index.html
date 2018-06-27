@@ -320,8 +320,7 @@
 <p>2, <em>EM algorithm</em>.<br>compute the matrices by iteratively using the spelling error correction algorithm itself. The iterative algorithm first initializes the matrices with equal values; thus, any character is equally likely to be deleted, equally likely to be substituted for any other character,<br>etc. Next, the spelling error correction algorithm is run on a set of spelling<br>errors. Given the set of typos paired with their predicted corrections, the confusion<br>matrices can now be recomputed, the spelling algorithm run again, and so on. </p>
 <p>Evaluating spell correction algorithms is generally done by holding out a training,<br>development and test set from lists of errors like those on the Norvig and Mitton<br>sites mentioned above.</p>
 <p><strong>Candidate words</strong>:<br>Utilize the extended minimum edit distance algorithm introduced so that in addition to insertions, deletions, and substitutions, there is transpositions, in which two letters are swapped. All words with edit distance of 1 constitutes the candidate words set.</p>
-<p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to p(wi-1)*p(wi) for bigram model to take the context into consideration.</p>
-<p>1sadf \(a+b=c\) sdfa</p>
+<p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to \(p(w_{i-1})*p(w_i)\) for bigram model to take the context into consideration.</p>
 
           
         
@@ -612,16 +611,16 @@
 <p>$$P_{KN}(w_i|w_{i-1})=\frac{max(C(w_{i-1}w_i)-d,0)}{C(w_{i-1})}<br>+\lambda(w_{i-1})P_{continuation}(w_i)$$</p>
 <p>The λ is a normalizing constant that is used to distribute the probability mass that is discounted:</p>
 <p>$$\lambda(w_{i-1})=\frac{d}{C(w_{i-1})}\cdot \lvert {w:C(w_{i-1},w)&gt;0}\rvert$$</p>
-<p>The first term $$\frac{d}{C(w_{i-1})}$$ is the normalized discount. The second term $$\lvert {w:C(w_{i-1},w)&gt;0}\rvert$$<br>is the number of word types that can follow $$w_{i−1}$$ or, equivalently, the number of word types that we discounted; in other words, the number of times we applied the normalized discount.</p>
+<p>The first term \(\frac{d}{C(w_{i-1})}\) is the normalized discount. The second term \(\lvert {w:C(w_{i-1},w)&gt;0}\rvert\)<br>is the number of word types that can follow \(w_{i−1}\) or, equivalently, the number of word types that we discounted; in other words, the number of times we applied the normalized discount.</p>
 <p>The general recursive formulation is as follows:</p>
 <p>$$P_{KN}(w_i|w_{i-n+1}\cdots w_{i-1})=\frac{max(0,C_{KN}(w_{i-n+1} \cdots w_i) - d)}{C_{KN}(w_{i-n+1}\cdots w_{i-1})}<br>+\lambda(w_{i-n+1}\cdots w_{i-1})\cdot P_{KN}(w_i|w_{i-n+2}\cdots w_{i-1})$$</p>
 <p>$$\lambda(w_{i-n+1}\cdots w_{i-1})=\frac{d}{C_{KN}(w_{i-n+1}\cdots w_{i-1})}\cdot \lvert {w:C_{KN}(w_{i-n+1} \cdots w_{i-1}w)&gt;0}\rvert$$</p>
-<p>where the definition of the count $c_{KN}$ depends on whether we are counting the highest-order N-gram being interpolated (for example trigram if we are interpolat- ing trigram, bigram, and unigram) or one of the lower-order N-grams (bigram or unigram if we are interpolating trigram, bigram, and unigram):</p>
+<p>where the definition of the count \(c_{KN}\) depends on whether we are counting the highest-order N-gram being interpolated (for example trigram if we are interpolat- ing trigram, bigram, and unigram) or one of the lower-order N-grams (bigram or unigram if we are interpolating trigram, bigram, and unigram):</p>
 <p>$$C_{KN}(\cdot)=\begin{cases}count(\cdot) &amp;,\text{for the highest order}\<br>continuationcount(\cdot) &amp;,\text{for all other lower orders}<br>\end{cases}$$</p>
 <p>The continuation count is the number of unique single word contexts for ·.<br>At the termination of the recursion, unigrams are interpolated with the uniform<br> distribution, where the parameter ε is the empty string:</p>
 <p> $$P_{KN}(w)=\frac{max(c_{KN}(w)-d,0)}{\sum_{w’}c_{KN}(w’)} +\lambda(\epsilon)\frac{1}{V}$$</p>
-<p> If we want to include an unknown word <unk>, it’s just included as a regular vo-<br>cabulary entry with count zero, and hence its probability will be a lambda-weighted<br>uniform distribution $$\lambda(\epsilon)\frac{1}{V}$$.</unk></p>
-<p>The best-performing version of Kneser-Ney smoothing is called modified Kneser- Ney smoothing. Rather than use a single fixed discount d, modified Kneser-Ney uses three different discounts d1, d2, and $$d3_+$$ for N-grams with counts of 1, 2 and three or more, respectively.</p>
+<p> If we want to include an unknown word <unk>, it’s just included as a regular vo-<br>cabulary entry with count zero, and hence its probability will be a lambda-weighted<br>uniform distribution \(\frac{\lambda(\epsilon)}{V}\).</unk></p>
+<p>The best-performing version of Kneser-Ney smoothing is called modified Kneser- Ney smoothing. Rather than use a single fixed discount d, modified Kneser-Ney uses three different discounts d1, d2, and \(d3_+\) for N-grams with counts of 1, 2 and three or more, respectively.</p>
 <h3 id="Entropy"><a href="#Entropy" class="headerlink" title="Entropy"></a>Entropy</h3><p><strong>Entropy</strong> is the minimum number of bits(if log base 2 is used) that is needed to encode(represent) information in the optimal coding scheme.</p>
 <p><strong>Entropy rate</strong> the entropy of a sequence divided by the number of words.</p>
 <p>To measure entropy rate of a language, entropy rate of a infinite sequence needs to be calculated.</p>
