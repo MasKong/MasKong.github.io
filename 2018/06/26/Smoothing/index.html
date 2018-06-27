@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-27T07:07:08.850Z">
+<meta property="og:updated_time" content="2018-06-27T07:10:15.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smoothing">
 <meta name="twitter:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
@@ -343,7 +343,7 @@
 <p>$$P_{continuation}(w_i)=\frac{\lvert {w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}{\lvert{(w_{j-1},w_j):c(w_{j-1}w_j)&gt;0}\rvert}$$</p>
 <p>Or normalized by the number of words preceding all words as follows:</p>
 <p>$$P_{continuation}(w_i)=\frac{\lvert { w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}<br>{\sum_{w’<em>i} \lvert{w’</em>{i-1}:C(w’_{i-1}w’_i)&gt;0}\rvert}$$</p>
-<p>The number of words preceeding all words is:<br>given word \(w’i\),the number of word \(w’_{i-1}\) that preceed \({w’}_i\).<br>\({w’}_i\) are all words in the corpus. So The number of words preceeding all words = the total number of bigram word.</p>
+<p>The number of words preceeding all words is:<br>given word \({w’}<em>i\),the number of word \(w’</em>{i-1}\) that preceed \({w’}_i\).<br>\({w’}_i\) are all words in the corpus. So The number of words preceeding all words = the total number of bigram word.</p>
 <p>The final equation for <strong>Interpolated Kneser-Ney smoothing</strong> for bigrams is then:</p>
 <p>$$P_{KN}(w_i|w_{i-1})=\frac{max(C(w_{i-1}w_i)-d,0)}{C(w_{i-1})}<br>+\lambda(w_{i-1})P_{continuation}(w_i)$$</p>
 <p>The λ is a normalizing constant that is used to distribute the probability mass that is discounted:</p>
