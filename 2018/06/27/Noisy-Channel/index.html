@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Max Matching AlgorithmIt is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms. It works especially well on Chinese. I think it is because that Chinese word">
+<meta name="description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Max_Matching">
-<meta property="og:url" content="http://yoursite.com/2018/06/25/Max-Matching/index.html">
+<meta property="og:title" content="Noisy_Channel">
+<meta property="og:url" content="http://yoursite.com/2018/06/27/Noisy-Channel/index.html">
 <meta property="og:site_name" content="Home of MasKong">
-<meta property="og:description" content="Max Matching AlgorithmIt is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms. It works especially well on Chinese. I think it is because that Chinese word">
+<meta property="og:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-25T15:40:55.075Z">
+<meta property="og:updated_time" content="2018-06-27T06:34:46.735Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Max_Matching">
-<meta name="twitter:description" content="Max Matching AlgorithmIt is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms. It works especially well on Chinese. I think it is because that Chinese word">
+<meta name="twitter:title" content="Noisy_Channel">
+<meta name="twitter:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/25/Max-Matching/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/27/Noisy-Channel/"/>
 
 
 
 
 
-  <title>Max_Matching | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Noisy_Channel | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Max-Matching/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Noisy-Channel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK LEE">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Max_Matching</h1>
+          <h1 class="post-title" itemprop="name headline">Noisy_Channel</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-25T23:36:22+08:00">
-                2018-06-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T11:41:20+08:00">
+                2018-06-27
               </time>
             
 
@@ -300,9 +300,25 @@
       
 
       
-        <h2 id="Max-Matching-Algorithm"><a href="#Max-Matching-Algorithm" class="headerlink" title="Max Matching Algorithm"></a>Max Matching Algorithm</h2><p>It is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms.</p>
-<p>It works especially well on Chinese. I think it is because that Chinese words are single word that could not be took apart while English words are sequences of characters.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_words</span><span class="params">(file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(file) <span class="keyword">as</span> f:</span><br><span class="line">        l = f.readlines()</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_matching</span><span class="params">(text, dictionary)</span>:</span></span><br><span class="line">    <span class="comment"># l = []</span></span><br><span class="line">    w = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text),<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        word = text[:i]</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> dictionary:</span><br><span class="line">            w += word+<span class="string">' '</span></span><br><span class="line"></span><br><span class="line">            w += max_matching(text[i:],dictionary) + <span class="string">' '</span></span><br><span class="line">            <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">if</span> len(text) != <span class="number">0</span>:</span><br><span class="line">        w = text[<span class="number">0</span>]+<span class="string">' '</span></span><br><span class="line">        w += max_matching(text[<span class="number">1</span>:],dictionary) + <span class="string">' '</span></span><br><span class="line">        <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    file = <span class="string">'/Users/lmk/Documents/NLP/word.csv'</span></span><br><span class="line">    l = read_words(file)</span><br><span class="line">    <span class="comment"># l = read_words(file)</span></span><br><span class="line">    l = list(map(<span class="keyword">lambda</span> i: i[<span class="number">3</span>:<span class="number">-1</span>], l))</span><br><span class="line">    l[<span class="number">0</span>] = l[<span class="number">0</span>][<span class="number">1</span>:]</span><br><span class="line">    dic = l</span><br><span class="line">    <span class="comment"># s = "ilovechina"</span></span><br><span class="line">    s = <span class="string">"is also possible to use a list as a queue, where the first"</span></span><br><span class="line">    sentence = max_matching(s,dic)</span><br><span class="line">    token = sentence.split()</span><br><span class="line">    <span class="comment"># flatten = lambda l: [item for sublist in l for item in sentence]</span></span><br><span class="line">    <span class="comment"># flat_list = [item for sublist in l for item in sublist]</span></span><br><span class="line">    print(sentence)</span><br><span class="line">    print(token)</span><br></pre></td></tr></table></figure>
+        <h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
+<p>$$\widehat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
+<p>C is the list of candidate words. Above is a kind of Bayesian inference. We see an observation x (a misspelled word) and find the word w that generated this misspelled word. Out of all possible words in the vocabulary V or just a list of candidate word C, we want to find the<br>word w such that P(w|x) is highest.</p>
+<h3 id="Channel-Model-p-x-w"><a href="#Channel-Model-p-x-w" class="headerlink" title="Channel Model p(x|w)"></a>Channel Model p(x|w)</h3><p>It’s expensive to get a perfect channel model. But a pretty reasonable estimate<br>of P(x|w) could be generated just by looking at local context: the identity of the correct letter itself, the<br>misspelling, and the surrounding letters.</p>
+<h3 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion matrix"></a>confusion matrix</h3><p>Contains counts of errors. In general, each entry in a confusion matrix represents the number of times one thing was confused with another. Thus for example a substitution confusion matrix will be a square matrix of size 26×26 (or more generally |A| × |A|,<br>for an alphabet A) that represents the number of times one letter was incorrectly<br>used instead of another.</p>
+<p>del[x, y]: count(xy typed as x)</p>
+<p>ins[x, y]: count(x typed as xy)</p>
+<p>sub[x, y]: count(x typed as y)</p>
+<p>trans[x, y]: count(xy typed as yx)</p>
+<p>Methods to get confusion matrix:</p>
+<p>1, extract them from lists of misspellings</p>
+<p>$$p(x|w) = \frac{ins[x_{i-1},w_i]}{count[w_{i-1}]},\quad \text{if insertion}$$</p>
+<p>$$p(x|w) = \frac{sub[x_{i},w_i]}{count[w_{i}]},\quad \text{if substitution}$$</p>
+<p>The probability of substitution is calculated by:<br>given the correct word w and error word x, the number of times that ith character wi and the ith character xi is substituted divided by total number of ith character wi.<br>wi is the ith character of the correct word w and xi is the ith character of the typo x</p>
+<p>2, <em>EM algorithm</em>.<br>compute the matrices by iteratively using the spelling error correction algorithm itself. The iterative algorithm first initializes the matrices with equal values; thus, any character is equally likely to be deleted, equally likely to be substituted for any other character,<br>etc. Next, the spelling error correction algorithm is run on a set of spelling<br>errors. Given the set of typos paired with their predicted corrections, the confusion<br>matrices can now be recomputed, the spelling algorithm run again, and so on. </p>
+<p>Evaluating spell correction algorithms is generally done by holding out a training,<br>development and test set from lists of errors like those on the Norvig and Mitton<br>sites mentioned above.</p>
+<p><strong>Candidate words</strong>:<br>Utilize the extended minimum edit distance algorithm introduced so that in addition to insertions, deletions, and substitutions, there is transpositions, in which two letters are swapped. All words with edit distance of 1 constitutes the candidate words set.</p>
+<p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to p(wi-1)*p(wi) for bigram model to take the context into consideration.</p>
+<p>1sadf \(a+b=c\) sdfa</p>
 
       
     </div>
@@ -333,8 +349,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/25/Minimum-Edit-Distance/" rel="next" title="Minimum_Edit_Distance">
-                <i class="fa fa-chevron-left"></i> Minimum_Edit_Distance
+              <a href="/2018/06/26/NLP-Notation/" rel="next" title="NLP_Notation">
+                <i class="fa fa-chevron-left"></i> NLP_Notation
               </a>
             
           </div>
@@ -342,10 +358,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/26/Smoothing/" rel="prev" title="Smoothing">
-                Smoothing <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -468,7 +480,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Matching-Algorithm"><span class="nav-number">1.</span> <span class="nav-text">Max Matching Algorithm</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-Channel-Model"><span class="nav-number">1.</span> <span class="nav-text">Noisy Channel Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel-Model-p-x-w"><span class="nav-number">2.</span> <span class="nav-text">Channel Model p(x|w)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confusion-matrix"><span class="nav-number">3.</span> <span class="nav-text">confusion matrix</span></a></li></ol></div>
             
 
           </div>

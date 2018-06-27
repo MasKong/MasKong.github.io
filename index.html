@@ -232,6 +232,144 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Noisy-Channel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Home of MasKong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/27/Noisy-Channel/" itemprop="url">Noisy_Channel</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T11:41:20+08:00">
+                2018-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
+<p>$$\widehat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
+<p>C is the list of candidate words. Above is a kind of Bayesian inference. We see an observation x (a misspelled word) and find the word w that generated this misspelled word. Out of all possible words in the vocabulary V or just a list of candidate word C, we want to find the<br>word w such that P(w|x) is highest.</p>
+<h3 id="Channel-Model-p-x-w"><a href="#Channel-Model-p-x-w" class="headerlink" title="Channel Model p(x|w)"></a>Channel Model p(x|w)</h3><p>It’s expensive to get a perfect channel model. But a pretty reasonable estimate<br>of P(x|w) could be generated just by looking at local context: the identity of the correct letter itself, the<br>misspelling, and the surrounding letters.</p>
+<h3 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion matrix"></a>confusion matrix</h3><p>Contains counts of errors. In general, each entry in a confusion matrix represents the number of times one thing was confused with another. Thus for example a substitution confusion matrix will be a square matrix of size 26×26 (or more generally |A| × |A|,<br>for an alphabet A) that represents the number of times one letter was incorrectly<br>used instead of another.</p>
+<p>del[x, y]: count(xy typed as x)</p>
+<p>ins[x, y]: count(x typed as xy)</p>
+<p>sub[x, y]: count(x typed as y)</p>
+<p>trans[x, y]: count(xy typed as yx)</p>
+<p>Methods to get confusion matrix:</p>
+<p>1, extract them from lists of misspellings</p>
+<p>$$p(x|w) = \frac{ins[x_{i-1},w_i]}{count[w_{i-1}]},\quad \text{if insertion}$$</p>
+<p>$$p(x|w) = \frac{sub[x_{i},w_i]}{count[w_{i}]},\quad \text{if substitution}$$</p>
+<p>The probability of substitution is calculated by:<br>given the correct word w and error word x, the number of times that ith character wi and the ith character xi is substituted divided by total number of ith character wi.<br>wi is the ith character of the correct word w and xi is the ith character of the typo x</p>
+<p>2, <em>EM algorithm</em>.<br>compute the matrices by iteratively using the spelling error correction algorithm itself. The iterative algorithm first initializes the matrices with equal values; thus, any character is equally likely to be deleted, equally likely to be substituted for any other character,<br>etc. Next, the spelling error correction algorithm is run on a set of spelling<br>errors. Given the set of typos paired with their predicted corrections, the confusion<br>matrices can now be recomputed, the spelling algorithm run again, and so on. </p>
+<p>Evaluating spell correction algorithms is generally done by holding out a training,<br>development and test set from lists of errors like those on the Norvig and Mitton<br>sites mentioned above.</p>
+<p><strong>Candidate words</strong>:<br>Utilize the extended minimum edit distance algorithm introduced so that in addition to insertions, deletions, and substitutions, there is transpositions, in which two letters are swapped. All words with edit distance of 1 constitutes the candidate words set.</p>
+<p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to p(wi-1)*p(wi) for bigram model to take the context into consideration.</p>
+<p>1sadf \(a+b=c\) sdfa</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/NLP-Notation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -304,7 +442,9 @@
         
           
             <p>$ w_1^n$ is a sequence of N words from word 1 to word N.</p>
-<p>A held-out corpus is an additional training corpus that we use to set hyperparameters</p>
+<p>A <strong>held-out corpus</strong> is an additional training corpus that we use to set hyperparameters.</p>
+<p><strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like graffe for giraffe). </p>
+<p><strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (real-word errors).</p>
 
           
         
@@ -1416,149 +1556,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Recommendation-System/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Home of MasKong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/24/Recommendation-System/" itemprop="url">Recommendation_System</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T23:26:50+08:00">
-                2018-05-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Notes:</p>
-<p>Item features could also be represented by tags. But it is tedious to get tags data.</p>
-<p>Our ultimate goal for content-based recommendation is to create both an item profile consisting of feature-value pairs and a user profile summarizing the pref- erences of the user, based of their row of the utility matrix.<br>Discretize numerical data to nominal data would lose the structure implicit in numbers. That is, two ratings that are close but not identical should be considered more similar than widely differing ratings.<br>There is no harm if some components of the vectors are Boolean and others are real-valued or integer-valued. But it is necessary to somehow normalize the data so that the scale would not affect the result too much.<br>Machine learning technique: ML algorithm to predict the empty entries in the utility matrix. Training set is the data. Optimize the loss.<br>i.e. classification algorithm: build a decision tree to classify the data as like or don’t like for a particular user group.</p>
-<p>Recommendation System:<br>Our recommendation system employs a modified version of collaborative filtering. In traditional recommendation system, in order to avoid constructing user and item profile which is a tedious and tricky step, rows and columns of utility matrix are utilized to estimate similarity of item and user as well as empty entries in the utility matrix.</p>
-<p>a utility matrix, giving for each user-item pair, a value that represents what is known about the degree of preference of that user for that item. Values come from an ordered set. We assume that the matrix is sparse, meaning that most entries are “unknown.” An unknown rating implies that we have no explicit information about the user’s preference for the item. </p>
-<p>Target of recommendation system:<br>It is not necessary to predict every blank entry in a utility matrix. Rather, it is only necessary to discover some entries in each row that are likely to be high. In most applications, the recommendation system does not offer users a ranking of all items, but rather suggests a few that the user should value highly. It may not even be necessary to find all items with the highest expected ratings, but only to find a large subset of those with the highest ratings.<br>A bigger picture:<br>Collaborative filtering: use columns and rows of utility matrix to identify similar items or users and then do recommendation</p>
-<p>Content based:<br>Utility matrix: ranked item is 1(Boolean) or actual rating(numerical) * normalizing factor. Others are represented by 0 or blank. </p>
-<p>User Profile: aggregation of utility matrix which represent connection between users and items.</p>
-<p>After getting user profile, make recommendation according to proximity between unseen object and content in user profile. (cosine similarity)</p>
-<p>The process of identifying similar users and recommending what similar users like is called collaborative filtering.<br>Cosine distance treat empty entries as 0.<br>Preprocessing:<br>round the data: round ratings to 0 or 1.<br>Normalize the data and apply proximity measure.</p>
-<p>User-based: tailer-made, accurate.      Association analysis. Not easy to measure similarity<br>Item-based: 可靠， 广泛推荐</p>
-<p>Collaborative filtering:<br>Use columns of utility matrix.<br>To estimate empty entry, one possible way is to find n similar users and count their normalized ratings. Another possible way is to find the rating of similar items given by the same user.</p>
-<p>Measuring similarity:<br>Jaccard distance: may emit important information like the scale of rating.<br>Cosine distance</p>
-<p>The Duality of Similarity </p>
-<p>To estimate an entry, for item-based, find the most similar m items, and average them to get an estimate of rating for the entry(item).</p>
-<p>After cluster, get the entry for that item clusters by averaging the item</p>
-<p>Since there is user and ad profile, try to do clustering first.</p>
-<p>Data is large, initialize small cluster first to summarize the data points.</p>
-<p>Curse of dimensionality: in high dimension, cosine similarity approaches to 0, which means that random vectors are orthogonal. Distance and density become meaningless because distance is very far away compared to low dimensionality.</p>
-<p>Clustering:<br>Euclidean space in which the cluster could be represented by a center.<br>Clustroid: the closest point to other points in the cluster<br>Centroid: the arithmetic center point calculated.</p>
-<p>Hierarchical:<br>Merge clusters. Each unassigned point is a cluster.<br>The measurements are diameter, radius, average distance, minimum distance.<br>Radius: the maximum distance from any points to centroid.<br>Diameter: maximum distance between any two points.</p>
-<p>Point assignment:</p>
-<p>K-means:<br>initialize several points which are as far away as possible from each other as centroid of clusters.<br>Assign the points to these different clusters and recompute the centroids.</p>
-<p>Mahalanobis distance is distance between x and y divided by square root of covariance, which is undistorting the ellipse to make a circle</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1609,7 +1606,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
