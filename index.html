@@ -232,6 +232,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/Optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Home of MasKong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/28/Optimization/" itemprop="url">Optimization</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T23:47:25+08:00">
+                2018-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Noisy-Channel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -321,6 +440,8 @@
 <p>Evaluating spell correction algorithms is generally done by holding out a training,<br>development and test set from lists of errors like those on the Norvig and Mitton<br>sites mentioned above.</p>
 <p><strong>Candidate words</strong>:<br>Utilize the extended minimum edit distance algorithm introduced so that in addition to insertions, deletions, and substitutions, there is transpositions, in which two letters are swapped. All words with edit distance of 1 constitutes the candidate words set.</p>
 <p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to \(p(w_{i-1})*p(w_i)\) for bigram model to take the context into consideration.</p>
+<h3 id="Real-word-spelling-errors"><a href="#Real-word-spelling-errors" class="headerlink" title="Real-word spelling errors"></a>Real-word spelling errors</h3><p>Noisy channel algorithm could also be applied. The algorithm takes the input sentence \(X = {x_1, x_2,…, x_k<br>,…, x_n}\), generates a large set of candidate correction sentences C(X),<br>then picks the sentence with the highest language model probability.</p>
+<p>To generate candidate set C(X), each word is assigned the probability that would make an error. And score each sentence like the aforementioned way. The difference is that the probability that the word is indeed correct needs to be considered. Given a word w, let’s assume the correct probability is \(\alpha\). And the error probability is \(\frac{1-\alpha}{|C(x)|} \) if \(x \in C(x)\). The others are totally the same as normal noisy channel model for wrong words.</p>
 
           
         
@@ -440,10 +561,11 @@
       
         
           
-            <p>$ w_1^n$ is a sequence of N words from word 1 to word N.</p>
+            <p>\( w_1^n\) is a sequence of N words from word 1 to word N.</p>
 <p>A <strong>held-out corpus</strong> is an additional training corpus that we use to set hyperparameters.</p>
 <p><strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like graffe for giraffe). </p>
 <p><strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (real-word errors).</p>
+<p><strong>edit probability</strong> The probability of typo like deletion, insertion respectively.</p>
 
           
         
@@ -605,7 +727,7 @@
 <p>To turn this count into a probability, we normalize by the total number of bigram word. In summary:</p>
 <p>$$P_{continuation}(w_i)=\frac{\lvert {w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}{\lvert{(w_{j-1},w_j):c(w_{j-1}w_j)&gt;0}\rvert}$$</p>
 <p>Or normalized by the number of words preceding all words as follows:</p>
-<p>$$P_{continuation}(w_i)=\frac{\lvert { w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}<br>{\sum_{w’<em>i} \lvert{w’</em>{i-1}:C(w’_{i-1}w’_i)&gt;0}\rvert}$$</p>
+<p>$$P_{continuation}(w_i)=\frac{\lvert { w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}<br>{\sum_{w’<em>i} \lvert {w’</em>{i-1}:C(w’_{i-1}w’_i)&gt;0}\rvert}$$</p>
 <p>The number of words preceeding all words is:<br>given word \({w’}<em>i\),the number of word \(w’</em>{i-1}\) that preceed \({w’}_i\).<br>\({w’}_i\) are all words in the corpus. So The number of words preceeding all words = the total number of bigram word.</p>
 <p>The final equation for <strong>Interpolated Kneser-Ney smoothing</strong> for bigrams is then:</p>
 <p>$$P_{KN}(w_i|w_{i-1})=\frac{max(C(w_{i-1}w_i)-d,0)}{C(w_{i-1})}<br>+\lambda(w_{i-1})P_{continuation}(w_i)$$</p>
@@ -1426,135 +1548,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/String-Matching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Home of MasKong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/25/String-Matching/" itemprop="url">String_Matching</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-25T17:52:37+08:00">
-                2018-05-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##String Matching:</p>
-<p>###The Rabin-Karp algorithm<br>Intuition:<br>Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation efficiently, we induce mod so as to reduce the computation complexity dramatically. </p>
-<p>In general, with a d-ary alphabet {0,1,2… d-1}, we choose q so that d*q fits within a computer word.<br>d is the length of the alphabet set.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''please input pattern and string'''</span></span><br><span class="line">p = input()</span><br><span class="line">s = input()</span><br><span class="line">d = int(input())</span><br><span class="line">q = int(input())</span><br><span class="line">l_p = len(p)</span><br><span class="line">h = d**(l_p<span class="number">-1</span>) % q</span><br><span class="line"><span class="string">'''Preprocessing'''</span></span><br><span class="line">p_sum, s_sum = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,l_p):</span><br><span class="line">    p_sum = (d*p_sum + int(p[i])) %q</span><br><span class="line">    s_sum = (d * s_sum + int(s[i])) %q</span><br><span class="line">    <span class="comment"># p_sum = (p_sum+(d*p_sum + int(p[i]))) % q</span></span><br><span class="line">    <span class="comment"># s_sum = (s_sum+(d * s_sum + int(s[i]))) % q</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,len(s)-l_p+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> p_sum == s_sum:</span><br><span class="line">        <span class="keyword">if</span> s[j:j+l_p] == p:</span><br><span class="line">            print(s[j:j+l_p])</span><br><span class="line">    <span class="keyword">if</span> j &lt; len(s)-l_p:</span><br><span class="line">        s_sum = (d*(s_sum-int(s[j])*h) + int(s[j+l_p])) % q</span><br></pre></td></tr></table></figure>
-<p>Worst case: the string and pattern have all same character. O((n-m+1)*m)<br>Best case: O(n) + O(m(v+n/q))</p>
-<p>###KMP algorithm</p>
-<p>Each time the given string match with the pattern, by utilizing the information contains in the pattern string, the algorithm may skip several matching without affecting the correctness. Let’s assume current position of the string is s. Length of matched string is q. There may exists a k&lt;q(if k &gt; q, we don’t know what’s them outside the pattern window) such that P[1…k] = T[s’+1…s’+k]. s’ is the new position of pointer. K is the length that the substring T[s’] starting from s’ matches with P[1..k].<br>So s’ = s+q-k</p>
-<p>Preprocessing:<br>Find the longest prefix of the matched string such that it is also the suffix of the matched string.</p>
-<p>Time complexity: O(n)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_prefix</span><span class="params">(p)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>] * len(p)</span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(p)):</span><br><span class="line">        <span class="string">'''#This line decrease k. because 0 &lt; k &lt; i, the total time that i has been increased &lt; len(p),</span></span><br><span class="line"><span class="string">        so the total time that while loop execute would &lt; len(p)'''</span></span><br><span class="line">        <span class="keyword">while</span> k&gt;<span class="number">0</span> <span class="keyword">and</span> p[i] != p[k]:</span><br><span class="line">            k = l[k]</span><br><span class="line">        <span class="keyword">if</span> p[i] == p[k]:</span><br><span class="line">            k += <span class="number">1</span>                          <span class="comment"># this increase k</span></span><br><span class="line">        l[i] = k</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP_Match</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    l = compute_prefix(p)</span><br><span class="line">    <span class="comment"># print(l)</span></span><br><span class="line">    q = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(s)):</span><br><span class="line">        <span class="keyword">while</span> q &gt; <span class="number">0</span> <span class="keyword">and</span> p[q] != s[i]:</span><br><span class="line">            q = l[q]</span><br><span class="line">        <span class="keyword">if</span> p[q] == s[i]:</span><br><span class="line">            q += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> q == len(p):</span><br><span class="line">            print(s[i-q+<span class="number">1</span>:i+<span class="number">1</span>])</span><br><span class="line">            q = l[q<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1605,7 +1598,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

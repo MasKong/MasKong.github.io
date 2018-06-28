@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-27T06:37:52.959Z">
+<meta property="og:updated_time" content="2018-06-28T04:23:01.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Noisy_Channel">
 <meta name="twitter:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
@@ -318,6 +318,8 @@
 <p>Evaluating spell correction algorithms is generally done by holding out a training,<br>development and test set from lists of errors like those on the Norvig and Mitton<br>sites mentioned above.</p>
 <p><strong>Candidate words</strong>:<br>Utilize the extended minimum edit distance algorithm introduced so that in addition to insertions, deletions, and substitutions, there is transpositions, in which two letters are swapped. All words with edit distance of 1 constitutes the candidate words set.</p>
 <p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to \(p(w_{i-1})*p(w_i)\) for bigram model to take the context into consideration.</p>
+<h3 id="Real-word-spelling-errors"><a href="#Real-word-spelling-errors" class="headerlink" title="Real-word spelling errors"></a>Real-word spelling errors</h3><p>Noisy channel algorithm could also be applied. The algorithm takes the input sentence \(X = {x_1, x_2,…, x_k<br>,…, x_n}\), generates a large set of candidate correction sentences C(X),<br>then picks the sentence with the highest language model probability.</p>
+<p>To generate candidate set C(X), each word is assigned the probability that would make an error. And score each sentence like the aforementioned way. The difference is that the probability that the word is indeed correct needs to be considered. Given a word w, let’s assume the correct probability is \(\alpha\). And the error probability is \(\frac{1-\alpha}{|C(x)|} \) if \(x \in C(x)\). The others are totally the same as normal noisy channel model for wrong words.</p>
 
       
     </div>
@@ -357,6 +359,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/28/Optimization/" rel="prev" title="Optimization">
+                Optimization <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -433,7 +439,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -479,7 +485,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-Channel-Model"><span class="nav-number">1.</span> <span class="nav-text">Noisy Channel Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel-Model-p-x-w"><span class="nav-number">2.</span> <span class="nav-text">Channel Model p(x|w)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confusion-matrix"><span class="nav-number">3.</span> <span class="nav-text">confusion matrix</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-Channel-Model"><span class="nav-number">1.</span> <span class="nav-text">Noisy Channel Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel-Model-p-x-w"><span class="nav-number">2.</span> <span class="nav-text">Channel Model p(x|w)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confusion-matrix"><span class="nav-number">3.</span> <span class="nav-text">confusion matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Real-word-spelling-errors"><span class="nav-number">4.</span> <span class="nav-text">Real-word spelling errors</span></a></li></ol></div>
             
 
           </div>
