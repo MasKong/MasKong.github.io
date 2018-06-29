@@ -232,6 +232,255 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Logistic-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Home of MasKong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Logistic-Regression/" itemprop="url">Logistic_Regression</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T14:35:03+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Machine-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Home of MasKong">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Machine-Learning/" itemprop="url">Machine_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T13:01:38+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>contingency table</strong> consists of 4 entries: True Positive, True Negative, False Positive, False Negative.</p>
+<p>Accuracy doesn’t work well when<br>the classes are unbalanced.</p>
+<p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
+<p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
+<p>precision and recall, unlike accuracy, emphasize true positives: finding the things that we are supposed to be looking for.<br>In practice, we generally combine precision and recall into a single metric called<br>F-measure the F-measure that is defined as:<br>$$F_\beta =\frac{(\beta^2 +1)PR}{\beta^2P+R}$$</p>
+<p>The β parameter differentially weights the importance of recall and precision. Values of β &gt; 1 favor recall, while values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called \(F_{\beta}=1\) or just \(F_1\).F-measure comes from a weighted harmonic mean of precision and recall.</p>
+<p>Harmonic mean is used because it is a conservative metric; the harmonic mean of<br>two values is closer to the minimum of the two values than the arithmetic mean is.<br>Thus it weighs the lower of the two numbers more heavily.</p>
+<p>In <strong>any-of</strong> or <strong>multi-label</strong> classification, each document or item can be assigned more than one label. Solve any-of classification by building separate binary classifiers for each class c. Given a test document or item d, then each classifier makes their decision independently, and we may assign multiple labels to d.</p>
+<p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
+<p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
+<p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Sentiment-Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -251,7 +500,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/29/Sentiment-Classification/" itemprop="url">Sentiment_Classification</a></h1>
+                <a class="post-title-link" href="/2018/06/29/Sentiment-Classification/" itemprop="url">Sentiment_Classification_Naive_Bayes</a></h1>
         
 
         <div class="post-meta">
@@ -321,248 +570,13 @@
 <p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
 <p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
 <p>precision and recall, unlike accuracy, emphasize true positives: finding the things that we are supposed to be looking for.<br>In practice, we generally combine precision and recall into a single metric called<br>F-measure the F-measure that is defined as:<br>$$F_\beta =\frac{(\beta^2 +1)PR}{\beta^2P+R}$$</p>
-<p>The β parameter differentially weights the importance of recall and precision,<br>based perhaps on the needs of an application. Values of β &gt; 1 favor recall, while<br>values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called Fβ=1 or just F1</p>
+<p>The β parameter differentially weights the importance of recall and precision. Values of β &gt; 1 favor recall, while values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called \(F_{\beta}=1\) or just \(F_1\).F-measure comes from a weighted harmonic mean of precision and recall.</p>
 <p>Harmonic mean is used because it is a conservative metric; the harmonic mean of<br>two values is closer to the minimum of the two values than the arithmetic mean is.<br>Thus it weighs the lower of the two numbers more heavily.</p>
+<p>In <strong>any-of</strong> or <strong>multi-label</strong> classification, each document or item can be assigned more than one label. Solve any-of classification by building separate binary classifiers for each class c. Given a test document or item d, then each classifier makes their decision independently, and we may assign multiple labels to d.</p>
+<p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
+<p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
+<p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Stanford-ML-Tutorial/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Home of MasKong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/Stanford-ML-Tutorial/" itemprop="url">Stanford_ML_Tutorial</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T00:17:21+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>\(h_\theta(x)\) represents a large family of functions parametrized by the choice of \(\theta\). (We call this space of functions a “hypothesis class”.)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/28/Optimization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Home of MasKong">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/28/Optimization/" itemprop="url">Optimization</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-28T23:47:25+08:00">
-                2018-06-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
           
         
       
@@ -682,7 +696,7 @@
         
           
             <h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
-<p>$$\widehat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
+<p>$$\hat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
 <p>C is the list of candidate words. Above is a kind of Bayesian inference. We see an observation x (a misspelled word) and find the word w that generated this misspelled word. Out of all possible words in the vocabulary V or just a list of candidate word C, we want to find the<br>word w such that P(w|x) is highest.</p>
 <h3 id="Channel-Model-p-x-w"><a href="#Channel-Model-p-x-w" class="headerlink" title="Channel Model p(x|w)"></a>Channel Model p(x|w)</h3><p>It’s expensive to get a perfect channel model. But a pretty reasonable estimate<br>of P(x|w) could be generated just by looking at local context: the identity of the correct letter itself, the<br>misspelling, and the surrounding letters.</p>
 <h3 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion matrix"></a>confusion matrix</h3><p>Contains counts of errors. In general, each entry in a confusion matrix represents the number of times one thing was confused with another. Thus for example a substitution confusion matrix will be a square matrix of size 26×26 (or more generally |A| × |A|,<br>for an alphabet A) that represents the number of times one letter was incorrectly<br>used instead of another.</p>
@@ -830,6 +844,7 @@
 <p><strong>Generative classifiers</strong> like naive Bayes build a model of each class. Given an observation, they return the class most likely to have generated the observation. <strong>Discriminative classifiers</strong> like logistic regression instead learn what features from the input are most useful to discriminate between the different possible classes.<br>While discriminative systems are often more accurate and hence more commonly used, generative classifiers still have a role.</p>
 <p><strong>bag-of-words</strong>: an unordered set of words with their position ignored, keeping only their frequency in the document.</p>
 <p><strong>linear classifiers</strong>: use a linear combination of the inputs to make a classification decision —like naive Bayes and also logistic regression.</p>
+<p><strong>period disambiguation</strong>: deciding if a period is the end of a sentence or part<br>of a word</p>
 
           
         
@@ -1600,7 +1615,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

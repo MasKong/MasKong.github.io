@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-28T04:23:01.155Z">
+<meta property="og:updated_time" content="2018-06-29T04:39:10.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Noisy_Channel">
 <meta name="twitter:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
@@ -301,7 +301,7 @@
 
       
         <h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
-<p>$$\widehat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
+<p>$$\hat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
 <p>C is the list of candidate words. Above is a kind of Bayesian inference. We see an observation x (a misspelled word) and find the word w that generated this misspelled word. Out of all possible words in the vocabulary V or just a list of candidate word C, we want to find the<br>word w such that P(w|x) is highest.</p>
 <h3 id="Channel-Model-p-x-w"><a href="#Channel-Model-p-x-w" class="headerlink" title="Channel Model p(x|w)"></a>Channel Model p(x|w)</h3><p>It’s expensive to get a perfect channel model. But a pretty reasonable estimate<br>of P(x|w) could be generated just by looking at local context: the identity of the correct letter itself, the<br>misspelling, and the surrounding letters.</p>
 <h3 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion matrix"></a>confusion matrix</h3><p>Contains counts of errors. In general, each entry in a confusion matrix represents the number of times one thing was confused with another. Thus for example a substitution confusion matrix will be a square matrix of size 26×26 (or more generally |A| × |A|,<br>for an alphabet A) that represents the number of times one letter was incorrectly<br>used instead of another.</p>
@@ -360,8 +360,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/28/Optimization/" rel="prev" title="Optimization">
-                Optimization <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/29/Sentiment-Classification/" rel="prev" title="Sentiment_Classification_Naive_Bayes">
+                Sentiment_Classification_Naive_Bayes <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -439,7 +439,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

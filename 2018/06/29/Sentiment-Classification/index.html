@@ -82,14 +82,14 @@
 <meta name="description" content="In most text classificationapplications, however, using a stop word list doesn’t improve performance,and so it is more common to make use of the entire vocabulary and not use a stopword list Naive Bay">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sentiment_Classification">
+<meta property="og:title" content="Sentiment_Classification_Naive_Bayes">
 <meta property="og:url" content="http://yoursite.com/2018/06/29/Sentiment-Classification/index.html">
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="In most text classificationapplications, however, using a stop word list doesn’t improve performance,and so it is more common to make use of the entire vocabulary and not use a stopword list Naive Bay">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T04:38:12.457Z">
+<meta property="og:updated_time" content="2018-06-29T06:13:41.995Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sentiment_Classification">
+<meta name="twitter:title" content="Sentiment_Classification_Naive_Bayes">
 <meta name="twitter:description" content="In most text classificationapplications, however, using a stop word list doesn’t improve performance,and so it is more common to make use of the entire vocabulary and not use a stopword list Naive Bay">
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>Sentiment_Classification | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Sentiment_Classification_Naive_Bayes | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Sentiment_Classification</h1>
+          <h1 class="post-title" itemprop="name headline">Sentiment_Classification_Naive_Bayes</h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,12 @@
 <p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
 <p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
 <p>precision and recall, unlike accuracy, emphasize true positives: finding the things that we are supposed to be looking for.<br>In practice, we generally combine precision and recall into a single metric called<br>F-measure the F-measure that is defined as:<br>$$F_\beta =\frac{(\beta^2 +1)PR}{\beta^2P+R}$$</p>
-<p>The β parameter differentially weights the importance of recall and precision,<br>based perhaps on the needs of an application. Values of β &gt; 1 favor recall, while<br>values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called Fβ=1 or just F1</p>
+<p>The β parameter differentially weights the importance of recall and precision. Values of β &gt; 1 favor recall, while values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called \(F_{\beta}=1\) or just \(F_1\).F-measure comes from a weighted harmonic mean of precision and recall.</p>
 <p>Harmonic mean is used because it is a conservative metric; the harmonic mean of<br>two values is closer to the minimum of the two values than the arithmetic mean is.<br>Thus it weighs the lower of the two numbers more heavily.</p>
+<p>In <strong>any-of</strong> or <strong>multi-label</strong> classification, each document or item can be assigned more than one label. Solve any-of classification by building separate binary classifiers for each class c. Given a test document or item d, then each classifier makes their decision independently, and we may assign multiple labels to d.</p>
+<p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
+<p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
+<p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
 
       
     </div>
@@ -350,8 +354,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/29/Stanford-ML-Tutorial/" rel="next" title="Stanford_ML_Tutorial">
-                <i class="fa fa-chevron-left"></i> Stanford_ML_Tutorial
+              <a href="/2018/06/27/Noisy-Channel/" rel="next" title="Noisy_Channel">
+                <i class="fa fa-chevron-left"></i> Noisy_Channel
               </a>
             
           </div>
@@ -359,6 +363,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/29/Machine-Learning/" rel="prev" title="Machine_Learning">
+                Machine_Learning <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -435,7 +443,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
