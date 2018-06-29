@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-27T07:18:54.276Z">
+<meta property="og:updated_time" content="2018-06-29T03:32:28.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smoothing">
 <meta name="twitter:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
@@ -324,9 +324,9 @@
 <p>i.e.: If we are trying to compute $$ P(w_n|w_{n−2}w_{n−1}) $$ but we have no examples of a particular trigram wn−2wn−1wn, we can instead estimate its probability by using the bigram probability $$ P(w_n|w_{n−1}) $$.</p>
 <p><strong><em>interpolation</em></strong>: we always mix the probability estimates from all the N-gram estimators, weighing and combining the trigram, bigram, and unigram counts.</p>
 <p>In a slightly more sophisticated version of linear interpolation, each λ weight is computed by conditioning on the context. This way, if we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams based on this bigram will be more trustworthy, so we can make the λs for those trigrams higher and thus give that trigram more weight in the interpolation.</p>
-<p>$$ \widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 (w_{n-2}^{n-1})p(w_n|w_{n-2}w_{n-1}) + \lambda_2 (w_{n-2}^{n-1})p(w_n|w_{n-1}) +\lambda_3 (w_{n-2}^{n-1})p(w_n)  $$ </p>
+<p>$$ \hat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 (w_{n-2}^{n-1})p(w_n|w_{n-2}w_{n-1}) + \lambda_2 (w_{n-2}^{n-1})p(w_n|w_{n-1}) +\lambda_3 (w_{n-2}^{n-1})p(w_n)  $$ </p>
 <p>simple interpolation:</p>
-<p>$$ \widehat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 p(w_n|w_{n-2}w_{n-1}) + \lambda_2 p(w_n|w_{n-1}) +\lambda_3 p(w_n) $$ </p>
+<p>$$ \hat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 p(w_n|w_{n-2}w_{n-1}) + \lambda_2 p(w_n|w_{n-1}) +\lambda_3 p(w_n) $$ </p>
 <p>In both kinds of interpolation:</p>
 <p>$$ \sum_i \lambda_i = 1 $$</p>
 <p>Both the simple interpolation and conditional interpolation λ are learned from a held-out corpus. choose the λ values that maximize the likelihood of the held-out corpus.There are various ways to find this optimal set of λs. One way is to use the EM algorithm, which is an iterative learning algorithm that converges on locally optimal λs</p>
