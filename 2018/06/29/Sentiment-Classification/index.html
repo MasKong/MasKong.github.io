@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="In most text classificationapplications, however, using a stop word list doesn’t improve performance,and so it is more common to make use of the entire vocabulary and not use a stopword list Naive Bay">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T04:33:27.084Z">
+<meta property="og:updated_time" content="2018-06-29T04:38:12.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sentiment_Classification">
 <meta name="twitter:description" content="In most text classificationapplications, however, using a stop word list doesn’t improve performance,and so it is more common to make use of the entire vocabulary and not use a stopword list Naive Bay">
@@ -301,7 +301,7 @@
 
       
         <p>In most text classification<br>applications, however, using a stop word list doesn’t improve performance,<br>and so it is more common to make use of the entire vocabulary and not use a stop<br>word list</p>
-<h3 id="Naive-Bayes-Classifier-for-Sentiment-Analysis"><a href="#Naive-Bayes-Classifier-for-Sentiment-Analysis" class="headerlink" title="Naive Bayes Classifier for Sentiment Analysis"></a>Naive Bayes Classifier for Sentiment Analysis</h3><p>$$C_{NB}=\operatorname*{arg\,max}<em>{c\in C} logP(c)+\sum</em>{i \in positions}logP(w_i<br>|c)$$</p>
+<h3 id="Naive-Bayes-Classifier-for-Sentiment-Analysis"><a href="#Naive-Bayes-Classifier-for-Sentiment-Analysis" class="headerlink" title="Naive Bayes Classifier for Sentiment Analysis"></a>Naive Bayes Classifier for Sentiment Analysis</h3><p>$$C_{NB}=\underset{c\in C}{argmax}\ logP(c)+\sum_{i \in positions}logP(w_i<br>|c)$$</p>
 <p>Each word \(w_i\) could be viewed as a feature for a specific document.</p>
 <h3 id="Maximum-Likelihood-to-train-Naive-Bayes"><a href="#Maximum-Likelihood-to-train-Naive-Bayes" class="headerlink" title="Maximum Likelihood to train Naive Bayes"></a>Maximum Likelihood to train Naive Bayes</h3><p>$$\hat{p}(c)=\frac{N_c}{N_{doc}}$$</p>
 <p>The standard solution for an unknown word that doesn’t show up in the training set is to ignore such words—remove them from the test document and not include any probability for them at all.</p>
