@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Advertisement recommendation is important! It is a significant source of income for many companies. Abuse of advertisement would annoy user. How to choose potential interested user is a challenging pr">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/leemasterk/cloud_ppt/blob/master/Slide13.jpeg">
-<meta property="og:updated_time" content="2018-06-29T09:44:43.128Z">
+<meta property="og:image" content="http://yoursite.com/2018/05/24/alitaobaoV3/Slide13.jpeg">
+<meta property="og:updated_time" content="2018-06-29T11:34:34.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Recommendation_System">
 <meta name="twitter:description" content="Advertisement recommendation is important! It is a significant source of income for many companies. Abuse of advertisement would annoy user. How to choose potential interested user is a challenging pr">
-<meta name="twitter:image" content="https://github.com/leemasterk/cloud_ppt/blob/master/Slide13.jpeg">
+<meta name="twitter:image" content="http://yoursite.com/2018/05/24/alitaobaoV3/Slide13.jpeg">
 
 
 
@@ -304,18 +304,119 @@
       
         <p>Advertisement recommendation is important! It is a significant source of income for many companies. Abuse of advertisement would annoy user. How to choose potential interested user is a challenging problem.</p>
 <p>Our application is an advertisement recommending system, which simulates the process of recommend advertisements to users who may need them. Different people have different appetites, this works same on advertisements.</p>
-<p><img src="https://github.com/leemasterk/cloud_ppt/blob/master/Slide13.jpeg" alt="alt text"></p>
-<p>Item features could also be represented by tags. But it is tedious to get tags data.</p>
-<p>Our ultimate goal for content-based recommendation is to create both an item profile consisting of feature-value pairs and a user profile summarizing the pref- erences of the user, based of their row of the utility matrix.<br>Discretize numerical data to nominal data would lose the structure implicit in numbers. That is, two ratings that are close but not identical should be considered more similar than widely differing ratings.<br>There is no harm if some components of the vectors are Boolean and others are real-valued or integer-valued. But it is necessary to somehow normalize the data so that the scale would not affect the result too much.<br>Machine learning technique: ML algorithm to predict the empty entries in the utility matrix. Training set is the data. Optimize the loss.<br>i.e. classification algorithm: build a decision tree to classify the data as like or don’t like for a particular user group.</p>
+<p><img src="../alitaobaoV3/Slide13.jpeg" alt="" title="System Design"></p>
+<table>
+<thead>
+<tr>
+<th>Packages</th>
+<th style="text-align:center">Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Xen 4.4.1</td>
+<td style="text-align:center">Hypervisor for virtual machines</td>
+</tr>
+<tr>
+<td>Hadoop 2.6.0</td>
+<td style="text-align:center">open-source software framework for storage and large scale processing of data_sets on clusters of commodity hardware.</td>
+</tr>
+<tr>
+<td>Spark 2.1.0</td>
+<td style="text-align:center">A fast and general engine for large-scala data processing</td>
+</tr>
+<tr>
+<td>Spark MLlib</td>
+<td style="text-align:center">An apache Spark’s scalable machine learning library.</td>
+</tr>
+<tr>
+<td>Hive</td>
+<td style="text-align:center">A data warehouse software facilitates reading, writing, and managing large datasets residing in distributed storage using SQL. Structure can be projected onto data already in storage</td>
+</tr>
+<tr>
+<td>SparkSql</td>
+<td style="text-align:center">An Apache Spark’s module for working with structured data</td>
+</tr>
+<tr>
+<td>Tomcat 8.5.29</td>
+<td style="text-align:center">Web server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Key-Algorithms"><a href="#Key-Algorithms" class="headerlink" title="Key Algorithms"></a>Key Algorithms</h4><ul>
+<li>Collaborative Filtering</li>
+<li>Metric Learning</li>
+<li>K-means</li>
+</ul>
+<h4 id="Key-Features"><a href="#Key-Features" class="headerlink" title="Key Features"></a>Key Features</h4><ul>
+<li>K-means clustering with Mahalanobis Distance</li>
+<li>SQL to form a utility matrix according to user behavior</li>
+<li>Employ clustering to estimate empty entries in the matrix</li>
+<li>Recommend to user who have bought similar items</li>
+</ul>
+<h4 id="Xen-Configuration"><a href="#Xen-Configuration" class="headerlink" title="Xen Configuration"></a>Xen Configuration</h4><ul>
+<li>Pin CPUs to virtual machines</li>
+<li>Migrate some memory to virtual machines to optimize performance</li>
+</ul>
+<h4 id="Optimization-of-Performance"><a href="#Optimization-of-Performance" class="headerlink" title="Optimization of Performance"></a>Optimization of Performance</h4><p>Small dataset is employed to optimize parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th style="text-align:center">Running Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Num-execution  5—-7</td>
+<td style="text-align:center">3 mins 45 sec -&gt; 3 mins 13 sec</td>
+</tr>
+<tr>
+<td>Parallelism          8—-16</td>
+<td style="text-align:center">3 mins 13 sec -&gt; 1 min 38 sec</td>
+</tr>
+<tr>
+<td>Executor memory 1000m-2000m</td>
+<td style="text-align:center">3 mins 22 sec -&gt; 2 mins 54 sec</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Novelty"><a href="#Novelty" class="headerlink" title="Novelty"></a>Novelty</h4><ul>
+<li>In clustering, the distance functionis Mahalanobis Distance rather than euclidean distance.</li>
+<li>Traditional collaborative filtering utilizes rows and columns of utility matrix to estimate similarity of items and users as well as empty entries in the utility matrix.In our algorithm, we use clustering to estimate the empty entries.</li>
+</ul>
+<h3 id="Algorithm-Introduction"><a href="#Algorithm-Introduction" class="headerlink" title="Algorithm Introduction"></a>Algorithm Introduction</h3><h4 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h4><p>Two kinds of clustering: hierarchica and point assignment.</p>
+<p>Hierarchical:<br>Merge clusters. Each unassigned point is a cluster.<br>The measurements are diameter, radius, average distance, minimum distance.<br>Radius: the maximum distance from any points to centroid.<br>Diameter: maximum distance between any two points.</p>
+<p>Point assignment: Assign each point to the nearest cluster.</p>
+<p>K-means++:<br>initialize several points which are as far away as possible from each other as centroid of clusters.<br>Assign the points to these different clusters and recompute the centroids.</p>
+<p><strong>Complexity</strong>:O(n <em> K </em> I * d )<br>n = number of records, K = number of clusters,I = number of iterations, d = number of attributes</p>
+<h4 id="Recommendation-System"><a href="#Recommendation-System" class="headerlink" title="Recommendation System"></a>Recommendation System</h4><p>The ultimate goal of a recommendation system is to estimate those empty entries in the utility matrix.</p>
+<p>To estimate empty entry, one possible way is to find n similar users and count their normalized ratings. Another possible way is to find the rating of similar items given by the same user.</p>
+<p><strong>Methods</strong>:</p>
+<ul>
+<li><p>Collaborative filtering: use columns and rows of utility matrix to identify similar items or users and then do recommendation</p>
+</li>
+<li><p>Content based:<br>Utility matrix: ranked item is 1(Boolean) or actual rating(numerical) * normalizing factor. Others are represented by 0 or blank. </p>
+</li>
+<li><p>Association Analysis.</p>
+</li>
+</ul>
+<h5 id="Characteristics-of-different-methords"><a href="#Characteristics-of-different-methords" class="headerlink" title="Characteristics of different methords"></a>Characteristics of different methords</h5><p>User-based: tailer-made, accurate. Not easy to measure similarity.<br>Content-based: Reliable, wider-range of recommendation. Construction of item profiles are tedious.</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><h5 id="Below-are-just-notes-of-this-project-feel-free-to-skip-it"><a href="#Below-are-just-notes-of-this-project-feel-free-to-skip-it" class="headerlink" title="Below are just notes of this project, feel free to skip it."></a>Below are just notes of this project, feel free to skip it.</h5><p>Item features could also be represented by tags. But it is tedious to get tags data.</p>
+<p>Content-based recommendation is to create both an item profile consisting of feature-value pairs and a user profile summarizing the preferences of the user, based of their row of the utility matrix. </p>
+<p>Discretize numerical data to nominal data would lose the structure implicit in numbers. That is, two ratings that are close but not identical should be considered more similar than widely differing ratings. </p>
+<p>There is no harm if some components of the vectors are Boolean and others are real-valued or integer-valued. But it is necessary to somehow normalize the data so that the scale would not affect the result too much.</p>
+<p>Machine learning technique: ML algorithm to predict the empty entries in the utility matrix. Training set is the data. Optimize the loss. i.e. classification algorithm: build a decision tree to classify the data as like or don’t like for a particular user group.</p>
 <p>Recommendation System:<br>Our recommendation system employs a modified version of collaborative filtering. In traditional recommendation system, in order to avoid constructing user and item profile which is a tedious and tricky step, rows and columns of utility matrix are utilized to estimate similarity of item and user as well as empty entries in the utility matrix.</p>
 <p>a utility matrix, giving for each user-item pair, a value that represents what is known about the degree of preference of that user for that item. Values come from an ordered set. We assume that the matrix is sparse, meaning that most entries are “unknown.” An unknown rating implies that we have no explicit information about the user’s preference for the item. </p>
-<p>Target of recommendation system:<br>It is not necessary to predict every blank entry in a utility matrix. Rather, it is only necessary to discover some entries in each row that are likely to be high. In most applications, the recommendation system does not offer users a ranking of all items, but rather suggests a few that the user should value highly. It may not even be necessary to find all items with the highest expected ratings, but only to find a large subset of those with the highest ratings.<br>A bigger picture:<br>Collaborative filtering: use columns and rows of utility matrix to identify similar items or users and then do recommendation</p>
-<p>Content based:<br>Utility matrix: ranked item is 1(Boolean) or actual rating(numerical) * normalizing factor. Others are represented by 0 or blank. </p>
+<p>Target of recommendation system:<br>It is not necessary to predict every blank entry in a utility matrix. Rather, it is only necessary to discover some entries in each row that are likely to be high. In most applications, the recommendation system does not offer users a ranking of all items, but rather suggests a few that the user should value highly. It may not even be necessary to find all items with the highest expected ratings, but only to find a large subset of those with the highest ratings. </p>
 <p>User Profile: aggregation of utility matrix which represent connection between users and items.</p>
 <p>After getting user profile, make recommendation according to proximity between unseen object and content in user profile. (cosine similarity)</p>
-<p>The process of identifying similar users and recommending what similar users like is called collaborative filtering.<br>Cosine distance treat empty entries as 0.<br>Preprocessing:<br>round the data: round ratings to 0 or 1.<br>Normalize the data and apply proximity measure.</p>
-<p>User-based: tailer-made, accurate.      Association analysis. Not easy to measure similarity<br>Item-based: 可靠， 广泛推荐</p>
-<p>Collaborative filtering:<br>Use columns of utility matrix.<br>To estimate empty entry, one possible way is to find n similar users and count their normalized ratings. Another possible way is to find the rating of similar items given by the same user.</p>
+<p>The process of identifying similar users and recommending what similar users like is called collaborative filtering.<br>Cosine distance treat empty entries as 0.<br>Preprocessing:</p>
+<ul>
+<li>Round the data: round ratings to 0 or 1.</li>
+<li>Normalize the data and apply proximity measure.</li>
+</ul>
 <p>Measuring similarity:<br>Jaccard distance: may emit important information like the scale of rating.<br>Cosine distance</p>
 <p>The Duality of Similarity </p>
 <p>To estimate an entry, for item-based, find the most similar m items, and average them to get an estimate of rating for the entry(item).</p>
@@ -324,9 +425,6 @@
 <p>Data is large, initialize small cluster first to summarize the data points.</p>
 <p>Curse of dimensionality: in high dimension, cosine similarity approaches to 0, which means that random vectors are orthogonal. Distance and density become meaningless because distance is very far away compared to low dimensionality.</p>
 <p>Clustering:<br>Euclidean space in which the cluster could be represented by a center.<br>Clustroid: the closest point to other points in the cluster<br>Centroid: the arithmetic center point calculated.</p>
-<p>Hierarchical:<br>Merge clusters. Each unassigned point is a cluster.<br>The measurements are diameter, radius, average distance, minimum distance.<br>Radius: the maximum distance from any points to centroid.<br>Diameter: maximum distance between any two points.</p>
-<p>Point assignment:</p>
-<p>K-means:<br>initialize several points which are as far away as possible from each other as centroid of clusters.<br>Assign the points to these different clusters and recompute the centroids.</p>
 <p>Mahalanobis distance is distance between x and y divided by square root of covariance, which is undistorting the ellipse to make a circle</p>
 
       
@@ -422,8 +520,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -474,6 +581,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Algorithms"><span class="nav-number">1.</span> <span class="nav-text">Key Algorithms</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Key-Features"><span class="nav-number">2.</span> <span class="nav-text">Key Features</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Xen-Configuration"><span class="nav-number">3.</span> <span class="nav-text">Xen Configuration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Optimization-of-Performance"><span class="nav-number">4.</span> <span class="nav-text">Optimization of Performance</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Novelty"><span class="nav-number">5.</span> <span class="nav-text">Novelty</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Algorithm-Introduction"><span class="nav-number"></span> <span class="nav-text">Algorithm Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Clustering"><span class="nav-number">1.</span> <span class="nav-text">Clustering</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Recommendation-System"><span class="nav-number">2.</span> <span class="nav-text">Recommendation System</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Characteristics-of-different-methords"><span class="nav-number">2.1.</span> <span class="nav-text">Characteristics of different methords</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notes"><span class="nav-number"></span> <span class="nav-text">Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Below-are-just-notes-of-this-project-feel-free-to-skip-it"><span class="nav-number">0.1.</span> <span class="nav-text">Below are just notes of this project, feel free to skip it.</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Passionate about CS">
+<meta name="description" content="multinomial logistic regression, sometimes referred to within language processing as MaxEnt entropy modeling, MaxEnt for short. Logistic regression belongs to the family of classifiers known as the ex">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Logistic_Regression">
 <meta property="og:url" content="http://yoursite.com/2018/06/29/Logistic-Regression/index.html">
 <meta property="og:site_name" content="Home of MasKong">
-<meta property="og:description" content="Passionate about CS">
+<meta property="og:description" content="multinomial logistic regression, sometimes referred to within language processing as MaxEnt entropy modeling, MaxEnt for short. Logistic regression belongs to the family of classifiers known as the ex">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T06:36:20.375Z">
+<meta property="og:updated_time" content="2018-06-30T06:20:11.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Logistic_Regression">
-<meta name="twitter:description" content="Passionate about CS">
+<meta name="twitter:description" content="multinomial logistic regression, sometimes referred to within language processing as MaxEnt entropy modeling, MaxEnt for short. Logistic regression belongs to the family of classifiers known as the ex">
 
 
 
@@ -300,7 +300,18 @@
       
 
       
-        
+        <p>multinomial logistic regression, sometimes referred to within language processing as MaxEnt entropy modeling, MaxEnt for short. Logistic regression belongs to the family of classifiers known as the exponential or log-linear classifiers.<br>Technically, logistic regression refers to a classifier that classifies<br>an observation into one of two classes, and multinomial logistic regression is used when classifying into more than two classes</p>
+<p>First, wrap the exp function around the weight-feature dot-product \(w\cdot f\) , which will make the values positive.</p>
+<p>A discriminative model discriminative<br>model takes this direct approach, computing P(y|x) by discriminating among the different possible values of the class y rather than first computing a likelihood.</p>
+<p>Logistic Regression </p>
+<p>$$p(c|x) = \frac{\exp(\sum_iw_if_i(c,x))}{\sum_{c’ \in C}\exp(\sum_{i=1}^N w_if_i(c’,x)}$$</p>
+<p>exp is to make to result greater than 0.<br>\(f_i(c, x)\), meaning feature i for a particular class c for a given observation x. In NLP, x is usually a document. Feature i usually means whether a specific word \(x_i\) has shown in the document for a particular class. \(w_i\) is the weight corresponding to the feature i. For example, in sentiment analysis, classes are 0 and 1 corresponding to positive and negative. The word best is a feature, namely \(\ f_1\), its value for class 1 coube be +10 and -10 for class 0.</p>
+<p>Computing the actual probability rather than just choosing the best class is useful when the classifier is embedded in a larger system. Otherwise compute the nominater is sufficient to do classification. \(\hat{c}={argmax}<em>{c\in C}\sum</em>{i=1}^N w_if_i(c,x)\)</p>
+<h3 id="Learning-weights"><a href="#Learning-weights" class="headerlink" title="Learning weights"></a>Learning weights</h3><p>The intuition is to choose weights that make the classes of the training examples more likely. Indeed, logistic regression is trained with conditional maximum likelihood estimation. This means we choose the parameters w that maximize the (log) probability of the y labels in the training data given the observations x.</p>
+<p>$$\hat{w} = {argmax}_w\sum_jlogP(y^{(j)}|x^{(j)})$$</p>
+<p>It means given a training set, we choose weights that maximize the probability of \(j^{th}\) training example \(x^{(j)}\) is classified to the lable \(y^{(j)}\).</p>
+<p>The objective function L that we are maximizing is thus<br>$$L(w) = \frac{\exp(\sum_i^Nw_if_i(y^{(j)},x^{(j)}))}{\sum_{y’ \in Y}\exp(\sum_{i=1}^N w_if_i(y’^{(j)},x^{(j)})}$$</p>
+
       
     </div>
     
@@ -390,8 +401,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -442,6 +462,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-weights"><span class="nav-number">1.</span> <span class="nav-text">Learning weights</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

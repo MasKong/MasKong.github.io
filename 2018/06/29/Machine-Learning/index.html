@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="contingency table consists of 4 entries: True Positive, True Negative, False Positive, False Negative. Accuracy doesn’t work well whenthe classes are unbalanced. Precision measures the percentage of t">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T06:13:51.524Z">
+<meta property="og:updated_time" content="2018-06-30T07:35:35.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine_Learning">
 <meta name="twitter:description" content="contingency table consists of 4 entries: True Positive, True Negative, False Positive, False Negative. Accuracy doesn’t work well whenthe classes are unbalanced. Precision measures the percentage of t">
@@ -311,6 +311,22 @@
 <p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
 <p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
 <p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
+<h3 id="regularization-used-to-penalize-large-weights"><a href="#regularization-used-to-penalize-large-weights" class="headerlink" title="regularization: used to penalize large weights"></a><strong>regularization</strong>: used to penalize large weights</h3><p>L1 regularization is called ‘the lasso’ or lasso regression and L2 regression is called ridge regression, and both are commonly used in language processing. L2 regularization is easier to optimize because of its simple derivative, while L1 regularization is more complex (the derivative of |w| is noncontinuous<br>at zero). </p>
+<p>But where L2 prefers weight vectors with many small weights, L1 prefers sparse solutions with some larger weights but many more weights set to zero. Thus L1 regularization leads to much sparser weight vectors, that is, far fewer features.</p>
+<p>L2 regularization:$$\sum_{j=1}^Nw_j^2$$</p>
+<p>L1 regularization:$$\sum_{j=1}^N|w_j|$$</p>
+<p>Both L1 and L2 regularization have Bayesian interpretations as constraints on the prior of how weights should look. L1 regularization can be viewed as a Laplace<br>prior on the weights. L2 regularization corresponds to assuming that weights are<br>distributed according to a gaussian distribution with mean µ = 0.</p>
+<p>The regularization technique is useful for avoiding overfitting by removing or downweighting features that are unlikely to generalize well. Many kinds of classifiers including naive Bayes do not have regularization, and so instead feature selection is used to choose the important features and remove the rest. The basis of feature selection is to assign some metric<br>of goodness to each feature, rank the features, and keep the best ones. The number of features to keep is a meta-parameter that can be optimized on a dev set.</p>
+<h3 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a>Feature Selection</h3><p>Features are generally ranked by how informative they are about the classification decision. A very common metric is information gain. Information gain tells us how many bits of information the presence of the word gives us for guessing the class, and can be computed as follows (where ci is the ith class and ¯w means that a document does not contain the word \(w^-\)):</p>
+<p>While feature selection is important for unregularized classifiers, it is sometimes<br>also used in regularized classifiers in applications where speed is critical, since it is often possible to get equivalent performance with orders of magnitude fewer features.</p>
+<p>The overly strong conditional independence assumptions of Naive Bayes mean that if two features are correlated naive Bayes will multiply them, overestimating the evidence. Logistic regression is much more robust to correlated features; if two features f1 and f2 are perfectly correlated, regression will simply assign half the weight to w1 and half to w2.</p>
+<p>naive Bayes works extremely well (even better than logistic regression or SVMs) on small datasets or short documents.<br>Furthermore, naive Bayes is easy to implement and very fast to train. Nonetheless, algorithms like logistic regression and SVMs generally work better on larger documents<br>or datasets.</p>
+<h3 id="bias-variance-tradeoff"><a href="#bias-variance-tradeoff" class="headerlink" title="bias-variance tradeoff"></a>bias-variance tradeoff</h3><p>The <strong>bias of a classifier</strong> indicates how accurate it is at modeling different training sets.<br>The <strong>variance of a classifier</strong> indicates how much its decisions are affected by small changes<br>in training sets.</p>
+<p>Models with <em>low bias</em> (like SVMs with polynomial or RBF kernels) are very accurate at modeling the training data. Models with <em>low variance</em> (like naive<br>Bayes) are likely to come to the same classification decision even from slightly different training data. </p>
+<p>low-bias models tend to overfit, and do not generalize well to very different test sets.<br>low-variance models tend to generalize so well that they may not have sufficient accuracy.<br>Thus model trades off bias and variance. Adding more features decreases bias by making it possible to more accurately model the training data, but<br>increases variance because of overfitting. Regularization and feature selection are<br>ways to improve (lower) the variance of classifier by downweighting or removing<br>features that are likely to overfit.</p>
+<p>In addition to the choice of a classifier, the key to successful classification is the<br>design of appropriate features. Features are generally designed by examining the<br>training set with an eye to linguistic intuitions and the linguistic literature on the domain. </p>
+<p>For some tasks it is especially helpful to build complex features that are combinations<br>of more primitive features. For logistic regression and naive Bayes these<br>combination features or feature interactions have to be designed by hand. </p>
+<p><strong>feature interactions</strong><br>Some other machine learning models can automatically model the interactions<br>between features. For tasks where these combinations of features are important<br>(especially when combination of categorical features and real-valued features might<br>be helpful), the most useful classifiers may be such classifiers,including Support<br>SVMs Vector Machines (SVMs) with polynomial or RBF kernels, and random forests</p>
 
       
     </div>
@@ -405,8 +421,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -457,6 +482,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#regularization-used-to-penalize-large-weights"><span class="nav-number">1.</span> <span class="nav-text">regularization: used to penalize large weights</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-Selection"><span class="nav-number">2.</span> <span class="nav-text">Feature Selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bias-variance-tradeoff"><span class="nav-number">3.</span> <span class="nav-text">bias-variance tradeoff</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
