@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NLP," />
+  <meta name="keywords" content="NLP SVD Skip-gram CBOW Brown Clustering," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
-<meta name="keywords" content="NLP">
+<meta name="description" content="Skip-gram ModelGiven a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix. Hyperparametersa context window size L CBOWcont">
+<meta name="keywords" content="NLP SVD Skip-gram CBOW Brown Clustering">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Noisy_Channel">
-<meta property="og:url" content="http://yoursite.com/2018/06/27/Noisy-Channel/index.html">
+<meta property="og:title" content="Semantics_with_Dense_Vectors">
+<meta property="og:url" content="http://yoursite.com/2018/07/03/Semantics-with-Dense-Vectors/index.html">
 <meta property="og:site_name" content="Home of MasKong">
-<meta property="og:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
+<meta property="og:description" content="Skip-gram ModelGiven a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix. Hyperparametersa context window size L CBOWcont">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T04:39:10.934Z">
+<meta property="og:updated_time" content="2018-07-04T03:23:35.220Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Noisy_Channel">
-<meta name="twitter:description" content="Noisy Channel ModelThe intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel. $">
+<meta name="twitter:title" content="Semantics_with_Dense_Vectors">
+<meta name="twitter:description" content="Skip-gram ModelGiven a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix. Hyperparametersa context window size L CBOWcont">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/27/Noisy-Channel/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/03/Semantics-with-Dense-Vectors/"/>
 
 
 
 
 
-  <title>Noisy_Channel | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Semantics_with_Dense_Vectors | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Noisy-Channel/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/Semantics-with-Dense-Vectors/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK LEE">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Noisy_Channel</h1>
+          <h1 class="post-title" itemprop="name headline">Semantics_with_Dense_Vectors</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T11:41:20+08:00">
-                2018-06-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-03T19:28:55+08:00">
+                2018-07-03
               </time>
             
 
@@ -300,26 +300,13 @@
       
 
       
-        <h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
-<p>$$\hat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
-<p>C is the list of candidate words. Above is a kind of Bayesian inference. We see an observation x (a misspelled word) and find the word w that generated this misspelled word. Out of all possible words in the vocabulary V or just a list of candidate word C, we want to find the<br>word w such that P(w|x) is highest.</p>
-<h3 id="Channel-Model-p-x-w"><a href="#Channel-Model-p-x-w" class="headerlink" title="Channel Model p(x|w)"></a>Channel Model p(x|w)</h3><p>It’s expensive to get a perfect channel model. But a pretty reasonable estimate<br>of P(x|w) could be generated just by looking at local context: the identity of the correct letter itself, the<br>misspelling, and the surrounding letters.</p>
-<h3 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion matrix"></a>confusion matrix</h3><p>Contains counts of errors. In general, each entry in a confusion matrix represents the number of times one thing was confused with another. Thus for example a substitution confusion matrix will be a square matrix of size 26×26 (or more generally |A| × |A|,<br>for an alphabet A) that represents the number of times one letter was incorrectly<br>used instead of another.</p>
-<p>del[x, y]: count(xy typed as x)</p>
-<p>ins[x, y]: count(x typed as xy)</p>
-<p>sub[x, y]: count(x typed as y)</p>
-<p>trans[x, y]: count(xy typed as yx)</p>
-<p>Methods to get confusion matrix:</p>
-<p>1, extract them from lists of misspellings</p>
-<p>$$p(x|w) = \frac{ins[x_{i-1},w_i]}{count[w_{i-1}]},\quad \text{if insertion}$$</p>
-<p>$$p(x|w) = \frac{sub[x_{i},w_i]}{count[w_{i}]},\quad \text{if substitution}$$</p>
-<p>The probability of substitution is calculated by:<br>given the correct word w and error word x, the number of times that ith character wi and the ith character xi is substituted divided by total number of ith character wi.<br>wi is the ith character of the correct word w and xi is the ith character of the typo x</p>
-<p>2, <em>EM algorithm</em>.<br>compute the matrices by iteratively using the spelling error correction algorithm itself. The iterative algorithm first initializes the matrices with equal values; thus, any character is equally likely to be deleted, equally likely to be substituted for any other character,<br>etc. Next, the spelling error correction algorithm is run on a set of spelling<br>errors. Given the set of typos paired with their predicted corrections, the confusion<br>matrices can now be recomputed, the spelling algorithm run again, and so on. </p>
-<p>Evaluating spell correction algorithms is generally done by holding out a training,<br>development and test set from lists of errors like those on the Norvig and Mitton<br>sites mentioned above.</p>
-<p><strong>Candidate words</strong>:<br>Utilize the extended minimum edit distance algorithm introduced so that in addition to insertions, deletions, and substitutions, there is transpositions, in which two letters are swapped. All words with edit distance of 1 constitutes the candidate words set.</p>
-<p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to \(p(w_{i-1})*p(w_i)\) for bigram model to take the context into consideration.</p>
-<h3 id="Real-word-spelling-errors"><a href="#Real-word-spelling-errors" class="headerlink" title="Real-word spelling errors"></a>Real-word spelling errors</h3><p>Noisy channel algorithm could also be applied. The algorithm takes the input sentence \(X = {x_1, x_2,…, x_k<br>,…, x_n}\), generates a large set of candidate correction sentences C(X),<br>then picks the sentence with the highest language model probability.</p>
-<p>To generate candidate set C(X), each word is assigned the probability that would make an error. And score each sentence like the aforementioned way. The difference is that the probability that the word is indeed correct needs to be considered. Given a word w, let’s assume the correct probability is \(\alpha\). And the error probability is \(\frac{1-\alpha}{|C(x)|} \) if \(x \in C(x)\). The others are totally the same as normal noisy channel model for wrong words.</p>
+        <h2 id="Skip-gram-Model"><a href="#Skip-gram-Model" class="headerlink" title="Skip-gram Model"></a>Skip-gram Model</h2><p>Given a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix.</p>
+<h5 id="Hyperparameters"><a href="#Hyperparameters" class="headerlink" title="Hyperparameters"></a>Hyperparameters</h5><p>a context window size L</p>
+<h2 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h2><p>continuous bag of words </p>
+<p>Reversed version of skip-grams, predicting the current word \(w_j\) from the context window of 2L words around it</p>
+<p>$$p(w_{c,j}|w_j) = \frac{exp(c_k\cdot v_j)}{\sum_{i\in|V|}exp(c_i\cdot v_j)}$$</p>
+<p>\(c_k\)means the \(k_{th}\) context word. \(v_j\)means the word vector of given word \(w_j\). The computing of demoninator \(\sum_{i\in|V|}exp(c_i\cdot v_j)\) is extremely expensive because it requires computing for each given word \(w_j\).</p>
+<p>The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document.<br>The objective of the Skip-gram model is to maximize the average log probability \(\frac{1}{T}\sum_{t=1}^T\sum_{−c≤j≤c,j\neq 0}\log p(w_{t+j}|w_t) \)</p>
 
       
     </div>
@@ -337,7 +324,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NLP/" rel="tag"># NLP</a>
+            <a href="/tags/NLP-SVD-Skip-gram-CBOW-Brown-Clustering/" rel="tag"># NLP SVD Skip-gram CBOW Brown Clustering</a>
           
         </div>
       
@@ -350,8 +337,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/26/NLP-Notation/" rel="next" title="NLP_Notation">
-                <i class="fa fa-chevron-left"></i> NLP_Notation
+              <a href="/2018/07/01/Neural-Networks-and-Neural-Language-Model/" rel="next" title="Neural_Networks_and_Neural_Language_Model">
+                <i class="fa fa-chevron-left"></i> Neural_Networks_and_Neural_Language_Model
               </a>
             
           </div>
@@ -360,8 +347,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/29/Sentiment-Classification/" rel="prev" title="Sentiment_Classification_Naive_Bayes">
-                Sentiment_Classification_Naive_Bayes <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/03/sql/" rel="prev" title="sql">
+                sql <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -485,7 +472,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Noisy-Channel-Model"><span class="nav-number">1.</span> <span class="nav-text">Noisy Channel Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel-Model-p-x-w"><span class="nav-number">2.</span> <span class="nav-text">Channel Model p(x|w)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#confusion-matrix"><span class="nav-number">3.</span> <span class="nav-text">confusion matrix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Real-word-spelling-errors"><span class="nav-number">4.</span> <span class="nav-text">Real-word spelling errors</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram-Model"><span class="nav-number">1.</span> <span class="nav-text">Skip-gram Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hyperparameters"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Hyperparameters</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CBOW"><span class="nav-number">2.</span> <span class="nav-text">CBOW</span></a></li></ol></div>
             
 
           </div>
