@@ -594,12 +594,18 @@
         
           
             <h2 id="Skip-gram-Model"><a href="#Skip-gram-Model" class="headerlink" title="Skip-gram Model"></a>Skip-gram Model</h2><p>Given a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix.</p>
+<p>The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document.<br>The objective of the Skip-gram model is to maximize the average log probability \(\frac{1}{T}\sum_{t=1}^T\sum_{−c≤j≤c,j\neq 0}\log p(w_{t+j}|w_t) \)</p>
+<p>The basic Skip-gram formulation defines \(p(w_{t+j} |w_t)\) using the softmax function:<br>$$p(w_{O}|w_I) = \frac{exp({v’_{w_O}}^Tv_{w_I})}{\sum_{w=1}^Wexp({v’<em>w}^Tv</em>{w_I})}$$</p>
+<h2 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h2><p>Noise Contrastive Estimation (NCE). NCE posits that a good model should be able to differentiate data from noise by means of logistic regression. </p>
+<p>While NCE can be shown to approximately maximize the log probability of the softmax, the Skipgram model is only concerned with learning high-quality vector representations, so we are free to<br>simplify NCE. The objective funtion:</p>
+<p>$$\log\sigma({v’_{w_O}}^Tv_{w_I})+\sum_{i=1}^kE_{w_i\sim P_n(w)}[\log\sigma({-v’_{w_i}}^Tv_{w_I})]$$</p>
+<p>$$P(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}\left(  {f(w_j)}^{3/4} \right) }$$</p>
 <h5 id="Hyperparameters"><a href="#Hyperparameters" class="headerlink" title="Hyperparameters"></a>Hyperparameters</h5><p>a context window size L</p>
 <h2 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h2><p>continuous bag of words </p>
 <p>Reversed version of skip-grams, predicting the current word \(w_j\) from the context window of 2L words around it</p>
 <p>$$p(w_{c,j}|w_j) = \frac{exp(c_k\cdot v_j)}{\sum_{i\in|V|}exp(c_i\cdot v_j)}$$</p>
 <p>\(c_k\)means the \(k_{th}\) context word. \(v_j\)means the word vector of given word \(w_j\). The computing of demoninator \(\sum_{i\in|V|}exp(c_i\cdot v_j)\) is extremely expensive because it requires computing for each given word \(w_j\).</p>
-<p>The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document.<br>The objective of the Skip-gram model is to maximize the average log probability \(\frac{1}{T}\sum_{t=1}^T\sum_{−c≤j≤c,j\neq 0}\log p(w_{t+j}|w_t) \)</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf" target="_blank" rel="noopener">Distributed Representations of Words and Phrases<br>and their Compositionality</a></p>
 
           
         
