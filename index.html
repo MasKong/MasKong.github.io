@@ -597,15 +597,26 @@
 <p>The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document.<br>The objective of the Skip-gram model is to maximize the average log probability \(\frac{1}{T}\sum_{t=1}^T\sum_{−c≤j≤c,j\neq 0}\log p(w_{t+j}|w_t) \)</p>
 <p>The basic Skip-gram formulation defines \(p(w_{t+j} |w_t)\) using the softmax function:<br>$$p(w_{O}|w_I) = \frac{exp({v’_{w_O}}^Tv_{w_I})}{\sum_{w=1}^Wexp({v’<em>w}^Tv</em>{w_I})}$$</p>
 <h2 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h2><p>Noise Contrastive Estimation (NCE). NCE posits that a good model should be able to differentiate data from noise by means of logistic regression. </p>
-<p>While NCE can be shown to approximately maximize the log probability of the softmax, the Skipgram model is only concerned with learning high-quality vector representations, so we are free to<br>simplify NCE. The objective funtion:</p>
+<p>While NCE can be shown to approximately maximize the log probability of the softmax, the Skipgram model is only concerned with learning high-quality vector representations, so we are free to<br>simplify NCE.<br>Here is <strong>Negative Sampling</strong>, its objective funtion:</p>
 <p>$$\log\sigma({v’_{w_O}}^Tv_{w_I})+\sum_{i=1}^kE_{w_i\sim P_n(w)}[\log\sigma({-v’_{w_i}}^Tv_{w_I})]$$</p>
+<p>The above objective function is used to replace every \(\log P(w_O|w_I )\) term in the Skip-gram objective. Thus the task is to<br>distinguish the target word \(w_O\) from draws from the noise distribution \(P_n(w)\) using logistic regression, where there are k negative samples for each data sample. k in the range 5–20 are useful for small training datasets, while for large datasets the k 2–5. The main difference between the Negative sampling and NCE is that NCE needs both samples and the numerical probabilities of the noise distribution, while Negative sampling uses only samples. And NCE approximately maximizes the log probability of the softmax, this property is not important for our application.</p>
+<p>Essentially, the probability for selecting a word as a negative sample is related to its frequency, with more frequent words being more likely to be selected as negative samples.Raise to the power of 3/4 is an emprical result.</p>
 <p>$$P(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}\left(  {f(w_j)}^{3/4} \right) }$$</p>
+<p>To counter the imbalance between the rare and frequent words, we used a simple subsampling approach: each word \(w_i\)<br>in the training set is discarded with probability computed by the formula</p>
+<p>$$p(w_i)=1-\sqrt{\frac{t}{f(w_i)}}$$</p>
+<p>where \(f(w_i)\) is the frequency of word \(w_i\) and t is a chosen threshold, typically around \(10^{−5}\).</p>
+<p>Another implementation:<br>$$p(w_i)=(\sqrt{\frac{z(w_i)}{0.001}}+1)\cdot \frac{0.001}{z(w_i)}$$</p>
+<p>0.001 is the default sample value. Smaller values of ‘sample’ mean words are less likely to be kept. \(z(w_i)\) is the frequency of the word i.</p>
+<ul>
+<li>P(wi)=1.0 (100% chance of being kept) when z(wi)&lt;=0.0026. This means that only words which represent more than 0.26% of the total words will be subsampled.</li>
+<li>P(wi)=0.5 (50% chance of being kept) when z(wi)=0.00746.</li>
+</ul>
 <h5 id="Hyperparameters"><a href="#Hyperparameters" class="headerlink" title="Hyperparameters"></a>Hyperparameters</h5><p>a context window size L</p>
 <h2 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h2><p>continuous bag of words </p>
 <p>Reversed version of skip-grams, predicting the current word \(w_j\) from the context window of 2L words around it</p>
 <p>$$p(w_{c,j}|w_j) = \frac{exp(c_k\cdot v_j)}{\sum_{i\in|V|}exp(c_i\cdot v_j)}$$</p>
 <p>\(c_k\)means the \(k_{th}\) context word. \(v_j\)means the word vector of given word \(w_j\). The computing of demoninator \(\sum_{i\in|V|}exp(c_i\cdot v_j)\) is extremely expensive because it requires computing for each given word \(w_j\).</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf" target="_blank" rel="noopener">Distributed Representations of Words and Phrases<br>and their Compositionality</a></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf" target="_blank" rel="noopener">Distributed Representations of Words and Phrases<br>and their Compositionality</a><br><a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">Word2Vec Tutorial Part 2 - Negative Sampling</a></p>
 
           
         
