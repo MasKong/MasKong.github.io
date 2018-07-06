@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Home of MasKong">
 <meta property="og:description" content="Skip-gram ModelGiven a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix. The training objective of the Skip-gram model i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-04T05:51:35.052Z">
+<meta property="og:updated_time" content="2018-07-05T10:53:29.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Semantics_with_Dense_Vectors">
 <meta name="twitter:description" content="Skip-gram ModelGiven a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix. The training objective of the Skip-gram model i">
@@ -304,7 +304,7 @@
 <p>The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document.<br>The objective of the Skip-gram model is to maximize the average log probability \(\frac{1}{T}\sum_{t=1}^T\sum_{−c≤j≤c,j\neq 0}\log p(w_{t+j}|w_t) \)</p>
 <p>The basic Skip-gram formulation defines \(p(w_{t+j} |w_t)\) using the softmax function:<br>$$p(w_{O}|w_I) = \frac{exp({v’_{w_O}}^Tv_{w_I})}{\sum_{w=1}^Wexp({v’<em>w}^Tv</em>{w_I})}$$</p>
 <h2 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h2><p>Noise Contrastive Estimation (NCE). NCE posits that a good model should be able to differentiate data from noise by means of logistic regression. </p>
-<p>While NCE can be shown to approximately maximize the log probability of the softmax, the Skipgram model is only concerned with learning high-quality vector representations, so we are free to<br>simplify NCE.<br>Here is <strong>Negative Sampling</strong>, its objective funtion:</p>
+<p>While NCE can be shown to approximately maximize the log probability of the softmax, the Skipgram model is only concerned with learning high-quality vector representations, so we are free to<br>simplify NCE.<br>Here is <strong>Negative Sampling</strong>, its <strong>objective funtion</strong>:</p>
 <p>$$\log\sigma({v’_{w_O}}^Tv_{w_I})+\sum_{i=1}^kE_{w_i\sim P_n(w)}[\log\sigma({-v’_{w_i}}^Tv_{w_I})]$$</p>
 <p>The above objective function is used to replace every \(\log P(w_O|w_I )\) term in the Skip-gram objective. Thus the task is to<br>distinguish the target word \(w_O\) from draws from the noise distribution \(P_n(w)\) using logistic regression, where there are k negative samples for each data sample. k in the range 5–20 are useful for small training datasets, while for large datasets the k 2–5. The main difference between the Negative sampling and NCE is that NCE needs both samples and the numerical probabilities of the noise distribution, while Negative sampling uses only samples. And NCE approximately maximizes the log probability of the softmax, this property is not important for our application.</p>
 <p>Essentially, the probability for selecting a word as a negative sample is related to its frequency, with more frequent words being more likely to be selected as negative samples.Raise to the power of 3/4 is an emprical result.</p>
@@ -318,11 +318,48 @@
 <li>P(wi)=1.0 (100% chance of being kept) when z(wi)&lt;=0.0026. This means that only words which represent more than 0.26% of the total words will be subsampled.</li>
 <li>P(wi)=0.5 (50% chance of being kept) when z(wi)=0.00746.</li>
 </ul>
+<p><strong>projection layer</strong> input is one-hot vector, multiplied by embedding layer, the output is the projection layer. The units in the projection layer are word vectors.</p>
 <h5 id="Hyperparameters"><a href="#Hyperparameters" class="headerlink" title="Hyperparameters"></a>Hyperparameters</h5><p>a context window size L</p>
 <h2 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h2><p>continuous bag of words </p>
 <p>Reversed version of skip-grams, predicting the current word \(w_j\) from the context window of 2L words around it</p>
 <p>$$p(w_{c,j}|w_j) = \frac{exp(c_k\cdot v_j)}{\sum_{i\in|V|}exp(c_i\cdot v_j)}$$</p>
 <p>\(c_k\)means the \(k_{th}\) context word. \(v_j\)means the word vector of given word \(w_j\). The computing of demoninator \(\sum_{i\in|V|}exp(c_i\cdot v_j)\) is extremely expensive because it requires computing for each given word \(w_j\).</p>
+<h3 id="Relationship-between-Word-Vectors"><a href="#Relationship-between-Word-Vectors" class="headerlink" title="Relationship between Word Vectors"></a>Relationship between Word Vectors</h3><p>Word vector matrix W and context word vector matrix C multiply together would produce a |V|*|V| matrix X.<br>Skip-gram’s optimal value occurs when<br>this learned matrix X is actually a version of the PMI matrix, with the values shifted<br>by logk (where k is the number of negative samples):<br>$$WC = X^{PMI} −\log k$$</p>
+<p>In other words, skip-gram is implicitly factorizing a (shifted version of the) PMI<br>matrix into the two embedding matrices W and C, just as SVD did, albeit with a different kind of factorization.</p>
+<p>Once the embeddings are learned, for each word \(w_i\), there is a word vector \(v_i\) and a context word vector \(c_i\). We can choose to throw away the C matrix and just keep W, as we did with SVD.<br>Alternatively we can add the two embeddings together, using the summed embedding<br>\(v_i + c_i\) as the new d-dimensional embedding, or we can concatenate them<br>into an embedding of dimensionality 2d.</p>
+<p>As with the simple count-based methods like PPMI, the context window size<br>L effects the performance of skip-gram embeddings, and experiments often tune<br>the parameter L on a dev set. As with PPMI, window sizing leads to qualitative<br>differences: smaller windows capture more syntactic information, larger ones more<br>semantic and relational information. One difference from the count-based methods<br>is that for skip-grams, the larger the window size the more computation the algorithm requires for training.</p>
+<h3 id="Properties-of-embeddings"><a href="#Properties-of-embeddings" class="headerlink" title="Properties of embeddings"></a>Properties of embeddings</h3><p><strong>Offsets</strong> between vector embeddings<br>can capture some relations between words.</p>
+<h3 id="Brown-Clustering"><a href="#Brown-Clustering" class="headerlink" title="Brown Clustering"></a>Brown Clustering</h3><p>Brown clustering is an agglomerative clustering algorithm for deriving vector representations of words by clustering words based on their associations with the preceding or following words.</p>
+<ul>
+<li><ol>
+<li>Each word is initially assigned to its own cluster.</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>merge each pair of clusters. The pair whose merger results in the smallest decrease in the likelihood of the corpus (according to the class-based language model) is merged.</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Clustering proceeds until all words are in one big cluster</li>
+</ol>
+</li>
+</ul>
+<p>Each cluster contains words that are  contextually similar(similar meaning/sense).After clustering, a word can be represented by the binary string that corresponds to its path from the root node.<br>Each prefix represents a cluster that the word belongs to.These prefixes can then be used as a vector representation for the word; the shorter the prefix, the more abstract the cluster.</p>
+<p>(i.e.:the string 0001 represents the names of common nouns for corporate executives {chairman, president}, 1 is verbs {run, sprint, walk}, and 0 is nouns.)</p>
+<p>The length of the vector representation can thus be adjusted to fit the needs of the particular task. a 4-6 bit prefix to capture part of speech information and a full bit string to represent words. The first 8 or<br>9-bits of a Brown clustering perform well at grammar induction. Because they are<br>based on immediately neighboring words, Brown clusters are most commonly used<br>for representing the syntactic properties of words, and hence are commonly used as<br>a feature in parsers. Nonetheless, the clusters do represent some semantic properties as well.</p>
+<p>Note that the naive version of the Brown clustering algorithm described above is<br>extremely inefficient — \(O(n^5)\): at each of n iterations, the algorithm considers each of \(O(n^2)\) merges, and for each merge, compute the value of the clustering by summing over \(O(n^2)\)terms. because it has to consider every possible pair of merges. In practice<br>we use more efficient \(O(n^3)\) algorithms that use tables to pre-compute the values for each merge.</p>
+<p><strong>hard clustering</strong> algorithm:each word has only one cluster</p>
+<h4 id="class-based-language-model"><a href="#class-based-language-model" class="headerlink" title="class-based language model"></a>class-based language model</h4><p>a model in which each word \(w\in V\) belongs to a class \(c\in C\) with a probability P(w|c).<br>Class based LMs assigns a probability to a pair of words \(w_{i−1}\) and \(w_i\) by modeling the transition between classes rather than between words:<br>$$P(w_i|w_{i−1}) = P(w_i|c_i)P(c_i|c_{i−1})$$</p>
+<p>Given the class label of word \(c_{i-1})\), compute the transition probability and then given the new transition, the probability of current word \(w_i\).</p>
+<p>The class-based LM can be used to assign a probability to an entire corpus given<br>a particularly clustering C as follows:</p>
+<p>$$P(corpus|C) = \prod_{i−1}^nP(c_i<br>|c_{i−1})P(w_i|c_i)$$</p>
+<p>Class-based language models are generally not used as a language model for applications like machine translation or speech recognition because they don’t work<br>as well as standard n-grams or neural language models.</p>
+<h2 id="LSA-latent-semantic-analysis"><a href="#LSA-latent-semantic-analysis" class="headerlink" title="LSA(latent semantic analysis)"></a>LSA(latent semantic analysis)</h2><p>:applying SVD to the term-document matrix </p>
+<p>LSA is a particular application of SVD to a |V| × c term-document matrix X representing |V| words and their co-occurrence with c documents or contexts.<br>SVD factorizes any such rectangular |V| × c matrix X into the product of three matrices<br>W, \(\sum\), and \(C^T\). In the matrix W, each of the w rows still represents a word, but each column represents one of m dimensions in a latent space, such that the m column vectors are orthogonal to each other and the columns are ordered by the amount of variance in the original dataset. The number of such dimensions m is the rank of X (the rank of a matrix is the number<br>of linearly independent rows). \(\sum\) is a diagonal matrix, with singular values<br>along the diagonal, expressing the importance of each dimension. The matrix<br>\(C^T\) still represents documents or contexts, but each row now represents one of the new latent dimensions and the m row vectors are orthogonal to each other.<br>By using only the first k dimensions instead of all m dimensions, the product of these 3 matrices becomes a least-squares approximation to the original X. Since the first dimensions encode the most variance, one way to view the reconstruction is as modeling the most important information in the original dataset.</p>
+<p>Using only the top k dimensions leads to a reduced |V| ×k matrix \(W_k\), with one k-dimensioned row per word. This row now acts as a dense k-dimensional vector (embedding) representing that word, substituting for the very high-dimensional rows of the original X.</p>
+<p>LSA implementations generally use a particular weighting of each co-occurrence cell that multiplies two weights called the local and global weights for each cell (i, j)—term i in document j. The local weight of each term i is its log frequency: log f(i, j) +1. The global weight of term i is a version of its entropy: $$1+\frac{\sum_jp(i,j)\log p(i,j)}{\log D}$$<br>D is the number of documents.</p>
+<p><strong>Advantages</strong>: Solve the problem of one word multiple senses or one sense multiple words by reduce the demensionality and extract the key information. Information extraction is to project the original co-occurence data to a new axes which could be viewed as a semantic space.</p>
+<p><strong>Disadvantages</strong>: SVD requires lots of time to compute.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf" target="_blank" rel="noopener">Distributed Representations of Words and Phrases<br>and their Compositionality</a><br><a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">Word2Vec Tutorial Part 2 - Negative Sampling</a></p>
 
       
@@ -443,7 +480,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -489,7 +526,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram-Model"><span class="nav-number">1.</span> <span class="nav-text">Skip-gram Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Negative-Sampling"><span class="nav-number">2.</span> <span class="nav-text">Negative Sampling</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hyperparameters"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Hyperparameters</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CBOW"><span class="nav-number">3.</span> <span class="nav-text">CBOW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram-Model"><span class="nav-number">1.</span> <span class="nav-text">Skip-gram Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Negative-Sampling"><span class="nav-number">2.</span> <span class="nav-text">Negative Sampling</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hyperparameters"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Hyperparameters</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CBOW"><span class="nav-number">3.</span> <span class="nav-text">CBOW</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Relationship-between-Word-Vectors"><span class="nav-number">3.1.</span> <span class="nav-text">Relationship between Word Vectors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties-of-embeddings"><span class="nav-number">3.2.</span> <span class="nav-text">Properties of embeddings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brown-Clustering"><span class="nav-number">3.3.</span> <span class="nav-text">Brown Clustering</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#class-based-language-model"><span class="nav-number">3.3.1.</span> <span class="nav-text">class-based language model</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSA-latent-semantic-analysis"><span class="nav-number">4.</span> <span class="nav-text">LSA(latent semantic analysis)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>

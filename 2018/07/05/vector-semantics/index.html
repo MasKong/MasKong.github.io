@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ML," />
+  <meta name="keywords" content="NLP," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Hierarchical softmaxTrun the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive. In (Good">
-<meta name="keywords" content="ML">
+<meta name="description" content="Pointwise Mutual Information (PMI)Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information. Instead we’d">
+<meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hierarchical_Softmax">
-<meta property="og:url" content="http://yoursite.com/2018/07/04/Hierarchical-Softmax/index.html">
+<meta property="og:title" content="vector_semantics">
+<meta property="og:url" content="http://yoursite.com/2018/07/05/vector-semantics/index.html">
 <meta property="og:site_name" content="Home of MasKong">
-<meta property="og:description" content="Hierarchical softmaxTrun the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive. In (Good">
+<meta property="og:description" content="Pointwise Mutual Information (PMI)Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information. Instead we’d">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-04T04:01:56.118Z">
+<meta property="og:updated_time" content="2018-07-05T14:39:54.533Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hierarchical_Softmax">
-<meta name="twitter:description" content="Hierarchical softmaxTrun the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive. In (Good">
+<meta name="twitter:title" content="vector_semantics">
+<meta name="twitter:description" content="Pointwise Mutual Information (PMI)Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information. Instead we’d">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/04/Hierarchical-Softmax/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/05/vector-semantics/"/>
 
 
 
 
 
-  <title>Hierarchical_Softmax | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>vector_semantics | Home of MasKong</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/Hierarchical-Softmax/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/vector-semantics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK LEE">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hierarchical_Softmax</h1>
+          <h1 class="post-title" itemprop="name headline">vector_semantics</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T11:22:43+08:00">
-                2018-07-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T18:56:55+08:00">
+                2018-07-05
               </time>
             
 
@@ -300,18 +300,35 @@
       
 
       
-        <h3 id="Hierarchical-softmax"><a href="#Hierarchical-softmax" class="headerlink" title="Hierarchical softmax"></a>Hierarchical softmax</h3><p>Trun the normal softmax to a tree structure to avoid computing every context word with the center word.</p>
-<p>Normal softmax requires normalization which is extremely expensive.</p>
-<p>In (Goodman, 2001b) it is shown how to speed-up a maximum entropy class-based statistical language model by using the following idea. Instead of computing directly P(Y |X) (which involves normalization across all the values<br>that Y can take), one defines a clustering partition for the Y (into the word classes C, such that there is a deterministic<br>function c(.) mapping Y to C), so as to write</p>
-<p>$$P(Y = y|X = x) =P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
-<p>Prove:<br>$$P(Y |X) = \sum_i P(Y, C = i|X) = \sum_i P(Y |C =i, X)P(C = i|X) = P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
-<p>C(Y) is a function to classify Y into C classes. \(P(Y |C = c(Y ), X)P(C =c(Y )|X)\) is equivalent to \(\sum_i P(Y |C =i, X)P(C = i|X)\) if every Y is classified into a class and the probablities of assign a Y to a cluster are multiplied together.</p>
-<p>To utilize the architecture of binary trees, do hierarchical clustering such that each time two clusters are mergerd. Initially each word is a cluster. As a result, each level consists of a number of cluster. From the root to the leaf, multiply the probabilities together and we get the probability.</p>
-<p>Each word v must be represented by a bit vector \((b_1(v), . . . b_m(v))\) (where m depends on v)</p>
-<p>$$P(v|w_{t−1}, . . . , w_{t−n+1}) =\prod_{j=1}^mP(b_j(v)|b_1(v), . . . , b_{j−1}(v), w_{t−1}, . . . , w_{t−n+1})$$</p>
-<p>\(b_j(v)\) is the intermediate vector in the tree. The intermediate node is in fact a cluster. Each leaf node is a word.</p>
-<p>Each intermediate note could be viewed as a group of similar-meaning words. Each node is associated with a feature vector.</p>
-<p>$$P(b = 1|node, w_{t−1}, . . . , w_{t−n+1}) =sigmoid(\alpha_{node} + \beta’\cdot tanh(c + Wx + UN_{node}))$$</p>
+        <h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
+<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
+<p>mutual information </p>
+<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
+<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
+<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
+<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
+<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
+<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
+<p>To solve this problem,change the computation for P(c).</p>
+<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
+<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
+<p>Another solutio is Laplace smoothing.</p>
+<h3 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h3><p>IDF is used to give a higher weight to rare words because they are likely to present more information.</p>
+<p>$$idf_i = \log(\frac{N}{df_i})<br>$$</p>
+<p>Combining term frequency with IDF results in a scheme known as tf-idf weighting of the value for word i in document j,\(w_{ij}\):\</p>
+<p>$$w_{ij}=tf_{ij}idf_i$$</p>
+<p>The tf-idf weighting is by far the dominant way of weighting co-occurrence matrices in information retrieval, but also plays a role in many other aspects of natural language processing including summarization.</p>
+<h3 id="t-test"><a href="#t-test" class="headerlink" title="t-test"></a>t-test</h3><h2 id="Similarity-Measure-for-vectors-binary"><a href="#Similarity-Measure-for-vectors-binary" class="headerlink" title="Similarity Measure for vectors(binary)"></a>Similarity Measure for vectors(binary)</h2><p><strong>Jaccard similarity</strong>:<br>$$sim_{Jaccard}=\frac{\sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N\max(v_i,w_i)}$$</p>
+<p>$$J(A,B)=\frac{|A\cap B|}{|A\cup B|}$$</p>
+<p>The min of \(v_i\) and \(w_i\)means if a feature exists in one vector but not the other vector, the result would be zero. The<br>denominator can be viewed as a normalizing factor.</p>
+<p><strong>Dice measure</strong>:<br>$$sim_{Dice}=\frac{2 \times \sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N(v_i+w_i)}$$</p>
+<p><strong>KL divergence</strong><br>if two vectors, \(\vec{v}\) and \(\vec{w}\), each express a probability<br>distribution (their values sum to one), then they are are similar to the extent that these probability distributions are similar.</p>
+<p>Given two probability distribution or vectors P and Q:</p>
+<p>$$D(P||Q) = \sum_xP(x)\log \frac{P(x)}<br>{Q(x)}$$</p>
+<p>Unfortunately, the KL-divergence is undefined when Q(x) = 0 and P(x) \(\neq\) 0, which is a problem since these word-distribution vectors are generally quite sparse.</p>
+<p>Jensen-Shannon divergence solves this problem.<br>$$JS(P||Q)=D(P|\frac{Q+P}{2})+D(Q|\frac{Q+P}{2})$$</p>
+<h3 id="Using-syntax-to-define-a-word’s-context"><a href="#Using-syntax-to-define-a-word’s-context" class="headerlink" title="Using syntax to define a word’s context"></a>Using syntax to define a word’s context</h3><p>Instead of defining a word’s context by nearby words, we could instead define it by<br>the syntactic relations of these neighboring words. i.e.: the word duty could be represented by a bunch of combinations like additional,administrative(adj) or assert, assign(verb). </p>
+<h3 id="Evaluating-Vector-Models"><a href="#Evaluating-Vector-Models" class="headerlink" title="Evaluating Vector Models"></a>Evaluating Vector Models</h3><p>test their performance on similarity, and in particular on computing the correlation between an algorithm’s word similarity scores and word similarity ratings<br>assigned by humans.</p>
 
       
     </div>
@@ -329,7 +346,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ML/" rel="tag"># ML</a>
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
           
         </div>
       
@@ -342,8 +359,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/03/sql/" rel="next" title="sql">
-                <i class="fa fa-chevron-left"></i> sql
+              <a href="/2018/07/04/Hierarchical-Softmax/" rel="next" title="Hierarchical_Softmax">
+                <i class="fa fa-chevron-left"></i> Hierarchical_Softmax
               </a>
             
           </div>
@@ -352,8 +369,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/05/vector-semantics/" rel="prev" title="vector_semantics">
-                vector_semantics <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/06/Word-Senses/" rel="prev" title="Word_Senses">
+                Word_Senses <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -477,7 +494,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hierarchical-softmax"><span class="nav-number">1.</span> <span class="nav-text">Hierarchical softmax</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointwise-Mutual-Information-PMI"><span class="nav-number">1.</span> <span class="nav-text">Pointwise Mutual Information (PMI)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TF-IDF"><span class="nav-number">1.1.</span> <span class="nav-text">TF-IDF</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t-test"><span class="nav-number">1.2.</span> <span class="nav-text">t-test</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Similarity-Measure-for-vectors-binary"><span class="nav-number">2.</span> <span class="nav-text">Similarity Measure for vectors(binary)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-syntax-to-define-a-word’s-context"><span class="nav-number">2.1.</span> <span class="nav-text">Using syntax to define a word’s context</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Evaluating-Vector-Models"><span class="nav-number">2.2.</span> <span class="nav-text">Evaluating Vector Models</span></a></li></ol></li></ol></div>
             
 
           </div>
