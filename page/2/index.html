@@ -1707,6 +1707,16 @@
 <p>Curse of dimensionality: in high dimension, cosine similarity approaches to 0, which means that random vectors are orthogonal. Distance and density become meaningless because distance is very far away compared to low dimensionality.</p>
 <p>Clustering:<br>Euclidean space in which the cluster could be represented by a center.<br>Clustroid: the closest point to other points in the cluster<br>Centroid: the arithmetic center point calculated.</p>
 <p>Mahalanobis distance is distance between x and y divided by square root of covariance, which is undistorting the ellipse to make a circle</p>
+<h3 id="Extention"><a href="#Extention" class="headerlink" title="Extention"></a>Extention</h3><p>Word2Vec to do recomendation: sequence of actions of a user in a specific time range(within 30 minutes) is regarded as a context like the context words in word2vec. The search /query/clicked item is the center. As what has been done in word2vec, train the model s.t. the center item is close to context item and far away than other items.</p>
+<p>The learnt embeddings have been shown to correctly encode information like style,price and so on.</p>
+<h5 id="The-Airbnb-makes-some-other-modification"><a href="#The-Airbnb-makes-some-other-modification" class="headerlink" title="The Airbnb makes some other modification:"></a>The Airbnb makes some other modification:</h5><ul>
+<li>The final booking item is added s.t. the objective is to make the center item close to final booking item too.</li>
+<li>Sample items from the same location but different style or other condition as negative samples.</li>
+</ul>
+<h4 id="Clustering-1"><a href="#Clustering-1" class="headerlink" title="Clustering"></a>Clustering</h4><p>Clustering is employed to promote diversity of recommendation. After the vectors of products are learnt, they are clustered together. If a customer buy something in a cluster, the system would choose items in another cluster in which other or similar users usually buy items after buying items in the same cluster. This avoid the problem of recommending the similar item with the same function to users. After choosing the cluster, recommend the top k items that are similar to the purchased item.</p>
+<h4 id="Cold-Start-Problem"><a href="#Cold-Start-Problem" class="headerlink" title="Cold Start Problem"></a>Cold Start Problem</h4><p>Average 3 geographically closest listings accoding to location or age or something like that.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/" target="_blank" rel="noopener">Applying word2vec to Recommenders and Advertising</a></p>
+<p><a href="https://medium.com/airbnb-engineering/listing-embeddings-for-similar-listing-recommendations-and-real-time-personalization-in-search-601172f7603e" target="_blank" rel="noopener">Listing Embeddings in Search Ranking</a></p>
 
           
         
