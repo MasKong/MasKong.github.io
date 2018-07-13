@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta name="description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols;  The lexicon is the set of rules that introduce these terminal symbols.">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NLP_Notation">
-<meta property="og:url" content="http://yoursite.com/2018/06/26/NLP-Notation/index.html">
+<meta property="og:title" content="Context-Free Grammar">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/CFG/index.html">
 <meta property="og:site_name" content="Boring Notes of Interesting Study">
-<meta property="og:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta property="og:description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols;  The lexicon is the set of rules that introduce these terminal symbols.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T07:57:53.802Z">
+<meta property="og:updated_time" content="2018-07-13T06:56:36.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NLP_Notation">
-<meta name="twitter:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta name="twitter:title" content="Context-Free Grammar">
+<meta name="twitter:description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols;  The lexicon is the set of rules that introduce these terminal symbols.">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/26/NLP-Notation/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/13/CFG/"/>
 
 
 
 
 
-  <title>NLP_Notation | Boring Notes of Interesting Study</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Context-Free Grammar | Boring Notes of Interesting Study</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/NLP-Notation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/CFG/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NLP_Notation</h1>
+          <h1 class="post-title" itemprop="name headline">Context-Free Grammar</h1>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T18:59:05+08:00">
-                2018-06-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-13T14:44:51+08:00">
+                2018-07-13
               </time>
             
 
@@ -349,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/26/NLP-Notation/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/13/CFG/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/26/NLP-Notation/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/13/CFG/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,24 +379,18 @@
       
 
       
-        <p><strong>Language models</strong> assign a probability to each sentence</p>
-<p>\( w_1^n\) is a sequence of N words from word 1 to word N.</p>
-<p>A <strong>held-out corpus</strong> is an additional training corpus that we use to set hyperparameters.</p>
-<p><strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like graffe for giraffe). </p>
-<p><strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (real-word errors).</p>
-<p><strong>edit probability</strong> The probability of typo like deletion, insertion respectively.</p>
-<p><strong>text categorization</strong>: classifying an entire text by assigning it a text<br>categorization label drawn from some set of labels.</p>
-<p><strong>classification</strong>: take a single observation, extract some useful<br>features, and thereby classify the observation into one of a set of discrete classes.</p>
-<p><strong>Generative classifiers</strong> like naive Bayes build a model of each class. Given an observation, they return the class most likely to have generated the observation. <strong>Discriminative classifiers</strong> like logistic regression instead learn what features from the input are most useful to discriminate between the different possible classes.<br>While discriminative systems are often more accurate and hence more commonly used, generative classifiers still have a role.</p>
-<p><strong>bag-of-words</strong>: an unordered set of words with their position ignored, keeping only their frequency in the document.</p>
-<p><strong>linear classifiers</strong>: use a linear combination of the inputs to make a classification decision —like naive Bayes and also logistic regression.</p>
-<p><strong>period disambiguation</strong>: deciding if a period is the end of a sentence or part<br>of a word</p>
-<p><strong>co-occurrence matrix</strong>: a way of representing how often words co-occur.</p>
-<p><strong>term-document matrix</strong>: each row represents a word in the vocabulary and<br>each column represents a document.</p>
-<p><strong>vector space model</strong>:a document is represented as a count vector(column vector), each entry is the count of a specific word.</p>
-<p><strong>Information retrieval</strong>(IR): is the task of finding the document d from the D<br>documents in some collection that best matches a query q which is also a vector of length |V|.</p>
-<p><strong>term-context matrix</strong>: a  |V| × |V| matrix. Each entry(i,j) represent that the number of times a word i shows in the context word j. The context could be a document or a context window of length |L|.</p>
-<p><strong>WordNet</strong>(Sense-Tagged data):WordNet is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of synonyms , each expressing a distinct concept.</p>
+        <p><strong>Context-Free Grammar(CFG)</strong></p>
+<p>The symbols that correspond to words in the language (“the”, “nightclub”) are called <strong>terminal</strong> symbols; </p>
+<p>The lexicon is the set of rules that introduce these terminal symbols. The symbols that express abstractions over these terminals are called <strong>non-terminals</strong>. </p>
+<p>Each grammar must have one designated start symbol, which is often called S like \<s>.</s></p>
+<h2 id="Formal-Definition-of-CFG"><a href="#Formal-Definition-of-CFG" class="headerlink" title="Formal Definition of CFG"></a>Formal Definition of CFG</h2><p>G=(T,N,S,R)</p>
+<ul>
+<li>T is a set of terminal symbols.</li>
+<li>N is a set of nonterminal symbols</li>
+<li>S is the start symbol (S ∈ N)</li>
+<li>R is a set of rules/produc*ons of the form X → γ.</li>
+</ul>
+<p>A grammar G generates a language L.</p>
 
       
     </div>
@@ -427,8 +421,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/26/Smoothing/" rel="next" title="Smoothing">
-                <i class="fa fa-chevron-left"></i> Smoothing
+              <a href="/2018/07/13/CKY/" rel="next" title="CKY">
+                <i class="fa fa-chevron-left"></i> CKY
               </a>
             
           </div>
@@ -436,10 +430,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/27/Noisy-Channel/" rel="prev" title="Noisy_Channel">
-                Noisy_Channel <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -501,8 +491,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -557,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Formal-Definition-of-CFG"><span class="nav-number">1.</span> <span class="nav-text">Formal Definition of CFG</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -721,9 +736,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/06/26/NLP-Notation/';
-          this.page.identifier = '2018/06/26/NLP-Notation/';
-          this.page.title = 'NLP_Notation';
+          this.page.url = 'http://yoursite.com/2018/07/13/CFG/';
+          this.page.identifier = '2018/07/13/CFG/';
+          this.page.title = 'Context-Free Grammar';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

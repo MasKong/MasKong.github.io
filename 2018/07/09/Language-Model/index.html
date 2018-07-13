@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta name="description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NLP_Notation">
-<meta property="og:url" content="http://yoursite.com/2018/06/26/NLP-Notation/index.html">
+<meta property="og:title" content="Language_Model">
+<meta property="og:url" content="http://yoursite.com/2018/07/09/Language-Model/index.html">
 <meta property="og:site_name" content="Boring Notes of Interesting Study">
-<meta property="og:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta property="og:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T07:57:53.802Z">
+<meta property="og:updated_time" content="2018-07-10T03:46:35.581Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NLP_Notation">
-<meta name="twitter:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta name="twitter:title" content="Language_Model">
+<meta name="twitter:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/26/NLP-Notation/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/09/Language-Model/"/>
 
 
 
 
 
-  <title>NLP_Notation | Boring Notes of Interesting Study</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Language_Model | Boring Notes of Interesting Study</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/NLP-Notation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Language-Model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NLP_Notation</h1>
+          <h1 class="post-title" itemprop="name headline">Language_Model</h1>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T18:59:05+08:00">
-                2018-06-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T20:57:26+08:00">
+                2018-07-09
               </time>
             
 
@@ -349,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/26/NLP-Notation/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/09/Language-Model/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/26/NLP-Notation/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/09/Language-Model/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,24 +379,23 @@
       
 
       
-        <p><strong>Language models</strong> assign a probability to each sentence</p>
-<p>\( w_1^n\) is a sequence of N words from word 1 to word N.</p>
-<p>A <strong>held-out corpus</strong> is an additional training corpus that we use to set hyperparameters.</p>
-<p><strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like graffe for giraffe). </p>
-<p><strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (real-word errors).</p>
-<p><strong>edit probability</strong> The probability of typo like deletion, insertion respectively.</p>
-<p><strong>text categorization</strong>: classifying an entire text by assigning it a text<br>categorization label drawn from some set of labels.</p>
-<p><strong>classification</strong>: take a single observation, extract some useful<br>features, and thereby classify the observation into one of a set of discrete classes.</p>
-<p><strong>Generative classifiers</strong> like naive Bayes build a model of each class. Given an observation, they return the class most likely to have generated the observation. <strong>Discriminative classifiers</strong> like logistic regression instead learn what features from the input are most useful to discriminate between the different possible classes.<br>While discriminative systems are often more accurate and hence more commonly used, generative classifiers still have a role.</p>
-<p><strong>bag-of-words</strong>: an unordered set of words with their position ignored, keeping only their frequency in the document.</p>
-<p><strong>linear classifiers</strong>: use a linear combination of the inputs to make a classification decision —like naive Bayes and also logistic regression.</p>
-<p><strong>period disambiguation</strong>: deciding if a period is the end of a sentence or part<br>of a word</p>
-<p><strong>co-occurrence matrix</strong>: a way of representing how often words co-occur.</p>
-<p><strong>term-document matrix</strong>: each row represents a word in the vocabulary and<br>each column represents a document.</p>
-<p><strong>vector space model</strong>:a document is represented as a count vector(column vector), each entry is the count of a specific word.</p>
-<p><strong>Information retrieval</strong>(IR): is the task of finding the document d from the D<br>documents in some collection that best matches a query q which is also a vector of length |V|.</p>
-<p><strong>term-context matrix</strong>: a  |V| × |V| matrix. Each entry(i,j) represent that the number of times a word i shows in the context word j. The context could be a document or a context window of length |L|.</p>
-<p><strong>WordNet</strong>(Sense-Tagged data):WordNet is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of synonyms , each expressing a distinct concept.</p>
+        <h2 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h2><p>$$p(w_i) = \frac{c(w_i)}{N}$$</p>
+<p>\(c(w_i)\) is the count of the word. N is the total number of word.</p>
+<h2 id="Bigram"><a href="#Bigram" class="headerlink" title="Bigram"></a>Bigram</h2><p>$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$</p>
+<h2 id="N-Gram"><a href="#N-Gram" class="headerlink" title="N-Gram"></a>N-Gram</h2><p>Given the previous N words, estimate the probability of the current word.</p>
+<p>$$p(w_i|w_{i-N-1}^{N-1}) = \frac{c(w_iw_{i-N-1}^{N-1})}{c(w_{i-N-1}^{N-1})}$$</p>
+<h2 id="Deal-with-Unknown-Words"><a href="#Deal-with-Unknown-Words" class="headerlink" title="Deal with Unknown Words"></a>Deal with Unknown Words</h2><p>There are two common ways to train the probabilities of the unknown word model <unk>. </unk></p>
+<p>The first one is to turn the problem back into a closed vocabulary one by choosing a fixed vocabulary in advance:</p>
+<ul>
+<li>Choose a vocabulary (word list) that is fixed in advance.</li>
+<li>Convert in the training set any word that is not in this set to the unknown word token <unk> in a text normalization step.</unk></li>
+<li>Estimate the probabilities for <unk> from its counts just like any other regular word in the training set.</unk></li>
+</ul>
+<p>The second alternative, replacing words in the training data by <unk> based on their frequency.<br>i.e.: replace all words by <unk> that occur fewer than n times in the training set or choose the top V words by frequency and replace the rest by UNK. </unk></unk></p>
+<p>The third way:<br>$$p(w_i)=\lambda_1p_{ML}(w_i)+(1-\lambda_1)\frac{1}{N}$$</p>
+<p>Save some probability for unknown words \((\lambda_{unk} = 1-\lambda_1)\). This is in fact another kind of smoothing. Discount the probability of known words and assign to the unknown words.<br> \(\lambda\) is a hyperparameter. It is 0.95 by default. N is the total number of words.</p>
+<h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>The percentage of known words in the corpus. Usually omit the symbol of the end of a sentence .</p>
+<h2 id="Entropy-of-a-sentence"><a href="#Entropy-of-a-sentence" class="headerlink" title="Entropy of a sentence"></a>Entropy of a sentence</h2><p>$$H(S)= -\frac{1}{N}\sum_{w\in S}\log_2 P(w)$$</p>
 
       
     </div>
@@ -427,8 +426,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/26/Smoothing/" rel="next" title="Smoothing">
-                <i class="fa fa-chevron-left"></i> Smoothing
+              <a href="/2018/07/06/Word-Senses/" rel="next" title="Word_Senses">
+                <i class="fa fa-chevron-left"></i> Word_Senses
               </a>
             
           </div>
@@ -437,8 +436,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/27/Noisy-Channel/" rel="prev" title="Noisy_Channel">
-                Noisy_Channel <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/13/CKY/" rel="prev" title="CKY">
+                CKY <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -501,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -557,6 +565,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unigram"><span class="nav-number">1.</span> <span class="nav-text">Unigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bigram"><span class="nav-number">2.</span> <span class="nav-text">Bigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Gram"><span class="nav-number">3.</span> <span class="nav-text">N-Gram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Unknown-Words"><span class="nav-number">4.</span> <span class="nav-text">Deal with Unknown Words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coverage"><span class="nav-number">5.</span> <span class="nav-text">Coverage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entropy-of-a-sentence"><span class="nav-number">6.</span> <span class="nav-text">Entropy of a sentence</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -721,9 +745,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/06/26/NLP-Notation/';
-          this.page.identifier = '2018/06/26/NLP-Notation/';
-          this.page.title = 'NLP_Notation';
+          this.page.url = 'http://yoursite.com/2018/07/09/Language-Model/';
+          this.page.identifier = '2018/07/09/Language-Model/';
+          this.page.title = 'Language_Model';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

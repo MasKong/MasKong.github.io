@@ -300,6 +300,561 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/Sentence-Similarity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boring Notes of Interesting Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/27/Sentence-Similarity/" itemprop="url">Sentence_Similarity</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-27T02:23:18+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/27/Sentence-Similarity/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/27/Sentence-Similarity/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##NLP typical Step:<br>Tokenize: separate the words in the sentence</p>
+<p>Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vector</p>
+<p>##Similarity Measurement<br>TF-IDF model: convert the sentence to a vector of words, use cosine similarity to measure. In this applicatoin, not very good.</p>
+<p>Bag of words:</p>
+<p>Modern way: NLP step as above. Use pre-train word vectors to represent a sentence. Compute distance. Huge amount of computation. In this application, extract several keywords first as heuristic to rule out a lot of sentences and then start using this method to reduce computation amount. The best accuracy in this application. Change pre-train vectors and brute-force computation would increase the accuracy.</p>
+<p>##Some Notes<br>Tokenize: separate the words in the sentence </p>
+<p>Bag of words: just count the frequency of words that appear in the sentence and neglect the sequence of words</p>
+<p>Word representation: one-hot representation<br>Not easy to extract connection because dot product between any two words are 0</p>
+<p>Featurized representation: word embedding. Using a matrix to represent values of features, and stand for a word. It could be understood as a word embedded in a high dimensional space </p>
+<p>Analogy of word embedding. Use cosine similarity to measure whether two words are similar. Take the dot product of two words vectors and divide multiplication of their lengths.</p>
+<p>Embedding matrix: num of features * number of words. Each column is a feature vector. Use one-hot vector to multiply embedding matrix get the corresponding feature vector</p>
+<p>Word2vec:<br>Skip-gram: randomly choose a context word and corresponding target word. Target word is in the window(like 5 words before or after the context word) of context word<br>Target is to learn good word embedding rather than perform good supervised learning<br>How to sample context word? Employ some techniques to avoid commonly appeared word like the ,a and so on</p>
+<p>Negative sampling: one positive sample and k randomly chosen negative sample to simplify computation </p>
+<p>Content of word d: means the range of plus or minus 5 words</p>
+<p>Sequence to sequence:<br>Machine translation: input sentence to encoder, and output is a decoder. Conditional language model. Green part is encoder, purple is decoder</p>
+<p>Beam search: a kind of approximate optimization algorithm<br>beam width n: track The most possible n sequences with the highest probability. Larger n, the algorithm runs better but need more memory. Smaller n: more efficient, less accurate<br>unlike BFS and DFS, beam search do not guarantee to find the best solution. It’s not complete because it only track a few states.<br>Start by choosing the first word for n sentences, and then second…….</p>
+<p>Maximize this probability to find the most possible sequence<br>Multiplication of several values that are less than one leads to numerical problem. Take Log on it solve this problem.</p>
+<p>Error analysis: working to optimize some sort of cost function/objective function that is output by a learning algorithm like RNN<br>RNN output the p(y|x) for sentences and beam search choose argmaxP(y|x). if RNN output the correct probability but beam search choose the wrong one, beam is at fault. And vise versa, if RNN output the wrong probability for sentences, RNN is at fault. Correct probability means P(correct sentence | x) &gt; P(wrong sentence | x)<br>Compare beam search with RNN, find which one is at fault. And then modify and improve it.</p>
+<p>Attention model:<br>Just focus on a few words around rather than the whole sentence to translate. Divide and conquer, get better result.</p>
+<p>Speech recognition:<br>Turn time domain signal to frequency domain signal<br>Usually input is much larger than output</p>
+<p>CTC cost:<br>Basic idea: collapse repeated characters not separated by “blank”</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/String-Matching/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boring Notes of Interesting Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/25/String-Matching/" itemprop="url">String_Matching</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-25T17:52:37+08:00">
+                2018-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/25/String-Matching/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/25/String-Matching/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##String Matching:</p>
+<p>###The Rabin-Karp algorithm<br>Intuition:<br>Use the values of strings as heuristic, if they are equal, they matches, else they don’t. Because the string may be very long to do the computation efficiently, we induce mod so as to reduce the computation complexity dramatically. </p>
+<p>In general, with a d-ary alphabet {0,1,2… d-1}, we choose q so that d*q fits within a computer word.<br>d is the length of the alphabet set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''please input pattern and string'''</span></span><br><span class="line">p = input()</span><br><span class="line">s = input()</span><br><span class="line">d = int(input())</span><br><span class="line">q = int(input())</span><br><span class="line">l_p = len(p)</span><br><span class="line">h = d**(l_p<span class="number">-1</span>) % q</span><br><span class="line"><span class="string">'''Preprocessing'''</span></span><br><span class="line">p_sum, s_sum = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,l_p):</span><br><span class="line">    p_sum = (d*p_sum + int(p[i])) %q</span><br><span class="line">    s_sum = (d * s_sum + int(s[i])) %q</span><br><span class="line">    <span class="comment"># p_sum = (p_sum+(d*p_sum + int(p[i]))) % q</span></span><br><span class="line">    <span class="comment"># s_sum = (s_sum+(d * s_sum + int(s[i]))) % q</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,len(s)-l_p+<span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> p_sum == s_sum:</span><br><span class="line">        <span class="keyword">if</span> s[j:j+l_p] == p:</span><br><span class="line">            print(s[j:j+l_p])</span><br><span class="line">    <span class="keyword">if</span> j &lt; len(s)-l_p:</span><br><span class="line">        s_sum = (d*(s_sum-int(s[j])*h) + int(s[j+l_p])) % q</span><br></pre></td></tr></table></figure>
+<p>Worst case: the string and pattern have all same character. O((n-m+1)*m)<br>Best case: O(n) + O(m(v+n/q))</p>
+<p>###KMP algorithm</p>
+<p>Each time the given string match with the pattern, by utilizing the information contains in the pattern string, the algorithm may skip several matching without affecting the correctness. Let’s assume current position of the string is s. Length of matched string is q. There may exists a k&lt;q(if k &gt; q, we don’t know what’s them outside the pattern window) such that P[1…k] = T[s’+1…s’+k]. s’ is the new position of pointer. K is the length that the substring T[s’] starting from s’ matches with P[1..k].<br>So s’ = s+q-k</p>
+<p>Preprocessing:<br>Find the longest prefix of the matched string such that it is also the suffix of the matched string.</p>
+<p>Time complexity: O(n)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compute_prefix</span><span class="params">(p)</span>:</span></span><br><span class="line">    l = [<span class="number">0</span>] * len(p)</span><br><span class="line">    k = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(p)):</span><br><span class="line">        <span class="string">'''#This line decrease k. because 0 &lt; k &lt; i, the total time that i has been increased &lt; len(p),</span></span><br><span class="line"><span class="string">        so the total time that while loop execute would &lt; len(p)'''</span></span><br><span class="line">        <span class="keyword">while</span> k&gt;<span class="number">0</span> <span class="keyword">and</span> p[i] != p[k]:</span><br><span class="line">            k = l[k]</span><br><span class="line">        <span class="keyword">if</span> p[i] == p[k]:</span><br><span class="line">            k += <span class="number">1</span>                          <span class="comment"># this increase k</span></span><br><span class="line">        l[i] = k</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">KMP_Match</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    l = compute_prefix(p)</span><br><span class="line">    <span class="comment"># print(l)</span></span><br><span class="line">    q = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(s)):</span><br><span class="line">        <span class="keyword">while</span> q &gt; <span class="number">0</span> <span class="keyword">and</span> p[q] != s[i]:</span><br><span class="line">            q = l[q]</span><br><span class="line">        <span class="keyword">if</span> p[q] == s[i]:</span><br><span class="line">            q += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> q == len(p):</span><br><span class="line">            print(s[i-q+<span class="number">1</span>:i+<span class="number">1</span>])</span><br><span class="line">            q = l[q<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Recommendation-System/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boring Notes of Interesting Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/24/Recommendation-System/" itemprop="url">Recommendation_System</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-24T23:26:50+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/24/Recommendation-System/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/24/Recommendation-System/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Advertisement recommendation is important! It is a significant source of income for many companies. Abuse of advertisement would annoy user. How to choose potential interested user is a challenging problem.</p>
+<p>Our application is an advertisement recommending system, which simulates the process of recommend advertisements to users who may need them. Different people have different appetites, this works same on advertisements.</p>
+<p><img src="../alitaobaoV3/Slide13.jpeg" alt="" title="System Design"></p>
+<table>
+<thead>
+<tr>
+<th>Packages</th>
+<th style="text-align:center">Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Xen 4.4.1</td>
+<td style="text-align:center">Hypervisor for virtual machines</td>
+</tr>
+<tr>
+<td>Hadoop 2.6.0</td>
+<td style="text-align:center">open-source software framework for storage and large scale processing of data_sets on clusters of commodity hardware.</td>
+</tr>
+<tr>
+<td>Spark 2.1.0</td>
+<td style="text-align:center">A fast and general engine for large-scala data processing</td>
+</tr>
+<tr>
+<td>Spark MLlib</td>
+<td style="text-align:center">An apache Spark’s scalable machine learning library.</td>
+</tr>
+<tr>
+<td>Hive</td>
+<td style="text-align:center">A data warehouse software facilitates reading, writing, and managing large datasets residing in distributed storage using SQL. Structure can be projected onto data already in storage</td>
+</tr>
+<tr>
+<td>SparkSql</td>
+<td style="text-align:center">An Apache Spark’s module for working with structured data</td>
+</tr>
+<tr>
+<td>Tomcat 8.5.29</td>
+<td style="text-align:center">Web server</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Key-Algorithms"><a href="#Key-Algorithms" class="headerlink" title="Key Algorithms"></a>Key Algorithms</h4><ul>
+<li>Collaborative Filtering</li>
+<li>Metric Learning</li>
+<li>K-means</li>
+</ul>
+<h4 id="Key-Features"><a href="#Key-Features" class="headerlink" title="Key Features"></a>Key Features</h4><ul>
+<li>K-means clustering with Mahalanobis Distance</li>
+<li>SQL to form a utility matrix according to user behavior</li>
+<li>Employ clustering to estimate empty entries in the matrix</li>
+<li>Recommend to user who have bought similar items</li>
+</ul>
+<h4 id="Xen-Configuration"><a href="#Xen-Configuration" class="headerlink" title="Xen Configuration"></a>Xen Configuration</h4><ul>
+<li>Pin CPUs to virtual machines</li>
+<li>Migrate some memory to virtual machines to optimize performance</li>
+</ul>
+<h4 id="Optimization-of-Performance"><a href="#Optimization-of-Performance" class="headerlink" title="Optimization of Performance"></a>Optimization of Performance</h4><p>Small dataset is employed to optimize parameters.</p>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th style="text-align:center">Running Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Num-execution  5—-7</td>
+<td style="text-align:center">3 mins 45 sec -&gt; 3 mins 13 sec</td>
+</tr>
+<tr>
+<td>Parallelism          8—-16</td>
+<td style="text-align:center">3 mins 13 sec -&gt; 1 min 38 sec</td>
+</tr>
+<tr>
+<td>Executor memory 1000m-2000m</td>
+<td style="text-align:center">3 mins 22 sec -&gt; 2 mins 54 sec</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Novelty"><a href="#Novelty" class="headerlink" title="Novelty"></a>Novelty</h4><ul>
+<li>In clustering, the distance functionis Mahalanobis Distance rather than euclidean distance.</li>
+<li>Traditional collaborative filtering utilizes rows and columns of utility matrix to estimate similarity of items and users as well as empty entries in the utility matrix.In our algorithm, we use clustering to estimate the empty entries.</li>
+</ul>
+<h3 id="Algorithm-Introduction"><a href="#Algorithm-Introduction" class="headerlink" title="Algorithm Introduction"></a>Algorithm Introduction</h3><h4 id="Clustering"><a href="#Clustering" class="headerlink" title="Clustering"></a>Clustering</h4><p>Two kinds of clustering: hierarchica and point assignment.</p>
+<p>Hierarchical:<br>Merge clusters. Each unassigned point is a cluster.<br>The measurements are diameter, radius, average distance, minimum distance.<br>Radius: the maximum distance from any points to centroid.<br>Diameter: maximum distance between any two points.</p>
+<p>Point assignment: Assign each point to the nearest cluster.</p>
+<p>K-means++:<br>initialize several points which are as far away as possible from each other as centroid of clusters.<br>Assign the points to these different clusters and recompute the centroids.</p>
+<p><strong>Complexity</strong>:O(n <em> K </em> I * d )<br>n = number of records, K = number of clusters,I = number of iterations, d = number of attributes</p>
+<h4 id="Recommendation-System"><a href="#Recommendation-System" class="headerlink" title="Recommendation System"></a>Recommendation System</h4><p>The ultimate goal of a recommendation system is to estimate those empty entries in the utility matrix.</p>
+<p>To estimate empty entry, one possible way is to find n similar users and count their normalized ratings. Another possible way is to find the rating of similar items given by the same user.</p>
+<p><strong>Methods</strong>:</p>
+<ul>
+<li><p>Collaborative filtering: use columns and rows of utility matrix to identify similar items or users and then do recommendation</p>
+</li>
+<li><p>Content based:<br>Utility matrix: ranked item is 1(Boolean) or actual rating(numerical) * normalizing factor. Others are represented by 0 or blank. </p>
+</li>
+<li><p>Association Analysis.</p>
+</li>
+</ul>
+<h5 id="Characteristics-of-different-methords"><a href="#Characteristics-of-different-methords" class="headerlink" title="Characteristics of different methords"></a>Characteristics of different methords</h5><p>User-based: tailer-made, accurate. Not easy to measure similarity.<br>Content-based: Reliable, wider-range of recommendation. Construction of item profiles are tedious.</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><h5 id="Below-are-just-notes-of-this-project-feel-free-to-skip-it"><a href="#Below-are-just-notes-of-this-project-feel-free-to-skip-it" class="headerlink" title="Below are just notes of this project, feel free to skip it."></a>Below are just notes of this project, feel free to skip it.</h5><p>Item features could also be represented by tags. But it is tedious to get tags data.</p>
+<p>Content-based recommendation is to create both an item profile consisting of feature-value pairs and a user profile summarizing the preferences of the user, based of their row of the utility matrix. </p>
+<p>Discretize numerical data to nominal data would lose the structure implicit in numbers. That is, two ratings that are close but not identical should be considered more similar than widely differing ratings. </p>
+<p>There is no harm if some components of the vectors are Boolean and others are real-valued or integer-valued. But it is necessary to somehow normalize the data so that the scale would not affect the result too much.</p>
+<p>Machine learning technique: ML algorithm to predict the empty entries in the utility matrix. Training set is the data. Optimize the loss. i.e. classification algorithm: build a decision tree to classify the data as like or don’t like for a particular user group.</p>
+<p>Recommendation System:<br>Our recommendation system employs a modified version of collaborative filtering. In traditional recommendation system, in order to avoid constructing user and item profile which is a tedious and tricky step, rows and columns of utility matrix are utilized to estimate similarity of item and user as well as empty entries in the utility matrix.</p>
+<p>a utility matrix, giving for each user-item pair, a value that represents what is known about the degree of preference of that user for that item. Values come from an ordered set. We assume that the matrix is sparse, meaning that most entries are “unknown.” An unknown rating implies that we have no explicit information about the user’s preference for the item. </p>
+<p>Target of recommendation system:<br>It is not necessary to predict every blank entry in a utility matrix. Rather, it is only necessary to discover some entries in each row that are likely to be high. In most applications, the recommendation system does not offer users a ranking of all items, but rather suggests a few that the user should value highly. It may not even be necessary to find all items with the highest expected ratings, but only to find a large subset of those with the highest ratings. </p>
+<p>User Profile: aggregation of utility matrix which represent connection between users and items.</p>
+<p>After getting user profile, make recommendation according to proximity between unseen object and content in user profile. (cosine similarity)</p>
+<p>The process of identifying similar users and recommending what similar users like is called collaborative filtering.<br>Cosine distance treat empty entries as 0.<br>Preprocessing:</p>
+<ul>
+<li>Round the data: round ratings to 0 or 1.</li>
+<li>Normalize the data and apply proximity measure.</li>
+</ul>
+<p>Measuring similarity:<br>Jaccard distance: may emit important information like the scale of rating.<br>Cosine distance</p>
+<p>The Duality of Similarity </p>
+<p>To estimate an entry, for item-based, find the most similar m items, and average them to get an estimate of rating for the entry(item).</p>
+<p>After cluster, get the entry for that item clusters by averaging the item</p>
+<p>Since there is user and ad profile, try to do clustering first.</p>
+<p>Data is large, initialize small cluster first to summarize the data points.</p>
+<p>Curse of dimensionality: in high dimension, cosine similarity approaches to 0, which means that random vectors are orthogonal. Distance and density become meaningless because distance is very far away compared to low dimensionality.</p>
+<p>Clustering:<br>Euclidean space in which the cluster could be represented by a center.<br>Clustroid: the closest point to other points in the cluster<br>Centroid: the arithmetic center point calculated.</p>
+<p>Mahalanobis distance is distance between x and y divided by square root of covariance, which is undistorting the ellipse to make a circle</p>
+<h3 id="Extention"><a href="#Extention" class="headerlink" title="Extention"></a>Extention</h3><p>Word2Vec to do recomendation: sequence of actions of a user in a specific time range(within 30 minutes) is regarded as a context like the context words in word2vec. The search /query/clicked item is the center. As what has been done in word2vec, train the model s.t. the center item is close to context item and far away than other items.</p>
+<p>The learnt embeddings have been shown to correctly encode information like style,price and so on.</p>
+<h5 id="The-Airbnb-makes-some-other-modification"><a href="#The-Airbnb-makes-some-other-modification" class="headerlink" title="The Airbnb makes some other modification:"></a>The Airbnb makes some other modification:</h5><ul>
+<li>The final booking item is added s.t. the objective is to make the center item close to final booking item too.</li>
+<li>Sample items from the same location but different style or other condition as negative samples.</li>
+</ul>
+<h4 id="Clustering-1"><a href="#Clustering-1" class="headerlink" title="Clustering"></a>Clustering</h4><p>Clustering is employed to promote diversity of recommendation. After the vectors of products are learnt, they are clustered together. If a customer buy something in a cluster, the system would choose items in another cluster in which other or similar users usually buy items after buying items in the same cluster. This avoid the problem of recommending the similar item with the same function to users. After choosing the cluster, recommend the top k items that are similar to the purchased item.</p>
+<h4 id="Cold-Start-Problem"><a href="#Cold-Start-Problem" class="headerlink" title="Cold Start Problem"></a>Cold Start Problem</h4><p>Average 3 geographically closest listings accoding to location or age or something like that.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://mccormickml.com/2018/06/15/applying-word2vec-to-recommenders-and-advertising/" target="_blank" rel="noopener">Applying word2vec to Recommenders and Advertising</a></p>
+<p><a href="https://medium.com/airbnb-engineering/listing-embeddings-for-similar-listing-recommendations-and-real-time-personalization-in-search-601172f7603e" target="_blank" rel="noopener">Listing Embeddings in Search Ranking</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/24/Maximum-Subarray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -475,7 +1030,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

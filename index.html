@@ -300,6 +300,428 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/CFG/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boring Notes of Interesting Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/13/CFG/" itemprop="url">Context-Free Grammar</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-13T14:44:51+08:00">
+                2018-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/13/CFG/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/13/CFG/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>Context-Free Grammar(CFG)</strong></p>
+<p>The symbols that correspond to words in the language (“the”, “nightclub”) are called <strong>terminal</strong> symbols; </p>
+<p>The lexicon is the set of rules that introduce these terminal symbols. The symbols that express abstractions over these terminals are called <strong>non-terminals</strong>. </p>
+<p>Each grammar must have one designated start symbol, which is often called S like \<s>.</s></p>
+<h2 id="Formal-Definition-of-CFG"><a href="#Formal-Definition-of-CFG" class="headerlink" title="Formal Definition of CFG"></a>Formal Definition of CFG</h2><p>G=(T,N,S,R)</p>
+<ul>
+<li>T is a set of terminal symbols.</li>
+<li>N is a set of nonterminal symbols</li>
+<li>S is the start symbol (S ∈ N)</li>
+<li>R is a set of rules/produc*ons of the form X → γ.</li>
+</ul>
+<p>A grammar G generates a language L.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/CKY/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boring Notes of Interesting Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/13/CKY/" itemprop="url">CKY</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-13T12:38:09+08:00">
+                2018-07-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/13/CKY/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/13/CKY/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>CKY is to initialize a matrix and fill in the upper right triangular matrix. Each word is filled into the matrix from left to right and bottom to up. </p>
+<p>There is a probability distribution about contituent for each word. And then the matrix is filled up using viterbi algorithm. Take the max probability.</p>
+<p>Transfer the rules to binary reduce the complexity.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Language-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boring Notes of Interesting Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/09/Language-Model/" itemprop="url">Language_Model</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T20:57:26+08:00">
+                2018-07-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/09/Language-Model/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/07/09/Language-Model/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h2><p>$$p(w_i) = \frac{c(w_i)}{N}$$</p>
+<p>\(c(w_i)\) is the count of the word. N is the total number of word.</p>
+<h2 id="Bigram"><a href="#Bigram" class="headerlink" title="Bigram"></a>Bigram</h2><p>$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$</p>
+<h2 id="N-Gram"><a href="#N-Gram" class="headerlink" title="N-Gram"></a>N-Gram</h2><p>Given the previous N words, estimate the probability of the current word.</p>
+<p>$$p(w_i|w_{i-N-1}^{N-1}) = \frac{c(w_iw_{i-N-1}^{N-1})}{c(w_{i-N-1}^{N-1})}$$</p>
+<h2 id="Deal-with-Unknown-Words"><a href="#Deal-with-Unknown-Words" class="headerlink" title="Deal with Unknown Words"></a>Deal with Unknown Words</h2><p>There are two common ways to train the probabilities of the unknown word model <unk>. </unk></p>
+<p>The first one is to turn the problem back into a closed vocabulary one by choosing a fixed vocabulary in advance:</p>
+<ul>
+<li>Choose a vocabulary (word list) that is fixed in advance.</li>
+<li>Convert in the training set any word that is not in this set to the unknown word token <unk> in a text normalization step.</unk></li>
+<li>Estimate the probabilities for <unk> from its counts just like any other regular word in the training set.</unk></li>
+</ul>
+<p>The second alternative, replacing words in the training data by <unk> based on their frequency.<br>i.e.: replace all words by <unk> that occur fewer than n times in the training set or choose the top V words by frequency and replace the rest by UNK. </unk></unk></p>
+<p>The third way:<br>$$p(w_i)=\lambda_1p_{ML}(w_i)+(1-\lambda_1)\frac{1}{N}$$</p>
+<p>Save some probability for unknown words \((\lambda_{unk} = 1-\lambda_1)\). This is in fact another kind of smoothing. Discount the probability of known words and assign to the unknown words.<br> \(\lambda\) is a hyperparameter. It is 0.95 by default. N is the total number of words.</p>
+<h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>The percentage of known words in the corpus. Usually omit the symbol of the end of a sentence .</p>
+<h2 id="Entropy-of-a-sentence"><a href="#Entropy-of-a-sentence" class="headerlink" title="Entropy of a sentence"></a>Entropy of a sentence</h2><p>$$H(S)= -\frac{1}{N}\sum_{w\in S}\log_2 P(w)$$</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/06/Word-Senses/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1445,468 +1867,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Machine-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boring Notes of Interesting Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/Machine-Learning/" itemprop="url">Machine_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T13:01:38+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/29/Machine-Learning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/29/Machine-Learning/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>contingency table</strong> consists of 4 entries: True Positive, True Negative, False Positive, False Negative.</p>
-<p>Accuracy doesn’t work well when<br>the classes are unbalanced.</p>
-<p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
-<p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
-<p>precision and recall, unlike accuracy, emphasize true positives: finding the things that we are supposed to be looking for.<br>In practice, we generally combine precision and recall into a single metric called<br>F-measure the F-measure that is defined as:<br>$$F_\beta =\frac{(\beta^2 +1)PR}{\beta^2P+R}$$</p>
-<p>The β parameter differentially weights the importance of recall and precision. Values of β &gt; 1 favor recall, while values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called \(F_{\beta}=1\) or just \(F_1\).F-measure comes from a weighted harmonic mean of precision and recall.</p>
-<p>Harmonic mean is used because it is a conservative metric; the harmonic mean of<br>two values is closer to the minimum of the two values than the arithmetic mean is.<br>Thus it weighs the lower of the two numbers more heavily.</p>
-<p>In <strong>any-of</strong> or <strong>multi-label</strong> classification, each document or item can be assigned more than one label. Solve any-of classification by building separate binary classifiers for each class c. Given a test document or item d, then each classifier makes their decision independently, and we may assign multiple labels to d.</p>
-<p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
-<p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
-<p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
-<h3 id="regularization-used-to-penalize-large-weights"><a href="#regularization-used-to-penalize-large-weights" class="headerlink" title="regularization: used to penalize large weights"></a><strong>regularization</strong>: used to penalize large weights</h3><p>L1 regularization is called ‘the lasso’ or lasso regression and L2 regression is called ridge regression, and both are commonly used in language processing. L2 regularization is easier to optimize because of its simple derivative, while L1 regularization is more complex (the derivative of |w| is noncontinuous<br>at zero). </p>
-<p>But where L2 prefers weight vectors with many small weights, L1 prefers sparse solutions with some larger weights but many more weights set to zero. Thus L1 regularization leads to much sparser weight vectors, that is, far fewer features.</p>
-<p>L2 regularization:$$\sum_{j=1}^Nw_j^2$$</p>
-<p>L1 regularization:$$\sum_{j=1}^N|w_j|$$</p>
-<p>Both L1 and L2 regularization have Bayesian interpretations as constraints on the prior of how weights should look. L1 regularization can be viewed as a Laplace<br>prior on the weights. L2 regularization corresponds to assuming that weights are<br>distributed according to a gaussian distribution with mean µ = 0.</p>
-<p>The regularization technique is useful for avoiding overfitting by removing or downweighting features that are unlikely to generalize well. Many kinds of classifiers including naive Bayes do not have regularization, and so instead feature selection is used to choose the important features and remove the rest. The basis of feature selection is to assign some metric<br>of goodness to each feature, rank the features, and keep the best ones. The number of features to keep is a meta-parameter that can be optimized on a dev set.</p>
-<h3 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a>Feature Selection</h3><p>Features are generally ranked by how informative they are about the classification decision. A very common metric is information gain. Information gain tells us how many bits of information the presence of the word gives us for guessing the class, and can be computed as follows (where ci is the ith class and ¯w means that a document does not contain the word \(w^-\)):</p>
-<p>While feature selection is important for unregularized classifiers, it is sometimes<br>also used in regularized classifiers in applications where speed is critical, since it is often possible to get equivalent performance with orders of magnitude fewer features.</p>
-<p>The overly strong conditional independence assumptions of Naive Bayes mean that if two features are correlated naive Bayes will multiply them, overestimating the evidence. Logistic regression is much more robust to correlated features; if two features f1 and f2 are perfectly correlated, regression will simply assign half the weight to w1 and half to w2.</p>
-<p>naive Bayes works extremely well (even better than logistic regression or SVMs) on small datasets or short documents.<br>Furthermore, naive Bayes is easy to implement and very fast to train. Nonetheless, algorithms like logistic regression and SVMs generally work better on larger documents<br>or datasets.</p>
-<h3 id="bias-variance-tradeoff"><a href="#bias-variance-tradeoff" class="headerlink" title="bias-variance tradeoff"></a>bias-variance tradeoff</h3><p>The <strong>bias of a classifier</strong> indicates how accurate it is at modeling different training sets.<br>The <strong>variance of a classifier</strong> indicates how much its decisions are affected by small changes<br>in training sets.</p>
-<p>Models with <em>low bias</em> (like SVMs with polynomial or RBF kernels) are very accurate at modeling the training data. Models with <em>low variance</em> (like naive<br>Bayes) are likely to come to the same classification decision even from slightly different training data. </p>
-<p>low-bias models tend to overfit, and do not generalize well to very different test sets.<br>low-variance models tend to generalize so well that they may not have sufficient accuracy.<br>Thus model trades off bias and variance. Adding more features decreases bias by making it possible to more accurately model the training data, but<br>increases variance because of overfitting. Regularization and feature selection are<br>ways to improve (lower) the variance of classifier by downweighting or removing<br>features that are likely to overfit.</p>
-<p>In addition to the choice of a classifier, the key to successful classification is the<br>design of appropriate features. Features are generally designed by examining the<br>training set with an eye to linguistic intuitions and the linguistic literature on the domain. </p>
-<p>For some tasks it is especially helpful to build complex features that are combinations<br>of more primitive features. For logistic regression and naive Bayes these<br>combination features or feature interactions have to be designed by hand. </p>
-<p><strong>feature interactions</strong><br>Some other machine learning models can automatically model the interactions<br>between features. For tasks where these combinations of features are important<br>(especially when combination of categorical features and real-valued features might<br>be helpful), the most useful classifiers may be such classifiers,including Support<br>SVMs Vector Machines (SVMs) with polynomial or RBF kernels, and random forests</p>
-<h3 id="dimensionality-reduction-PCA-SVD"><a href="#dimensionality-reduction-PCA-SVD" class="headerlink" title="dimensionality reduction(PCA,SVD)"></a>dimensionality reduction(PCA,SVD)</h3><p>First rotate the axes of the original dataset into a new space. The new space is chosen so that the highest order dimension<br>captures the most variance in the original dataset, the next dimension captures the next most variance, and so on. In this new space, the data if represented with a smaller number of dimensions and still<br>capture much of the variation in the original data.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Sentiment-Classification/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boring Notes of Interesting Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/Sentiment-Classification/" itemprop="url">Sentiment_Classification_Naive_Bayes</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T10:15:37+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/29/Sentiment-Classification/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/29/Sentiment-Classification/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>In most text classification<br>applications, however, using a stop word list doesn’t improve performance,<br>and so it is more common to make use of the entire vocabulary and not use a stop<br>word list</p>
-<h3 id="Naive-Bayes-Classifier-for-Sentiment-Analysis"><a href="#Naive-Bayes-Classifier-for-Sentiment-Analysis" class="headerlink" title="Naive Bayes Classifier for Sentiment Analysis"></a>Naive Bayes Classifier for Sentiment Analysis</h3><p>$$C_{NB}=\underset{c\in C}{argmax}\ logP(c)+\sum_{i \in positions}logP(w_i<br>|c)$$</p>
-<p>Each word \(w_i\) could be viewed as a feature for a specific document.</p>
-<h3 id="Maximum-Likelihood-to-train-Naive-Bayes"><a href="#Maximum-Likelihood-to-train-Naive-Bayes" class="headerlink" title="Maximum Likelihood to train Naive Bayes"></a>Maximum Likelihood to train Naive Bayes</h3><p>$$\hat{p}(c)=\frac{N_c}{N_{doc}}$$</p>
-<p>The standard solution for an unknown word that doesn’t show up in the training set is to ignore such words—remove them from the test document and not include any probability for them at all.</p>
-<p>Laplace smoothing is usually replaced by more sophisticated smoothing algorithms in language modeling, it is commonly used in naive Bayes text categorization to deal with zero count.</p>
-<p>$$\hat{P}(w_i|c) = \frac{count(w_i, c) +1}{<br>(\sum_{w\in V}(count(w, c)) +|V|}$$</p>
-<p><strong><strong><em>Note that the vocabulary V consists of the union of all the word types in all classes, not just the words in one class. If the denominator is the word in the class \(c_i\), then given a class, the probability of the sentence shows up is 1. That is meaningless.</em></strong></strong> </p>
-<h3 id="Binary-Multinominal-Naive-Bayes"><a href="#Binary-Multinominal-Naive-Bayes" class="headerlink" title="Binary Multinominal Naive Bayes"></a>Binary Multinominal Naive Bayes</h3><p>Whether a word occurs or not seems to matter more than its frequency.</p>
-<p>First,it remove all duplicate words such that each sentence contains only one distinct word before concatenating them into the single big document. </p>
-<p>Second deal with negation during text normalization. Typically adding negation prefix such as NOT_ to every word. i.e., like -&gt; Not_like.</p>
-<p>In some situations we might have insufficient labeled training data. In such cases we can instead derive the positive and negative word features from sentiment lexicons, lists of words that are pre-annotated with positive or negative sentiment.</p>
-<h3 id="Naive-Bayes-as-a-Language-Model"><a href="#Naive-Bayes-as-a-Language-Model" class="headerlink" title="Naive Bayes as a Language Model"></a>Naive Bayes as a Language Model</h3><p>If we use only individual word features, and we use all of the words in the text<br>(not a subset), then naive Bayes has an important similarity to language modeling.<br>Specifically, <strong><strong>a naive Bayes model can be viewed as a set of class-specific unigram language models</strong></strong>, in which the model for each class instantiates a unigram language model.</p>
-<p><strong>contingency table</strong> consists of 4 entries: True Positive, True Negative, False Positive, False Negative.</p>
-<p>Accuracy doesn’t work well when<br>the classes are unbalanced.</p>
-<p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
-<p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
-<p>precision and recall, unlike accuracy, emphasize true positives: finding the things that we are supposed to be looking for.<br>In practice, we generally combine precision and recall into a single metric called<br>F-measure the F-measure that is defined as:<br>$$F_\beta =\frac{(\beta^2 +1)PR}{\beta^2P+R}$$</p>
-<p>The β parameter differentially weights the importance of recall and precision. Values of β &gt; 1 favor recall, while values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called \(F_{\beta}=1\) or just \(F_1\).F-measure comes from a weighted harmonic mean of precision and recall.</p>
-<p>Harmonic mean is used because it is a conservative metric; the harmonic mean of<br>two values is closer to the minimum of the two values than the arithmetic mean is.<br>Thus it weighs the lower of the two numbers more heavily.</p>
-<p>In <strong>any-of</strong> or <strong>multi-label</strong> classification, each document or item can be assigned more than one label. Solve any-of classification by building separate binary classifiers for each class c. Given a test document or item d, then each classifier makes their decision independently, and we may assign multiple labels to d.</p>
-<p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
-<p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
-<p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/27/Noisy-Channel/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boring Notes of Interesting Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/27/Noisy-Channel/" itemprop="url">Noisy_Channel</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-27T11:41:20+08:00">
-                2018-06-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/06/27/Noisy-Channel/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/27/Noisy-Channel/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
-<p>$$\hat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
-<p>C is the list of candidate words. Above is a kind of Bayesian inference. We see an observation x (a misspelled word) and find the word w that generated this misspelled word. Out of all possible words in the vocabulary V or just a list of candidate word C, we want to find the<br>word w such that P(w|x) is highest.</p>
-<h3 id="Channel-Model-p-x-w"><a href="#Channel-Model-p-x-w" class="headerlink" title="Channel Model p(x|w)"></a>Channel Model p(x|w)</h3><p>It’s expensive to get a perfect channel model. But a pretty reasonable estimate<br>of P(x|w) could be generated just by looking at local context: the identity of the correct letter itself, the<br>misspelling, and the surrounding letters.</p>
-<h3 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion matrix"></a>confusion matrix</h3><p>Contains counts of errors. In general, each entry in a confusion matrix represents the number of times one thing was confused with another. Thus for example a substitution confusion matrix will be a square matrix of size 26×26 (or more generally |A| × |A|,<br>for an alphabet A) that represents the number of times one letter was incorrectly<br>used instead of another.</p>
-<p>del[x, y]: count(xy typed as x)</p>
-<p>ins[x, y]: count(x typed as xy)</p>
-<p>sub[x, y]: count(x typed as y)</p>
-<p>trans[x, y]: count(xy typed as yx)</p>
-<p>Methods to get confusion matrix:</p>
-<p>1, extract them from lists of misspellings</p>
-<p>$$p(x|w) = \frac{ins[x_{i-1},w_i]}{count[w_{i-1}]},\quad \text{if insertion}$$</p>
-<p>$$p(x|w) = \frac{sub[x_{i},w_i]}{count[w_{i}]},\quad \text{if substitution}$$</p>
-<p>The probability of substitution is calculated by:<br>given the correct word w and error word x, the number of times that ith character wi and the ith character xi is substituted divided by total number of ith character wi.<br>wi is the ith character of the correct word w and xi is the ith character of the typo x</p>
-<p>2, <em>EM algorithm</em>.<br>compute the matrices by iteratively using the spelling error correction algorithm itself. The iterative algorithm first initializes the matrices with equal values; thus, any character is equally likely to be deleted, equally likely to be substituted for any other character,<br>etc. Next, the spelling error correction algorithm is run on a set of spelling<br>errors. Given the set of typos paired with their predicted corrections, the confusion<br>matrices can now be recomputed, the spelling algorithm run again, and so on. </p>
-<p>Evaluating spell correction algorithms is generally done by holding out a training,<br>development and test set from lists of errors like those on the Norvig and Mitton<br>sites mentioned above.</p>
-<p><strong>Candidate words</strong>:<br>Utilize the extended minimum edit distance algorithm introduced so that in addition to insertions, deletions, and substitutions, there is transpositions, in which two letters are swapped. All words with edit distance of 1 constitutes the candidate words set.</p>
-<p>For words with specific context, it is important to use larger language models than unigrams such that the pobability p(w) is extended to \(p(w_{i-1})*p(w_i)\) for bigram model to take the context into consideration.</p>
-<h3 id="Real-word-spelling-errors"><a href="#Real-word-spelling-errors" class="headerlink" title="Real-word spelling errors"></a>Real-word spelling errors</h3><p>Noisy channel algorithm could also be applied. The algorithm takes the input sentence \(X = {x_1, x_2,…, x_k<br>,…, x_n}\), generates a large set of candidate correction sentences C(X),<br>then picks the sentence with the highest language model probability.</p>
-<p>To generate candidate set C(X), each word is assigned the probability that would make an error. And score each sentence like the aforementioned way. The difference is that the probability that the word is indeed correct needs to be considered. Given a word w, let’s assume the correct probability is \(\alpha\). And the error probability is \(\frac{1-\alpha}{|C(x)|} \) if \(x \in C(x)\). The others are totally the same as normal noisy channel model for wrong words.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1961,7 +1921,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
