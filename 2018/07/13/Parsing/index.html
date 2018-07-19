@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion" lang="">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols;  The lexicon is the set of rules that introduce these terminal symbols.">
+<meta name="description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols. They are left nodes in a parse tree.  The lexicon is the set of rules t">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Context-Free Grammar">
-<meta property="og:url" content="http://yoursite.com/2018/07/13/CFG/index.html">
+<meta property="og:title" content="Parsing">
+<meta property="og:url" content="http://yoursite.com/2018/07/13/Parsing/index.html">
 <meta property="og:site_name" content="Boring Notes of Interesting Study">
-<meta property="og:description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols;  The lexicon is the set of rules that introduce these terminal symbols.">
+<meta property="og:description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols. They are left nodes in a parse tree.  The lexicon is the set of rules t">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T07:00:06.616Z">
+<meta property="og:updated_time" content="2018-07-14T13:34:56.754Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Context-Free Grammar">
-<meta name="twitter:description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols;  The lexicon is the set of rules that introduce these terminal symbols.">
+<meta name="twitter:title" content="Parsing">
+<meta name="twitter:description" content="Context-Free Grammar(CFG) The symbols that correspond to words in the language (“the”, “nightclub”) are called terminal symbols. They are left nodes in a parse tree.  The lexicon is the set of rules t">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/13/CFG/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/13/Parsing/"/>
 
 
 
 
 
-  <title>Context-Free Grammar | Boring Notes of Interesting Study</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Parsing | Boring Notes of Interesting Study</title>
   
 
 
@@ -145,7 +145,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/CFG/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/Parsing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Context-Free Grammar</h1>
+          <h1 class="post-title" itemprop="name headline">Parsing</h1>
         
 
         <div class="post-meta">
@@ -349,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/13/CFG/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/13/Parsing/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/13/CFG/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/13/Parsing/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -380,8 +380,9 @@
 
       
         <p><strong>Context-Free Grammar(CFG)</strong></p>
-<p>The symbols that correspond to words in the language (“the”, “nightclub”) are called <strong>terminal</strong> symbols; </p>
-<p>The lexicon is the set of rules that introduce these terminal symbols. The symbols that express abstractions over these terminals are called <strong>non-terminals</strong>. </p>
+<p>The symbols that correspond to words in the language (“the”, “nightclub”) are called <strong>terminal</strong> symbols. They are left nodes in a parse tree. </p>
+<p>The lexicon is the set of rules that introduce these terminal symbols. </p>
+<p>The symbols that express abstractions over these terminals are called <strong>non-terminals</strong>. Ther are the non-left  </p>
 <p>Each grammar must have one designated start symbol, which is often called S &lt;\s&gt;.</p>
 <h2 id="Formal-Definition-of-CFG"><a href="#Formal-Definition-of-CFG" class="headerlink" title="Formal Definition of CFG"></a>Formal Definition of CFG</h2><p>G=(T,N,S,R)</p>
 <ul>
@@ -391,6 +392,38 @@
 <li>R is a set of rules/productions of the form X -&gt; \(\gamma\).</li>
 </ul>
 <p>A grammar G generates a language L.</p>
+<h2 id="Conversion-to-CNF"><a href="#Conversion-to-CNF" class="headerlink" title="Conversion to CNF"></a>Conversion to CNF</h2><p><strong>Chomsky Normal Form(CNF)</strong>: for each non-terminal, only two non-ternimal or single terminal could be derived from it.</p>
+<p><strong>Unit Production</strong>: Rules with a single non-terminal on the right.</p>
+<p>three situations needed to address in any generic grammar: </p>
+<ul>
+<li>rules that mix terminals with non-terminals on the right-hand side</li>
+<li>rules that have a single non-terminal on the right-hand side</li>
+<li>rules in which the length of the right-hand side is greater than 2</li>
+</ul>
+<p>rules that mix terminals and non-terminals is to introduce a new dummy non-terminal to substitute the original terminal. For example, a rule for an infinitive verb phrase such as INF-VP → to VP would be replaced by the<br>two rules INF-VP → TO VP and TO → to.</p>
+<p>To eliminate unit production:if A<br>-&gt;&gt; B by a chain of one or more unit productions and B → \(\gamma\) is a non-unit production in our grammar, then we add A → γ for each such rule in the grammar and discard all the intervening unit productions. </p>
+<p>Rules with right-hand sides longer than 2 are normalized through the introduction<br>of new non-terminals that substitute the longer sequences iteratively.</p>
+<p>i.e.: A → B C D. After transformation, A → X D and X -&gt;B C</p>
+<p>The entire conversion process can be summarized as follows:</p>
+<ul>
+<li>Copy all conforming rules to the new grammar unchanged.</li>
+<li>Convert terminals within rules to dummy non-terminals.</li>
+<li>Convert unit-productions.</li>
+<li>Make all rules binary and add them to new grammar.</li>
+</ul>
+<h3 id="Learn-PCFG-Rules"><a href="#Learn-PCFG-Rules" class="headerlink" title="Learn PCFG Rules"></a>Learn PCFG Rules</h3><p><strong>Count-based</strong></p>
+<p>For unambiguous parsing, just count each rule showed in the resulting parsing tree and get the probability like language model.</p>
+<p>For ambiguous parsing, initialize the parsing s.t. each rule is assigned the equal probability. And then parse the sentece an calculate probability of each parsing. Update the weight. Iteratively doing this, an extension of EM algorithm.</p>
+<h3 id="Problems-of-PCFG"><a href="#Problems-of-PCFG" class="headerlink" title="Problems of PCFG"></a>Problems of PCFG</h3><ul>
+<li>Lack of Sensitivity to Lexical Dependencies</li>
+<li>Independence Assumptions Miss Structural Dependencies Between Rules. For different location, each rule may be expanded differently.</li>
+</ul>
+<h3 id="Improving-PCFGs-by-Splitting-Non-Terminals"><a href="#Improving-PCFGs-by-Splitting-Non-Terminals" class="headerlink" title="Improving PCFGs by Splitting Non-Terminals"></a>Improving PCFGs by Splitting Non-Terminals</h3><ul>
+<li>split the NP non-terminal into two versions: one for subjects, one for objects.</li>
+<li>parent annotation</li>
+</ul>
+<p>This method also induce new problem. More rules lead to less training which may cause overfitting.</p>
+<p>Modern models automatically search for the optimal splits. The split and merge algorithm  for example, starts with a simple X-bar grammar, alternately splits the non-terminals, and merges non-terminals, finding the set of annotated nodes that maximizes the likelihood of the training set treebank.</p>
 
       
     </div>
@@ -430,6 +463,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/18/Pagerank/" rel="prev" title="Pagerank">
+                Pagerank <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -520,7 +557,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Formal-Definition-of-CFG"><span class="nav-number">1.</span> <span class="nav-text">Formal Definition of CFG</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Formal-Definition-of-CFG"><span class="nav-number">1.</span> <span class="nav-text">Formal Definition of CFG</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conversion-to-CNF"><span class="nav-number">2.</span> <span class="nav-text">Conversion to CNF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Learn-PCFG-Rules"><span class="nav-number">2.1.</span> <span class="nav-text">Learn PCFG Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Problems-of-PCFG"><span class="nav-number">2.2.</span> <span class="nav-text">Problems of PCFG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Improving-PCFGs-by-Splitting-Non-Terminals"><span class="nav-number">2.3.</span> <span class="nav-text">Improving PCFGs by Splitting Non-Terminals</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -736,9 +773,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/07/13/CFG/';
-          this.page.identifier = '2018/07/13/CFG/';
-          this.page.title = 'Context-Free Grammar';
+          this.page.url = 'http://yoursite.com/2018/07/13/Parsing/';
+          this.page.identifier = '2018/07/13/Parsing/';
+          this.page.title = 'Parsing';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
@@ -825,24 +862,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

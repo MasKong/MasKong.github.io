@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NLP," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
-<meta name="keywords" content="NLP">
+<meta name="description" content="A good hub page is one that points to many good authorities; a good authority page is one that is pointed to by many good hub pages. PageRankIntuitionPages that are visited more are given higher weigh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Language_Model">
-<meta property="og:url" content="http://yoursite.com/2018/07/09/Language-Model/index.html">
+<meta property="og:title" content="Pagerank">
+<meta property="og:url" content="http://yoursite.com/2018/07/18/Pagerank/index.html">
 <meta property="og:site_name" content="Boring Notes of Interesting Study">
-<meta property="og:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
+<meta property="og:description" content="A good hub page is one that points to many good authorities; a good authority page is one that is pointed to by many good hub pages. PageRankIntuitionPages that are visited more are given higher weigh">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-10T03:46:35.581Z">
+<meta property="og:updated_time" content="2018-07-18T14:50:55.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Language_Model">
-<meta name="twitter:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
+<meta name="twitter:title" content="Pagerank">
+<meta name="twitter:description" content="A good hub page is one that points to many good authorities; a good authority page is one that is pointed to by many good hub pages. PageRankIntuitionPages that are visited more are given higher weigh">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/09/Language-Model/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/18/Pagerank/"/>
 
 
 
 
 
-  <title>Language_Model | Boring Notes of Interesting Study</title>
+  <title>Pagerank | Boring Notes of Interesting Study</title>
   
 
 
@@ -301,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Language-Model/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/Pagerank/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -318,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Language_Model</h1>
+          <h1 class="post-title" itemprop="name headline">Pagerank</h1>
         
 
         <div class="post-meta">
@@ -330,8 +329,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T20:57:26+08:00">
-                2018-07-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-18T12:42:01+08:00">
+                2018-07-18
               </time>
             
 
@@ -349,9 +348,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/09/Language-Model/#comments" itemprop="discussionUrl">
+                <a href="/2018/07/18/Pagerank/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/07/09/Language-Model/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/07/18/Pagerank/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -379,23 +378,67 @@
       
 
       
-        <h2 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h2><p>$$p(w_i) = \frac{c(w_i)}{N}$$</p>
-<p>\(c(w_i)\) is the count of the word. N is the total number of word.</p>
-<h2 id="Bigram"><a href="#Bigram" class="headerlink" title="Bigram"></a>Bigram</h2><p>$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$</p>
-<h2 id="N-Gram"><a href="#N-Gram" class="headerlink" title="N-Gram"></a>N-Gram</h2><p>Given the previous N words, estimate the probability of the current word.</p>
-<p>$$p(w_i|w_{i-N-1}^{N-1}) = \frac{c(w_iw_{i-N-1}^{N-1})}{c(w_{i-N-1}^{N-1})}$$</p>
-<h2 id="Deal-with-Unknown-Words"><a href="#Deal-with-Unknown-Words" class="headerlink" title="Deal with Unknown Words"></a>Deal with Unknown Words</h2><p>There are two common ways to train the probabilities of the unknown word model <unk>. </unk></p>
-<p>The first one is to turn the problem back into a closed vocabulary one by choosing a fixed vocabulary in advance:</p>
-<ul>
-<li>Choose a vocabulary (word list) that is fixed in advance.</li>
-<li>Convert in the training set any word that is not in this set to the unknown word token <unk> in a text normalization step.</unk></li>
-<li>Estimate the probabilities for <unk> from its counts just like any other regular word in the training set.</unk></li>
+        <p>A good hub page is one that points to many good authorities; a good authority page is one that is pointed to by many good hub pages.</p>
+<h2 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h2><h4 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h4><p>Pages that are visited more are given higher weight. Employ graph to represent the internet. Higher in links means visited more.</p>
+<p>PageRank values would converge to the final value regardless of the start state and it is in the range [0,1]. So the PageRank values could also be viewed as the probability of the surfer is in the node i at any time given the PageRank value of the node i.</p>
+<p>PageRank could be regarded as a random walk in the internet. Start at any state, and then walk through the out links randomly. In case of circular routes and dead end, employ the scaled version of random walk. As the random walk proceeds, some nodes are visited more often than others; intuitively, these are nodes with many links coming in from other frequently visited nodes. The idea behind PageRank is that pages visited more often in this walk are more important.</p>
+<p><strong>Teleport</strong>:if N is the total number of nodes in the web graph, the teleport operation takes the surfer to each node with probability 1/N.</p>
+<p>Scaled version of random walk:<br>with alpha probability take teleport operation and with 1-alpha probability take the out links of the current nodes.</p>
+<p>Interpreted in terms of the (scaled) version of PageRank, <strong>Perron’s Theorem</strong> tells us that there is a unique vector y that remains fixed under the application of the scaled update rule, and that repeated application of the update rule from any starting point will converge to y.<br>This vector y thus corresponds to the limiting PageRank values we have been seeking.</p>
+<h3 id="Markov-chain"><a href="#Markov-chain" class="headerlink" title="Markov chain"></a>Markov chain</h3><p>A Markov chain is a discrete-time stochastic process: a process that occurs in a series of time-steps in each of which a random choice is made. A Markov chain consists of N states. Each web page will correspond to a state in the Markov chain.</p>
+<p>A Markov chain is characterized by an N × N transition probability matrix P each of whose entries is in the interval [0, 1]; the entries in each row of P add up to 1.</p>
+<p>Transition matrix P:<br>The rows represent that given a node i, the probability of the node i transits to nodes j.(distribute the pagerank score)<br>The columns represent that given a node j, the probability of nodes i transits to node j.(incoming pagerank score)</p>
+<p><strong>ERGODIC MARKOV CHAIN</strong>:<br>Definition: A Markov chain is said to be ergodic if there exists a positive integer T0 such that for all pairs of states i, j in the Markov chain, if it is started at time 0 in state i then for all t &gt; T0, the probability of being in state j at time t is greater than 0.</p>
+<p>For a Markov chain to be ergodic, two technical conditions are required of its states and the non-zero transition probabilities; these conditions are known as <strong>irreducibility</strong> and <strong>aperiodicity</strong>.</p>
+<p><strong>irreducibility</strong> ensures that there is a sequence of transitions of non-zero probability from any state to any other.</p>
+<p><strong>aperiodicity</strong> ensures that the states are not partitioned into sets such that all state transitions occur cyclically from one set to another.</p>
+<p>Scaled version of random walk which take teleport operation with alpha probability guarantees transition probability are greater than 0 and no loop transitions.(irreducibility and aperiodicity)</p>
+<h3 id="Compute-PageRank"><a href="#Compute-PageRank" class="headerlink" title="Compute PageRank"></a>Compute PageRank</h3><ul>
+<li>Iteratively compute \(\vec{x}P^t\) s.t. \(\vec{x}\) becomes unchanged.</li>
+<li>Compute the eigenvector coresponding to the largest eigenvalue 1 which is the PageRank. But compute the eigenvector could be computationally expensive.</li>
 </ul>
-<p>The second alternative, replacing words in the training data by <unk> based on their frequency.<br>i.e.: replace all words by <unk> that occur fewer than n times in the training set or choose the top V words by frequency and replace the rest by UNK. </unk></unk></p>
-<p>The third way:<br>$$p(w_i)=\lambda_1p_{ML}(w_i)+(1-\lambda_1)\frac{1}{N}$$</p>
-<p>Save some probability for unknown words \((\lambda_{unk} = 1-\lambda_1)\). This is in fact another kind of smoothing. Discount the probability of known words and assign to the unknown words.<br> \(\lambda\) is a hyperparameter. It is 0.95 by default. N is the total number of words.</p>
-<h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>The percentage of known words in the corpus. Usually omit the symbol of the end of a sentence .</p>
-<h2 id="Entropy-of-a-sentence"><a href="#Entropy-of-a-sentence" class="headerlink" title="Entropy of a sentence"></a>Entropy of a sentence</h2><p>$$H(S)= -\frac{1}{N}\sum_{w\in S}\log_2 P(w)$$</p>
+<h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h4><p>Matrix-Multiplication version of PageRank:<br><code>`</code>python<br>import numpy as np</p>
+<p>class Pagerank(object):<br>    def <strong>init</strong>(self, N=0, alpha=0):<br>        self.alpha = alpha<br>        self.N = N<br>        self.pg_vector = None</p>
+<pre><code>&apos;&apos;&apos;derive transition matrix from adjacency matrix&apos;&apos;&apos;
+def derive_transition(self,adjacency_matrix,alpha=0):
+    if self.alpha != 0:
+        alpha = self.alpha
+
+    N = adjacency_matrix.shape[0]
+    transition_m = np.zeros(adjacency_matrix.shape)
+    for i in range(adjacency_matrix.shape[0]):
+        if np.sum(adjacency_matrix[i,:]) == 0:
+            transition_m[i,:] = np.array([1/N]*N)   #this node is a dead end, transit to one of all nodes in the graph
+        else:           # with alpha probability transit to one of all nodes, 1-alpha take normal random walk
+            transition_m[i, :] = alpha * np.array([1 / N] * N) + (1-alpha) * adjacency_matrix[i,:] / np.sum(adjacency_matrix[i,:])
+
+    return transition_m
+
+
+def propagate_transition(self, transition_m, pg_vector=None):  #pg_vector is column vectors
+    if pg_vector is not None:
+        return np.dot(transition_m.T, pg_vector)
+    else:
+        if self.pg_vector is None:
+            self.initialize_pg_vector()
+
+        self.pg_vector = np.dot(transition_m.T, self.pg_vector)
+
+        return self.pg_vector
+
+
+
+def initialize_pg_vector(self):
+    assert self.N != 0, &quot;Please input number of Nodes N&quot;
+    self.pg_vector = np.ones((self.N)).T
+    self.pg_vector /= self.N
+    print(self.pg_vector)
+</code></pre><h3 id="Topic-Specific-PageRank"><a href="#Topic-Specific-PageRank" class="headerlink" title="Topic Specific PageRank"></a>Topic Specific PageRank</h3><p>Start at a random page in the topic and also end at a random page in the topic. \(\vec{x}_{sports}]\) is a topic specific pagerank vector where for pages belongs to sports, there is a topic specific pagerank and pagerank of other pages are 0.</p>
+<p>Calculate the PageRank of a page with regard to topics. The only difference is that the teleportation is different. The naive teleport go to a node in the graph with probability 1/N. The teleportation of topic specific pagerank is to go to a page in a specific topic with probability alpha. Given the number of pages S in the topic T, the probability is \(\frac{1}{S}\) rather than \(\frac{1}{N}\).</p>
+<p>i.e.:<br>Let s be [A,B,C,D]. A belongs to topic 1. B,C and D belongs to topic 2.<br>When calculating the topic specific pagerank, for topic 2, the formula is still \(\vec{x}P^t\). But here \(P\) for topic 2 is \(\alpha M + (1-\alpha)\frac{1}{S}\) rather than     \(\alpha M + (1-\alpha)\frac{1}{N}\). Actually the formula for topic 2 is \(\alpha M + (1-\alpha)[0,\frac{1}{3},\frac{1}{3},\frac{1}{3}]\) and in normal PageRank it should be \(\alpha M + (1-\alpha)[\frac{1}{4},\frac{1}{4},\frac{1}{4},\frac{1}{4}]\).</p>
+<h3 id="Personalized-PageRank"><a href="#Personalized-PageRank" class="headerlink" title="Personalized PageRank"></a>Personalized PageRank</h3><p>Now the difference is still the teleportation. The teleportation is tailored according to the users’ interest. Let’s assume the interest of a person is sports and finance. Their weights are 0.8,0.2 specifically. The teleportation is to go to a topic with the corresponding weight and then a page in the specific topic with probability alpha. This could also be viewed as a linear combination of topic specific vectors. In this example, the formula would be \(\alpha M + (1-\alpha) [0.8\vec{x_{sports}} + 0.2\vec{x_{finance}}]\).</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.cs.cornell.edu/home/kleinber/networks-book/" target="_blank" rel="noopener">Networks, Crowds, and Markets: Reasoning About a Highly Connected World</a></p>
+<p><a href="https://nlp.stanford.edu/IR-book/" target="_blank" rel="noopener">Introduction to Information Retrieval</a></p>
 
       
     </div>
@@ -411,12 +454,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/NLP/" rel="tag"># NLP</a>
-          
-        </div>
-      
 
       
       
@@ -426,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/06/Word-Senses/" rel="next" title="Word_Senses">
-                <i class="fa fa-chevron-left"></i> Word_Senses
+              <a href="/2018/07/13/Parsing/" rel="next" title="Parsing">
+                <i class="fa fa-chevron-left"></i> Parsing
               </a>
             
           </div>
@@ -435,10 +472,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/13/CKY/" rel="prev" title="CKY">
-                CKY <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -575,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unigram"><span class="nav-number">1.</span> <span class="nav-text">Unigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bigram"><span class="nav-number">2.</span> <span class="nav-text">Bigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Gram"><span class="nav-number">3.</span> <span class="nav-text">N-Gram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Unknown-Words"><span class="nav-number">4.</span> <span class="nav-text">Deal with Unknown Words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coverage"><span class="nav-number">5.</span> <span class="nav-text">Coverage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entropy-of-a-sentence"><span class="nav-number">6.</span> <span class="nav-text">Entropy of a sentence</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#PageRank"><span class="nav-number">1.</span> <span class="nav-text">PageRank</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Intuition"><span class="nav-number">1.0.1.</span> <span class="nav-text">Intuition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Markov-chain"><span class="nav-number">1.1.</span> <span class="nav-text">Markov chain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Compute-PageRank"><span class="nav-number">1.2.</span> <span class="nav-text">Compute PageRank</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Implementation"><span class="nav-number">1.2.1.</span> <span class="nav-text">Implementation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Topic-Specific-PageRank"><span class="nav-number">1.3.</span> <span class="nav-text">Topic Specific PageRank</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Personalized-PageRank"><span class="nav-number">1.4.</span> <span class="nav-text">Personalized PageRank</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">1.5.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -745,9 +778,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/07/09/Language-Model/';
-          this.page.identifier = '2018/07/09/Language-Model/';
-          this.page.title = 'Language_Model';
+          this.page.url = 'http://yoursite.com/2018/07/18/Pagerank/';
+          this.page.identifier = '2018/07/18/Pagerank/';
+          this.page.title = 'Pagerank';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

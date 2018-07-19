@@ -7,7 +7,7 @@
 
 <html class="theme-next pisces use-motion" lang="">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+  <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Boring Notes of Interesting Study">
 <meta property="og:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-09T07:57:53.802Z">
+<meta property="og:updated_time" content="2018-07-14T13:42:33.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLP_Notation">
 <meta name="twitter:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
@@ -126,7 +126,7 @@
 
 
 
-  <title>NLP_Notation | Boring Notes of Interesting Study</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>NLP_Notation | Boring Notes of Interesting Study</title>
   
 
 
@@ -145,7 +145,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -397,6 +397,45 @@
 <p><strong>Information retrieval</strong>(IR): is the task of finding the document d from the D<br>documents in some collection that best matches a query q which is also a vector of length |V|.</p>
 <p><strong>term-context matrix</strong>: a  |V| × |V| matrix. Each entry(i,j) represent that the number of times a word i shows in the context word j. The context could be a document or a context window of length |L|.</p>
 <p><strong>WordNet</strong>(Sense-Tagged data):WordNet is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of synonyms , each expressing a distinct concept.</p>
+<p><strong>part-of-speech tags</strong>:</p>
+<ol>
+<li>CC    Coordinating conjunction</li>
+<li>CD    Cardinal number</li>
+<li>DT    Determiner</li>
+<li>EX    Existential there</li>
+<li>FW    Foreign word</li>
+<li>IN    Preposition or subordinating conjunction</li>
+<li>JJ    Adjective</li>
+<li>JJR    Adjective, comparative</li>
+<li>JJS    Adjective, superlative</li>
+<li>LS    List item marker</li>
+<li>MD    Modal</li>
+<li>NN    Noun, singular or mass</li>
+<li>NNS    Noun, plural</li>
+<li>NNP    Proper noun, singular</li>
+<li>NNPS    Proper noun, plural</li>
+<li>PDT    Predeterminer</li>
+<li>POS    Possessive ending</li>
+<li>PRP    Personal pronoun</li>
+<li>PRP$    Possessive pronoun</li>
+<li>RB    Adverb</li>
+<li>RBR    Adverb, comparative</li>
+<li>RBS    Adverb, superlative</li>
+<li>RP    Particle</li>
+<li>SYM    Symbol</li>
+<li>TO    to</li>
+<li>UH    Interjection</li>
+<li>VB    Verb, base form</li>
+<li>VBD    Verb, past tense</li>
+<li>VBG    Verb, gerund or present participle</li>
+<li>VBN    Verb, past participle</li>
+<li>VBP    Verb, non-3rd person singular present</li>
+<li>VBZ    Verb, 3rd person singular present</li>
+<li>WDT    Wh-determiner</li>
+<li>WP    Wh-pronoun</li>
+<li>WP$    Possessive wh-pronoun</li>
+<li>WRB    Wh-adverb</li>
+</ol>
 
       
     </div>
@@ -521,7 +560,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -810,24 +849,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="custom_mathjax_source">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
