@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[test]]></title>
     <url>%2F2018%2F07%2F27%2Ftest%2F</url>
-    <content type="text"><![CDATA[Test$$\left(\begin{array}{cc}0.8944272 &amp; 0.4472136\-0.4472136 &amp; -0.8944272\end{array}\right) \\\left(\begin{array}{cc}10 &amp; 0\0 &amp; 5\end{array}\right)$$ TestOuter Product$$\begin{array} &amp;A \otimes B\end{array} = \left(\begin{array}{cc}1 \\ 2\end{array}\right)\left(\begin{array}{cc}10 &amp; 20\end{array}\right) =\left(\begin{array}{cc}110 &amp; 120 \\ 210 &amp; 220\end{array}\right)$$]]></content>
+    <content type="text"><![CDATA[Test$$\left(\begin{array}{cc}0.8944272 &amp; 0.4472136\-0.4472136 &amp; -0.8944272\end{array}\right) \\\left(\begin{array}{cc}10 &amp; 0\0 &amp; 5\end{array}\right)$$ *$$\left(\begin{array}{cc}0.8944272 &amp; 0.4472136\-0.4472136 &amp; -0.8944272\end{array}\right) \\$$$$\left(\begin{array}{cc}10 &amp; 0\0 &amp; 5\end{array}\right)$$ TestOuter Product$$\begin{array} &amp;A \otimes B\end{array} = \left(\begin{array}{cc}1 \\ 2\end{array}\right)\left(\begin{array}{cc}10 &amp; 20\end{array}\right) =\left(\begin{array}{cc}110 &amp; 120 \\ 210 &amp; 220\end{array}\right)$$]]></content>
   </entry>
   <entry>
     <title><![CDATA[python]]></title>
