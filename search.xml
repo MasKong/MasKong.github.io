@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2F2018%2F07%2F27%2Ftest%2F</url>
+    <content type="text"><![CDATA[Test$$\left(\begin{array}{cc}0.8944272 &amp; 0.4472136\-0.4472136 &amp; -0.8944272\end{array}\right)\left(\begin{array}{cc}10 &amp; 0\0 &amp; 5\end{array}\right)$$]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[python]]></title>
     <url>%2F2018%2F07%2F26%2Fpython%2F</url>
     <content type="text"><![CDATA[Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k])]]></content>
