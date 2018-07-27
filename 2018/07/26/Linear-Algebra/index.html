@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="By default, vectors are column vectors. TestElement wise\(\left(\begin{array}{cc}1 &amp;amp; 2 \\ 3 &amp;amp; 4\end{array}\right) \) \(\odot\) \(\left(\begin{array}{cc}10 &amp;amp; 20 \\ 30 &amp;amp; 40\end{array}\ri">
+<meta name="description" content="By default, vectors are column vectors. Outer Product\(\left(\begin{array}{cc}{1} \\ {2}\end{array}\right) \) \(\otimes\) \(\left(\begin{array}{cc}10 &amp;amp; 20\end{array}\right)\) = \(  \left(\begin{ar">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linear_Algebra">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/Linear-Algebra/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="By default, vectors are column vectors. TestElement wise\(\left(\begin{array}{cc}1 &amp;amp; 2 \\ 3 &amp;amp; 4\end{array}\right) \) \(\odot\) \(\left(\begin{array}{cc}10 &amp;amp; 20 \\ 30 &amp;amp; 40\end{array}\ri">
+<meta property="og:description" content="By default, vectors are column vectors. Outer Product\(\left(\begin{array}{cc}{1} \\ {2}\end{array}\right) \) \(\otimes\) \(\left(\begin{array}{cc}10 &amp;amp; 20\end{array}\right)\) = \(  \left(\begin{ar">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-27T12:50:23.224Z">
+<meta property="og:updated_time" content="2018-07-27T12:51:26.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linear_Algebra">
-<meta name="twitter:description" content="By default, vectors are column vectors. TestElement wise\(\left(\begin{array}{cc}1 &amp;amp; 2 \\ 3 &amp;amp; 4\end{array}\right) \) \(\odot\) \(\left(\begin{array}{cc}10 &amp;amp; 20 \\ 30 &amp;amp; 40\end{array}\ri">
+<meta name="twitter:description" content="By default, vectors are column vectors. Outer Product\(\left(\begin{array}{cc}{1} \\ {2}\end{array}\right) \) \(\otimes\) \(\left(\begin{array}{cc}10 &amp;amp; 20\end{array}\right)\) = \(  \left(\begin{ar">
 
 
 
@@ -375,8 +375,6 @@
 
       
         <p>By default, vectors are column vectors.</p>
-<h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><h4 id="Element-wise"><a href="#Element-wise" class="headerlink" title="Element wise"></a>Element wise</h4><p>\(<br>\left(\begin{array}{cc}<br>1 &amp; 2 \\ 3 &amp; 4<br>\end{array}\right) \) \(\odot\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20 \\ 30 &amp; 40<br>\end{array}\right) \) = \(<br>\left(\begin{array}{cc}<br>{1 \times 10} &amp; {2 \times 20} \\ {3 \times 30} &amp; {4 \times 40}<br>\end{array}\right) \)</p>
-<p>$$<br>\left(\begin{array}{cc}<br>{1 \times 10} &amp; {2 \times 20} \ {3 \times 30} &amp; {4 \times 40}<br>\end{array}\right) $$</p>
 <h4 id="Outer-Product"><a href="#Outer-Product" class="headerlink" title="Outer Product"></a>Outer Product</h4><p>\(<br>\left(\begin{array}{cc}<br>{1} \\ {2}<br>\end{array}\right) \) \(\otimes\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20<br>\end{array}\right)<br>\) = \(  \left(\begin{array}{cc}<br>{1 \times 10} &amp; {1 \times 20} \\ {2 \times 10} &amp; {2 \times 20}<br>\end{array}\right)  \)</p>
 <p>Outer product increase the dimension of the matrix. Outer product of a (a1∗a2) matrix and  a (b1∗b2) matrix is a (a1∗a2)∗(b1∗b2) matrix.</p>
 <p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1q} \\<br>y_2 &amp; \cdots &amp; y_{2q} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_p &amp; \cdots &amp; x_{pq}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_1y_{1q} &amp; x_1y_{2} &amp; \cdots &amp; x_1y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{1n}y_1 &amp; \cdots &amp; x_{1n}y_{1q} &amp; x_{1n}y_{2} &amp; \cdots &amp; x_{1n}y_{pq} \\<br>x_2y_1 &amp; \cdots &amp; x_2y_{1q} &amp; x_2y_{2} &amp; \cdots &amp; x_2y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{mn}y_1 &amp; \cdots &amp; x_{mn}y_{1q} &amp; x_{mn}y_{2} &amp; \cdots &amp; x_{mn}y_{pq}<br>\end{bmatrix}<br>\end{array}$$</p>
@@ -564,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test"><span class="nav-number">1.</span> <span class="nav-text">Test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Element-wise"><span class="nav-number">1.1.</span> <span class="nav-text">Element wise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Outer-Product"><span class="nav-number">1.2.</span> <span class="nav-text">Outer Product</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Element-wise-Product-Hadamard-product"><span class="nav-number">1.3.</span> <span class="nav-text">Element-wise Product  (Hadamard product)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Norm"><span class="nav-number">1.4.</span> <span class="nav-text">Norm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Identity-Matrix"><span class="nav-number">1.5.</span> <span class="nav-text">Identity Matrix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Outer-Product"><span class="nav-number">1.</span> <span class="nav-text">Outer Product</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Element-wise-Product-Hadamard-product"><span class="nav-number">2.</span> <span class="nav-text">Element-wise Product  (Hadamard product)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Norm"><span class="nav-number">3.</span> <span class="nav-text">Norm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Identity-Matrix"><span class="nav-number">4.</span> <span class="nav-text">Identity Matrix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
             
 
           </div>
