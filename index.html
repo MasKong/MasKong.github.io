@@ -296,6 +296,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Word2Vec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/28/Word2Vec/" itemprop="url">Boos</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
+<p>Normally the vectors are regarded as column vectors.</p>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
+<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
+<p>mutual information </p>
+<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
+<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
+<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
+<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
+<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
+<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
+<p>To solve this problem,change the computation for P(c).</p>
+<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
+<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
+<p>Another solutio is Laplace smoothing.</p>
+<h3 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h3><p>IDF is used to give a higher weight to rare words because they are likely to present more information.</p>
+<p>$$idf_i = \log(\frac{N}{df_i})<br>$$</p>
+<p>Combining term frequency with IDF results in a scheme known as tf-idf weighting of the value for word i in document j,\(w_{ij}\):\</p>
+<p>$$w_{ij}=tf_{ij}idf_i$$</p>
+<p>The tf-idf weighting is by far the dominant way of weighting co-occurrence matrices in information retrieval, but also plays a role in many other aspects of natural language processing including summarization.</p>
+<h3 id="t-test"><a href="#t-test" class="headerlink" title="t-test"></a>t-test</h3><h2 id="Similarity-Measure-for-vectors-binary"><a href="#Similarity-Measure-for-vectors-binary" class="headerlink" title="Similarity Measure for vectors(binary)"></a>Similarity Measure for vectors(binary)</h2><p><strong>Jaccard similarity</strong>:<br>$$sim_{Jaccard}=\frac{\sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N\max(v_i,w_i)}$$</p>
+<p>$$J(A,B)=\frac{|A\cap B|}{|A\cup B|}$$</p>
+<p>The min of \(v_i\) and \(w_i\)means if a feature exists in one vector but not the other vector, the result would be zero. The<br>denominator can be viewed as a normalizing factor.</p>
+<p><strong>Dice measure</strong>:<br>$$sim_{Dice}=\frac{2 \times \sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N(v_i+w_i)}$$</p>
+<p><strong>KL divergence</strong><br>if two vectors, \(\vec{v}\) and \(\vec{w}\), each express a probability<br>distribution (their values sum to one), then they are are similar to the extent that these probability distributions are similar.</p>
+<p>Given two probability distribution or vectors P and Q:</p>
+<p>$$D(P||Q) = \sum_xP(x)\log \frac{P(x)}<br>{Q(x)}$$</p>
+<p>Unfortunately, the KL-divergence is undefined when Q(x) = 0 and P(x) \(\neq\) 0, which is a problem since these word-distribution vectors are generally quite sparse.</p>
+<p>Jensen-Shannon divergence solves this problem.<br>$$JS(P||Q)=D(P|\frac{Q+P}{2})+D(Q|\frac{Q+P}{2})$$</p>
+<h3 id="Using-syntax-to-define-a-word’s-context"><a href="#Using-syntax-to-define-a-word’s-context" class="headerlink" title="Using syntax to define a word’s context"></a>Using syntax to define a word’s context</h3><p>Instead of defining a word’s context by nearby words, we could instead define it by<br>the syntactic relations of these neighboring words. i.e.: the word duty could be represented by a bunch of combinations like additional,administrative(adj) or assert, assign(verb). </p>
+<h3 id="Evaluating-Vector-Models"><a href="#Evaluating-Vector-Models" class="headerlink" title="Evaluating Vector Models"></a>Evaluating Vector Models</h3><p>test their performance on similarity, and in particular on computing the correlation between an algorithm’s word similarity scores and word similarity ratings<br>assigned by humans.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -900,156 +1050,6 @@
             <p>Gradient vanishing or exploding:<br>Since the time step 1 would have effect on time step n, when doing back propagation, according to the chain rule, the same weight matrix W would be multiplied by n times which is W to the power of n. So the norm of W is greater than 1, there is gradient exploding. And vice versa, gradient vanishing if the norm of W is smaller than 1.</p>
 <p>Solution to gradient vanishing:<br>Initialize weight matrix to identity matrix  rather than a matrix of random values. And use Relu as activation function. The intuition of this is to take average of input and hidden state. Then start to optimize the weight matrix.</p>
 <h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><p>The input includes all or some of the hidden states in the encoder. Utilize a score function to weight importance of those hidden states and feed into the decoder with the input word.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/Word2Vec/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/24/Word2Vec/" itemprop="url">Test</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-24T21:30:15+08:00">
-                2018-07-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<p>Normally the vectors are regarded as column vectors.</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
-<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
-<p>mutual information </p>
-<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
-<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
-<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
-<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
-<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
-<p>To solve this problem,change the computation for P(c).</p>
-<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
-<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
-<p>Another solutio is Laplace smoothing.</p>
-<h3 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h3><p>IDF is used to give a higher weight to rare words because they are likely to present more information.</p>
-<p>$$idf_i = \log(\frac{N}{df_i})<br>$$</p>
-<p>Combining term frequency with IDF results in a scheme known as tf-idf weighting of the value for word i in document j,\(w_{ij}\):\</p>
-<p>$$w_{ij}=tf_{ij}idf_i$$</p>
-<p>The tf-idf weighting is by far the dominant way of weighting co-occurrence matrices in information retrieval, but also plays a role in many other aspects of natural language processing including summarization.</p>
-<h3 id="t-test"><a href="#t-test" class="headerlink" title="t-test"></a>t-test</h3><h2 id="Similarity-Measure-for-vectors-binary"><a href="#Similarity-Measure-for-vectors-binary" class="headerlink" title="Similarity Measure for vectors(binary)"></a>Similarity Measure for vectors(binary)</h2><p><strong>Jaccard similarity</strong>:<br>$$sim_{Jaccard}=\frac{\sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N\max(v_i,w_i)}$$</p>
-<p>$$J(A,B)=\frac{|A\cap B|}{|A\cup B|}$$</p>
-<p>The min of \(v_i\) and \(w_i\)means if a feature exists in one vector but not the other vector, the result would be zero. The<br>denominator can be viewed as a normalizing factor.</p>
-<p><strong>Dice measure</strong>:<br>$$sim_{Dice}=\frac{2 \times \sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N(v_i+w_i)}$$</p>
-<p><strong>KL divergence</strong><br>if two vectors, \(\vec{v}\) and \(\vec{w}\), each express a probability<br>distribution (their values sum to one), then they are are similar to the extent that these probability distributions are similar.</p>
-<p>Given two probability distribution or vectors P and Q:</p>
-<p>$$D(P||Q) = \sum_xP(x)\log \frac{P(x)}<br>{Q(x)}$$</p>
-<p>Unfortunately, the KL-divergence is undefined when Q(x) = 0 and P(x) \(\neq\) 0, which is a problem since these word-distribution vectors are generally quite sparse.</p>
-<p>Jensen-Shannon divergence solves this problem.<br>$$JS(P||Q)=D(P|\frac{Q+P}{2})+D(Q|\frac{Q+P}{2})$$</p>
-<h3 id="Using-syntax-to-define-a-word’s-context"><a href="#Using-syntax-to-define-a-word’s-context" class="headerlink" title="Using syntax to define a word’s context"></a>Using syntax to define a word’s context</h3><p>Instead of defining a word’s context by nearby words, we could instead define it by<br>the syntactic relations of these neighboring words. i.e.: the word duty could be represented by a bunch of combinations like additional,administrative(adj) or assert, assign(verb). </p>
-<h3 id="Evaluating-Vector-Models"><a href="#Evaluating-Vector-Models" class="headerlink" title="Evaluating Vector Models"></a>Evaluating Vector Models</h3><p>test their performance on similarity, and in particular on computing the correlation between an algorithm’s word similarity scores and word similarity ratings<br>assigned by humans.</p>
 
           
         
