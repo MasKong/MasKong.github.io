@@ -369,7 +369,7 @@
           
             <h2 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h2><p>For each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set.</p>
 <p>Each trial a classifier \(C^t\) is trained. The final classifier \(C^*\) aggregate those T classfiers together.</p>
-<p>To classify an instance x, a vote for class k is recorded by every classier for which \(C^t(x)=k\) and \(C^*(x)\) is then the class with the most votes. (ties being resolve arbitrarily)</p>
+<p>To classify an instance x, a vote for class k is recorded by every classier for which \(C^t(x)=k\) and \(C^*(x)\) is then the class with the most votes. (Ties being resolve arbitrarily)</p>
 <p>An <strong>order􏲵-correct</strong> classifier-learning system is one that􏲬 over many training sets􏲬 tends to predict the correct class of a test instance more frequently than any other class􏲮.</p>
 <p>Aggre􏲵gating classifiers produced by an order-correct learner results in an optimal classi􏲻er</p>
 <p><strong>Requirement of bagging</strong>:each single classifier is unstable – that is, it has high variance, small change to the training set leads to different classifiers.</p>
