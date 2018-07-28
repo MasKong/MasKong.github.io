@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k])">
+<meta name="description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) Since in python every thing is referenc">
 <meta name="keywords" content="Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/python/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k])">
+<meta property="og:description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) Since in python every thing is referenc">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-26T11:58:06.276Z">
+<meta property="og:updated_time" content="2018-07-28T08:04:39.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python">
-<meta name="twitter:description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k])">
+<meta name="twitter:description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) Since in python every thing is referenc">
 
 
 
@@ -366,6 +366,13 @@
       
         <p>Find the key that has the largest value in a dictionary.</p>
 <p>Assume stats is the dictionary.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure></p>
+<p>Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage.</p>
+<p>For example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = l1</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
+<p>Now l1[2] is also 100.</p>
+<p>solution:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = copy.deepcopy(l1)</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
+<p>Now l1[2] is still 3.</p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l2 = list(l1)</span><br></pre></td></tr></table></figure></p>
+<p>A shallow copy constructs a new compound object and inserts references into it to the objects found in the original.<br>A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.</p>
 
       
     </div>
