@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ML," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="Passionate about NLP">
-<meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/tags/Project/index.html">
+<meta name="description" content="BaggingFor each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set. Each trial a classifier \(C^t\) i">
+<meta name="keywords" content="ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Boosting">
+<meta property="og:url" content="http://yoursite.com/2018/07/28/Boosting/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Passionate about NLP">
+<meta property="og:description" content="BaggingFor each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set. Each trial a classifier \(C^t\) i">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-28T06:22:22.333Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
-<meta name="twitter:description" content="Passionate about NLP">
+<meta name="twitter:title" content="Boosting">
+<meta name="twitter:description" content="BaggingFor each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set. Each trial a classifier \(C^t\) i">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/Project/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/28/Boosting/"/>
 
 
 
 
 
-  <title>Tag: Project | </title>
+  <title>Boosting | </title>
   
 
 
@@ -143,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,54 +283,167 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Project<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/24/Recommendation-System/" itemprop="url">
-              
-                <span itemprop="name">Recommendation_System</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Boosting</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-24T23:26:50+08:00"
-              content="2018-05-24" >
-          05-24
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
+                2018-07-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h2><p>For each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set.</p>
+<p>Each trial a classifier \(C^t\) is trained. The final classifier \(C^*\) aggregate those T classfiers together.</p>
+<p>To classify an instance x, a vote for class k is recorded by every classier for which \(C^t(x)=k\) and \(C^*(x)\) is then the class with the most votes. (ties being resolve arbitrarily)</p>
+<p>An <strong>order􏲵-correct</strong> classi􏲻er􏲵-learning system is one that􏲬 over many training sets􏲬 tends to predict the correct class of a test instance more frequently than any other class􏲮.</p>
+<p>Aggre􏲵gating classi􏲻ers produced by an order-􏲵correct learner results in an optimal classi􏲻er</p>
+<p><strong>Requirement of bagging</strong>:each single classifier is unstable – that is, it has high variance, small change to the training set leads to different classifiers.</p>
+<p>Intuition of Boosting: Train several weak classifier and combine together to get a strong classifier.</p>
+<p>Step:</p>
+<ul>
+<li>Initially, each training sample is assigned an equal weight. </li>
+<li>Train a classifier on the training set</li>
+<li>Compute the error rate</li>
+<li>Compute the coefficient of the classifier</li>
+<li>Change the weight of the training samples. Increase the weights of the samples that are classified wrong, pay more attention to them. Decrease the weights of the samples that are classified correct. Here the calculation of the new weight is actually a softmax to make the weight a probability distribution.</li>
+<li>Train another classifier on the training set with new weight and repeat the above several steps.</li>
+<li>Finally, combine the classifiers.</li>
+</ul>
+<p>The output of the final classifiers(absolute value) is the confidence level of the classfication result. More iterations, higher confidence level.</p>
+<h4 id="Toy-Model"><a href="#Toy-Model" class="headerlink" title="Toy Model"></a>Toy Model</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">def smaller_than(x,y):</span><br><span class="line">    return y-x &gt; 0</span><br><span class="line"></span><br><span class="line">def classifier(x, v, flag=1):   #threshold v</span><br><span class="line">    &apos;&apos;&apos;flag = 1: x&lt;v are classified as 1, x&gt;v are classified as -1</span><br><span class="line">       flag = 0: x&lt;v are classified as -1, x&gt;v are classified as 1&apos;&apos;&apos;</span><br><span class="line">    threshold = int(np.floor(v)+1)</span><br><span class="line">    if flag == 1:</span><br><span class="line">        if threshold &lt;= 0:</span><br><span class="line">            return -np.ones(x.shape)</span><br><span class="line">        elif threshold &gt; 9:</span><br><span class="line">            return np.ones(x.shape)</span><br><span class="line">        x[:threshold] = 1</span><br><span class="line">        x[threshold:] = -1</span><br><span class="line">    else:</span><br><span class="line">        if threshold &lt;= 0:</span><br><span class="line">            return np.ones(x.shape)</span><br><span class="line">        elif threshold &gt; 9:</span><br><span class="line">            return -np.ones(x.shape)</span><br><span class="line">        x[:threshold] = -1</span><br><span class="line">        x[threshold:] = 1</span><br><span class="line">    return x</span><br><span class="line"></span><br><span class="line">def find_best_split(x,y,weight):</span><br><span class="line">    error = 1</span><br><span class="line">    best_result = None</span><br><span class="line">    best_classifier = None</span><br><span class="line">    for f in range(2):</span><br><span class="line">        for j in range(x.shape[0]+1):</span><br><span class="line">            r = classifier(np.array(x,copy=True),j-0.5,f)</span><br><span class="line">            # print(&quot;j&quot;, j)</span><br><span class="line">            # print(&quot;classify_result&quot;, r)</span><br><span class="line">            p_error = np.sum((r!=y)*weight)# /float(len(x))</span><br><span class="line">            # print(&quot;p_error&quot;, p_error)</span><br><span class="line">            # if p_error &lt; error:</span><br><span class="line">            # if np.log(p_error)-np.log(error) &lt; 0:</span><br><span class="line">            if smaller_than(p_error,error):     #for the sake of numerical stability</span><br><span class="line">                error = p_error</span><br><span class="line">                best_result = np.array(r, copy=True)</span><br><span class="line">                best_classifier = (j-0.5, f)</span><br><span class="line">            # print(&quot;best_result_123&quot;, best_result)</span><br><span class="line">            # print(&quot;error_123&quot;, error)</span><br><span class="line">    # print(&quot;best_result_123&quot;, best_result)</span><br><span class="line">    # print(&quot;error_123&quot;, error)</span><br><span class="line">    return best_result, error, best_classifier</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line"></span><br><span class="line">    x = np.arange(10)</span><br><span class="line">    y = np.array([1,1,1,-1,-1,-1,1,1,1,-1])</span><br><span class="line">    iterations = 10</span><br><span class="line">    weight = np.ones((x.shape)) / float(len(x))</span><br><span class="line">    coefficient_l = []</span><br><span class="line">    c_l = []</span><br><span class="line"></span><br><span class="line">    for i in range(iterations):</span><br><span class="line">        best_result, error, best_classifier = find_best_split(np.array(x,copy=True),y,weight)</span><br><span class="line">        c_l.append(best_classifier)</span><br><span class="line">        # print(&quot;best_result&quot;, best_result)</span><br><span class="line">        # print(&quot;error&quot;, error)</span><br><span class="line">        alpha = 1/2.0 * np.log((1-error)/error)</span><br><span class="line">        coefficient_l.append(alpha)</span><br><span class="line">        numerator = np.exp(-alpha*y*best_result)</span><br><span class="line">        denominator_weight = np.sum(weight * numerator)</span><br><span class="line">        # print(&quot;weight &quot;, weight)</span><br><span class="line">        weight = weight * numerator/ denominator_weight</span><br><span class="line">        # print(&quot;weight_updated &quot;, weight)</span><br><span class="line">    # print(coefficient_l)</span><br><span class="line"></span><br><span class="line">    &apos;&apos;&apos;Final classifier&apos;&apos;&apos;</span><br><span class="line">    final_error = None</span><br><span class="line">    final_result = np.zeros(x.shape)</span><br><span class="line">    for i in range(len(c_l)):</span><br><span class="line">        final_result += coefficient_l[i]*classifier(np.array(x,copy=True),</span><br><span class="line">                                                    v=c_l[i][0],flag=c_l[i][1])</span><br><span class="line">    print(final_result)</span><br><span class="line">    final_result[final_result&gt;0]=1</span><br><span class="line">    final_result[final_result&lt;0] = -1</span><br><span class="line">    final_error = np.sum(final_result!=y)/float(len(x))</span><br><span class="line">    print(final_error)</span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://pdfs.semanticscholar.org/79ea/6a5a68e05065f82acd11a478aa7eac5f6c06.pdf" target="_blank" rel="noopener">Bagging􏰀 Boosting􏰀 and C4.5􏰁􏰂􏰃</a></p>
+<p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ML/" rel="tag"># ML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/26/python/" rel="next" title="python">
+                <i class="fa fa-chevron-left"></i> python
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -336,6 +451,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -356,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -412,6 +550,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bagging"><span class="nav-number">1.</span> <span class="nav-text">Bagging</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Toy-Model"><span class="nav-number">1.0.1.</span> <span class="nav-text">Toy Model</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">1.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -552,6 +706,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -567,6 +725,18 @@
 
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/07/28/Boosting/';
+          this.page.identifier = '2018/07/28/Boosting/';
+          this.page.title = 'Boosting';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://MasKong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
