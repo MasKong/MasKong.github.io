@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) Since in python every thing is referenc">
+<meta name="description" content="DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionar">
 <meta name="keywords" content="Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python">
 <meta property="og:url" content="http://yoursite.com/2018/07/26/python/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) Since in python every thing is referenc">
+<meta property="og:description" content="DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionar">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-28T08:04:39.292Z">
+<meta property="og:updated_time" content="2018-07-30T12:27:32.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python">
-<meta name="twitter:description" content="Find the key that has the largest value in a dictionary. Assume stats is the dictionary.123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) Since in python every thing is referenc">
+<meta name="twitter:description" content="DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionar">
 
 
 
@@ -364,8 +364,12 @@
       
 
       
-        <p>Find the key that has the largest value in a dictionary.</p>
-<p>Assume stats is the dictionary.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure></p>
+        <h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><p>Find the key that has the largest value in a dictionary.</p>
+<p>Assume stats is the dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure>
+<p>map dictionary:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_dictionary = dict(map(lambda kv: (kv[0], f(kv[1])), my_dictionary.items()))</span><br></pre></td></tr></table></figure></p>
+<p>build a dictionary with the same key from the other dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = dic.fromkeys(dic.keys(), 0)</span><br></pre></td></tr></table></figure>
 <p>Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage.</p>
 <p>For example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = l1</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
 <p>Now l1[2] is also 100.</p>
@@ -477,8 +481,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -497,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -533,6 +546,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dictionary"><span class="nav-number">1.</span> <span class="nav-text">Dictionary</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

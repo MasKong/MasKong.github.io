@@ -296,6 +296,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/feature-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/30/feature-selection/" itemprop="url">feature_selection</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:46:18+08:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
+<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
+<p>mutual information </p>
+<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
+<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
+<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
+<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
+<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
+<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
+<p>To solve this problem,change the computation for P(c).</p>
+<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
+<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
+<p>Another solutio is Laplace smoothing.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -374,6 +506,7 @@
 <p>Aggre􏲵gating classifiers produced by an order-correct learner results in an optimal classi􏲻er</p>
 <p><strong>Requirement of bagging</strong>:each single classifier is unstable – that is, it has high variance, small change to the training set leads to different classifiers.</p>
 <h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>Intuition of Boosting: Train several weak classifier and combine together to get a strong classifier.</p>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>Usually employed in classification problem</p>
 <p>Step:</p>
 <ul>
 <li>Initially, each training sample is assigned an equal weight. </li>
@@ -385,7 +518,10 @@
 <li>Finally, combine the classifiers.</li>
 </ul>
 <p>The output of the final classifiers(absolute value) is the confidence level of the classfication result. More iterations, higher confidence level.</p>
+<p>AdaBoost could be viewed as forward stagewise algorithm which optimize the set os parameters step by step.</p>
 <h4 id="Toy-Model"><a href="#Toy-Model" class="headerlink" title="Toy Model"></a>Toy Model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smaller_than</span><span class="params">(x,y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> y-x &gt; <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifier</span><span class="params">(x, v, flag=<span class="number">1</span>)</span>:</span>   <span class="comment">#threshold v</span></span><br><span class="line">    <span class="string">'''flag = 1: x&lt;v are classified as 1, x&gt;v are classified as -1</span></span><br><span class="line"><span class="string">       flag = 0: x&lt;v are classified as -1, x&gt;v are classified as 1'''</span></span><br><span class="line">    threshold = int(np.floor(v)+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> flag == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">1</span></span><br><span class="line">        x[threshold:] = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">-1</span></span><br><span class="line">        x[threshold:] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_best_split</span><span class="params">(x,y,weight)</span>:</span></span><br><span class="line">    error = <span class="number">1</span></span><br><span class="line">    best_result = <span class="keyword">None</span></span><br><span class="line">    best_classifier = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(x.shape[<span class="number">0</span>]+<span class="number">1</span>):</span><br><span class="line">            r = classifier(np.array(x,copy=<span class="keyword">True</span>),j<span class="number">-0.5</span>,f)</span><br><span class="line">            <span class="comment"># print("j", j)</span></span><br><span class="line">            <span class="comment"># print("classify_result", r)</span></span><br><span class="line">            p_error = np.sum((r!=y)*weight)<span class="comment"># /float(len(x))</span></span><br><span class="line">            <span class="comment"># print("p_error", p_error)</span></span><br><span class="line">            <span class="comment"># if p_error &lt; error:</span></span><br><span class="line">            <span class="comment"># if np.log(p_error)-np.log(error) &lt; 0:</span></span><br><span class="line">            <span class="keyword">if</span> smaller_than(p_error,error):     <span class="comment">#for the sake of numerical stability</span></span><br><span class="line">                error = p_error</span><br><span class="line">                best_result = np.array(r, copy=<span class="keyword">True</span>)</span><br><span class="line">                best_classifier = (j<span class="number">-0.5</span>, f)</span><br><span class="line">            <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">            <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">    <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="keyword">return</span> best_result, error, best_classifier</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    x = np.arange(<span class="number">10</span>)</span><br><span class="line">    y = np.array([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>])</span><br><span class="line">    iterations = <span class="number">10</span></span><br><span class="line">    weight = np.ones((x.shape)) / float(len(x))</span><br><span class="line">    coefficient_l = []</span><br><span class="line">    c_l = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line">        best_result, error, best_classifier = find_best_split(np.array(x,copy=<span class="keyword">True</span>),y,weight)</span><br><span class="line">        c_l.append(best_classifier)</span><br><span class="line">        <span class="comment"># print("best_result", best_result)</span></span><br><span class="line">        <span class="comment"># print("error", error)</span></span><br><span class="line">        alpha = <span class="number">1</span>/<span class="number">2.0</span> * np.log((<span class="number">1</span>-error)/error)</span><br><span class="line">        coefficient_l.append(alpha)</span><br><span class="line">        numerator = np.exp(-alpha*y*best_result)</span><br><span class="line">        denominator_weight = np.sum(weight * numerator)</span><br><span class="line">        <span class="comment"># print("weight ", weight)</span></span><br><span class="line">        weight = weight * numerator/ denominator_weight</span><br><span class="line">        <span class="comment"># print("weight_updated ", weight)</span></span><br><span class="line">    <span class="comment"># print(coefficient_l)</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''Final classifier'''</span></span><br><span class="line">    final_error = <span class="keyword">None</span></span><br><span class="line">    final_result = np.zeros(x.shape)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(c_l)):</span><br><span class="line">        final_result += coefficient_l[i]*classifier(np.array(x,copy=<span class="keyword">True</span>),</span><br><span class="line">                                                    v=c_l[i][<span class="number">0</span>],flag=c_l[i][<span class="number">1</span>])</span><br><span class="line">    print(final_result)</span><br><span class="line">    final_result[final_result&gt;<span class="number">0</span>]=<span class="number">1</span></span><br><span class="line">    final_result[final_result&lt;<span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">    final_error = np.sum(final_result!=y)/float(len(x))</span><br><span class="line">    print(final_error)</span><br></pre></td></tr></table></figure>
+<h3 id="Boosting-Tree"><a href="#Boosting-Tree" class="headerlink" title="Boosting Tree"></a>Boosting Tree</h3><p>When ths base classifier is the base function, boosting is named boosting tree.</p>
+<h3 id="Gradient-Boosting"><a href="#Gradient-Boosting" class="headerlink" title="Gradient Boosting"></a>Gradient Boosting</h3><p>It is not easy to optimize normal loss function for boosting tree. Gradient boosting is employed to solve this problem.<br>For regression problem, utilize the the negative gradient of the loss function to approximate the residual error so as to approximate a boosting tree.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://pdfs.semanticscholar.org/79ea/6a5a68e05065f82acd11a478aa7eac5f6c06.pdf" target="_blank" rel="noopener">Bagging􏰀 Boosting􏰀 and C4.5􏰁􏰂􏰃</a></p>
 <p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
 
@@ -507,8 +643,12 @@
       
         
           
-            <p>Find the key that has the largest value in a dictionary.</p>
-<p>Assume stats is the dictionary.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure></p>
+            <h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><p>Find the key that has the largest value in a dictionary.</p>
+<p>Assume stats is the dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure>
+<p>map dictionary:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_dictionary = dict(map(lambda kv: (kv[0], f(kv[1])), my_dictionary.items()))</span><br></pre></td></tr></table></figure></p>
+<p>build a dictionary with the same key from the other dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = dic.fromkeys(dic.keys(), 0)</span><br></pre></td></tr></table></figure>
 <p>Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage.</p>
 <p>For example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = l1</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
 <p>Now l1[2] is also 100.</p>
@@ -1442,8 +1582,10 @@
 <p>PageRank values would converge to the final value regardless of the start state and it is in the range [0,1]. So the PageRank values could also be viewed as the probability of the surfer is in the node i at any time given the PageRank value of the node i.</p>
 <p>PageRank could be regarded as a random walk in the internet. Start at any state, and then walk through the out links randomly. In case of circular routes and dead end, employ the scaled version of random walk. As the random walk proceeds, some nodes are visited more often than others; intuitively, these are nodes with many links coming in from other frequently visited nodes. The idea behind PageRank is that pages visited more often in this walk are more important.</p>
 <p><strong>Teleport</strong>:if N is the total number of nodes in the web graph, the teleport operation takes the surfer to each node with probability 1/N.</p>
-<p>Scaled version of random walk:<br>with alpha probability take teleport operation and with 1-alpha probability take the out links of the current nodes.</p>
+<h4 id="Random-Walk-Interpretation"><a href="#Random-Walk-Interpretation" class="headerlink" title="Random Walk Interpretation"></a>Random Walk Interpretation</h4><p>Scaled version of random walk:<br>with alpha probability take teleport operation and with 1-alpha probability take the out links of the current nodes.</p>
 <p>Interpreted in terms of the (scaled) version of PageRank, <strong>Perron’s Theorem</strong> tells us that there is a unique vector y that remains fixed under the application of the scaled update rule, and that repeated application of the update rule from any starting point will converge to y.<br>This vector y thus corresponds to the limiting PageRank values we have been seeking.</p>
+<h4 id="Graph-Interpretation"><a href="#Graph-Interpretation" class="headerlink" title="Graph Interpretation"></a>Graph Interpretation</h4><p>Each vertex is a node. PageRank value is 1 in total. Initially, each node has the same pagerank value 1/N. With the different in links and out links, the pagerank value would flow through those links to different notes. So the pagerank value would change accordingly.</p>
+<p><strong>Scaled version of graph</strong>:<br>With alpha probability take teleport operation and with 1-alpha probability do the normal flow operation. In terms of graph, it discount the overall pagerank value to \(1-\alpha \) and assign the rest \(\alpha \) pagerank value to each node. So each node would get the same pagerank value \(\alpha /N\).</p>
 <h3 id="Markov-chain"><a href="#Markov-chain" class="headerlink" title="Markov chain"></a>Markov chain</h3><p>A Markov chain is a discrete-time stochastic process: a process that occurs in a series of time-steps in each of which a random choice is made. A Markov chain consists of N states. Each web page will correspond to a state in the Markov chain.</p>
 <p>A Markov chain is characterized by an N × N transition probability matrix P each of whose entries is in the interval [0, 1]; the entries in each row of P add up to 1.</p>
 <p>Transition matrix P:<br>The rows represent that given a node i, the probability of the node i transits to nodes j.(distribute the pagerank score)<br>The columns represent that given a node j, the probability of nodes i transits to node j.(incoming pagerank score)</p>
@@ -1457,177 +1599,13 @@
 <li>Compute the eigenvector coresponding to the largest eigenvalue 1 which is the PageRank. But compute the eigenvector could be computationally expensive.</li>
 </ul>
 <h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h4><h5 id="Matrix-Multiplication-version-of-PageRank"><a href="#Matrix-Multiplication-version-of-PageRank" class="headerlink" title="Matrix-Multiplication version of PageRank:"></a>Matrix-Multiplication version of PageRank:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pagerank</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, N=<span class="number">0</span>, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.N = N</span><br><span class="line">        self.pg_vector = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''derive transition matrix from adjacency matrix'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">derive_transition</span><span class="params">(self,adjacency_matrix,alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.alpha != <span class="number">0</span>:</span><br><span class="line">            alpha = self.alpha</span><br><span class="line"></span><br><span class="line">        N = adjacency_matrix.shape[<span class="number">0</span>]</span><br><span class="line">        transition_m = np.zeros(adjacency_matrix.shape)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(adjacency_matrix.shape[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">if</span> np.sum(adjacency_matrix[i,:]) == <span class="number">0</span>:</span><br><span class="line">                transition_m[i,:] = np.array([<span class="number">1</span>/N]*N)   <span class="comment">#this node is a dead end, transit to one of all nodes in the graph</span></span><br><span class="line">            <span class="keyword">else</span>:           <span class="comment"># with alpha probability transit to one of all nodes, 1-alpha take normal random walk</span></span><br><span class="line">                transition_m[i, :] = alpha * np.array([<span class="number">1</span> / N] * N) + (<span class="number">1</span>-alpha) * adjacency_matrix[i,:] / np.sum(adjacency_matrix[i,:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> transition_m</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">propagate_transition</span><span class="params">(self, transition_m, pg_vector=None)</span>:</span>  <span class="comment">#pg_vector is column vectors</span></span><br><span class="line">        <span class="keyword">if</span> pg_vector <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> np.dot(transition_m.T, pg_vector)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> self.pg_vector <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                self.initialize_pg_vector()</span><br><span class="line"></span><br><span class="line">            self.pg_vector = np.dot(transition_m.T, self.pg_vector)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> self.pg_vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">initialize_pg_vector</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> self.N != <span class="number">0</span>, <span class="string">"Please input number of Nodes N"</span></span><br><span class="line">        self.pg_vector = np.ones((self.N)).T</span><br><span class="line">        self.pg_vector /= self.N</span><br><span class="line">        print(self.pg_vector)</span><br></pre></td></tr></table></figure>
-<h5 id="Graph-version-of-PageRank"><a href="#Graph-version-of-PageRank" class="headerlink" title="Graph version of PageRank:"></a>Graph version of PageRank:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d, vertex=None)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> isinstance(d,dict), <span class="string">"please input a dict"</span></span><br><span class="line">        self.edges = d</span><br><span class="line">        self.d = d</span><br><span class="line">        self.vertexes = self.get_vertexes()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_vertexes</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> list(self.d.keys())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_edges</span><span class="params">(self)</span>:</span></span><br><span class="line">        l = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                l.append(k+<span class="string">'-'</span>+v)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__matrix_to_dict</span><span class="params">(self, matrix)</span>:</span>     <span class="comment">#convert adjacency matrix to dict</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">BFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">if</span> k <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(k)</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                <span class="keyword">if</span> v <span class="keyword">in</span> done:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    done.append(v)</span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                l.extend(list(self.d[current]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS_recursive</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">recursive</span><span class="params">(element)</span>:</span></span><br><span class="line">            waiting_l = self.d[element]</span><br><span class="line">            <span class="keyword">for</span> e <span class="keyword">in</span> waiting_l:</span><br><span class="line">                <span class="keyword">if</span> e <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                    done.append(e)</span><br><span class="line">                    recursive(e)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                recursive(current)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageRank</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, graph)</span>:</span></span><br><span class="line">        self.g = graph</span><br><span class="line">        self.vertexes = graph.vertexes</span><br><span class="line">        self.pr_value = &#123;&#125;</span><br><span class="line">        self.num_points = len(self.vertexes)</span><br><span class="line">        self.__pr_value_initialization__()</span><br><span class="line">        self.new_pr_value = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.pr_value[ver] = <span class="number">1.0</span> / self.num_points</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new_pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.new_pr_value[ver] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_a_round</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.__new_pr_value_initialization__()</span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            value_flow = self.pr_value[ver] / len(self.g.edges[ver])</span><br><span class="line">            <span class="comment"># if len(self.g.edges[ver]) == 0:</span></span><br><span class="line">            <span class="comment">#     self.new_pr_value[ver] = self.pr_value[ver]</span></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> self.g.edges[ver]:</span><br><span class="line">                self.new_pr_value[child] += value_flow</span><br><span class="line">        <span class="keyword">if</span> alpha != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">                self.new_pr_value[ver] = alpha * <span class="number">1.0</span> / self.num_points + (<span class="number">1</span>-alpha) * self.new_pr_value[ver]</span><br><span class="line"></span><br><span class="line">        self.pr_value = copy.deepcopy(self.new_pr_value)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">propagate_transition</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        last = np.zeros((self.num_points))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">        <span class="comment"># while True:</span></span><br><span class="line">            self.update_a_round(alpha)</span><br><span class="line">            current = np.array(list(self.pr_value.values()))</span><br><span class="line">            error = abs(current - last)</span><br><span class="line">            <span class="comment"># print('last', last)</span></span><br><span class="line">            <span class="comment"># print('current', current)</span></span><br><span class="line">            <span class="comment"># print('i', i)</span></span><br><span class="line">            <span class="comment"># print('error: ', error)</span></span><br><span class="line">            <span class="keyword">if</span> np.sum(error) &lt; <span class="number">1e-6</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            last = current</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">d_map = &#123;&#125;</span><br><span class="line">d = &#123;<span class="string">'A'</span>:[<span class="string">'B'</span>,<span class="string">'C'</span>],<span class="string">'B'</span>:[<span class="string">'D'</span>,<span class="string">'E'</span>],<span class="string">'C'</span>:[<span class="string">'F'</span>,<span class="string">'G'</span>],<span class="string">'D'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'E'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'F'</span>:[<span class="string">'A'</span>],<span class="string">'G'</span>:[<span class="string">'A'</span>],<span class="string">'H'</span>:[<span class="string">'A'</span>]&#125;</span><br><span class="line"><span class="comment"># d = &#123;'A':['B'],'B':['A','C'],'C':['B']&#125;</span></span><br><span class="line">g = Graph(d)</span><br><span class="line">pg = PageRank(g)</span><br><span class="line">pg.propagate_transition(<span class="number">0.5</span>)</span><br><span class="line">print(pg.pr_value)</span><br></pre></td></tr></table></figure>
+<h5 id="Graph-version-of-PageRank"><a href="#Graph-version-of-PageRank" class="headerlink" title="Graph version of PageRank:"></a>Graph version of PageRank:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d, vertex=None)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> isinstance(d,dict), <span class="string">"please input a dict"</span></span><br><span class="line">        self.edges = d</span><br><span class="line">        self.d = d</span><br><span class="line">        self.vertexes = self.get_vertexes()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_vertexes</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> list(self.d.keys())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_edges</span><span class="params">(self)</span>:</span></span><br><span class="line">        l = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                l.append(k+<span class="string">'-'</span>+v)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__matrix_to_dict</span><span class="params">(self, matrix)</span>:</span>     <span class="comment">#convert adjacency matrix to dict</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">BFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">if</span> k <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(k)</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                <span class="keyword">if</span> v <span class="keyword">in</span> done:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    done.append(v)</span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                l.extend(list(self.d[current]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS_recursive</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">recursive</span><span class="params">(element)</span>:</span></span><br><span class="line">            waiting_l = self.d[element]</span><br><span class="line">            <span class="keyword">for</span> e <span class="keyword">in</span> waiting_l:</span><br><span class="line">                <span class="keyword">if</span> e <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                    done.append(e)</span><br><span class="line">                    recursive(e)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                recursive(current)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageRank</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, graph)</span>:</span></span><br><span class="line">        self.g = graph</span><br><span class="line">        self.vertexes = graph.vertexes</span><br><span class="line">        self.pr_value = &#123;&#125;</span><br><span class="line">        self.num_points = len(self.vertexes)</span><br><span class="line">        self.__pr_value_initialization__()</span><br><span class="line">        self.new_pr_value = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.pr_value[ver] = <span class="number">1.0</span> / self.num_points</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new_pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.new_pr_value[ver] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_a_round</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.__new_pr_value_initialization__()</span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            <span class="keyword">if</span> len(self.g.edges[ver]) == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">                <span class="comment"># self.new_pr_value[ver] = self.pr_value[ver]</span></span><br><span class="line">            value_flow = self.pr_value[ver] / len(self.g.edges[ver])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> self.g.edges[ver]:</span><br><span class="line">                self.new_pr_value[child] += value_flow</span><br><span class="line">        <span class="keyword">if</span> alpha != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">                self.new_pr_value[ver] = alpha * <span class="number">1.0</span> / self.num_points + (<span class="number">1</span>-alpha) * self.new_pr_value[ver]</span><br><span class="line"></span><br><span class="line">        self.pr_value = copy.deepcopy(self.new_pr_value)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">propagate_transition</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        last = np.zeros((self.num_points))</span><br><span class="line">        <span class="comment"># for i in range(100):</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            self.update_a_round(alpha)</span><br><span class="line">            current = np.array(list(self.pr_value.values()))</span><br><span class="line">            error = abs(current - last)</span><br><span class="line">            <span class="comment"># print('last', last)</span></span><br><span class="line">            <span class="comment"># print('current', current)</span></span><br><span class="line">            <span class="comment"># print('i', i)</span></span><br><span class="line">            <span class="comment"># print('error: ', error)</span></span><br><span class="line">            <span class="keyword">if</span> np.sum(error) &lt; <span class="number">1e-6</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            last = current</span><br><span class="line"></span><br><span class="line"><span class="string">'''Test'''</span></span><br><span class="line"></span><br><span class="line">d_map = &#123;&#125;</span><br><span class="line">d = &#123;<span class="string">'A'</span>:[<span class="string">'B'</span>,<span class="string">'C'</span>],<span class="string">'B'</span>:[<span class="string">'D'</span>,<span class="string">'E'</span>],<span class="string">'C'</span>:[<span class="string">'F'</span>,<span class="string">'G'</span>],<span class="string">'D'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'E'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'F'</span>:[<span class="string">'A'</span>],<span class="string">'G'</span>:[<span class="string">'A'</span>],<span class="string">'H'</span>:[<span class="string">'A'</span>],<span class="string">'P'</span>:[]&#125;</span><br><span class="line"><span class="comment"># d = &#123;'A':['B'],'B':['A','C'],'C':['B']&#125;</span></span><br><span class="line">g = Graph(d)</span><br><span class="line">pg = PageRank(g)</span><br><span class="line">pg.propagate_transition()</span><br><span class="line">print(pg.pr_value)</span><br></pre></td></tr></table></figure>
 <h3 id="Topic-Specific-PageRank"><a href="#Topic-Specific-PageRank" class="headerlink" title="Topic Specific PageRank"></a>Topic Specific PageRank</h3><p>Start at a random page in the topic and also end at a random page in the topic. \(\vec{x}_{sports}\) is a topic specific pagerank vector where for pages belongs to sports, there is a topic specific pagerank and pagerank of other pages are 0.</p>
 <p>Calculate the PageRank of a page with regard to topics. The only difference is that the teleportation is different. The naive teleport go to a node in the graph with probability 1/N. The teleportation of topic specific pagerank is to go to a page in a specific topic with probability alpha. Given the number of pages S in the topic T, the probability is \(\frac{1}{S}\) rather than \(\frac{1}{N}\).</p>
 <p>i.e.:<br>Let s be [A,B,C,D]. A belongs to topic 1. B,C and D belongs to topic 2.<br>When calculating the topic specific pagerank, for topic 2, the formula is still \(\vec{x}P^t\). But here \(P\) for topic 2 is \(\alpha M + (1-\alpha)\frac{1}{S}\) rather than     \(\alpha M + (1-\alpha)\frac{1}{N}\). Actually the formula for topic 2 is \(\alpha M + (1-\alpha)[0,\frac{1}{3},\frac{1}{3},\frac{1}{3}]\) and in normal PageRank it should be \(\alpha M + (1-\alpha)[\frac{1}{4},\frac{1}{4},\frac{1}{4},\frac{1}{4}]\).</p>
 <h3 id="Personalized-PageRank"><a href="#Personalized-PageRank" class="headerlink" title="Personalized PageRank"></a>Personalized PageRank</h3><p>Now the difference is still the teleportation. The teleportation is tailored according to the users’ interest. Let’s assume the interest of a person is sports and finance. Their weights are 0.8,0.2 specifically. The teleportation is to go to a topic with the corresponding weight and then a page in the specific topic with probability alpha. This could also be viewed as a linear combination of topic specific vectors. In this example, the formula would be \(\alpha M + (1-\alpha) [0.8\vec{x_{sports}} + 0.2\vec{x_{finance}}]\).</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.cs.cornell.edu/home/kleinber/networks-book/" target="_blank" rel="noopener">Networks, Crowds, and Markets: Reasoning About a Highly Connected World</a></p>
 <p><a href="https://nlp.stanford.edu/IR-book/" target="_blank" rel="noopener">Introduction to Information Retrieval</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/Parsing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/13/Parsing/" itemprop="url">Parsing</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-13T14:44:51+08:00">
-                2018-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>Context-Free Grammar(CFG)</strong></p>
-<p>The symbols that correspond to words in the language (“the”, “nightclub”) are called <strong>terminal</strong> symbols. They are left nodes in a parse tree. </p>
-<p>The lexicon is the set of rules that introduce these terminal symbols. </p>
-<p>The symbols that express abstractions over these terminals are called <strong>non-terminals</strong>. Ther are the non-left  </p>
-<p>Each grammar must have one designated start symbol, which is often called S &lt;\s&gt;.</p>
-<h2 id="Formal-Definition-of-CFG"><a href="#Formal-Definition-of-CFG" class="headerlink" title="Formal Definition of CFG"></a>Formal Definition of CFG</h2><p>G=(T,N,S,R)</p>
-<ul>
-<li>T is a set of terminal symbols.</li>
-<li>N is a set of nonterminal symbols</li>
-<li>S is the start symbol (S \(\in\) N)</li>
-<li>R is a set of rules/productions of the form X -&gt; \(\gamma\).</li>
-</ul>
-<p>A grammar G generates a language L.</p>
-<h2 id="Conversion-to-CNF"><a href="#Conversion-to-CNF" class="headerlink" title="Conversion to CNF"></a>Conversion to CNF</h2><p><strong>Chomsky Normal Form(CNF)</strong>: for each non-terminal, only two non-ternimal or single terminal could be derived from it.</p>
-<p><strong>Unit Production</strong>: Rules with a single non-terminal on the right.</p>
-<p>three situations needed to address in any generic grammar: </p>
-<ul>
-<li>rules that mix terminals with non-terminals on the right-hand side</li>
-<li>rules that have a single non-terminal on the right-hand side</li>
-<li>rules in which the length of the right-hand side is greater than 2</li>
-</ul>
-<p>rules that mix terminals and non-terminals is to introduce a new dummy non-terminal to substitute the original terminal. For example, a rule for an infinitive verb phrase such as INF-VP → to VP would be replaced by the<br>two rules INF-VP → TO VP and TO → to.</p>
-<p>To eliminate unit production:if A<br>-&gt;&gt; B by a chain of one or more unit productions and B → \(\gamma\) is a non-unit production in our grammar, then we add A → γ for each such rule in the grammar and discard all the intervening unit productions. </p>
-<p>Rules with right-hand sides longer than 2 are normalized through the introduction<br>of new non-terminals that substitute the longer sequences iteratively.</p>
-<p>i.e.: A → B C D. After transformation, A → X D and X -&gt;B C</p>
-<p>The entire conversion process can be summarized as follows:</p>
-<ul>
-<li>Copy all conforming rules to the new grammar unchanged.</li>
-<li>Convert terminals within rules to dummy non-terminals.</li>
-<li>Convert unit-productions.</li>
-<li>Make all rules binary and add them to new grammar.</li>
-</ul>
-<h3 id="Learn-PCFG-Rules"><a href="#Learn-PCFG-Rules" class="headerlink" title="Learn PCFG Rules"></a>Learn PCFG Rules</h3><p><strong>Count-based</strong></p>
-<p>For unambiguous parsing, just count each rule showed in the resulting parsing tree and get the probability like language model.</p>
-<p>For ambiguous parsing, initialize the parsing s.t. each rule is assigned the equal probability. And then parse the sentece an calculate probability of each parsing. Update the weight. Iteratively doing this, an extension of EM algorithm.</p>
-<h3 id="Problems-of-PCFG"><a href="#Problems-of-PCFG" class="headerlink" title="Problems of PCFG"></a>Problems of PCFG</h3><ul>
-<li>Lack of Sensitivity to Lexical Dependencies</li>
-<li>Independence Assumptions Miss Structural Dependencies Between Rules. For different location, each rule may be expanded differently.</li>
-</ul>
-<h3 id="Improving-PCFGs-by-Splitting-Non-Terminals"><a href="#Improving-PCFGs-by-Splitting-Non-Terminals" class="headerlink" title="Improving PCFGs by Splitting Non-Terminals"></a>Improving PCFGs by Splitting Non-Terminals</h3><ul>
-<li>split the NP non-terminal into two versions: one for subjects, one for objects.</li>
-<li>parent annotation</li>
-</ul>
-<p>This method also induce new problem. More rules lead to less training which may cause overfitting.</p>
-<p>Modern models automatically search for the optimal splits. The split and merge algorithm  for example, starts with a simple X-bar grammar, alternately splits the non-terminals, and merges non-terminals, finding the set of annotated nodes that maximizes the likelihood of the training set treebank.</p>
 
           
         
@@ -1717,7 +1695,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

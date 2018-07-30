@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-29T03:32:28.572Z">
+<meta property="og:updated_time" content="2018-07-30T10:10:13.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smoothing">
 <meta name="twitter:description" content="Smoothing:basically discount the observed words to assign to words with zero count so as to deal with the zero probability words. Laplace SmoothingAlso called add-one smoothing. the unsmoothed maximum">
@@ -399,7 +399,9 @@
 <p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability \(P^∗\) if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
 <p>$$\begin{cases}<br>       P^*(w_n|w_{n-N+1}^{n-1})\quad \text{if}\;C(w_{n-N+1}^{n-1}) &gt; 0 \<br>       \alpha(w_{n-N+1}^{n-1})P_{BO}(w_n|w_{n-N+2}^{n-1})\quad \text{otherwise}<br>    \end{cases} $$</p>
 <p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the \(P^*\) and \(\alpha\) values.</p>
-<h3 id="Kneser-Ney-Smoothing"><a href="#Kneser-Ney-Smoothing" class="headerlink" title="Kneser-Ney Smoothing"></a>Kneser-Ney Smoothing</h3><p>Novel continuation means the first time that the word \(w_{i-1}\) preceeds the word \(w_i\).</p>
+<h3 id="Kneser-Ney-Smoothing"><a href="#Kneser-Ney-Smoothing" class="headerlink" title="Kneser-Ney Smoothing"></a>Kneser-Ney Smoothing</h3><p>Intuition: Discount the probability from N gram model and assign it to phrase so as to take different word combinations into consideration.</p>
+<p>Simple example:<br>Finance in _ is promissing.<br>Here you can just simply fill in a word with high probability like USA, Germany. With Kneser-Ney Smoothing, taking word combinations into consideration, it might fill in world finance centre like London and HongKong because they often appear together.</p>
+<p>Novel continuation means the first time that the word \(w_{i-1}\) preceeds the word \(w_i\).</p>
 <p>The number of times a word w appears as a novel continuation can be expressed as:</p>
 <p>$$P_{continuation}(w_i)\propto \lvert {w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert$$</p>
 <p>\(w_i\) is the current word. \(w_{i-1}\) is the words occur before the current word(also called preceeding word).</p>
@@ -574,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
