@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Feedforward Neural Net Language Model (NNLM)Time complexity:Q = N × D + N × D × H + H × V, where the dominating term is H × V. N are the N input examples, D is the dimensionality of the word vectors,">
+<meta name="description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Feedforward Neural Net Language Model (NNLM)Tim">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Word_Representation">
 <meta property="og:url" content="http://yoursite.com/2018/08/01/Word-Representation/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Feedforward Neural Net Language Model (NNLM)Time complexity:Q = N × D + N × D × H + H × V, where the dominating term is H × V. N are the N input examples, D is the dimensionality of the word vectors,">
+<meta property="og:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Feedforward Neural Net Language Model (NNLM)Tim">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-01T03:03:21.768Z">
+<meta property="og:updated_time" content="2018-08-01T03:03:42.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Word_Representation">
-<meta name="twitter:description" content="Feedforward Neural Net Language Model (NNLM)Time complexity:Q = N × D + N × D × H + H × V, where the dominating term is H × V. N are the N input examples, D is the dimensionality of the word vectors,">
+<meta name="twitter:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Feedforward Neural Net Language Model (NNLM)Tim">
 
 
 
@@ -364,7 +364,8 @@
       
 
       
-        <h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
+        <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
+<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
 <p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
 <p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
 <p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
