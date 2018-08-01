@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="##NLP typical Step:Tokenize: separate the words in the sentence Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vec">
+<meta name="description" content="NLP typical Step:Tokenize: separate the words in the sentence Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vecto">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sentence_Similarity">
 <meta property="og:url" content="http://yoursite.com/2018/05/27/Sentence-Similarity/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="##NLP typical Step:Tokenize: separate the words in the sentence Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vec">
+<meta property="og:description" content="NLP typical Step:Tokenize: separate the words in the sentence Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vecto">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-05-26T18:32:37.716Z">
+<meta property="og:updated_time" content="2018-07-31T03:30:15.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sentence_Similarity">
-<meta name="twitter:description" content="##NLP typical Step:Tokenize: separate the words in the sentence Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vec">
+<meta name="twitter:description" content="NLP typical Step:Tokenize: separate the words in the sentence Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vecto">
 
 
 
@@ -364,12 +364,12 @@
       
 
       
-        <p>##NLP typical Step:<br>Tokenize: separate the words in the sentence</p>
+        <h2 id="NLP-typical-Step"><a href="#NLP-typical-Step" class="headerlink" title="NLP typical Step:"></a>NLP typical Step:</h2><p>Tokenize: separate the words in the sentence</p>
 <p>Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vector</p>
-<p>##Similarity Measurement<br>TF-IDF model: convert the sentence to a vector of words, use cosine similarity to measure. In this applicatoin, not very good.</p>
+<h2 id="Similarity-Measurement"><a href="#Similarity-Measurement" class="headerlink" title="Similarity Measurement"></a>Similarity Measurement</h2><p>TF-IDF model: convert the sentence to a vector of words, use cosine similarity to measure. In this applicatoin, not very good.</p>
 <p>Bag of words:</p>
 <p>Modern way: NLP step as above. Use pre-train word vectors to represent a sentence. Compute distance. Huge amount of computation. In this application, extract several keywords first as heuristic to rule out a lot of sentences and then start using this method to reduce computation amount. The best accuracy in this application. Change pre-train vectors and brute-force computation would increase the accuracy.</p>
-<p>##Some Notes<br>Tokenize: separate the words in the sentence </p>
+<h2 id="Some-Notes"><a href="#Some-Notes" class="headerlink" title="Some Notes"></a>Some Notes</h2><p>Tokenize: separate the words in the sentence </p>
 <p>Bag of words: just count the frequency of words that appear in the sentence and neglect the sequence of words</p>
 <p>Word representation: one-hot representation<br>Not easy to extract connection because dot product between any two words are 0</p>
 <p>Featurized representation: word embedding. Using a matrix to represent values of features, and stand for a word. It could be understood as a word embedded in a high dimensional space </p>
@@ -385,6 +385,8 @@
 <p>Attention model:<br>Just focus on a few words around rather than the whole sentence to translate. Divide and conquer, get better result.</p>
 <p>Speech recognition:<br>Turn time domain signal to frequency domain signal<br>Usually input is much larger than output</p>
 <p>CTC cost:<br>Basic idea: collapse repeated characters not separated by “blank”</p>
+<h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>puts pieces of information in a standard format, so that they can be compared to other pieces of information. </p>
+<p>An example of nor- malization is formatting dates and times in a stan- dard way, so that “12pm”, “noon” and “12.00h” all map to the same representation.</p>
 
       
     </div>
@@ -489,8 +491,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -509,7 +520,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -545,6 +556,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NLP-typical-Step"><span class="nav-number">1.</span> <span class="nav-text">NLP typical Step:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Similarity-Measurement"><span class="nav-number">2.</span> <span class="nav-text">Similarity Measurement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Some-Notes"><span class="nav-number">3.</span> <span class="nav-text">Some Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Normalization"><span class="nav-number">3.1.</span> <span class="nav-text">Normalization</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

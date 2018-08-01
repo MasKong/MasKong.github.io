@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Pointwise Mutual Information (PMI)Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information. Instead we’d">
+<meta name="description" content="Mutual Information$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$ This could be used as the heuristic of feature selection. Higher mutual information means the feat">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="feature_selection">
 <meta property="og:url" content="http://yoursite.com/2018/07/30/feature-selection/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Pointwise Mutual Information (PMI)Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information. Instead we’d">
+<meta property="og:description" content="Mutual Information$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$ This could be used as the heuristic of feature selection. Higher mutual information means the feat">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T12:47:52.837Z">
+<meta property="og:updated_time" content="2018-07-30T14:04:33.061Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="feature_selection">
-<meta name="twitter:description" content="Pointwise Mutual Information (PMI)Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information. Instead we’d">
+<meta name="twitter:description" content="Mutual Information$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$ This could be used as the heuristic of feature selection. Higher mutual information means the feat">
 
 
 
@@ -364,19 +364,19 @@
       
 
       
-        <h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
-<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
-<p>mutual information<br>test</p>
-<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
-<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
-<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
-<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
-<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
-<p>To solve this problem,change the computation for P(c).</p>
-<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
-<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
-<p>Another solutio is Laplace smoothing.</p>
+        <h2 id="Mutual-Information"><a href="#Mutual-Information" class="headerlink" title="Mutual Information"></a>Mutual Information</h2><p>$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
+<p>This could be used as the heuristic of feature selection. Higher mutual information means the feature do relates to the class, which is helpful in classfication.</p>
+<h2 id="chi-squared-test"><a href="#chi-squared-test" class="headerlink" title="chi-squared test"></a>chi-squared test</h2><p>$$X^2(D,t,c)=\sum_{e_t\in {0,1}} \sum_{e_c\in {0,1}} \frac{(N_{e_te_c}-E_{e_te_c})^2}{E_{e_te_c}}$$</p>
+<p>N is the observed frequency in D and E the expected frequency. </p>
+<p>chi-squared test is a measure of how much expected counts E and observed counts N deviate from each other. A high value indicates that the hypothesis of independence is incorrect.</p>
+<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h4><p>For a test with one degree of freedom, the so-called Yates correction should be used, which makes it harder to reach statistical significance. <strong>degree of freedom</strong> = (num of columns -1) * (num of rows -1)</p>
+<p>Also, whenever a statistical test is used multiple times, then the probability of getting at least one error increases. If 1,000 hypotheses are rejected, each with 0.05 error probability, then 0.05 × 1000 = 50 calls of the test will be wrong on average. </p>
+<h2 id="Frequency-based-feature-selection"><a href="#Frequency-based-feature-selection" class="headerlink" title="Frequency-based feature selection"></a>Frequency-based feature selection</h2><p>select the feature that occurs usually. When many thousands of features are selected, then frequency-based feature selection often does well.</p>
+<h2 id="Feature-selection-for-multiple-classifiers"><a href="#Feature-selection-for-multiple-classifiers" class="headerlink" title="Feature selection for multiple classifiers"></a>Feature selection for multiple classifiers</h2><p>Commonly, feature selection statistics are first computed separately for each class on the two-class classification task c versus not c and then combined. </p>
+<p>One combination method computes a single figure of merit for each feature, for example, by averaging the values A(t, c) for feature t, and then selects the k features with highest figures of merit.</p>
+<p>Another frequently used combination method selects the top k/n features for each of n classifiers and then combines these n sets into one global feature set.</p>
+<h2 id="Comparison-of-feature-selection-methods"><a href="#Comparison-of-feature-selection-methods" class="headerlink" title="Comparison of feature selection methods"></a>Comparison of feature selection methods</h2><p>Mutual information prefer common terms while chi-squared test prefer rare terms. Because A single occurrence is not very informative according to the information-theoretic definition of information.</p>
+<p>All three methods are greedy methods.</p>
 
       
     </div>
@@ -416,6 +416,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/31/Deep-Learning/" rel="prev" title="Deep_Learning">
+                Deep_Learning <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -506,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -552,7 +556,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pointwise-Mutual-Information-PMI"><span class="nav-number">1.</span> <span class="nav-text">Pointwise Mutual Information (PMI)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutual-Information"><span class="nav-number">1.</span> <span class="nav-text">Mutual Information</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#chi-squared-test"><span class="nav-number">2.</span> <span class="nav-text">chi-squared test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problems"><span class="nav-number">2.0.1.</span> <span class="nav-text">Problems</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Frequency-based-feature-selection"><span class="nav-number">3.</span> <span class="nav-text">Frequency-based feature selection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-selection-for-multiple-classifiers"><span class="nav-number">4.</span> <span class="nav-text">Feature selection for multiple classifiers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparison-of-feature-selection-methods"><span class="nav-number">5.</span> <span class="nav-text">Comparison of feature selection methods</span></a></li></ol></div>
             
 
           </div>
