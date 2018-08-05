@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T06:35:28.154Z">
+<meta property="og:updated_time" content="2018-08-01T11:51:44.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch">
 <meta name="twitter:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
@@ -378,6 +378,10 @@
 <p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
 <p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
 <p>dtype=torch.long is for integers.</p>
+<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
+<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
+<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
+<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
 
       
     </div>
@@ -502,7 +506,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

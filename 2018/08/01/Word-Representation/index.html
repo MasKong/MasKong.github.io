@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Feedforward Neural Net Language Model (NNLM)Tim">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-01T03:03:42.695Z">
+<meta property="og:updated_time" content="2018-08-02T09:42:12.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Word_Representation">
 <meta name="twitter:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Feedforward Neural Net Language Model (NNLM)Tim">
@@ -381,6 +381,7 @@
 <p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
 <p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
 <p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
 
       
     </div>
@@ -420,6 +421,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/02/CRF/" rel="prev" title="CRF">
+                CRF <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -510,7 +515,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -556,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feedforward-Neural-Net-Language-Model-NNLM"><span class="nav-number">1.</span> <span class="nav-text">Feedforward Neural Net Language Model (NNLM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Bag-of-Words-Model-CBOW"><span class="nav-number">2.</span> <span class="nav-text">Continuous Bag-of-Words Model(CBOW)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Skip-gram-Model"><span class="nav-number">3.</span> <span class="nav-text">Continuous Skip-gram Model</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feedforward-Neural-Net-Language-Model-NNLM"><span class="nav-number">1.</span> <span class="nav-text">Feedforward Neural Net Language Model (NNLM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Bag-of-Words-Model-CBOW"><span class="nav-number">2.</span> <span class="nav-text">Continuous Bag-of-Words Model(CBOW)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Skip-gram-Model"><span class="nav-number">3.</span> <span class="nav-text">Continuous Skip-gram Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>

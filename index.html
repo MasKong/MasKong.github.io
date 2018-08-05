@@ -296,6 +296,268 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/SVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/05/SVM/" itemprop="url">SVM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T14:20:17+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Derivation of SVM:</p>
+<ul>
+<li>write down the equation. $$\max \limits_{w,b} {1\over ||w||}$$ such that $$ {(w^Tx_i+b)*y_i}\ge1$$</li>
+<li>Lagrange multipliers to solve the dual problem and get the answer of the primal problem if the problem satisfy KKT condition.</li>
+<li>$$\begin{cases}<br>{\partial L \over \partial w}=0 &amp; \<br>{\partial L \over \partial b}=0 &amp;<br>\end{cases} \Longrightarrow<br>\begin{cases}<br>w=\sum \limits_{i=1}^m\alpha_ix_iy_i &amp; \<br>0=\sum \limits_{i=1}^m\alpha_iy_i &amp;<br>\end{cases}$$</li>
+<li>Slove the problem</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/CRF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/02/CRF/" itemprop="url">CRF</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T11:32:49+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Conditional-Random-Field-CRF"><a href="#Conditional-Random-Field-CRF" class="headerlink" title="Conditional Random Field(CRF)"></a>Conditional Random Field(CRF)</h2><p>It is a kind of generalized logistic regression model.</p>
+<p>HMMs have difficulty modeling overlapping, non-independent features because the assuption is indepence. In NLP, words are correlated and connection between them contains information. Here is where CRF comes into play.</p>
+<p>Linear chain CRF, can be thought of as the undirected graphical model version of HMM. It is as efficient as HMMs, where the sum-product algorithm and max-product algorithm still apply. Linear chain CRF is a special case of CRF, where each clique is the nearby two nodes. In terms of graph, the structure would be much more different.</p>
+<p>Overlapping features are in fact boost up the belief of the result, which should not be eliminated simply.</p>
+<p>CRF is conditional probability distribution while HMM is joint probability distribution.</p>
+<h3 id="Formal-Definition-of-CRF"><a href="#Formal-Definition-of-CRF" class="headerlink" title="Formal Definition of CRF"></a>Formal Definition of CRF</h3><p>$$P(y\mid x) = \frac{1}{Z(x)} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
+<p>where C denotes the set of cliques (i.e. fully connected subgraphs), \(\phi_c(x_c,y_c)\) is a factor. </p>
+<p>$$Z(x) = \sum_{y \in \mathcal{Y}} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
+<h4 id="Parameterized-Form-of-CRF"><a href="#Parameterized-Form-of-CRF" class="headerlink" title="Parameterized Form of CRF:"></a>Parameterized Form of CRF:</h4><p>$$P(y|x)=\frac{1}{Z(x)}\exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
+<p>$$Z(x)=\sum_y \exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
+<p>where \(\lambda_k, \mu_l\) are weights and \(t_k(y_{i-1},y_i,x,i)\) is the transition probability that given \(y_{i-1}\), the next label is \(y_{i}\) given input x at position i. \(\mu_ls_l(y_i,x,i)\) is the probability that at position i, given x, the output is \(y_{i}\).</p>
+<h4 id="Inference-of-label-y"><a href="#Inference-of-label-y" class="headerlink" title="Inference of label y"></a>Inference of label y</h4><p>$$\arg \max_y \phi_1(y_1, x_1) \prod_{i=2}^n \phi(y_{i-1}, y_i) \phi(y_i, x_i)$$</p>
+<p>In practice, \(\phi_c(x_c,y_c) = \exp(w_c^T f_c(x_c, y_c)).\) And \(f_c(x_c, y_c) = \lambda_kt_k(y_{i-1},y_i,x,i)+\mu_ls_l(y_i,x,i)\). This could also be written in vector form.</p>
+<p>The most important realization that need to be made about CRF features is that they can be arbitrarily complex. In fact, we may define CRF that depend on the entire input x. This will not affect computational performance at all, because at inference time, the x will be always observed.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
+<p><a href="https://github.com/Zhenye-Na/cs446/blob/master/docs/Probabilistic%20Graphical%20Models%20-%20Principles%20and%20Techniques.pdf" target="_blank" rel="noopener">Probabilistic Graphical Models - Principles and Techniques</a></p>
+<p><a href="https://ermongroup.github.io/cs228-notes/representation/undirected/" target="_blank" rel="noopener">cs228 notes </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Word-Representation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -384,6 +646,7 @@
 <p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
 <p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
 <p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
 
           
         
@@ -517,6 +780,10 @@
 <p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
 <p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
 <p>dtype=torch.long is for integers.</p>
+<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
+<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
+<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
+<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
 
           
         
@@ -1355,267 +1622,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/Recurrent-Neural-Network/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/25/Recurrent-Neural-Network/" itemprop="url">Recurrent_Neural_Network</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T11:09:32+08:00">
-                2018-07-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Gradient vanishing or exploding:<br>Since the time step 1 would have effect on time step n, when doing back propagation, according to the chain rule, the same weight matrix W would be multiplied by n times which is W to the power of n. So the norm of W is greater than 1, there is gradient exploding. And vice versa, gradient vanishing if the norm of W is smaller than 1.</p>
-<p>Solution to gradient vanishing:<br>Initialize weight matrix to identity matrix  rather than a matrix of random values. And use Relu as activation function. The intuition of this is to take average of input and hidden state. Then start to optimize the weight matrix.</p>
-<h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><p>The input includes all or some of the hidden states in the encoder. Utilize a score function to weight importance of those hidden states and feed into the decoder with the input word.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/Tensorflow/" itemprop="url">Tensorflow</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T14:42:47+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Characteristic: Lazy evaluation like scala</p>
-<p>Two steps to build and run a model:</p>
-<ul>
-<li>assemble a graph</li>
-<li>use a session to execute operations in the graph</li>
-</ul>
-<p>Placeholder: a node to store variable which would not be modified during backpropagation</p>
-<p>Variable: a node that would be modified during backpropagation</p>
-<p>Constant: values that cannot be changed</p>
-<p>Running parts need to be encapsulated into session.run(). session.run() is evaluation of the graph.</p>
-<p>Variables could have name and scope.</p>
-<p>Use TF DType to accelerate the computation or tensorflow has to infer the type.</p>
-<p>create variables with tf.get_variable</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = tf.get_variable(&quot;matrix&quot;, initializer=tf.constant([[0, 1], [2, 3]]))</span><br></pre></td></tr></table></figure>
-<p>rather than </p>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Before running, variables need to be initialized.</span><br></pre></td></tr></table></figure>
-<p>initializer = tf.global_variables_initializer()<br>with tf.Session() as sess:<br>    sess.run(initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a subset of variables:</span><br></pre></td></tr></table></figure></p>
-<p>with tf.Session() as sess:<br>    sess.run([a,b])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a single variable:</span><br></pre></td></tr></table></figure></p>
-<p>m=tf.get_variable(“matrix”,initializer=tf.constant([[0, 1], [2, 3]]))<br>with tf.Session() as sess:<br>    sess.run(m.initializer)<br><code>`</code></p>
-<p>W.assign(100) creates an assign operation that assign 100 to variable W. The operation needs to be executed in a session to take effect.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1670,7 +1676,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="In most text classificationapplications, however, using a stop word list doesn’t improve performance,and so it is more common to make use of the entire vocabulary and not use a stopword list Naive Bay">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T12:36:16.452Z">
+<meta property="og:updated_time" content="2018-08-04T11:07:54.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sentiment_Classification_Naive_Bayes">
 <meta name="twitter:description" content="In most text classificationapplications, however, using a stop word list doesn’t improve performance,and so it is more common to make use of the entire vocabulary and not use a stopword list Naive Bay">
@@ -401,6 +401,15 @@
 <p>add-5 smoothing and dealing with unknown word: 0.765</p>
 <p>stem average accuracy:  0.784888888888889</p>
 <p>without stem average accuracy:  0.7562222222222222</p>
+<h2 id="Bayesian-networks"><a href="#Bayesian-networks" class="headerlink" title="Bayesian networks"></a>Bayesian networks</h2><p>Bayesian networks represent the conditional dependence in a compat way. In real life, absolute dependence is not true most time.</p>
+<p>Bayesian networks is a Directed Acyclic Graph(DAG) that model local conditional dependence. It joint probability distribution, which turns conditional probability distribution to joint probability distribution. </p>
+<p>Bayesian networks is assembled by causality although causality is not necessary numerically in bayesian networks. Bayesian networks that reflect causality would be simpler and easier to think about.</p>
+<p>In Bayesian networks, each variable is a node. Edges between nodes are directed, which represent dependence.</p>
+<p>To calculate probability, arrage the netword properly s.t. \(p(x_1,…x_n) = p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)….p(x_n|x_1,x_2….x_{n-1})\). </p>
+<h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><h4 id="By-Emuneration"><a href="#By-Emuneration" class="headerlink" title="By Emuneration"></a>By Emuneration</h4><p>Emunerate the variables and their states, ioin the variables to build a huge table. i.e.: N variables each with d states, the table entries would be \(d^N\).</p>
+<h4 id="By-Variable-Elimination"><a href="#By-Variable-Elimination" class="headerlink" title="By Variable Elimination"></a>By Variable Elimination</h4><p>Join the variables and sum out the probability to eliminate the variable immediately. Do it iteratively to avoid building a big table.</p>
+<p>i.e.:  \(p(x_1,…x_n)p(x_1)p(x_2|x_1)p(x_3|x_1,x_2)….p(x_n|x_1,x_2….x_{n-1})\). First join x1 to x2  to get \(p(x_2,x_1)\), and then sum out x1 to get \(p(x_2)\). Do it iteratively to get \(p(x_n)\).</p>
+<p>Finding the optimal ordering is a NP problem.</p>
 
       
     </div>
@@ -534,7 +543,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -580,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Bayes-Classifier-for-Sentiment-Analysis"><span class="nav-number">1.</span> <span class="nav-text">Naive Bayes Classifier for Sentiment Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maximum-Likelihood-to-train-Naive-Bayes"><span class="nav-number">2.</span> <span class="nav-text">Maximum Likelihood to train Naive Bayes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Multinominal-Naive-Bayes-The-Bernoulli-model"><span class="nav-number">3.</span> <span class="nav-text">Binary Multinominal Naive Bayes(The Bernoulli model)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Bayes-as-a-Language-Model"><span class="nav-number">4.</span> <span class="nav-text">Naive Bayes as a Language Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Toy-Model"><span class="nav-number">4.0.1.</span> <span class="nav-text">Toy Model</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Bayes-Classifier-for-Sentiment-Analysis"><span class="nav-number">1.</span> <span class="nav-text">Naive Bayes Classifier for Sentiment Analysis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Maximum-Likelihood-to-train-Naive-Bayes"><span class="nav-number">2.</span> <span class="nav-text">Maximum Likelihood to train Naive Bayes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Multinominal-Naive-Bayes-The-Bernoulli-model"><span class="nav-number">3.</span> <span class="nav-text">Binary Multinominal Naive Bayes(The Bernoulli model)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-Bayes-as-a-Language-Model"><span class="nav-number">4.</span> <span class="nav-text">Naive Bayes as a Language Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Toy-Model"><span class="nav-number">4.0.1.</span> <span class="nav-text">Toy Model</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-networks"><span class="nav-number"></span> <span class="nav-text">Bayesian networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference"><span class="nav-number">1.</span> <span class="nav-text">Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#By-Emuneration"><span class="nav-number">1.1.</span> <span class="nav-text">By Emuneration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#By-Variable-Elimination"><span class="nav-number">1.2.</span> <span class="nav-text">By Variable Elimination</span></a></li></ol></li></ol></div>
             
 
           </div>
