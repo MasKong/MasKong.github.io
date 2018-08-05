@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Derivation of SVM:  write down the equation. $$\max \limits_{w,b} {1\over ||w||}$$ such that $$ {(w^Tx_i+b)*y_i}\ge1$$ Lagrange multipliers to solve the dual problem and get the answer of the primal p">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-05T06:28:56.120Z">
+<meta property="og:updated_time" content="2018-08-05T06:34:52.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SVM">
 <meta name="twitter:description" content="Derivation of SVM:  write down the equation. $$\max \limits_{w,b} {1\over ||w||}$$ such that $$ {(w^Tx_i+b)*y_i}\ge1$$ Lagrange multipliers to solve the dual problem and get the answer of the primal p">
@@ -368,7 +368,10 @@
 <ul>
 <li>write down the equation. $$\max \limits_{w,b} {1\over ||w||}$$ such that $$ {(w^Tx_i+b)*y_i}\ge1$$</li>
 <li>Lagrange multipliers to solve the dual problem and get the answer of the primal problem if the problem satisfy KKT condition.</li>
-<li>$$\begin{cases}<br>{\partial L \over \partial w}=0 &amp; \<br>{\partial L \over \partial b}=0 &amp;<br>\end{cases} \Longrightarrow<br>\begin{cases}<br>w=\sum \limits_{i=1}^m\alpha_ix_iy_i &amp; \<br>0=\sum \limits_{i=1}^m\alpha_iy_i &amp;<br>\end{cases}$$</li>
+<li>$$\begin{cases}<br>{\partial L \over \partial w}=0 &amp; \<br>{\partial L \over \partial b}=0 &amp;<br>\end{cases} \Longrightarrow<br>\begin{cases}<br>w=\sum \limits_{i=1}^m\alpha_ix_iy_i &amp; \<br>0=\sum \limits_{i=1}^m\alpha_iy_i &amp;<br>\end{cases}$$<br>$$\begin{cases}<br>w^<em>=\sum \limits_{i=1}^m\alpha_i^</em>x_iy_i &amp; \<br>b^<em>=y_j-\sum \limits_{i=1}^m\alpha_i^</em>y_i(x_i\cdot x_j) &amp;<br>\end{cases}$$</li>
+</ul>
+<p>$$y_j(w^<em>\cdot x_j+b^</em>)-1=0$$ substitute the w with aforementioned equation and multiply \(y_j\) simultaneously.\(y_j^2=1\)</p>
+<ul>
 <li>Slove the problem</li>
 </ul>
 
