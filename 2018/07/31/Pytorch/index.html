@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-01T11:51:44.988Z">
+<meta property="og:updated_time" content="2018-08-18T13:55:10.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch">
 <meta name="twitter:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
@@ -382,6 +382,17 @@
 <p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
 <p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
 <p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
+<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
+<p>Display an image in pytorch: </p>
+<ul>
+<li>transform the array</li>
+<li>transform to numpy array</li>
+<li>display</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
+<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
+<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
 
       
     </div>
@@ -506,7 +517,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
