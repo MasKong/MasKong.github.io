@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Vanilla gradient descentCalculate the gradient of the whole dataset and average the gradient by the size of the dataset.  Drawback: Time-consuming, compute gradients redundantly. Mini-batch gradient d">
+<meta name="description" content="GoogleNet Auxiliary classifier layer is to solve the gradient vanishing problem In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a r">
 <meta name="keywords" content="DL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="gradient_descent">
-<meta property="og:url" content="http://yoursite.com/2018/08/22/gradient-descent/index.html">
+<meta property="og:title" content="NN_Architecture">
+<meta property="og:url" content="http://yoursite.com/2018/08/25/NN-Architecture/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Vanilla gradient descentCalculate the gradient of the whole dataset and average the gradient by the size of the dataset.  Drawback: Time-consuming, compute gradients redundantly. Mini-batch gradient d">
+<meta property="og:description" content="GoogleNet Auxiliary classifier layer is to solve the gradient vanishing problem In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a r">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-23T03:58:10.756Z">
+<meta property="og:updated_time" content="2018-08-25T14:09:40.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="gradient_descent">
-<meta name="twitter:description" content="Vanilla gradient descentCalculate the gradient of the whole dataset and average the gradient by the size of the dataset.  Drawback: Time-consuming, compute gradients redundantly. Mini-batch gradient d">
+<meta name="twitter:title" content="NN_Architecture">
+<meta name="twitter:description" content="GoogleNet Auxiliary classifier layer is to solve the gradient vanishing problem In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a r">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/22/gradient-descent/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/25/NN-Architecture/"/>
 
 
 
 
 
-  <title>gradient_descent | </title>
+  <title>NN_Architecture | </title>
   
 
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -314,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">gradient_descent</h1>
+          <h1 class="post-title" itemprop="name headline">NN_Architecture</h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T11:45:16+08:00">
-                2018-08-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
+                2018-08-25
               </time>
             
 
@@ -364,26 +364,12 @@
       
 
       
-        <h2 id="Vanilla-gradient-descent"><a href="#Vanilla-gradient-descent" class="headerlink" title="Vanilla gradient descent"></a>Vanilla gradient descent</h2><p>Calculate the gradient of the whole dataset and average the gradient by the size of the dataset. </p>
-<p>Drawback: Time-consuming, compute gradients redundantly.</p>
-<h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>Take a batch of examples and calculate the gradient. After that, average the gradient by the batch size.</p>
-<h2 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h2><p>Take a single example and calculate the gradient. </p>
-<p>Drawback: High variance, fluctuate a lot.<br>In high dimension, some directions would have larger gradients and zigzag a lot. The direction of gradient would deviate from the best direction.</p>
-<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>Momentum would accumulate gradient if the direction is the same and reduce the gradient if the direction zigzag a lot such that the overall direction would point to the local/global minimum with less zigzagging.</p>
-<p>$$v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta)$$</p>
-<p>$$\theta = \theta - v_t$$</p>
-<p>\(\theta\) is the gradient and \(\gamma\) is the momentum which is usually 0.9. \(\eta\) is the learning rate.</p>
-<h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>It is a lookahead version of momentum. The gradient would be updated using momentum, and a estimate of the future gradient after normal momentum update\(\nabla_\theta J( \theta - \gamma v_{t-1} )\) would be added to the current update of gradient so as to accelerate convergence. <strong>It significantly increased the performance of RNNs.</strong></p>
-<p>$$<br>v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta - \gamma v_{t-1} ) \<br>\theta = \theta - v_t$$</p>
-<h3 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h3><p>It adapts the learning rate to the parameters, performing larger updates for infrequent and smaller updates for frequent<br>parameters.</p>
-<p>$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$</p>
-<p>\(G_{t} \in \mathbb{R}^{d \times d}\) is a diagonal matrix where each diagonal element i,i is the sum of the squares of the gradients w.r.t. \(\theta_i\) up to time step t, while \(\epsilon\) is a smoothing term that avoids division by zero (usually on the order of 1e−8). Interestingly, without the square root operation, the algorithm performs much worse.</p>
-<p>Drawback: The accumulated sum keeps growing during training and causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</p>
-<h3 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h3><p>$$\Delta \theta_t = - \dfrac{RMS[\Delta \theta]<em>{t-1}}{RMS[g]</em>{t}} g_{t} \<br>\theta_{t+1} = \theta_t + \Delta \theta_t<br>$$</p>
-<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>Approximate the learning rate with the RMS of parameter updates until the previous time step. </p>
-<p>$$E[g^2]<em>t = 0.9 E[g^2]</em>{t-1} + 0.1 g^2_t \<br>\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]<em>t + \epsilon}} g</em>{t}<br>$$</p>
-<p>It still accumulates the gradient while it also depends on the current gradient and the updates do not get monotonically smaller.<br>RMSProp still modulates the learning rate of each weight based on the magnitudes of its gradients, which has a beneficial equalizing effect.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank" rel="noopener">An overview of gradient descent optimization<br>algorithms</a></p>
+        <h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
+<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3<em>3 and 5</em>5 filters have to be increased.</li>
+<li>1*1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+</ul>
+<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
 
       
     </div>
@@ -414,8 +400,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/18/Network-in-Network/" rel="next" title="Network_in_Network">
-                <i class="fa fa-chevron-left"></i> Network_in_Network
+              <a href="/2018/08/25/training-problem/" rel="next" title="training_problem">
+                <i class="fa fa-chevron-left"></i> training_problem
               </a>
             
           </div>
@@ -423,10 +409,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/25/training-problem/" rel="prev" title="training_problem">
-                training_problem <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -563,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanilla-gradient-descent"><span class="nav-number">1.</span> <span class="nav-text">Vanilla gradient descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mini-batch-gradient-descent"><span class="nav-number">2.</span> <span class="nav-text">Mini-batch gradient descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stochastic-gradient-descent"><span class="nav-number">3.</span> <span class="nav-text">Stochastic gradient descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Momentum"><span class="nav-number">3.1.</span> <span class="nav-text">Momentum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nesterov-accelerated-gradient"><span class="nav-number">3.2.</span> <span class="nav-text">Nesterov accelerated gradient</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adagrad"><span class="nav-number">3.3.</span> <span class="nav-text">Adagrad</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adadelta"><span class="nav-number">3.4.</span> <span class="nav-text">Adadelta</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RMSprop"><span class="nav-number">3.5.</span> <span class="nav-text">RMSprop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">3.6.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GoogleNet"><span class="nav-number">1.</span> <span class="nav-text">GoogleNet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Residual-Network"><span class="nav-number">2.</span> <span class="nav-text">Residual Network</span></a></li></ol></div>
             
 
           </div>
@@ -731,9 +713,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/08/22/gradient-descent/';
-          this.page.identifier = '2018/08/22/gradient-descent/';
-          this.page.title = 'gradient_descent';
+          this.page.url = 'http://yoursite.com/2018/08/25/NN-Architecture/';
+          this.page.identifier = '2018/08/25/NN-Architecture/';
+          this.page.title = 'NN_Architecture';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://MasKong.disqus.com/embed.js';
