@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-25T09:12:43.653Z">
+<meta property="og:updated_time" content="2018-08-27T14:12:48.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch">
 <meta name="twitter:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
@@ -393,6 +393,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
 <p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
 <p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
+<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
 
       
     </div>
@@ -517,7 +518,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

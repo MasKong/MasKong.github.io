@@ -296,6 +296,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/Attention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/27/Attention/" itemprop="url">Attention</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-27T10:43:33+08:00">
+                2018-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Attention is a distribution which describe how much the network should focus on each unit.</p>
+<h3 id="content-based"><a href="#content-based" class="headerlink" title="content-based"></a>content-based</h3><p>The attending RNN generates a query describing what it wants to focus on. Each item is dot-producted with the query to produce a score, describing how well it matches the query. The scores are fed into a softmax to create the attention distribution.</p>
+<h3 id="location-based"><a href="#location-based" class="headerlink" title="location-based"></a>location-based</h3><h3 id="Neural-Turing-Machines"><a href="#Neural-Turing-Machines" class="headerlink" title="Neural Turing Machines"></a>Neural Turing Machines</h3><p>Neural Turing Machines combine a RNN with an external memory bank. Since vectors are the natural language of neural networks, the memory is an array of vectors. Every step, NTMs read and write everywhere, just to different extents.</p>
+<p>Read operation is a weighted sum of the distribution.</p>
+<p>Similarly, NTMs write everywhere at once to different extents. Again, an attention distribution describes how much NTMs write at every location. The new value of a position in memory is a convex combination of the old memory content and the new write value.</p>
+<h4 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h4><ul>
+<li>The RNN controller gives a query vector.</li>
+<li>Each memory entry is scored for similarity with the query(dot product).</li>
+<li>The scores are then converted into a distribution using softmax.</li>
+<li>Interpolate the attention from the previous time step with the current distribution controlled by intepolation amount.</li>
+<li>Convolve the attention with a shift filter which allows the controller to move its focus.</li>
+<li>Sharpen the attention distribution. This final attention distribution is fed to the read or write operation.</li>
+</ul>
+<h3 id="Attentional-Interfaces"><a href="#Attentional-Interfaces" class="headerlink" title="Attentional Interfaces"></a>Attentional Interfaces</h3><p>Between connection of RNN or (RNN,CNN), there would be attentional interfaces which decides which units in the previous layer should pay attention to.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -373,6 +506,7 @@
 <li>1*1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
 </ul>
 <h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
 
           
         
@@ -1250,7 +1384,8 @@
       
         
           
-            <h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>The same set of parameters are used to compute the hidden states at the current time step given input and the hidden state of last time step.</p>
+            <p>RNN allows information flow.</p>
+<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>The same set of parameters are used to compute the hidden states at the current time step given input and the hidden state of last time step.</p>
 <p>A output layer may be added to each time step to extract information and make predictions.</p>
 <h3 id="Back-propagation"><a href="#Back-propagation" class="headerlink" title="Back-propagation"></a>Back-propagation</h3><p>Cannot be parallelized because gradient has to computed one by one in terms of time steps.</p>
 <h4 id="Recurrent-Connectiong-from-output-to-hidden"><a href="#Recurrent-Connectiong-from-output-to-hidden" class="headerlink" title="Recurrent Connectiong from output to hidden"></a>Recurrent Connectiong from output to hidden</h4><p>Training can be parallelized because the label is known and could be fed to hidden states directly. Trained with <strong>Teacher Forcing</strong> which is that given the input sequence and ground truth label in the last time step, produce the output in the current time step.</p>
@@ -1264,8 +1399,21 @@
 <h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
 <h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
 <h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
+<p>The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
+<p>Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state.</p>
+<p>$$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$</p>
+<p>The input gate controls how much the network utilize the current cell state to update the last cell state. The current cell state is also compute by the last hidden state and current input with just the different weight and bias matrix.</p>
+<p>$$i_t=\sigma(W_i\cdot [h_{t-1},x_t]+b_i)$$</p>
+<p>$$\tilde{C_t}=tanh(W_C\cdot [h_{t-1},x_t]+b_C)$$</p>
+<p>Update of the cell state:</p>
+<p>$$C_t=f_t<em>C_{t-1}+i_t</em>\tilde$$</p>
+<p>The final output gate controls hou much the network outputs the current cell state after novation. The network puts the cell state through tanh (to push the values to be between −1 and 1) and multiply it by the output of the sigmoid gate, so that it only outputs the parts we decided to.</p>
+<p>$$o_t=\sigma(W_o\cdot [h_{t-1},x_t]+b_o)$$</p>
+<p>$$h_t = o_t*nh(C_t)$$</p>
 <h2 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h2><p>With a single update gate to control whether the last hidden state or the current state is the output. A reset gate is used to control how much the past hidden units affect the current output.</p>
 <h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
 
           
         
@@ -1427,143 +1575,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/SVM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/SVM/" itemprop="url">SVM</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T14:20:17+08:00">
-                2018-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Derivation of SVM:</p>
-<ul>
-<li>write down the equation. $$\max \limits_{w,b} {1\over ||w||}$$ such that $$ {(w^Tx_i+b)*y_i}\ge1$$</li>
-<li>Lagrange multipliers to solve the dual problem and get the answer of the primal problem if the problem satisfy KKT condition.</li>
-<li>$$\begin{cases}<br>{\partial L \over \partial w}=0 &amp; \<br>{\partial L \over \partial b}=0 &amp;<br>\end{cases} \Longrightarrow<br>\begin{cases}<br>w=\sum \limits_{i=1}^m\alpha_ix_iy_i &amp; \<br>0=\sum \limits_{i=1}^m\alpha_iy_i &amp;<br>\end{cases}$$<br>$$\begin{cases}<br>w^<em>=\sum \limits_{i=1}^m\alpha_i^</em>x_iy_i &amp; \<br>b^<em>=y_j-\sum \limits_{i=1}^m\alpha_i^</em>y_i(x_i\cdot x_j) &amp;<br>\end{cases}$$</li>
-</ul>
-<p>$$y_j(w^<em>\cdot x_j+b^</em>)-1=0$$ substitute the w with aforementioned equation and multiply \(y_j\) simultaneously.\(y_j^2=1\)</p>
-<ul>
-<li>Most \(\alpha_i\)=0, for those \(\alpha_j \neq 0 \), their training samples \(x_i\) are so called support vector.</li>
-<li>Slove the problem</li>
-</ul>
-<p>For problems that are not linearly separatable, add a slack variable.</p>
-<p>Above is so called linear SVM.</p>
-<h2 id="Non-Linear-SVM"><a href="#Non-Linear-SVM" class="headerlink" title="Non-Linear SVM"></a>Non-Linear SVM</h2><p>Apply a kernel function K(x,z) to substitute the original inner product \(x_i\cdot x_j\). Affine the original variables in Euclidean space to another feature space to transfer the problem from non-linear to linear.</p>
-<h2 id="Hinge-Loss"><a href="#Hinge-Loss" class="headerlink" title="Hinge Loss"></a>Hinge Loss</h2><p>Anything falls between the margin would contribute to the loss. Those classified wrong would contribute more than classfied correct but with low confidence level. It is the upper bound of 0-1 loss.</p>
-<h2 id="Perceptron-Loss"><a href="#Perceptron-Loss" class="headerlink" title="Perceptron Loss"></a>Perceptron Loss</h2><p>Between 0-1 loss and hinge loss. The loss would be zero if classification is right. If the classification is wrong within the margin, the loss between 0 and 1. If the classification is wrong and outside the margin, the loss greater than 1.</p>
-<h2 id="0-1-Loss"><a href="#0-1-Loss" class="headerlink" title="0-1 Loss"></a>0-1 Loss</h2><p>The loss is only 0 or 1 corresponds to wrong or correct classification. Not continuously differentiable.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1618,7 +1629,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">47</span>
+                  <span class="site-state-item-count">48</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
