@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NLP," />
+  <meta name="keywords" content="DL," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
-<meta name="keywords" content="NLP">
+<meta name="description" content="LSTMForget gate, input gate and output gate controls the last hidden state, current input, and current output respectively. The cell state propagates the information through the network. It runs strai">
+<meta name="keywords" content="DL">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NLP_Notation">
-<meta property="og:url" content="http://yoursite.com/2018/06/26/NLP-Notation/index.html">
+<meta property="og:title" content="LSTM">
+<meta property="og:url" content="http://yoursite.com/2018/08/30/LSTM/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta property="og:description" content="LSTMForget gate, input gate and output gate controls the last hidden state, current input, and current output respectively. The cell state propagates the information through the network. It runs strai">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T12:27:26.349Z">
+<meta property="og:updated_time" content="2018-08-30T07:43:40.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NLP_Notation">
-<meta name="twitter:description" content="Language models assign a probability to each sentence \( w_1^n\) is a sequence of N words from word 1 to word N. A held-out corpus is an additional training corpus that we use to set hyperparameters.">
+<meta name="twitter:title" content="LSTM">
+<meta name="twitter:description" content="LSTMForget gate, input gate and output gate controls the last hidden state, current input, and current output respectively. The cell state propagates the information through the network. It runs strai">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/26/NLP-Notation/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/30/LSTM/"/>
 
 
 
 
 
-  <title>NLP_Notation | </title>
+  <title>LSTM | </title>
   
 
 
@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/NLP-Notation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/LSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -314,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NLP_Notation</h1>
+          <h1 class="post-title" itemprop="name headline">LSTM</h1>
         
 
         <div class="post-meta">
@@ -326,8 +326,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T18:59:05+08:00">
-                2018-06-26
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-30T15:39:41+08:00">
+                2018-08-30
               </time>
             
 
@@ -364,71 +364,24 @@
       
 
       
-        <p><strong>Language models</strong> assign a probability to each sentence</p>
-<p>\( w_1^n\) is a sequence of N words from word 1 to word N.</p>
-<p>A <strong>held-out corpus</strong> is an additional training corpus that we use to set hyperparameters.</p>
-<p><strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like graffe for giraffe). </p>
-<p><strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (real-word errors).</p>
-<p><strong>edit probability</strong> The probability of typo like deletion, insertion respectively.</p>
-<p><strong>text categorization</strong>: classifying an entire text by assigning it a text<br>categorization label drawn from some set of labels.</p>
-<p><strong>classification</strong>: take a single observation, extract some useful<br>features, and thereby classify the observation into one of a set of discrete classes.</p>
-<p><strong>Generative classifiers</strong> like naive Bayes build a model of each class. Given an observation, they return the class most likely to have generated the observation. <strong>Discriminative classifiers</strong> like logistic regression instead learn what features from the input are most useful to discriminate between the different possible classes.<br>While discriminative systems are often more accurate and hence more commonly used, generative classifiers still have a role.</p>
-<p><strong>bag-of-words</strong>: an unordered set of words with their position ignored, keeping only their frequency in the document.</p>
-<p><strong>linear classifiers</strong>: use a linear combination of the inputs to make a classification decision —like naive Bayes and also logistic regression.</p>
-<p><strong>period disambiguation</strong>: deciding if a period is the end of a sentence or part<br>of a word</p>
-<p><strong>co-occurrence matrix</strong>: a way of representing how often words co-occur.</p>
-<p><strong>term-document matrix</strong>: each row represents a word in the vocabulary and<br>each column represents a document.</p>
-<p><strong>vector space model</strong>:a document is represented as a count vector(column vector), each entry is the count of a specific word.</p>
-<p><strong>Information retrieval</strong>(IR): is the task of finding the document d from the D<br>documents in some collection that best matches a query q which is also a vector of length |V|.</p>
-<p><strong>term-context matrix</strong>: a  |V| × |V| matrix. Each entry(i,j) represent that the number of times a word i shows in the context word j. The context could be a document or a context window of length |L|.</p>
-<p><strong>WordNet</strong>(Sense-Tagged data):WordNet is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of synonyms , each expressing a distinct concept.</p>
-<p><strong>part-of-speech tags</strong>:</p>
-<ol>
-<li>CC    Coordinating conjunction</li>
-<li>CD    Cardinal number</li>
-<li>DT    Determiner</li>
-<li>EX    Existential there</li>
-<li>FW    Foreign word</li>
-<li>IN    Preposition or subordinating conjunction</li>
-<li>JJ    Adjective</li>
-<li>JJR    Adjective, comparative</li>
-<li>JJS    Adjective, superlative</li>
-<li>LS    List item marker</li>
-<li>MD    Modal</li>
-<li>NN    Noun, singular or mass</li>
-<li>NNS    Noun, plural</li>
-<li>NNP    Proper noun, singular</li>
-<li>NNPS    Proper noun, plural</li>
-<li>PDT    Predeterminer</li>
-<li>POS    Possessive ending</li>
-<li>PRP    Personal pronoun</li>
-<li>PRP$    Possessive pronoun</li>
-<li>RB    Adverb</li>
-<li>RBR    Adverb, comparative</li>
-<li>RBS    Adverb, superlative</li>
-<li>RP    Particle</li>
-<li>SYM    Symbol</li>
-<li>TO    to</li>
-<li>UH    Interjection</li>
-<li>VB    Verb, base form</li>
-<li>VBD    Verb, past tense</li>
-<li>VBG    Verb, gerund or present participle</li>
-<li>VBN    Verb, past participle</li>
-<li>VBP    Verb, non-3rd person singular present</li>
-<li>VBZ    Verb, 3rd person singular present</li>
-<li>WDT    Wh-determiner</li>
-<li>WP    Wh-pronoun</li>
-<li>WP$    Possessive wh-pronoun</li>
-<li>WRB    Wh-adverb</li>
-</ol>
-<p><strong>Lemmatization</strong> is the task of determining that two words have the same root, despite their surface differences. Usually including plural to singular, but the word form such as ing, ed would not change.</p>
-<p>This naive version of morphological analysis is called <strong>stemming</strong>. Stemming usually includes turning a word to its morpheme.</p>
-<p>Two broad classes of morphemes: </p>
-<ul>
-<li>stems: the central morpheme of the word, supplying the main meaning. i.e.: girls, girl and s are the morphemes. The central morpheme is girl.</li>
-<li>affixes: adding “additional”<br>meanings of various kinds. i.e.: homegrown, ‘home’ is added before the grown. unkind: ‘un’ is added before the word kind.</li>
-</ul>
-<p><strong>concept drift</strong> – the gradual change over time of the con- cept underlying a class like US president from Bill Clinton to George W. Bush</p>
+        <h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
+<p>The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
+<p>Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state.</p>
+<p>$$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$</p>
+<p>The input gate controls how much the network utilize the current cell state to update the last cell state. The current cell state is also compute by the last hidden state and current input with just the different weight and bias matrix.</p>
+<p>$$i_t=\sigma(W_i\cdot [h_{t-1},x_t]+b_i)$$</p>
+<p>$$\tilde{C_t}=tanh(W_C\cdot [h_{t-1},x_t]+b_C)$$</p>
+<p>Update of the cell state:</p>
+<p>$$C_t=f_t<em>C_{t-1}+i_t</em>\tilde$$</p>
+<p>The final output gate controls hou much the network outputs the current cell state after novation. The network puts the cell state through tanh (to push the values to be between −1 and 1) and multiply it by the output of the sigmoid gate, so that it only outputs the parts we decided to.</p>
+<p>$$o_t=\sigma(W_o\cdot [h_{t-1},x_t]+b_o)\ h_t = o_t*tanh(C_t)$$</p>
+<h2 id="Variant-of-LSTM"><a href="#Variant-of-LSTM" class="headerlink" title="Variant of LSTM"></a>Variant of LSTM</h2><p>$$C_t=f_t<em>C_{t-1}+(1-f_t)</em>\tilde$$</p>
+<p>Utilize \(1-f_t\) to substitutes the input gate.</p>
+<h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>With a single update gate to control whether the last hidden state or the current state is the output. A reset gate is used to control how much the past hidden units affect the current output.</p>
+<p>$$z_t=\sigma(W_z\cdot [h_{t-1},x_t]+b_z)\ r_t=\sigma(W_r\cdot [h_{t-1},x_r]+b_i)\ \tilde{h_t}=tanh(W\cdot [r_t<em>h_{t-1},x_t]) \ h_t = (1-z_t)</em>h_{t-1}+z_t*\tilde{h_t}<br>$$</p>
+<p>Here reset gate resembles the forget gate in LSTM. It decides how much the last hidden state contributes to the current hidden state. And the final output hidden state is controlled by the update gate which resembles the ouput gate in LSTM. Simpler than LSTM.</p>
+<h3 id="Peephole-connection"><a href="#Peephole-connection" class="headerlink" title="Peephole connection"></a>Peephole connection</h3><p>The value of gate is now controled by cell state, hidden state and current input. </p>
+<p>$$o_t=\sigma(W_o\cdot [C_t,h_{t-1},x_t]+b_o)\ i_t=\sigma(W_i\cdot [C_{t-1},h_{t-1},x_t]+b_i)\ _t=\sigma(W_f\cdot [C_{t-1},h_{t-1},x_t]+b_f)<br>$$</p>
 
       
     </div>
@@ -446,7 +399,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NLP/" rel="tag"># NLP</a>
+            <a href="/tags/DL/" rel="tag"># DL</a>
           
         </div>
       
@@ -459,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/26/Smoothing/" rel="next" title="Smoothing">
-                <i class="fa fa-chevron-left"></i> Smoothing
+              <a href="/2018/08/27/Attention/" rel="next" title="Attention">
+                <i class="fa fa-chevron-left"></i> Attention
               </a>
             
           </div>
@@ -468,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/27/Noisy-Channel/" rel="prev" title="Noisy_Channel">
-                Noisy_Channel <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -533,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -589,6 +547,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM"><span class="nav-number">1.</span> <span class="nav-text">LSTM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variant-of-LSTM"><span class="nav-number">2.</span> <span class="nav-text">Variant of LSTM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GRU"><span class="nav-number">2.1.</span> <span class="nav-text">GRU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Peephole-connection"><span class="nav-number">2.2.</span> <span class="nav-text">Peephole connection</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -751,9 +725,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/06/26/NLP-Notation/';
-          this.page.identifier = '2018/06/26/NLP-Notation/';
-          this.page.title = 'NLP_Notation';
+          this.page.url = 'http://yoursite.com/2018/08/30/LSTM/';
+          this.page.identifier = '2018/08/30/LSTM/';
+          this.page.title = 'LSTM';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://MasKong.disqus.com/embed.js';

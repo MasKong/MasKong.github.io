@@ -296,6 +296,143 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/LSTM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/30/LSTM/" itemprop="url">LSTM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-30T15:39:41+08:00">
+                2018-08-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
+<p>The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
+<p>Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state.</p>
+<p>$$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$</p>
+<p>The input gate controls how much the network utilize the current cell state to update the last cell state. The current cell state is also compute by the last hidden state and current input with just the different weight and bias matrix.</p>
+<p>$$i_t=\sigma(W_i\cdot [h_{t-1},x_t]+b_i)$$</p>
+<p>$$\tilde{C_t}=tanh(W_C\cdot [h_{t-1},x_t]+b_C)$$</p>
+<p>Update of the cell state:</p>
+<p>$$C_t=f_t<em>C_{t-1}+i_t</em>\tilde$$</p>
+<p>The final output gate controls hou much the network outputs the current cell state after novation. The network puts the cell state through tanh (to push the values to be between −1 and 1) and multiply it by the output of the sigmoid gate, so that it only outputs the parts we decided to.</p>
+<p>$$o_t=\sigma(W_o\cdot [h_{t-1},x_t]+b_o)\ h_t = o_t*tanh(C_t)$$</p>
+<h2 id="Variant-of-LSTM"><a href="#Variant-of-LSTM" class="headerlink" title="Variant of LSTM"></a>Variant of LSTM</h2><p>$$C_t=f_t<em>C_{t-1}+(1-f_t)</em>\tilde$$</p>
+<p>Utilize \(1-f_t\) to substitutes the input gate.</p>
+<h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>With a single update gate to control whether the last hidden state or the current state is the output. A reset gate is used to control how much the past hidden units affect the current output.</p>
+<p>$$z_t=\sigma(W_z\cdot [h_{t-1},x_t]+b_z)\ r_t=\sigma(W_r\cdot [h_{t-1},x_r]+b_i)\ \tilde{h_t}=tanh(W\cdot [r_t<em>h_{t-1},x_t]) \ h_t = (1-z_t)</em>h_{t-1}+z_t*\tilde{h_t}<br>$$</p>
+<p>Here reset gate resembles the forget gate in LSTM. It decides how much the last hidden state contributes to the current hidden state. And the final output hidden state is controlled by the update gate which resembles the ouput gate in LSTM. Simpler than LSTM.</p>
+<h3 id="Peephole-connection"><a href="#Peephole-connection" class="headerlink" title="Peephole connection"></a>Peephole connection</h3><p>The value of gate is now controled by cell state, hidden state and current input. </p>
+<p>$$o_t=\sigma(W_o\cdot [C_t,h_{t-1},x_t]+b_o)\ i_t=\sigma(W_i\cdot [C_{t-1},h_{t-1},x_t]+b_i)\ _t=\sigma(W_f\cdot [C_{t-1},h_{t-1},x_t]+b_f)<br>$$</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/Attention/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1395,151 +1532,12 @@
 <p><strong>stationary</strong> The relationship between the previous time step and the current time step is not dependent on t.</p>
 <p>RNN could model long dependency while normal graphical model would make <strong>Markov assumption</strong> to simplify the parameters which makes them less powerful in terms of long dependency. Long dependency makes RNN hard to optimize.</p>
 <p>RNN introduce hidden states h s.t. the dependency structure is simpler than the normal graphical model because hidden state encodes information including dependency which graphical model utilizes edges to represent dependency directly(too many parameters to optimize).</p>
+<h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
 <h4 id="vector-to-sequence-RNN"><a href="#vector-to-sequence-RNN" class="headerlink" title="vector-to-sequence RNN"></a>vector-to-sequence RNN</h4><p>The vector could be fed into the RNN at the beginning or fed into each hidden state at each time step.</p>
 <h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
 <h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
-<h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
-<p>The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
-<p>Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state.</p>
-<p>$$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$</p>
-<p>The input gate controls how much the network utilize the current cell state to update the last cell state. The current cell state is also compute by the last hidden state and current input with just the different weight and bias matrix.</p>
-<p>$$i_t=\sigma(W_i\cdot [h_{t-1},x_t]+b_i)$$</p>
-<p>$$\tilde{C_t}=tanh(W_C\cdot [h_{t-1},x_t]+b_C)$$</p>
-<p>Update of the cell state:</p>
-<p>$$C_t=f_t<em>C_{t-1}+i_t</em>\tilde$$</p>
-<p>The final output gate controls hou much the network outputs the current cell state after novation. The network puts the cell state through tanh (to push the values to be between −1 and 1) and multiply it by the output of the sigmoid gate, so that it only outputs the parts we decided to.</p>
-<p>$$o_t=\sigma(W_o\cdot [h_{t-1},x_t]+b_o)$$</p>
-<p>$$h_t = o_t*nh(C_t)$$</p>
-<h2 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h2><p>With a single update gate to control whether the last hidden state or the current state is the output. A reset gate is used to control how much the past hidden units affect the current output.</p>
-<h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/09/activation-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/09/activation-function/" itemprop="url">activation_function</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-09T22:38:56+08:00">
-                2018-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Rectified-Linear-Units"><a href="#Rectified-Linear-Units" class="headerlink" title="Rectified Linear Units"></a>Rectified Linear Units</h2><p>Easy to optimize, and train. It is a good practice to initialize the bise b to be small positive values s.t. most units are active at the beginning.</p>
-<p>Drawback: not able to learn examples that activation is zero. A large gradient could update the unit s.t. it would never be active again if the learning rate is large.</p>
-<h3 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h3><p>Make some modifications s.t. the negative part could also be learnt.</p>
-<h3 id="Maxout-units"><a href="#Maxout-units" class="headerlink" title="Maxout units"></a>Maxout units</h3><p>Generalization of ReLU and Leaky Relu. The activation function is now \(\max(w_1^T\cdot x, w_2^T\cdot x)\) where \(w_1^T\cdot x\) is Relu (when w1 are all zeros, it is Relu)and \(w_2^T\cdot x\) is Leaky Relu.</p>
-<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p>Could be used as output units for 0-1 classfication because the cost is optimized to be small to avoid saturation.</p>
-<p>Drawback: hard to train due to saturation. Not zero-centered.</p>
-<h2 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h2><p>A scaled sigmoid, zero-centered. Resemble the identity function</p>
 
           
         
@@ -1629,7 +1627,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
