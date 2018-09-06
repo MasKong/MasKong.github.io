@@ -296,6 +296,204 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/Smoothing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/26/Smoothing/" itemprop="url">Smoothing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T17:47:27+08:00">
+                2018-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Smoothing"><a href="#Smoothing" class="headerlink" title="Smoothing:"></a>Smoothing:</h1><p>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
+<h3 id="Laplace-Smoothing"><a href="#Laplace-Smoothing" class="headerlink" title="Laplace Smoothing"></a>Laplace Smoothing</h3><p>Also called add-one smoothing.</p>
+<p>the unsmoothed maximum likelihood estimate of the unigram probability of the word wi is its count ci normalized by the total number of word tokens N</p>
+<p>$$ p(w_i)= \frac{c_i}{N} $$</p>
+<p>Laplace smoothing merely adds one to each count. Denominator is also adjusted by adding V(number of observations). If the demoninator is still unchanged, the sum of all probability would exceed 1.</p>
+<p>$$ p_{Laplace}(w_i)= \frac{c_i+1}{N+V} $$</p>
+<p><strong>adjusted count</strong>: describe how a smoothing algorithm affects the numerator</p>
+<p>$$ c_i^* = \frac{c_i+1}{N+V} \times{N} = p_{Laplace}(w_i) \times{N} $$</p>
+<p>the ratio of the discounted counts to the original counts describe a smoothing algorithm in terms of a relative discount dc:</p>
+<p>$$ d_c= \frac{c^*}{c} $$</p>
+<p>Normal bigram probabilities are computed by normalizing each row of counts by the unigram count:</p>
+<p>$$ p(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)}{c(w_{n-1})} $$</p>
+<p>After smoothing:</p>
+<p>$$ p_{Laplace}(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+1}{c(w_{n-1})+V} $$</p>
+<p>These adjusted counts can be computed by equation below to show the reconstructed counts.</p>
+<p>$$ c^*(w_{n-1}w_n) = \frac{c(w_{n-1}w_n)+1}{c(w_{n-1)}+V} \times{c(w_{n-1})} = p_{Laplace}(w_n|w_{n-1}) \times{c(w_{n-1})} $$</p>
+<h3 id="Add-k-smoothing"><a href="#Add-k-smoothing" class="headerlink" title="Add-k smoothing:"></a>Add-k smoothing:</h3><p>add k rather than one; </p>
+<p>$$ p_{Add-k}^*(w_n|w_{n-1})= \frac{c(w_{n-1}w_n)+k}{c(w_{n-1})+kV} $$</p>
+<p>chosse k by optimizing on a devset.</p>
+<p>Although add-k is useful for some tasks (including text classification), it turns out that it still doesn’t work well for language modeling, generating counts with poor variances and often inappropriate discounts</p>
+<h3 id="Backoff-and-Interpolation"><a href="#Backoff-and-Interpolation" class="headerlink" title="Backoff and Interpolation"></a>Backoff and Interpolation</h3><p><strong>backoff</strong>: If there is zero evidence for a higher-order N-gram, use lower-order N-gram instead. </p>
+<p>i.e.: If we are trying to compute $$ P(w_n|w_{n−2}w_{n−1}) $$ but we have no examples of a particular trigram wn−2wn−1wn, we can instead estimate its probability by using the bigram probability $$ P(w_n|w_{n−1}) $$.</p>
+<p><strong><em>interpolation</em></strong>: we always mix the probability estimates from all the N-gram estimators, weighing and combining the trigram, bigram, and unigram counts.</p>
+<p>In a slightly more sophisticated version of linear interpolation, each λ weight is computed by conditioning on the context. This way, if we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams based on this bigram will be more trustworthy, so we can make the λs for those trigrams higher and thus give that trigram more weight in the interpolation.</p>
+<p>$$ \hat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 (w_{n-2}^{n-1})p(w_n|w_{n-2}w_{n-1}) + \lambda_2 (w_{n-2}^{n-1})p(w_n|w_{n-1}) +\lambda_3 (w_{n-2}^{n-1})p(w_n)  $$ </p>
+<p>simple interpolation:</p>
+<p>$$ \hat{p}(w_n|w_{n-2}w_{n-1}) = \lambda_1 p(w_n|w_{n-2}w_{n-1}) + \lambda_2 p(w_n|w_{n-1}) +\lambda_3 p(w_n) $$ </p>
+<p>In both kinds of interpolation:</p>
+<p>$$ \sum_i \lambda_i = 1 $$</p>
+<p>Both the simple interpolation and conditional interpolation λ are learned from a held-out corpus. choose the λ values that maximize the likelihood of the held-out corpus.There are various ways to find this optimal set of λs. One way is to use the EM algorithm, which is an iterative learning algorithm that converges on locally optimal λs</p>
+<p>In terms of <strong>quality of N-gram model</strong>: quadrigram &gt; trigram &gt; bigram &gt; unigram</p>
+<p>In order for a backoff model to give a correct probability distribution, we have to discount the higher-order N-grams to save some probability mass for the lower order N-grams. In addition to this explicit discount factor, we’ll need a function α to distribute this probability mass to the lower order N-grams.</p>
+<p>This kind of backoff with discounting is also called <strong>Katz backoff</strong>. In Katz backoff we rely on a discounted probability \(P^∗\) if we’ve seen this N-gram before (i.e., if we have non-zero counts). Otherwise, we recursively back off to the Katz probability for the shorter-history (N-1)-gram. The probability for a backoff N-gram PBO is thus computed as follows:</p>
+<p>$$\begin{cases}<br>       P^*(w_n|w_{n-N+1}^{n-1})\quad \text{if}\;C(w_{n-N+1}^{n-1}) &gt; 0 \<br>       \alpha(w_{n-N+1}^{n-1})P_{BO}(w_n|w_{n-N+2}^{n-1})\quad \text{otherwise}<br>    \end{cases} $$</p>
+<p>Katz backoff is often combined with a smoothing method called <strong>Good-Turing</strong>. The combined Good-Turing backoff algorithm involves quite detailed computation<br>for estimating the Good-Turing smoothing and the \(P^*\) and \(\alpha\) values.</p>
+<h3 id="Kneser-Ney-Smoothing"><a href="#Kneser-Ney-Smoothing" class="headerlink" title="Kneser-Ney Smoothing"></a>Kneser-Ney Smoothing</h3><p>Intuition: Discount the probability from N gram model and assign it to phrase so as to take different word combinations into consideration.</p>
+<p>Simple example:<br>Finance in _ is promissing.<br>Here you can just simply fill in a word with high probability like USA, Germany. With Kneser-Ney Smoothing, taking word combinations into consideration, it might fill in world finance centre like London and HongKong because they often appear together.</p>
+<p>Novel continuation means the first time that the word \(w_{i-1}\) preceeds the word \(w_i\).</p>
+<p>The number of times a word w appears as a novel continuation can be expressed as:</p>
+<p>$$P_{continuation}(w_i)\propto \lvert {w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert$$</p>
+<p>\(w_i\) is the current word. \(w_{i-1}\) is the words occur before the current word(also called preceeding word).</p>
+<p>To turn this count into a probability, we normalize by the total number of bigram word. In summary:</p>
+<p>$$P_{continuation}(w_i)=\frac{\lvert {w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}{\lvert{(w_{j-1},w_j):c(w_{j-1}w_j)&gt;0}\rvert}$$</p>
+<p>Or normalized by the number of words preceding all words as follows:</p>
+<p>$$P_{continuation}(w_i)=\frac{\lvert { w_{i-1}:C(w_{i-1}w_i)&gt;0}\rvert}<br>{\sum_{w’<em>i} \lvert {w’</em>{i-1}:C(w’_{i-1}w’_i)&gt;0}\rvert}$$</p>
+<p>The number of words preceeding all words is:<br>given word \({w’}<em>i\),the number of word \(w’</em>{i-1}\) that preceed \({w’}_i\).<br>\({w’}_i\) are all words in the corpus. So The number of words preceeding all words = the total number of bigram word.</p>
+<p>The final equation for <strong>Interpolated Kneser-Ney smoothing</strong> for bigrams is then:</p>
+<p>$$P_{KN}(w_i|w_{i-1})=\frac{max(C(w_{i-1}w_i)-d,0)}{C(w_{i-1})}<br>+\lambda(w_{i-1})P_{continuation}(w_i)$$</p>
+<p>The λ is a normalizing constant that is used to distribute the probability mass that is discounted:</p>
+<p>$$\lambda(w_{i-1})=\frac{d}{C(w_{i-1})}\cdot \lvert {w:C(w_{i-1},w)&gt;0}\rvert$$</p>
+<p>The first term \(\frac{d}{C(w_{i-1})}\) is the normalized discount. The second term \(\lvert {w:C(w_{i-1},w)&gt;0}\rvert\)<br>is the number of word types that can follow \(w_{i−1}\) or, equivalently, the number of word types that we discounted; in other words, the number of times we applied the normalized discount.</p>
+<p>The general recursive formulation is as follows:</p>
+<p>$$P_{KN}(w_i|w_{i-n+1}\cdots w_{i-1})=\frac{max(0,C_{KN}(w_{i-n+1} \cdots w_i) - d)}{C_{KN}(w_{i-n+1}\cdots w_{i-1})}<br>+\lambda(w_{i-n+1}\cdots w_{i-1})\cdot P_{KN}(w_i|w_{i-n+2}\cdots w_{i-1})$$</p>
+<p>$$\lambda(w_{i-n+1}\cdots w_{i-1})=\frac{d}{C_{KN}(w_{i-n+1}\cdots w_{i-1})}\cdot \lvert {w:C_{KN}(w_{i-n+1} \cdots w_{i-1}w)&gt;0}\rvert$$</p>
+<p>where the definition of the count \(c_{KN}\) depends on whether we are counting the highest-order N-gram being interpolated (for example trigram if we are interpolat- ing trigram, bigram, and unigram) or one of the lower-order N-grams (bigram or unigram if we are interpolating trigram, bigram, and unigram):</p>
+<p>$$C_{KN}(\cdot)=\begin{cases}count(\cdot) &amp;,\text{for the highest order}\<br>continuationcount(\cdot) &amp;,\text{for all other lower orders}<br>\end{cases}$$</p>
+<p>The continuation count is the number of unique single word contexts for ·.<br>At the termination of the recursion, unigrams are interpolated with the uniform<br> distribution, where the parameter ε is the empty string:</p>
+<p> $$P_{KN}(w)=\frac{max(c_{KN}(w)-d,0)}{\sum_{w’}c_{KN}(w’)} +\lambda(\epsilon)\frac{1}{V}$$</p>
+<p> If we want to include an unknown word <unk>, it’s just included as a regular vo-<br>cabulary entry with count zero, and hence its probability will be a lambda-weighted<br>uniform distribution \(\frac{\lambda(\epsilon)}{V}\).</unk></p>
+<p>The best-performing version of Kneser-Ney smoothing is called modified Kneser- Ney smoothing. Rather than use a single fixed discount d, modified Kneser-Ney uses three different discounts d1, d2, and \(d3_+\) for N-grams with counts of 1, 2 and three or more, respectively.</p>
+<h3 id="Entropy"><a href="#Entropy" class="headerlink" title="Entropy"></a>Entropy</h3><p><strong>Entropy</strong> is the minimum number of bits(if log base 2 is used) that is needed to encode(represent) information in the optimal coding scheme.</p>
+<p><strong>Entropy rate</strong> the entropy of a sequence divided by the number of words.</p>
+<p>To measure entropy rate of a language, entropy rate of a infinite sequence needs to be calculated.</p>
+<p>$$H(L) = −\lim_{n\to\infty} \frac{1}{n}H(w_1,w_2,…,w_n)<br>= −\lim_{n\to\infty}\sum_{W\in L} p(w_1,…,w_n)\frac{1}{n} \log p(w_1,…,w_n)$$</p>
+<p>The Shannon-McMillan-Breiman theorem states that if the language is rboth stationary and ergodic</p>
+<p>$$H(L) = \lim_{n\to\infty}-\frac{1}{n}\log p(w_1,…,w_n)$$</p>
+<p>The intuition of the Shannon-McMillan-Breiman theorem is that a long-enough sequence of words will contain many other shorter sequences and that each of these shorter sequences will reoccur in the longer sequence according to their probabilities.That is, we can take a single sequence that is long enough instead of summing over all possible sequences. </p>
+<p>A stochastic process is said to be stationary if the probability distribution for words at time t is the same as the probability distribution at time t + 1. Markov models, and hence N-grams, are stationary. Natural language is not stationary, the probability of upcoming words can be dependent on events that were arbitrarily distant and time dependent. Thus, our statistical models only give an approximation to the correct distributions and entropies of natural language.<br>To summarize, by making some incorrect but convenient simplifying assumptions, we can compute the entropy of some stochastic process by taking a very long sample of the output and computing its average log probability.</p>
+<p>The cross-entropy is useful when we don’t know the actual probability distribution p that generated some data. It allows us to use some m, which is a model of p (i.e., an approximation to p) to approximate the real entropy. The<br>cross-entropy of m on p is defined by</p>
+<p>$$H(p,m) = \lim_{n\to\infty}\sum_{W\in L}- p(w_1,…,w_n)\frac{1}{n} \log m(w_1,…,w_n)$$</p>
+<p>That is, we draw sequences according to the probability distribution p, but sum the log of their probabilities according to m.<br>Again, following the Shannon-McMillan-Breiman theorem, for a stationary ergodic process:</p>
+<p>$$H(p,m) = \lim_{n\to\infty}-\frac{1}{n}\log m(w_1,…,w_n)$$</p>
+<p>This means that, as for entropy, we can estimate the cross-entropy of a model m on some distribution p by taking a single sequence that is long enough instead of summing over all possible sequences.<br>What makes the cross-entropy useful is that the cross-entropy H(p,m) is an upper bound on the entropy H(p).<br>For any model m:</p>
+<p>$$H(p) ≤ H(p,m)$$</p>
+<p>This means that we can use some simplified model m to estimate the true entropy of a sequence of symbols drawn according to probability p. The more accurate m is, the closer the cross-entropy H(p,m) will be to the true entropy H(p). Thus, the difference between H(p,m) and H(p) is a measure of how accurate a model is. The lower the cross-entropy, the better is the model(better approximation of the true entropy). The cross-entropy can never be lower than the true entropy, so a model cannot err by underestimating the true entropy.</p>
+<p>Cross-entropy is defined in the limit, as the length of the observed word sequence goes to infinity. A (sufficiently long) sequence of fixed length N is employed to  approximate the cross-entropy of a model M = $ P(w_i|w_{i−N+1}…w_{i−1}) $(N is the N of a N-gram model) on a sequence of words W is</p>
+<p>$$H(W) = -\frac{1}{N}\log p(w_1,…,w_n)$$</p>
+<p>The perplexity of a model P on a sequence of words W is now formally defined as the exp of this cross-entropy:</p>
+<p>$$Perplexity(W) = 2^{H(W)} = P(w_1,…,w_n)^{-\frac{1}<br>{N}}$$</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Max-Matching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1596,7 +1794,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1609,7 +1807,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

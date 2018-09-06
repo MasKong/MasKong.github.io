@@ -296,6 +296,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/RNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/RNN/" itemprop="url">RNN</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:31+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>RNN allows information flow.</p>
+<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>The same set of parameters are used to compute the hidden states at the current time step given input and the hidden state of last time step.</p>
+<p>A output layer may be added to each time step to extract information and make predictions.</p>
+<h3 id="Back-propagation"><a href="#Back-propagation" class="headerlink" title="Back-propagation"></a>Back-propagation</h3><p>Cannot be parallelized because gradient has to computed one by one in terms of time steps.</p>
+<h4 id="Recurrent-Connectiong-from-output-to-hidden"><a href="#Recurrent-Connectiong-from-output-to-hidden" class="headerlink" title="Recurrent Connectiong from output to hidden"></a>Recurrent Connectiong from output to hidden</h4><p>Training can be parallelized because the label is known and could be fed to hidden states directly. Trained with <strong>Teacher Forcing</strong> which is that given the input sequence and ground truth label in the last time step, produce the output in the current time step.</p>
+<p>Drawback: require the output to capture the past information, which is difficult because the output dosen’t contains those information.</p>
+<h2 id="RNN-as-graphical-model"><a href="#RNN-as-graphical-model" class="headerlink" title="RNN as graphical model"></a>RNN as graphical model</h2><p>RNN could be viewed as a graphical model. Compared to the graphical model, the number of parameters is far less than that of the graphical model due to parameter sharing.</p>
+<p>Basic assumption of RNN is that the sequence is stationary.</p>
+<p><strong>stationary</strong> The relationship between the previous time step and the current time step is not dependent on t.</p>
+<p>RNN could model long dependency while normal graphical model would make <strong>Markov assumption</strong> to simplify the parameters which makes them less powerful in terms of long dependency. Long dependency makes RNN hard to optimize.</p>
+<p>RNN introduce hidden states h s.t. the dependency structure is simpler than the normal graphical model because hidden state encodes information including dependency which graphical model utilizes edges to represent dependency directly(too many parameters to optimize).</p>
+<h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
+<h4 id="vector-to-sequence-RNN"><a href="#vector-to-sequence-RNN" class="headerlink" title="vector-to-sequence RNN"></a>vector-to-sequence RNN</h4><p>The vector could be fed into the RNN at the beginning or fed into each hidden state at each time step.</p>
+<h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
+<h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/09/activation-function/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1505,139 +1641,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Linear-Algebra/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/26/Linear-Algebra/" itemprop="url">Linear_Algebra</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:34:29+08:00">
-                2018-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>By default, vectors are column vectors.</p>
-<h4 id="Outer-Product"><a href="#Outer-Product" class="headerlink" title="Outer Product"></a>Outer Product</h4><p>\(<br>\left(\begin{array}{cc}<br>{1} \\ {2}<br>\end{array}\right) \) \(\otimes\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20<br>\end{array}\right)<br>\) = \(  \left(\begin{array}{cc}<br>{1 \times 10} &amp; {1 \times 20} \\ {2 \times 10} &amp; {2 \times 20}<br>\end{array}\right)  \)</p>
-<p>Outer product increase the dimension of the matrix. Outer product of a (a1∗a2) matrix and  a (b1∗b2) matrix is a (a1∗a2)∗(b1∗b2) matrix.</p>
-<p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1q} \\<br>y_2 &amp; \cdots &amp; y_{2q} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_p &amp; \cdots &amp; x_{pq}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_1y_{1q} &amp; x_1y_{2} &amp; \cdots &amp; x_1y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{1n}y_1 &amp; \cdots &amp; x_{1n}y_{1q} &amp; x_{1n}y_{2} &amp; \cdots &amp; x_{1n}y_{pq} \\<br>x_2y_1 &amp; \cdots &amp; x_2y_{1q} &amp; x_2y_{2} &amp; \cdots &amp; x_2y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{mn}y_1 &amp; \cdots &amp; x_{mn}y_{1q} &amp; x_{mn}y_{2} &amp; \cdots &amp; x_{mn}y_{pq}<br>\end{bmatrix}<br>\end{array}$$</p>
-<h4 id="Element-wise-Product-Hadamard-product"><a href="#Element-wise-Product-Hadamard-product" class="headerlink" title="Element-wise Product  (Hadamard product)"></a>Element-wise Product  (Hadamard product)</h4><p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1n} \\<br>y_2 &amp; \cdots &amp; y_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_{1i}y_{1i} &amp; x_{1j}y_{1j} &amp; \cdots &amp; x_{1n}y_{1n} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{m1}y_{m1} &amp; \cdots &amp; x_{mi}y_{mi} &amp; x_{mj}y_{mj} &amp; \cdots &amp; x_{mn}y_{mn}<br>\end{bmatrix}<br>\end{array}$$</p>
-<p><strong>Example</strong><br>\(<br>\left(\begin{array}{cc}<br>1 &amp; 2 \\ 3 &amp; 4<br>\end{array}\right) \) \(\odot\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20 \\ 30 &amp; 40<br>\end{array}\right) \) = \(<br>\left(\begin{array}{cc}<br>{1 \times 10} &amp; {2 \times 20} \\ {3 \times 30} &amp; {4 \times 40}<br>\end{array}\right) \)</p>
-<h4 id="Norm"><a href="#Norm" class="headerlink" title="Norm"></a>Norm</h4><p>L1 Norm: The sum of absolute values in the matrix. </p>
-<p>$$\lVert w \rVert_1 = \textstyle \sum_{i=1}^n |w_i|$$</p>
-<p>L2 Norm: The sqrt of the sum of squared values in the matrix. </p>
-<p>$$\lVert w \rVert_2 = \sqrt {\textstyle \sum_{i=1}^n w_i^2}$$</p>
-<h4 id="Identity-Matrix"><a href="#Identity-Matrix" class="headerlink" title="Identity Matrix"></a>Identity Matrix</h4><p>An identity matrix of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.</p>
-<p>$${ I_{n}={\begin{bmatrix}\ 1&amp;0&amp;0&amp;\cdots &amp;0\\ 0&amp;1&amp;0&amp;\cdots &amp;0\\ 0&amp;0&amp;1&amp;\cdots &amp;0\\ \vdots &amp;\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\ 0&amp;0&amp;0&amp;\cdots &amp;1\end{bmatrix}}}$$</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://www.cnblogs.com/steven-yang/p/6348112.html#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%98%E7%A7%AF" target="_blank" rel="noopener">机器学习中的基本数学知识</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Identity_matrix" target="_blank" rel="noopener">Identity matrix</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1692,7 +1695,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1705,7 +1708,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

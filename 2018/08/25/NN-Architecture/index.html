@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="GoogleNet Auxiliary classifier layer is to solve the gradient vanishing problem In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a r">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-26T07:26:35.632Z">
+<meta property="og:updated_time" content="2018-08-31T08:12:23.001Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NN_Architecture">
 <meta name="twitter:description" content="GoogleNet Auxiliary classifier layer is to solve the gradient vanishing problem In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a r">
@@ -366,11 +366,14 @@
       
         <h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
 <li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
-<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3<em>3 and 5</em>5 filters have to be increased.</li>
-<li>1*1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
+<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
+<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
 </ul>
 <h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
+<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
 
       
     </div>
@@ -504,7 +507,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -517,7 +520,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

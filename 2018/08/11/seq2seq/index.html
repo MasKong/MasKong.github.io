@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output  Fixed-length vector Sequence with the same length as the input sequence.  seq2seq cou">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-11T05:12:15.854Z">
+<meta property="og:updated_time" content="2018-09-05T03:26:18.754Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="seq2seq">
 <meta name="twitter:description" content="The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output  Fixed-length vector Sequence with the same length as the input sequence.  seq2seq cou">
@@ -370,7 +370,12 @@
 <li>Sequence with the same length as the input sequence.</li>
 </ul>
 <p>seq2seq could output a sequence of variable length. It simply utilize an encoder to encode the information given an input, which output a representation C that is a semantic summary of the input(usually fixed-length). After that, the decoder take the representation as input and output a sequence.</p>
+<p>The decoder is a RNN language model that is conditioned on the input which is the current the previous input word and the hidden state.</p>
+<h3 id="Reverse-the-input-sequence"><a href="#Reverse-the-input-sequence" class="headerlink" title="Reverse the input sequence"></a>Reverse the input sequence</h3><p>Doing so would make the optimization much easier because it introduces short term dependencies.</p>
+<p>i.e.: a,b,c maps to d,e,f. With reversed input sequence, c,b,a maps to d,e,f. At present, a is much closer than d which is the correct mapping. Since the long dependency c to f may be learnt from previous mapping, longer dependency for it may not be a problem.</p>
+<h3 id="Encoding-Context-C"><a href="#Encoding-Context-C" class="headerlink" title="Encoding Context C"></a>Encoding Context C</h3><p>The context C that is used to encode the input sequence do capture the meaning of the sequence.</p>
 <h3 id="Lmitatoin"><a href="#Lmitatoin" class="headerlink" title="Lmitatoin"></a>Lmitatoin</h3><p>The context C might be to small to encode the semantic information of a long sentence.</p>
+<h3 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h3><p>The decoding could employ beam search. The procedure is actually to maximize the log probability of target sentence given the input sentence.</p>
 
       
     </div>
@@ -411,8 +416,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/18/VGG/" rel="prev" title="VGG">
-                VGG <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/18/Network-in-Network/" rel="prev" title="Network_in_Network">
+                Network_in_Network <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -504,7 +509,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -517,7 +522,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -550,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Lmitatoin"><span class="nav-number">1.</span> <span class="nav-text">Lmitatoin</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reverse-the-input-sequence"><span class="nav-number">1.</span> <span class="nav-text">Reverse the input sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Encoding-Context-C"><span class="nav-number">2.</span> <span class="nav-text">Encoding Context C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lmitatoin"><span class="nav-number">3.</span> <span class="nav-text">Lmitatoin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decoding"><span class="nav-number">4.</span> <span class="nav-text">Decoding</span></a></li></ol></div>
             
 
           </div>

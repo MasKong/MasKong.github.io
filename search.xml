@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Linux_Management]]></title>
+    <url>%2F2018%2F09%2F06%2FLinux-Management%2F</url>
+    <content type="text"><![CDATA[remotely run sth after disconnection 1nohup command ...... check runing process 1ps -ef check runing process and find a specific process 1ps -ef | grep python kill a process 1kill pid]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[QA]]></title>
+    <url>%2F2018%2F09%2F05%2FQA%2F</url>
+    <content type="text"><![CDATA[Two kinds of QA: IR-based question answering knowledge-based question answering Factoid questions: questions that can be answered with simple facts expressed in short text answers. IR-based question answering: Question Processing: extract focus, classify the question type Answer Type Detection(Question Classification) Query Formulation: form a query from keywords and send to an information retrieval system. Passage Retrieval: retrive documents and rank them according to features such as relevance, number of keywords and so on. Answer Processing pattern-extraction: use pattern to extract the answer from retrived document N-gram tiling]]></content>
+      <tags>
+        <tag>NLP</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LSTM]]></title>
     <url>%2F2018%2F08%2F30%2FLSTM%2F</url>
     <content type="text"><![CDATA[LSTMForget gate, input gate and output gate controls the last hidden state, current input, and current output respectively. The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged. Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state. $$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$ The input gate controls how much the network utilize the current cell state to update the last cell state. The current cell state is also compute by the last hidden state and current input with just the different weight and bias matrix. $$i_t=\sigma(W_i\cdot [h_{t-1},x_t]+b_i)$$ $$\tilde{C_t}=tanh(W_C\cdot [h_{t-1},x_t]+b_C)$$ Update of the cell state: $$C_t=f_tC_{t-1}+i_t\tilde$$ The final output gate controls hou much the network outputs the current cell state after novation. The network puts the cell state through tanh (to push the values to be between −1 and 1) and multiply it by the output of the sigmoid gate, so that it only outputs the parts we decided to. $$o_t=\sigma(W_o\cdot [h_{t-1},x_t]+b_o)\ h_t = o_t*tanh(C_t)$$ Variant of LSTM$$C_t=f_tC_{t-1}+(1-f_t)\tilde$$ Utilize \(1-f_t\) to substitutes the input gate. GRUWith a single update gate to control whether the last hidden state or the current state is the output. A reset gate is used to control how much the past hidden units affect the current output. $$z_t=\sigma(W_z\cdot [h_{t-1},x_t]+b_z)\ r_t=\sigma(W_r\cdot [h_{t-1},x_r]+b_i)\ \tilde{h_t}=tanh(W\cdot [r_th_{t-1},x_t]) \ h_t = (1-z_t)h_{t-1}+z_t*\tilde{h_t}$$ Here reset gate resembles the forget gate in LSTM. It decides how much the last hidden state contributes to the current hidden state. And the final output hidden state is controlled by the update gate which resembles the ouput gate in LSTM. Simpler than LSTM. Peephole connectionThe value of gate is now controled by cell state, hidden state and current input. $$o_t=\sigma(W_o\cdot [C_t,h_{t-1},x_t]+b_o)\ i_t=\sigma(W_i\cdot [C_{t-1},h_{t-1},x_t]+b_i)\ _t=\sigma(W_f\cdot [C_{t-1},h_{t-1},x_t]+b_f)$$]]></content>
@@ -19,7 +35,7 @@
   <entry>
     <title><![CDATA[NN_Architecture]]></title>
     <url>%2F2018%2F08%2F25%2FNN-Architecture%2F</url>
-    <content type="text"><![CDATA[GoogleNet Auxiliary classifier layer is to solve the gradient vanishing problem In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 33 and 55 filters have to be increased. 1*1 convolution: dimensionality reduction. If not, there would be many parameters. Residual NetworkLearn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network. ReferenceDeep Residual Learning for Image Recognition]]></content>
+    <content type="text"><![CDATA[GoogleNet Auxiliary classifier layer is to solve the gradient vanishing problem In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 3 and 5 5 filters have to be increased. 1 * 1 convolution: dimensionality reduction. If not, there would be many parameters. 3 3 and 5 5 is employed because with different stride and padding, their output dimension would be the same. Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features. Residual NetworkLearn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network. ReferenceDeep Residual Learning for Image Recognition GoogLeNet系列解读]]></content>
       <tags>
         <tag>DL</tag>
       </tags>
@@ -49,17 +65,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[VGG]]></title>
-    <url>%2F2018%2F08%2F18%2FVGG%2F</url>
-    <content type="text"><![CDATA[VGG ON CIFAR1010 epochs training without initialization: 76.1%]]></content>
-      <tags>
-        <tag>DL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[seq2seq]]></title>
     <url>%2F2018%2F08%2F11%2Fseq2seq%2F</url>
-    <content type="text"><![CDATA[The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output Fixed-length vector Sequence with the same length as the input sequence. seq2seq could output a sequence of variable length. It simply utilize an encoder to encode the information given an input, which output a representation C that is a semantic summary of the input(usually fixed-length). After that, the decoder take the representation as input and output a sequence. LmitatoinThe context C might be to small to encode the semantic information of a long sentence.]]></content>
+    <content type="text"><![CDATA[The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output Fixed-length vector Sequence with the same length as the input sequence. seq2seq could output a sequence of variable length. It simply utilize an encoder to encode the information given an input, which output a representation C that is a semantic summary of the input(usually fixed-length). After that, the decoder take the representation as input and output a sequence. The decoder is a RNN language model that is conditioned on the input which is the current the previous input word and the hidden state. Reverse the input sequenceDoing so would make the optimization much easier because it introduces short term dependencies. i.e.: a,b,c maps to d,e,f. With reversed input sequence, c,b,a maps to d,e,f. At present, a is much closer than d which is the correct mapping. Since the long dependency c to f may be learnt from previous mapping, longer dependency for it may not be a problem. Encoding Context CThe context C that is used to encode the input sequence do capture the meaning of the sequence. LmitatoinThe context C might be to small to encode the semantic information of a long sentence. DecodingThe decoding could employ beam search. The procedure is actually to maximize the log probability of target sentence given the input sentence.]]></content>
       <tags>
         <tag>DL</tag>
       </tags>
