@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Linux_Management]]></title>
     <url>%2F2018%2F09%2F06%2FLinux-Management%2F</url>
-    <content type="text"><![CDATA[remotely run sth after disconnection 1nohup command ...... check runing process 1ps -ef check runing process and find a specific process 1ps -ef | grep python kill a process 1kill pid]]></content>
+    <content type="text"><![CDATA[remotely run sth after disconnection 1nohup command ...... check runing process 1ps -ef check runing process and find a specific process 1ps -ef | grep python kill a process 1kill pid count number of files 1find . -type f | wc -l]]></content>
       <tags>
         <tag>Linux</tag>
       </tags>
@@ -152,7 +152,7 @@
   <entry>
     <title><![CDATA[python]]></title>
     <url>%2F2018%2F07%2F26%2Fpython%2F</url>
-    <content type="text"><![CDATA[DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionary = dict(map(lambda kv: (kv[0], f(kv[1])), my_dictionary.items())) build a dictionary with the same key from the other dictionary. 1d = dic.fromkeys(dic.keys(), 0) Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage. For example:123l1 = [1,2,3]l2 = l1l2[2] = 100 Now l1[2] is also 100. solution:123l1 = [1,2,3]l2 = copy.deepcopy(l1)l2[2] = 100 Now l1[2] is still 3. or1l2 = list(l1) A shallow copy constructs a new compound object and inserts references into it to the objects found in the original.A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original. from pip import mainImportError: cannot import name main solution: Roll back python3 -m pip install –user –upgrade pip==9.0.3]]></content>
+    <content type="text"><![CDATA[DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionary = dict(map(lambda kv: (kv[0], f(kv[1])), my_dictionary.items())) build a dictionary with the same key from the other dictionary. 1d = dic.fromkeys(dic.keys(), 0) Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage. For example:123l1 = [1,2,3]l2 = l1l2[2] = 100 Now l1[2] is also 100. solution:123l1 = [1,2,3]l2 = copy.deepcopy(l1)l2[2] = 100 Now l1[2] is still 3. or1l2 = list(l1) A shallow copy constructs a new compound object and inserts references into it to the objects found in the original.A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original. from pip import mainImportError: cannot import name main solution: Roll back python3 -m pip install –user –upgrade pip==9.0.3 assert condition is True, or else print the string. 1assert condition, '.....']]></content>
       <tags>
         <tag>Programming</tag>
       </tags>
