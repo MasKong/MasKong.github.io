@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Attention is a distribution which describe how much the network should focus on each unit. content-basedThe attending RNN generates a query describing what it wants to focus on. Each item is dot-produ">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-27T03:24:08.044Z">
+<meta property="og:updated_time" content="2018-09-11T08:51:53.645Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Attention">
 <meta name="twitter:description" content="Attention is a distribution which describe how much the network should focus on each unit. content-basedThe attending RNN generates a query describing what it wants to focus on. Each item is dot-produ">
@@ -378,6 +378,12 @@
 <li>Sharpen the attention distribution. This final attention distribution is fed to the read or write operation.</li>
 </ul>
 <h3 id="Attentional-Interfaces"><a href="#Attentional-Interfaces" class="headerlink" title="Attentional Interfaces"></a>Attentional Interfaces</h3><p>Between connection of RNN or (RNN,CNN), there would be attentional interfaces which decides which units in the previous layer should pay attention to.</p>
+<h2 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h2><p>The encoder is composed of N=6 identical layers. Each layer has two sub-layers</p>
+<h4 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h4><p>Attention function could be described as a function to map query, key and values to a weighted sum. Attention is actually a query. The output is a weighted sum of values and each weight is the dot product of the query and the key.</p>
+<h4 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h4><p>In the paper, scaled dot-product attention is actually the attention function scaled by \(\frac{1}{\sqrt d_k}\)</p>
+<h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>Linearly project query, key, value with learnable weights. After that apply attention function to projected query, key, value. This is one head. MultiHead is concatenation of MultiHead and apply a linear transformation to the concatenation.</p>
+<p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
+<h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
 
       
     </div>
@@ -557,7 +563,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#content-based"><span class="nav-number">1.</span> <span class="nav-text">content-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location-based"><span class="nav-number">2.</span> <span class="nav-text">location-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural-Turing-Machines"><span class="nav-number">3.</span> <span class="nav-text">Neural Turing Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention-Mechanism"><span class="nav-number">3.1.</span> <span class="nav-text">Attention Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attentional-Interfaces"><span class="nav-number">4.</span> <span class="nav-text">Attentional Interfaces</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#content-based"><span class="nav-number">1.</span> <span class="nav-text">content-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location-based"><span class="nav-number">2.</span> <span class="nav-text">location-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural-Turing-Machines"><span class="nav-number">3.</span> <span class="nav-text">Neural Turing Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention-Mechanism"><span class="nav-number">3.1.</span> <span class="nav-text">Attention Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attentional-Interfaces"><span class="nav-number">4.</span> <span class="nav-text">Attentional Interfaces</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number"></span> <span class="nav-text">Attention is all you need</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention"><span class="nav-number">0.1.</span> <span class="nav-text">Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">0.2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">0.3.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks"><span class="nav-number">0.4.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li></ol></li></ol></div>
             
 
           </div>
