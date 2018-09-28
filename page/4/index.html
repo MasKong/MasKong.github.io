@@ -296,6 +296,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/Back-Propagation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/21/Back-Propagation/" itemprop="url">Back_Propagation</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T15:51:30+08:00">
+                2018-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Derivative-of-composite-function"><a href="#Derivative-of-composite-function" class="headerlink" title="Derivative of composite function"></a>Derivative of composite function</h3><p>$$\frac{d\frac{f(x)}{g(x)}}{dx} = \frac{f’(x)g(x)-f(x)g’(x)}{g^2(x)}$$</p>
+<h3 id="Derivative-of-Cross-Entropy"><a href="#Derivative-of-Cross-Entropy" class="headerlink" title="Derivative of Cross Entropy"></a>Derivative of Cross Entropy</h3><p>$$CE(\vec{y},\vec{\hat{y}}) = -\sum_iy_i\log(\hat{y_i})$$</p>
+<p>Here \(y_i\) is an one-hot vector denotes the correct class \(c_i\). In the actual computation, it only selects out the correct class without any extra function.</p>
+<p>For a single example \(x_i\):</p>
+<p>if \(\hat{y_i}=y_i\):</p>
+<p>$$\frac{dCE(y_i,\hat{y_i})}{dx_i} = \frac{1}{\hat{y_i}}\frac{d(\hat{y_i})}{dx_i} = \frac{\sum_j^Ce^{(x_j)}}{e^{x_i}}\ \frac{e^{x_i}\sum_j^Ce^{x_j}-e^{2x_i}}{(\sum_j^Ce^{x_j})^2} = \hat{y_i}-1$$</p>
+<p>if \(\hat{y_i}\ne y_i\):</p>
+<p>$$\frac{dCE(y_i,\hat{y_i})}{dx_i} = \frac{1}{\hat{y_i}}\frac{d(\hat{y_i})}{dx_i} = \frac{\sum_j^Ce^{(x_j)}}{e^{x_i}}\ \frac{e^{x_i}e^{x_k}}{(\sum_j^Ce^{x_j})^2}=\hat{y_i}$$</p>
+<p>The rest is just compute the gradient layer by layer.</p>
+<p><strong>Note that when compute the gradient with regard to activation function, there would be outer product.</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/Pagerank/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1680,130 +1809,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/Neural-Networks-and-Neural-Language-Model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/01/Neural-Networks-and-Neural-Language-Model/" itemprop="url">Neural_Networks_and_Neural_Language_Model</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T10:05:55+08:00">
-                2018-07-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>A neural network with one hidden layer can be shown to learn any function.</p>
-<h3 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h3><p><strong><strong>is to choose a training example or a batch of examples to compute the gradients rather than use the entire training set.</strong></strong></p>
-<h3 id="XOR-Problem"><a href="#XOR-Problem" class="headerlink" title="XOR Problem"></a>XOR Problem</h3><p><strong>not linearly separable</strong><br>a hidden layer rotates the axis or converts the original data to another plane.</p>
-<h3 id="Cross-Entropy-Loss"><a href="#Cross-Entropy-Loss" class="headerlink" title="Cross Entropy Loss"></a>Cross Entropy Loss</h3><p>$$L(\hat{y}, y) = \log p(\hat{y}_i) $$<br>If \(\hat{y}\) != y, it doesn’t contribute to the loss. Only the true class would contribute the loss. If \(p(\hat{y})\) =1, \(\log p(\hat{y}_i)=0\). If \(p(\hat{y})\) =0, \(\log p(\hat{y}_i)=\infty\).<br>\(\hat{y}\) means output of the network.</p>
-<h3 id="Embedding-Layer"><a href="#Embedding-Layer" class="headerlink" title="Embedding Layer"></a>Embedding Layer</h3><p>Could be understood as a weight matrix. Because the one-hot vector is multiplied by the embedding layer to get the word vector, so the embedding layer is actually also a weight matrix. Via back propagation, it could also be trained simultaneously with other weights in the neural network.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1858,7 +1863,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
