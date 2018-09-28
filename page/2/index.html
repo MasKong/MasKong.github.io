@@ -296,136 +296,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/training-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/25/training-problem/" itemprop="url">training_problem</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T17:11:10+08:00">
-                2018-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="Cuda-Out-of-Memory"><a href="#Cuda-Out-of-Memory" class="headerlink" title="Cuda Out of Memory"></a>Cuda Out of Memory</h4><p>Solution: </p>
-<ul>
-<li>reduce batch size</li>
-<li>reduce model size(reduce number of activation, increase filter size, decrease filter number)</li>
-<li>For RNN, reduce the length</li>
-</ul>
-<h3 id="Validation-accuracy-aigzagging"><a href="#Validation-accuracy-aigzagging" class="headerlink" title="Validation accuracy aigzagging"></a>Validation accuracy aigzagging</h3><ul>
-<li>Data is not normalized, taking some steps would deviate from the local minimum</li>
-<li>training step size is too large.</li>
-</ul>
-<h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><p>Assign high probability to <s> and <e>.</e></s></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1598,6 +1468,163 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Pytorch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31/Pytorch/" itemprop="url">Pytorch</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T12:50:53+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>reshape in pytorch: torch.view</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
+<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
+<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
+<p>Converting a Torch Tensor to a NumPy Array</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
+<p>Converting NumPy Array to Torch Tensor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
+<p>Tensors can be moved onto any device using the .to method.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x.to(device)</span><br></pre></td></tr></table></figure>
+<p>torch.Tensor is the central class of the package. If you set its attribute .requires_grad as True, it starts to track all operations on it. When you finish your computation you can call .backward() and have all the gradients computed automatically. The gradient for this tensor will be accumulated into .grad attribute.</p>
+<p>To stop a tensor from tracking history, you can call .detach() to detach it from the computation history, and to prevent future computation from being tracked.</p>
+<p>To prevent tracking history (and using memory), you can also wrap the code block in with torch.no_grad():. This can be particularly helpful when evaluating a model because the model may have trainable parameters with requires_grad=True, but for which we don’t need the gradients.</p>
+<p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
+<p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
+<p>dtype=torch.long is for integers.</p>
+<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
+<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
+<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
+<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
+<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
+<p>Display an image in pytorch: </p>
+<ul>
+<li>transform the array</li>
+<li>transform to numpy array</li>
+<li>display</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
+<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
+<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
+<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.utils.rnn.pack_padded_sequence()</span><br></pre></td></tr></table></figure>
+<p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
+<p>Example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
+<p>return the total number of elements in the input tensor.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1652,7 +1679,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">57</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
