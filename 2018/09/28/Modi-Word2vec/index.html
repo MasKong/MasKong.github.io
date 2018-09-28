@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="ModificationIn skip-gram and CBOW, softmax is extremely expensive. Take skip-gram as an example. The objective is to maximize the following ojective function: $$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-28T04:47:21.421Z">
+<meta property="og:updated_time" content="2018-09-28T04:48:15.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Modi_Word2vec">
 <meta name="twitter:description" content="ModificationIn skip-gram and CBOW, softmax is extremely expensive. Take skip-gram as an example. The objective is to maximize the following ojective function: $$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j">
@@ -368,6 +368,8 @@
 <p>Take skip-gram as an example. The objective is to maximize the following ojective function:</p>
 <p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
 <p>where c is the size of the training context.</p>
+<p>The p is defined as :</p>
+<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
 
       
     </div>

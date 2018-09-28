@@ -371,6 +371,8 @@
 <p>Take skip-gram as an example. The objective is to maximize the following ojective function:</p>
 <p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
 <p>where c is the size of the training context.</p>
+<p>The p is defined as :</p>
+<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
 
           
         
