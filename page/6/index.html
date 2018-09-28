@@ -296,6 +296,149 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/Sentence-Similarity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/27/Sentence-Similarity/" itemprop="url">Sentence_Similarity</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-27T02:23:18+08:00">
+                2018-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="NLP-typical-Step"><a href="#NLP-typical-Step" class="headerlink" title="NLP typical Step:"></a>NLP typical Step:</h2><p>Tokenize: separate the words in the sentence</p>
+<p>Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vector</p>
+<h2 id="Similarity-Measurement"><a href="#Similarity-Measurement" class="headerlink" title="Similarity Measurement"></a>Similarity Measurement</h2><p>TF-IDF model: convert the sentence to a vector of words, use cosine similarity to measure. In this applicatoin, not very good.</p>
+<p>Bag of words:</p>
+<p>Modern way: NLP step as above. Use pre-train word vectors to represent a sentence. Compute distance. Huge amount of computation. In this application, extract several keywords first as heuristic to rule out a lot of sentences and then start using this method to reduce computation amount. The best accuracy in this application. Change pre-train vectors and brute-force computation would increase the accuracy.</p>
+<h2 id="Some-Notes"><a href="#Some-Notes" class="headerlink" title="Some Notes"></a>Some Notes</h2><p>Tokenize: separate the words in the sentence </p>
+<p>Bag of words: just count the frequency of words that appear in the sentence and neglect the sequence of words</p>
+<p>Word representation: one-hot representation<br>Not easy to extract connection because dot product between any two words are 0</p>
+<p>Featurized representation: word embedding. Using a matrix to represent values of features, and stand for a word. It could be understood as a word embedded in a high dimensional space </p>
+<p>Analogy of word embedding. Use cosine similarity to measure whether two words are similar. Take the dot product of two words vectors and divide multiplication of their lengths.</p>
+<p>Embedding matrix: num of features * number of words. Each column is a feature vector. Use one-hot vector to multiply embedding matrix get the corresponding feature vector</p>
+<p>Word2vec:<br>Skip-gram: randomly choose a context word and corresponding target word. Target word is in the window(like 5 words before or after the context word) of context word<br>Target is to learn good word embedding rather than perform good supervised learning<br>How to sample context word? Employ some techniques to avoid commonly appeared word like the ,a and so on</p>
+<p>Negative sampling: one positive sample and k randomly chosen negative sample to simplify computation </p>
+<p>Content of word d: means the range of plus or minus 5 words</p>
+<p>Sequence to sequence:<br>Machine translation: input sentence to encoder, and output is a decoder. Conditional language model. Green part is encoder, purple is decoder</p>
+<p>Beam search: a kind of approximate optimization algorithm<br>beam width n: track The most possible n sequences with the highest probability. Larger n, the algorithm runs better but need more memory. Smaller n: more efficient, less accurate<br>unlike BFS and DFS, beam search do not guarantee to find the best solution. It’s not complete because it only track a few states.<br>Start by choosing the first word for n sentences, and then second…….</p>
+<p>Maximize this probability to find the most possible sequence<br>Multiplication of several values that are less than one leads to numerical problem. Take Log on it solve this problem.</p>
+<p>Error analysis: working to optimize some sort of cost function/objective function that is output by a learning algorithm like RNN<br>RNN output the p(y|x) for sentences and beam search choose argmaxP(y|x). if RNN output the correct probability but beam search choose the wrong one, beam is at fault. And vise versa, if RNN output the wrong probability for sentences, RNN is at fault. Correct probability means P(correct sentence | x) &gt; P(wrong sentence | x)<br>Compare beam search with RNN, find which one is at fault. And then modify and improve it.</p>
+<p>Attention model:<br>Just focus on a few words around rather than the whole sentence to translate. Divide and conquer, get better result.</p>
+<p>Speech recognition:<br>Turn time domain signal to frequency domain signal<br>Usually input is much larger than output</p>
+<p>CTC cost:<br>Basic idea: collapse repeated characters not separated by “blank”</p>
+<h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>puts pieces of information in a standard format, so that they can be compared to other pieces of information. </p>
+<p>An example of nor- malization is formatting dates and times in a stan- dard way, so that “12pm”, “noon” and “12.00h” all map to the same representation.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/25/String-Matching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -842,7 +985,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

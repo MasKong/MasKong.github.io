@@ -296,6 +296,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Machine-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Machine-Learning/" itemprop="url">Machine_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T13:01:38+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>contingency table</strong> consists of 4 entries: True Positive, True Negative, False Positive, False Negative.</p>
+<p>Accuracy doesn’t work well when<br>the classes are unbalanced.</p>
+<p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
+<p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
+<p>precision and recall, unlike accuracy, emphasize true positives: finding the things that we are supposed to be looking for.<br>In practice, we generally combine precision and recall into a single metric called<br>F-measure the F-measure that is defined as:<br>$$F_\beta =\frac{(\beta^2 +1)PR}{\beta^2P+R}$$</p>
+<p>The β parameter differentially weights the importance of recall and precision. Values of β &gt; 1 favor recall, while values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called \(F_{\beta}=1\) or just \(F_1\).F-measure comes from a weighted harmonic mean of precision and recall.</p>
+<p>Harmonic mean is used because it is a conservative metric; the harmonic mean of<br>two values is closer to the minimum of the two values than the arithmetic mean is.<br>Thus it weighs the lower of the two numbers more heavily.</p>
+<p>In <strong>any-of</strong> or <strong>multi-label</strong> classification, each document or item can be assigned more than one label. Solve any-of classification by building separate binary classifiers for each class c. Given a test document or item d, then each classifier makes their decision independently, and we may assign multiple labels to d.</p>
+<p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
+<p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
+<p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
+<h3 id="regularization-used-to-penalize-large-weights"><a href="#regularization-used-to-penalize-large-weights" class="headerlink" title="regularization: used to penalize large weights"></a><strong>regularization</strong>: used to penalize large weights</h3><p>L1 regularization is called ‘the lasso’ or lasso regression and L2 regression is called ridge regression, and both are commonly used in language processing. L2 regularization is easier to optimize because of its simple derivative, while L1 regularization is more complex (the derivative of |w| is noncontinuous<br>at zero). </p>
+<p>But where L2 prefers weight vectors with many small weights, L1 prefers sparse solutions with some larger weights but many more weights set to zero. Thus L1 regularization leads to much sparser weight vectors, that is, far fewer features.</p>
+<p>L2 regularization:$$\sum_{j=1}^Nw_j^2$$</p>
+<p>L1 regularization:$$\sum_{j=1}^N|w_j|$$</p>
+<p>Both L1 and L2 regularization have Bayesian interpretations as constraints on the prior of how weights should look. L1 regularization can be viewed as a Laplace<br>prior on the weights. L2 regularization corresponds to assuming that weights are<br>distributed according to a gaussian distribution with mean µ = 0.</p>
+<p>The regularization technique is useful for avoiding overfitting by removing or downweighting features that are unlikely to generalize well. Many kinds of classifiers including naive Bayes do not have regularization, and so instead feature selection is used to choose the important features and remove the rest. The basis of feature selection is to assign some metric<br>of goodness to each feature, rank the features, and keep the best ones. The number of features to keep is a meta-parameter that can be optimized on a dev set.</p>
+<h3 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a>Feature Selection</h3><p>Features are generally ranked by how informative they are about the classification decision. A very common metric is information gain. Information gain tells us how many bits of information the presence of the word gives us for guessing the class, and can be computed as follows (where ci is the ith class and ¯w means that a document does not contain the word \(w^-\)):</p>
+<p>While feature selection is important for unregularized classifiers, it is sometimes<br>also used in regularized classifiers in applications where speed is critical, since it is often possible to get equivalent performance with orders of magnitude fewer features.</p>
+<p>The overly strong conditional independence assumptions of Naive Bayes mean that if two features are correlated naive Bayes will multiply them, overestimating the evidence. Logistic regression is much more robust to correlated features; if two features f1 and f2 are perfectly correlated, regression will simply assign half the weight to w1 and half to w2.</p>
+<p>naive Bayes works extremely well (even better than logistic regression or SVMs) on small datasets or short documents.<br>Furthermore, naive Bayes is easy to implement and very fast to train. Nonetheless, algorithms like logistic regression and SVMs generally work better on larger documents<br>or datasets.</p>
+<h3 id="bias-variance-tradeoff"><a href="#bias-variance-tradeoff" class="headerlink" title="bias-variance tradeoff"></a>bias-variance tradeoff</h3><p>The <strong>bias of a classifier</strong> indicates how accurate it is at modeling different training sets.<br>The <strong>variance of a classifier</strong> indicates how much its decisions are affected by small changes<br>in training sets.</p>
+<p>Models with <em>low bias</em> (like SVMs with polynomial or RBF kernels) are very accurate at modeling the training data. Models with <em>low variance</em> (like naive<br>Bayes) are likely to come to the same classification decision even from slightly different training data. </p>
+<p>low-bias models tend to overfit, and do not generalize well to very different test sets.<br>low-variance models tend to generalize so well that they may not have sufficient accuracy.<br>Thus model trades off bias and variance. Adding more features decreases bias by making it possible to more accurately model the training data, but<br>increases variance because of overfitting. Regularization and feature selection are<br>ways to improve (lower) the variance of classifier by downweighting or removing<br>features that are likely to overfit.</p>
+<p>In addition to the choice of a classifier, the key to successful classification is the<br>design of appropriate features. Features are generally designed by examining the<br>training set with an eye to linguistic intuitions and the linguistic literature on the domain. </p>
+<p>For some tasks it is especially helpful to build complex features that are combinations<br>of more primitive features. For logistic regression and naive Bayes these<br>combination features or feature interactions have to be designed by hand. </p>
+<p><strong>feature interactions</strong><br>Some other machine learning models can automatically model the interactions<br>between features. For tasks where these combinations of features are important<br>(especially when combination of categorical features and real-valued features might<br>be helpful), the most useful classifiers may be such classifiers,including Support<br>SVMs Vector Machines (SVMs) with polynomial or RBF kernels, and random forests</p>
+<h3 id="dimensionality-reduction-PCA-SVD"><a href="#dimensionality-reduction-PCA-SVD" class="headerlink" title="dimensionality reduction(PCA,SVD)"></a>dimensionality reduction(PCA,SVD)</h3><p>First rotate the axes of the original dataset into a new space. The new space is chosen so that the highest order dimension<br>captures the most variance in the original dataset, the next dimension captures the next most variance, and so on. In this new space, the data if represented with a smaller number of dimensions and still<br>capture much of the variation in the original data.</p>
+<p>For binary classification, sigmoid would suffice the requirement.</p>
+<h3 id="Softmax-Logistic-Regression"><a href="#Softmax-Logistic-Regression" class="headerlink" title="Softmax(Logistic Regression)"></a>Softmax(Logistic Regression)</h3><p>Linear decision boundary.</p>
+<h3 id="Bias-Term"><a href="#Bias-Term" class="headerlink" title="Bias Term"></a>Bias Term</h3><p>Bias is significant because it allows the activation function to shift left and right. The weight is to change the steepness of the activation function.</p>
+<p><a href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks" target="_blank" rel="noopener">Role of Bias in Neural Networks</a></p>
+<h3 id="Max-margin-Objective-function"><a href="#Max-margin-Objective-function" class="headerlink" title="Max-margin Objective function"></a>Max-margin Objective function</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Sentiment-Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1581,149 +1732,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/Sentence-Similarity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/27/Sentence-Similarity/" itemprop="url">Sentence_Similarity</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-27T02:23:18+08:00">
-                2018-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="NLP-typical-Step"><a href="#NLP-typical-Step" class="headerlink" title="NLP typical Step:"></a>NLP typical Step:</h2><p>Tokenize: separate the words in the sentence</p>
-<p>Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vector</p>
-<h2 id="Similarity-Measurement"><a href="#Similarity-Measurement" class="headerlink" title="Similarity Measurement"></a>Similarity Measurement</h2><p>TF-IDF model: convert the sentence to a vector of words, use cosine similarity to measure. In this applicatoin, not very good.</p>
-<p>Bag of words:</p>
-<p>Modern way: NLP step as above. Use pre-train word vectors to represent a sentence. Compute distance. Huge amount of computation. In this application, extract several keywords first as heuristic to rule out a lot of sentences and then start using this method to reduce computation amount. The best accuracy in this application. Change pre-train vectors and brute-force computation would increase the accuracy.</p>
-<h2 id="Some-Notes"><a href="#Some-Notes" class="headerlink" title="Some Notes"></a>Some Notes</h2><p>Tokenize: separate the words in the sentence </p>
-<p>Bag of words: just count the frequency of words that appear in the sentence and neglect the sequence of words</p>
-<p>Word representation: one-hot representation<br>Not easy to extract connection because dot product between any two words are 0</p>
-<p>Featurized representation: word embedding. Using a matrix to represent values of features, and stand for a word. It could be understood as a word embedded in a high dimensional space </p>
-<p>Analogy of word embedding. Use cosine similarity to measure whether two words are similar. Take the dot product of two words vectors and divide multiplication of their lengths.</p>
-<p>Embedding matrix: num of features * number of words. Each column is a feature vector. Use one-hot vector to multiply embedding matrix get the corresponding feature vector</p>
-<p>Word2vec:<br>Skip-gram: randomly choose a context word and corresponding target word. Target word is in the window(like 5 words before or after the context word) of context word<br>Target is to learn good word embedding rather than perform good supervised learning<br>How to sample context word? Employ some techniques to avoid commonly appeared word like the ,a and so on</p>
-<p>Negative sampling: one positive sample and k randomly chosen negative sample to simplify computation </p>
-<p>Content of word d: means the range of plus or minus 5 words</p>
-<p>Sequence to sequence:<br>Machine translation: input sentence to encoder, and output is a decoder. Conditional language model. Green part is encoder, purple is decoder</p>
-<p>Beam search: a kind of approximate optimization algorithm<br>beam width n: track The most possible n sequences with the highest probability. Larger n, the algorithm runs better but need more memory. Smaller n: more efficient, less accurate<br>unlike BFS and DFS, beam search do not guarantee to find the best solution. It’s not complete because it only track a few states.<br>Start by choosing the first word for n sentences, and then second…….</p>
-<p>Maximize this probability to find the most possible sequence<br>Multiplication of several values that are less than one leads to numerical problem. Take Log on it solve this problem.</p>
-<p>Error analysis: working to optimize some sort of cost function/objective function that is output by a learning algorithm like RNN<br>RNN output the p(y|x) for sentences and beam search choose argmaxP(y|x). if RNN output the correct probability but beam search choose the wrong one, beam is at fault. And vise versa, if RNN output the wrong probability for sentences, RNN is at fault. Correct probability means P(correct sentence | x) &gt; P(wrong sentence | x)<br>Compare beam search with RNN, find which one is at fault. And then modify and improve it.</p>
-<p>Attention model:<br>Just focus on a few words around rather than the whole sentence to translate. Divide and conquer, get better result.</p>
-<p>Speech recognition:<br>Turn time domain signal to frequency domain signal<br>Usually input is much larger than output</p>
-<p>CTC cost:<br>Basic idea: collapse repeated characters not separated by “blank”</p>
-<h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>puts pieces of information in a standard format, so that they can be compared to other pieces of information. </p>
-<p>An example of nor- malization is formatting dates and times in a stan- dard way, so that “12pm”, “noon” and “12.00h” all map to the same representation.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1778,7 +1786,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

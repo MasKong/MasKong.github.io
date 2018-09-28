@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
+<meta name="description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
 <meta name="keywords" content="DL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pytorch">
 <meta property="og:url" content="http://yoursite.com/2018/07/31/Pytorch/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
+<meta property="og:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-17T05:01:56.357Z">
+<meta property="og:updated_time" content="2018-09-21T15:10:57.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch">
-<meta name="twitter:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) Converting a Torch Tensor to a NumPy Array 1b =">
+<meta name="twitter:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
 
 
 
@@ -366,6 +366,8 @@
       
         <p>reshape in pytorch: torch.view</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
+<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
+<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
 <p>Converting a Torch Tensor to a NumPy Array</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
 <p>Converting NumPy Array to Torch Tensor</p>
@@ -398,6 +400,8 @@
 <p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
 <p>Example:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
+<p>return the total number of elements in the input tensor.</p>
 
       
     </div>
@@ -522,7 +526,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">53</span>
+                  <span class="site-state-item-count">54</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
