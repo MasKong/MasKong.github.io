@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="ModificationIn skip-gram and CBOW, softmax is extremely expensive. Take skip-gram as an example. The objective is to maximize the following ojective function: $$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-28T04:50:12.846Z">
+<meta property="og:updated_time" content="2018-09-28T04:57:42.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Modi_Word2vec">
 <meta name="twitter:description" content="ModificationIn skip-gram and CBOW, softmax is extremely expensive. Take skip-gram as an example. The objective is to maximize the following ojective function: $$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j">
@@ -369,6 +369,7 @@
 <p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
 <p>where c is the size of the training context.</p>
 <p>The p is defined as :</p>
+<p>$$p(o|c)=\frac{exp(<br>{u_o}^Tv_{c})}{\sum_{w=1}^{W}exp({u_{w}}^T*v_{c})}$$</p>
 <p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
 <p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
 <h4 id="2-choices-to-improve-softmax"><a href="#2-choices-to-improve-softmax" class="headerlink" title="2 choices to improve softmax"></a>2 choices to improve softmax</h4><h5 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h5><p>Turn all words into a tree so that the height of tree is log2(V).</p>
