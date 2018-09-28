@@ -379,9 +379,12 @@
 <p>The skip-gram model only focus on leanring good word vectors.</p>
 <p>Here the noise is words that are outside of the context.</p>
 <p>Simplified version of NCE:</p>
+<p>$$P_n(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}  {f(w_j)}^{3/4}}$$</p>
 <p>where n is total number of words in the corpus.</p>
 <h4 id="Subsampling-of-Frequent-Words"><a href="#Subsampling-of-Frequent-Words" class="headerlink" title="Subsampling of Frequent Words"></a>Subsampling of Frequent Words</h4><p>The frequent words may contain less information. During training, it would discard words in the context by chance using the below formula</p>
+<p>$$P(w_i)=1-\sqrt{\frac{t}{f(w_i)}} $$</p>
 <p>In the implementation code, the formula is</p>
+<p>$$P(w_i) = (\sqrt{\frac{z(w_i)}{0.001}} + 1) \cdot \frac{0.001}{z(w_i)}$$</p>
 
           
         
