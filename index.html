@@ -373,6 +373,15 @@
 <p>where c is the size of the training context.</p>
 <p>The p is defined as :</p>
 <p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
+<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
+<h4 id="2-choices-to-improve-softmax"><a href="#2-choices-to-improve-softmax" class="headerlink" title="2 choices to improve softmax"></a>2 choices to improve softmax</h4><h5 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h5><p>Turn all words into a tree so that the height of tree is log2(V).</p>
+<h5 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h5><p>Noise Contrastive Estimation (NCE) states that a good model is able to differentiate data from noise by means of logistic regression.</p>
+<p>The skip-gram model only focus on leanring good word vectors.</p>
+<p>Here the noise is words that are outside of the context.</p>
+<p>Simplified version of NCE:</p>
+<p>where n is total number of words in the corpus.</p>
+<h4 id="Subsampling-of-Frequent-Words"><a href="#Subsampling-of-Frequent-Words" class="headerlink" title="Subsampling of Frequent Words"></a>Subsampling of Frequent Words</h4><p>The frequent words may contain less information. During training, it would discard words in the context by chance using the below formula</p>
+<p>In the implementation code, the formula is</p>
 
           
         
