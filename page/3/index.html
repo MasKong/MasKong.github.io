@@ -296,6 +296,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Pytorch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31/Pytorch/" itemprop="url">Pytorch</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T12:50:53+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>reshape in pytorch: torch.view</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
+<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
+<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
+<p>Converting a Torch Tensor to a NumPy Array</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
+<p>Converting NumPy Array to Torch Tensor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
+<p>Tensors can be moved onto any device using the .to method.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x.to(device)</span><br></pre></td></tr></table></figure>
+<p>torch.Tensor is the central class of the package. If you set its attribute .requires_grad as True, it starts to track all operations on it. When you finish your computation you can call .backward() and have all the gradients computed automatically. The gradient for this tensor will be accumulated into .grad attribute.</p>
+<p>To stop a tensor from tracking history, you can call .detach() to detach it from the computation history, and to prevent future computation from being tracked.</p>
+<p>To prevent tracking history (and using memory), you can also wrap the code block in with torch.no_grad():. This can be particularly helpful when evaluating a model because the model may have trainable parameters with requires_grad=True, but for which we don’t need the gradients.</p>
+<p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
+<p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
+<p>dtype=torch.long is for integers.</p>
+<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
+<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
+<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
+<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
+<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
+<p>Display an image in pytorch: </p>
+<ul>
+<li>transform the array</li>
+<li>transform to numpy array</li>
+<li>display</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
+<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
+<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
+<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.utils.rnn.pack_padded_sequence()</span><br></pre></td></tr></table></figure>
+<p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
+<p>Example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
+<p>return the total number of elements in the input tensor.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Deep-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -554,6 +711,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/WordVectors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/28/WordVectors/" itemprop="url">Word_Vectors</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
+<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
+<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
+<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
+<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
+<p>The training complexity of this architecture is proportional to</p>
+<p>Q = N × D + D × log2(V ).</p>
+<p>C is the context size.</p>
+<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
+<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
+<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
+<p>The training complexity of this architecture is proportional to</p>
+<p>Q = C × (D + D × log2(V ))</p>
+<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
+<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
+<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2 <em> R words which is less than C are used as correct label. this step contains sampling 2 </em> R words from C word. </p>
+<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -651,142 +944,6 @@
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://pdfs.semanticscholar.org/79ea/6a5a68e05065f82acd11a478aa7eac5f6c06.pdf" target="_blank" rel="noopener">Bagging􏰀 Boosting􏰀 and C4.5􏰁􏰂􏰃</a></p>
 <p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/WordVectors/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/WordVectors/" itemprop="url">Word_Vectors</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2 <em> R words which is less than C are used as correct label. this step contains sampling 2 </em> R words from C word. </p>
-<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2>
           
         
       
@@ -1496,147 +1653,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Dependency-Parsing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/Dependency-Parsing/" itemprop="url">Dependency_Parsing</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T12:23:44+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Transition-Based-Dependency-Parsing"><a href="#Transition-Based-Dependency-Parsing" class="headerlink" title="Transition-Based Dependency Parsing"></a>Transition-Based Dependency Parsing</h2><p>Linear time, greedy algorithm, no backtracking.</p>
-<p>A configuration is a stack, a buffer of token lists and an oracle. The key is to train the oracle. </p>
-<p>The algorithm is intuitive. If there is a match in the candidate relation set, pop the words and add the relation to the result set. Push the words in the buffer into the stack. repeat until no word left.</p>
-<h3 id="Creating-an-Oracle"><a href="#Creating-an-Oracle" class="headerlink" title="Creating an Oracle"></a>Creating an Oracle</h3><p>Supervised learning is employed to do this.</p>
-<h4 id="Generating-Training-Data"><a href="#Generating-Training-Data" class="headerlink" title="Generating Training Data"></a>Generating Training Data</h4><p>given a reference parse and a configuration, the training oracle proceeds as follows:</p>
-<ul>
-<li>Choose LEFTARC if it produces a correct head-dependent relation </li>
-<li>Otherwise, choose RIGHTARC if (1) it produces a correct head-dependent relation<br>and (2) all of its dependents in the buffer have already been assigned.</li>
-<li>Otherwise, choose SHIFT.</li>
-</ul>
-<h4 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h4><p>create feature sets.</p>
-<h4 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h4><p>The dominant approaches to training transition-based dependency parsers have been multinomial logistic regression and support vector machines, both of which can make effective use of large numbers of sparse features.</p>
-<p>Deep learning approaches have been applied successfully to transition-based parsing. These approaches eliminate the need for complex, hand-crafted features and have been particularly effective at overcoming the data sparsity issues normally associated training transition-based<br>parsers.</p>
-<h3 id="Alternative-Transition-Systems"><a href="#Alternative-Transition-Systems" class="headerlink" title="Alternative Transition Systems"></a>Alternative Transition Systems</h3><p><strong>arc eager</strong> transition system is just a modified version of the oracle.</p>
-<p>The operation of the oracle:</p>
-<ul>
-<li>LEFTARC: Assert a head-dependent relation between the word at the front of<br>the input buffer and the word at the top of the stack; pop the stack.</li>
-<li>RIGHTARC: Assert a head-dependent relation between the word on the top of<br>the stack and the word at front of the input buffer; shift the word at the front<br>of the input buffer to the stack.</li>
-<li>SHIFT: Remove the word from the front of the input buffer and push it onto<br>the stack.</li>
-<li>REDUCE: Pop the stack.</li>
-</ul>
-<h3 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h3><p>BFS with a heuristic filter that prunes the search frontier to stay within a fixed-size beam width.</p>
-<h3 id="Graph-Based"><a href="#Graph-Based" class="headerlink" title="Graph-Based"></a>Graph-Based</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1691,7 +1707,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">57</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
