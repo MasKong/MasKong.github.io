@@ -1075,6 +1075,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/vector-semantics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/05/vector-semantics/" itemprop="url">vector_semantics</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T18:56:55+08:00">
+                2018-07-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
+<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
+<p>mutual information </p>
+<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
+<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
+<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
+<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
+<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
+<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
+<p>To solve this problem,change the computation for P(c).</p>
+<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
+<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
+<p>Another solutio is Laplace smoothing.</p>
+<h3 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h3><p>IDF is used to give a higher weight to rare words because they are likely to present more information.</p>
+<p>$$idf_i = \log(\frac{N}{df_i})<br>$$</p>
+<p>Combining term frequency with IDF results in a scheme known as tf-idf weighting of the value for word i in document j,\(w_{ij}\):\</p>
+<p>$$w_{ij}=tf_{ij}idf_i$$</p>
+<p>The tf-idf weighting is by far the dominant way of weighting co-occurrence matrices in information retrieval, but also plays a role in many other aspects of natural language processing including summarization.</p>
+<h3 id="t-test"><a href="#t-test" class="headerlink" title="t-test"></a>t-test</h3><h2 id="Similarity-Measure-for-vectors-binary"><a href="#Similarity-Measure-for-vectors-binary" class="headerlink" title="Similarity Measure for vectors(binary)"></a>Similarity Measure for vectors(binary)</h2><p><strong>Jaccard similarity</strong>:<br>$$sim_{Jaccard}=\frac{\sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N\max(v_i,w_i)}$$</p>
+<p>$$J(A,B)=\frac{|A\cap B|}{|A\cup B|}$$</p>
+<p>The min of \(v_i\) and \(w_i\)means if a feature exists in one vector but not the other vector, the result would be zero. The<br>denominator can be viewed as a normalizing factor.</p>
+<p><strong>Dice measure</strong>:<br>$$sim_{Dice}=\frac{2 \times \sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N(v_i+w_i)}$$</p>
+<p><strong>KL divergence</strong><br>if two vectors, \(\vec{v}\) and \(\vec{w}\), each express a probability<br>distribution (their values sum to one), then they are are similar to the extent that these probability distributions are similar.</p>
+<p>Given two probability distribution or vectors P and Q:</p>
+<p>$$D(P||Q) = \sum_xP(x)\log \frac{P(x)}<br>{Q(x)}$$</p>
+<p>Unfortunately, the KL-divergence is undefined when Q(x) = 0 and P(x) \(\neq\) 0, which is a problem since these word-distribution vectors are generally quite sparse.</p>
+<p>Jensen-Shannon divergence solves this problem.<br>$$JS(P||Q)=D(P|\frac{Q+P}{2})+D(Q|\frac{Q+P}{2})$$</p>
+<h3 id="Using-syntax-to-define-a-word’s-context"><a href="#Using-syntax-to-define-a-word’s-context" class="headerlink" title="Using syntax to define a word’s context"></a>Using syntax to define a word’s context</h3><p>Instead of defining a word’s context by nearby words, we could instead define it by<br>the syntactic relations of these neighboring words. i.e.: the word duty could be represented by a bunch of combinations like additional,administrative(adj) or assert, assign(verb). </p>
+<h3 id="Evaluating-Vector-Models"><a href="#Evaluating-Vector-Models" class="headerlink" title="Evaluating Vector Models"></a>Evaluating Vector Models</h3><p>test their performance on similarity, and in particular on computing the correlation between an algorithm’s word similarity scores and word similarity ratings<br>assigned by humans.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/Hierarchical-Softmax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1656,148 +1804,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Logistic-Regression/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/29/Logistic-Regression/" itemprop="url">Logistic_Regression</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T14:35:03+08:00">
-                2018-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Binomial-Logistic-Regression"><a href="#Binomial-Logistic-Regression" class="headerlink" title="Binomial Logistic Regression"></a>Binomial Logistic Regression</h2><p>$$p(1|x) = \frac{\exp(\vec{w} \cdot \vec{x})}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
-<p>$$p(0|x) = \frac{1}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
-<p><strong>odds</strong>: the probability that an event occur divided by the probability that an event doesn’t occur. \(\frac{p}{1-p}\)</p>
-<p><strong>log odds</strong>: take log of odds. \(\log \frac{p}{1-p}\). In terms of logistic regression, \(\log \frac{p}{1-p}=\vec{w} \cdot \vec{x}\).</p>
-<p>Actually logistic regression turns the linear function \(\vec{w} \cdot \vec{x}\) into probability distribution. So logistic regression is acutually a linear classification model with some operations to turn the output into probability distribution. The final output label is the one with the highest value.</p>
-<h3 id="Parameters-Estimation"><a href="#Parameters-Estimation" class="headerlink" title="Parameters Estimation"></a>Parameters Estimation</h3><p>Use gradient descent.</p>
-<h2 id="Multinomial-Logistic-Regression"><a href="#Multinomial-Logistic-Regression" class="headerlink" title="Multinomial Logistic Regression"></a>Multinomial Logistic Regression</h2><p>multinomial logistic regression, sometimes referred to within language processing as MaxEnt entropy modeling, MaxEnt for short. Logistic regression belongs to the family of classifiers known as the exponential or log-linear classifiers.<br>Technically, logistic regression refers to a classifier that classifies<br>an observation into one of two classes, and multinomial logistic regression is used when classifying into more than two classes</p>
-<p>First, wrap the exp function around the weight-feature dot-product \(w\cdot f\) , which will make the values positive.</p>
-<p>A discriminative model discriminative<br>model takes this direct approach, computing P(y|x) by discriminating among the different possible values of the class y rather than first computing a likelihood.</p>
-<p>Logistic Regression </p>
-<p>$$p(c|x) = \frac{\exp(\sum_iw_if_i(c,x))}{\sum_{c’ \in C}\exp(\sum_{i=1}^N w_if_i(c’,x)}$$</p>
-<p>In vector from:</p>
-<p>$$p(c|x) = \frac{\exp(\vec{w} \cdot \vec{f(c,x)})}{\sum_{c’ \in C}\exp(\vec{w}\cdot \vec{f(c,x)})}$$</p>
-<p>Here c actually range from 1 to N+1. And by default \(\exp(\sum_{i=1}^N w_if_i(N+1,x)=0\)</p>
-<p>exp is to make to result greater than 0.<br>\(f_i(c, x)\), meaning feature i for a particular class c for a given observation x. In NLP, x is usually a document. Feature i usually means whether a specific word \(x_i\) has shown in the document for a particular class. \(w_i\) is the weight corresponding to the feature i. For example, in sentiment analysis, classes are 0 and 1 corresponding to positive and negative. The word best is a feature, namely \(\ f_1\), its value for class 1 coube be +10 and -10 for class 0.</p>
-<p>Computing the actual probability rather than just choosing the best class is useful when the classifier is embedded in a larger system. Otherwise compute the nominater is sufficient to do classification. \(\hat{c}={argmax}<em>{c\in C}\sum</em>{i=1}^N w_if_i(c,x)\)</p>
-<h3 id="Learning-weights"><a href="#Learning-weights" class="headerlink" title="Learning weights"></a>Learning weights</h3><p>The intuition is to choose weights that make the classes of the training examples more likely. Indeed, logistic regression is trained with conditional maximum likelihood estimation. This means we choose the parameters w that maximize the (log) probability of the y labels in the training data given the observations x.</p>
-<p>$$\hat{w} = {argmax}_w\sum_jlogP(y^{(j)}|x^{(j)})$$</p>
-<p>It means given a training set, we choose weights that maximize the probability of \(j^{th}\) training example \(x^{(j)}\) is classified to the lable \(y^{(j)}\).</p>
-<p>The objective function L that we are maximizing is thus<br>$$L(w) = \frac{\exp(\sum_i^Nw_if_i(y^{(j)},x^{(j)}))}{\sum_{y’ \in Y}\exp(\sum_{i=1}^N w_if_i(y’^{(j)},x^{(j)})}$$</p>
-<h3 id="Max-Entropy"><a href="#Max-Entropy" class="headerlink" title="Max Entropy"></a>Max Entropy</h3><p>When there is no training data available, the model assign the same probability to each class. If there is training data, the model try to reach the max entropy with the constraint that satisfy the training data.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-<p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1852,7 +1858,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

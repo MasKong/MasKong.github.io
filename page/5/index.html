@@ -296,6 +296,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Logistic-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Logistic-Regression/" itemprop="url">Logistic_Regression</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T14:35:03+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Binomial-Logistic-Regression"><a href="#Binomial-Logistic-Regression" class="headerlink" title="Binomial Logistic Regression"></a>Binomial Logistic Regression</h2><p>$$p(1|x) = \frac{\exp(\vec{w} \cdot \vec{x})}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
+<p>$$p(0|x) = \frac{1}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
+<p><strong>odds</strong>: the probability that an event occur divided by the probability that an event doesn’t occur. \(\frac{p}{1-p}\)</p>
+<p><strong>log odds</strong>: take log of odds. \(\log \frac{p}{1-p}\). In terms of logistic regression, \(\log \frac{p}{1-p}=\vec{w} \cdot \vec{x}\).</p>
+<p>Actually logistic regression turns the linear function \(\vec{w} \cdot \vec{x}\) into probability distribution. So logistic regression is acutually a linear classification model with some operations to turn the output into probability distribution. The final output label is the one with the highest value.</p>
+<h3 id="Parameters-Estimation"><a href="#Parameters-Estimation" class="headerlink" title="Parameters Estimation"></a>Parameters Estimation</h3><p>Use gradient descent.</p>
+<h2 id="Multinomial-Logistic-Regression"><a href="#Multinomial-Logistic-Regression" class="headerlink" title="Multinomial Logistic Regression"></a>Multinomial Logistic Regression</h2><p>multinomial logistic regression, sometimes referred to within language processing as MaxEnt entropy modeling, MaxEnt for short. Logistic regression belongs to the family of classifiers known as the exponential or log-linear classifiers.<br>Technically, logistic regression refers to a classifier that classifies<br>an observation into one of two classes, and multinomial logistic regression is used when classifying into more than two classes</p>
+<p>First, wrap the exp function around the weight-feature dot-product \(w\cdot f\) , which will make the values positive.</p>
+<p>A discriminative model discriminative<br>model takes this direct approach, computing P(y|x) by discriminating among the different possible values of the class y rather than first computing a likelihood.</p>
+<p>Logistic Regression </p>
+<p>$$p(c|x) = \frac{\exp(\sum_iw_if_i(c,x))}{\sum_{c’ \in C}\exp(\sum_{i=1}^N w_if_i(c’,x)}$$</p>
+<p>In vector from:</p>
+<p>$$p(c|x) = \frac{\exp(\vec{w} \cdot \vec{f(c,x)})}{\sum_{c’ \in C}\exp(\vec{w}\cdot \vec{f(c,x)})}$$</p>
+<p>Here c actually range from 1 to N+1. And by default \(\exp(\sum_{i=1}^N w_if_i(N+1,x)=0\)</p>
+<p>exp is to make to result greater than 0.<br>\(f_i(c, x)\), meaning feature i for a particular class c for a given observation x. In NLP, x is usually a document. Feature i usually means whether a specific word \(x_i\) has shown in the document for a particular class. \(w_i\) is the weight corresponding to the feature i. For example, in sentiment analysis, classes are 0 and 1 corresponding to positive and negative. The word best is a feature, namely \(\ f_1\), its value for class 1 coube be +10 and -10 for class 0.</p>
+<p>Computing the actual probability rather than just choosing the best class is useful when the classifier is embedded in a larger system. Otherwise compute the nominater is sufficient to do classification. \(\hat{c}={argmax}<em>{c\in C}\sum</em>{i=1}^N w_if_i(c,x)\)</p>
+<h3 id="Learning-weights"><a href="#Learning-weights" class="headerlink" title="Learning weights"></a>Learning weights</h3><p>The intuition is to choose weights that make the classes of the training examples more likely. Indeed, logistic regression is trained with conditional maximum likelihood estimation. This means we choose the parameters w that maximize the (log) probability of the y labels in the training data given the observations x.</p>
+<p>$$\hat{w} = {argmax}_w\sum_jlogP(y^{(j)}|x^{(j)})$$</p>
+<p>It means given a training set, we choose weights that maximize the probability of \(j^{th}\) training example \(x^{(j)}\) is classified to the lable \(y^{(j)}\).</p>
+<p>The objective function L that we are maximizing is thus<br>$$L(w) = \frac{\exp(\sum_i^Nw_if_i(y^{(j)},x^{(j)}))}{\sum_{y’ \in Y}\exp(\sum_{i=1}^N w_if_i(y’^{(j)},x^{(j)})}$$</p>
+<h3 id="Max-Entropy"><a href="#Max-Entropy" class="headerlink" title="Max Entropy"></a>Max Entropy</h3><p>When there is no training data available, the model assign the same probability to each class. If there is training data, the model try to reach the max entropy with the constraint that satisfy the training data.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
+<p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Machine-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1610,128 +1752,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Remove-Duplicates-from-Sorted-List-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/Remove-Duplicates-from-Sorted-List-II/" itemprop="url">Remove_Duplicates_from_Sorted_List_II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-05T15:41:07+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##Remove Duplicates from Sorted List II:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteDuplicates</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        node = head</span><br><span class="line">        <span class="keyword">if</span> head == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> head.next == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        <span class="keyword">if</span> head.next.val != head.val:   <span class="comment">#the first two elements are not the same</span></span><br><span class="line">            current_node = node</span><br><span class="line">            node = node.next</span><br><span class="line">            <span class="keyword">while</span> node != <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                    current_node.next = node</span><br><span class="line">                    <span class="keyword">return</span> head</span><br><span class="line">                <span class="keyword">if</span> node.next.val != node.val:</span><br><span class="line">                    current_node.next = node</span><br><span class="line">                    current_node = node</span><br><span class="line">                <span class="keyword">else</span>:   <span class="comment"># when next node is the same as the current node</span></span><br><span class="line">                    <span class="keyword">while</span> node != <span class="keyword">None</span>:</span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            node = node.next</span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">if</span> node.val != node.next.val:</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                node = node.next</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            current_node = <span class="keyword">None</span>     <span class="comment">#the first two elements are same, pointers point to None</span></span><br><span class="line">            <span class="keyword">while</span> node != <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                    <span class="keyword">if</span> current_node == <span class="keyword">None</span>:    <span class="comment"># all elements includes the first few elements are same</span></span><br><span class="line">                        <span class="keyword">return</span> node             <span class="comment">#return None</span></span><br><span class="line">                    current_node.next = node    <span class="comment">#add the last node to the linked list</span></span><br><span class="line">                    <span class="keyword">return</span> head</span><br><span class="line">                <span class="keyword">if</span> node.next.val != node.val:   <span class="comment">#current node is to record the last node in the linked list</span></span><br><span class="line">                    <span class="keyword">if</span> current_node == <span class="keyword">None</span>:    <span class="comment">#which is identical in the list</span></span><br><span class="line">                        current_node = node</span><br><span class="line">                        head = current_node</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        current_node.next = node</span><br><span class="line">                        current_node = node</span><br><span class="line">                <span class="keyword">else</span>:   <span class="comment"># when next node is the same as the current node</span></span><br><span class="line">                    <span class="keyword">while</span> node != <span class="keyword">None</span>:         <span class="comment"># if the node is the same with next node</span></span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:   <span class="comment"># this loop is to skip the node</span></span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            node = node.next</span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                            <span class="keyword">if</span> current_node == <span class="keyword">None</span>:</span><br><span class="line">                                <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">if</span> node.val != node.next.val:</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                node = node.next</span><br><span class="line"></span><br><span class="line">s = Solution()</span><br><span class="line">l = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"><span class="comment"># l = [1,2,3,3,4,4,5,5]</span></span><br><span class="line"><span class="comment"># l = [2,2,3,4,5,5]</span></span><br><span class="line">LN = ListNode(l[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># for i in range(1,len(l)):</span></span><br><span class="line"><span class="comment">#     LN.next</span></span><br><span class="line">node_list = list(map(ListNode,l))</span><br><span class="line"><span class="comment"># print(node_list[0])</span></span><br><span class="line"><span class="comment"># print(ListNode(l[0]))</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(node_list)<span class="number">-1</span>):</span><br><span class="line">    node_list[i].next = node_list[i+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">h = s.deleteDuplicates(node_list[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">while</span> h!= <span class="keyword">None</span>:</span><br><span class="line">    print(h.val)</span><br><span class="line">    h = h.next</span><br></pre></td></tr></table></figure>
-<p>This version uses three pointer to do the same thing. From leetcode.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteDuplicates</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.next:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        fakehead = ListNode(<span class="number">0</span>)</span><br><span class="line">        fakehead.next = head</span><br><span class="line">        prev = fakehead</span><br><span class="line">        slow = head</span><br><span class="line">        fast = head.next</span><br><span class="line">        <span class="keyword">while</span> fast:</span><br><span class="line">            <span class="keyword">if</span> fast.val == slow.val:</span><br><span class="line">                <span class="keyword">while</span> fast <span class="keyword">and</span> fast.val == slow.val:</span><br><span class="line">                    fast = fast.next</span><br><span class="line">                slow = prev</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                prev = slow</span><br><span class="line">                slow = slow.next</span><br><span class="line">                slow.val = fast.val</span><br><span class="line">                fast = fast.next</span><br><span class="line">        slow.next = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> fakehead.next</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1786,7 +1806,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">55</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
