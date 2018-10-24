@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="ConvolutionEach convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias. Para">
+<meta name="description" content="Prior parameter distributionA prior probability distribution over theparameters of a model is to encode our belief about what models are resonable before seeing the data.  a week prior: distribution w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CNN">
 <meta property="og:url" content="http://yoursite.com/2018/08/10/CNN/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="ConvolutionEach convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias. Para">
+<meta property="og:description" content="Prior parameter distributionA prior probability distribution over theparameters of a model is to encode our belief about what models are resonable before seeing the data.  a week prior: distribution w">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-22T03:08:56.637Z">
+<meta property="og:updated_time" content="2018-10-03T03:27:48.457Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN">
-<meta name="twitter:description" content="ConvolutionEach convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias. Para">
+<meta name="twitter:description" content="Prior parameter distributionA prior probability distribution over theparameters of a model is to encode our belief about what models are resonable before seeing the data.  a week prior: distribution w">
 
 
 
@@ -363,9 +363,33 @@
       
 
       
-        <h3 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h3><p>Each convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias.</p>
+        <h3 id="Prior-parameter-distribution"><a href="#Prior-parameter-distribution" class="headerlink" title="Prior parameter distribution"></a>Prior parameter distribution</h3><p>A prior probability distribution over the<br>parameters of a model is to encode our belief about what models are resonable before seeing the data.</p>
+<ul>
+<li>a week prior: distribution with high entropy like Gaussian with high variance. It allows the data to move parameters of model freely.</li>
+<li>a strong prior: distribution with low entropy like Gaussian with low variance. Such a prior plays a more active role in determining where the parameters end up.</li>
+</ul>
+<h4 id="Infinitely-Strong-Prior"><a href="#Infinitely-Strong-Prior" class="headerlink" title="Infinitely Strong Prior"></a>Infinitely Strong Prior</h4><ul>
+<li>An infinitely strong prior places zero probability on some parameters</li>
+<li>It says that some parameter values are forbidden regardless of support from data.</li>
+</ul>
+<h3 id="Convolution-as-infinitely-strong-prior"><a href="#Convolution-as-infinitely-strong-prior" class="headerlink" title="Convolution as infinitely strong prior"></a>Convolution as infinitely strong prior</h3><p>Convolution introduces an infinitely strong prior probability distribution over the parameters of a layer which says that the function the layer should learn contains only local interactions and is equivariant to translation.</p>
+<h3 id="Pooling-as-an-Infinitely-strong-prior"><a href="#Pooling-as-an-Infinitely-strong-prior" class="headerlink" title="Pooling as an Infinitely strong prior"></a>Pooling as an Infinitely strong prior</h3><p>The use of pooling is an infinitely strong prior that each unit should be invariant to small translations.</p>
+<p>High Bias/Underfit can be countered by:</p>
+<ol>
+<li>Add hidden layers</li>
+<li>Increase hidden<br>units/layer</li>
+<li>Decrease regularize parameter.</li>
+<li>Add features </li>
+</ol>
+<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><p><a href="https://cedar.buffalo.edu/~srihari/CSE676/9.4%20ConvPoolAsPrior.pdf" target="_blank" rel="noopener">Deep Learning Slides</a></p>
+<h3 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h3><p>Each convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias.</p>
 <h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>Parameters in a kernel are used to do convolution in the whole image. In terms of fully connect, for each pixel, there would be a different parameters.</p>
 <h3 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h3><h3 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h3><p>Reduce the size of representation s.t. reduce the computation and control overfittinh. Max pooling could be regarded as extract the most useful characteristic.</p>
+<p>Pooling could be performed on spatial regions, or over the multi-layer outputs. </p>
+<p>When performed on spatial regions, it yields the same output dimension with smaller filter size. This would enable the neural network to be invariant to local small translations of the input, which is useful in case of whether a feature is present is more important than where the feature is.</p>
+<p>When performed on the multi-layer outputs, it yields the same filter size with fewer dimensionality. This would enable the neural network to be invariant to transformation such as rotation of images.</p>
+<p>In a nutshell, pooling summarizes the response of activation over a region. It improves the computational and statistical efficiency.</p>
+<p>It is also used in hadling inputs of varying size.</p>
 <h4 id="Memory-Consumption-Calculation"><a href="#Memory-Consumption-Calculation" class="headerlink" title="Memory Consumption Calculation"></a>Memory Consumption Calculation</h4><p>Activation needs to be stored for back-propagation. So it would be the major memory consumption.</p>
 <p>i.e.: an image of 224<em>224</em>3. The activation would be 224<em>224</em>3=150000 floating numbers. Each floating number would use 4 bytes to store, so its size is actually 600000 bytes which is 600KB for only the first layer in the network.</p>
 
@@ -495,7 +519,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -508,7 +532,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -541,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolution"><span class="nav-number">1.</span> <span class="nav-text">Convolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameters-Sharing"><span class="nav-number">2.</span> <span class="nav-text">Parameters Sharing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Local"><span class="nav-number">3.</span> <span class="nav-text">Local</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-Layer"><span class="nav-number">4.</span> <span class="nav-text">Pooling Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-Consumption-Calculation"><span class="nav-number">4.1.</span> <span class="nav-text">Memory Consumption Calculation</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prior-parameter-distribution"><span class="nav-number">1.</span> <span class="nav-text">Prior parameter distribution</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Infinitely-Strong-Prior"><span class="nav-number">1.1.</span> <span class="nav-text">Infinitely Strong Prior</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolution-as-infinitely-strong-prior"><span class="nav-number">2.</span> <span class="nav-text">Convolution as infinitely strong prior</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-as-an-Infinitely-strong-prior"><span class="nav-number">3.</span> <span class="nav-text">Pooling as an Infinitely strong prior</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Reference"><span class="nav-number">3.0.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolution"><span class="nav-number">4.</span> <span class="nav-text">Convolution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Parameters-Sharing"><span class="nav-number">5.</span> <span class="nav-text">Parameters Sharing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Local"><span class="nav-number">6.</span> <span class="nav-text">Local</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-Layer"><span class="nav-number">7.</span> <span class="nav-text">Pooling Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Memory-Consumption-Calculation"><span class="nav-number">7.1.</span> <span class="nav-text">Memory Consumption Calculation</span></a></li></ol></li></ol></div>
             
 
           </div>

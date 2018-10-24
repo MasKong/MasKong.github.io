@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Word2vecFeedforward Neural Net Language Model (">
+<meta name="description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Two types of word vectors count-based: LSA, LDA">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Word_Vectors">
 <meta property="og:url" content="http://yoursite.com/2018/07/28/WordVectors/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Word2vecFeedforward Neural Net Language Model (">
+<meta property="og:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Two types of word vectors count-based: LSA, LDA">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-28T05:14:56.865Z">
+<meta property="og:updated_time" content="2018-10-23T13:40:46.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Word_Vectors">
-<meta name="twitter:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Word2vecFeedforward Neural Net Language Model (">
+<meta name="twitter:description" content="The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched. Two types of word vectors count-based: LSA, LDA">
 
 
 
@@ -365,7 +365,18 @@
 
       
         <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
+<h1 id="Two-types-of-word-vectors"><a href="#Two-types-of-word-vectors" class="headerlink" title="Two types of word vectors"></a>Two types of word vectors</h1><ul>
+<li>count-based: LSA, LDA, Glove</li>
+<li>window-based: word2vec</li>
+</ul>
+<p>Drawback of count-based method:</p>
+<ul>
+<li>unstable, may change if there is a new word.</li>
+<li>high dimension \(V \times V\) although dimension could be decreased by SVD.</li>
+</ul>
+<p>Word vectors are application-specific.</p>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>Input vectors are also named context vectors.<br>Output vectors are also named word vectors.</p>
+<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
 <p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
 <p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
 <p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
@@ -381,13 +392,13 @@
 <p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
 <p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
 <p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2 <em> R words which is less than C are used as correct label. this step contains sampling 2 </em> R words from C word. </p>
+<p>There are two kinds of vectors for each word. They are context vectors and word vectors respectively. Normally the final word vectors could be the sum of two vectors or simply the word vector.</p>
 <h3 id="Modification"><a href="#Modification" class="headerlink" title="Modification"></a>Modification</h3><p>In skip-gram and CBOW, softmax is extremely expensive.</p>
 <p>Take skip-gram as an example. The objective is to maximize the following ojective function:</p>
 <p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
 <p>where c is the size of the training context.</p>
 <p>The p is defined as :</p>
 <p>$$p(o|c)=\frac{exp(<br>{u_o}^Tv_{c})}{\sum_{w=1}^{W}exp({u_{w}}^T*v_{c})}$$</p>
-<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
 <p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
 <h4 id="2-choices-to-improve-softmax"><a href="#2-choices-to-improve-softmax" class="headerlink" title="2 choices to improve softmax"></a>2 choices to improve softmax</h4><h5 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h5><p>Turn all words into a tree so that the height of tree is log2(V).</p>
 <h5 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h5><p>Noise Contrastive Estimation (NCE) states that a good model is able to differentiate data from noise by means of logistic regression.</p>
@@ -401,7 +412,40 @@
 <p>$$P(w_i)=1-\sqrt{\frac{t}{f(w_i)}} $$</p>
 <p>In the implementation code, the formula is</p>
 <p>$$P(w_i) = (\sqrt{\frac{z(w_i)}{0.001}} + 1) \cdot \frac{0.001}{z(w_i)}$$</p>
-<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><p>glove</p>
+<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><p>Utilize statistical information in co-occurrence matrix.</p>
+<p>Utilize a third word to determine whether two words are related or not. If two words are not correlated,</p>
+<p>$$\frac{P_{ik}}{P_{jk}} \approx 1$$</p>
+<p>where \(P_{ik}\) is conditional probability \(P(k|i)\).</p>
+<p>The objective is to find a function to represent the relationship between word vectors and conditional probability.</p>
+<p>$$F(w_i,w_j,\tilde{w}<em>k)=\frac{P</em>{ik}}{P_{jk}}$$</p>
+<p>The function F has to satisfy certain requirements:</p>
+<ol>
+<li>preserve linear structure</li>
+<li>exchangeable</li>
+</ol>
+<p>Finally, weight counts because rare co- occurrences may carry less information.</p>
+<p>$$J(\theta)=\frac{1}{2}\sum_{i,j=1}^{W}f(P_{ij})(u_i^Tv_j-log P_{ij})^2$$</p>
+<h2 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h2><p>It is a model derived from word2vec. In order to better represent morphological words, each word is now represent by a set of n-gram characters. Each word is added two symbols ‘&lt;’ and ‘&gt;’ respectively to indicate start and end of the word.</p>
+<p>For example, word ‘FastText’ becomes word ‘<fasttext>‘. 3-gram set is (&lt;Fa,Fas,ast,stT,tTe,Tex,ext,xt&gt;).</fasttext></p>
+<p>Negetive sampling of word2vec:</p>
+<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
+<p>In word2vec, each word is an unique unit. Each word has the unique word vectors representation which lose the morphological information. In FastText, subword model is employed, in which each word is now represent by a set of n-gram characters to utilize morphological information.</p>
+<p>The objective function is:</p>
+<p>$$\log\sigma{(\sum_{g\in G_{o}}{z_g}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-\sum_{g\in G_{j}}{z_{gj}}^Tv_{c})}$$</p>
+<p>where \(G_{o}\) is the set of n-grams character of word \(w_o\), \(z_{g}\) is the vector representation of the specific n-gram characters. </p>
+<p>$$u_o = \sum_{g\in G_{o}}{z_g}$$</p>
+<p>The word vector for each word is then the sum of its all n-gram vector representation.</p>
+<h2 id="WordRank"><a href="#WordRank" class="headerlink" title="WordRank"></a>WordRank</h2><p>Turn the problem into a ranking problem.</p>
+<h2 id="Character-level-embedding"><a href="#Character-level-embedding" class="headerlink" title="Character-level embedding"></a>Character-level embedding</h2><p>Advantages:</p>
+<ul>
+<li>better in terms of morphological languages</li>
+<li>In some languages such as Chinese, each sentence is composed of characters directly. Character-level embedding is also better in this case.</li>
+<li>OOV(out of vocabulary words). Able to handle OOV.</li>
+</ul>
+<h4 id="OOV-Handling"><a href="#OOV-Handling" class="headerlink" title="OOV Handling"></a>OOV Handling</h4><ul>
+<li>Character-level embedding</li>
+<li>Initialize the unknown word as the sum of all context vectors and refine it with a high learning rate</li>
+</ul>
 
       
     </div>
@@ -535,7 +579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -548,7 +592,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -581,7 +625,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-number">1.</span> <span class="nav-text">Word2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feedforward-Neural-Net-Language-Model-NNLM"><span class="nav-number">1.1.</span> <span class="nav-text">Feedforward Neural Net Language Model (NNLM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Bag-of-Words-Model-CBOW"><span class="nav-number">1.2.</span> <span class="nav-text">Continuous Bag-of-Words Model(CBOW)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Skip-gram-Model"><span class="nav-number">1.3.</span> <span class="nav-text">Continuous Skip-gram Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modification"><span class="nav-number">1.4.</span> <span class="nav-text">Modification</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-choices-to-improve-softmax"><span class="nav-number">1.4.1.</span> <span class="nav-text">2 choices to improve softmax</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hierarchical-Softmax"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Hierarchical Softmax</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Negative-Sampling"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">Negative Sampling</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subsampling-of-Frequent-Words"><span class="nav-number">1.4.2.</span> <span class="nav-text">Subsampling of Frequent Words</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glove"><span class="nav-number">2.</span> <span class="nav-text">Glove</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Two-types-of-word-vectors"><span class="nav-number">1.</span> <span class="nav-text">Two types of word vectors</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Word2vec"><span class="nav-number">1.1.</span> <span class="nav-text">Word2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Feedforward-Neural-Net-Language-Model-NNLM"><span class="nav-number">1.1.1.</span> <span class="nav-text">Feedforward Neural Net Language Model (NNLM)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Bag-of-Words-Model-CBOW"><span class="nav-number">1.1.2.</span> <span class="nav-text">Continuous Bag-of-Words Model(CBOW)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Continuous-Skip-gram-Model"><span class="nav-number">1.1.3.</span> <span class="nav-text">Continuous Skip-gram Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modification"><span class="nav-number">1.1.4.</span> <span class="nav-text">Modification</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-choices-to-improve-softmax"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">2 choices to improve softmax</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hierarchical-Softmax"><span class="nav-number">1.1.4.1.1.</span> <span class="nav-text">Hierarchical Softmax</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Negative-Sampling"><span class="nav-number">1.1.4.1.2.</span> <span class="nav-text">Negative Sampling</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subsampling-of-Frequent-Words"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">Subsampling of Frequent Words</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Glove"><span class="nav-number">1.2.</span> <span class="nav-text">Glove</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FastText"><span class="nav-number">1.3.</span> <span class="nav-text">FastText</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WordRank"><span class="nav-number">1.4.</span> <span class="nav-text">WordRank</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Character-level-embedding"><span class="nav-number">1.5.</span> <span class="nav-text">Character-level embedding</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#OOV-Handling"><span class="nav-number">1.5.0.1.</span> <span class="nav-text">OOV Handling</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

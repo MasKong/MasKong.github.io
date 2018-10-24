@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/TextRank/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -315,7 +315,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/22/gradient-descent/" itemprop="url">gradient_descent</a></h1>
+                <a class="post-title-link" href="/2018/09/29/TextRank/" itemprop="url">TextRank</a></h1>
         
 
         <div class="post-meta">
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T11:45:16+08:00">
-                2018-08-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-29T20:10:34+08:00">
+                2018-09-29
               </time>
             
 
@@ -367,26 +367,9 @@
       
         
           
-            <h2 id="Vanilla-gradient-descent"><a href="#Vanilla-gradient-descent" class="headerlink" title="Vanilla gradient descent"></a>Vanilla gradient descent</h2><p>Calculate the gradient of the whole dataset and average the gradient by the size of the dataset. </p>
-<p>Drawback: Time-consuming, compute gradients redundantly.</p>
-<h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>Take a batch of examples and calculate the gradient. After that, average the gradient by the batch size.</p>
-<h2 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h2><p>Take a single example and calculate the gradient. </p>
-<p>Drawback: High variance, fluctuate a lot.<br>In high dimension, some directions would have larger gradients and zigzag a lot. The direction of gradient would deviate from the best direction.</p>
-<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>Momentum would accumulate gradient if the direction is the same and reduce the gradient if the direction zigzag a lot such that the overall direction would point to the local/global minimum with less zigzagging.</p>
-<p>$$v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta)$$</p>
-<p>$$\theta = \theta - v_t$$</p>
-<p>\(\theta\) is the gradient and \(\gamma\) is the momentum which is usually 0.9. \(\eta\) is the learning rate.</p>
-<h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>It is a lookahead version of momentum. The gradient would be updated using momentum, and a estimate of the future gradient after normal momentum update\(\nabla_\theta J( \theta - \gamma v_{t-1} )\) would be added to the current update of gradient so as to accelerate convergence. <strong>It significantly increased the performance of RNNs.</strong></p>
-<p>$$<br>v_t = \gamma v_{t-1} + \eta \nabla_\theta J( \theta - \gamma v_{t-1} ) \<br>\theta = \theta - v_t$$</p>
-<h3 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h3><p>It adapts the learning rate to the parameters, performing larger updates for infrequent and smaller updates for frequent<br>parameters.</p>
-<p>$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$</p>
-<p>\(G_{t} \in \mathbb{R}^{d \times d}\) is a diagonal matrix where each diagonal element i,i is the sum of the squares of the gradients w.r.t. \(\theta_i\) up to time step t, while \(\epsilon\) is a smoothing term that avoids division by zero (usually on the order of 1e−8). Interestingly, without the square root operation, the algorithm performs much worse.</p>
-<p>Drawback: The accumulated sum keeps growing during training and causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</p>
-<h3 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h3><p>$$\Delta \theta_t = - \dfrac{RMS[\Delta \theta]<em>{t-1}}{RMS[g]</em>{t}} g_{t} \<br>\theta_{t+1} = \theta_t + \Delta \theta_t<br>$$</p>
-<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>Approximate the learning rate with the RMS of parameter updates until the previous time step. </p>
-<p>$$E[g^2]<em>t = 0.9 E[g^2]</em>{t-1} + 0.1 g^2_t \<br>\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]<em>t + \epsilon}} g</em>{t}<br>$$</p>
-<p>It still accumulates the gradient while it also depends on the current gradient and the updates do not get monotonically smaller.<br>RMSProp still modulates the learning rate of each weight based on the magnitudes of its gradients, which has a beneficial equalizing effect.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank" rel="noopener">An overview of gradient descent optimization<br>algorithms</a></p>
+            <p>TextRank is actuaaly the same as PageRank. The only difference is that the unit in the PageRank is a webpage while the unit in the TextRank is word or sentence.</p>
+<h2 id="Keyword-Extraction"><a href="#Keyword-Extraction" class="headerlink" title="Keyword Extraction"></a>Keyword Extraction</h2><p>Each word is a vertex in the graph. Set up a context window. If two words co-occur in a context window, there is a link between those two words. The rest is the same as PageRank.</p>
+<h2 id="Sentence-Extraction"><a href="#Sentence-Extraction" class="headerlink" title="Sentence Extraction"></a>Sentence Extraction</h2><p>Each sentence is a vertex in the graph. The difference with keyword extraction is that now all sentences are considered connected with a weight. The weight is sentence similarity. The graph becomes a weighted graph which means there is a weight associated with each edge. </p>
 
           
         
@@ -435,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/Network-in-Network/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/20/Interview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -454,7 +437,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/18/Network-in-Network/" itemprop="url">Network_in_Network</a></h1>
+                <a class="post-title-link" href="/2018/09/20/Interview/" itemprop="url">Interview</a></h1>
         
 
         <div class="post-meta">
@@ -466,8 +449,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T22:02:36+08:00">
-                2018-08-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-20T11:22:14+08:00">
+                2018-09-20
               </time>
             
 
@@ -506,7 +489,8 @@
       
         
           
-            
+            <p>Find the max n number:<br>Like quick sort, find a random number. Divide the original array into two parts, one is less than the random number, the other is greater than the random number. Pick another random number in the greater part, iterate aforementioned steps until there are n numbers in the greater array.</p>
+
           
         
       
@@ -554,7 +538,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/seq2seq/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Paper-review/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -573,7 +557,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/11/seq2seq/" itemprop="url">seq2seq</a></h1>
+                <a class="post-title-link" href="/2018/09/18/Paper-review/" itemprop="url">Paper_review</a></h1>
         
 
         <div class="post-meta">
@@ -585,8 +569,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-11T13:01:17+08:00">
-                2018-08-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T16:51:27+08:00">
+                2018-09-18
               </time>
             
 
@@ -625,18 +609,149 @@
       
         
           
-            <p>The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output</p>
+            <p>Bidirectional LSTM-CRF for sequence tagging: CRF utilize sentence-level information. In CRF input and output are connected directly. Bidirectional LSTM-CRF connect all output together with a transition matrix from one state to another state.</p>
+<p>A Deep reinforced model for abstractive summarization: Use reinforcement leanring to derive a policy. Some critirion such as BLEU could not back-propagate directly. Employing reinforcement leanring could alleviate this problem.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Writing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/18/Writing/" itemprop="url">Writing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T13:32:29+08:00">
+                2018-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Writting is to explain an idea clearly and convince others. Presentation basically is trying to tell a story.</p>
+<p>Is the sentence easy to understand?<br>Is the sentence enjoyable and interesting to read?  </p>
+<p>Principles of writing:</p>
 <ul>
-<li>Fixed-length vector</li>
-<li>Sequence with the same length as the input sequence.</li>
+<li>Cut unnecessary words and phrases; learn to part with your words!</li>
+<li>Use the active voice (subject + verb + object)</li>
+<li>Write with verbs: use strong verbs, avoid turning verbs into nouns, and don’t bury the main verb!</li>
 </ul>
-<p>seq2seq could output a sequence of variable length. It simply utilize an encoder to encode the information given an input, which output a representation C that is a semantic summary of the input(usually fixed-length). After that, the decoder take the representation as input and output a sequence.</p>
-<p>The decoder is a RNN language model that is conditioned on the input which is the current the previous input word and the hidden state.</p>
-<h3 id="Reverse-the-input-sequence"><a href="#Reverse-the-input-sequence" class="headerlink" title="Reverse the input sequence"></a>Reverse the input sequence</h3><p>Doing so would make the optimization much easier because it introduces short term dependencies.</p>
-<p>i.e.: a,b,c maps to d,e,f. With reversed input sequence, c,b,a maps to d,e,f. At present, a is much closer than d which is the correct mapping. Since the long dependency c to f may be learnt from previous mapping, longer dependency for it may not be a problem.</p>
-<h3 id="Encoding-Context-C"><a href="#Encoding-Context-C" class="headerlink" title="Encoding Context C"></a>Encoding Context C</h3><p>The context C that is used to encode the input sequence do capture the meaning of the sequence.</p>
-<h3 id="Lmitatoin"><a href="#Lmitatoin" class="headerlink" title="Lmitatoin"></a>Lmitatoin</h3><p>The context C might be to small to encode the semantic information of a long sentence.</p>
-<h3 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h3><p>The decoding could employ beam search. The procedure is actually to maximize the log probability of target sentence given the input sentence.</p>
+<h4 id="Cut-unnecessary-words"><a href="#Cut-unnecessary-words" class="headerlink" title="Cut unnecessary words"></a>Cut unnecessary words</h4><ul>
+<li>Dead weight words and phrases</li>
+<li>Empty words and phrases</li>
+<li>Long words or phrases that could be short</li>
+<li>Unnecessary jargon and acronyms</li>
+<li>Repetitive words or phrases</li>
+<li>Adverbs</li>
+</ul>
+<ol>
+<li>Eliminate negatives</li>
+<li>Eliminate superfluous uses of “there<br>are/there is”</li>
+<li>Omit needless prepositions</li>
+</ol>
+<h4 id="Use-active-voice"><a href="#Use-active-voice" class="headerlink" title="Use active voice"></a>Use active voice</h4><p>More clearly.<br>In method section, it’s fine to use passive voice.</p>
 
           
         
@@ -685,7 +800,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/CNN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/scrapy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -704,7 +819,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/10/CNN/" itemprop="url">CNN</a></h1>
+                <a class="post-title-link" href="/2018/09/12/scrapy/" itemprop="url">scrapy</a></h1>
         
 
         <div class="post-meta">
@@ -716,8 +831,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:36+08:00">
-                2018-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T12:40:44+08:00">
+                2018-09-12
               </time>
             
 
@@ -756,11 +871,8 @@
       
         
           
-            <h3 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h3><p>Each convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias.</p>
-<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>Parameters in a kernel are used to do convolution in the whole image. In terms of fully connect, for each pixel, there would be a different parameters.</p>
-<h3 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h3><h3 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h3><p>Reduce the size of representation s.t. reduce the computation and control overfittinh. Max pooling could be regarded as extract the most useful characteristic.</p>
-<h4 id="Memory-Consumption-Calculation"><a href="#Memory-Consumption-Calculation" class="headerlink" title="Memory Consumption Calculation"></a>Memory Consumption Calculation</h4><p>Activation needs to be stored for back-propagation. So it would be the major memory consumption.</p>
-<p>i.e.: an image of 224<em>224</em>3. The activation would be 224<em>224</em>3=150000 floating numbers. Each floating number would use 4 bytes to store, so its size is actually 600000 bytes which is 600KB for only the first layer in the network.</p>
+            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"stat_chart"</span></span><br></pre></td></tr></table></figure>
+<p>name is used to identify the spider name.</p>
 
           
         
@@ -809,7 +921,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/RNN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/Linux-Management/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -828,7 +940,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/10/RNN/" itemprop="url">RNN</a></h1>
+                <a class="post-title-link" href="/2018/09/06/Linux-Management/" itemprop="url">Linux_Management</a></h1>
         
 
         <div class="post-meta">
@@ -840,8 +952,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:31+08:00">
-                2018-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-06T14:55:42+08:00">
+                2018-09-06
               </time>
             
 
@@ -880,23 +992,16 @@
       
         
           
-            <p>RNN allows information flow.</p>
-<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>The same set of parameters are used to compute the hidden states at the current time step given input and the hidden state of last time step.</p>
-<p>A output layer may be added to each time step to extract information and make predictions.</p>
-<h3 id="Back-propagation"><a href="#Back-propagation" class="headerlink" title="Back-propagation"></a>Back-propagation</h3><p>Cannot be parallelized because gradient has to computed one by one in terms of time steps.</p>
-<h4 id="Recurrent-Connectiong-from-output-to-hidden"><a href="#Recurrent-Connectiong-from-output-to-hidden" class="headerlink" title="Recurrent Connectiong from output to hidden"></a>Recurrent Connectiong from output to hidden</h4><p>Training can be parallelized because the label is known and could be fed to hidden states directly. Trained with <strong>Teacher Forcing</strong> which is that given the input sequence and ground truth label in the last time step, produce the output in the current time step.</p>
-<p>Drawback: require the output to capture the past information, which is difficult because the output dosen’t contains those information.</p>
-<h2 id="RNN-as-graphical-model"><a href="#RNN-as-graphical-model" class="headerlink" title="RNN as graphical model"></a>RNN as graphical model</h2><p>RNN could be viewed as a graphical model. Compared to the graphical model, the number of parameters is far less than that of the graphical model due to parameter sharing.</p>
-<p>Basic assumption of RNN is that the sequence is stationary.</p>
-<p><strong>stationary</strong> The relationship between the previous time step and the current time step is not dependent on t.</p>
-<p>RNN could model long dependency while normal graphical model would make <strong>Markov assumption</strong> to simplify the parameters which makes them less powerful in terms of long dependency. Long dependency makes RNN hard to optimize.</p>
-<p>RNN introduce hidden states h s.t. the dependency structure is simpler than the normal graphical model because hidden state encodes information including dependency which graphical model utilizes edges to represent dependency directly(too many parameters to optimize).</p>
-<h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
-<h4 id="vector-to-sequence-RNN"><a href="#vector-to-sequence-RNN" class="headerlink" title="vector-to-sequence RNN"></a>vector-to-sequence RNN</h4><p>The vector could be fed into the RNN at the beginning or fed into each hidden state at each time step.</p>
-<h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
-<h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
+            <p>remotely run sth after disconnection</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup command ......</span><br></pre></td></tr></table></figure>
+<p>check runing process</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef</span><br></pre></td></tr></table></figure>
+<p>check runing process and find a specific process</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep python</span><br></pre></td></tr></table></figure>
+<p>kill a process</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill pid</span><br></pre></td></tr></table></figure>
+<p>count number of files</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type f | wc -l</span><br></pre></td></tr></table></figure>
 
           
         
@@ -945,7 +1050,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/09/activation-function/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/QA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -964,7 +1069,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/09/activation-function/" itemprop="url">activation_function</a></h1>
+                <a class="post-title-link" href="/2018/09/05/QA/" itemprop="url">QA</a></h1>
         
 
         <div class="post-meta">
@@ -976,8 +1081,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-09T22:38:56+08:00">
-                2018-08-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-05T11:45:50+08:00">
+                2018-09-05
               </time>
             
 
@@ -1016,150 +1121,23 @@
       
         
           
-            <h2 id="Rectified-Linear-Units"><a href="#Rectified-Linear-Units" class="headerlink" title="Rectified Linear Units"></a>Rectified Linear Units</h2><p>Easy to optimize, and train. It is a good practice to initialize the bise b to be small positive values s.t. most units are active at the beginning.</p>
-<p>Drawback: not able to learn examples that activation is zero. A large gradient could update the unit s.t. it would never be active again if the learning rate is large.</p>
-<h3 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h3><p>Make some modifications s.t. the negative part could also be learnt.</p>
-<h3 id="Maxout-units"><a href="#Maxout-units" class="headerlink" title="Maxout units"></a>Maxout units</h3><p>Generalization of ReLU and Leaky Relu. The activation function is now \(\max(w_1^T\cdot x, w_2^T\cdot x)\) where \(w_1^T\cdot x\) is Relu (when w1 are all zeros, it is Relu)and \(w_2^T\cdot x\) is Leaky Relu.</p>
-<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p>Could be used as output units for 0-1 classfication because the cost is optimized to be small to avoid saturation.</p>
-<p>Drawback: hard to train due to saturation. Not zero-centered.</p>
-<h2 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h2><p>A scaled sigmoid, zero-centered. Resemble the identity function</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/SVM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/SVM/" itemprop="url">SVM</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T14:20:17+08:00">
-                2018-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Derivation of SVM:</p>
+            <p>Two kinds of QA:</p>
 <ul>
-<li>write down the equation. $$\max \limits_{w,b} {1\over ||w||}$$ such that $$ {(w^Tx_i+b)*y_i}\ge1$$</li>
-<li>Lagrange multipliers to solve the dual problem and get the answer of the primal problem if the problem satisfy KKT condition.</li>
-<li>$$\begin{cases}<br>{\partial L \over \partial w}=0 &amp; \<br>{\partial L \over \partial b}=0 &amp;<br>\end{cases} \Longrightarrow<br>\begin{cases}<br>w=\sum \limits_{i=1}^m\alpha_ix_iy_i &amp; \<br>0=\sum \limits_{i=1}^m\alpha_iy_i &amp;<br>\end{cases}$$<br>$$\begin{cases}<br>w^<em>=\sum \limits_{i=1}^m\alpha_i^</em>x_iy_i &amp; \<br>b^<em>=y_j-\sum \limits_{i=1}^m\alpha_i^</em>y_i(x_i\cdot x_j) &amp;<br>\end{cases}$$</li>
+<li>IR-based question answering </li>
+<li>knowledge-based question answering</li>
 </ul>
-<p>$$y_j(w^<em>\cdot x_j+b^</em>)-1=0$$ substitute the w with aforementioned equation and multiply \(y_j\) simultaneously.\(y_j^2=1\)</p>
-<ul>
-<li>Most \(\alpha_i\)=0, for those \(\alpha_j \neq 0 \), their training samples \(x_i\) are so called support vector.</li>
-<li>Slove the problem</li>
+<p>Factoid questions: questions that can be answered with simple facts expressed in short text answers.</p>
+<h3 id="IR-based-question-answering"><a href="#IR-based-question-answering" class="headerlink" title="IR-based question answering:"></a>IR-based question answering:</h3><ul>
+<li>Question Processing: extract focus, classify the question type</li>
+<li>Answer Type Detection(Question Classification)</li>
+<li>Query Formulation: form a query from keywords and send to an information retrieval system.</li>
+<li>Passage Retrieval: retrive documents and rank them according to features such as relevance, number of keywords and so on.</li>
+<li>Answer Processing <ol>
+<li>pattern-extraction: use pattern to extract the answer from retrived document</li>
+<li>N-gram tiling</li>
+</ol>
+</li>
 </ul>
-<p>For problems that are not linearly separatable, add a slack variable.</p>
-<p>Above is so called linear SVM.</p>
-<h2 id="Non-Linear-SVM"><a href="#Non-Linear-SVM" class="headerlink" title="Non-Linear SVM"></a>Non-Linear SVM</h2><p>Apply a kernel function K(x,z) to substitute the original inner product \(x_i\cdot x_j\). Affine the original variables in Euclidean space to another feature space to transfer the problem from non-linear to linear.</p>
-<h2 id="Hinge-Loss"><a href="#Hinge-Loss" class="headerlink" title="Hinge Loss"></a>Hinge Loss</h2><p>Anything falls between the margin would contribute to the loss. Those classified wrong would contribute more than classfied correct but with low confidence level. It is the upper bound of 0-1 loss.</p>
-<h2 id="Perceptron-Loss"><a href="#Perceptron-Loss" class="headerlink" title="Perceptron Loss"></a>Perceptron Loss</h2><p>Between 0-1 loss and hinge loss. The loss would be zero if classification is right. If the classification is wrong within the margin, the loss between 0 and 1. If the classification is wrong and outside the margin, the loss greater than 1.</p>
-<h2 id="0-1-Loss"><a href="#0-1-Loss" class="headerlink" title="0-1 Loss"></a>0-1 Loss</h2><p>The loss is only 0 or 1 corresponds to wrong or correct classification. Not continuously differentiable.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
 
           
         
@@ -1208,7 +1186,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/CRF/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/LSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1227,7 +1205,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/02/CRF/" itemprop="url">CRF</a></h1>
+                <a class="post-title-link" href="/2018/08/30/LSTM/" itemprop="url">LSTM</a></h1>
         
 
         <div class="post-meta">
@@ -1239,8 +1217,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T11:32:49+08:00">
-                2018-08-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-30T15:39:41+08:00">
+                2018-08-30
               </time>
             
 
@@ -1279,23 +1257,24 @@
       
         
           
-            <h2 id="Conditional-Random-Field-CRF"><a href="#Conditional-Random-Field-CRF" class="headerlink" title="Conditional Random Field(CRF)"></a>Conditional Random Field(CRF)</h2><p>It is a kind of generalized logistic regression model.</p>
-<p>HMMs have difficulty modeling overlapping, non-independent features because the assuption is indepence. In NLP, words are correlated and connection between them contains information. Here is where CRF comes into play.</p>
-<p>Linear chain CRF, can be thought of as the undirected graphical model version of HMM. It is as efficient as HMMs, where the sum-product algorithm and max-product algorithm still apply. Linear chain CRF is a special case of CRF, where each clique is the nearby two nodes. In terms of graph, the structure would be much more different.</p>
-<p>Overlapping features are in fact boost up the belief of the result, which should not be eliminated simply.</p>
-<p>CRF is conditional probability distribution while HMM is joint probability distribution.</p>
-<h3 id="Formal-Definition-of-CRF"><a href="#Formal-Definition-of-CRF" class="headerlink" title="Formal Definition of CRF"></a>Formal Definition of CRF</h3><p>$$P(y\mid x) = \frac{1}{Z(x)} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
-<p>where C denotes the set of cliques (i.e. fully connected subgraphs), \(\phi_c(x_c,y_c)\) is a factor. </p>
-<p>$$Z(x) = \sum_{y \in \mathcal{Y}} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
-<h4 id="Parameterized-Form-of-CRF"><a href="#Parameterized-Form-of-CRF" class="headerlink" title="Parameterized Form of CRF:"></a>Parameterized Form of CRF:</h4><p>$$P(y|x)=\frac{1}{Z(x)}\exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
-<p>$$Z(x)=\sum_y \exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
-<p>where \(\lambda_k, \mu_l\) are weights and \(t_k(y_{i-1},y_i,x,i)\) is the transition probability that given \(y_{i-1}\), the next label is \(y_{i}\) given input x at position i. \(\mu_ls_l(y_i,x,i)\) is the probability that at position i, given x, the output is \(y_{i}\).</p>
-<h4 id="Inference-of-label-y"><a href="#Inference-of-label-y" class="headerlink" title="Inference of label y"></a>Inference of label y</h4><p>$$\arg \max_y \phi_1(y_1, x_1) \prod_{i=2}^n \phi(y_{i-1}, y_i) \phi(y_i, x_i)$$</p>
-<p>In practice, \(\phi_c(x_c,y_c) = \exp(w_c^T f_c(x_c, y_c)).\) And \(f_c(x_c, y_c) = \lambda_kt_k(y_{i-1},y_i,x,i)+\mu_ls_l(y_i,x,i)\). This could also be written in vector form.</p>
-<p>The most important realization that need to be made about CRF features is that they can be arbitrarily complex. In fact, we may define CRF that depend on the entire input x. This will not affect computational performance at all, because at inference time, the x will be always observed.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
-<p><a href="https://github.com/Zhenye-Na/cs446/blob/master/docs/Probabilistic%20Graphical%20Models%20-%20Principles%20and%20Techniques.pdf" target="_blank" rel="noopener">Probabilistic Graphical Models - Principles and Techniques</a></p>
-<p><a href="https://ermongroup.github.io/cs228-notes/representation/undirected/" target="_blank" rel="noopener">cs228 notes </a></p>
+            <h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
+<p>The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
+<p>Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state.</p>
+<p>$$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$</p>
+<p>The input gate controls how much the network utilize the current cell state to update the last cell state. The current cell state is also compute by the last hidden state and current input with just the different weight and bias matrix.</p>
+<p>$$i_t=\sigma(W_i\cdot [h_{t-1},x_t]+b_i)$$</p>
+<p>$$\tilde{C_t}=tanh(W_C\cdot [h_{t-1},x_t]+b_C)$$</p>
+<p>Update of the cell state:</p>
+<p>$$C_t=f_t<em>C_{t-1}+i_t</em>\tilde$$</p>
+<p>The final output gate controls hou much the network outputs the current cell state after novation. The network puts the cell state through tanh (to push the values to be between −1 and 1) and multiply it by the output of the sigmoid gate, so that it only outputs the parts we decided to.</p>
+<p>$$o_t=\sigma(W_o\cdot [h_{t-1},x_t]+b_o)\ h_t = o_t*tanh(C_t)$$</p>
+<h2 id="Variant-of-LSTM"><a href="#Variant-of-LSTM" class="headerlink" title="Variant of LSTM"></a>Variant of LSTM</h2><p>$$C_t=f_t<em>C_{t-1}+(1-f_t)</em>\tilde$$</p>
+<p>Utilize \(1-f_t\) to substitutes the input gate.</p>
+<h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>With a single update gate to control whether the last hidden state or the current state is the output. A reset gate is used to control how much the past hidden units affect the current output.</p>
+<p>$$z_t=\sigma(W_z\cdot [h_{t-1},x_t]+b_z)\ r_t=\sigma(W_r\cdot [h_{t-1},x_r]+b_i)\ \tilde{h_t}=tanh(W\cdot [r_t<em>h_{t-1},x_t]) \ h_t = (1-z_t)</em>h_{t-1}+z_t*\tilde{h_t}<br>$$</p>
+<p>Here reset gate resembles the forget gate in LSTM. It decides how much the last hidden state contributes to the current hidden state. And the final output hidden state is controlled by the update gate which resembles the ouput gate in LSTM. Simpler than LSTM.</p>
+<h3 id="Peephole-connection"><a href="#Peephole-connection" class="headerlink" title="Peephole connection"></a>Peephole connection</h3><p>The value of gate is now controled by cell state, hidden state and current input. </p>
+<p>$$o_t=\sigma(W_o\cdot [C_t,h_{t-1},x_t]+b_o)\ i_t=\sigma(W_i\cdot [C_{t-1},h_{t-1},x_t]+b_i)\ _t=\sigma(W_f\cdot [C_{t-1},h_{t-1},x_t]+b_f)<br>$$</p>
 
           
         
@@ -1344,7 +1323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Word-Representation/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/Attention/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1363,7 +1342,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/01/Word-Representation/" itemprop="url">Word_Representation</a></h1>
+                <a class="post-title-link" href="/2018/08/27/Attention/" itemprop="url">Attention</a></h1>
         
 
         <div class="post-meta">
@@ -1375,8 +1354,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T11:02:22+08:00">
-                2018-08-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-27T10:43:33+08:00">
+                2018-08-27
               </time>
             
 
@@ -1415,181 +1394,155 @@
       
         
           
-            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Pytorch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/Pytorch/" itemprop="url">Pytorch</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T12:50:53+08:00">
-                2018-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>reshape in pytorch: torch.view</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
-<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
-<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
-<p>Converting a Torch Tensor to a NumPy Array</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
-<p>Converting NumPy Array to Torch Tensor</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
-<p>Tensors can be moved onto any device using the .to method.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x.to(device)</span><br></pre></td></tr></table></figure>
-<p>torch.Tensor is the central class of the package. If you set its attribute .requires_grad as True, it starts to track all operations on it. When you finish your computation you can call .backward() and have all the gradients computed automatically. The gradient for this tensor will be accumulated into .grad attribute.</p>
-<p>To stop a tensor from tracking history, you can call .detach() to detach it from the computation history, and to prevent future computation from being tracked.</p>
-<p>To prevent tracking history (and using memory), you can also wrap the code block in with torch.no_grad():. This can be particularly helpful when evaluating a model because the model may have trainable parameters with requires_grad=True, but for which we don’t need the gradients.</p>
-<p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
-<p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
-<p>dtype=torch.long is for integers.</p>
-<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
-<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
-<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
-<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
-<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
-<p>Display an image in pytorch: </p>
-<ul>
-<li>transform the array</li>
-<li>transform to numpy array</li>
-<li>display</li>
+            <p>Attention is a distribution which describe how much the network should focus on each unit.</p>
+<h3 id="content-based"><a href="#content-based" class="headerlink" title="content-based"></a>content-based</h3><p>The attending RNN generates a query describing what it wants to focus on. Each item is dot-producted with the query to produce a score, describing how well it matches the query. The scores are fed into a softmax to create the attention distribution.</p>
+<h3 id="location-based"><a href="#location-based" class="headerlink" title="location-based"></a>location-based</h3><h3 id="Neural-Turing-Machines"><a href="#Neural-Turing-Machines" class="headerlink" title="Neural Turing Machines"></a>Neural Turing Machines</h3><p>Neural Turing Machines combine a RNN with an external memory bank. Since vectors are the natural language of neural networks, the memory is an array of vectors. Every step, NTMs read and write everywhere, just to different extents.</p>
+<p>Read operation is a weighted sum of the distribution.</p>
+<p>Similarly, NTMs write everywhere at once to different extents. Again, an attention distribution describes how much NTMs write at every location. The new value of a position in memory is a convex combination of the old memory content and the new write value.</p>
+<h4 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h4><ul>
+<li>The RNN controller gives a query vector.</li>
+<li>Each memory entry is scored for similarity with the query(dot product).</li>
+<li>The scores are then converted into a distribution using softmax.</li>
+<li>Interpolate the attention from the previous time step with the current distribution controlled by intepolation amount.</li>
+<li>Convolve the attention with a shift filter which allows the controller to move its focus.</li>
+<li>Sharpen the attention distribution. This final attention distribution is fed to the read or write operation.</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
-<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
-<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
-<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.utils.rnn.pack_padded_sequence()</span><br></pre></td></tr></table></figure>
-<p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
-<p>Example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
-<p>return the total number of elements in the input tensor.</p>
+<h3 id="Attentional-Interfaces"><a href="#Attentional-Interfaces" class="headerlink" title="Attentional Interfaces"></a>Attentional Interfaces</h3><p>Between connection of RNN or (RNN,CNN), there would be attentional interfaces which decides which units in the previous layer should pay attention to.</p>
+<h2 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h2><p>The encoder is composed of N=6 identical layers. Each layer has two sub-layers</p>
+<h4 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h4><p>Attention function could be described as a function to map query, key and values to a weighted sum. Attention is actually a query. The output is a weighted sum of values and each weight is the dot product of the query and the key.</p>
+<h4 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h4><p>In the paper, scaled dot-product attention is actually the attention function scaled by \(\frac{1}{\sqrt d_k}\)</p>
+<h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>Linearly project query, key, value with learnable weights. After that apply attention function to projected query, key, value. This is one head. MultiHead is concatenation of MultiHead and apply a linear transformation to the concatenation.</p>
+<p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
+<h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/NN-Architecture/" itemprop="url">NN_Architecture</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
+<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
+<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
+<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
+</ul>
+<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
+<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
 
           
         
@@ -1629,7 +1582,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1679,7 +1632,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1692,7 +1645,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

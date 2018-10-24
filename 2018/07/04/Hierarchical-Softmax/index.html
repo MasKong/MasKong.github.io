@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Hierarchical softmaxTrun the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive. In (Good">
+<meta name="description" content="Hierarchical softmaxIt truns the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive espec">
 <meta name="keywords" content="ML">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hierarchical_Softmax">
 <meta property="og:url" content="http://yoursite.com/2018/07/04/Hierarchical-Softmax/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Hierarchical softmaxTrun the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive. In (Good">
+<meta property="og:description" content="Hierarchical softmaxIt truns the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive espec">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-04T04:01:56.118Z">
+<meta property="og:updated_time" content="2018-10-23T08:48:37.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hierarchical_Softmax">
-<meta name="twitter:description" content="Hierarchical softmaxTrun the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive. In (Good">
+<meta name="twitter:description" content="Hierarchical softmaxIt truns the normal softmax to a tree structure to avoid computing every context word with the center word. Normal softmax requires normalization which is extremely expensive espec">
 
 
 
@@ -364,10 +364,9 @@
       
 
       
-        <h3 id="Hierarchical-softmax"><a href="#Hierarchical-softmax" class="headerlink" title="Hierarchical softmax"></a>Hierarchical softmax</h3><p>Trun the normal softmax to a tree structure to avoid computing every context word with the center word.</p>
-<p>Normal softmax requires normalization which is extremely expensive.</p>
-<p>In (Goodman, 2001b) it is shown how to speed-up a maximum entropy class-based statistical language model by using the following idea. Instead of computing directly P(Y |X) (which involves normalization across all the values<br>that Y can take), one defines a clustering partition for the Y (into the word classes C, such that there is a deterministic<br>function c(.) mapping Y to C), so as to write</p>
-<p>$$P(Y = y|X = x) =P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
+        <h3 id="Hierarchical-softmax"><a href="#Hierarchical-softmax" class="headerlink" title="Hierarchical softmax"></a>Hierarchical softmax</h3><p>It truns the normal softmax to a tree structure to avoid computing every context word with the center word.</p>
+<p>Normal softmax requires normalization which is extremely expensive especially in the case of Natural Language Processing that there are usually millions or billions of tokens in the corpus. Normal softmax would squeeze the values of these millions or billions of tokens into a probability distribution each time predicting the context word.</p>
+<p>Normal softmax computes P(Y |X) directly which needs normalization, the author chooses to assign Y to different clusters such that there is a function mapping X to different clusters. Given the cluster, compute the conditional probability to avoid normalization over the entire X.<br>$$P(Y = y|X = x) =P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
 <p>Prove:<br>$$P(Y |X) = \sum_i P(Y, C = i|X) = \sum_i P(Y |C =i, X)P(C = i|X) = P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
 <p>C(Y) is a function to classify Y into C classes. \(P(Y |C = c(Y ), X)P(C =c(Y )|X)\) is equivalent to \(\sum_i P(Y |C =i, X)P(C = i|X)\) if every Y is classified into a class and the probablities of assign a Y to a cluster are multiplied together.</p>
 <p>To utilize the architecture of binary trees, do hierarchical clustering such that each time two clusters are mergerd. Initially each word is a cluster. As a result, each level consists of a number of cluster. From the root to the leaf, multiply the probabilities together and we get the probability.</p>
@@ -509,7 +508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">56</span>
+                  <span class="site-state-item-count">67</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -522,7 +521,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
