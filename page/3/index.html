@@ -296,6 +296,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/NN-Architecture/" itemprop="url">NN_Architecture</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
+<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
+<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
+<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
+</ul>
+<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
+<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/training-problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -901,21 +1030,18 @@
 <p>High Bias/Underfit can be countered by:</p>
 <ol>
 <li>Add hidden layers</li>
-<li>Increase hidden<br>units/layer</li>
+<li>Increase hidden units/layer</li>
 <li>Decrease regularize parameter.</li>
 <li>Add features </li>
 </ol>
 <h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><p><a href="https://cedar.buffalo.edu/~srihari/CSE676/9.4%20ConvPoolAsPrior.pdf" target="_blank" rel="noopener">Deep Learning Slides</a></p>
 <h3 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h3><p>Each convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias.</p>
 <h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>Parameters in a kernel are used to do convolution in the whole image. In terms of fully connect, for each pixel, there would be a different parameters.</p>
-<h3 id="Local"><a href="#Local" class="headerlink" title="Local"></a>Local</h3><h3 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h3><p>Reduce the size of representation s.t. reduce the computation and control overfittinh. Max pooling could be regarded as extract the most useful characteristic.</p>
-<p>Pooling could be performed on spatial regions, or over the multi-layer outputs. </p>
-<p>When performed on spatial regions, it yields the same output dimension with smaller filter size. This would enable the neural network to be invariant to local small translations of the input, which is useful in case of whether a feature is present is more important than where the feature is.</p>
-<p>When performed on the multi-layer outputs, it yields the same filter size with fewer dimensionality. This would enable the neural network to be invariant to transformation such as rotation of images.</p>
-<p>In a nutshell, pooling summarizes the response of activation over a region. It improves the computational and statistical efficiency.</p>
-<p>It is also used in hadling inputs of varying size.</p>
+<h3 id="Local-Connectivity"><a href="#Local-Connectivity" class="headerlink" title="Local Connectivity"></a>Local Connectivity</h3><p>The neural network only contains regional connection which means the neurons in the next layer focus on part of neurons in the last layer.</p>
+<h3 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h3><p>The employment of pooling layer is significant. It reduce the size of representation so as to reduce the computation and control overfitting. Max pooling could be regarded as extraction of the most useful characteristic. Pooling could be performed on spatial regions, or over the multi-layer outputs. For example, max pooling is performed on feature maps which is a spatial region while 1*1 convolution is performed on the multi-channel feature maps which is usually used to reduce dimension and compress information. When performed on spatial regions, it yields the same output dimension with smaller filter size. This would enable the neural network to be invariant to local small translations of the input, which is useful in case of whether a feature is present is more important than where the feature is. When performed on the multi-layer outputs, it yields the same filter size with fewer dimensionality. This would enable the neural network to be invariant to transformation such as rotation of images. In a nutshell, pooling summarises the response of activation over a region. It improves the computational and statistical efficiency. It is also used in hadling inputs of varying size.</p>
 <h4 id="Memory-Consumption-Calculation"><a href="#Memory-Consumption-Calculation" class="headerlink" title="Memory Consumption Calculation"></a>Memory Consumption Calculation</h4><p>Activation needs to be stored for back-propagation. So it would be the major memory consumption.</p>
-<p>i.e.: an image of 224<em>224</em>3. The activation would be 224<em>224</em>3=150000 floating numbers. Each floating number would use 4 bytes to store, so its size is actually 600000 bytes which is 600KB for only the first layer in the network.</p>
+<p>i.e.: an image of 224 <em>224</em>3. The activation would be 224<em> 224</em>3=150000 floating numbers. Each floating number would use 4 bytes to store, so its size is actually 600000 bytes which is 600KB for only the first layer in the network.</p>
+<p>Convolution is a function derived from two given functions by integration that expresses how the shape of one is modified by the other. It is how an input is transformed by a kernel.</p>
 
           
         
@@ -1486,143 +1612,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Word-Representation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/01/Word-Representation/" itemprop="url">Word_Representation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T11:02:22+08:00">
-                2018-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1677,7 +1666,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">67</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
