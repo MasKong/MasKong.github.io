@@ -296,6 +296,128 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Topic-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/30/Topic-Model/" itemprop="url">Topic_Model</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:31+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="LDA"><a href="#LDA" class="headerlink" title="LDA"></a>LDA</h2><p>$$p(\theta,z,w|\alpha,\beta)=p(\theta|\alpha) \prod_{n=1}^N p(z_n|\theta)p(w_n|z_n,\beta)$$</p>
+<p>where \(p(\theta|\alpha)\) is the estimation of parameters \(\theta\), \(p(z_n|\theta)\) is probability distribution of topics \(z_n\) given parameters \(\theta\), \(p(w_n|z_n,\beta)\) is probability distribution of words \(w_n\) over topics z.</p>
+<p>It is actually a bayes network, compute the probability distribution of topics first, and given the topics distribution, each word would belongs to one or more topics. Compute the probability distribution over words given topics distribution.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Clustering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1435,146 +1557,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/Attention/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/27/Attention/" itemprop="url">Attention</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-27T10:43:33+08:00">
-                2018-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Attention is a distribution which describe how much the network should focus on each unit.</p>
-<h3 id="content-based"><a href="#content-based" class="headerlink" title="content-based"></a>content-based</h3><p>The attending RNN generates a query describing what it wants to focus on. Each item is dot-producted with the query to produce a score, describing how well it matches the query. The scores are fed into a softmax to create the attention distribution.</p>
-<h3 id="location-based"><a href="#location-based" class="headerlink" title="location-based"></a>location-based</h3><h3 id="Neural-Turing-Machines"><a href="#Neural-Turing-Machines" class="headerlink" title="Neural Turing Machines"></a>Neural Turing Machines</h3><p>Neural Turing Machines combine a RNN with an external memory bank. Since vectors are the natural language of neural networks, the memory is an array of vectors. Every step, NTMs read and write everywhere, just to different extents.</p>
-<p>Read operation is a weighted sum of the distribution.</p>
-<p>Similarly, NTMs write everywhere at once to different extents. Again, an attention distribution describes how much NTMs write at every location. The new value of a position in memory is a convex combination of the old memory content and the new write value.</p>
-<h4 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h4><ul>
-<li>The RNN controller gives a query vector.</li>
-<li>Each memory entry is scored for similarity with the query(dot product).</li>
-<li>The scores are then converted into a distribution using softmax.</li>
-<li>Interpolate the attention from the previous time step with the current distribution controlled by intepolation amount.</li>
-<li>Convolve the attention with a shift filter which allows the controller to move its focus.</li>
-<li>Sharpen the attention distribution. This final attention distribution is fed to the read or write operation.</li>
-</ul>
-<h3 id="Attentional-Interfaces"><a href="#Attentional-Interfaces" class="headerlink" title="Attentional Interfaces"></a>Attentional Interfaces</h3><p>Between connection of RNN or (RNN,CNN), there would be attentional interfaces which decides which units in the previous layer should pay attention to.</p>
-<h2 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h2><p>The encoder is composed of N=6 identical layers. Each layer has two sub-layers</p>
-<h4 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h4><p>Attention function could be described as a function to map query, key and values to a weighted sum. Attention is actually a query. The output is a weighted sum of values and each weight is the dot product of the query and the key.</p>
-<h4 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h4><p>In the paper, scaled dot-product attention is actually the attention function scaled by \(\frac{1}{\sqrt d_k}\)</p>
-<h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>Linearly project query, key, value with learnable weights. After that apply attention function to projected query, key, value. This is one head. MultiHead is concatenation of MultiHead and apply a linear transformation to the concatenation.</p>
-<p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
-<h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
-<h4 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h4><p>The paper propose to use positional embedding to encode position information.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1629,7 +1611,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

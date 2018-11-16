@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Characteristic: Lazy evaluation like scala Two steps to build and run a model:  assemble a graph use a session to execute operations in the graph  Placeholder: a node to store variable which would not">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-16T11:37:56.334Z">
+<meta property="og:updated_time" content="2018-11-16T12:48:09.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tensorflow">
 <meta name="twitter:description" content="Characteristic: Lazy evaluation like scala Two steps to build and run a model:  assemble a graph use a session to execute operations in the graph  Placeholder: a node to store variable which would not">
@@ -486,6 +486,19 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">max_value = tf.placeholder(tf.int64, shape=[])</span><br><span class="line">dataset = tf.data.Dataset.range(max_value)</span><br><span class="line">iterator = dataset.make_initializable_iterator()</span><br><span class="line">next_element = iterator.get_next()<span class="comment"># Initialize an iterator over a dataset with 10 elements.</span></span><br><span class="line">sess.run(iterator.initializer, feed_dict=&#123;max_value: <span class="number">10</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):  </span><br><span class="line">  value = sess.run(next_element)  </span><br><span class="line">  <span class="keyword">assert</span> i == value</span><br></pre></td></tr></table></figure>
 <p>The <code>Iterator.get_next()</code> method returns one or more <a href="https://www.tensorflow.org/api_docs/python/tf/Tensor" target="_blank" rel="noopener"><code>tf.Tensor</code></a> objects that correspond to the symbolic next element of an iterator. Each time these tensors are evaluated, they take the value of the next element in the underlying dataset. Note that the iterator does not get to the next element immediately. The returned element is suuposed to be passed to  <code>tf.Session.run()</code> to get the next elements and advance the iterator.</p>
 <p>Applying arbitrary Python logic with <code>tf.py_func()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.stack(    values,    axis=0,    name=&apos;stack&apos;)</span><br></pre></td></tr></table></figure>
+<p>concatenate tensors along specified dimension.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.padded_batch()</span><br></pre></td></tr></table></figure>
+<p>padded_shapes is None, the component will be padded out to the maximum length of all elements in that dimension.</p>
+<p>Estimators are high-level abstraction of low-level tensorflow operation. It enables easier training, testing on different kinds of devices and modes like training on a single PC or a cluster.</p>
+<p>4 steps to use pre-made Estimators</p>
+<ol>
+<li>write function to import dataset</li>
+<li>Define the feature columns.</li>
+<li>Instantiate the relevant pre-made Estimator like specifying number of hidden layers, output features</li>
+<li>There are training and evaluation methods for Estimators. Call a training, evaluation, or inference method.</li>
+</ol>
+<p>tf.feature_column could be regarded as a kind of interface between the dataset and model in Estimators. It could abstract continuous values or categorical values.</p>
 
       
     </div>
@@ -610,7 +623,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">68</span>
+                  <span class="site-state-item-count">69</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
