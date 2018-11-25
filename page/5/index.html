@@ -296,6 +296,427 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/26/python/" itemprop="url">python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T19:56:02+08:00">
+                2018-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><p>Find the key that has the largest value in a dictionary.</p>
+<p>Assume stats is the dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure>
+<p>map dictionary:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_dictionary = dict(map(lambda kv: (kv[0], f(kv[1])), my_dictionary.items()))</span><br></pre></td></tr></table></figure></p>
+<p>build a dictionary with the same key from the other dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = dic.fromkeys(dic.keys(), 0)</span><br></pre></td></tr></table></figure>
+<p>Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage.</p>
+<p>For example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = l1</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
+<p>Now l1[2] is also 100.</p>
+<p>solution:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = copy.deepcopy(l1)</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
+<p>Now l1[2] is still 3.</p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l2 = list(l1)</span><br></pre></td></tr></table></figure></p>
+<p>A shallow copy constructs a new compound object and inserts references into it to the objects found in the original.<br>A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.</p>
+<p>from pip import main<br>ImportError: cannot import name main</p>
+<p>solution: Roll back</p>
+<p>python3 -m pip install –user –upgrade pip==9.0.3</p>
+<p>assert condition is True, or else print the string.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> condition, <span class="string">'.....'</span></span><br></pre></td></tr></table></figure>
+<p>Decimal, Octal, Hexadecimal, Binary</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oct()</span><br><span class="line">hex()</span><br><span class="line">bin()</span><br></pre></td></tr></table></figure>
+<p>convert jupyter notebook to python file:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter nbconvert --to script [YOUR_NOTEBOOK].ipynb</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getattr(x,foo)</span><br></pre></td></tr></table></figure>
+<p>is the same as x.foo. get the attribute named foo of x.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__file__</span><br></pre></td></tr></table></figure>
+<p>is only available in running in command line mode. Not available in interactive mode like Jupyter.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.path.expanduser(path)</span><br></pre></td></tr></table></figure>
+<p>turn “~” into home directory</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip(*iterables)</span><br></pre></td></tr></table></figure>
+<p>Make an iterator that aggregates elements from each of the iterables.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Linear-Algebra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/26/Linear-Algebra/" itemprop="url">Linear_Algebra</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:34:29+08:00">
+                2018-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>By default, vectors are column vectors.</p>
+<h4 id="Outer-Product"><a href="#Outer-Product" class="headerlink" title="Outer Product"></a>Outer Product</h4><p>\(<br>\left(\begin{array}{cc}<br>{1} \\ {2}<br>\end{array}\right) \) \(\otimes\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20<br>\end{array}\right)<br>\) = \(  \left(\begin{array}{cc}<br>{1 \times 10} &amp; {1 \times 20} \\ {2 \times 10} &amp; {2 \times 20}<br>\end{array}\right)  \)</p>
+<p>Outer product increase the dimension of the matrix. Outer product of a (a1∗a2) matrix and  a (b1∗b2) matrix is a (a1∗a2)∗(b1∗b2) matrix.</p>
+<p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1q} \\<br>y_2 &amp; \cdots &amp; y_{2q} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_p &amp; \cdots &amp; x_{pq}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_1y_{1q} &amp; x_1y_{2} &amp; \cdots &amp; x_1y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{1n}y_1 &amp; \cdots &amp; x_{1n}y_{1q} &amp; x_{1n}y_{2} &amp; \cdots &amp; x_{1n}y_{pq} \\<br>x_2y_1 &amp; \cdots &amp; x_2y_{1q} &amp; x_2y_{2} &amp; \cdots &amp; x_2y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{mn}y_1 &amp; \cdots &amp; x_{mn}y_{1q} &amp; x_{mn}y_{2} &amp; \cdots &amp; x_{mn}y_{pq}<br>\end{bmatrix}<br>\end{array}$$</p>
+<h4 id="Element-wise-Product-Hadamard-product"><a href="#Element-wise-Product-Hadamard-product" class="headerlink" title="Element-wise Product  (Hadamard product)"></a>Element-wise Product  (Hadamard product)</h4><p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1n} \\<br>y_2 &amp; \cdots &amp; y_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_{1i}y_{1i} &amp; x_{1j}y_{1j} &amp; \cdots &amp; x_{1n}y_{1n} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{m1}y_{m1} &amp; \cdots &amp; x_{mi}y_{mi} &amp; x_{mj}y_{mj} &amp; \cdots &amp; x_{mn}y_{mn}<br>\end{bmatrix}<br>\end{array}$$</p>
+<p><strong>Example</strong><br>\(<br>\left(\begin{array}{cc}<br>1 &amp; 2 \\ 3 &amp; 4<br>\end{array}\right) \) \(\odot\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20 \\ 30 &amp; 40<br>\end{array}\right) \) = \(<br>\left(\begin{array}{cc}<br>{1 \times 10} &amp; {2 \times 20} \\ {3 \times 30} &amp; {4 \times 40}<br>\end{array}\right) \)</p>
+<h4 id="Vector-Norm"><a href="#Vector-Norm" class="headerlink" title="Vector Norm"></a>Vector Norm</h4><p>L1 Norm: The sum of absolute values in the matrix. </p>
+<p>$$\lVert w \rVert_1 = \textstyle \sum_{i=1}^n |w_i|$$</p>
+<p>L2 Norm: The sqrt of the sum of squared values in the matrix. </p>
+<p>$$\lVert w \rVert_2 = \sqrt {\textstyle \sum_{i=1}^n w_i^2}$$</p>
+<h4 id="Matrix-Norm"><a href="#Matrix-Norm" class="headerlink" title="Matrix Norm"></a>Matrix Norm</h4><p>The spectral norm of a matrix A is the largest singular value of A.For example, the square root of the largest eigenvalue of the positive-semidefinite matrix \({\displaystyle A^{*}A}\).</p>
+<h4 id="Identity-Matrix"><a href="#Identity-Matrix" class="headerlink" title="Identity Matrix"></a>Identity Matrix</h4><p>An identity matrix of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.</p>
+<p>$${ I_{n}={\begin{bmatrix}\ 1&amp;0&amp;0&amp;\cdots &amp;0\\ 0&amp;1&amp;0&amp;\cdots &amp;0\\ 0&amp;0&amp;1&amp;\cdots &amp;0\\ \vdots &amp;\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\ 0&amp;0&amp;0&amp;\cdots &amp;1\end{bmatrix}}}$$</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://www.cnblogs.com/steven-yang/p/6348112.html#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%98%E7%A7%AF" target="_blank" rel="noopener">机器学习中的基本数学知识</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Identity_matrix" target="_blank" rel="noopener">Identity matrix</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Numpy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/26/Numpy/" itemprop="url">Numpy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:31:33+08:00">
+                2018-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>numpy.ufunc.at. apply function at given index.</p>
+<p>np.add.at(a, [0, 1, 2, 2], 1): add 1 to array a at index [0, 1, 2, 2]</p>
+<p>numpy.random.permutation(x):Randomly permute a sequence, or return a permuted range. 即把一序列打成乱序输出</p>
+<p>numpy.outer(a, b, out=None);Compute the outer product of two vectors.    </p>
+<p>operator *: element-wise multuply</p>
+<p>Axis = 0 is column. Axis = 1 is row</p>
+<p>a[:6:2] means the first element of every two elements from 0 to 5</p>
+<p>array dimension: count the bracket</p>
+<p>flat attribute which is an iterator over all the elements of the array:</p>
+<p>np.nditer(a, flags=[‘f_index’]) is used to iterate elements</p>
+<p>access multiple columns elements: a[b,c] while b is from 0 to n, c shows in each line which element you want to access.</p>
+<p><a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating</a></p>
+<p>access nth column: a[:,n]</p>
+<p>transpose an one-dimension array: a.reshape(n,len(a))</p>
+<p>multi-dimensional array, count the dimension from low to high</p>
+<p>np.argsort()Returns the indices that would sort an array.<br>numpy.bincount<br>Count number of occurrences of each value in array of non-negative ints.</p>
+<p>Np.argmax()  Returns the indices of the maximum values along an axis.<br>Np.nonzero() return tuple that consists of arrays. The first array indicates dimension, the second one indicates location(index)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.array(x,copy=True)</span><br></pre></td></tr></table></figure>
+<p>copy an array to a new variable. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/Recurrent-Neural-Network/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1363,504 +1784,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Language-Model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/09/Language-Model/" itemprop="url">Language_Model</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T20:57:26+08:00">
-                2018-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h2><p>$$p(w_i) = \frac{c(w_i)}{N}$$</p>
-<p>\(c(w_i)\) is the count of the word. N is the total number of word.</p>
-<h2 id="Bigram"><a href="#Bigram" class="headerlink" title="Bigram"></a>Bigram</h2><p>$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$</p>
-<h2 id="N-Gram"><a href="#N-Gram" class="headerlink" title="N-Gram"></a>N-Gram</h2><p>Given the previous N words, estimate the probability of the current word.</p>
-<p>$$p(w_i|w_{i-N-1}^{N-1}) = \frac{c(w_iw_{i-N-1}^{N-1})}{c(w_{i-N-1}^{N-1})}$$</p>
-<h2 id="Deal-with-Unknown-Words"><a href="#Deal-with-Unknown-Words" class="headerlink" title="Deal with Unknown Words"></a>Deal with Unknown Words</h2><p>There are two common ways to train the probabilities of the unknown word model <unk>. </unk></p>
-<p>The first one is to turn the problem back into a closed vocabulary one by choosing a fixed vocabulary in advance:</p>
-<ul>
-<li>Choose a vocabulary (word list) that is fixed in advance.</li>
-<li>Convert in the training set any word that is not in this set to the unknown word token <unk> in a text normalization step.</unk></li>
-<li>Estimate the probabilities for <unk> from its counts just like any other regular word in the training set.</unk></li>
-</ul>
-<p>The second alternative, replacing words in the training data by <unk> based on their frequency.<br>i.e.: replace all words by <unk> that occur fewer than n times in the training set or choose the top V words by frequency and replace the rest by UNK. </unk></unk></p>
-<p>The third way:<br>$$p(w_i)=\lambda_1p_{ML}(w_i)+(1-\lambda_1)\frac{1}{N}$$</p>
-<p>Save some probability for unknown words \((\lambda_{unk} = 1-\lambda_1)\). This is in fact another kind of smoothing. Discount the probability of known words and assign to the unknown words.<br> \(\lambda\) is a hyperparameter. It is 0.95 by default. N is the total number of words.</p>
-<h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>The percentage of known words in the corpus. Usually omit the symbol of the end of a sentence .</p>
-<h2 id="Entropy-of-a-sentence"><a href="#Entropy-of-a-sentence" class="headerlink" title="Entropy of a sentence"></a>Entropy of a sentence</h2><p>$$H(S)= -\frac{1}{N}\sum_{w\in S}\log_2 P(w)$$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/06/Word_Senses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/06/Word_Senses/" itemprop="url">Word_Senses</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-06T12:43:04+08:00">
-                2018-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Word-sense-disambiguation-WSD"><a href="#Word-sense-disambiguation-WSD" class="headerlink" title="Word sense disambiguation(WSD)"></a>Word sense disambiguation(WSD)</h1><p>Word sense disambiguation(WSD) is significant because it is common that there are multiple senses within a word. Better word sense disambiguation would improve the performance of tasks such as question answering and machine translation.</p>
-<p>Two kinds of WSD tasks:</p>
-<ul>
-<li>lexical sample</li>
-<li>all-words</li>
-</ul>
-<p>Lexical sample: given a set of target words and with an inventory of senses from some lexicon. Supervised learning is employed to solve this problem at usual. Hand-label a small set of words and corresponding sense, and feed into a classifier.</p>
-<p>All-words: given entire texts and a lexicon that contains an inventory of senses for each entry. The objective is to disambiguate every content word in the text. It is impractical to train a classifier for each term because the number of words is large.</p>
-<h3 id="Supervised-Learning-Approach"><a href="#Supervised-Learning-Approach" class="headerlink" title="Supervised Learning Approach"></a>Supervised Learning Approach</h3><ol>
-<li>Feature Vector Extraction. Process the sentence in a context window to extract feature vector.</li>
-</ol>
-<p>There are two kinds of feature vector:</p>
-<ul>
-<li>collocation features. Multiple words in a position-specific relationship to a target word. It is effective at encoding local lexical and grammatical information that usually isolate a given sense. High performing systems generally use POS tags and word collocations of length 1,2 and 3 from a window of words 3.</li>
-<li>bag-of-words: neglecting the position information, just record number of context words in a context window. The context words could be pre-selected(frequent used words) given a target word.</li>
-</ul>
-<p><strong>Evaluation</strong>: most frequent sense as baseline. Most freauent sense usually choose the most frequently used sense given a context.</p>
-<h3 id="Dictionary-and-Thesaurus"><a href="#Dictionary-and-Thesaurus" class="headerlink" title="Dictionary and Thesaurus"></a>Dictionary and Thesaurus</h3><h5 id="The-Lesk-Algorithm"><a href="#The-Lesk-Algorithm" class="headerlink" title="The Lesk Algorithm"></a>The Lesk Algorithm</h5><p>It is a family of dictionary-based algorithms.<br>Simplified algorithm compute the number of overlapped words between a given context and all of the word senses. Output the sense with the most overlapped words.</p>
-<p>Original Lesk Algorithm compute the number of overlapped words between sense of each context word and the sense of the target word.<br>i.e.: Bank is a financial institute for deposit.<br>Simplified algorithm compute the number of overlapping words between each sense and the context [financial,institute, deposit] and output the sense with the most overlapped words.<br>The original algorithm compute all senses with all senses of each word in the context  [financial,institute, deposit] and output the sense with the most overlapped words.</p>
-<p><strong>Notes</strong>:stop-words are not taken into consideration.</p>
-<p>Problem: Entries of the dictionary for the target word are not enough which reduce the chance of overlapping.</p>
-<p>Solution: To expand the sense, include senses of similar words which may increase the number of overlapping words.</p>
-<p>The best solution is to utilize sense-tagged corpus, which is so called <strong><strong>Corpus Lesk Algorithm</strong></strong>. To expand the signature for a word sense, add all word senses with the same label. i.e.: add word sense of large, huge to big. Instead of employ a stop-list, the algorithm apply IDF to reduce the weight of function words like the,of. This algorithm is usually a baseline.</p>
-<p>The bag-of-words approach could be improved by combining the Lesk algorithm. The glosses and example sentences for the target sense in WordNet would be used as words features along with <strong>sense-tagged</strong> corpus like SemCor.</p>
-<h5 id="Graph-based-Methods"><a href="#Graph-based-Methods" class="headerlink" title="Graph-based Methods"></a>Graph-based Methods</h5><p>A graph is employed to represent words. Each sense is a node and relations between senses are edges. It is usually an undirected graph.</p>
-<p>The correct sense is the one that is central in the graph. Use degree to decide centrality.</p>
-<p>Another approach is to assign probability to nodes according to personalized page rank.</p>
-<p><strong>Problem of both supervised and dictionary-based approach</strong>: need hand-built resouces</p>
-<h3 id="Semi-Supervised-Bootstrapping"><a href="#Semi-Supervised-Bootstrapping" class="headerlink" title="Semi-Supervised: Bootstrapping"></a>Semi-Supervised: Bootstrapping</h3><ol>
-<li>Use a small set of labeled data to train the classifier. </li>
-<li>Do classification.</li>
-<li>Select the result with high confidence and add to the training set.</li>
-<li>Train the classifier and repeat step 2 and 3.</li>
-<li>Stop until there is no untagged data left or reach a specific error rate threshold.</li>
-</ol>
-<p>To construct the training set, hand-label it or use heuristic to help.</p>
-<p>Heuristic:</p>
-<ul>
-<li><strong>one sense per collocation</strong>: certain words or phrases strongly indicates a specific sense.</li>
-<li><strong>one sense per discourse</strong>:a particular word appearing multiple times in a text or discourse often appeared with the same sense. This heuristic seems to hold better for coarse-grained senses and particularly for cases of homonymy rather than polysemy.</li>
-</ul>
-<h3 id="Unsupervised-Approach-Word-Sense-Induction-WSI"><a href="#Unsupervised-Approach-Word-Sense-Induction-WSI" class="headerlink" title="Unsupervised Approach:Word Sense Induction(WSI)"></a>Unsupervised Approach:Word Sense Induction(WSI)</h3><p>It is actually a clustering of word senses. </p>
-<ol>
-<li>For each token(sense) of a word in the corpus, use context word vector \(\vec{c}\) to represent it. </li>
-<li>Do clustering s.t. there is N clusters and each token \(\vec{c}\) is assigned to a cluster. Each cluster defines a sense.</li>
-<li>Recompute the center s.t. the center vector \(\vec{s_j}\) represent a sense.</li>
-</ol>
-<p>To do word sense disambiguation:</p>
-<ol>
-<li>compute context word vector \(\vec{c}\) to represent the sense of the word. </li>
-<li>Do clustering and assign the context vector to a cluster.</li>
-</ol>
-<p>All we need is a clustering algorithm and a distance metric between vectors.</p>
-<p>A frequently used technique in language applications is known as agglomerative<br>clustering.</p>
-<p>Recent algorithms have also used topic modeling algorithms like Latent Dirichlet Allocation (LDA), another way to learn clusters of words based on their distributions.</p>
-<p>It is fair to say that no evaluation metric for this task has yet become standard.</p>
-<h1 id="Word-Similarity-Thesaurus-Methods"><a href="#Word-Similarity-Thesaurus-Methods" class="headerlink" title="Word Similarity(Thesaurus Methods)"></a>Word Similarity(Thesaurus Methods)</h1><p>Word similarity refers to meaning(synonyms).<br>Word relatedness characterizes relationships(antonyms,synonyms).</p>
-<h5 id="Path-length-based-Approach"><a href="#Path-length-based-Approach" class="headerlink" title="Path-length based Approach"></a>Path-length based Approach</h5><p>Thesaurus could be viewed as a graph.</p>
-<p>The simplest thesaurus-based algorithms use the edge between words to measure similarity.</p>
-<p>pathlen(c1, c2) = 1 + edges in the shortest path between the sense nodes c1 and c2.</p>
-<p>path-length based similarity:<br>$$sim_{path}(c_1,c_2)=\frac{1}{pathlen(c_1, c_2)}$$</p>
-<p>Path lengths are not the same in different level of the hierarchy.<br>It is possible to refine path-based algorithms with normalizations based on depth in the hierarchy. In general an approach that independently represent the distance associated with each edge it is preferred.</p>
-<p>For data without sense tag(words are not presented according to their senses), measure similarity according to senses of words. If there is a pair of senses is similar, then two words are similar.</p>
-<p>$$word_{sim}(w_1,w_2)=\max_{c_1\in senses(w_1)\  c_2\in senses(w_2)} sim(c_1, c_2)$$</p>
-<h5 id="information-content-word-similarity-algorithms"><a href="#information-content-word-similarity-algorithms" class="headerlink" title="information-content word-similarity algorithms"></a>information-content word-similarity algorithms</h5><p>still rely on the structure of the thesaurus but also add probabilistic information derived from a corpus.</p>
-<p>The corpus is represented as a set of concepts. And it is represented as a tree  structure. The leaf nodes are basic concepts and parent nodes contain the children which is a superset of concepts. Each node is assigned a probability. So p(root) = 1.</p>
-<p>$$P(c) = \frac{\sum_{w\in words(c)}count(w)}{N}$$</p>
-<p>c is a specific concept. The probability of a concept is number of words in the concept divided by total number of words.</p>
-<p><strong>information content</strong>: information content (IC) of a concept c</p>
-<p>$$IC(c) = −\log P(c) $$</p>
-<p>the lowest common subsumer(LCS) of two concepts:<br>LCS(c1, c2) = the lowest common subsumer,the lowest node in the hierarchy that subsumes both c1 and c2.(The lowest parent node of c1 and c2)</p>
-<p><strong>Resnik similarity</strong>: similarity between two words is related to their common information; the more two words have in common, the more similar they are. Resnik proposes to estimate the common amount of information by the information content of the lowest common subsumer of the two nodes. </p>
-<p>$$sim_{Resnik}(c_1,c_2)=-\log P(LCS(c_1,c_2))$$</p>
-<p><strong>Lin similarity</strong></p>
-<p>Similarity Theorem: The similarity between A and B is measured by the ratio<br>between the amount of information needed to state the commonality of A and<br>B and the information needed to fully describe what A and B are.<br>$$sim_{Lin}(A,B)=\frac{common(A,B)}{description(A,B)}$$</p>
-<p>the information in common between two concepts is twice the information in the lowest common subsumer LCS(c1, c2). Adding in the above definitions of the information content of thesaurus concepts<br>$$sim_{Lin}(C_1,C_2)=\frac{2\times \log P(LCS(c_1,c_2))}{\log P(c_1)+\log P(c_2)}$$</p>
-<p><strong>Jiang-Conrath distance</strong> express distance rather than similarity, work as well as or better than all the other thesaurus-based methods:</p>
-<p>$$dist_{JC}(c_1, c_2) = 2\times \log P(LCS(c_1, c_2))−(\log P(c_1) +\log P(c_2)) $$</p>
-<p>It could be transferred to similarity by take reciprocal.<br>$$sim_{JC}=\frac{1}{dist_{JC}}$$</p>
-<p><strong>dictionary-based method</strong>: This method makes use of glosses, which are, in general, a property of dictionaries rather than thesauruses. Two concepts/senses are similar if their glosses contain overlapping words.</p>
-<p>For each n-word phrase that occurs in both glosses, Extended Lesk adds in a<br>score of \(n^2\).(the relation is non-linear because of the Zipfian relationship between lengths of phrases and their corpus frequencies; longer overlaps are rare, so they should be weighted more heavily)</p>
-<p>Given such an overlap function, when comparing two concepts (synsets), Extended<br>Lesk not only looks for overlap between their glosses but also between the<br>glosses of the senses that are hypernyms, hyponyms, meronyms, and other relations<br>of the two concepts. </p>
-<p>If we just considered hyponyms and defined<br>gloss(hypo(A)) as the concatenation of all the glosses of all the hyponym senses of<br>A, the total relatedness between two concepts A and B might be</p>
-<p>$$similarity(A,B) = overlap(gloss(A), gloss(B))+overlap(gloss(hypo(A)), gloss(hypo(B)))+overlap(gloss(A), gloss(hypo(B)))+overlap(gloss(hypo(A)),gloss(B))$$</p>
-<p>Extended Lesk overlap measure:</p>
-<p>$$sim_{eLESK}(c_1,c_2) =\sum_{r,q\in RELS}overlap(gloss(r(c_1)),gloss(q(c_2)))$$</p>
-<p>RELS is the set of possible relations whose glosses we compare. Possible relations are  like hypernyms, hyponyms, meronyms, and other relations of the two concepts.</p>
-<h2 id="Evaluating-Thesaurus-Based-Similarity"><a href="#Evaluating-Thesaurus-Based-Similarity" class="headerlink" title="Evaluating Thesaurus-Based Similarity"></a>Evaluating Thesaurus-Based Similarity</h2><p>The most common intrinsic evaluation metric computes the correlation coefficient between an algorithm’s word similarity scores and word similarity ratings assigned by humans. </p>
-<p>Zipf’s law states that given some corpus of natural language utterances, the frequency of any word is inversely proportional to its rank in the frequency table.The most frequent word will occur approximately twice as often as the second most frequent word, three times as often as the third most frequent word.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://en.wikipedia.org/wiki/Zipf%27s_law" target="_blank" rel="noopener">Zipf’s law</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/vector-semantics/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/05/vector-semantics/" itemprop="url">vector_semantics</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T18:56:55+08:00">
-                2018-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
-<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
-<p>mutual information </p>
-<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
-<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
-<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
-<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
-<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
-<p>To solve this problem,change the computation for P(c).</p>
-<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
-<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
-<p>Another solutio is Laplace smoothing.</p>
-<h3 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h3><p>IDF is used to give a higher weight to rare words because they are likely to present more information.</p>
-<p>$$idf_i = \log (\frac{N}{df_i})$$</p>
-<p>Combining term frequency with IDF results in a scheme known as tf-idf weighting of the value for word i in document j,\(w_{ij}\):\</p>
-<p>$$w_{ij}=tf_{ij}idf_i$$</p>
-<p>The tf-idf weighting is by far the dominant way of weighting co-occurrence matrices in information retrieval, but also plays a role in many other aspects of natural language processing including summarization.</p>
-<h3 id="t-test"><a href="#t-test" class="headerlink" title="t-test"></a>t-test</h3><h2 id="Similarity-Measure-for-vectors-binary"><a href="#Similarity-Measure-for-vectors-binary" class="headerlink" title="Similarity Measure for vectors(binary)"></a>Similarity Measure for vectors(binary)</h2><p><strong>Jaccard similarity</strong>:<br>$$sim_{Jaccard}=\frac{\sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N\max(v_i,w_i)}$$</p>
-<p>$$J(A,B)=\frac{|A\cap B|}{|A\cup B|}$$</p>
-<p>The min of \(v_i\) and \(w_i\)means if a feature exists in one vector but not the other vector, the result would be zero. The<br>denominator can be viewed as a normalizing factor.</p>
-<p><strong>Dice measure</strong>:<br>$$sim_{Dice}=\frac{2 \times \sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N(v_i+w_i)}$$</p>
-<p><strong>KL divergence</strong><br>if two vectors, \(\vec{v}\) and \(\vec{w}\), each express a probability<br>distribution (their values sum to one), then they are are similar to the extent that these probability distributions are similar.</p>
-<p>Given two probability distribution or vectors P and Q:</p>
-<p>$$D(P||Q) = \sum_xP(x)\log \frac{P(x)}<br>{Q(x)}$$</p>
-<p>Unfortunately, the KL-divergence is undefined when Q(x) = 0 and P(x) \(\neq\) 0, which is a problem since these word-distribution vectors are generally quite sparse.</p>
-<p>Jensen-Shannon divergence solves this problem.<br>$$JS(P||Q)=D(P|\frac{Q+P}{2})+D(Q|\frac{Q+P}{2})$$</p>
-<h3 id="Using-syntax-to-define-a-word’s-context"><a href="#Using-syntax-to-define-a-word’s-context" class="headerlink" title="Using syntax to define a word’s context"></a>Using syntax to define a word’s context</h3><p>Instead of defining a word’s context by nearby words, we could instead define it by<br>the syntactic relations of these neighboring words. i.e.: the word duty could be represented by a bunch of combinations like additional,administrative(adj) or assert, assign(verb). </p>
-<h3 id="Evaluating-Vector-Models"><a href="#Evaluating-Vector-Models" class="headerlink" title="Evaluating Vector Models"></a>Evaluating Vector Models</h3><p>test their performance on similarity, and in particular on computing the correlation between an algorithm’s word similarity scores and word similarity ratings<br>assigned by humans.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1910,7 +1838,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

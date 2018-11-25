@@ -296,6 +296,414 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Multi-task Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/25/Multi-task Learning/" itemprop="url">Multi-task Learning(MTL)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T11:41:19+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>In normal machine learning or deep learning task, we optimize a specific metric, which loses information from other tasks that may be desirable to improve the original task. This kind of information comes from related tasks. And this kind of shared representations may be helpful to our original task because it actually utilise much more data than the original task.</p>
+<p>Generally, as soon as you find yourself optimizing more than one loss function, you are effectively doing multi-task learning (in contrast to single-task learning). In those scenarios, it helps to think about what you are trying to do explicitly in terms of MTL and to draw insights from it.</p>
+<p>“MTL improves generalization by leveraging the domain-specific information contained in the training signals of related tasks”.</p>
+<p><strong>Inductive Bias</strong><br>A model prefer some hypotheses over others. For instance, a common form of inductive bias is l1 regularization, which leads to a preference for sparse solutions.</p>
+<p>In the case of MTL, the inductive bias is introduced by other auxiliary tasks, which leads the model to prefer hypotheses that explain more than one task. This in general leads to better generalization ability.</p>
+<h2 id="Hard-parameter-sharing-Multi-output"><a href="#Hard-parameter-sharing-Multi-output" class="headerlink" title="Hard parameter sharing(Multi-output)"></a>Hard parameter sharing(Multi-output)</h2><p>Multiple tasks share the same hidden layers. Each task has its own output. The risk of overfitting the shared parameters is an order N – where N is the number of tasks – smaller than overfitting the task-specific parameters.</p>
+<h2 id="Soft-parameter-sharing"><a href="#Soft-parameter-sharing" class="headerlink" title="Soft parameter sharing"></a>Soft parameter sharing</h2><p>Each task has its own model, parameters and output. There are constraints between parameters such that the parameters are similar. A sample constraint is L2 distance between parameters.</p>
+<h3 id="Advantages-of-MTL"><a href="#Advantages-of-MTL" class="headerlink" title="Advantages of MTL"></a>Advantages of MTL</h3><ol>
+<li>Data Augmentation. Training multiple tasks together enables the model to employ more data in training.</li>
+<li>Data are noisy. MTL is able to regularize the model to learn efficient and effective representations that are desirable for multiple tasks.</li>
+<li>Eavesdropping. The model might be easier to learn some specific features from some specific dataset. MTL is able to help the model to learn easier from different tasks or dataset.</li>
+<li>Representation bias. MTL biases the model to prefer representations that other tasks also prefer. This will also help the model to generalize to new tasks as a hypothesis space that performs well for many tasks will also perform well for learning novel tasks as long as they are from the same environment</li>
+<li>Regularization. MTL acts as a regularizer by introducing an inductive bias. As such, it reduces the risk of overfitting as well as the Rademacher complexity of the model</li>
+</ol>
+<h3 id="Technique-to-do-MTL"><a href="#Technique-to-do-MTL" class="headerlink" title="Technique to do MTL"></a>Technique to do MTL</h3><ol>
+<li>Block-sparse regularization. For related tasks, use regularization like L1 or other modified regularization to enforce the model learn sparse features which would be utilised to do inference for multiple tasks.</li>
+<li>Learn the relationships between tasks: clustering, KNN, Bayesian methods.</li>
+</ol>
+<p>In MTL for computer vision, approaches often share the convolutional layers, while learning task- specific fully-connected layers. Deep Relationship Networks add matrix priors on the fully connected layers.</p>
+<p>Core of MTL: what to share? All parameters?</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/git/" itemprop="url">git</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T16:29:37+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>git checkout <branch>swtich to a branch.</branch></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<p>add all to buffer</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m “comment”</span><br></pre></td></tr></table></figure>
+<p> commit the change and add comment</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;</span><br></pre></td></tr></table></figure>
+<p> push local branch to remote branch.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>update files from remote</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/seq2seq_tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/seq2seq_tensorflow/" itemprop="url">seq2seq_tensorflow</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T10:12:54+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>attention machanism is just an attention wrapper to wrap the RNN.</p>
+<p>Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout.</p>
+<p>The output of RNN has to be fed to a fully-connected neural network to convert the final hidden states to scores of the vocabulary. After that, employ a softmax function to squeeze all scores in a probability distribution.</p>
+<p>Process of constructing seq2seq model in tensorflow:</p>
+<ol>
+<li>define hyperparameters. Settings of hyperparameters could be loaded from config file or parsed from command line. Both parser and tf.app.flags could be used to parse.</li>
+<li>preprocessing data. Like batching, padding and so on.</li>
+<li>construct model. build encoder, decoder and combine them together.</li>
+<li>write a train wrapper funtion to wrap the training process.</li>
+<li>feed data to model and perform training</li>
+<li>perform validation and testing</li>
+</ol>
+<p>Loss of seq2seq: at each step, there is only one correct token given a sentence. At each time step, use softmax to calculate the loss and optimize the sum of total loss at all time steps.</p>
+<p>Given a sentence, each time step t, there is a loss \(l_t\). The total loss \(L=\sum_0^T l_i\) where T is the number of tokens in the sentence. The optimizer is actually optimize this loss.</p>
+<p>The seq2seq could be regarded as a latent structure like auto-encoder because all information of the whole sentence is encoded in the final hidden state.</p>
+<p>Latent variable: 隐藏变量</p>
+<p>To do:</p>
+<ol>
+<li>write an iterator</li>
+<li></li>
+</ol>
+<p>For regression(time series data prediction) problem, just add a scaling factor with a fully-connected layer.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/tensorflow-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +775,51 @@
       
         
           
-            
+            <p> tf.feature_column.bucketized_column divides coutinuous values into several ranges such that they are able to be represented as categorical features.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.feature_column.categorical_column_with_vocabulary_file(    key,    vocabulary_file,    vocabulary_size=None,    num_oov_buckets=0,    default_value=None,    dtype=tf.string)</span><br></pre></td></tr></table></figure>
+<p>maps each word in the vocabulary to an one-hot vector.</p>
+<p>tf.feature_column.categorical_column_with_hash_bucket maps features to specified number of features using hash(for example, mapping 1000 words to 100 embeddings means some words would share the same embedding.). In machine learning, this kind of hash often works well in practice. That’s because hash categories provide the model with some separation. The model can use additional features to further separate kitchenware from sports.</p>
+<p>tf.feature_column.crossed_column is able to combine features together. Somewhat counterintuitively, when creating feature crosses, you typically still should include the original (uncrossed) features in your model (as in the preceding code snippet). The independent latitude and longitude features help the model distinguish between examples where a hash collision has occurred in the crossed feature.</p>
+<p>As a rule of thumb,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">embedding_dimensions =  number_of_categories**0.25</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">categorical_column = ... <span class="comment"># Create any categorical column</span></span><br><span class="line"><span class="comment"># Represent the categorical column as an embedding column.</span></span><br><span class="line"><span class="comment"># This means creating an embedding vector lookup table with one element for each category.</span></span><br><span class="line">embedding_column = tf.feature_column.embedding_column(    categorical_column=categorical_column,    dimension=embedding_dimensions)</span><br></pre></td></tr></table></figure>
+<p>tf.train.Features is used to wrap features of input.</p>
+<p><strong>tf.train.Example(features=features)</strong> is used to wrap examples.</p>
+<p>using TFRecord is more efficient. A parse function is used to parse a single example.</p>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><p>Most software could only process up to 120 tokens. Longer sequences are supposed to be truncated.</p>
+<p><strong>The padded labels change the total loss, which affects the gradients</strong>.<br>Two methods to alleviate this problem:</p>
+<ol>
+<li>Maintain a mask</li>
+</ol>
+<ul>
+<li><p>Maintain a mask (True for real, False for padded tokens)</p>
+</li>
+<li><p>Run your model on both the real/padded tokens (model will predict labels for the padded tokens as well)</p>
+</li>
+<li><p>Only take into account the loss caused by the real elements</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">full_loss = tf.nn.softmax_cross_entropy_with_logits(preds, labels)</span><br><span class="line">loss = tf.reduce_mean(tf.boolean_mask(full_loss, mask))</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Let your model know the real sequence length so it only predict the labels for the real tokens.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cell = tf.nn.rnn_cell.GRUCell(hidden_size)</span><br><span class="line"></span><br><span class="line">rnn_cells = tf.nn.rnn_cell.MultiRNNCell([cell] * num_layers)</span><br><span class="line"></span><br><span class="line">tf.reduce_sum(tf.reduce_max(tf.sign(seq), <span class="number">2</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">output, out_state = tf.nn.dynamic_rnn(cell, seq, length, initial_state)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>tensorflow seq2seq resembles caffe that use a file or string to define model parameters and perform training/inference.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.contrib.rnn.MultiRNNCell(    [lstm_cell() for _ in range(number_of_layers)])</span><br></pre></td></tr></table></figure>
+<p>is a RNN cell with a number of layers. In pytorch, you only need to input the number of layers.</p>
+<p>Sample code using tf.name_scope and tf.variable_scope.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"Train"</span>):</span><br><span class="line">      train_input = PTBInput(config=config, data=train_data, name=<span class="string">"TrainInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">None</span>, initializer=initializer):</span><br><span class="line">        m = PTBModel(is_training=<span class="keyword">True</span>, config=config, input_=train_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Training Loss"</span>, m.cost)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Learning Rate"</span>, m.lr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Valid"</span>):</span><br><span class="line">      valid_input = PTBInput(config=config, data=valid_data, name=<span class="string">"ValidInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mvalid = PTBModel(is_training=<span class="keyword">False</span>, config=config, input_=valid_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Validation Loss"</span>, mvalid.cost)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Test"</span>):</span><br><span class="line">      test_input = PTBInput(</span><br><span class="line">          config=eval_config, data=test_data, name=<span class="string">"TestInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mtest = PTBModel(is_training=<span class="keyword">False</span>, config=eval_config,</span><br><span class="line">                         input_=test_input)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(name, reuse=<span class="keyword">None</span>, initializer=initializer, reuse=tf.AUTO_REUSE):</span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>The above code enable reusing of variables such that subgraphs would not be constructed.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.identity(    input,    name=None)</span><br></pre></td></tr></table></figure>
+<p>return a tensor that is identical with input tensor.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder_with_default(    input,    shape,    name=None)</span><br></pre></td></tr></table></figure>
+<p>If there is no value fed to placeholder, the placeholder would take input value as input. The input is actually a default value.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.sign(    x,    name=None)</span><br></pre></td></tr></table></figure>
+<p>return a tensor to indicate whether x is greater than 0 or not.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.reduce_max(    input_tensor,    axis=None,    keepdims=None,    name=None,    reduction_indices=None,    keep_dims=None)</span><br></pre></td></tr></table></figure>
+<p>Computes the maximum of elements across dimensions of a tensor. </p>
+<p>Attention mechanism in tensorflow is to use an attention_wrapper to wrap the RNNcell.</p>
+<p>tf.layers.dense() apply a fully connected layer to given inputs and return result.<br>tf.layers.Dense() return an abstract layer.</p>
+
           
         
       
@@ -486,9 +938,25 @@
       
         
           
-            <p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
+            <p><strong>CTR</strong>(<strong>Click-Through-Rate</strong>).</p>
+<p>Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the candidate items and return some items with high scores.</p>
+<p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
 <p><strong>Generalization</strong> is loosely defined as discovering of underlying features from existing co-occurence so that new feature combinations could be inferred from existing co-occurence.</p>
-<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2>
+<p>data for Web-scale recommender systems is mostly <strong>discrete and categorical</strong>, leading to a large and sparse feature space that is challenging for feature exploration. For continuous data, a common method is to divide the continuous range into several continuous range such that one-hot vector could be employed to represent a range.</p>
+<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.</p>
+<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2><p>Factorization machine and DNN requires no or less fiture engineering because it is able to learn dense and low-dimension embedding. But it would over-generate so that recommendation would be unrelevent. Wide refers to logistic regression. It is able to simply remember some rules. Wide&amp;Deep combines them together. </p>
+<p>For wide part, features are transformed to one-hot sparse feature and fed to a linear transformation. </p>
+<p>Feature transformation:<br>$$<br>\varnothing_k(x)=\prod^d_{i=1}x_i^{c_{ki}}<br>$$</p>
+<p>Linear transformation:<br>$$<br>\mathbf{w}_{wide}^T[ \mathbf{x},\phi  ( \mathbf{x}  )]<br>$$<br>where \([ \mathbf{x},\phi  ( \mathbf{x}  )]\) is concatenation of original features and transformmed features.</p>
+<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P\left ( Y=1\mid \mathbf{x} \right )=\sigma \left ( \mathbf{w}<em>{wide}^T\left [ \mathbf{x},\phi \left ( \mathbf{x} \right ) \right ] + \mathbf{w}</em>{deep}^Ta^{\left ( l_f \right )}+b \right )<br>$$</p>
+<h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><p>DeepFM substitutes the wide part in wide&amp;deep with <strong>Factorization Machines(FM)</strong>. It is able to model high-level feature combination by transforming the sparse feature to dense and low-dimension features. It models feature interaction as inner product of embeddings.</p>
+<p>A feature \(x_i\) is associated with a weight vector(embedding) \(v_i\) and feature interaction or feature combination is computed as \(&lt;v_i,v_j&gt;\). Intuitively, in stead of computing feature combination directly, it insert an embedding layer to the network so as to convert features to embeddings. Compuing the dot product of embedding to model feature combination.</p>
+<h2 id="DCN-Deep-Cross-Network"><a href="#DCN-Deep-Cross-Network" class="headerlink" title="DCN(Deep Cross Network)"></a>DCN(Deep Cross Network)</h2><p>The features are usually sparse, it is unable to represent those sparse features with one-hot vector if the size of vocabulary is huge. Therefore embedding layer is employed to convert sparse features to dense features which are real-value vectors like Natural Language Processing. After that, those vectors are stacked or concatenated with other dense features.</p>
+<p>It also utilises matrix multiplication to implement feature combination.<br>$$<br>x_{l+1} = x_0 x_l^T w_l + b_l + x_l = f(x_l, w_l, b_l) + x_l<br>$$</p>
+<p>where \(x_0\) is the concatenation of embedding features and dense features. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
+<p>The degress of cross features is growing with the number of layers.</p>
+<p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
+
           
         
       
@@ -1157,432 +1625,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/CNN-NLP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/03/CNN-NLP/" itemprop="url">CNN_NLP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-03T09:43:34+08:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>CNN is good at capture semantic information in a contextual window due to local connectivity. It requires lots of data to train because it includes many parameters. Inability to model long-distance contextual information.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/01/Math/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/01/Math/" itemprop="url">Math</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-01T11:59:35+08:00">
-                2018-10-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Gamma-Function"><a href="#Gamma-Function" class="headerlink" title="Gamma Function"></a>Gamma Function</h2><p>the gamma function is an extension of the factorial function to real and complex numbers. </p>
-<p>If n is a positive integer</p>
-<p>$$\Gamma(n)=(n-1)!$$</p>
-<p>For complex number z whose real part is greater than 0, the below integral, which is known as the Euler integral of the second kind, converges bsolutely. The gamma function is defined as:</p>
-<p>$${\displaystyle \Gamma (z)=\int _{0}^{\infty }{\frac {t^{z-1}}{\mathrm {e} ^{t}}}\,{\rm {d}}t}$$</p>
-<p>This integral function is extended by analytic continuation to all complex numbers except the non-positive integers (where the function has simple poles), yielding the meromorphic function we call the gamma function.</p>
-<h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><p>$${\displaystyle \Gamma (x+1)=x\Gamma (x)}$$</p>
-<p>Read part of complex number:<br>\({\displaystyle \Re (z)}\)</p>
-<p>Imaginary part of complex number:<br>\({\displaystyle \Im (z)}\)</p>
-<h2 id="Beta-Function"><a href="#Beta-Function" class="headerlink" title="Beta Function"></a>Beta Function</h2><p>Defined by the Euler integral of the first kind.</p>
-<p>$${\displaystyle \mathrm {\mathrm {B} } (x,y)=\int _{0}^{1}t^{x-1}(1-t)^{y-1}\,dt!}$$</p>
-<p>where \({\displaystyle {\textrm {Re}}(x),{\textrm {Re}}(y)&gt;0\,}\).</p>
-<p>$${\displaystyle \mathrm {B} (x,y)={\dfrac {\Gamma (x)\,\Gamma (y)}{\Gamma (x+y)}}!}$$</p>
-<p>when x,y are integers.</p>
-<p>the beta distribution is a family of continuous probability distributions defined on the interval [0, 1] parametrized by two positive shape parameters, denoted by \(\alpha\) and \(\beta\), that appear as exponents of the random variable and control the shape of the distribution.</p>
-<p>The beta distribution has been applied to model the behavior of random variables limited to intervals of finite length in a wide variety of disciplines.</p>
-<p>In Bayesian inference, the beta distribution is the conjugate prior probability distribution for the Bernoulli, binomial, negative binomial and geometric distributions. For example, the beta distribution can be used in Bayesian analysis to describe initial knowledge concerning probability of success such as the probability that a space vehicle will successfully complete a specified mission. The beta distribution is a suitable model for the random behavior of percentages and proportions.</p>
-<h2 id="Conjugate-prior-distribution"><a href="#Conjugate-prior-distribution" class="headerlink" title="Conjugate prior distribution"></a>Conjugate prior distribution</h2><p>If the posterior distributions \(p(\theta | x)\) are in the same probability distribution family as the prior probability distribution \(p(\theta)\), the prior and posterior are then called conjugate distributions, and the prior is called a conjugate prior for the likelihood function.</p>
-<p>For example, the Gaussian family is conjugate to itself (or self-conjugate) with respect to a Gaussian likelihood function: if the likelihood function is Gaussian, choosing a Gaussian prior over the mean will ensure that the posterior distribution is also Gaussian. This means that the Gaussian distribution is a conjugate prior for the likelihood that is also Gaussian. </p>
-<p>Advantage of Conjugate prior distribution:<br>A conjugate prior is an algebraic convenience, giving a closed-form expression for the posterior; otherwise numerical integration may be necessary. Further, conjugate priors may give intuition, by more transparently showing how a likelihood function updates a prior distribution.</p>
-<p>The Dirichlet distribution of order k ≥ 2 with parameters \(\alpha_1, …, \alpha_K &gt; 0\) has a probability density function with respect to Lebesgue measure on the Euclidean space \(\mathbb {R}^{K−1}\) given by</p>
-<p>$${\displaystyle f(x_{1},\dots ,x_{K};\alpha _{1},\dots ,\alpha _{K})={\frac {1}{\mathrm {B} (\alpha )}}\prod <em>{i=1}^{K}x</em>{i}^{\alpha _{i}-1}}$$</p>
-<p>where \(\sum_k\theta_k=1 \) and \(\theta_k&gt;0\) or in other words, \({x_k}_{k=1}^{k=K}\) belong to the standard K-1 simplex.</p>
-<h2 id="Euclidean-space"><a href="#Euclidean-space" class="headerlink" title="Euclidean space"></a>Euclidean space</h2><p>Euclidean space’s points are vectors of real numbers.</p>
-<p>A Euclidean space is a real vector space on which is defined a fixed<br>symmetric bilinear form whose associated quadratic form is positive definite.</p>
-<p>The vector space itself will be denoted as a rule by L, and the fixed symmetric<br>bilinear form will be denoted by (x, y). Such an expression is also called the inner<br>product of the vectors x and y. </p>
-<p>A Euclidean space is a real vector space L in which to every pair of vectors x<br>and y there corresponds a real number (x, y) such that the following conditions are<br>satisfied:</p>
-<p>\(\forall x1, x2, y ∈ L\)</p>
-<p>(1) \((x_1 + x_2, y) = (x_1, y) + (x_2, y) \  .\)</p>
-<p>(2) \((\alpha x, y) = \alpha(x, y) α\in \mathbb {R}.\)</p>
-<p>(3) \((x, y) = (y, x)\)</p>
-<p>(4) \((x, x) &gt; 0 \ \ \forall x = 0.\)</p>
-<p>Properties (1)–(3) show that the function (x, y) is a symmetric bilinear form on<br>L, and in particular, that (0, y) = 0 for every vector \(y \in L\). It is only property (4) that expresses the specific character of a Euclidean space.</p>
-<p>The expression (x, x) is frequently denoted by \((x^2)\); it is called the scalar square<br>of the vector x. Thus property (4) implies that the quadratic form corresponding to<br>the bilinear form (x, y) is positive definite.</p>
-<h2 id="Simplex"><a href="#Simplex" class="headerlink" title="Simplex"></a>Simplex</h2><p>In geometry, a simplex is a generalization of the notion of a triangle or tetrahedron to arbitrary dimensions. Specifically, a k-simplex is a k-dimensional polytope which is the convex hull of its k + 1 vertices. More formally, suppose the k + 1 points \({\displaystyle u_{0},\dots ,u_{k}\in \mathbb {R} ^{k}}\)are affinely independent, which means \({\displaystyle u_{1}-u_{0},\dots ,u_{k}-u_{0}}\) u1−u0,…,uk−u0 are linearly independent. Then, the simplex determined by them is the set of points</p>
-<p>$${\displaystyle C=\left{\theta <em>{0}u</em>{0}+\dots +\theta <em>{k}u</em>{k}~{\bigg |}~\sum _{i=0}^{k}\theta _{i}=1{\mbox{ and }}\theta _{i}\geq 0{\mbox{ for all }}i\right}.}$$</p>
-<h2 id="Hilbert-space"><a href="#Hilbert-space" class="headerlink" title="Hilbert space"></a>Hilbert space</h2><p>A Hilbert space H is a real or complex inner product space that is also a complete metric space with respect to the distance function induced by the inner product.</p>
-<p>To say that H is a complex inner product space means that H is a complex vector space on which there is an inner product ⟨x,y⟩ associating a complex number to each pair of elements x, y of H that satisfies the following properties:</p>
-<p>The inner product of a pair of elements is equal to the complex conjugate of the inner product of the swapped elements:</p>
-<p>$${\displaystyle \langle y,x\rangle ={\overline {\langle x,y\rangle }}\,.}$$</p>
-<p>The inner product is linear in its first argument. For all complex numbers a and b,</p>
-<p>$${\displaystyle \langle ax_{1}+bx_{2},y\rangle =a\langle x_{1},y\rangle +b\langle x_{2},y\rangle \,.}$$</p>
-<p>The inner product of an element with itself is positive definite:</p>
-<p>$${\displaystyle \langle x,x\rangle \geq 0}$$</p>
-<p>where the case of equality holds precisely when x = 0.</p>
-<p>The Completeness of H is expressed using a form of the Cauchy criterion for sequences in H: a pre-Hilbert space H is complete if every Cauchy sequence converges with respect to this norm to an element in the space. Completeness can be characterized by the following equivalent condition: if a series of vectors</p>
-<p>$${\displaystyle \sum <em>{k=0}^{\infty }u</em>{k}}$$</p>
-<p>converges absolutely in the sense that</p>
-<p>$${\displaystyle \sum <em>{k=0}^{\infty }|u</em>{k}|&lt;\infty \,,}$$</p>
-<p>then the series converges in H, in the sense that the partial sums converge to an element of H.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Probability/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/30/Probability/" itemprop="url">Probability</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:47:03+08:00">
-                2018-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="The-Binomial-Distribution"><a href="#The-Binomial-Distribution" class="headerlink" title="The Binomial Distribution"></a>The Binomial Distribution</h2><p>$${\displaystyle f(k;n,p)=\Pr(X=k)={n \choose k}p^{k}(1-p)^{n-k}}$$</p>
-<p>n trails, each trail produce one result, the result is that whether a certain event E happen or not. The event happens with probability p. The Binomial Distribution is denoted as Bin(n,p)</p>
-<h2 id="The-Multinomial-Distribution"><a href="#The-Multinomial-Distribution" class="headerlink" title="The Multinomial Distribution"></a>The Multinomial Distribution</h2><p>$$P(x_1,…,x_k|n,p_1,..p_k) = Multi(x_1,…,x_k|n,p_1,..p_k) \<br>= \dfrac{N!}{x_1!\cdots x_k!}p_i^{x_i}\<br>=\dfrac{N!}{\prod_{i=1}^kx_i!}p_i^{x_i},\<br>where\ \sum_i x_i=N,x_i&gt;0 \prod_{i=1}^d \mu_i^{m_i}$$</p>
-<p>n trails, each trail also produce one result, the result is that one of K events \(E_j\) happen. Each event happen with probability \(\pi_j\), j=1,2,….k where \(\pi_1 + \pi_2 +…..+\pi_k=1\). \(X_k\) is number of trials in which \(E_k\) occurs. \(X_1+X_2+….+X_k=n\).</p>
-<p>Multinomial models the distribution of the histogram vector which indicates how many time each outcome was observed over N trials of experiments.</p>
-<p>The individual components of a multinomial random vector are binomial and have a binomial distribution, \(X_1\sim Bin(n,\pi_1)\).</p>
-<p>The notation is \(X\sim Mult(n,\pi)\).</p>
-<h2 id="Poisson-Distribution"><a href="#Poisson-Distribution" class="headerlink" title="Poisson Distribution"></a>Poisson Distribution</h2><p>$${\displaystyle P(X=k)={\frac {e^{-\lambda }\lambda ^{k}}{k!}}}$$</p>
-<p>Poisson distribution is the limit of binomial distribution where \(\lambda =np\).  \(Bin(n,p) \sim possion(\lambda)\) when n is large and p is small. </p>
-<p>Poisson distribution is to model in a fixed time period or a fixed space, counts or events that occur randomly such as number of people buy something, number of goals in a round of match.</p>
-<p>\(\lambda \) is the parameter describing the rate, that is the mean of the distribution. In poission distribution, \(E(X) = Var(X) = \lambda\). Usually the variance is larger than \(\lambda\) because of overdispersion.</p>
-<p>Estimation of \(\lambda\): point estimation or interal estimation.</p>
-<h2 id="Gaussian-process"><a href="#Gaussian-process" class="headerlink" title="Gaussian process"></a>Gaussian process</h2><p>A Gaussian process is a stochastic process such that each combination of random variables has a multivariate normal distribution.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1632,7 +1679,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Memorization is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical">
+<meta name="description" content="CTR(Click-Through-Rate). Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Recommendation_System">
 <meta property="og:url" content="http://yoursite.com/2018/11/16/Recommendation-System-1/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Memorization is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical">
+<meta property="og:description" content="CTR(Click-Through-Rate). Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-16T03:23:56.226Z">
+<meta property="og:updated_time" content="2018-11-21T08:44:27.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Recommendation_System">
-<meta name="twitter:description" content="Memorization is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical">
+<meta name="twitter:description" content="CTR(Click-Through-Rate). Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the">
 
 
 
@@ -363,9 +363,25 @@
       
 
       
-        <p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
+        <p><strong>CTR</strong>(<strong>Click-Through-Rate</strong>).</p>
+<p>Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the candidate items and return some items with high scores.</p>
+<p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
 <p><strong>Generalization</strong> is loosely defined as discovering of underlying features from existing co-occurence so that new feature combinations could be inferred from existing co-occurence.</p>
-<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2>
+<p>data for Web-scale recommender systems is mostly <strong>discrete and categorical</strong>, leading to a large and sparse feature space that is challenging for feature exploration. For continuous data, a common method is to divide the continuous range into several continuous range such that one-hot vector could be employed to represent a range.</p>
+<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.</p>
+<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2><p>Factorization machine and DNN requires no or less fiture engineering because it is able to learn dense and low-dimension embedding. But it would over-generate so that recommendation would be unrelevent. Wide refers to logistic regression. It is able to simply remember some rules. Wide&amp;Deep combines them together. </p>
+<p>For wide part, features are transformed to one-hot sparse feature and fed to a linear transformation. </p>
+<p>Feature transformation:<br>$$<br>\varnothing_k(x)=\prod^d_{i=1}x_i^{c_{ki}}<br>$$</p>
+<p>Linear transformation:<br>$$<br>\mathbf{w}_{wide}^T[ \mathbf{x},\phi  ( \mathbf{x}  )]<br>$$<br>where \([ \mathbf{x},\phi  ( \mathbf{x}  )]\) is concatenation of original features and transformmed features.</p>
+<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P\left ( Y=1\mid \mathbf{x} \right )=\sigma \left ( \mathbf{w}<em>{wide}^T\left [ \mathbf{x},\phi \left ( \mathbf{x} \right ) \right ] + \mathbf{w}</em>{deep}^Ta^{\left ( l_f \right )}+b \right )<br>$$</p>
+<h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><p>DeepFM substitutes the wide part in wide&amp;deep with <strong>Factorization Machines(FM)</strong>. It is able to model high-level feature combination by transforming the sparse feature to dense and low-dimension features. It models feature interaction as inner product of embeddings.</p>
+<p>A feature \(x_i\) is associated with a weight vector(embedding) \(v_i\) and feature interaction or feature combination is computed as \(&lt;v_i,v_j&gt;\). Intuitively, in stead of computing feature combination directly, it insert an embedding layer to the network so as to convert features to embeddings. Compuing the dot product of embedding to model feature combination.</p>
+<h2 id="DCN-Deep-Cross-Network"><a href="#DCN-Deep-Cross-Network" class="headerlink" title="DCN(Deep Cross Network)"></a>DCN(Deep Cross Network)</h2><p>The features are usually sparse, it is unable to represent those sparse features with one-hot vector if the size of vocabulary is huge. Therefore embedding layer is employed to convert sparse features to dense features which are real-value vectors like Natural Language Processing. After that, those vectors are stacked or concatenated with other dense features.</p>
+<p>It also utilises matrix multiplication to implement feature combination.<br>$$<br>x_{l+1} = x_0 x_l^T w_l + b_l + x_l = f(x_l, w_l, b_l) + x_l<br>$$</p>
+<p>where \(x_0\) is the concatenation of embedding features and dense features. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
+<p>The degress of cross features is growing with the number of layers.</p>
+<p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
+
       
     </div>
     
@@ -492,7 +508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">69</span>
+                  <span class="site-state-item-count">72</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -538,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep"><span class="nav-number">1.</span> <span class="nav-text">Wide&amp;Deep</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#AUC"><span class="nav-number">1.</span> <span class="nav-text">AUC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Wide-amp-Deep"><span class="nav-number"></span> <span class="nav-text">Wide&amp;Deep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepFM"><span class="nav-number"></span> <span class="nav-text">DeepFM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DCN-Deep-Cross-Network"><span class="nav-number"></span> <span class="nav-text">DCN(Deep Cross Network)</span></a></div>
             
 
           </div>
