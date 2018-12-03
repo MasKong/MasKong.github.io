@@ -296,6 +296,259 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/BLEU/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/BLEU/" itemprop="url">BLEU</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-04T11:11:42+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Bilingual-Evaluation-Understudy-BLEU"><a href="#Bilingual-Evaluation-Understudy-BLEU" class="headerlink" title="Bilingual Evaluation Understudy(BLEU)"></a>Bilingual Evaluation Understudy(BLEU)</h3><p>$$p_{n}=\frac{\sum_{c_{\in candidates}}\sum_{n-gram_{\in c}}Count_{clip}(n-gram)}{\sum_{c^{‘}<em>{\in candidates}}\sum</em>{n-gram^{‘}_{\in c^{‘}}}Count(n-gram^{‘})}$$</p>
+<p>First count the n-gram match sentence by sentence. After that truncate the count which is to clip the count by maximum reference count. Finally add all the n-gram for all sentences together and divided by  all the n-gram for all reference sentences.</p>
+<p>$$Count_{clip}=min(Count,Max_Ref_Count)$$</p>
+<p>Max_Ref_Count is the largest count of a word in a single reference sentence.</p>
+<p>The machine could cheat by output short sentences. So penalty has to be added for short sentence.</p>
+<p>$$BP= \begin{cases}<br>1 &amp; \text{if c&gt;r}\<br>e^{1-r/c} &amp; {if}\  c \le r<br>\end{cases}$$</p>
+<p>If the length of the output sentence c is greater than the length of the reference, no penalty.</p>
+<p>The final version of BLEU:</p>
+<p>$$BLEU=BP\cdot exp(\sum_{n=1}^N w_n logP_n)$$</p>
+<p>BLEU computes the geometric average of the modified n-gram precisions and penalized short sentences. Usually N = 4 and the weight \(w_n=\frac{1}{N}\)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/Evaluation-NLP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/Evaluation-NLP/" itemprop="url">Evaluation_NLP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-04T10:16:48+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Automatic-Evaluation"><a href="#Automatic-Evaluation" class="headerlink" title="Automatic Evaluation:"></a>Automatic Evaluation:</h2><h3 id="Word-Error-Rate-WER"><a href="#Word-Error-Rate-WER" class="headerlink" title="Word Error Rate(WER)"></a>Word Error Rate(WER)</h3><p>It is the Levenshtein distance between output and reference divided by the length of the reference. Dynamic programming is employed to compute the Levenshtein distance so as to determine the best alignment between the output and the reference. </p>
+<p>Deletion is a reference word aligned to nothing and insertion is a output word align to nothing. Substitution is word that dose not match the reference word.</p>
+<p>WER is actually edit distance normalized by length.</p>
+<p>$${\displaystyle {\mathit {WER}}={\frac {S+D+I}{N}}={\frac {S+D+I}{S+D+C}}}$$</p>
+<h3 id="Position-independent-Error-Rate-PER"><a href="#Position-independent-Error-Rate-PER" class="headerlink" title="Position-independent Error Rate(PER)"></a>Position-independent Error Rate(PER)</h3><p>It treats the reference and the output as bag of words so that words could be alighed directly without alighment of two sentences. It is definitely smaller than or equal to WER.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/CNN-NLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -910,12 +1163,49 @@
       
         
           
-            <p>Three types of clustering:</p>
+            <p>Two kinds of clustering:</p>
+<ol>
+<li>parametric: K-means</li>
+<li>non-parametric: Dense-based</li>
+</ol>
+<p>hree types of clustering:</p>
 <ul>
 <li>Hard Clustering. Each instance belongs to only one cluster</li>
 <li>Hierachical clustering. Nested clusters.</li>
 <li>Soft/Fuzzy Clustering</li>
 </ul>
+<h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>In center-based approach, density is defined as: given a radius and a central point, the number of points in the circle including the central points.</p>
+<p>core points: Within an area that contains multiple points. The area has to satisfy some requirement with user specified parameters. For example, with radius(Eps) 5, if the number of points in the area exceeds like 7, then the core point is defined as a core point.</p>
+<p>border points: falls within the neighborhood of a core point. Border points could not be core points.</p>
+<p>noise points: not core points nor border points.</p>
+<p>Algorithm:</p>
+<ol>
+<li>label all points as core, border, or noise points.</li>
+<li>Eliminate noise points.</li>
+<li>Put an edge between all core points that are within Eps of each other.</li>
+<li>Merge each group of connected core points into a separate cluster.</li>
+<li>Assign each border point to one of the clusters of its associatedcore points.</li>
+</ol>
+<p>Selection of DBSCAN Parameters<br>k-dist: the distance between the core point and the kth nearest point. plot the the k-dist graph and select the k as MinPts(min points in a cluster) and the dramatically change point as distance.</p>
+<p>Strength: </p>
+<ol>
+<li>resistant to noise and can handle clusters of arbitrary shapesand size</li>
+</ol>
+<p>Weakness:</p>
+<ol>
+<li>has trouble when the clusters have widely varying densities. </li>
+<li>has trouble with high-dimensional data because density is more difficult to definefor such data. </li>
+<li>DBSCAN can be expensive when the computation of nearest neighbors requires computing all pairwise proximities, as is usually the case for high-dimensional data.</li>
+</ol>
+<h2 id="HDBSCAN"><a href="#HDBSCAN" class="headerlink" title="HDBSCAN"></a>HDBSCAN</h2><ol>
+<li>Transform the space. Increase the distance between noise points and core points by <strong>mutual reachability distance</strong>.</li>
+<li>Build the minimum spanning tree. The points could be viewed as a graph. The points are vertices and weighted edges are mutual reachability distance. The longer the distance, the higher the weight.</li>
+<li>Build the cluster hierarchy. At beginning, each point is in the same cluster. After that, remove edges one by one according to the weights of edges in decreasing order.(remove long distence edge first) If there are ties, remove them all together.</li>
+<li>After removal, assign a new cluster label to a component if it still has at least one edge, else assign it a null label (“noise”).</li>
+<li>Extract the clusters</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Introduction to Data Mining</p>
+<p><a href="http://producao.usp.br/bitstream/handle/BDPI/51005/2709770.pdf?sequence=1" target="_blank" rel="noopener">Hierarchical density estimates for data clustering, visualization, and outlier detection</a></p>
 
           
         
@@ -1314,268 +1604,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Writing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/18/Writing/" itemprop="url">Writing</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T13:32:29+08:00">
-                2018-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Writting is to explain an idea clearly and convince others. Presentation basically is trying to tell a story.</p>
-<p>Is the sentence easy to understand?<br>Is the sentence enjoyable and interesting to read?  </p>
-<p>Principles of writing:</p>
-<ul>
-<li>Cut unnecessary words and phrases; learn to part with your words!</li>
-<li>Use the active voice (subject + verb + object)</li>
-<li>Write with verbs: use strong verbs, avoid turning verbs into nouns, and don’t bury the main verb!</li>
-</ul>
-<h4 id="Cut-unnecessary-words"><a href="#Cut-unnecessary-words" class="headerlink" title="Cut unnecessary words"></a>Cut unnecessary words</h4><ul>
-<li>Dead weight words and phrases</li>
-<li>Empty words and phrases</li>
-<li>Long words or phrases that could be short</li>
-<li>Unnecessary jargon and acronyms</li>
-<li>Repetitive words or phrases</li>
-<li>Adverbs</li>
-</ul>
-<ol>
-<li>Eliminate negatives</li>
-<li>Eliminate superfluous uses of “there<br>are/there is”</li>
-<li>Omit needless prepositions</li>
-</ol>
-<h4 id="Use-active-voice"><a href="#Use-active-voice" class="headerlink" title="Use active voice"></a>Use active voice</h4><p>More clearly.<br>In method section, it’s fine to use passive voice.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/scrapy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/12/scrapy/" itemprop="url">scrapy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T12:40:44+08:00">
-                2018-09-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"stat_chart"</span></span><br></pre></td></tr></table></figure>
-<p>name is used to identify the spider name.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1630,7 +1658,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Three types of clustering:  Hard Clustering. Each instance belongs to only one cluster Hierachical clustering. Nested clusters. Soft/Fuzzy Clustering">
+<meta name="description" content="Two kinds of clustering:  parametric: K-means non-parametric: Dense-based  hree types of clustering:  Hard Clustering. Each instance belongs to only one cluster Hierachical clustering. Nested clusters">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Clustering">
 <meta property="og:url" content="http://yoursite.com/2018/09/30/Clustering/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Three types of clustering:  Hard Clustering. Each instance belongs to only one cluster Hierachical clustering. Nested clusters. Soft/Fuzzy Clustering">
+<meta property="og:description" content="Two kinds of clustering:  parametric: K-means non-parametric: Dense-based  hree types of clustering:  Hard Clustering. Each instance belongs to only one cluster Hierachical clustering. Nested clusters">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-09-30T04:04:50.204Z">
+<meta property="og:updated_time" content="2018-12-02T12:16:42.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Clustering">
-<meta name="twitter:description" content="Three types of clustering:  Hard Clustering. Each instance belongs to only one cluster Hierachical clustering. Nested clusters. Soft/Fuzzy Clustering">
+<meta name="twitter:description" content="Two kinds of clustering:  parametric: K-means non-parametric: Dense-based  hree types of clustering:  Hard Clustering. Each instance belongs to only one cluster Hierachical clustering. Nested clusters">
 
 
 
@@ -363,12 +363,49 @@
       
 
       
-        <p>Three types of clustering:</p>
+        <p>Two kinds of clustering:</p>
+<ol>
+<li>parametric: K-means</li>
+<li>non-parametric: Dense-based</li>
+</ol>
+<p>hree types of clustering:</p>
 <ul>
 <li>Hard Clustering. Each instance belongs to only one cluster</li>
 <li>Hierachical clustering. Nested clusters.</li>
 <li>Soft/Fuzzy Clustering</li>
 </ul>
+<h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>In center-based approach, density is defined as: given a radius and a central point, the number of points in the circle including the central points.</p>
+<p>core points: Within an area that contains multiple points. The area has to satisfy some requirement with user specified parameters. For example, with radius(Eps) 5, if the number of points in the area exceeds like 7, then the core point is defined as a core point.</p>
+<p>border points: falls within the neighborhood of a core point. Border points could not be core points.</p>
+<p>noise points: not core points nor border points.</p>
+<p>Algorithm:</p>
+<ol>
+<li>label all points as core, border, or noise points.</li>
+<li>Eliminate noise points.</li>
+<li>Put an edge between all core points that are within Eps of each other.</li>
+<li>Merge each group of connected core points into a separate cluster.</li>
+<li>Assign each border point to one of the clusters of its associatedcore points.</li>
+</ol>
+<p>Selection of DBSCAN Parameters<br>k-dist: the distance between the core point and the kth nearest point. plot the the k-dist graph and select the k as MinPts(min points in a cluster) and the dramatically change point as distance.</p>
+<p>Strength: </p>
+<ol>
+<li>resistant to noise and can handle clusters of arbitrary shapesand size</li>
+</ol>
+<p>Weakness:</p>
+<ol>
+<li>has trouble when the clusters have widely varying densities. </li>
+<li>has trouble with high-dimensional data because density is more difficult to definefor such data. </li>
+<li>DBSCAN can be expensive when the computation of nearest neighbors requires computing all pairwise proximities, as is usually the case for high-dimensional data.</li>
+</ol>
+<h2 id="HDBSCAN"><a href="#HDBSCAN" class="headerlink" title="HDBSCAN"></a>HDBSCAN</h2><ol>
+<li>Transform the space. Increase the distance between noise points and core points by <strong>mutual reachability distance</strong>.</li>
+<li>Build the minimum spanning tree. The points could be viewed as a graph. The points are vertices and weighted edges are mutual reachability distance. The longer the distance, the higher the weight.</li>
+<li>Build the cluster hierarchy. At beginning, each point is in the same cluster. After that, remove edges one by one according to the weights of edges in decreasing order.(remove long distence edge first) If there are ties, remove them all together.</li>
+<li>After removal, assign a new cluster label to a component if it still has at least one edge, else assign it a null label (“noise”).</li>
+<li>Extract the clusters</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Introduction to Data Mining</p>
+<p><a href="http://producao.usp.br/bitstream/handle/BDPI/51005/2709770.pdf?sequence=1" target="_blank" rel="noopener">Hierarchical density estimates for data clustering, visualization, and outlier detection</a></p>
 
       
     </div>
@@ -467,8 +504,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -487,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -523,6 +569,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DBSCAN"><span class="nav-number">1.</span> <span class="nav-text">DBSCAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDBSCAN"><span class="nav-number">2.</span> <span class="nav-text">HDBSCAN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="attention machanism is just an attention wrapper to wrap the RNN. Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout. The outp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-23T11:49:15.145Z">
+<meta property="og:updated_time" content="2018-11-29T09:58:21.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="seq2seq_tensorflow">
 <meta name="twitter:description" content="attention machanism is just an attention wrapper to wrap the RNN. Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout. The outp">
@@ -385,6 +385,15 @@
 <li></li>
 </ol>
 <p>For regression(time series data prediction) problem, just add a scaling factor with a fully-connected layer.</p>
+<p>The decoder could use the last encoder hidden state or zero or encoder input[:-1] as initial state. </p>
+<p>The RNN decoder outputs tensor with same shape as the input. </p>
+<p>The input is batched tensor, and RNN encoder takes sequence as input. Sequence is a list of tensor with shape [batch_size, dim]. The length of the sequence is the time step.</p>
+<p>When you use Dataset to train the model, during inference, there are several ways to feed the data:</p>
+<ol>
+<li>use dataset and feed label with idiot values</li>
+<li>create two meta graph with different input, and inference graph load parameters from the other.</li>
+<li>extract the input feature and feed with inference input.</li>
+</ol>
 
       
     </div>
@@ -503,7 +512,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
