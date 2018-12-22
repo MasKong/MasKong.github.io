@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionar">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-27T11:39:12.429Z">
+<meta property="og:updated_time" content="2018-12-11T12:00:40.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python">
 <meta name="twitter:description" content="DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionar">
@@ -395,6 +395,25 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip(*iterables)</span><br></pre></td></tr></table></figure>
 <p>Make an iterator that aggregates elements from each of the iterables.</p>
 <p><code>*l</code> idiom is to <strong>unpack argument lists</strong> when calling a function 解包列表中的变量传递给函数</p>
+<h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><p>Dataframe.groupby() groups the row with the same attributes together. Source: <a href="https://www.kaggle.com/crawford/python-groupby-tutorial" target="_blank" rel="noopener">https://www.kaggle.com/crawford/python-groupby-tutorial</a></p>
+<p>df.groupby(‘A’).agg({‘B’: [‘min’, ‘max’], ‘C’: ‘sum’})<br>agg is able to specify what kind of operations you want to apply to the group.</p>
+<p>pandas.DataFrame.reset_index() is used to reset index for multi-level dataframe.</p>
+<p>Basic funtions in pandas:(could be passed to agg function)</p>
+<p>| <code>count</code> | Number of non-NA observations |<br>| <code>sum</code> | Sum of values |<br>| <code>mean</code> | Mean of values |<br>| <code>mad</code> | Mean absolute deviation |<br>| <code>median</code> | Arithmetic median of values |<br>| <code>min</code> | Minimum |<br>| <code>max</code> | Maximum |<br>| <code>mode</code> | Mode |<br>| <code>abs</code> | Absolute Value |<br>| <code>prod</code> | Product of values |<br>| <code>std</code> | Bessel-corrected sample standard deviation |<br>| <code>var</code> | Unbiased variance |<br>| <code>sem</code> | Standard error of the mean |<br>| <code>skew</code> | Sample skewness (3rd moment) |<br>| <code>kurt</code> | Sample kurtosis (4th moment) |<br>| <code>quantile</code> | Sample quantile (value at %) |<br>| <code>cumsum</code> | Cumulative sum |<br>| <code>cumprod</code> | Cumulative product |<br>| <code>cummax</code> | Cumulative maximum |<br>| <code>cummin</code> | Cumulative minimum |</p>
+<p>After groupby, there are multi-level indices. use reset_inedx() to reset the indices.</p>
+<p>pd.merge()<br>Values with the keys would be kept. The difference is how to deal with values that have different keys.</p>
+<ol>
+<li>Left Merge: drop the right keys and fill left keys with nan</li>
+<li>Right Merge: drop the left keys and fill right keys with nan</li>
+<li>drop all keys </li>
+<li>fill all keys with nan</li>
+</ol>
+<p>pandas.get_dummies()  convert categorical variable into dummy/indicator variables.</p>
+<h2 id="Multiprocessing"><a href="#Multiprocessing" class="headerlink" title="Multiprocessing"></a>Multiprocessing</h2><p>pool.starmap(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>])  each element of starmap is supposed to be an iterable item.</p>
+<p>pool.map(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>]) each element of map is supposed to be a single item stored in an iterable item.</p>
+<h3 id="pickle"><a href="#pickle" class="headerlink" title="pickle"></a>pickle</h3><p>read from pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"file_path"</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    d = pickle.load(f)</span><br></pre></td></tr></table></figure></p>
+<p>write to pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">favorite_color = &#123; <span class="string">"lion"</span>: <span class="string">"yellow"</span>, <span class="string">"kitty"</span>: <span class="string">"red"</span> &#125;</span><br><span class="line">pickle.dump( favorite_color, open( <span class="string">"save.p"</span>, <span class="string">"wb"</span> ) )</span><br></pre></td></tr></table></figure></p>
+<p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;We are the &#123;&#125; who say &#123;&#125;!&apos;.format(&apos;knights&apos;, &apos;Ni&apos;)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -528,7 +547,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -574,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dictionary"><span class="nav-number">1.</span> <span class="nav-text">Dictionary</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dictionary"><span class="nav-number">1.</span> <span class="nav-text">Dictionary</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pandas"><span class="nav-number"></span> <span class="nav-text">Pandas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiprocessing"><span class="nav-number"></span> <span class="nav-text">Multiprocessing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pickle"><span class="nav-number">1.</span> <span class="nav-text">pickle</span></a></li></ol></div>
             
 
           </div>

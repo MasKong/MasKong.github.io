@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Attention is a distribution which describe how much the network should focus on each unit. content-basedThe attending RNN generates a query describing what it wants to focus on. Each item is dot-produ">
+<meta name="description" content="Attention is a distribution which describe how much the network should focus on each unit. The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)$$\begin{equation}p(\textbf{y})">
 <meta name="keywords" content="DL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Attention">
 <meta property="og:url" content="http://yoursite.com/2018/08/27/Attention/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Attention is a distribution which describe how much the network should focus on each unit. content-basedThe attending RNN generates a query describing what it wants to focus on. Each item is dot-produ">
+<meta property="og:description" content="Attention is a distribution which describe how much the network should focus on each unit. The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)$$\begin{equation}p(\textbf{y})">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-21T09:29:23.374Z">
+<meta property="og:updated_time" content="2018-12-12T02:54:20.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Attention">
-<meta name="twitter:description" content="Attention is a distribution which describe how much the network should focus on each unit. content-basedThe attending RNN generates a query describing what it wants to focus on. Each item is dot-produ">
+<meta name="twitter:description" content="Attention is a distribution which describe how much the network should focus on each unit. The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)$$\begin{equation}p(\textbf{y})">
 
 
 
@@ -365,6 +365,16 @@
 
       
         <p>Attention is a distribution which describe how much the network should focus on each unit.</p>
+<p>The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)<br>$$<br>\begin{equation}<br>p(\textbf{y}) = \prod_{t=1}^{T}p(y_{t} \bracevert {y_{1},…,y_{t-1}},c)<br>\end{equation}<br>$$</p>
+<p>For each \(y_t\),<br>$$<br>\begin{equation}<br>p(y_{t} \bracevert {y_{1},…,y_{t-1}},c) = g(y_{t-1},s_{t},c)<br>\end{equation}<br>$$<br>where \(s_t\) is the decoder hidden state,<br>$$<br>s_i=f(s_{i−1},y_{i−1},c_i)<br>$$</p>
+<p>\(y_{t-1}\) is the output of the last time step, \(h_j\) is the encoder hidden state at time step j. c is the context vector, which is the weighted sum of all encoder outputs.<br>$$<br>\begin{equation}<br>c_{i} = \sum_{j=1}^{T_{x}}\alpha_{ij}h_{j}<br>\end{equation}<br>$$<br>where \(a_{ij}\) is computed from<br>$$<br>\begin{equation}<br>\alpha_{ij}= \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{x}}\exp(e_{ik})}<br>\end{equation}<br>$$</p>
+<h4 id="Bahdanau-et-al-model"><a href="#Bahdanau-et-al-model" class="headerlink" title="Bahdanau et al. model"></a>Bahdanau et al. model</h4><p>global and local attention: the “attention”<br>is placed on all source positions or on only a few<br>source positions.</p>
+<p>$$<br>e_{ij} = a(s_{i−1}, h_j)<br>$$<br>a() is a feed forward neural network.</p>
+<h4 id="Luong-et-al-models"><a href="#Luong-et-al-models" class="headerlink" title="Luong et al. models"></a>Luong et al. models</h4><p>$$<br>a_t(s) = aligh(h_t, \overline{h_s})=\frac{exp(score(h_t,\overline{h_s})}{\sum_{s’}score(h_t,\overline{h_{s’}})}<br>$$<br>where \(h_t\) is decoder hidden state and \(\overline{h_s}\) is encoder hidden state. This align model computes the scores between the current hidden state with each encoder hidden state and put it in a softmax.</p>
+<p>There are three kinds of score functions, please refer to the paper.</p>
+<p>After that, the context vector is computed as<br>$$<br>c_t = a_t \cdot \overline{h_{s}}<br>$$<br>a weighted sum of encoder hidden state.</p>
+<p>At the end, the attentional vector is computed as:<br>$$<br>\widetilde{h_t}=tanh(W_c[c_t;h_t])<br>$$<br>concat context vector and hidden state, then feed it to transformations.</p>
+<p>$$<br>p(y_t|y_{&lt;t}, x)=softmax(W_s,\widetilde{h_t})<br>$$</p>
 <h3 id="content-based"><a href="#content-based" class="headerlink" title="content-based"></a>content-based</h3><p>The attending RNN generates a query describing what it wants to focus on. Each item is dot-producted with the query to produce a score, describing how well it matches the query. The scores are fed into a softmax to create the attention distribution.</p>
 <h3 id="location-based"><a href="#location-based" class="headerlink" title="location-based"></a>location-based</h3><h3 id="Neural-Turing-Machines"><a href="#Neural-Turing-Machines" class="headerlink" title="Neural Turing Machines"></a>Neural Turing Machines</h3><p>Neural Turing Machines combine a RNN with an external memory bank. Since vectors are the natural language of neural networks, the memory is an array of vectors. Every step, NTMs read and write everywhere, just to different extents.</p>
 <p>Read operation is a weighted sum of the distribution.</p>
@@ -519,7 +529,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -565,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#content-based"><span class="nav-number">1.</span> <span class="nav-text">content-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location-based"><span class="nav-number">2.</span> <span class="nav-text">location-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural-Turing-Machines"><span class="nav-number">3.</span> <span class="nav-text">Neural Turing Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention-Mechanism"><span class="nav-number">3.1.</span> <span class="nav-text">Attention Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attentional-Interfaces"><span class="nav-number">4.</span> <span class="nav-text">Attentional Interfaces</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number"></span> <span class="nav-text">Attention is all you need</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention"><span class="nav-number">0.1.</span> <span class="nav-text">Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">0.2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">0.3.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks"><span class="nav-number">0.4.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Positional-Embedding"><span class="nav-number">0.5.</span> <span class="nav-text">Positional Embedding</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bahdanau-et-al-model"><span class="nav-number">1.</span> <span class="nav-text">Bahdanau et al. model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Luong-et-al-models"><span class="nav-number">2.</span> <span class="nav-text">Luong et al. models</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#content-based"><span class="nav-number"></span> <span class="nav-text">content-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#location-based"><span class="nav-number"></span> <span class="nav-text">location-based</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neural-Turing-Machines"><span class="nav-number"></span> <span class="nav-text">Neural Turing Machines</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention-Mechanism"><span class="nav-number">1.</span> <span class="nav-text">Attention Mechanism</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attentional-Interfaces"><span class="nav-number"></span> <span class="nav-text">Attentional Interfaces</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention-is-all-you-need"><span class="nav-number"></span> <span class="nav-text">Attention is all you need</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Attention"><span class="nav-number">1.</span> <span class="nav-text">Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scaled-Dot-Product-Attention"><span class="nav-number">2.</span> <span class="nav-text">Scaled Dot-Product Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multi-Head-Attention"><span class="nav-number">3.</span> <span class="nav-text">Multi-Head Attention</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Position-wise-Feed-Forward-Networks"><span class="nav-number">4.</span> <span class="nav-text">Position-wise Feed-Forward Networks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Positional-Embedding"><span class="nav-number">5.</span> <span class="nav-text">Positional Embedding</span></a></li></ol></div>
             
 
           </div>

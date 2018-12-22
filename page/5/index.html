@@ -296,6 +296,537 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/CRF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/02/CRF/" itemprop="url">CRF</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T11:32:49+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Conditional-Random-Field-CRF"><a href="#Conditional-Random-Field-CRF" class="headerlink" title="Conditional Random Field(CRF)"></a>Conditional Random Field(CRF)</h2><p>It is a kind of generalized logistic regression model.</p>
+<p>HMMs have difficulty modeling overlapping, non-independent features because the assuption is indepence. In NLP, words are correlated and connection between them contains information. Here is where CRF comes into play.</p>
+<p>Linear chain CRF, can be thought of as the undirected graphical model version of HMM. It is as efficient as HMMs, where the sum-product algorithm and max-product algorithm still apply. Linear chain CRF is a special case of CRF, where each clique is the nearby two nodes. In terms of graph, the structure would be much more different.</p>
+<p>Overlapping features are in fact boost up the belief of the result, which should not be eliminated simply.</p>
+<p>CRF is conditional probability distribution while HMM is joint probability distribution.</p>
+<h3 id="Formal-Definition-of-CRF"><a href="#Formal-Definition-of-CRF" class="headerlink" title="Formal Definition of CRF"></a>Formal Definition of CRF</h3><p>$$P(y\mid x) = \frac{1}{Z(x)} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
+<p>where C denotes the set of cliques (i.e. fully connected subgraphs), \(\phi_c(x_c,y_c)\) is a factor. </p>
+<p>$$Z(x) = \sum_{y \in \mathcal{Y}} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
+<h4 id="Parameterized-Form-of-CRF"><a href="#Parameterized-Form-of-CRF" class="headerlink" title="Parameterized Form of CRF:"></a>Parameterized Form of CRF:</h4><p>$$P(y|x)=\frac{1}{Z(x)}\exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
+<p>$$Z(x)=\sum_y \exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
+<p>where \(\lambda_k, \mu_l\) are weights and \(t_k(y_{i-1},y_i,x,i)\) is the transition probability that given \(y_{i-1}\), the next label is \(y_{i}\) given input x at position i. \(\mu_ls_l(y_i,x,i)\) is the probability that at position i, given x, the output is \(y_{i}\).</p>
+<h4 id="Inference-of-label-y"><a href="#Inference-of-label-y" class="headerlink" title="Inference of label y"></a>Inference of label y</h4><p>$$\arg \max_y \phi_1(y_1, x_1) \prod_{i=2}^n \phi(y_{i-1}, y_i) \phi(y_i, x_i)$$</p>
+<p>In practice, \(\phi_c(x_c,y_c) = \exp(w_c^T f_c(x_c, y_c)).\) And \(f_c(x_c, y_c) = \lambda_kt_k(y_{i-1},y_i,x,i)+\mu_ls_l(y_i,x,i)\). This could also be written in vector form.</p>
+<p>The most important realization that need to be made about CRF features is that they can be arbitrarily complex. In fact, we may define CRF that depend on the entire input x. This will not affect computational performance at all, because at inference time, the x will be always observed.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
+<p><a href="https://github.com/Zhenye-Na/cs446/blob/master/docs/Probabilistic%20Graphical%20Models%20-%20Principles%20and%20Techniques.pdf" target="_blank" rel="noopener">Probabilistic Graphical Models - Principles and Techniques</a></p>
+<p><a href="https://ermongroup.github.io/cs228-notes/representation/undirected/" target="_blank" rel="noopener">cs228 notes </a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Word-Representation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/01/Word-Representation/" itemprop="url">Word_Representation</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T11:02:22+08:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
+<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
+<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
+<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
+<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
+<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
+<p>The training complexity of this architecture is proportional to</p>
+<p>Q = N × D + D × log2(V ).</p>
+<p>C is the context size.</p>
+<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
+<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
+<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
+<p>The training complexity of this architecture is proportional to</p>
+<p>Q = C × (D + D × log2(V ))</p>
+<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
+<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
+<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Deep-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31/Deep-Learning/" itemprop="url">Deep_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T11:33:09+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="multi-class-classification-problem"><a href="#multi-class-classification-problem" class="headerlink" title="multi-class classification problem"></a>multi-class classification problem</h2><p>Solutions:</p>
+<ul>
+<li>Train multiple classifiers and predict the label one by ont</li>
+<li>Learn the representation and compare. (clustering, or simply compare distance)</li>
+</ul>
+<p>Training step is actually a mini-batch. An epoch is the entire training set.</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>Before training, calculate the memory consumption of the neural network and make sure the GPU has enough memory.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/feature-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/30/feature-selection/" itemprop="url">feature_selection</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:46:18+08:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Mutual-Information"><a href="#Mutual-Information" class="headerlink" title="Mutual Information"></a>Mutual Information</h2><p>$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
+<p>This could be used as the heuristic of feature selection. Higher mutual information means the feature do relates to the class, which is helpful in classfication.</p>
+<h2 id="chi-squared-test"><a href="#chi-squared-test" class="headerlink" title="chi-squared test"></a>chi-squared test</h2><p>$$X^2(D,t,c)=\sum_{e_t\in {0,1}} \sum_{e_c\in {0,1}} \frac{(N_{e_te_c}-E_{e_te_c})^2}{E_{e_te_c}}$$</p>
+<p>N is the observed frequency in D and E the expected frequency. </p>
+<p>chi-squared test is a measure of how much expected counts E and observed counts N deviate from each other. A high value indicates that the hypothesis of independence is incorrect.</p>
+<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h4><p>For a test with one degree of freedom, the so-called Yates correction should be used, which makes it harder to reach statistical significance. <strong>degree of freedom</strong> = (num of columns -1) * (num of rows -1)</p>
+<p>Also, whenever a statistical test is used multiple times, then the probability of getting at least one error increases. If 1,000 hypotheses are rejected, each with 0.05 error probability, then 0.05 × 1000 = 50 calls of the test will be wrong on average. </p>
+<h2 id="Frequency-based-feature-selection"><a href="#Frequency-based-feature-selection" class="headerlink" title="Frequency-based feature selection"></a>Frequency-based feature selection</h2><p>select the feature that occurs usually. When many thousands of features are selected, then frequency-based feature selection often does well.</p>
+<h2 id="Feature-selection-for-multiple-classifiers"><a href="#Feature-selection-for-multiple-classifiers" class="headerlink" title="Feature selection for multiple classifiers"></a>Feature selection for multiple classifiers</h2><p>Commonly, feature selection statistics are first computed separately for each class on the two-class classification task c versus not c and then combined. </p>
+<p>One combination method computes a single figure of merit for each feature, for example, by averaging the values A(t, c) for feature t, and then selects the k features with highest figures of merit.</p>
+<p>Another frequently used combination method selects the top k/n features for each of n classifiers and then combines these n sets into one global feature set.</p>
+<h2 id="Comparison-of-feature-selection-methods"><a href="#Comparison-of-feature-selection-methods" class="headerlink" title="Comparison of feature selection methods"></a>Comparison of feature selection methods</h2><p>Mutual information prefer common terms while chi-squared test prefer rare terms. Because A single occurrence is not very informative according to the information-theoretic definition of information.</p>
+<p>All three methods are greedy methods.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -743,6 +1274,25 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip(*iterables)</span><br></pre></td></tr></table></figure>
 <p>Make an iterator that aggregates elements from each of the iterables.</p>
 <p><code>*l</code> idiom is to <strong>unpack argument lists</strong> when calling a function 解包列表中的变量传递给函数</p>
+<h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><p>Dataframe.groupby() groups the row with the same attributes together. Source: <a href="https://www.kaggle.com/crawford/python-groupby-tutorial" target="_blank" rel="noopener">https://www.kaggle.com/crawford/python-groupby-tutorial</a></p>
+<p>df.groupby(‘A’).agg({‘B’: [‘min’, ‘max’], ‘C’: ‘sum’})<br>agg is able to specify what kind of operations you want to apply to the group.</p>
+<p>pandas.DataFrame.reset_index() is used to reset index for multi-level dataframe.</p>
+<p>Basic funtions in pandas:(could be passed to agg function)</p>
+<p>| <code>count</code> | Number of non-NA observations |<br>| <code>sum</code> | Sum of values |<br>| <code>mean</code> | Mean of values |<br>| <code>mad</code> | Mean absolute deviation |<br>| <code>median</code> | Arithmetic median of values |<br>| <code>min</code> | Minimum |<br>| <code>max</code> | Maximum |<br>| <code>mode</code> | Mode |<br>| <code>abs</code> | Absolute Value |<br>| <code>prod</code> | Product of values |<br>| <code>std</code> | Bessel-corrected sample standard deviation |<br>| <code>var</code> | Unbiased variance |<br>| <code>sem</code> | Standard error of the mean |<br>| <code>skew</code> | Sample skewness (3rd moment) |<br>| <code>kurt</code> | Sample kurtosis (4th moment) |<br>| <code>quantile</code> | Sample quantile (value at %) |<br>| <code>cumsum</code> | Cumulative sum |<br>| <code>cumprod</code> | Cumulative product |<br>| <code>cummax</code> | Cumulative maximum |<br>| <code>cummin</code> | Cumulative minimum |</p>
+<p>After groupby, there are multi-level indices. use reset_inedx() to reset the indices.</p>
+<p>pd.merge()<br>Values with the keys would be kept. The difference is how to deal with values that have different keys.</p>
+<ol>
+<li>Left Merge: drop the right keys and fill left keys with nan</li>
+<li>Right Merge: drop the left keys and fill right keys with nan</li>
+<li>drop all keys </li>
+<li>fill all keys with nan</li>
+</ol>
+<p>pandas.get_dummies()  convert categorical variable into dummy/indicator variables.</p>
+<h2 id="Multiprocessing"><a href="#Multiprocessing" class="headerlink" title="Multiprocessing"></a>Multiprocessing</h2><p>pool.starmap(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>])  each element of starmap is supposed to be an iterable item.</p>
+<p>pool.map(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>]) each element of map is supposed to be a single item stored in an iterable item.</p>
+<h3 id="pickle"><a href="#pickle" class="headerlink" title="pickle"></a>pickle</h3><p>read from pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"file_path"</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    d = pickle.load(f)</span><br></pre></td></tr></table></figure></p>
+<p>write to pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">favorite_color = &#123; <span class="string">"lion"</span>: <span class="string">"yellow"</span>, <span class="string">"kitty"</span>: <span class="string">"red"</span> &#125;</span><br><span class="line">pickle.dump( favorite_color, open( <span class="string">"save.p"</span>, <span class="string">"wb"</span> ) )</span><br></pre></td></tr></table></figure></p>
+<p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;We are the &#123;&#125; who say &#123;&#125;!&apos;.format(&apos;knights&apos;, &apos;Ni&apos;)</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1172,678 +1722,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/Tensorflow/" itemprop="url">Tensorflow</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T14:42:47+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Characteristic: Lazy evaluation like scala</p>
-<p>Two steps to build and run a model:</p>
-<ul>
-<li>assemble a graph</li>
-<li>use a session to execute operations in the graph</li>
-</ul>
-<p>Placeholder: a node to store variable which would not be modified during backpropagation</p>
-<p>Variable: a node that would be modified during backpropagation</p>
-<p>Constant: values that cannot be changed</p>
-<p>Running parts need to be encapsulated into session.run(). session.run() is evaluation of the graph.</p>
-<p>Variables could have name and scope.</p>
-<p>Use TF DType to accelerate the computation or tensorflow has to infer the type.</p>
-<p>create variables with tf.get_variable</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = tf.get_variable(&quot;matrix&quot;, initializer=tf.constant([[0, 1], [2, 3]]))</span><br></pre></td></tr></table></figure>
-<p>rather than </p>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Before running, variables need to be initialized.</span><br></pre></td></tr></table></figure>
-<p>initializer = tf.global_variables_initializer()<br>with tf.Session() as sess:<br>    sess.run(initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a subset of variables:</span><br></pre></td></tr></table></figure></p>
-<p>with tf.Session() as sess:<br>    sess.run([a,b])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a single variable:</span><br></pre></td></tr></table></figure></p>
-<p>m=tf.get_variable(“matrix”,initializer=tf.constant([[0, 1], [2, 3]]))<br>with tf.Session() as sess:<br>    sess.run(m.initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">W.assign(100) creates an assign operation that assign 100 to variable W. The operation needs to be executed in a session to take effect.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tensorflow separates definitions of computation and execution. It first assembles a graph. Second use a session to execute.</span><br><span class="line"></span><br><span class="line">Nodes are operators, variables, and constants</span><br><span class="line"></span><br><span class="line">Edges are tensors.</span><br><span class="line"></span><br><span class="line">A Session object encapsulates the environment in which Operation objects are executed, and Tensor objects are evaluated.  Session will also allocate memory to store the current values of variables.</span><br></pre></td></tr></table></figure></p>
-<p>tf.Session.run(fetches,    feed_dict=None,    options=None,    run_metadata=None)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">fetches is a list of tensors whose values you want. tensorflow would return the values you want and skip computing unnecessary values.</span><br><span class="line"></span><br><span class="line">Multiple graphs require multiple sessions, each will try to use all available resources by default</span><br><span class="line"></span><br><span class="line">why graphs:</span><br><span class="line">1. break computation to facilitate auto-differentiation.</span><br><span class="line">2. save computation. only compute necessary values</span><br><span class="line">3. easier to distribute</span><br><span class="line">4. ML models visulised as graphs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Can&apos;t pass data between them without passing them through python/numpy, which doesn&apos;t work in distributed</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Create the summary writer after graph definition and before running your session.</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># The default path for saving event files is the same folder of this python file.</span><br><span class="line">tf.app.flags.DEFINE_string(</span><br><span class="line">&apos;log_dir&apos;, os.path.dirname(os.path.abspath(__file__)) + &apos;/logs&apos;,</span><br><span class="line">&apos;Directory where event logs are written to.&apos;)</span><br><span class="line"></span><br><span class="line"># Store all elements in FLAG structure!</span><br><span class="line">FLAGS = tf.app.flags.FLAGS</span><br><span class="line"></span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    writer = tf.summary.FileWriter(os.path.expanduser(FLAGS.log_dir), sess.graph)</span><br><span class="line">    .....</span><br><span class="line"># Closing the writer.</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure></p>
-<p>These codes are used to specify the path of logs directory and store all elements in FLAG structure.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clean flag name</span></span><br><span class="line"><span class="keyword">from</span> absl <span class="keyword">import</span> flags</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> list(flags.FLAGS):</span><br><span class="line">  delattr(flags.FLAGS, name)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnrecognizedFlagError: Unknown command line flag <span class="string">'f'</span></span><br></pre></td></tr></table></figure>
-<p>To solve this problem, just add a flag. In coommand line, there is not such a problem.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(<span class="string">'f'</span>, <span class="string">''</span>, <span class="string">'kernel'</span>)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(&apos;str_name&apos;, &apos;def_v_1&apos;,&quot;descrip1&quot;)</span><br></pre></td></tr></table></figure>
-<p>tf.app.flags is used to assign a name to a variable and parse variables in command line. The first argument is the variable name. The second argument is the default value. The third argument is a description. argparse module in python could also be employed to parse arguments.</p>
-<p>Any evaluation of variable must be run in a session.</p>
-<p>Three ways to initialize variables:</p>
-<ol>
-<li>Initializing Specific Variables.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># &quot;variable_list_custom&quot; is the list of variables that we want to initialize.</span><br><span class="line">variable_list_custom = [weights, custom_variable]</span><br><span class="line"></span><br><span class="line"># The initializer</span><br><span class="line">init_custom_op = tf.variables_initializer(var_list=all_variables_list)</span><br></pre></td></tr></table></figure>
-<p>This enable us to initialize specific variables. We are supposed to initialize all variables after specific initialization.</p>
-<ol start="2">
-<li>Global variable initialization. This operation has to be done after the construction of a model.</li>
-<li>Initialization of a variables using other existing variables. New variables can be initialized using other existing variables’ initial values by taking the values using initialized_value().<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create another variable with the same value as 'weights'.</span></span><br><span class="line">WeightsNew = tf.Variable(weights.initialized_value(), name=<span class="string">"WeightsNew"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now, the variable must be initialized.</span></span><br><span class="line">init_WeightsNew_op = tf.variables_initializer(var_list=[WeightsNew])</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>tf.one_hot() The axis argument determines which axis is the one-hot vector. </p>
-<p>Name scope is for grouping nodes together to facilitate visulisation in Tensorboard. Name scope is for reusing of operations while variable scope is for reusing of variables. </p>
-<p>Name scope is able to assign names to a set of variables. It is equivalent to add “name_scope/” to the variable name as prefix.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;outer&quot;):  c_2 = tf.constant(2, name=&quot;c&quot;)  # =&gt; operation named &quot;outer/c&quot;</span><br></pre></td></tr></table></figure>
-<p>An <code>Operation</code> is a node in a TensorFlow <code>Graph</code> that takes zero or more <code>Tensor</code> objects as input, and produces zero or more <code>Tensor</code> objects as output. Objects of type <code>Operation</code> are created by calling a Python op constructor (such as [<code>tf.matmul</code>] or [<code>tf.Graph.create_op</code>].</p>
-<p>A <code>Tensor</code> is a symbolic handle to one of the outputs of an <code>Operation</code>. It does not hold the values of that operation’s output, but instead provides a means of computing those values in a TensorFlow [<code>tf.Session</code>].</p>
-<p>Note that [<code>tf.Tensor</code>] objects are implicitly named after the [<code>tf.Operation</code>]that produces the tensor as output. A tensor name has the form <code>&quot;&lt;OP_NAME&gt;:&lt;i&gt;&quot;</code>.</p>
-<p>tf.get_variable would search the variable with the given name. If there is not such a variable, it would create a new variable.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.reduce_mean()</span><br></pre></td></tr></table></figure>
-<p>Sum over a vector in a particular dimension and compute the mean. The axis argument is used to specify the particular dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.softmax_cross_entropy_with_logits_v2()</span><br></pre></td></tr></table></figure>
-<p>Take unscaled log probabilities as input and perform softmax. After that, compute cross entropy loss. This functino allows gradient to backpropagated to labels.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cast()</span><br></pre></td></tr></table></figure>
-<p>Casts a tensor to a new type.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1.8, 2.2], dtype=tf.float32)tf.cast(x, tf.int32)  # [1, 2], dtype=tf.int32</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tf.Graph().as_default():</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
-<p>There is a default graph in tensorflow. All operations and variables are added to the graph if not specified. This line of code use another graph and add variables to that graph. Outside the code block, variables would be added to the default graph.</p>
-<p> TensorFlow will create a new [<code>tf.Tensor</code>]each time you use the same tensor-like object. If the tensor-like object is large (e.g. a <code>numpy.ndarray</code> containing a set of training examples) and you use it multiple times, you may run out of memory.</p>
-<p>By default, tf.Session is bounded to the default graph. If there is multiple graphs, specify graph parameter in tf.Session().</p>
-<p>The allow_soft_placement flag allows the switching back-and-forth between different devices. In tensorflow, not all operations are supported in GPU. The log_device_placement flag is to present which operations are set on what devices.</p>
-<p>The <strong>max_to_keep</strong> flags determine the maximum number of the saved models that the TensorFlow keeps and its default is set to ‘5’ by TensorFlow.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)</span><br></pre></td></tr></table></figure>
-<p>create a tensor filled with zero with the same shape as input_tensor</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.fill(dims, value, name=None)</span><br></pre></td></tr></table></figure>
-<p>create a tensor filled with a scalar value</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf.lin_space(start, stop, num, name=None)</span><br><span class="line"></span><br><span class="line">tf.range(start, limit=None, delta=1, dtype=None, name=&apos;range&apos;)</span><br></pre></td></tr></table></figure>
-<p>create a tensor with a sequence of values</p>
-<p>scalars are treated like tensors with zero dimension</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = sess.run(a)    #use a_out = sess.run(a) instead for the sake of memory</span><br></pre></td></tr></table></figure>
-<p>Use TF DType whenever possible for computation convenience.</p>
-<p> Each session maintains its own copy of variables</p>
-<p>tf.constant is an op. tf.Variable is a class with many ops.</p>
-<p>Only use tf.constant for primitive type. Otherwise the loading of graphs would be expensive.</p>
-<p>Constant values are stored in the graph definition.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = tf.get_variable(&quot;scalar&quot;, initializer=tf.constant(2))  #is preferred</span><br><span class="line"></span><br><span class="line">s = tf.Variable(2)</span><br></pre></td></tr></table></figure>
-<p>Initializer is an op. You need to execute it within the context of a session.</p>
-<p>Each variable has its own initializer.</p>
-<p>Sessions allocate memory to store variable values.</p>
-<p>Eval() a variable is equivalent to sess.run(a variable)</p>
-<p>tf.Variable.assign() is an op.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder(dtype, shape=None, name=None)</span><br></pre></td></tr></table></figure>
-<p>shape=None is easy to construct graphs but it is difficult for debugging.</p>
-<p>tensors could be fed with some dummy values for testing purpose.</p>
-<p>Lazy loading would make the graph bloated and hard to load. <strong>Remeber to seperate definition of a graph from computing/running ops</strong>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, shape=None, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
-<p>InvalidArgumentError (see above for traceback): You must feed a value for placeholder tensor ‘x’ with dtype float.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
-<p>works…….</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cond( pred, true_fn=None, false_fn=None,    strict=False, name=None)</span><br></pre></td></tr></table></figure>
-<p>tf.cond: pred is an expression. true_fn and flase_fn are callable function. If the expression is true, return the result of true_fn and vise versa.</p>
-<p>tf.placeholder is pythonic, but it is also easy to become bottleneck if running in single thread.</p>
-<p>tf.data is preferred. For prototyping, feed dict can be faster and easier to write (pythonic). But tf.data is tricky to use when you have complicated preprocessing or multiple data sources.</p>
-<p>Session looks at all trainable variables that optimizer depends on and update them.</p>
-<p>NCE guarantees approximation to softmax but Negative Sampling doesn’t.</p>
-<p>tf.train.Saver saves graph’s variables in binary files. It saves session rather than graph. When re-using parameters, it is necessart to construct the graph first and then restore the parameters.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;summaries&quot;): </span><br><span class="line">  tf.summary.scalar(&quot;loss&quot;, self.loss)</span><br><span class="line">  tf.summary.scalar(&quot;accuracy&quot;, self.accuracy)</span><br><span class="line">  tf.summary.histogram(&quot;histogram loss&quot;, self.loss)</span><br><span class="line">  summary_op = tf.summary.merge_all()</span><br></pre></td></tr></table></figure>
-<p>merge them all into one summary op to make managing them easier.</p>
-<p>Like everything else in TF, summaries are ops. For the summaries to be built, you have to run it in a session</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss_batch, _, summary = sess.run([loss, optimizer, summary_op])</span><br><span class="line"></span><br><span class="line">writer.add_summary(summary, global_step=step)</span><br></pre></td></tr></table></figure>
-<p>Randomization:</p>
-<ol>
-<li>operation level. my_var = tf.Variable(tf.truncated_normal((-1.0,1.0), stddev=0.1, seed=0))</li>
-<li>graph level. tf.set_random_seed(2)</li>
-</ol>
-<p>tf dataset:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.from_tensor_slices()</span><br></pre></td></tr></table></figure>
-<p>constructs a dataset from one or more <code>tf.Tensor</code> objects. It slices the first dimension of the tensor.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.batch()</span><br></pre></td></tr></table></figure>
-<p>or<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.map()</span><br></pre></td></tr></table></figure></p>
-<p>apply a transformation to a dataset and create another dataset.</p>
-<p>A [<code>tf.data.Dataset</code>] represents a sequence of elements, in which each element contains one or more <code>Tensor</code>objects. For example, an element could be an image corresponds to a label or a sequence of tokens correspond to another sequence of tokens or only a simple label.</p>
-<p>A <a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator" target="_blank" rel="noopener"><code>tf.data.Iterator</code></a> provides the main way to extract elements from a dataset. The operation returned by <code>Iterator.get_next()</code> yields the next element of a <code>Dataset</code> when executed, and typically acts as the interface between input pipeline code and your model. For more sophisticated uses, the <code>Iterator.initializer</code>operation enables you to reinitialize and parameterize an iterator with different datasets, so that you can, for example, iterate over training and validation data multiple times in the same program.</p>
-<p> <a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset" target="_blank" rel="noopener"><code>tf.data.TFRecordDataset</code></a> constructs dataset from files if the files are on disk in the recommended TFRecord format.</p>
-<p>If the iterator reaches the end of the dataset, executing the <code>Iterator.get_next()</code> operation will raise a <a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError" target="_blank" rel="noopener"><code>tf.errors.OutOfRangeError</code></a>. After this point the iterator will be in an unusable state, and you must initialize it again if you want to use it further.</p>
-<p>A common pattern is to wrap the “training loop” in a <code>try</code>-<code>except</code> block:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(iterator.initializer)<span class="keyword">while</span> <span class="keyword">True</span>:  <span class="keyword">try</span>:    sess.run(result)  <span class="keyword">except</span> tf.errors.OutOfRangeError:    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p>A <strong>reinitializable</strong> iterator can be initialized from multiple different <code>Dataset</code> objects. For example, you might have a training input pipeline that uses random perturbations to the input images to improve generalization, and a validation input pipeline that evaluates predictions on unmodified data. These pipelines will typically use different <code>Dataset</code> objects that have the same structure (i.e. the same types and compatible shapes for each component).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iterator = tf.data.Iterator.from_structure(training_dataset.output_types,                                           training_dataset.output_shapes)</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
-<p>A <strong>one-shot</strong> iterator is the simplest form of iterator, which only supports iterating once through a dataset, with no need for explicit initialization. One-shot iterators handle almost all of the cases that the existing queue-based input pipelines support, but they do not support parameterization. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataset = tf.data.Dataset.range(<span class="number">100</span>)</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
-<p>An <strong>initializable</strong> iterator requires you to run an explicit <code>iterator.initializer</code> operation before using it. In exchange for this inconvenience, it enables you to <em>parameterize</em> the definition of the dataset, using one or more <code>tf.placeholder()</code>tensors that can be fed when you initialize the iterator.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">max_value = tf.placeholder(tf.int64, shape=[])</span><br><span class="line">dataset = tf.data.Dataset.range(max_value)</span><br><span class="line">iterator = dataset.make_initializable_iterator()</span><br><span class="line">next_element = iterator.get_next()<span class="comment"># Initialize an iterator over a dataset with 10 elements.</span></span><br><span class="line">sess.run(iterator.initializer, feed_dict=&#123;max_value: <span class="number">10</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):  </span><br><span class="line">  value = sess.run(next_element)  </span><br><span class="line">  <span class="keyword">assert</span> i == value</span><br></pre></td></tr></table></figure>
-<p>The <code>Iterator.get_next()</code> method returns one or more <a href="https://www.tensorflow.org/api_docs/python/tf/Tensor" target="_blank" rel="noopener"><code>tf.Tensor</code></a> objects that correspond to the symbolic next element of an iterator. Each time these tensors are evaluated, they take the value of the next element in the underlying dataset. Note that the iterator does not get to the next element immediately. The returned element is suuposed to be passed to  <code>tf.Session.run()</code> to get the next elements and advance the iterator.</p>
-<p>Applying arbitrary Python logic with <code>tf.py_func()</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.stack(    values,    axis=0,    name=&apos;stack&apos;)</span><br></pre></td></tr></table></figure>
-<p>concatenate tensors along specified dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.padded_batch()</span><br></pre></td></tr></table></figure>
-<p>padded_shapes is None, the component will be padded out to the maximum length of all elements in that dimension.</p>
-<p>Estimators are high-level abstraction of low-level tensorflow operation. It enables easier training, testing on different kinds of devices and modes like training on a single PC or a cluster.</p>
-<p>4 steps to use pre-made Estimators</p>
-<ol>
-<li>write function to import dataset</li>
-<li>Define the feature columns.</li>
-<li>Instantiate the relevant pre-made Estimator like specifying number of hidden layers, output features</li>
-<li>There are training and evaluation methods for Estimators. Call a training, evaluation, or inference method.</li>
-</ol>
-<p>tf.feature_column could be regarded as a kind of interface between the dataset and model in Estimators. It could abstract continuous values or categorical values.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Dependency-Parsing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/Dependency-Parsing/" itemprop="url">Dependency_Parsing</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T12:23:44+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Transition-Based-Dependency-Parsing"><a href="#Transition-Based-Dependency-Parsing" class="headerlink" title="Transition-Based Dependency Parsing"></a>Transition-Based Dependency Parsing</h2><p>Linear time, greedy algorithm, no backtracking.</p>
-<p>A configuration is a stack, a buffer of token lists and an oracle. The key is to train the oracle. </p>
-<p>The algorithm is intuitive. If there is a match in the candidate relation set, pop the words and add the relation to the result set. Push the words in the buffer into the stack. repeat until no word left.</p>
-<h3 id="Creating-an-Oracle"><a href="#Creating-an-Oracle" class="headerlink" title="Creating an Oracle"></a>Creating an Oracle</h3><p>Supervised learning is employed to do this.</p>
-<h4 id="Generating-Training-Data"><a href="#Generating-Training-Data" class="headerlink" title="Generating Training Data"></a>Generating Training Data</h4><p>given a reference parse and a configuration, the training oracle proceeds as follows:</p>
-<ul>
-<li>Choose LEFTARC if it produces a correct head-dependent relation </li>
-<li>Otherwise, choose RIGHTARC if (1) it produces a correct head-dependent relation<br>and (2) all of its dependents in the buffer have already been assigned.</li>
-<li>Otherwise, choose SHIFT.</li>
-</ul>
-<h4 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h4><p>create feature sets.</p>
-<h4 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h4><p>The dominant approaches to training transition-based dependency parsers have been multinomial logistic regression and support vector machines, both of which can make effective use of large numbers of sparse features.</p>
-<p>Deep learning approaches have been applied successfully to transition-based parsing. These approaches eliminate the need for complex, hand-crafted features and have been particularly effective at overcoming the data sparsity issues normally associated training transition-based<br>parsers.</p>
-<h3 id="Alternative-Transition-Systems"><a href="#Alternative-Transition-Systems" class="headerlink" title="Alternative Transition Systems"></a>Alternative Transition Systems</h3><p><strong>arc eager</strong> transition system is just a modified version of the oracle.</p>
-<p>The operation of the oracle:</p>
-<ul>
-<li>LEFTARC: Assert a head-dependent relation between the word at the front of<br>the input buffer and the word at the top of the stack; pop the stack.</li>
-<li>RIGHTARC: Assert a head-dependent relation between the word on the top of<br>the stack and the word at front of the input buffer; shift the word at the front<br>of the input buffer to the stack.</li>
-<li>SHIFT: Remove the word from the front of the input buffer and push it onto<br>the stack.</li>
-<li>REDUCE: Pop the stack.</li>
-</ul>
-<h3 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h3><p>BFS with a heuristic filter that prunes the search frontier to stay within a fixed-size beam width.</p>
-<h3 id="Graph-Based"><a href="#Graph-Based" class="headerlink" title="Graph-Based"></a>Graph-Based</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/21/Back-Propagation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/21/Back-Propagation/" itemprop="url">Back_Propagation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-21T15:51:30+08:00">
-                2018-07-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Derivative-of-composite-function"><a href="#Derivative-of-composite-function" class="headerlink" title="Derivative of composite function"></a>Derivative of composite function</h3><p>$$\frac{d\frac{f(x)}{g(x)}}{dx} = \frac{f’(x)g(x)-f(x)g’(x)}{g^2(x)}$$</p>
-<h3 id="Derivative-of-Cross-Entropy"><a href="#Derivative-of-Cross-Entropy" class="headerlink" title="Derivative of Cross Entropy"></a>Derivative of Cross Entropy</h3><p>$$CE(\vec{y},\vec{\hat{y}}) = -\sum_iy_i\log(\hat{y_i})$$</p>
-<p>Here \(y_i\) is an one-hot vector denotes the correct class \(c_i\). In the actual computation, it only selects out the correct class without any extra function.</p>
-<p>For a single example \(x_i\):</p>
-<p>if \(\hat{y_i}=y_i\):</p>
-<p>$$\frac{dCE(y_i,\hat{y_i})}{dx_i} = \frac{1}{\hat{y_i}}\frac{d(\hat{y_i})}{dx_i} = \frac{\sum_j^Ce^{(x_j)}}{e^{x_i}}\ \frac{e^{x_i}\sum_j^Ce^{x_j}-e^{2x_i}}{(\sum_j^Ce^{x_j})^2} = \hat{y_i}-1$$</p>
-<p>if \(\hat{y_i}\ne y_i\):</p>
-<p>$$\frac{dCE(y_i,\hat{y_i})}{dx_i} = \frac{1}{\hat{y_i}}\frac{d(\hat{y_i})}{dx_i} = \frac{\sum_j^Ce^{(x_j)}}{e^{x_i}}\ \frac{e^{x_i}e^{x_k}}{(\sum_j^Ce^{x_j})^2}=\hat{y_i}$$</p>
-<p>The rest is just compute the gradient layer by layer.</p>
-<p><strong>Note that when compute the gradient with regard to activation function, there would be outer product.</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/Pagerank/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/18/Pagerank/" itemprop="url">Pagerank</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-18T12:42:01+08:00">
-                2018-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>A good hub page is one that points to many good authorities; a good authority page is one that is pointed to by many good hub pages.</p>
-<h2 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h2><h4 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h4><p>Pages that are visited more are given higher weight. Employ graph to represent the internet. Higher in links means visited more.</p>
-<p>PageRank values would converge to the final value regardless of the start state and it is in the range [0,1]. So the PageRank values could also be viewed as the probability of the surfer is in the node i at any time given the PageRank value of the node i.</p>
-<p>PageRank could be regarded as a random walk in the internet. Start at any state, and then walk through the out links randomly. In case of circular routes and dead end, employ the scaled version of random walk. As the random walk proceeds, some nodes are visited more often than others; intuitively, these are nodes with many links coming in from other frequently visited nodes. The idea behind PageRank is that pages visited more often in this walk are more important.</p>
-<p><strong>Teleport</strong>:if N is the total number of nodes in the web graph, the teleport operation takes the surfer to each node with probability 1/N.</p>
-<h4 id="Random-Walk-Interpretation"><a href="#Random-Walk-Interpretation" class="headerlink" title="Random Walk Interpretation"></a>Random Walk Interpretation</h4><p>Scaled version of random walk:<br>with alpha probability take teleport operation and with 1-alpha probability take the out links of the current nodes.</p>
-<p>Interpreted in terms of the (scaled) version of PageRank, <strong>Perron’s Theorem</strong> tells us that there is a unique vector y that remains fixed under the application of the scaled update rule, and that repeated application of the update rule from any starting point will converge to y.<br>This vector y thus corresponds to the limiting PageRank values we have been seeking.</p>
-<h4 id="Graph-Interpretation"><a href="#Graph-Interpretation" class="headerlink" title="Graph Interpretation"></a>Graph Interpretation</h4><p>Each vertex is a node. PageRank value is 1 in total. Initially, each node has the same pagerank value 1/N. With the different in links and out links, the pagerank value would flow through those links to different notes. So the pagerank value would change accordingly.</p>
-<p><strong>Scaled version of graph</strong>:<br>With alpha probability take teleport operation and with 1-alpha probability do the normal flow operation. In terms of graph, it discount the overall pagerank value to \(1-\alpha \) and assign the rest \(\alpha \) pagerank value to each node. So each node would get the same pagerank value \(\alpha /N\).</p>
-<h3 id="Markov-chain"><a href="#Markov-chain" class="headerlink" title="Markov chain"></a>Markov chain</h3><p>A Markov chain is a discrete-time stochastic process: a process that occurs in a series of time-steps in each of which a random choice is made. A Markov chain consists of N states. Each web page will correspond to a state in the Markov chain.</p>
-<p>A Markov chain is characterized by an N × N transition probability matrix P each of whose entries is in the interval [0, 1]; the entries in each row of P add up to 1.</p>
-<p>Transition matrix P:<br>The rows represent that given a node i, the probability of the node i transits to nodes j.(distribute the pagerank score)<br>The columns represent that given a node j, the probability of nodes i transits to node j.(incoming pagerank score)</p>
-<p><strong>ERGODIC MARKOV CHAIN</strong>:<br>Definition: A Markov chain is said to be ergodic if there exists a positive integer T0 such that for all pairs of states i, j in the Markov chain, if it is started at time 0 in state i then for all t &gt; T0, the probability of being in state j at time t is greater than 0.</p>
-<p>For a Markov chain to be ergodic, two technical conditions are required of its states and the non-zero transition probabilities; these conditions are known as <strong>irreducibility</strong> and <strong>aperiodicity</strong>.</p>
-<p><strong>irreducibility</strong> ensures that there is a sequence of transitions of non-zero probability from any state to any other.</p>
-<p><strong>aperiodicity</strong> ensures that the states are not partitioned into sets such that all state transitions occur cyclically from one set to another.</p>
-<p>Scaled version of random walk which take teleport operation with alpha probability guarantees transition probability are greater than 0 and no loop transitions.(irreducibility and aperiodicity)</p>
-<h3 id="Compute-PageRank"><a href="#Compute-PageRank" class="headerlink" title="Compute PageRank"></a>Compute PageRank</h3><ul>
-<li>Iteratively compute \(\vec{x}P^t\) s.t. \(\vec{x}\) becomes unchanged.</li>
-<li>Compute the eigenvector coresponding to the largest eigenvalue 1 which is the PageRank. But compute the eigenvector could be computationally expensive.</li>
-</ul>
-<h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h4><h5 id="Matrix-Multiplication-version-of-PageRank"><a href="#Matrix-Multiplication-version-of-PageRank" class="headerlink" title="Matrix-Multiplication version of PageRank:"></a>Matrix-Multiplication version of PageRank:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pagerank</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, N=<span class="number">0</span>, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.N = N</span><br><span class="line">        self.pg_vector = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''derive transition matrix from adjacency matrix'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">derive_transition</span><span class="params">(self,adjacency_matrix,alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.alpha != <span class="number">0</span>:</span><br><span class="line">            alpha = self.alpha</span><br><span class="line"></span><br><span class="line">        N = adjacency_matrix.shape[<span class="number">0</span>]</span><br><span class="line">        transition_m = np.zeros(adjacency_matrix.shape)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(adjacency_matrix.shape[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">if</span> np.sum(adjacency_matrix[i,:]) == <span class="number">0</span>:</span><br><span class="line">                transition_m[i,:] = np.array([<span class="number">1</span>/N]*N)   <span class="comment">#this node is a dead end, transit to one of all nodes in the graph</span></span><br><span class="line">            <span class="keyword">else</span>:           <span class="comment"># with alpha probability transit to one of all nodes, 1-alpha take normal random walk</span></span><br><span class="line">                transition_m[i, :] = alpha * np.array([<span class="number">1</span> / N] * N) + (<span class="number">1</span>-alpha) * adjacency_matrix[i,:] / np.sum(adjacency_matrix[i,:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> transition_m</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">propagate_transition</span><span class="params">(self, transition_m, pg_vector=None)</span>:</span>  <span class="comment">#pg_vector is column vectors</span></span><br><span class="line">        <span class="keyword">if</span> pg_vector <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> np.dot(transition_m.T, pg_vector)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> self.pg_vector <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                self.initialize_pg_vector()</span><br><span class="line"></span><br><span class="line">            self.pg_vector = np.dot(transition_m.T, self.pg_vector)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> self.pg_vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">initialize_pg_vector</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> self.N != <span class="number">0</span>, <span class="string">"Please input number of Nodes N"</span></span><br><span class="line">        self.pg_vector = np.ones((self.N)).T</span><br><span class="line">        self.pg_vector /= self.N</span><br><span class="line">        print(self.pg_vector)</span><br></pre></td></tr></table></figure>
-<h5 id="Graph-version-of-PageRank"><a href="#Graph-version-of-PageRank" class="headerlink" title="Graph version of PageRank:"></a>Graph version of PageRank:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d, vertex=None)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> isinstance(d,dict), <span class="string">"please input a dict"</span></span><br><span class="line">        self.edges = d</span><br><span class="line">        self.d = d</span><br><span class="line">        self.vertexes = self.get_vertexes()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_vertexes</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> list(self.d.keys())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_edges</span><span class="params">(self)</span>:</span></span><br><span class="line">        l = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                l.append(k+<span class="string">'-'</span>+v)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__matrix_to_dict</span><span class="params">(self, matrix)</span>:</span>     <span class="comment">#convert adjacency matrix to dict</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">BFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">if</span> k <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(k)</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                <span class="keyword">if</span> v <span class="keyword">in</span> done:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    done.append(v)</span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                l.extend(list(self.d[current]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS_recursive</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">recursive</span><span class="params">(element)</span>:</span></span><br><span class="line">            waiting_l = self.d[element]</span><br><span class="line">            <span class="keyword">for</span> e <span class="keyword">in</span> waiting_l:</span><br><span class="line">                <span class="keyword">if</span> e <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                    done.append(e)</span><br><span class="line">                    recursive(e)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                recursive(current)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageRank</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, graph)</span>:</span></span><br><span class="line">        self.g = graph</span><br><span class="line">        self.vertexes = graph.vertexes</span><br><span class="line">        self.pr_value = &#123;&#125;</span><br><span class="line">        self.num_points = len(self.vertexes)</span><br><span class="line">        self.__pr_value_initialization__()</span><br><span class="line">        self.new_pr_value = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.pr_value[ver] = <span class="number">1.0</span> / self.num_points</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new_pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.new_pr_value[ver] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_a_round</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.__new_pr_value_initialization__()</span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            <span class="keyword">if</span> len(self.g.edges[ver]) == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">                <span class="comment"># self.new_pr_value[ver] = self.pr_value[ver]</span></span><br><span class="line">            value_flow = self.pr_value[ver] / len(self.g.edges[ver])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> self.g.edges[ver]:</span><br><span class="line">                self.new_pr_value[child] += value_flow</span><br><span class="line">        <span class="keyword">if</span> alpha != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">                self.new_pr_value[ver] = alpha * <span class="number">1.0</span> / self.num_points + (<span class="number">1</span>-alpha) * self.new_pr_value[ver]</span><br><span class="line"></span><br><span class="line">        self.pr_value = copy.deepcopy(self.new_pr_value)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">propagate_transition</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        last = np.zeros((self.num_points))</span><br><span class="line">        <span class="comment"># for i in range(100):</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            self.update_a_round(alpha)</span><br><span class="line">            current = np.array(list(self.pr_value.values()))</span><br><span class="line">            error = abs(current - last)</span><br><span class="line">            <span class="comment"># print('last', last)</span></span><br><span class="line">            <span class="comment"># print('current', current)</span></span><br><span class="line">            <span class="comment"># print('i', i)</span></span><br><span class="line">            <span class="comment"># print('error: ', error)</span></span><br><span class="line">            <span class="keyword">if</span> np.sum(error) &lt; <span class="number">1e-6</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            last = current</span><br><span class="line"></span><br><span class="line"><span class="string">'''Test'''</span></span><br><span class="line"></span><br><span class="line">d_map = &#123;&#125;</span><br><span class="line">d = &#123;<span class="string">'A'</span>:[<span class="string">'B'</span>,<span class="string">'C'</span>],<span class="string">'B'</span>:[<span class="string">'D'</span>,<span class="string">'E'</span>],<span class="string">'C'</span>:[<span class="string">'F'</span>,<span class="string">'G'</span>],<span class="string">'D'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'E'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'F'</span>:[<span class="string">'A'</span>],<span class="string">'G'</span>:[<span class="string">'A'</span>],<span class="string">'H'</span>:[<span class="string">'A'</span>],<span class="string">'P'</span>:[]&#125;</span><br><span class="line"><span class="comment"># d = &#123;'A':['B'],'B':['A','C'],'C':['B']&#125;</span></span><br><span class="line">g = Graph(d)</span><br><span class="line">pg = PageRank(g)</span><br><span class="line">pg.propagate_transition()</span><br><span class="line">print(pg.pr_value)</span><br></pre></td></tr></table></figure>
-<h3 id="Topic-Specific-PageRank"><a href="#Topic-Specific-PageRank" class="headerlink" title="Topic Specific PageRank"></a>Topic Specific PageRank</h3><p>Start at a random page in the topic and also end at a random page in the topic. \(\vec{x}_{sports}\) is a topic specific pagerank vector where for pages belongs to sports, there is a topic specific pagerank and pagerank of other pages are 0.</p>
-<p>Calculate the PageRank of a page with regard to topics. The only difference is that the teleportation is different. The naive teleport go to a node in the graph with probability 1/N. The teleportation of topic specific pagerank is to go to a page in a specific topic with probability alpha. Given the number of pages S in the topic T, the probability is \(\frac{1}{S}\) rather than \(\frac{1}{N}\).</p>
-<p>i.e.:<br>Let s be [A,B,C,D]. A belongs to topic 1. B,C and D belongs to topic 2.<br>When calculating the topic specific pagerank, for topic 2, the formula is still \(\vec{x}P^t\). But here \(P\) for topic 2 is \(\alpha M + (1-\alpha)\frac{1}{S}\) rather than     \(\alpha M + (1-\alpha)\frac{1}{N}\). Actually the formula for topic 2 is \(\alpha M + (1-\alpha)[0,\frac{1}{3},\frac{1}{3},\frac{1}{3}]\) and in normal PageRank it should be \(\alpha M + (1-\alpha)[\frac{1}{4},\frac{1}{4},\frac{1}{4},\frac{1}{4}]\).</p>
-<h3 id="Personalized-PageRank"><a href="#Personalized-PageRank" class="headerlink" title="Personalized PageRank"></a>Personalized PageRank</h3><p>Now the difference is still the teleportation. The teleportation is tailored according to the users’ interest. Let’s assume the interest of a person is sports and finance. Their weights are 0.8,0.2 specifically. The teleportation is to go to a topic with the corresponding weight and then a page in the specific topic with probability alpha. This could also be viewed as a linear combination of topic specific vectors. In this example, the formula would be \(\alpha M + (1-\alpha) [0.8\vec{x_{sports}} + 0.2\vec{x_{finance}}]\).</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.cs.cornell.edu/home/kleinber/networks-book/" target="_blank" rel="noopener">Networks, Crowds, and Markets: Reasoning About a Highly Connected World</a></p>
-<p><a href="https://nlp.stanford.edu/IR-book/" target="_blank" rel="noopener">Introduction to Information Retrieval</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1898,7 +1776,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

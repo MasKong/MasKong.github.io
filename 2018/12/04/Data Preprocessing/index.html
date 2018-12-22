@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="DL," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
-<meta name="keywords" content="DL">
+<meta name="description" content="sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.  Features selection according to experience or something like that. Features processing. Features are in origi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Pytorch">
-<meta property="og:url" content="http://yoursite.com/2018/07/31/Pytorch/index.html">
+<meta property="og:title" content="Data Preprocessing">
+<meta property="og:url" content="http://yoursite.com/2018/12/04/Data Preprocessing/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
+<meta property="og:description" content="sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.  Features selection according to experience or something like that. Features processing. Features are in origi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-05T11:30:32.760Z">
+<meta property="og:updated_time" content="2018-12-04T07:21:15.941Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Pytorch">
-<meta name="twitter:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
+<meta name="twitter:title" content="Data Preprocessing">
+<meta name="twitter:description" content="sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.  Features selection according to experience or something like that. Features processing. Features are in origi">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/31/Pytorch/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/04/Data Preprocessing/"/>
 
 
 
 
 
-  <title>Pytorch | </title>
+  <title>Data Preprocessing | </title>
   
 
 
@@ -297,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Pytorch/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/Data Preprocessing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -314,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Pytorch</h1>
+          <h1 class="post-title" itemprop="name headline">Data Preprocessing</h1>
         
 
         <div class="post-meta">
@@ -326,8 +325,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T12:50:53+08:00">
-                2018-07-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T14:09:33+08:00">
+                2018-12-04
               </time>
             
 
@@ -364,44 +363,46 @@
       
 
       
-        <p>reshape in pytorch: torch.view</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
-<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
-<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
-<p>Converting a Torch Tensor to a NumPy Array</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
-<p>Converting NumPy Array to Torch Tensor</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
-<p>Tensors can be moved onto any device using the .to method.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x.to(device)</span><br></pre></td></tr></table></figure>
-<p>torch.Tensor is the central class of the package. If you set its attribute .requires_grad as True, it starts to track all operations on it. When you finish your computation you can call .backward() and have all the gradients computed automatically. The gradient for this tensor will be accumulated into .grad attribute.</p>
-<p>To stop a tensor from tracking history, you can call .detach() to detach it from the computation history, and to prevent future computation from being tracked.</p>
-<p>To prevent tracking history (and using memory), you can also wrap the code block in with torch.no_grad():. This can be particularly helpful when evaluating a model because the model may have trainable parameters with requires_grad=True, but for which we don’t need the gradients.</p>
-<p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
-<p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
-<p>dtype=torch.long is for integers.</p>
-<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
-<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
-<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
-<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
-<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
-<p>Display an image in pytorch: </p>
-<ul>
-<li>transform the array</li>
-<li>transform to numpy array</li>
-<li>display</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
-<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
-<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
-<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.utils.rnn.pack_padded_sequence()</span><br></pre></td></tr></table></figure>
-<p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
-<p>Example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
-<p>return the total number of elements in the input tensor.</p>
+        <p>sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.</p>
+<ol>
+<li>Features selection according to experience or something like that.</li>
+<li>Features processing. Features are in original data, some steps are necessary to preprocess the data and get corresponding features.</li>
+<li>Data cleaning.</li>
+<li>Data sampling and filtering. Not all data would be used to train a model. Then you need to sample the data points. Methods include random sampling and others. Filtering is to detect and remove outliers. Common methods are KNN, clustering.</li>
+<li>Features classification. </li>
+<li>Feature processing and analysis.</li>
+</ol>
+<p>Features classification:</p>
+<ol>
+<li>Low-level and high-level features. Low-level features are mainly original features like user ID, time, weather. High-level features are processed features like sentiment.</li>
+<li>Static features and dynamic features. Static features are stable or seldom changed like age, height. Dynamic features change frequently like distance, temperature.</li>
+<li>0-1 features, one-hot(categorical) features, continuous features.</li>
+</ol>
+<p>Feature processing:</p>
+<ol>
+<li>features normalization</li>
+<li>features discretization</li>
+<li>missing values. </li>
+</ol>
+<p>Dimensionality reduction:</p>
+<ol>
+<li>Sometimes increasing the dimensionality of features is good for classification.</li>
+<li>Common methods to reduce dimensionality are PCA, LDA.</li>
+</ol>
+<p>Features selection:</p>
+<ol>
+<li>features generation.</li>
+<li>Evaluation.</li>
+</ol>
+<p>Features generation:</p>
+<ol>
+<li>Complete search. BFS, Branch and Bound.</li>
+<li>Heuristic. SFS, Sequential Forward Selection; SBS,Sequential Backward Selection; LRS,Plus-L Minus-R Selection.</li>
+<li>Random. RGSS, Random Generation plus Sequential Selection; SA, Simulated Annealing; GA, Genetic Algorithms.</li>
+</ol>
+<p>Feature normalization: if there is not feature normalization, some features with larger range like [0, +10000] compared to [0,3] would impose more influence on the model. </p>
+<p>During deployment, performance(real-time, low-delay) is signifiacnt. There would be tradeoff between the amount of data and performance(accuracy). A possible solution is to construct a tree for features like hierachical softmax so that finding a feature is more efficient.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://tech.meituan.com/machinelearning_data_feature_process.html" target="_blank" rel="noopener"># 机器学习中的数据清洗与特征处理综述</a></p>
 
       
     </div>
@@ -417,12 +418,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/DL/" rel="tag"># DL</a>
-          
-        </div>
-      
 
       
       
@@ -432,8 +427,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/31/Deep-Learning/" rel="next" title="Deep_Learning">
-                <i class="fa fa-chevron-left"></i> Deep_Learning
+              <a href="/2018/12/02/Feature Cross/" rel="next" title="Feature Cross">
+                <i class="fa fa-chevron-left"></i> Feature Cross
               </a>
             
           </div>
@@ -442,8 +437,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/01/Word-Representation/" rel="prev" title="Word_Representation">
-                Word_Representation <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/06/sctipts_python/" rel="prev" title="scripts_python">
+                scripts_python <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -506,8 +501,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -526,7 +530,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -562,6 +566,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -724,9 +744,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/07/31/Pytorch/';
-          this.page.identifier = '2018/07/31/Pytorch/';
-          this.page.title = 'Pytorch';
+          this.page.url = 'http://yoursite.com/2018/12/04/Data Preprocessing/';
+          this.page.identifier = '2018/12/04/Data Preprocessing/';
+          this.page.title = 'Data Preprocessing';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://MasKong.disqus.com/embed.js';

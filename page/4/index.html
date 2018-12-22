@@ -296,6 +296,675 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/Attention/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/27/Attention/" itemprop="url">Attention</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-27T10:43:33+08:00">
+                2018-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Attention is a distribution which describe how much the network should focus on each unit.</p>
+<p>The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)<br>$$<br>\begin{equation}<br>p(\textbf{y}) = \prod_{t=1}^{T}p(y_{t} \bracevert {y_{1},…,y_{t-1}},c)<br>\end{equation}<br>$$</p>
+<p>For each \(y_t\),<br>$$<br>\begin{equation}<br>p(y_{t} \bracevert {y_{1},…,y_{t-1}},c) = g(y_{t-1},s_{t},c)<br>\end{equation}<br>$$<br>where \(s_t\) is the decoder hidden state,<br>$$<br>s_i=f(s_{i−1},y_{i−1},c_i)<br>$$</p>
+<p>\(y_{t-1}\) is the output of the last time step, \(h_j\) is the encoder hidden state at time step j. c is the context vector, which is the weighted sum of all encoder outputs.<br>$$<br>\begin{equation}<br>c_{i} = \sum_{j=1}^{T_{x}}\alpha_{ij}h_{j}<br>\end{equation}<br>$$<br>where \(a_{ij}\) is computed from<br>$$<br>\begin{equation}<br>\alpha_{ij}= \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{x}}\exp(e_{ik})}<br>\end{equation}<br>$$</p>
+<h4 id="Bahdanau-et-al-model"><a href="#Bahdanau-et-al-model" class="headerlink" title="Bahdanau et al. model"></a>Bahdanau et al. model</h4><p>global and local attention: the “attention”<br>is placed on all source positions or on only a few<br>source positions.</p>
+<p>$$<br>e_{ij} = a(s_{i−1}, h_j)<br>$$<br>a() is a feed forward neural network.</p>
+<h4 id="Luong-et-al-models"><a href="#Luong-et-al-models" class="headerlink" title="Luong et al. models"></a>Luong et al. models</h4><p>$$<br>a_t(s) = aligh(h_t, \overline{h_s})=\frac{exp(score(h_t,\overline{h_s})}{\sum_{s’}score(h_t,\overline{h_{s’}})}<br>$$<br>where \(h_t\) is decoder hidden state and \(\overline{h_s}\) is encoder hidden state. This align model computes the scores between the current hidden state with each encoder hidden state and put it in a softmax.</p>
+<p>There are three kinds of score functions, please refer to the paper.</p>
+<p>After that, the context vector is computed as<br>$$<br>c_t = a_t \cdot \overline{h_{s}}<br>$$<br>a weighted sum of encoder hidden state.</p>
+<p>At the end, the attentional vector is computed as:<br>$$<br>\widetilde{h_t}=tanh(W_c[c_t;h_t])<br>$$<br>concat context vector and hidden state, then feed it to transformations.</p>
+<p>$$<br>p(y_t|y_{&lt;t}, x)=softmax(W_s,\widetilde{h_t})<br>$$</p>
+<h3 id="content-based"><a href="#content-based" class="headerlink" title="content-based"></a>content-based</h3><p>The attending RNN generates a query describing what it wants to focus on. Each item is dot-producted with the query to produce a score, describing how well it matches the query. The scores are fed into a softmax to create the attention distribution.</p>
+<h3 id="location-based"><a href="#location-based" class="headerlink" title="location-based"></a>location-based</h3><h3 id="Neural-Turing-Machines"><a href="#Neural-Turing-Machines" class="headerlink" title="Neural Turing Machines"></a>Neural Turing Machines</h3><p>Neural Turing Machines combine a RNN with an external memory bank. Since vectors are the natural language of neural networks, the memory is an array of vectors. Every step, NTMs read and write everywhere, just to different extents.</p>
+<p>Read operation is a weighted sum of the distribution.</p>
+<p>Similarly, NTMs write everywhere at once to different extents. Again, an attention distribution describes how much NTMs write at every location. The new value of a position in memory is a convex combination of the old memory content and the new write value.</p>
+<h4 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h4><ul>
+<li>The RNN controller gives a query vector.</li>
+<li>Each memory entry is scored for similarity with the query(dot product).</li>
+<li>The scores are then converted into a distribution using softmax.</li>
+<li>Interpolate the attention from the previous time step with the current distribution controlled by intepolation amount.</li>
+<li>Convolve the attention with a shift filter which allows the controller to move its focus.</li>
+<li>Sharpen the attention distribution. This final attention distribution is fed to the read or write operation.</li>
+</ul>
+<h3 id="Attentional-Interfaces"><a href="#Attentional-Interfaces" class="headerlink" title="Attentional Interfaces"></a>Attentional Interfaces</h3><p>Between connection of RNN or (RNN,CNN), there would be attentional interfaces which decides which units in the previous layer should pay attention to.</p>
+<h2 id="Attention-is-all-you-need"><a href="#Attention-is-all-you-need" class="headerlink" title="Attention is all you need"></a>Attention is all you need</h2><p>The encoder is composed of N=6 identical layers. Each layer has two sub-layers</p>
+<h4 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h4><p>Attention function could be described as a function to map query, key and values to a weighted sum. Attention is actually a query. The output is a weighted sum of values and each weight is the dot product of the query and the key.</p>
+<h4 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h4><p>In the paper, scaled dot-product attention is actually the attention function scaled by \(\frac{1}{\sqrt d_k}\)</p>
+<h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>Linearly project query, key, value with learnable weights. After that apply attention function to projected query, key, value. This is one head. MultiHead is concatenation of MultiHead and apply a linear transformation to the concatenation.</p>
+<p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
+<p>Multi-head attention simulates convolutional neural network. Each head employs different weights such that different heads learn different relationship. In terms of convolution, different positions learn different features.</p>
+<h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
+<h4 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h4><p>The paper propose to use positional embedding to encode position information.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/NN-Architecture/" itemprop="url">NN_Architecture</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
+<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
+<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
+<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
+</ul>
+<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
+<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/training-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/training-problem/" itemprop="url">training_problem</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T17:11:10+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Cuda-Out-of-Memory"><a href="#Cuda-Out-of-Memory" class="headerlink" title="Cuda Out of Memory"></a>Cuda Out of Memory</h4><p>Solution: </p>
+<ul>
+<li>reduce batch size</li>
+<li>reduce model size(reduce number of activation, increase filter size, decrease filter number)</li>
+<li>For RNN, reduce the length</li>
+</ul>
+<h3 id="Validation-accuracy-aigzagging"><a href="#Validation-accuracy-aigzagging" class="headerlink" title="Validation accuracy aigzagging"></a>Validation accuracy aigzagging</h3><ul>
+<li>Data is not normalized, taking some steps would deviate from the local minimum</li>
+<li>training step size is too large.</li>
+</ul>
+<h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><p>Assign high probability to <s> and <e>.</e></s></p>
+<p>ber: </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/22/gradient-descent/" itemprop="url">gradient_descent</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T11:45:16+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Vanilla-gradient-descent"><a href="#Vanilla-gradient-descent" class="headerlink" title="Vanilla gradient descent"></a>Vanilla gradient descent</h2><p>Calculate the gradient of the whole dataset and average the gradient by the size of the dataset. </p>
+<p>Drawback: Time-consuming, compute gradients redundantly.</p>
+<h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>Take a batch of examples and calculate the gradient. After that, average the gradient by the batch size.</p>
+<h2 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h2><p>Take a single example and calculate the gradient. </p>
+<p>Drawback: High variance, fluctuate a lot.<br>In high dimension, some directions would have larger gradients and zigzag a lot. The direction of gradient would deviate from the best direction.</p>
+<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>Momentum would accumulate gradient if the direction is the same and reduce the gradient if the direction zigzag a lot such that the overall direction would point to the local/global minimum with less zigzagging.</p>
+<p>$$v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta)$$</p>
+<p>$$\theta = \theta + v_t$$</p>
+<p>\(\theta\) is the gradient and \(\gamma\) is the momentum which is usually 0.9. \(\eta\) is the learning rate.</p>
+<h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>It is a lookahead version of momentum. The gradient would be updated using momentum, and a estimate of the future gradient after normal momentum update\(\nabla_\theta J( \theta - \gamma v_{t-1} )\) would be added to the current update of gradient so as to accelerate convergence. <strong>It significantly increased the performance of RNNs.</strong></p>
+<p>$$<br>v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta + \gamma v_{t-1} ) \<br>\theta = \theta + v_t$$</p>
+<h3 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h3><p>It adapts the learning rate to the parameters, performing larger updates for infrequent and smaller updates for frequent<br>parameters.</p>
+<p>$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$</p>
+<p>\(G_{t} \in \mathbb{R}^{d \times d}\) is a diagonal matrix where each diagonal element i,i is the sum of the squares of the gradients w.r.t. \(\theta_i\) up to time step t, while \(\epsilon\) is a smoothing term that avoids division by zero (usually on the order of 1e−8). Interestingly, without the square root operation, the algorithm performs much worse.</p>
+<p>Drawback: The accumulated sum keeps growing during training and causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</p>
+<h3 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h3><p>$$\Delta \theta_t = - \dfrac{RMS[\Delta \theta]<em>{t-1}}{RMS[g]</em>{t}} g_{t} \<br>\theta_{t+1} = \theta_t + \Delta \theta_t<br>$$</p>
+<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>Approximate the learning rate with the RMS of parameter updates until the previous time step. </p>
+<p>$$E[g^2]<em>t = 0.9 E[g^2]</em>{t-1} + 0.1 g^2_t \<br>\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]<em>t + \epsilon}} g</em>{t}<br>$$</p>
+<p>It still accumulates the gradient while it also depends on the current gradient and the updates do not get monotonically smaller.<br>RMSProp still modulates the learning rate of each weight based on the magnitudes of its gradients, which has a beneficial equalizing effect.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank" rel="noopener">An overview of gradient descent optimization<br>algorithms</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/Network-in-Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/Network-in-Network/" itemprop="url">Network_in_Network</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T22:02:36+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/seq2seq/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -965,694 +1634,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/CRF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/CRF/" itemprop="url">CRF</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T11:32:49+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Conditional-Random-Field-CRF"><a href="#Conditional-Random-Field-CRF" class="headerlink" title="Conditional Random Field(CRF)"></a>Conditional Random Field(CRF)</h2><p>It is a kind of generalized logistic regression model.</p>
-<p>HMMs have difficulty modeling overlapping, non-independent features because the assuption is indepence. In NLP, words are correlated and connection between them contains information. Here is where CRF comes into play.</p>
-<p>Linear chain CRF, can be thought of as the undirected graphical model version of HMM. It is as efficient as HMMs, where the sum-product algorithm and max-product algorithm still apply. Linear chain CRF is a special case of CRF, where each clique is the nearby two nodes. In terms of graph, the structure would be much more different.</p>
-<p>Overlapping features are in fact boost up the belief of the result, which should not be eliminated simply.</p>
-<p>CRF is conditional probability distribution while HMM is joint probability distribution.</p>
-<h3 id="Formal-Definition-of-CRF"><a href="#Formal-Definition-of-CRF" class="headerlink" title="Formal Definition of CRF"></a>Formal Definition of CRF</h3><p>$$P(y\mid x) = \frac{1}{Z(x)} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
-<p>where C denotes the set of cliques (i.e. fully connected subgraphs), \(\phi_c(x_c,y_c)\) is a factor. </p>
-<p>$$Z(x) = \sum_{y \in \mathcal{Y}} \prod_{c \in C} \phi_c(x_c,y_c)$$</p>
-<h4 id="Parameterized-Form-of-CRF"><a href="#Parameterized-Form-of-CRF" class="headerlink" title="Parameterized Form of CRF:"></a>Parameterized Form of CRF:</h4><p>$$P(y|x)=\frac{1}{Z(x)}\exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
-<p>$$Z(x)=\sum_y \exp (\sum_{i,k}\lambda_kt_k(y_{i-1},y_i,x,i)+\sum_{i,l}\mu_ls_l(y_i,x,i))$$</p>
-<p>where \(\lambda_k, \mu_l\) are weights and \(t_k(y_{i-1},y_i,x,i)\) is the transition probability that given \(y_{i-1}\), the next label is \(y_{i}\) given input x at position i. \(\mu_ls_l(y_i,x,i)\) is the probability that at position i, given x, the output is \(y_{i}\).</p>
-<h4 id="Inference-of-label-y"><a href="#Inference-of-label-y" class="headerlink" title="Inference of label y"></a>Inference of label y</h4><p>$$\arg \max_y \phi_1(y_1, x_1) \prod_{i=2}^n \phi(y_{i-1}, y_i) \phi(y_i, x_i)$$</p>
-<p>In practice, \(\phi_c(x_c,y_c) = \exp(w_c^T f_c(x_c, y_c)).\) And \(f_c(x_c, y_c) = \lambda_kt_k(y_{i-1},y_i,x,i)+\mu_ls_l(y_i,x,i)\). This could also be written in vector form.</p>
-<p>The most important realization that need to be made about CRF features is that they can be arbitrarily complex. In fact, we may define CRF that depend on the entire input x. This will not affect computational performance at all, because at inference time, the x will be always observed.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
-<p><a href="https://github.com/Zhenye-Na/cs446/blob/master/docs/Probabilistic%20Graphical%20Models%20-%20Principles%20and%20Techniques.pdf" target="_blank" rel="noopener">Probabilistic Graphical Models - Principles and Techniques</a></p>
-<p><a href="https://ermongroup.github.io/cs228-notes/representation/undirected/" target="_blank" rel="noopener">cs228 notes </a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Word-Representation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/01/Word-Representation/" itemprop="url">Word_Representation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T11:02:22+08:00">
-                2018-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Pytorch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/Pytorch/" itemprop="url">Pytorch</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T12:50:53+08:00">
-                2018-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>reshape in pytorch: torch.view</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
-<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
-<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
-<p>Converting a Torch Tensor to a NumPy Array</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
-<p>Converting NumPy Array to Torch Tensor</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
-<p>Tensors can be moved onto any device using the .to method.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x.to(device)</span><br></pre></td></tr></table></figure>
-<p>torch.Tensor is the central class of the package. If you set its attribute .requires_grad as True, it starts to track all operations on it. When you finish your computation you can call .backward() and have all the gradients computed automatically. The gradient for this tensor will be accumulated into .grad attribute.</p>
-<p>To stop a tensor from tracking history, you can call .detach() to detach it from the computation history, and to prevent future computation from being tracked.</p>
-<p>To prevent tracking history (and using memory), you can also wrap the code block in with torch.no_grad():. This can be particularly helpful when evaluating a model because the model may have trainable parameters with requires_grad=True, but for which we don’t need the gradients.</p>
-<p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
-<p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
-<p>dtype=torch.long is for integers.</p>
-<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
-<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
-<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
-<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
-<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
-<p>Display an image in pytorch: </p>
-<ul>
-<li>transform the array</li>
-<li>transform to numpy array</li>
-<li>display</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
-<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
-<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
-<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.utils.rnn.pack_padded_sequence()</span><br></pre></td></tr></table></figure>
-<p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
-<p>Example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
-<p>return the total number of elements in the input tensor.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Deep-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/Deep-Learning/" itemprop="url">Deep_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T11:33:09+08:00">
-                2018-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="multi-class-classification-problem"><a href="#multi-class-classification-problem" class="headerlink" title="multi-class classification problem"></a>multi-class classification problem</h2><p>Solutions:</p>
-<ul>
-<li>Train multiple classifiers and predict the label one by ont</li>
-<li>Learn the representation and compare. (clustering, or simply compare distance)</li>
-</ul>
-<p>Training step is actually a mini-batch. An epoch is the entire training set.</p>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>Before training, calculate the memory consumption of the neural network and make sure the GPU has enough memory.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/feature-selection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/30/feature-selection/" itemprop="url">feature_selection</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:46:18+08:00">
-                2018-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Mutual-Information"><a href="#Mutual-Information" class="headerlink" title="Mutual Information"></a>Mutual Information</h2><p>$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>This could be used as the heuristic of feature selection. Higher mutual information means the feature do relates to the class, which is helpful in classfication.</p>
-<h2 id="chi-squared-test"><a href="#chi-squared-test" class="headerlink" title="chi-squared test"></a>chi-squared test</h2><p>$$X^2(D,t,c)=\sum_{e_t\in {0,1}} \sum_{e_c\in {0,1}} \frac{(N_{e_te_c}-E_{e_te_c})^2}{E_{e_te_c}}$$</p>
-<p>N is the observed frequency in D and E the expected frequency. </p>
-<p>chi-squared test is a measure of how much expected counts E and observed counts N deviate from each other. A high value indicates that the hypothesis of independence is incorrect.</p>
-<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h4><p>For a test with one degree of freedom, the so-called Yates correction should be used, which makes it harder to reach statistical significance. <strong>degree of freedom</strong> = (num of columns -1) * (num of rows -1)</p>
-<p>Also, whenever a statistical test is used multiple times, then the probability of getting at least one error increases. If 1,000 hypotheses are rejected, each with 0.05 error probability, then 0.05 × 1000 = 50 calls of the test will be wrong on average. </p>
-<h2 id="Frequency-based-feature-selection"><a href="#Frequency-based-feature-selection" class="headerlink" title="Frequency-based feature selection"></a>Frequency-based feature selection</h2><p>select the feature that occurs usually. When many thousands of features are selected, then frequency-based feature selection often does well.</p>
-<h2 id="Feature-selection-for-multiple-classifiers"><a href="#Feature-selection-for-multiple-classifiers" class="headerlink" title="Feature selection for multiple classifiers"></a>Feature selection for multiple classifiers</h2><p>Commonly, feature selection statistics are first computed separately for each class on the two-class classification task c versus not c and then combined. </p>
-<p>One combination method computes a single figure of merit for each feature, for example, by averaging the values A(t, c) for feature t, and then selects the k features with highest figures of merit.</p>
-<p>Another frequently used combination method selects the top k/n features for each of n classifiers and then combines these n sets into one global feature set.</p>
-<h2 id="Comparison-of-feature-selection-methods"><a href="#Comparison-of-feature-selection-methods" class="headerlink" title="Comparison of feature selection methods"></a>Comparison of feature selection methods</h2><p>Mutual information prefer common terms while chi-squared test prefer rare terms. Because A single occurrence is not very informative according to the information-theoretic definition of information.</p>
-<p>All three methods are greedy methods.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1707,7 +1688,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

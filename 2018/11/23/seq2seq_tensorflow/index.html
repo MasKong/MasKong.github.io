@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="attention machanism is just an attention wrapper to wrap the RNN. Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout. The outp">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-29T09:58:21.571Z">
+<meta property="og:updated_time" content="2018-12-17T02:54:07.654Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="seq2seq_tensorflow">
 <meta name="twitter:description" content="attention machanism is just an attention wrapper to wrap the RNN. Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout. The outp">
@@ -394,6 +394,9 @@
 <li>create two meta graph with different input, and inference graph load parameters from the other.</li>
 <li>extract the input feature and feed with inference input.</li>
 </ol>
+<p>MAPE(Mean absolute percentage error):<br>$$<br>{\displaystyle {\mbox{M}}={\frac {100\%}{n}}\sum <em>{t=1}^{n}\left|{\frac {A</em>{t}-F_{t}}{A_{t}}}\right|,}<br>$$<br>Loss of each sample is the difference divided by the sample itself.</p>
+<h4 id="Embedding-size"><a href="#Embedding-size" class="headerlink" title="Embedding size"></a>Embedding size</h4><p>Assume n is the number of categorical features, embedding size could be \(k\sqrt[4] n\) or \(\log_2 (n)\).</p>
+<p>Only normalize output but not normalize input, model diverges.</p>
 
       
     </div>
@@ -492,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -512,7 +524,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -548,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Embedding-size"><span class="nav-number">1.</span> <span class="nav-text">Embedding size</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

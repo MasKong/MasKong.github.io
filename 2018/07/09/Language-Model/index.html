@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-10T03:46:35.581Z">
+<meta property="og:updated_time" content="2018-12-22T05:36:18.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Language_Model">
 <meta name="twitter:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
@@ -381,6 +381,10 @@
 <p>Save some probability for unknown words \((\lambda_{unk} = 1-\lambda_1)\). This is in fact another kind of smoothing. Discount the probability of known words and assign to the unknown words.<br> \(\lambda\) is a hyperparameter. It is 0.95 by default. N is the total number of words.</p>
 <h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>The percentage of known words in the corpus. Usually omit the symbol of the end of a sentence .</p>
 <h2 id="Entropy-of-a-sentence"><a href="#Entropy-of-a-sentence" class="headerlink" title="Entropy of a sentence"></a>Entropy of a sentence</h2><p>$$H(S)= -\frac{1}{N}\sum_{w\in S}\log_2 P(w)$$</p>
+<h2 id="BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><a href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding" class="headerlink" title="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"></a>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h2><h2 id="Universal-Language-Model-Fine-tuning-ULMFiT"><a href="#Universal-Language-Model-Fine-tuning-ULMFiT" class="headerlink" title="Universal Language Model Fine-tuning (ULMFiT)"></a>Universal Language Model Fine-tuning (ULMFiT)</h2><h2 id="ELMO"><a href="#ELMO" class="headerlink" title="ELMO"></a>ELMO</h2><h2 id="TagLM"><a href="#TagLM" class="headerlink" title="TagLM"></a>TagLM</h2><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1705.00108.pdf" target="_blank" rel="noopener"> TagLM: Semi-supervised sequence tagging with bidirectional language models</a></p>
+<p><a href="https://arxiv.org/pdf/1802.05365.pdf" target="_blank" rel="noopener"> ELMO: Deep contextualized word representations</a></p>
+<p><a href="https://arxiv.org/pdf/1802.05365.pdf" target="_blank" rel="noopener"> ULMFiT: Universal Language Model Fine-tuning for Text Classification</a></p>
+<p><a href="https://arxiv.org/pdf/1810.04805.pdf" target="_blank" rel="noopener"> BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a></p>
 
       
     </div>
@@ -514,7 +518,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -560,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unigram"><span class="nav-number">1.</span> <span class="nav-text">Unigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bigram"><span class="nav-number">2.</span> <span class="nav-text">Bigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Gram"><span class="nav-number">3.</span> <span class="nav-text">N-Gram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Unknown-Words"><span class="nav-number">4.</span> <span class="nav-text">Deal with Unknown Words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coverage"><span class="nav-number">5.</span> <span class="nav-text">Coverage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entropy-of-a-sentence"><span class="nav-number">6.</span> <span class="nav-text">Entropy of a sentence</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unigram"><span class="nav-number">1.</span> <span class="nav-text">Unigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bigram"><span class="nav-number">2.</span> <span class="nav-text">Bigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Gram"><span class="nav-number">3.</span> <span class="nav-text">N-Gram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Unknown-Words"><span class="nav-number">4.</span> <span class="nav-text">Deal with Unknown Words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coverage"><span class="nav-number">5.</span> <span class="nav-text">Coverage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entropy-of-a-sentence"><span class="nav-number">6.</span> <span class="nav-text">Entropy of a sentence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><span class="nav-number">7.</span> <span class="nav-text">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Universal-Language-Model-Fine-tuning-ULMFiT"><span class="nav-number">8.</span> <span class="nav-text">Universal Language Model Fine-tuning (ULMFiT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELMO"><span class="nav-number">9.</span> <span class="nav-text">ELMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TagLM"><span class="nav-number">10.</span> <span class="nav-text">TagLM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">10.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>

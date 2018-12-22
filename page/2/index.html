@@ -296,6 +296,694 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/tensorflow-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/tensorflow-1/" itemprop="url">tensorflow_1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T20:48:46+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p> tf.feature_column.bucketized_column divides coutinuous values into several ranges such that they are able to be represented as categorical features.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.feature_column.categorical_column_with_vocabulary_file(    key,    vocabulary_file,    vocabulary_size=None,    num_oov_buckets=0,    default_value=None,    dtype=tf.string)</span><br></pre></td></tr></table></figure>
+<p>maps each word in the vocabulary to an one-hot vector.</p>
+<p>tf.feature_column.categorical_column_with_hash_bucket maps features to specified number of features using hash(for example, mapping 1000 words to 100 embeddings means some words would share the same embedding.). In machine learning, this kind of hash often works well in practice. That’s because hash categories provide the model with some separation. The model can use additional features to further separate kitchenware from sports.</p>
+<p>tf.feature_column.crossed_column is able to combine features together. Somewhat counterintuitively, when creating feature crosses, you typically still should include the original (uncrossed) features in your model (as in the preceding code snippet). The independent latitude and longitude features help the model distinguish between examples where a hash collision has occurred in the crossed feature.</p>
+<p>As a rule of thumb,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">embedding_dimensions =  number_of_categories**0.25</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">categorical_column = ... <span class="comment"># Create any categorical column</span></span><br><span class="line"><span class="comment"># Represent the categorical column as an embedding column.</span></span><br><span class="line"><span class="comment"># This means creating an embedding vector lookup table with one element for each category.</span></span><br><span class="line">embedding_column = tf.feature_column.embedding_column(    categorical_column=categorical_column,    dimension=embedding_dimensions)</span><br></pre></td></tr></table></figure>
+<p>tf.train.Features is used to wrap features of input.</p>
+<p><strong>tf.train.Example(features=features)</strong> is used to wrap examples.</p>
+<p>using TFRecord is more efficient. A parse function is used to parse a single example.</p>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><p>Most software could only process up to 120 tokens. Longer sequences are supposed to be truncated.</p>
+<p><strong>The padded labels change the total loss, which affects the gradients</strong>.<br>Two methods to alleviate this problem:</p>
+<ol>
+<li>Maintain a mask</li>
+</ol>
+<ul>
+<li><p>Maintain a mask (True for real, False for padded tokens)</p>
+</li>
+<li><p>Run your model on both the real/padded tokens (model will predict labels for the padded tokens as well)</p>
+</li>
+<li><p>Only take into account the loss caused by the real elements</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">full_loss = tf.nn.softmax_cross_entropy_with_logits(preds, labels)</span><br><span class="line">loss = tf.reduce_mean(tf.boolean_mask(full_loss, mask))</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>Let your model know the real sequence length so it only predict the labels for the real tokens.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cell = tf.nn.rnn_cell.GRUCell(hidden_size)</span><br><span class="line"></span><br><span class="line">rnn_cells = tf.nn.rnn_cell.MultiRNNCell([cell] * num_layers)</span><br><span class="line"></span><br><span class="line">tf.reduce_sum(tf.reduce_max(tf.sign(seq), <span class="number">2</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">output, out_state = tf.nn.dynamic_rnn(cell, seq, length, initial_state)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>tensorflow seq2seq resembles caffe that use a file or string to define model parameters and perform training/inference.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.contrib.rnn.MultiRNNCell(    [lstm_cell() for _ in range(number_of_layers)])</span><br></pre></td></tr></table></figure>
+<p>is a RNN cell with a number of layers. In pytorch, you only need to input the number of layers.</p>
+<p>Sample code using tf.name_scope and tf.variable_scope.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"Train"</span>):</span><br><span class="line">      train_input = PTBInput(config=config, data=train_data, name=<span class="string">"TrainInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">None</span>, initializer=initializer):</span><br><span class="line">        m = PTBModel(is_training=<span class="keyword">True</span>, config=config, input_=train_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Training Loss"</span>, m.cost)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Learning Rate"</span>, m.lr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Valid"</span>):</span><br><span class="line">      valid_input = PTBInput(config=config, data=valid_data, name=<span class="string">"ValidInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mvalid = PTBModel(is_training=<span class="keyword">False</span>, config=config, input_=valid_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Validation Loss"</span>, mvalid.cost)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Test"</span>):</span><br><span class="line">      test_input = PTBInput(</span><br><span class="line">          config=eval_config, data=test_data, name=<span class="string">"TestInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mtest = PTBModel(is_training=<span class="keyword">False</span>, config=eval_config,</span><br><span class="line">                         input_=test_input)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(name, reuse=<span class="keyword">None</span>, initializer=initializer, reuse=tf.AUTO_REUSE):</span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>The above code enable reusing of variables such that subgraphs would not be constructed.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.identity(    input,    name=None)</span><br></pre></td></tr></table></figure>
+<p>return a tensor that is identical with input tensor.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder_with_default(    input,    shape,    name=None)</span><br></pre></td></tr></table></figure>
+<p>If there is no value fed to placeholder, the placeholder would take input value as input. The input is actually a default value.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.sign(    x,    name=None)</span><br></pre></td></tr></table></figure>
+<p>return a tensor to indicate whether x is greater than 0 or not.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.reduce_max(    input_tensor,    axis=None,    keepdims=None,    name=None,    reduction_indices=None,    keep_dims=None)</span><br></pre></td></tr></table></figure>
+<p>Computes the maximum of elements across dimensions of a tensor. </p>
+<p>Attention mechanism in tensorflow is to use an attention_wrapper to wrap the RNNcell.</p>
+<p>tf.layers.dense() apply a fully connected layer to given inputs and return result.<br>tf.layers.Dense() return an abstract layer.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.tile(    input,    multiples,    name=None)</span><br></pre></td></tr></table></figure>
+<p>create a tensor that repeats input multiples times. The multiples argument has to specify how many times you want to repeat for each dimension.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.concat()</span><br></pre></td></tr></table></figure>
+<p>shape 0 of tensors must be equal.</p>
+<p>[<code>tf.nn.dynamic_rnn</code>] is used for sequence with unknown length.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.map_fn()</span><br></pre></td></tr></table></figure>
+<p>The output should have the same shape as input. If input is a sequence, the output has to be a sequence.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/Recommendation-System-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/Recommendation-System-1/" itemprop="url">Recommendation_System</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T11:07:40+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>CTR</strong>(<strong>Click-Through-Rate</strong>).</p>
+<p>Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the candidate items and return some items with high scores.</p>
+<p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
+<p><strong>Generalization</strong> is loosely defined as discovering of underlying features from existing co-occurence so that new feature combinations could be inferred from existing co-occurence.</p>
+<p>data for Web-scale recommender systems is mostly <strong>discrete and categorical</strong>, leading to a large and sparse feature space that is challenging for feature exploration. For continuous data, a common method is to divide the continuous range into several continuous range such that one-hot vector could be employed to represent a range.</p>
+<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.</p>
+<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2><p>Factorization machine and DNN requires no or less fiture engineering because it is able to learn dense and low-dimension embedding. But it would over-generate so that recommendation would be unrelevent. Wide refers to logistic regression. It is able to simply remember some rules. Wide&amp;Deep combines them together. </p>
+<p>For wide part, features are transformed to one-hot sparse feature and fed to a linear transformation. </p>
+<p>Feature transformation:<br>$$<br>\varnothing_k(x)=\prod^d_{i=1}x_i^{c_{ki}}<br>$$</p>
+<p>Linear transformation:<br>$$<br>\mathbf{w}_{wide}^T[ \mathbf{x},\phi  ( \mathbf{x}  )]<br>$$<br>where \([ \mathbf{x},\phi  ( \mathbf{x}  )]\) is concatenation of original features and transformmed features.</p>
+<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P\left ( Y=1\mid \mathbf{x} \right )=\sigma \left ( \mathbf{w}<em>{wide}^T\left [ \mathbf{x},\phi \left ( \mathbf{x} \right ) \right ] + \mathbf{w}</em>{deep}^Ta^{\left ( l_f \right )}+b \right )<br>$$</p>
+<h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><p>DeepFM substitutes the wide part in wide&amp;deep with <strong>Factorization Machines(FM)</strong>. It is able to model high-level feature combination by transforming the sparse feature to dense and low-dimension features. It models feature interaction as inner product of embeddings.</p>
+<p>A feature \(x_i\) is associated with a weight vector(embedding) \(v_i\) and feature interaction or feature combination is computed as \(&lt;v_i,v_j&gt;\). Intuitively, in stead of computing feature combination directly, it insert an embedding layer to the network so as to convert features to embeddings. Compuing the dot product of embedding to model feature combination.</p>
+<h2 id="DCN-Deep-Cross-Network"><a href="#DCN-Deep-Cross-Network" class="headerlink" title="DCN(Deep Cross Network)"></a>DCN(Deep Cross Network)</h2><p>The features are usually sparse, it is unable to represent those sparse features with one-hot vector if the size of vocabulary is huge. Therefore embedding layer is employed to convert sparse features to dense features which are real-value vectors like Natural Language Processing. After that, those vectors are stacked or concatenated with other dense features.</p>
+<p>It also utilises matrix multiplication to implement feature combination.<br>$$<br>x_{l+1} = x_0 x_l^T w_l + b_l + x_l = f(x_l, w_l, b_l) + x_l<br>$$</p>
+<p>where \(x_0\) is the concatenation of embedding features and dense features. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
+<p>The degress of cross features is growing with the number of layers.</p>
+<p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/SVM-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/09/SVM-2/" itemprop="url">SVM_2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-09T11:04:55+08:00">
+                2018-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>$$margin={1\over \left|{\boldsymbol {w}}\right|} = \sqrt{w_1^2+w_2^2+…+w_n^2}=\left|{\boldsymbol {w}}\right|_{2}$$</p>
+<p>optimal hyperplane:</p>
+<p>$$sign(w_1x_1+w_2x_2+…+w_nx_n+b)=sign(\boldsymbol {w}^Tx)$$</p>
+<h2 id="Quadratic-Programming"><a href="#Quadratic-Programming" class="headerlink" title="Quadratic Programming"></a>Quadratic Programming</h2><p>minimize a (convex) quadratic function, subject to linear inequality constraints.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Hyper-Para-Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/05/Hyper-Para-Search/" itemprop="url">Hyper_Para_Search</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T20:48:27+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Hyper-parameters-Searching"><a href="#Hyper-parameters-Searching" class="headerlink" title="Hyper-parameters Searching"></a>Hyper-parameters Searching</h1><h2 id="Random-Search"><a href="#Random-Search" class="headerlink" title="Random Search"></a>Random Search</h2><p>It is heavily used in deep learning. There are tons of parameters in deep learning. Grid search is computation-intensive because it tunes parameters one by one which change only a parameter and keep the others unchanged. Each time for each parameter, random search samples a value from normal distribution. It is always the case that some parameters like leanring rate are more important than other parameters. Random search could discover a pretty good setting of hyperparameters.</p>
+<p>For example, let’s assume there are only 3 parameters. The algorithm has been run for 9 times both random search and grid search. For random search, each parameter has been tested for 9 times. For grid search, each parameter has been tested for only 3 times because it keep the other two parameters unchanged when tuning a parameter.</p>
+<p>Advantages:<br>efficient</p>
+<h2 id="Grid-Search"><a href="#Grid-Search" class="headerlink" title="Grid Search"></a>Grid Search</h2><p>Grid search is to generate a list of candidate parameters for each parameter. Each time only changes a parameter and keep other parameters invariant. It is systematic but it is only appropriate for low dimension. When the dimension increase, the computation would also increase dramatically. It would waste computation resource because each time only a parameter is changed.</p>
+<p>Advantages:<br>Systematic.<br>Precise.</p>
+<h2 id="Bayes-Optimization"><a href="#Bayes-Optimization" class="headerlink" title="Bayes Optimization"></a>Bayes Optimization</h2><p>The third one is Bayes Optimization. Bayes optimization is powerful but it is not widely employed because it is application-specific. There is not a good software to facilitate the coding process until now. Its general idea is to do some experiments on a few settings of parameters. After that choose the setting that has high variance to evaluate so as to achieve better performance. High variance means that the parameters has the potential to be better or worse. If the performance is degraded, it doesn’t matter. It resemble the greedy algorithm to some extend. </p>
+<p>This method assumes that the similar inputs gives similar outputs. It’s a kind of weak prior. Its intuition is that to evaluate those unknown but possibly better combinations of parameters rather than try all of them.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://mp.weixin.qq.com/s/l6uzHwGSTY5xRSkPD_B2rw" target="_blank" rel="noopener">深度学习模型超参数搜索实用指南</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Technical-Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/05/Technical-Analysis/" itemprop="url">Technical_Analysis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T15:14:07+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Price-based:</p>
+<p>Moving average lines are heavily used to smooth the short-term fluctuations in the price charts. It is regarded as a support line where the price would not go lower than it in an uptrend. Points where the longer-term moving average crosses below the short-term moving average reveals an emerging uptrend.</p>
+<p>Bollinger bands are constructed from n standard deviation of closing prices. The high and low bands are the prices that moving average plus or minus n standard deviation. The prices in the area between the high and low bands are considered as resonable fluctuation of prices. If the price go beyond the area, it reveals overbought or oversold which means that the price is likely to decrease and increase respectively in the near future. It is the time where contrarian strategy comes into play. It is basically a strategy to buy or sell when most investors sell or buy.</p>
+<p>Oscillators:</p>
+<p>Oscillators are a set of indicators that oscillate around a specific value or in a range. Oscillator charts could be employed to detect convergence or divergence between oscillator and market prices. Convergence reveals that the current trend would continue and divergence suggests the change of the current trend.</p>
+<p>Sample indicators:</p>
+<p>Relative Strength Index(RSI): the rations of increase in price to decrease in price in a period of time. High values indicates overbought and low values suggest oversold.</p>
+<p>Moving Average Convergence Divergence(MACD): It is constructed from two lines. The MACD line is the difference between two expoentially moving average lines while the signal line is the expoentially moving average of the MACD line. The MACD could be employed to show both convergence or divergence and overbought or oversold. A buy signal is gerated when the MACD line cross above the signal line.</p>
+<p>Williams %R:<br>It indicates the relation between the closing price and the highest and lowest price in the previous days. It also reveals overbought or oversold.</p>
+<p>Accumulation/Distribution Line(AD):<br>Calculated from Money Flow Multiplier and Money Flow Volume. It takes volume into consideration. Volume is a significant indicator in technical analysis. It basically measure the money flow of the underlying asset. A pending revesal trend is indicated when divergence occurs between price and AD. Bullish Crosses occur when AD crosses above zero.</p>
+<p>Non-Price-Based Indicators<br>Put/call ratio</p>
+<p>Volatility Index</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/BLEU/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -957,653 +1645,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Topic-Model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/30/Topic-Model/" itemprop="url">Topic_Model</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:31+08:00">
-                2018-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="LDA"><a href="#LDA" class="headerlink" title="LDA"></a>LDA</h2><p>$$p(\theta,z,w|\alpha,\beta)=p(\theta|\alpha) \prod_{n=1}^N p(z_n|\theta)p(w_n|z_n,\beta)$$</p>
-<p>where \(p(\theta|\alpha)\) is the estimation of parameters \(\theta\), \(p(z_n|\theta)\) is probability distribution of topics \(z_n\) given parameters \(\theta\), \(p(w_n|z_n,\beta)\) is probability distribution of words \(w_n\) over topics z.</p>
-<p>It is actually a bayes network, compute the probability distribution of topics first, and given the topics distribution, each word would belongs to one or more topics. Compute the probability distribution over words given topics distribution.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Clustering/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/30/Clustering/" itemprop="url">Clustering</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:10+08:00">
-                2018-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Two kinds of clustering:</p>
-<ol>
-<li>parametric: K-means</li>
-<li>non-parametric: Dense-based</li>
-</ol>
-<p>hree types of clustering:</p>
-<ul>
-<li>Hard Clustering. Each instance belongs to only one cluster</li>
-<li>Hierachical clustering. Nested clusters.</li>
-<li>Soft/Fuzzy Clustering</li>
-</ul>
-<h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>In center-based approach, density is defined as: given a radius and a central point, the number of points in the circle including the central points.</p>
-<p>core points: Within an area that contains multiple points. The area has to satisfy some requirement with user specified parameters. For example, with radius(Eps) 5, if the number of points in the area exceeds like 7, then the core point is defined as a core point.</p>
-<p>border points: falls within the neighborhood of a core point. Border points could not be core points.</p>
-<p>noise points: not core points nor border points.</p>
-<p>Algorithm:</p>
-<ol>
-<li>label all points as core, border, or noise points.</li>
-<li>Eliminate noise points.</li>
-<li>Put an edge between all core points that are within Eps of each other.</li>
-<li>Merge each group of connected core points into a separate cluster.</li>
-<li>Assign each border point to one of the clusters of its associatedcore points.</li>
-</ol>
-<p>Selection of DBSCAN Parameters<br>k-dist: the distance between the core point and the kth nearest point. plot the the k-dist graph and select the k as MinPts(min points in a cluster) and the dramatically change point as distance.</p>
-<p>Strength: </p>
-<ol>
-<li>resistant to noise and can handle clusters of arbitrary shapesand size</li>
-</ol>
-<p>Weakness:</p>
-<ol>
-<li>has trouble when the clusters have widely varying densities. </li>
-<li>has trouble with high-dimensional data because density is more difficult to definefor such data. </li>
-<li>DBSCAN can be expensive when the computation of nearest neighbors requires computing all pairwise proximities, as is usually the case for high-dimensional data.</li>
-</ol>
-<h2 id="HDBSCAN"><a href="#HDBSCAN" class="headerlink" title="HDBSCAN"></a>HDBSCAN</h2><ol>
-<li>Transform the space. Increase the distance between noise points and core points by <strong>mutual reachability distance</strong>.</li>
-<li>Build the minimum spanning tree. The points could be viewed as a graph. The points are vertices and weighted edges are mutual reachability distance. The longer the distance, the higher the weight.</li>
-<li>Build the cluster hierarchy. At beginning, each point is in the same cluster. After that, remove edges one by one according to the weights of edges in decreasing order.(remove long distence edge first) If there are ties, remove them all together.</li>
-<li>After removal, assign a new cluster label to a component if it still has at least one edge, else assign it a null label (“noise”).</li>
-<li>Extract the clusters</li>
-</ol>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Introduction to Data Mining</p>
-<p><a href="http://producao.usp.br/bitstream/handle/BDPI/51005/2709770.pdf?sequence=1" target="_blank" rel="noopener">Hierarchical density estimates for data clustering, visualization, and outlier detection</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/TextRank/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/29/TextRank/" itemprop="url">TextRank</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-29T20:10:34+08:00">
-                2018-09-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>TextRank is actuaaly the same as PageRank. The only difference is that the unit in the PageRank is a webpage while the unit in the TextRank is word or sentence.</p>
-<h2 id="Keyword-Extraction"><a href="#Keyword-Extraction" class="headerlink" title="Keyword Extraction"></a>Keyword Extraction</h2><p>Each word is a vertex in the graph. Set up a context window. If two words co-occur in a context window, there is a link between those two words. The rest is the same as PageRank.</p>
-<h2 id="Sentence-Extraction"><a href="#Sentence-Extraction" class="headerlink" title="Sentence Extraction"></a>Sentence Extraction</h2><p>Each sentence is a vertex in the graph. The difference with keyword extraction is that now all sentences are considered connected with a weight. The weight is sentence similarity. The graph becomes a weighted graph which means there is a weight associated with each edge. </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/20/Interview/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/20/Interview/" itemprop="url">Interview</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-20T11:22:14+08:00">
-                2018-09-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Find the max n number:<br>Like quick sort, find a random number. Divide the original array into two parts, one is less than the random number, the other is greater than the random number. Pick another random number in the greater part, iterate aforementioned steps until there are n numbers in the greater array.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Paper-review/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/18/Paper-review/" itemprop="url">Paper_review</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T16:51:27+08:00">
-                2018-09-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Bidirectional LSTM-CRF for sequence tagging: CRF utilize sentence-level information. In CRF input and output are connected directly. Bidirectional LSTM-CRF connect all output together with a transition matrix from one state to another state.</p>
-<p>A Deep reinforced model for abstractive summarization: Use reinforcement leanring to derive a policy. Some critirion such as BLEU could not back-propagate directly. Employing reinforcement leanring could alleviate this problem.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1658,7 +1699,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">74</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
