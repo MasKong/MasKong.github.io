@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="remotely run sth after disconnection 1nohup command ...... check runing process 1ps -ef check runing process and find a specific process 1ps -ef | grep python kill a process 1kill pid count number of">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-18T06:09:00.930Z">
+<meta property="og:updated_time" content="2019-01-06T08:22:29.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux_Management">
 <meta name="twitter:description" content="remotely run sth after disconnection 1nohup command ...... check runing process 1ps -ef check runing process and find a specific process 1ps -ef | grep python kill a process 1kill pid count number of">
@@ -381,6 +381,11 @@
 <p>move files to trash</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">restore-trash</span><br></pre></td></tr></table></figure>
 <p>restore files from trash</p>
+<p>print environmental variable:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printenv abc</span><br><span class="line">printenv | grep &quot;.*JAVA.*&quot;</span><br></pre></td></tr></table></figure></p>
+<p>“printenv abc” print the variable named abc<br>“printenv | grep “.<em>JAVA.</em>“”  print variables whose name match the pattern  .<em>JAVA.</em></p>
+<p>~/.bash_profile  用户登录时被读取，其中包含的命令被执行</p>
+<p>~/.bashrc  启动新的shell时被读取，并执行</p>
+<p>~/.bash_logout  shell 登录退出时被读取</p>
 
       
     </div>
@@ -505,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -555,7 +560,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

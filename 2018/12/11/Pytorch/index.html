@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-19T03:17:27.397Z">
+<meta property="og:updated_time" content="2019-01-06T11:40:51.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pytorch">
 <meta name="twitter:description" content="reshape in pytorch: torch.view 1234x = torch.randn(4, 4)z = x.view(-1, 8)  # the size -1 is inferred from other dimensionsz.size()### torch.Size([2, 8]) torch.view() doesn’t change the data. torch.res">
@@ -385,7 +385,6 @@
 <p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
 <p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
 <p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
-<p>If you have a single sample, just use input.unsqueeze(0) to add a fake batch dimension.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
 <p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
 <p>Display an image in pytorch: </p>
@@ -408,6 +407,22 @@
 <p>Returns the <code>k</code> largest elements of the given <code>input</code> tensor along a given dimension.</p>
 <p>RuntimeError: Expected object of scalar type Float but got scalar type Double for argument.<br>change tensor to float with<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor.to(torch.float)</span><br></pre></td></tr></table></figure></p>
 <p>nn.CrossEntropyLoss(): The first argument is model output and the second argument is label. The label has to be shape of [batch_size].</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.ne(_input_, _other_, _out=None_)</span><br></pre></td></tr></table></figure>
+<p>perform element-wise computation between two tensors. If two elements are different, return 1,else 0.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.tril(b, diagonal=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>return upper triangular matrix of a tensor. diagonal = 1 exclude more values. diagonal = -1 include more values.</p>
+<p>rnn batch_first=True doesn’t affect output hidden state.</p>
+<p>hidden states of shape (num_layers * num_directions, batch, hidden_size)</p>
+<p>ONNX does not support batch_first……</p>
+<p>torch.reshape(), 这与 numpy.reshape 的功能类似。它大致相当于 tensor.contiguous().view()</p>
+<p>print model parameters:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> name, param <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">    <span class="keyword">if</span> param.requires_grad:</span><br><span class="line">        <span class="keyword">print</span> (name, param.data)</span><br></pre></td></tr></table></figure>
+<p>From 0.4, Variable is equivalent to tensor.</p>
+<p>Pytorch prediction: each time predict an example, it would load all parameters to memory. If increase the batch size, it would reduce the times of loading parameters so as to increase prediction time.</p>
+<p>torch.matmul is basically the same as torch.bmm. Their broadcast behaviors are different.</p>
+<p>resize never copies memory.<br>reshape always copies memory.<br>view never copies memory.</p>
+<p>Permute is a multidimensional rotation saying somehow. It keeps the data ordering. View (which is another reshaping method) maps from one dimensionality to another sequentially reading data from the upper dimensions to the lower ones.</p>
+<p>So if you want fuse two dimensions into one, you have to apply it over contiguous dimensions or u will modify the data ordering</p>
 
       
     </div>
@@ -532,7 +547,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -582,7 +597,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

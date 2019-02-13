@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
+<meta name="description" content="Language model is able to capture information and predict next word. It is aware of world information. Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number o">
 <meta name="keywords" content="NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Language_Model">
 <meta property="og:url" content="http://yoursite.com/2018/07/09/Language-Model/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
+<meta property="og:description" content="Language model is able to capture information and predict next word. It is aware of world information. Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number o">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://res.cloudinary.com/leemasterk/image/upload/v1545457413/WX20181222-134300_2x.png">
-<meta property="og:updated_time" content="2018-12-22T05:48:06.705Z">
+<meta property="og:updated_time" content="2019-01-30T02:35:41.535Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Language_Model">
-<meta name="twitter:description" content="Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number of word. Bigram$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$ N-GramGiven the previous N words, e">
+<meta name="twitter:description" content="Language model is able to capture information and predict next word. It is aware of world information. Unigram$$p(w_i) = \frac{c(w_i)}{N}$$ \(c(w_i)\) is the count of the word. N is the total number o">
 <meta name="twitter:image" content="https://res.cloudinary.com/leemasterk/image/upload/v1545457413/WX20181222-134300_2x.png">
 
 
@@ -366,7 +366,8 @@
       
 
       
-        <h2 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h2><p>$$p(w_i) = \frac{c(w_i)}{N}$$</p>
+        <p>Language model is able to capture information and predict next word. It is aware of world information.</p>
+<h2 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h2><p>$$p(w_i) = \frac{c(w_i)}{N}$$</p>
 <p>\(c(w_i)\) is the count of the word. N is the total number of word.</p>
 <h2 id="Bigram"><a href="#Bigram" class="headerlink" title="Bigram"></a>Bigram</h2><p>$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$</p>
 <h2 id="N-Gram"><a href="#N-Gram" class="headerlink" title="N-Gram"></a>N-Gram</h2><p>Given the previous N words, estimate the probability of the current word.</p>
@@ -383,7 +384,26 @@
 <p>Save some probability for unknown words \((\lambda_{unk} = 1-\lambda_1)\). This is in fact another kind of smoothing. Discount the probability of known words and assign to the unknown words.<br> \(\lambda\) is a hyperparameter. It is 0.95 by default. N is the total number of words.</p>
 <h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>The percentage of known words in the corpus. Usually omit the symbol of the end of a sentence .</p>
 <h2 id="Entropy-of-a-sentence"><a href="#Entropy-of-a-sentence" class="headerlink" title="Entropy of a sentence"></a>Entropy of a sentence</h2><p>$$H(S)= -\frac{1}{N}\sum_{w\in S}\log_2 P(w)$$</p>
-<h2 id="BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><a href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding" class="headerlink" title="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"></a>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h2><h2 id="Universal-Language-Model-Fine-tuning-ULMFiT"><a href="#Universal-Language-Model-Fine-tuning-ULMFiT" class="headerlink" title="Universal Language Model Fine-tuning (ULMFiT)"></a>Universal Language Model Fine-tuning (ULMFiT)</h2><h2 id="ELMO"><a href="#ELMO" class="headerlink" title="ELMO"></a>ELMO</h2><h2 id="TagLM"><a href="#TagLM" class="headerlink" title="TagLM"></a>TagLM</h2><p>将预训练过程中隐藏层的输出特征和任务过程中隐藏层的特征concat到一起，作为最后模型决策的输入特征，显著提升任务效果。<br>concat hidden state of last layer from two direction of RNN as a kind of features. After that, concat hidden states which is the output of RNN during sequence labeling and feed to another RNN as input. This actually enrich the features.<br><img src="https://res.cloudinary.com/leemasterk/image/upload/v1545457413/WX20181222-134300_2x.png" alt="cmd-markdown-logo"></p>
+<h3 id="State-of-the-art-word-embeddings-or-word-tokens"><a href="#State-of-the-art-word-embeddings-or-word-tokens" class="headerlink" title="State-of-the-art word embeddings or word tokens"></a>State-of-the-art word embeddings or word tokens</h3><p>word embeddings or word tokens could be a CNN over a sequence of character embeddings or simply a token embedding.</p>
+<h2 id="BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><a href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding" class="headerlink" title="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"></a>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h2><h2 id="Universal-Language-Model-Fine-tuning-ULMFiT"><a href="#Universal-Language-Model-Fine-tuning-ULMFiT" class="headerlink" title="Universal Language Model Fine-tuning (ULMFiT)"></a>Universal Language Model Fine-tuning (ULMFiT)</h2><p>First pre-train a language model, the key concept is how to fine-tune. </p>
+<ol>
+<li><p>fine-tune target task language model</p>
+<ul>
+<li>Discriminative fine-tuning. Each layer is updated separately with different learning rate. Best practice is to choose learning rate by only fine-tuning the last layer. And decrease the selected learning rate layer by layer.</li>
+<li>Slanted triangular learning rates. Quickly converge to a suitable region of the parameter space in the beginning of training and then refine its parameters. First increase learning rate to make the model converge to a suitable region. And then decrease the learning rate to fine-tune the model.</li>
+</ul>
+</li>
+<li><p>Target task classifier fine-tuning</p>
+<ul>
+<li>Concat pooling: maxpool and mean pool all hidden states, and do concatenation.</li>
+<li>Gradual unfreezing: unfreeze layer one-by-one and do fine-tuning.</li>
+</ul>
+</li>
+</ol>
+<h2 id="ELMO"><a href="#ELMO" class="headerlink" title="ELMO"></a>ELMO</h2><p>ELMO apply a bidirectional RNN to compute the hidden states that are used to predict next words. The final word vector of each word is concat of the original word vectors(the first hidden layer) and all hidden states in the middle bidirecitonal RNN.</p>
+<p>The word vectors of ELMO could be task-specific. It is a linear combination of all hidden states in the middle bidirecitonal RNN. The weight for each hidden state is different for different tasks. </p>
+<h2 id="TagLM"><a href="#TagLM" class="headerlink" title="TagLM"></a>TagLM</h2><p>将预训练过程中隐藏层的输出特征和任务过程中隐藏层的特征concat到一起，作为最后模型决策的输入特征，显著提升任务效果。<br>concat hidden state of last layer from two direction of RNN as a kind of features. After that, concat hidden states which is the output of RNN during sequence labeling and feed to another RNN as input. This actually enrich the features.<br><img src="https://res.cloudinary.com/leemasterk/image/upload/v1545457413/WX20181222-134300_2x.png" alt="cmd-markdown-logo"></p>
+<h3 id="Downstream-tasks"><a href="#Downstream-tasks" class="headerlink" title="Downstream tasks"></a>Downstream tasks</h3><p>‘’‘Word embeddings are nowadays pervasive on a wide spectrum of Natural Language Processing (NLP) and Natural Language Understanding (NLU) applications. These word representations improved downstream tasks in many domains such as machine translation, syntactic parsing, text classification, and machine comprehension, among other’‘’<br>Downstream tasks refer to any task in NLP like text classification, QA and so on.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1705.00108.pdf" target="_blank" rel="noopener"> TagLM: Semi-supervised sequence tagging with bidirectional language models</a></p>
 <p><a href="https://arxiv.org/pdf/1802.05365.pdf" target="_blank" rel="noopener"> ELMO: Deep contextualized word representations</a></p>
 <p><a href="https://arxiv.org/pdf/1802.05365.pdf" target="_blank" rel="noopener"> ULMFiT: Universal Language Model Fine-tuning for Text Classification</a></p>
@@ -521,7 +541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -567,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unigram"><span class="nav-number">1.</span> <span class="nav-text">Unigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bigram"><span class="nav-number">2.</span> <span class="nav-text">Bigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Gram"><span class="nav-number">3.</span> <span class="nav-text">N-Gram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Unknown-Words"><span class="nav-number">4.</span> <span class="nav-text">Deal with Unknown Words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coverage"><span class="nav-number">5.</span> <span class="nav-text">Coverage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entropy-of-a-sentence"><span class="nav-number">6.</span> <span class="nav-text">Entropy of a sentence</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><span class="nav-number">7.</span> <span class="nav-text">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Universal-Language-Model-Fine-tuning-ULMFiT"><span class="nav-number">8.</span> <span class="nav-text">Universal Language Model Fine-tuning (ULMFiT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELMO"><span class="nav-number">9.</span> <span class="nav-text">ELMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TagLM"><span class="nav-number">10.</span> <span class="nav-text">TagLM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">10.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Unigram"><span class="nav-number">1.</span> <span class="nav-text">Unigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bigram"><span class="nav-number">2.</span> <span class="nav-text">Bigram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#N-Gram"><span class="nav-number">3.</span> <span class="nav-text">N-Gram</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deal-with-Unknown-Words"><span class="nav-number">4.</span> <span class="nav-text">Deal with Unknown Words</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Coverage"><span class="nav-number">5.</span> <span class="nav-text">Coverage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entropy-of-a-sentence"><span class="nav-number">6.</span> <span class="nav-text">Entropy of a sentence</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#State-of-the-art-word-embeddings-or-word-tokens"><span class="nav-number">6.1.</span> <span class="nav-text">State-of-the-art word embeddings or word tokens</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><span class="nav-number">7.</span> <span class="nav-text">BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Universal-Language-Model-Fine-tuning-ULMFiT"><span class="nav-number">8.</span> <span class="nav-text">Universal Language Model Fine-tuning (ULMFiT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ELMO"><span class="nav-number">9.</span> <span class="nav-text">ELMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TagLM"><span class="nav-number">10.</span> <span class="nav-text">TagLM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Downstream-tasks"><span class="nav-number">10.1.</span> <span class="nav-text">Downstream tasks</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">10.2.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -587,7 +607,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
