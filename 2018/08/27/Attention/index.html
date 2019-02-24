@@ -364,7 +364,7 @@
       
 
       
-        <p>Attention is a distribution which describe how much the network should focus on each unit.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Attention is a distribution which describe how much the network should focus on each unit.</p>
 <p>The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)<br>$$<br>\begin{equation}<br>p(\textbf{y}) = \prod_{t=1}^{T}p(y_{t} \bracevert {y_{1},…,y_{t-1}},c)<br>\end{equation}<br>$$</p>
 <p>For each \(y_t\),<br>$$<br>\begin{equation}<br>p(y_{t} \bracevert {y_{1},…,y_{t-1}},c) = g(y_{t-1},s_{t},c)<br>\end{equation}<br>$$<br>where \(s_t\) is the decoder hidden state,<br>$$<br>s_i=f(s_{i−1},y_{i−1},c_i)<br>$$</p>
 <p>\(y_{t-1}\) is the output of the last time step, \(h_j\) is the encoder hidden state at time step j. c is the context vector, which is the weighted sum of all encoder outputs.<br>$$<br>\begin{equation}<br>c_{i} = \sum_{j=1}^{T_{x}}\alpha_{ij}h_{j}<br>\end{equation}<br>$$<br>where \(a_{ij}\) is computed from<br>$$<br>\begin{equation}<br>\alpha_{ij}= \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{x}}\exp(e_{ik})}<br>\end{equation}<br>$$</p>
@@ -542,7 +542,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

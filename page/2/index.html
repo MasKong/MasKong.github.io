@@ -296,6 +296,127 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/pandas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/21/pandas/" itemprop="url">pandas</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T16:56:05+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandas.cut(x, bins)</span><br></pre></td></tr></table></figure>
+<p>turn continuous features to categorical features.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/tf_visualization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +488,7 @@
       
         
           
-            <p>tf histrogram:<br>x-axis represents the exact value. y-axis represents number of step. It represent frequency of a parameter. </p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>tf histrogram:<br>x-axis represents the exact value. y-axis represents number of step. It represent frequency of a parameter. </p>
 
           
         
@@ -487,7 +608,7 @@
       
         
           
-            <p>reshape in pytorch: torch.view</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>reshape in pytorch: torch.view</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
 <p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
 <p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
@@ -665,7 +786,7 @@
       
         
           
-            <p>remove file from a directory<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'visual/train'</span>, <span class="string">'visual/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    list(map(<span class="keyword">lambda</span> i: os.remove(os.path.join(dir_to_search, i)),os.listdir(dir_to_search)))</span><br><span class="line"><span class="comment">#     l = list(map(lambda i: os.path.join(dir_to_search, i),os.listdir(dir_to_search)))</span></span><br></pre></td></tr></table></figure></p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>remove file from a directory<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'visual/train'</span>, <span class="string">'visual/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    list(map(<span class="keyword">lambda</span> i: os.remove(os.path.join(dir_to_search, i)),os.listdir(dir_to_search)))</span><br><span class="line"><span class="comment">#     l = list(map(lambda i: os.path.join(dir_to_search, i),os.listdir(dir_to_search)))</span></span><br></pre></td></tr></table></figure></p>
 <p>move newest files to another dir<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line">    time_l.sort()</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        dst = <span class="string">'visual/train'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dst = <span class="string">'visual/val'</span></span><br><span class="line">    shutil.copyfile(d[time_l[<span class="number">-1</span>]], os.path.join(dst, d[time_l[<span class="number">-1</span>]].split(<span class="string">'/'</span>)[<span class="number">-1</span>] ))</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"><span class="comment">#     '''delete'''</span></span><br><span class="line"><span class="comment">#     for i in range(len(time_l)-1):</span></span><br><span class="line"><span class="comment">#         os.remove(d[time_l[i]])</span></span><br></pre></td></tr></table></figure></p>
 <p>delect old files</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line"><span class="comment">#     print(file_l)</span></span><br><span class="line">    time_l.sort()</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line">    <span class="string">'''delete'''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(time_l)<span class="number">-1</span>):</span><br><span class="line">        os.remove(d[time_l[i]])</span><br><span class="line"><span class="comment">#     print(d[time_l[-1]])</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">#               if datetime.datetime.now() - file_modified &gt; datetime.timedelta(hours=24):</span></span><br><span class="line"><span class="comment">#                   os.remove(curpath)</span></span><br></pre></td></tr></table></figure>
@@ -788,7 +909,7 @@
       
         
           
-            <p>sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.</p>
 <ol>
 <li>Features selection according to experience or something like that.</li>
 <li>Features processing. Features are in original data, some steps are necessary to preprocess the data and get corresponding features.</li>
@@ -947,7 +1068,7 @@
       
         
           
-            <p>Feature cross is dot-product of two or more features. It transform linear features to non-linear features.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Feature cross is dot-product of two or more features. It transform linear features to non-linear features.</p>
 <p>A <strong>feature cross</strong> is a synthetic feature that encodes nonlinearity in the feature space by multiplying two or more input features together.</p>
 <p>$$<br>x_3 = x_1x_2<br>$$<br>where \(x_3\) is a new feature and it is fed to the classifier as a feature.</p>
 <p>$$<br>y = b + w_1x_1 + w_2x_2 + w_3x_3<br>$$</p>
@@ -1075,7 +1196,7 @@
       
         
           
-            <p>MEMM</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>MEMM</p>
 <p>CRF考虑全局信息而不是局部标记，但是计算量比较大，参数多，不容易部署</p>
 <p>收入  GMV</p>
 <p>TransE algor<br>TransH algor<br>GAUSSIAN EMBEDDING</p>
@@ -1200,7 +1321,7 @@
       
         
           
-            <p>In normal machine learning or deep learning task, we optimize a specific metric, which loses information from other tasks that may be desirable to improve the original task. This kind of information comes from related tasks. And this kind of shared representations may be helpful to our original task because it actually utilise much more data than the original task.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In normal machine learning or deep learning task, we optimize a specific metric, which loses information from other tasks that may be desirable to improve the original task. This kind of information comes from related tasks. And this kind of shared representations may be helpful to our original task because it actually utilise much more data than the original task.</p>
 <p>Generally, as soon as you find yourself optimizing more than one loss function, you are effectively doing multi-task learning (in contrast to single-task learning). In those scenarios, it helps to think about what you are trying to do explicitly in terms of MTL and to draw insights from it.</p>
 <p>“MTL improves generalization by leveraging the domain-specific information contained in the training signals of related tasks”.</p>
 <p><strong>Inductive Bias</strong><br>A model prefer some hypotheses over others. For instance, a common form of inductive bias is l1 regularization, which leads to a preference for sparse solutions.</p>
@@ -1357,7 +1478,7 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
 <p>swtich to a branch.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
 <p>add all to buffer</p>
@@ -1486,7 +1607,7 @@
       
         
           
-            <p>attention machanism is just an attention wrapper to wrap the RNN.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>attention machanism is just an attention wrapper to wrap the RNN.</p>
 <p>Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout.</p>
 <p>The output of RNN has to be fed to a fully-connected neural network to convert the final hidden states to scores of the vocabulary. After that, employ a softmax function to squeeze all scores in a probability distribution.</p>
 <p>Process of constructing seq2seq model in tensorflow:</p>
@@ -1526,176 +1647,6 @@
 <li>encoder hidden state is fed to each step of the decoder</li>
 </ol>
 <p>add noise to encoder is beneficial to performance</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/tensorflow-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/16/tensorflow-1/" itemprop="url">tensorflow_1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T20:48:46+08:00">
-                2018-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p> tf.feature_column.bucketized_column divides coutinuous values into several ranges such that they are able to be represented as categorical features.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.feature_column.categorical_column_with_vocabulary_file(    key,    vocabulary_file,    vocabulary_size=None,    num_oov_buckets=0,    default_value=None,    dtype=tf.string)</span><br></pre></td></tr></table></figure>
-<p>maps each word in the vocabulary to an one-hot vector.</p>
-<p>tf.feature_column.categorical_column_with_hash_bucket maps features to specified number of features using hash(for example, mapping 1000 words to 100 embeddings means some words would share the same embedding.). In machine learning, this kind of hash often works well in practice. That’s because hash categories provide the model with some separation. The model can use additional features to further separate kitchenware from sports.</p>
-<p>tf.feature_column.crossed_column is able to combine features together. Somewhat counterintuitively, when creating feature crosses, you typically still should include the original (uncrossed) features in your model (as in the preceding code snippet). The independent latitude and longitude features help the model distinguish between examples where a hash collision has occurred in the crossed feature.</p>
-<p>As a rule of thumb,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">embedding_dimensions =  number_of_categories**0.25</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">categorical_column = ... <span class="comment"># Create any categorical column</span></span><br><span class="line"><span class="comment"># Represent the categorical column as an embedding column.</span></span><br><span class="line"><span class="comment"># This means creating an embedding vector lookup table with one element for each category.</span></span><br><span class="line">embedding_column = tf.feature_column.embedding_column(    categorical_column=categorical_column,    dimension=embedding_dimensions)</span><br></pre></td></tr></table></figure>
-<p>tf.train.Features is used to wrap features of input.</p>
-<p><strong>tf.train.Example(features=features)</strong> is used to wrap examples.</p>
-<p>using TFRecord is more efficient. A parse function is used to parse a single example.</p>
-<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><p>Most software could only process up to 120 tokens. Longer sequences are supposed to be truncated.</p>
-<p><strong>The padded labels change the total loss, which affects the gradients</strong>.<br>Two methods to alleviate this problem:</p>
-<ol>
-<li>Maintain a mask</li>
-</ol>
-<ul>
-<li><p>Maintain a mask (True for real, False for padded tokens)</p>
-</li>
-<li><p>Run your model on both the real/padded tokens (model will predict labels for the padded tokens as well)</p>
-</li>
-<li><p>Only take into account the loss caused by the real elements</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">full_loss = tf.nn.softmax_cross_entropy_with_logits(preds, labels)</span><br><span class="line">loss = tf.reduce_mean(tf.boolean_mask(full_loss, mask))</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>Let your model know the real sequence length so it only predict the labels for the real tokens.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cell = tf.nn.rnn_cell.GRUCell(hidden_size)</span><br><span class="line"></span><br><span class="line">rnn_cells = tf.nn.rnn_cell.MultiRNNCell([cell] * num_layers)</span><br><span class="line"></span><br><span class="line">tf.reduce_sum(tf.reduce_max(tf.sign(seq), <span class="number">2</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">output, out_state = tf.nn.dynamic_rnn(cell, seq, length, initial_state)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>tensorflow seq2seq resembles caffe that use a file or string to define model parameters and perform training/inference.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.contrib.rnn.MultiRNNCell(    [lstm_cell() for _ in range(number_of_layers)])</span><br></pre></td></tr></table></figure>
-<p>is a RNN cell with a number of layers. In pytorch, you only need to input the number of layers.</p>
-<p>Sample code using tf.name_scope and tf.variable_scope.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"Train"</span>):</span><br><span class="line">      train_input = PTBInput(config=config, data=train_data, name=<span class="string">"TrainInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">None</span>, initializer=initializer):</span><br><span class="line">        m = PTBModel(is_training=<span class="keyword">True</span>, config=config, input_=train_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Training Loss"</span>, m.cost)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Learning Rate"</span>, m.lr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Valid"</span>):</span><br><span class="line">      valid_input = PTBInput(config=config, data=valid_data, name=<span class="string">"ValidInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mvalid = PTBModel(is_training=<span class="keyword">False</span>, config=config, input_=valid_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Validation Loss"</span>, mvalid.cost)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Test"</span>):</span><br><span class="line">      test_input = PTBInput(</span><br><span class="line">          config=eval_config, data=test_data, name=<span class="string">"TestInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mtest = PTBModel(is_training=<span class="keyword">False</span>, config=eval_config,</span><br><span class="line">                         input_=test_input)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(name, reuse=<span class="keyword">None</span>, initializer=initializer, reuse=tf.AUTO_REUSE):</span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>The above code enable reusing of variables such that subgraphs would not be constructed.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.identity(    input,    name=None)</span><br></pre></td></tr></table></figure>
-<p>return a tensor that is identical with input tensor.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder_with_default(    input,    shape,    name=None)</span><br></pre></td></tr></table></figure>
-<p>If there is no value fed to placeholder, the placeholder would take input value as input. The input is actually a default value.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.sign(    x,    name=None)</span><br></pre></td></tr></table></figure>
-<p>return a tensor to indicate whether x is greater than 0 or not.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.reduce_max(    input_tensor,    axis=None,    keepdims=None,    name=None,    reduction_indices=None,    keep_dims=None)</span><br></pre></td></tr></table></figure>
-<p>Computes the maximum of elements across dimensions of a tensor. </p>
-<p>Attention mechanism in tensorflow is to use an attention_wrapper to wrap the RNNcell.</p>
-<p>tf.layers.dense() apply a fully connected layer to given inputs and return result.<br>tf.layers.Dense() return an abstract layer.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.tile(    input,    multiples,    name=None)</span><br></pre></td></tr></table></figure>
-<p>create a tensor that repeats input multiples times. The multiples argument has to specify how many times you want to repeat for each dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.concat()</span><br></pre></td></tr></table></figure>
-<p>shape 0 of tensors must be equal.</p>
-<p>[<code>tf.nn.dynamic_rnn</code>] is used for sequence with unknown length.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.map_fn()</span><br></pre></td></tr></table></figure>
-<p>The output should have the same shape as input. If input is a sequence, the output has to be a sequence.</p>
 
           
         
@@ -1785,7 +1736,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="注意，变量名和等号之间不能有空格. 引用变量需要在变量前加美元符号$12your_name=&quot;qinjx&quot;echo $&amp;#123;your_name&amp;#125; 变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界 以“#”开头的行就是注释，会被解释器忽略。 sh里没有多行注释，只能每一行加一个#号. 多行注释：把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有">
+<meta name="description" content="lexical matching: search engine matching terms in documents with those in a search query, sort according to similarity&amp;lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-lab">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell">
-<meta property="og:url" content="http://yoursite.com/2019/01/13/shell/index.html">
+<meta property="og:title" content="Searching">
+<meta property="og:url" content="http://yoursite.com/2019/02/24/Searching/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="注意，变量名和等号之间不能有空格. 引用变量需要在变量前加美元符号$12your_name=&quot;qinjx&quot;echo $&amp;#123;your_name&amp;#125; 变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界 以“#”开头的行就是注释，会被解释器忽略。 sh里没有多行注释，只能每一行加一个#号. 多行注释：把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有">
+<meta property="og:description" content="lexical matching: search engine matching terms in documents with those in a search query, sort according to similarity&amp;lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-lab">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-13T06:54:08.330Z">
+<meta property="og:updated_time" content="2019-02-24T14:55:17.757Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell">
-<meta name="twitter:description" content="注意，变量名和等号之间不能有空格. 引用变量需要在变量前加美元符号$12your_name=&quot;qinjx&quot;echo $&amp;#123;your_name&amp;#125; 变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界 以“#”开头的行就是注释，会被解释器忽略。 sh里没有多行注释，只能每一行加一个#号. 多行注释：把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有">
+<meta name="twitter:title" content="Searching">
+<meta name="twitter:description" content="lexical matching: search engine matching terms in documents with those in a search query, sort according to similarity&amp;lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-lab">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/13/shell/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/02/24/Searching/"/>
 
 
 
 
 
-  <title>shell | </title>
+  <title>Searching | </title>
   
 
 
@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/shell/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/Searching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -313,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">shell</h1>
+          <h1 class="post-title" itemprop="name headline">Searching</h1>
         
 
         <div class="post-meta">
@@ -325,8 +325,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-13T14:50:38+08:00">
-                2019-01-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T22:48:53+08:00">
+                2019-02-24
               </time>
             
 
@@ -363,23 +363,8 @@
       
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>注意，变量名和等号之间不能有空格.</p>
-<p>引用变量需要在变量前加美元符号$<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">your_name="qinjx"</span><br><span class="line">echo $&#123;your_name&#125;</span><br></pre></td></tr></table></figure></p>
-<p>变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界</p>
-<p>以“#”开头的行就是注释，会被解释器忽略。</p>
-<p>sh里没有多行注释，只能每一行加一个#号.</p>
-<p>多行注释：把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有地方调用这个函数，这块代码就不会执行，达到了和注释一样的效果。</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>单引号字符串的限制：</p>
-<ul>
-<li>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的</li>
-<li>单引号字串中不能出现单引号（对单引号使用转义符后也不行）</li>
-</ul>
-<p>双引号</p>
-<ul>
-<li>双引号里可以有变量</li>
-<li>双引号里可以出现转义字符</li>
-</ul>
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>lexical matching: search engine matching terms in documents with those in a search query, sort according to similarity<sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a>“&gt;[1]</a></sup></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
     
@@ -403,8 +388,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/03/Transfer-Learning/" rel="next" title="Transfer_Learning">
-                <i class="fa fa-chevron-left"></i> Transfer_Learning
+              <a href="/2019/02/20/DL-tricks/" rel="next" title="DL_tricks">
+                <i class="fa fa-chevron-left"></i> DL_tricks
               </a>
             
           </div>
@@ -412,10 +397,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/18/Machine-Learning-1/" rel="prev" title="Machine_Learning">
-                Machine_Learning <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -552,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -720,9 +701,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/01/13/shell/';
-          this.page.identifier = '2019/01/13/shell/';
-          this.page.title = 'shell';
+          this.page.url = 'http://yoursite.com/2019/02/24/Searching/';
+          this.page.identifier = '2019/02/24/Searching/';
+          this.page.title = 'Searching';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://MasKong.disqus.com/embed.js';

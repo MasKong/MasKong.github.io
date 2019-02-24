@@ -296,6 +296,128 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Topic-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/30/Topic-Model/" itemprop="url">Topic_Model</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:31+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="LDA"><a href="#LDA" class="headerlink" title="LDA"></a>LDA</h2><p>$$p(\theta,z,w|\alpha,\beta)=p(\theta|\alpha) \prod_{n=1}^N p(z_n|\theta)p(w_n|z_n,\beta)$$</p>
+<p>where \(p(\theta|\alpha)\) is the estimation of parameters \(\theta\), \(p(z_n|\theta)\) is probability distribution of topics \(z_n\) given parameters \(\theta\), \(p(w_n|z_n,\beta)\) is probability distribution of words \(w_n\) over topics z.</p>
+<p>It is actually a bayes network, compute the probability distribution of topics first, and given the topics distribution, each word would belongs to one or more topics. Compute the probability distribution over words given topics distribution.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Clustering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +489,7 @@
       
         
           
-            <p>Two kinds of clustering:</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Two kinds of clustering:</p>
 <ol>
 <li>parametric: K-means</li>
 <li>non-parametric: Dense-based</li>
@@ -529,7 +651,7 @@
       
         
           
-            <p>TextRank is actuaaly the same as PageRank. The only difference is that the unit in the PageRank is a webpage while the unit in the TextRank is word or sentence.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>TextRank is actuaaly the same as PageRank. The only difference is that the unit in the PageRank is a webpage while the unit in the TextRank is word or sentence.</p>
 <h2 id="Keyword-Extraction"><a href="#Keyword-Extraction" class="headerlink" title="Keyword Extraction"></a>Keyword Extraction</h2><p>Each word is a vertex in the graph. Set up a context window. If two words co-occur in a context window, there is a link between those two words. The rest is the same as PageRank.</p>
 <h2 id="Sentence-Extraction"><a href="#Sentence-Extraction" class="headerlink" title="Sentence Extraction"></a>Sentence Extraction</h2><p>Each sentence is a vertex in the graph. The difference with keyword extraction is that now all sentences are considered connected with a weight. The weight is sentence similarity. The graph becomes a weighted graph which means there is a weight associated with each edge. </p>
 
@@ -651,7 +773,7 @@
       
         
           
-            <p>Find the max n number:<br>Like quick sort, find a random number. Divide the original array into two parts, one is less than the random number, the other is greater than the random number. Pick another random number in the greater part, iterate aforementioned steps until there are n numbers in the greater array.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Find the max n number:<br>Like quick sort, find a random number. Divide the original array into two parts, one is less than the random number, the other is greater than the random number. Pick another random number in the greater part, iterate aforementioned steps until there are n numbers in the greater array.</p>
 
           
         
@@ -771,7 +893,7 @@
       
         
           
-            <p>Bidirectional LSTM-CRF for sequence tagging: CRF utilize sentence-level information. In CRF input and output are connected directly. Bidirectional LSTM-CRF connect all output together with a transition matrix from one state to another state.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Bidirectional LSTM-CRF for sequence tagging: CRF utilize sentence-level information. In CRF input and output are connected directly. Bidirectional LSTM-CRF connect all output together with a transition matrix from one state to another state.</p>
 <p>A Deep reinforced model for abstractive summarization: Use reinforcement leanring to derive a policy. Some critirion such as BLEU could not back-propagate directly. Employing reinforcement leanring could alleviate this problem.</p>
 
           
@@ -892,7 +1014,7 @@
       
         
           
-            <p>Writting is to explain an idea clearly and convince others. Presentation basically is trying to tell a story.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Writting is to explain an idea clearly and convince others. Presentation basically is trying to tell a story.</p>
 <p>Is the sentence easy to understand?<br>Is the sentence enjoyable and interesting to read?  </p>
 <p>Principles of writing:</p>
 <ul>
@@ -1033,7 +1155,7 @@
       
         
           
-            <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"stat_chart"</span></span><br></pre></td></tr></table></figure>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"stat_chart"</span></span><br></pre></td></tr></table></figure>
 <p>name is used to identify the spider name.</p>
 
           
@@ -1154,7 +1276,7 @@
       
         
           
-            <p>remotely run sth after disconnection</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>remotely run sth after disconnection</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup command ......</span><br></pre></td></tr></table></figure>
 <p>check runing process</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef</span><br></pre></td></tr></table></figure>
@@ -1295,7 +1417,7 @@
       
         
           
-            <p>Two kinds of QA:</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Two kinds of QA:</p>
 <ul>
 <li>IR-based question answering </li>
 <li>knowledge-based question answering</li>
@@ -1431,7 +1553,7 @@
       
         
           
-            <h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
 <p>The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
 <p>Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state.</p>
 <p>$$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$</p>
@@ -1449,170 +1571,6 @@
 <p>Here reset gate resembles the forget gate in LSTM. It decides how much the last hidden state contributes to the current hidden state. And the final output hidden state is controlled by the update gate which resembles the ouput gate in LSTM. Simpler than LSTM.</p>
 <h3 id="Peephole-connection"><a href="#Peephole-connection" class="headerlink" title="Peephole connection"></a>Peephole connection</h3><p>The value of gate is now controled by cell state, hidden state and current input. </p>
 <p>$$o_t=\sigma(W_o\cdot [C_t,h_{t-1},x_t]+b_o)\ i_t=\sigma(W_i\cdot [C_{t-1},h_{t-1},x_t]+b_i)\ _t=\sigma(W_f\cdot [C_{t-1},h_{t-1},x_t]+b_f)<br>$$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/Attention/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/27/Attention/" itemprop="url">Attention</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-27T10:43:33+08:00">
-                2018-08-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Attention is a distribution which describe how much the network should focus on each unit.</p>
-<p>The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)<br>$$<br>\begin{equation}<br>p(\textbf{y}) = \prod_{t=1}^{T}p(y_{t} \bracevert {y_{1},…,y_{t-1}},c)<br>\end{equation}<br>$$</p>
-<p>For each \(y_t\),<br>$$<br>\begin{equation}<br>p(y_{t} \bracevert {y_{1},…,y_{t-1}},c) = g(y_{t-1},s_{t},c)<br>\end{equation}<br>$$<br>where \(s_t\) is the decoder hidden state,<br>$$<br>s_i=f(s_{i−1},y_{i−1},c_i)<br>$$</p>
-<p>\(y_{t-1}\) is the output of the last time step, \(h_j\) is the encoder hidden state at time step j. c is the context vector, which is the weighted sum of all encoder outputs.<br>$$<br>\begin{equation}<br>c_{i} = \sum_{j=1}^{T_{x}}\alpha_{ij}h_{j}<br>\end{equation}<br>$$<br>where \(a_{ij}\) is computed from<br>$$<br>\begin{equation}<br>\alpha_{ij}= \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{x}}\exp(e_{ik})}<br>\end{equation}<br>$$</p>
-<h4 id="Bahdanau-et-al-model"><a href="#Bahdanau-et-al-model" class="headerlink" title="Bahdanau et al. model"></a>Bahdanau et al. model</h4><p>global and local attention: the “attention”<br>is placed on all source positions or on only a few<br>source positions.</p>
-<p>$$<br>e_{ij} = a(s_{i−1}, h_j)<br>$$<br>a() is a feed forward neural network.</p>
-<h4 id="Luong-et-al-models"><a href="#Luong-et-al-models" class="headerlink" title="Luong et al. models"></a>Luong et al. models</h4><p>$$<br>a_t(s) = aligh(h_t, \overline{h_s})=\frac{exp(score(h_t,\overline{h_s})}{\sum_{s’}score(h_t,\overline{h_{s’}})}<br>$$<br>where \(h_t\) is decoder hidden state and \(\overline{h_s}\) is encoder hidden state. This align model computes the scores between the current hidden state with each encoder hidden state and put it in a softmax.</p>
-<p>There are three kinds of score functions, please refer to the paper.</p>
-<p>After that, the context vector is computed as<br>$$<br>c_t = a_t \cdot \overline{h_{s}}<br>$$<br>a weighted sum of encoder hidden state.</p>
-<p>At the end, the attentional vector is computed as:<br>$$<br>\widetilde{h_t}=tanh(W_c[c_t;h_t])<br>$$<br>concat context vector and hidden state, then feed it to transformations.</p>
-<p>$$<br>p(y_t|y_{&lt;t}, x)=softmax(W_s,\widetilde{h_t})<br>$$</p>
-<h3 id="content-based"><a href="#content-based" class="headerlink" title="content-based"></a>content-based</h3><p>The attending RNN generates a query describing what it wants to focus on. Each item is dot-producted with the query to produce a score, describing how well it matches the query. The scores are fed into a softmax to create the attention distribution.</p>
-<h3 id="location-based"><a href="#location-based" class="headerlink" title="location-based"></a>location-based</h3><h3 id="Neural-Turing-Machines"><a href="#Neural-Turing-Machines" class="headerlink" title="Neural Turing Machines"></a>Neural Turing Machines</h3><p>Neural Turing Machines combine a RNN with an external memory bank. Since vectors are the natural language of neural networks, the memory is an array of vectors. Every step, NTMs read and write everywhere, just to different extents.</p>
-<p>Read operation is a weighted sum of the distribution.</p>
-<p>Similarly, NTMs write everywhere at once to different extents. Again, an attention distribution describes how much NTMs write at every location. The new value of a position in memory is a convex combination of the old memory content and the new write value.</p>
-<h4 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h4><ul>
-<li>The RNN controller gives a query vector.</li>
-<li>Each memory entry is scored for similarity with the query(dot product).</li>
-<li>The scores are then converted into a distribution using softmax.</li>
-<li>Interpolate the attention from the previous time step with the current distribution controlled by intepolation amount.</li>
-<li>Convolve the attention with a shift filter which allows the controller to move its focus.</li>
-<li>Sharpen the attention distribution. This final attention distribution is fed to the read or write operation.</li>
-</ul>
-<h3 id="Attentional-Interfaces"><a href="#Attentional-Interfaces" class="headerlink" title="Attentional Interfaces"></a>Attentional Interfaces</h3><p>Between connection of RNN or (RNN,CNN), there would be attentional interfaces which decides which units in the previous layer should pay attention to.</p>
-<h2 id="Attention-is-all-you-need-Transformer"><a href="#Attention-is-all-you-need-Transformer" class="headerlink" title="Attention is all you need(Transformer)"></a>Attention is all you need(Transformer)</h2><p>The encoder is composed of N=6 identical layers. Each layer has two sub-layers</p>
-<h4 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h4><p>Attention function could be described as a function to map query, key and values to a weighted sum. Attention is actually a query. The output is a weighted sum of values and each weight is the dot product of the query and the key.</p>
-<h4 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h4><p>In the paper, scaled dot-product attention is actually the attention function scaled by \(\frac{1}{\sqrt d_k}\)</p>
-<p>Mask operation is for masking the values in decoder outputs so that the model can only pay attention to leftward information/</p>
-<h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>Linearly project query, key, value with learnable weights. After that apply attention function to projected query, key, value. This is one head. MultiHead is concatenation of MultiHead and apply a linear transformation to the concatenation.</p>
-<p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
-<p>Multi-head attention simulates convolutional neural network. Each head employs different weights such that different heads learn different relationship. In terms of convolution, different positions learn different features.</p>
-<p>Multi-head attention actually enrichs the features and enable a word focus on different parts of a sentence. Normal attention allows the word to focus on only a specific part.</p>
-<h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
-<h4 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h4><p>The paper propose to use positional embedding to encode position information.</p>
-<h4 id="Compare-RNN-with-transformer"><a href="#Compare-RNN-with-transformer" class="headerlink" title="Compare RNN with transformer"></a>Compare RNN with transformer</h4><p>self-attention Complexity \(O(n^2\cdot d)\)</p>
-<p>Because self-attention compute score according to, say encoder self-attention, encoder input(key) and encoder input(query). Each query has to do dot-product computation with every key. So the complexity is \(O(n^2\cdot d)\) where n is the sequence length and d is the dimension(n keys and n querys).</p>
-<p>RNN Complexity \(O(n\cdot d^2)\)</p>
-<p>RNN compute hidden states according to the previous hidden states and the current hidden states. There n times computation. So  the complexity is \(O(n\cdot d^2)\) where n is the sequence length and d is the dimension(n times computation and each computation is d*d).</p>
-<p>During decoding, transformer would output</p>
-<p>BERT is ‘real’ bidirectional because self-attention mechanism utilize information from both sides. The traditional bi-LSTM just concat computation result from both directions.</p>
-<p>BERT performs fine-tuning for each indivisual task.</p>
-<h2 id="Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding"><a href="#Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding" class="headerlink" title="Multi-Task Deep Neural Networks for Natural Language Understanding"></a>Multi-Task Deep Neural Networks for Natural Language Understanding</h2><p>This paper performs multi-task learning(MTL) for multiple tasks which is the main difference between it and BERT.</p>
-<h2 id="Universal-Transformer"><a href="#Universal-Transformer" class="headerlink" title="Universal Transformer"></a>Universal Transformer</h2><p>add adaptive computation time(ACT) to the transformer so that the model is able to spent more computation on encoding the ambiguous words.</p>
-<h3 id="Adaptive-Computation-Time"><a href="#Adaptive-Computation-Time" class="headerlink" title="Adaptive Computation Time"></a>Adaptive Computation Time</h3><p>Employ one activation function to decide the probability of continuing computation. If some steps are stopped earlier, their states are copied to the final output time step. This allow the neural network to spent more computation on those ambiguous words.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank" rel="noopener"> Attention is all you need</a></p>
 
           
         
@@ -1702,7 +1660,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

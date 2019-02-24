@@ -364,7 +364,7 @@
       
 
       
-        <h3 id="Hierarchical-softmax"><a href="#Hierarchical-softmax" class="headerlink" title="Hierarchical softmax"></a>Hierarchical softmax</h3><p>It truns the normal softmax to a tree structure to avoid computing every context word with the center word.</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Hierarchical-softmax"><a href="#Hierarchical-softmax" class="headerlink" title="Hierarchical softmax"></a>Hierarchical softmax</h3><p>It truns the normal softmax to a tree structure to avoid computing every context word with the center word.</p>
 <p>Normal softmax requires normalization which is extremely expensive especially in the case of Natural Language Processing that there are usually millions or billions of tokens in the corpus. Normal softmax would squeeze the values of these millions or billions of tokens into a probability distribution each time predicting the context word.</p>
 <p>Normal softmax computes P(Y |X) directly which needs normalization, the author chooses to assign Y to different clusters such that there is a function mapping X to different clusters. Given the cluster, compute the conditional probability to avoid normalization over the entire X.<br>$$P(Y = y|X = x) =P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
 <p>Prove:<br>$$P(Y |X) = \sum_i P(Y, C = i|X) = \sum_i P(Y |C =i, X)P(C = i|X) = P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
@@ -508,7 +508,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -296,6 +296,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/03/sql/" itemprop="url">sql</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-03T21:02:07+08:00">
+                2018-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RDBMS stands for Relational Database Management System.</p>
+<p>Every table is broken up into smaller entities called fields which is a column in a table designed to maintain specific information about every record in the table.</p>
+<p>A record, also called a row, is each individual entry that exists in a table. A record is a horizontal entity in a table.</p>
+<p>A column is a vertical entity in a table that contains all information associated with a specific field in a table.</p>
+<p>A database most often contains one or more tables. Each table is identified by a name. Tables contain records (rows) with data.</p>
+<p>Semicolon is the standard way to separate each SQL statement in database systems that allow more than one SQL statement to be executed in the same call to the server.</p>
+<h3 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h3><ul>
+<li>COUNT SELECT COUNT(Country) FROM Customers; Return the number of country from table Customers</li>
+<li>Distinct SELECT Country FROM Customers; Selects all values from the “Country” column in the “Customers” table.</li>
+<li>WHERE The WHERE clause is used to extract only those records that fulfill a specified condition. SELECT * FROM Customers WHERE Country=’Mexico’; Selects all the customers from the country “Mexico”, in the “Customers” table.</li>
+<li>AND operator displays a record if all the conditions separated by AND is TRUE.<br>The OR operator displays a record if any of the conditions separated by OR is TRUE.The NOT operator displays a record if the condition(s) is NOT TRUE.</li>
+<li>ORDER BY</li>
+<li>INSERT INTO</li>
+<li>IS NULL and IS NOT NULL to test null values</li>
+<li>SELECT TOP = Mysql SELECT column_name(s) FROM table_name WHERE condition LIMIT number;</li>
+<li>LIKE The LIKE operator is used in a WHERE clause to search for a specified pattern in a column. </li>
+<li>%:The percent sign represents zero, one, or multiple characters </li>
+<li>_:The underscore represents a single character</li>
+<li>IN: = multiple OR conditions.</li>
+<li>BETWEEN: selects values within a given range. The values can be numbers, text, or dates.It is inclusive: begin and end values are included. </li>
+<li>SQL aliases are used to give a table, or a column a temporary name. An alias only exists for the duration of the query.</li>
+<li>JOIN: SELECT column_name(s) FROM table1 INNER JOIN table2 ON table1.column_name = table2.column_name;</li>
+<li>UNION: combine the result-set of two or more SELECT statements. </li>
+<li>GROUP BY: used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.</li>
+<li>The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.</li>
+<li>The EXISTS operator is used to test for the existence of any record in a subquery.</li>
+<li>The ANY operator returns true if any of the subquery values meet the condition.</li>
+<li>The ALL operator returns true if all of the subquery values meet the condition.</li>
+<li>The SELECT INTO statement copies data from one table into a new table.</li>
+<li>The INSERT INTO SELECT statement copies data from one table and inserts it into another table.</li>
+</ul>
+<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ul>
+<li>SQL keywords are NOT case sensitive: select is the same as SELECT</li>
+<li>SQL requires single quotes around text values. Numeric fields should not be enclosed in quotes:</li>
+<li>(INNER) JOIN: Returns records that have matching values in both tables</li>
+<li>LEFT (OUTER) JOIN: Return all records from the left table, and the matched records from the right table</li>
+<li>RIGHT (OUTER) JOIN: Return all records from the right table, and the matched records from the left table</li>
+<li>FULL (OUTER) JOIN: Return all records when there is a match in either left or right table</li>
+<li>Each SELECT statement within UNION must have the same number of columns.The columns must also have similar data types.The columns in each SELECT statement must also be in the same order</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/Semantics-with-Dense-Vectors/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,7 +526,7 @@
       
         
           
-            <h2 id="Skip-gram-Model"><a href="#Skip-gram-Model" class="headerlink" title="Skip-gram Model"></a>Skip-gram Model</h2><p>Given a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Skip-gram-Model"><a href="#Skip-gram-Model" class="headerlink" title="Skip-gram Model"></a>Skip-gram Model</h2><p>Given a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix.</p>
 <p>The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document.<br>The objective of the Skip-gram model is to maximize the average log probability \(\frac{1}{T}\sum_{t=1}^T\sum_{−c≤j≤c,j\neq 0}\log p(w_{t+j}|w_t) \)</p>
 <p>The basic Skip-gram formulation defines \(p(w_{t+j} |w_t)\) using the softmax function:<br>$$p(w_{O}|w_I) = \frac{exp({v’_{w_O}}^Tv_{w_I})}{\sum_{w=1}^Wexp({v’<em>w}^Tv</em>{w_I})}$$</p>
 <h2 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h2><p>Noise Contrastive Estimation (NCE). NCE posits that a good model should be able to differentiate data from noise by means of logistic regression. </p>
@@ -547,7 +706,7 @@
       
         
           
-            <p>A neural network with one hidden layer can be shown to learn any function.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>A neural network with one hidden layer can be shown to learn any function.</p>
 <h3 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h3><p><strong><strong>is to choose a training example or a batch of examples to compute the gradients rather than use the entire training set.</strong></strong></p>
 <h3 id="XOR-Problem"><a href="#XOR-Problem" class="headerlink" title="XOR Problem"></a>XOR Problem</h3><p><strong>not linearly separable</strong><br>a hidden layer rotates the axis or converts the original data to another plane.</p>
 <h3 id="Cross-Entropy-Loss"><a href="#Cross-Entropy-Loss" class="headerlink" title="Cross Entropy Loss"></a>Cross Entropy Loss</h3><p>$$L(\hat{y}, y) = \log p(\hat{y}_i) $$<br>If \(\hat{y}\) != y, it doesn’t contribute to the loss. Only the true class would contribute the loss. If \(p(\hat{y})\) =1, \(\log p(\hat{y}_i)=0\). If \(p(\hat{y})\) =0, \(\log p(\hat{y}_i)=\infty\).<br>\(\hat{y}\) means output of the network.</p>
@@ -671,7 +830,7 @@
       
         
           
-            <h2 id="Binomial-Logistic-Regression"><a href="#Binomial-Logistic-Regression" class="headerlink" title="Binomial Logistic Regression"></a>Binomial Logistic Regression</h2><p>$$p(1|x) = \frac{\exp(\vec{w} \cdot \vec{x})}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Binomial-Logistic-Regression"><a href="#Binomial-Logistic-Regression" class="headerlink" title="Binomial Logistic Regression"></a>Binomial Logistic Regression</h2><p>$$p(1|x) = \frac{\exp(\vec{w} \cdot \vec{x})}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
 <p>$$p(0|x) = \frac{1}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
 <p><strong>odds</strong>: the probability that an event occur divided by the probability that an event doesn’t occur. \(\frac{p}{1-p}\)</p>
 <p><strong>log odds</strong>: take log of odds. \(\log \frac{p}{1-p}\). In terms of logistic regression, \(\log \frac{p}{1-p}=\vec{w} \cdot \vec{x}\).</p>
@@ -813,7 +972,7 @@
       
         
           
-            <p><strong>contingency table</strong> consists of 4 entries: True Positive, True Negative, False Positive, False Negative.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>contingency table</strong> consists of 4 entries: True Positive, True Negative, False Positive, False Negative.</p>
 <p>Accuracy doesn’t work well when<br>the classes are unbalanced.</p>
 <p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
 <p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
@@ -964,7 +1123,7 @@
       
         
           
-            <p>In most text classification<br>applications, however, using a stop word list doesn’t improve performance,<br>and so it is more common to make use of the entire vocabulary and not use a stop<br>word list</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In most text classification<br>applications, however, using a stop word list doesn’t improve performance,<br>and so it is more common to make use of the entire vocabulary and not use a stop<br>word list</p>
 <h3 id="Naive-Bayes-Classifier-for-Sentiment-Analysis"><a href="#Naive-Bayes-Classifier-for-Sentiment-Analysis" class="headerlink" title="Naive Bayes Classifier for Sentiment Analysis"></a>Naive Bayes Classifier for Sentiment Analysis</h3><p>Correct estimation implies accurate prediction, but accurate prediction does not imply correct estimation. NB classifiers estimate badly, but often classify well.</p>
 <p>The assumption that terms are independent does not hold. But in terms of classification, the class that a document belongs is usually irrelevant to position. This somehow reduce the influence of the dependence.</p>
 <p>i.e.: Finance industry is promising in HK.<br>HK finance is booming.</p>
@@ -1130,7 +1289,7 @@
       
         
           
-            <h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Noisy-Channel-Model"><a href="#Noisy-Channel-Model" class="headerlink" title="Noisy Channel Model"></a>Noisy Channel Model</h3><p>The intuition of the noisy channel model is to treat the misspelled word as if a correctly spelled word had been “distorted” by being passed through a noisy communication channel.</p>
 <p>$$\hat{w} = \operatorname{arg\,max}_{w\in C} p(x|w)p(w)$$</p>
 <p>C is the list of candidate words. Above is a kind of Bayesian inference. We see an observation x (a misspelled word) and find the word w that generated this misspelled word. Out of all possible words in the vocabulary V or just a list of candidate word C, we want to find the<br>word w such that P(w|x) is highest.</p>
 <h3 id="Channel-Model-p-x-w"><a href="#Channel-Model-p-x-w" class="headerlink" title="Channel Model p(x|w)"></a>Channel Model p(x|w)</h3><p>It’s expensive to get a perfect channel model. But a pretty reasonable estimate<br>of P(x|w) could be generated just by looking at local context: the identity of the correct letter itself, the<br>misspelling, and the surrounding letters.</p>
@@ -1269,7 +1428,7 @@
       
         
           
-            <p><strong>Language models</strong> assign a probability to each sentence</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Language models</strong> assign a probability to each sentence</p>
 <p>\( w_1^n\) is a sequence of N words from word 1 to word N.</p>
 <p>A <strong>held-out corpus</strong> is an additional training corpus that we use to set hyperparameters.</p>
 <p><strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like graffe for giraffe). </p>
@@ -1453,7 +1612,7 @@
       
         
           
-            <h1 id="Smoothing"><a href="#Smoothing" class="headerlink" title="Smoothing:"></a>Smoothing:</h1><p>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Smoothing"><a href="#Smoothing" class="headerlink" title="Smoothing:"></a>Smoothing:</h1><p>basically discount the observed words to assign to words with zero count so as to deal with the zero probability words.</p>
 <h3 id="Laplace-Smoothing"><a href="#Laplace-Smoothing" class="headerlink" title="Laplace Smoothing"></a>Laplace Smoothing</h3><p>Also called add-one smoothing.</p>
 <p>the unsmoothed maximum likelihood estimate of the unigram probability of the word wi is its count ci normalized by the total number of word tokens N</p>
 <p>$$ p(w_i)= \frac{c_i}{N} $$</p>
@@ -1651,131 +1810,10 @@
       
         
           
-            <h2 id="Max-Matching-Algorithm"><a href="#Max-Matching-Algorithm" class="headerlink" title="Max Matching Algorithm"></a>Max Matching Algorithm</h2><p>It is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Max-Matching-Algorithm"><a href="#Max-Matching-Algorithm" class="headerlink" title="Max Matching Algorithm"></a>Max Matching Algorithm</h2><p>It is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms.</p>
 <p>It works especially well on Chinese. I think it is because that Chinese words are single word that could not be took apart while English words are sequences of characters.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_words</span><span class="params">(file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(file) <span class="keyword">as</span> f:</span><br><span class="line">        l = f.readlines()</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_matching</span><span class="params">(text, dictionary)</span>:</span></span><br><span class="line">    <span class="comment"># l = []</span></span><br><span class="line">    w = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text),<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        word = text[:i]</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> dictionary:</span><br><span class="line">            w += word+<span class="string">' '</span></span><br><span class="line"></span><br><span class="line">            w += max_matching(text[i:],dictionary) + <span class="string">' '</span></span><br><span class="line">            <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">if</span> len(text) != <span class="number">0</span>:</span><br><span class="line">        w = text[<span class="number">0</span>]+<span class="string">' '</span></span><br><span class="line">        w += max_matching(text[<span class="number">1</span>:],dictionary) + <span class="string">' '</span></span><br><span class="line">        <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    file = <span class="string">'/Users/lmk/Documents/NLP/word.csv'</span></span><br><span class="line">    l = read_words(file)</span><br><span class="line">    <span class="comment"># l = read_words(file)</span></span><br><span class="line">    l = list(map(<span class="keyword">lambda</span> i: i[<span class="number">3</span>:<span class="number">-1</span>], l))</span><br><span class="line">    l[<span class="number">0</span>] = l[<span class="number">0</span>][<span class="number">1</span>:]</span><br><span class="line">    dic = l</span><br><span class="line">    <span class="comment"># s = "ilovechina"</span></span><br><span class="line">    s = <span class="string">"is also possible to use a list as a queue, where the first"</span></span><br><span class="line">    sentence = max_matching(s,dic)</span><br><span class="line">    token = sentence.split()</span><br><span class="line">    <span class="comment"># flatten = lambda l: [item for sublist in l for item in sentence]</span></span><br><span class="line">    <span class="comment"># flat_list = [item for sublist in l for item in sublist]</span></span><br><span class="line">    print(sentence)</span><br><span class="line">    print(token)</span><br></pre></td></tr></table></figure>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Minimum-Edit-Distance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/25/Minimum-Edit-Distance/" itemprop="url">Minimum_Edit_Distance</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-25T19:46:58+08:00">
-                2018-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Minimum-Edit-Distance"><a href="#Minimum-Edit-Distance" class="headerlink" title="Minimum Edit Distance"></a>Minimum Edit Distance</h2><p>minimum edit distance between two strings is defined as the minimum number of editing operations (operations like insertion, deletion, substitution) needed to transform one string into another. It’s useful in terms of portential splleing checking and string alignment which is significant in terms of machine translation and speech recognition.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertion_cost</span><span class="params">(self,c1)</span>:</span></span><br><span class="line">        <span class="string">'''customize your insertion cost'''</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deletion_cost</span><span class="params">(self,c1)</span>:</span></span><br><span class="line">        <span class="string">'''customize your deletion cost'''</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">substitution_cost</span><span class="params">(self,c1,c2)</span>:</span></span><br><span class="line">        <span class="string">'''customize your substitution cost'''</span></span><br><span class="line">        <span class="keyword">if</span> c1 == c2:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDistance</span><span class="params">(self, word1, word2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type word1: str</span></span><br><span class="line"><span class="string">        :type word2: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        n = len(word1)+<span class="number">1</span>    <span class="comment">#row of matrix</span></span><br><span class="line">        m = len(word2)+<span class="number">1</span>    <span class="comment">#column of matrix</span></span><br><span class="line">        l = np.zeros((m,n))</span><br><span class="line">        <span class="comment"># l = [n*[0] for i in range(m)]</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            l[i,<span class="number">0</span>] = i</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            l[<span class="number">0</span>,i] = i</span><br><span class="line">        <span class="comment"># print(l)</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n):</span><br><span class="line">                <span class="comment"># print(i,j)</span></span><br><span class="line">                l[i][j] = min(l[i<span class="number">-1</span>][j]+self.insertion_cost(word2[i<span class="number">-1</span>]), l[i][j<span class="number">-1</span>]+self.deletion_cost(word1[j<span class="number">-1</span>]), l[i<span class="number">-1</span>][j<span class="number">-1</span>]+self.substitution_cost(word1[j<span class="number">-1</span>],word2[i<span class="number">-1</span>]))</span><br><span class="line">        <span class="comment"># l = [list(range(n)) for i in range(m)]</span></span><br><span class="line">        <span class="comment"># print(l)</span></span><br><span class="line">        <span class="keyword">return</span> l[<span class="number">-1</span>][<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
-<h4 id="minimum-edit-distance-with-backtrace"><a href="#minimum-edit-distance-with-backtrace" class="headerlink" title="minimum edit distance with backtrace"></a>minimum edit distance with backtrace</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Edit_Distance</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.back_trace = <span class="keyword">None</span></span><br><span class="line">        self.n = <span class="number">0</span></span><br><span class="line">        self.m = <span class="number">0</span></span><br><span class="line">        self.l = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insertion_cost</span><span class="params">(self,c1)</span>:</span></span><br><span class="line">        <span class="string">'''customize your insertion cost'''</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deletion_cost</span><span class="params">(self,c1)</span>:</span></span><br><span class="line">        <span class="string">'''customize your deletion cost'''</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">substitution_cost</span><span class="params">(self,c1,c2)</span>:</span></span><br><span class="line">        <span class="string">'''customize your substitution cost'''</span></span><br><span class="line">        <span class="keyword">if</span> c1 == c2:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">minDistance</span><span class="params">(self, word1, word2)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type word1: str</span></span><br><span class="line"><span class="string">        :type word2: str</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        n = len(word1)+<span class="number">1</span>    <span class="comment">#row of matrix</span></span><br><span class="line">        m = len(word2)+<span class="number">1</span>    <span class="comment">#column of matrix</span></span><br><span class="line">        self.n = n</span><br><span class="line">        self.m = m</span><br><span class="line">        l = np.zeros((m,n))</span><br><span class="line">        <span class="comment"># back_trace = np.zeros((m,n))</span></span><br><span class="line">        back_trace = [n*[<span class="number">0</span>] <span class="keyword">for</span> i <span class="keyword">in</span> range(m)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">            l[i,<span class="number">0</span>] = i</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">            l[<span class="number">0</span>,i] = i</span><br><span class="line">        <span class="comment"># print(l)</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,m):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,n):</span><br><span class="line">                <span class="comment"># print(i,j)</span></span><br><span class="line">                cost = [l[i<span class="number">-1</span>][j]+self.insertion_cost(word2[i<span class="number">-1</span>]), l[i][j<span class="number">-1</span>]+self.deletion_cost(word1[j<span class="number">-1</span>]), l[i<span class="number">-1</span>][j<span class="number">-1</span>]+self.substitution_cost(word1[j<span class="number">-1</span>],word2[i<span class="number">-1</span>])]</span><br><span class="line">                min_cost = min(cost)</span><br><span class="line">                print((i,j),min_cost)</span><br><span class="line">                back_trace[i][j] = [i <span class="keyword">for</span> i,j <span class="keyword">in</span> enumerate(cost) <span class="keyword">if</span> j == min_cost]</span><br><span class="line">                l[i][j] = min_cost</span><br><span class="line">        <span class="comment"># l = [list(range(n)) for i in range(m)]</span></span><br><span class="line">        <span class="comment"># print(l)</span></span><br><span class="line">        <span class="comment"># print(back_trace)</span></span><br><span class="line">        self.l = l</span><br><span class="line">        self.back_trace = back_trace</span><br><span class="line">        <span class="keyword">return</span> l[<span class="number">-1</span>][<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># def print_direction(self,l):</span></span><br><span class="line">    <span class="comment">#     if</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">output_back_trace</span><span class="params">(self)</span>:</span></span><br><span class="line">        i = self.n<span class="number">-1</span></span><br><span class="line">        j = self.m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">while</span> i &gt;= <span class="number">0</span> <span class="keyword">and</span> j &gt;= <span class="number">0</span>:</span><br><span class="line"></span><br><span class="line">            <span class="comment"># print((i,j))</span></span><br><span class="line">            direction_list = self.back_trace[i][j]   <span class="comment">#choose the last direction, here every direction has the same cost</span></span><br><span class="line">            print(direction_list)</span><br><span class="line">            <span class="keyword">if</span> isinstance(direction_list,list):</span><br><span class="line">                direction = direction_list[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                direction = direction_list</span><br><span class="line">            <span class="keyword">if</span> direction == <span class="number">2</span>:</span><br><span class="line">                i -= <span class="number">1</span></span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> direction == <span class="number">1</span>:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i -= <span class="number">1</span></span><br><span class="line">            <span class="comment"># print(self.l[i][j])</span></span><br><span class="line"></span><br><span class="line">s = Edit_Distance()</span><br><span class="line"><span class="comment"># word1 = "intention"</span></span><br><span class="line"><span class="comment"># word2 = "execution"</span></span><br><span class="line">word1 = <span class="string">"execution"</span></span><br><span class="line">word2 = <span class="string">"intention"</span></span><br><span class="line">leg = s.minDistance(word1,word2)</span><br><span class="line">print(leg)</span><br><span class="line">s.output_back_trace()</span><br><span class="line">print(s.l)</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1864,7 +1902,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-count">88</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
