@@ -296,6 +296,586 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/tf_visualization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/tf_visualization/" itemprop="url">tf_visualization</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-19T12:21:41+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>tf histrogram:<br>x-axis represents the exact value. y-axis represents number of step. It represent frequency of a parameter. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/11/Pytorch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/11/Pytorch/" itemprop="url">Pytorch</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-11T12:50:53+08:00">
+                2018-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>reshape in pytorch: torch.view</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
+<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
+<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
+<p>Converting a Torch Tensor to a NumPy Array</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
+<p>Converting NumPy Array to Torch Tensor</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
+<p>Tensors can be moved onto any device or converted to another dtype using the .to method.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x.to(device)</span><br></pre></td></tr></table></figure>
+<p>torch.Tensor is the central class of the package. If you set its attribute .requires_grad as True, it starts to track all operations on it. When you finish your computation you can call .backward() and have all the gradients computed automatically. The gradient for this tensor will be accumulated into .grad attribute.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with torch.no_grad():</span><br><span class="line">  y = x * 2</span><br></pre></td></tr></table></figure>
+<p>wrap the code in with no_grad() code block to prevent grad.</p>
+<p>To stop a tensor from tracking history, you can call .detach() to detach it from the computation history, and to prevent future computation from being tracked.</p>
+<p>To prevent tracking history (and using memory), you can also wrap the code block in with torch.no_grad():. This can be particularly helpful when evaluating a model because the model may have trainable parameters with requires_grad=True, but for which we don’t need the gradients.</p>
+<p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
+<p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
+<p>dtype=torch.long is for integers.</p>
+<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
+<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
+<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
+<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
+<p>Display an image in pytorch: </p>
+<ul>
+<li>transform the array</li>
+<li>transform to numpy array</li>
+<li>display</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
+<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
+<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
+<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.utils.rnn.pack_padded_sequence()</span><br></pre></td></tr></table></figure>
+<p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
+<p>Example:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
+<p>return the total number of elements in the input tensor.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.topk(_input_, _k_, _dim=None_, _largest=True_, _sorted=True_, _out=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<p>Returns the <code>k</code> largest elements of the given <code>input</code> tensor along a given dimension.</p>
+<p>RuntimeError: Expected object of scalar type Float but got scalar type Double for argument.<br>change tensor to float with<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor.to(torch.float)</span><br></pre></td></tr></table></figure></p>
+<p>nn.CrossEntropyLoss(): The first argument is model output and the second argument is label. The label has to be shape of [batch_size].</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.ne(_input_, _other_, _out=None_)</span><br></pre></td></tr></table></figure>
+<p>perform element-wise computation between two tensors. If two elements are different, return 1,else 0.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.tril(b, diagonal=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>return upper triangular matrix of a tensor. diagonal = 1 exclude more values. diagonal = -1 include more values.</p>
+<p>rnn batch_first=True doesn’t affect output hidden state.</p>
+<p>hidden states of shape (num_layers * num_directions, batch, hidden_size)</p>
+<p>ONNX does not support batch_first……</p>
+<p>torch.reshape(), 这与 numpy.reshape 的功能类似。它大致相当于 tensor.contiguous().view()</p>
+<p>print model parameters:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> name, param <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">    <span class="keyword">if</span> param.requires_grad:</span><br><span class="line">        <span class="keyword">print</span> (name, param.data)</span><br></pre></td></tr></table></figure>
+<p>From 0.4, Variable is equivalent to tensor.</p>
+<p>Pytorch prediction: each time predict an example, it would load all parameters to memory. If increase the batch size, it would reduce the times of loading parameters so as to increase prediction time.</p>
+<p>torch.matmul is basically the same as torch.bmm. Their broadcast behaviors are different.</p>
+<p>resize never copies memory.<br>reshape always copies memory.<br>view never copies memory.</p>
+<p>Permute is a multidimensional rotation saying somehow. It keeps the data ordering. View (which is another reshaping method) maps from one dimensionality to another sequentially reading data from the upper dimensions to the lower ones.</p>
+<p>So if you want fuse two dimensions into one, you have to apply it over contiguous dimensions or u will modify the data ordering</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/sctipts_python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/06/sctipts_python/" itemprop="url">scripts_python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T20:25:03+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>remove file from a directory<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'visual/train'</span>, <span class="string">'visual/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    list(map(<span class="keyword">lambda</span> i: os.remove(os.path.join(dir_to_search, i)),os.listdir(dir_to_search)))</span><br><span class="line"><span class="comment">#     l = list(map(lambda i: os.path.join(dir_to_search, i),os.listdir(dir_to_search)))</span></span><br></pre></td></tr></table></figure></p>
+<p>move newest files to another dir<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line">    time_l.sort()</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        dst = <span class="string">'visual/train'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dst = <span class="string">'visual/val'</span></span><br><span class="line">    shutil.copyfile(d[time_l[<span class="number">-1</span>]], os.path.join(dst, d[time_l[<span class="number">-1</span>]].split(<span class="string">'/'</span>)[<span class="number">-1</span>] ))</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"><span class="comment">#     '''delete'''</span></span><br><span class="line"><span class="comment">#     for i in range(len(time_l)-1):</span></span><br><span class="line"><span class="comment">#         os.remove(d[time_l[i]])</span></span><br></pre></td></tr></table></figure></p>
+<p>delect old files</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line"><span class="comment">#     print(file_l)</span></span><br><span class="line">    time_l.sort()</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line">    <span class="string">'''delete'''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(time_l)<span class="number">-1</span>):</span><br><span class="line">        os.remove(d[time_l[i]])</span><br><span class="line"><span class="comment">#     print(d[time_l[-1]])</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">#               if datetime.datetime.now() - file_modified &gt; datetime.timedelta(hours=24):</span></span><br><span class="line"><span class="comment">#                   os.remove(curpath)</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/Data Preprocessing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/04/Data Preprocessing/" itemprop="url">Data Preprocessing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T14:09:33+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.</p>
+<ol>
+<li>Features selection according to experience or something like that.</li>
+<li>Features processing. Features are in original data, some steps are necessary to preprocess the data and get corresponding features.</li>
+<li>Data cleaning.</li>
+<li>Data sampling and filtering. Not all data would be used to train a model. Then you need to sample the data points. Methods include random sampling and others. Filtering is to detect and remove outliers. Common methods are KNN, clustering.</li>
+<li>Features classification. </li>
+<li>Feature processing and analysis.</li>
+</ol>
+<p>Features classification:</p>
+<ol>
+<li>Low-level and high-level features. Low-level features are mainly original features like user ID, time, weather. High-level features are processed features like sentiment.</li>
+<li>Static features and dynamic features. Static features are stable or seldom changed like age, height. Dynamic features change frequently like distance, temperature.</li>
+<li>0-1 features, one-hot(categorical) features, continuous features.</li>
+</ol>
+<p>Feature processing:</p>
+<ol>
+<li>features normalization</li>
+<li>features discretization</li>
+<li>missing values. </li>
+</ol>
+<p>Dimensionality reduction:</p>
+<ol>
+<li>Sometimes increasing the dimensionality of features is good for classification.</li>
+<li>Common methods to reduce dimensionality are PCA, LDA.</li>
+</ol>
+<p>Features selection:</p>
+<ol>
+<li>features generation.</li>
+<li>Evaluation.</li>
+</ol>
+<p>Features generation:</p>
+<ol>
+<li>Complete search. BFS, Branch and Bound.</li>
+<li>Heuristic. SFS, Sequential Forward Selection; SBS,Sequential Backward Selection; LRS,Plus-L Minus-R Selection.</li>
+<li>Random. RGSS, Random Generation plus Sequential Selection; SA, Simulated Annealing; GA, Genetic Algorithms.</li>
+</ol>
+<p>Feature normalization: if there is not feature normalization, some features with larger range like [0, +10000] compared to [0,3] would impose more influence on the model. </p>
+<p>During deployment, performance(real-time, low-delay) is signifiacnt. There would be tradeoff between the amount of data and performance(accuracy). A possible solution is to construct a tree for features like hierachical softmax so that finding a feature is more efficient.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://tech.meituan.com/machinelearning_data_feature_process.html" target="_blank" rel="noopener"># 机器学习中的数据清洗与特征处理综述</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/Feature Cross/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -653,6 +1233,10 @@
 <li>related tasks share a common optimal hypothesis class</li>
 </ol>
 <h2 id="MTL-in-NLP"><a href="#MTL-in-NLP" class="headerlink" title="MTL in NLP"></a>MTL in NLP</h2><p>add a language modeling objective to the model that is trained jointly with the main task model.</p>
+<p>The scale of loss for different tasks are supposed to be same, otherwise task with large loss would dominate the backpropagation so that the neural network would bias to the worst task rather than learn a good representation for all tasks.</p>
+<h3 id="Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding"><a href="#Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding" class="headerlink" title="Multi-Task Deep Neural Networks for Natural Language Understanding"></a>Multi-Task Deep Neural Networks for Natural Language Understanding</h3><p>It employs the same structure like bert to do pre-training. And then add a specific fine-tuning layer for each task and do fine-tuning together. </p>
+<p>For each task, the model would update the parameters including the task-specific layer and pre-training layer. Each eopch the model would be trained on all tasks separately which means their loss is not added together.</p>
+<h3 id="Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics"><a href="#Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics" class="headerlink" title="Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics"></a>Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics</h3><p>It proposes to employ the variance of outputs to be the weight of the combined loss.</p>
 <h1 id="Core-of-MTL-what-to-share-All-parameters"><a href="#Core-of-MTL-what-to-share-All-parameters" class="headerlink" title="Core of MTL: what to share? All parameters?"></a>Core of MTL: what to share? All parameters?</h1><p>In conclusion, hard parameters sharing is still pervasive for neural-network based MTL. Recent advances on learning what to share, however, are promising. At the same time, our understanding of tasks – their similarity, relationship, hierarchy, and benefit for MTL – is still limited</p>
 
           
@@ -1147,524 +1731,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/Recommendation-System-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/16/Recommendation-System-1/" itemprop="url">Recommendation_System</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T11:07:40+08:00">
-                2018-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>CTR</strong>(<strong>Click-Through-Rate</strong>).</p>
-<p>Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the candidate items and return some items with high scores.</p>
-<p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
-<p><strong>Generalization</strong> is loosely defined as discovering of underlying features from existing co-occurence so that new feature combinations could be inferred from existing co-occurence.</p>
-<p>data for Web-scale recommender systems is mostly <strong>discrete and categorical</strong>, leading to a large and sparse feature space that is challenging for feature exploration. For continuous data, a common method is to divide the continuous range into several continuous range such that one-hot vector could be employed to represent a range.</p>
-<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.</p>
-<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2><p>Factorization machine and DNN requires no or less fiture engineering because it is able to learn dense and low-dimension embedding. But it would over-generate so that recommendation would be unrelevent. Wide refers to logistic regression. It is able to simply remember some rules. Wide&amp;Deep combines them together. </p>
-<p>For wide part, features are transformed to one-hot sparse feature and fed to a linear transformation. </p>
-<p>Feature transformation:<br>$$<br>\varnothing_k(x)=\prod^d_{i=1}x_i^{c_{ki}}<br>$$</p>
-<p>Linear transformation:<br>$$<br>\mathbf{w}_{wide}^T[ \mathbf{x},\phi  ( \mathbf{x}  )]<br>$$<br>where \([ \mathbf{x},\phi  ( \mathbf{x}  )]\) is concatenation of original features and transformmed features.</p>
-<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P\left ( Y=1\mid \mathbf{x} \right )=\sigma \left ( \mathbf{w}<em>{wide}^T\left [ \mathbf{x},\phi \left ( \mathbf{x} \right ) \right ] + \mathbf{w}</em>{deep}^Ta^{\left ( l_f \right )}+b \right )<br>$$</p>
-<h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><p>DeepFM substitutes the wide part in wide&amp;deep with <strong>Factorization Machines(FM)</strong>. It is able to model high-level feature combination by transforming the sparse feature to dense and low-dimension features. It models feature interaction as inner product of embeddings.</p>
-<p>A feature \(x_i\) is associated with a weight vector(embedding) \(v_i\) and feature interaction or feature combination is computed as \(&lt;v_i,v_j&gt;\). Intuitively, in stead of computing feature combination directly, it insert an embedding layer to the network so as to convert features to embeddings. Compuing the dot product of embedding to model feature combination.</p>
-<h2 id="DCN-Deep-Cross-Network"><a href="#DCN-Deep-Cross-Network" class="headerlink" title="DCN(Deep Cross Network)"></a>DCN(Deep Cross Network)</h2><p>The features are usually sparse, it is unable to represent those sparse features with one-hot vector if the size of vocabulary is huge. Therefore embedding layer is employed to convert sparse features to dense features which are real-value vectors like Natural Language Processing. After that, those vectors are stacked or concatenated with other dense features.</p>
-<p>It also utilises matrix multiplication to implement feature combination.<br>$$<br>x_{l+1} = x_0 x_l^T w_l + b_l + x_l = f(x_l, w_l, b_l) + x_l<br>$$</p>
-<p>where \(x_0\) is the concatenation of embedding features and dense features. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
-<p>The degress of cross features is growing with the number of layers.</p>
-<p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/SVM-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/09/SVM-2/" itemprop="url">SVM_2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-09T11:04:55+08:00">
-                2018-10-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>$$margin={1\over \left|{\boldsymbol {w}}\right|} = \sqrt{w_1^2+w_2^2+…+w_n^2}=\left|{\boldsymbol {w}}\right|_{2}$$</p>
-<p>optimal hyperplane:</p>
-<p>$$sign(w_1x_1+w_2x_2+…+w_nx_n+b)=sign(\boldsymbol {w}^Tx)$$</p>
-<h2 id="Quadratic-Programming"><a href="#Quadratic-Programming" class="headerlink" title="Quadratic Programming"></a>Quadratic Programming</h2><p>minimize a (convex) quadratic function, subject to linear inequality constraints.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Hyper-Para-Search/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/05/Hyper-Para-Search/" itemprop="url">Hyper_Para_Search</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T20:48:27+08:00">
-                2018-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Hyper-parameters-Searching"><a href="#Hyper-parameters-Searching" class="headerlink" title="Hyper-parameters Searching"></a>Hyper-parameters Searching</h1><h2 id="Random-Search"><a href="#Random-Search" class="headerlink" title="Random Search"></a>Random Search</h2><p>It is heavily used in deep learning. There are tons of parameters in deep learning. Grid search is computation-intensive because it tunes parameters one by one which change only a parameter and keep the others unchanged. Each time for each parameter, random search samples a value from normal distribution. It is always the case that some parameters like leanring rate are more important than other parameters. Random search could discover a pretty good setting of hyperparameters.</p>
-<p>For example, let’s assume there are only 3 parameters. The algorithm has been run for 9 times both random search and grid search. For random search, each parameter has been tested for 9 times. For grid search, each parameter has been tested for only 3 times because it keep the other two parameters unchanged when tuning a parameter.</p>
-<p>Advantages:<br>efficient</p>
-<h2 id="Grid-Search"><a href="#Grid-Search" class="headerlink" title="Grid Search"></a>Grid Search</h2><p>Grid search is to generate a list of candidate parameters for each parameter. Each time only changes a parameter and keep other parameters invariant. It is systematic but it is only appropriate for low dimension. When the dimension increase, the computation would also increase dramatically. It would waste computation resource because each time only a parameter is changed.</p>
-<p>Advantages:<br>Systematic.<br>Precise.</p>
-<h2 id="Bayes-Optimization"><a href="#Bayes-Optimization" class="headerlink" title="Bayes Optimization"></a>Bayes Optimization</h2><p>The third one is Bayes Optimization. Bayes optimization is powerful but it is not widely employed because it is application-specific. There is not a good software to facilitate the coding process until now. Its general idea is to do some experiments on a few settings of parameters. After that choose the setting that has high variance to evaluate so as to achieve better performance. High variance means that the parameters has the potential to be better or worse. If the performance is degraded, it doesn’t matter. It resemble the greedy algorithm to some extend. </p>
-<p>This method assumes that the similar inputs gives similar outputs. It’s a kind of weak prior. Its intuition is that to evaluate those unknown but possibly better combinations of parameters rather than try all of them.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://mp.weixin.qq.com/s/l6uzHwGSTY5xRSkPD_B2rw" target="_blank" rel="noopener">深度学习模型超参数搜索实用指南</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Technical-Analysis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/05/Technical-Analysis/" itemprop="url">Technical_Analysis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T15:14:07+08:00">
-                2018-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Price-based:</p>
-<p>Moving average lines are heavily used to smooth the short-term fluctuations in the price charts. It is regarded as a support line where the price would not go lower than it in an uptrend. Points where the longer-term moving average crosses below the short-term moving average reveals an emerging uptrend.</p>
-<p>Bollinger bands are constructed from n standard deviation of closing prices. The high and low bands are the prices that moving average plus or minus n standard deviation. The prices in the area between the high and low bands are considered as resonable fluctuation of prices. If the price go beyond the area, it reveals overbought or oversold which means that the price is likely to decrease and increase respectively in the near future. It is the time where contrarian strategy comes into play. It is basically a strategy to buy or sell when most investors sell or buy.</p>
-<p>Oscillators:</p>
-<p>Oscillators are a set of indicators that oscillate around a specific value or in a range. Oscillator charts could be employed to detect convergence or divergence between oscillator and market prices. Convergence reveals that the current trend would continue and divergence suggests the change of the current trend.</p>
-<p>Sample indicators:</p>
-<p>Relative Strength Index(RSI): the rations of increase in price to decrease in price in a period of time. High values indicates overbought and low values suggest oversold.</p>
-<p>Moving Average Convergence Divergence(MACD): It is constructed from two lines. The MACD line is the difference between two expoentially moving average lines while the signal line is the expoentially moving average of the MACD line. The MACD could be employed to show both convergence or divergence and overbought or oversold. A buy signal is gerated when the MACD line cross above the signal line.</p>
-<p>Williams %R:<br>It indicates the relation between the closing price and the highest and lowest price in the previous days. It also reveals overbought or oversold.</p>
-<p>Accumulation/Distribution Line(AD):<br>Calculated from Money Flow Multiplier and Money Flow Volume. It takes volume into consideration. Volume is a significant indicator in technical analysis. It basically measure the money flow of the underlying asset. A pending revesal trend is indicated when divergence occurs between price and AD. Bullish Crosses occur when AD crosses above zero.</p>
-<p>Non-Price-Based Indicators<br>Put/call ratio</p>
-<p>Volatility Index</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1719,7 +1785,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

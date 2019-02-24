@@ -296,6 +296,524 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/NN-Architecture/" itemprop="url">NN_Architecture</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
+<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
+<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
+<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
+</ul>
+<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
+<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/training-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/training-problem/" itemprop="url">training_problem</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T17:11:10+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="Cuda-Out-of-Memory"><a href="#Cuda-Out-of-Memory" class="headerlink" title="Cuda Out of Memory"></a>Cuda Out of Memory</h4><p>Solution: </p>
+<ul>
+<li>reduce batch size</li>
+<li>reduce model size(reduce number of activation, increase filter size, decrease filter number)</li>
+<li>For RNN, reduce the length</li>
+</ul>
+<h3 id="Validation-accuracy-aigzagging"><a href="#Validation-accuracy-aigzagging" class="headerlink" title="Validation accuracy aigzagging"></a>Validation accuracy aigzagging</h3><ul>
+<li>Data is not normalized, taking some steps would deviate from the local minimum</li>
+<li>training step size is too large.</li>
+</ul>
+<h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><p>Assign high probability to <s> and <e>.</e></s></p>
+<p>ber: </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/22/gradient-descent/" itemprop="url">gradient_descent</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T11:45:16+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Vanilla-gradient-descent"><a href="#Vanilla-gradient-descent" class="headerlink" title="Vanilla gradient descent"></a>Vanilla gradient descent</h2><p>Calculate the gradient of the whole dataset and average the gradient by the size of the dataset. </p>
+<p>Drawback: Time-consuming, compute gradients redundantly.</p>
+<h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>Take a batch of examples and calculate the gradient. After that, average the gradient by the batch size.</p>
+<h2 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h2><p>Take a single example and calculate the gradient. </p>
+<p>Drawback: High variance, fluctuate a lot.<br>In high dimension, some directions would have larger gradients and zigzag a lot. The direction of gradient would deviate from the best direction.</p>
+<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>Momentum would accumulate gradient if the direction is the same and reduce the gradient if the direction zigzag a lot such that the overall direction would point to the local/global minimum with less zigzagging.</p>
+<p>$$v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta)$$</p>
+<p>$$\theta = \theta + v_t$$</p>
+<p>\(\theta\) is the gradient and \(\gamma\) is the momentum which is usually 0.9. \(\eta\) is the learning rate.</p>
+<h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>It is a lookahead version of momentum. The gradient would be updated using momentum, and a estimate of the future gradient after normal momentum update\(\nabla_\theta J( \theta - \gamma v_{t-1} )\) would be added to the current update of gradient so as to accelerate convergence. <strong>It significantly increased the performance of RNNs.</strong></p>
+<p>$$<br>v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta + \gamma v_{t-1} ) \<br>\theta = \theta + v_t$$</p>
+<h3 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h3><p>It adapts the learning rate to the parameters, performing larger updates for infrequent and smaller updates for frequent<br>parameters.</p>
+<p>$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$</p>
+<p>\(G_{t} \in \mathbb{R}^{d \times d}\) is a diagonal matrix where each diagonal element i,i is the sum of the squares of the gradients w.r.t. \(\theta_i\) up to time step t, while \(\epsilon\) is a smoothing term that avoids division by zero (usually on the order of 1e−8). Interestingly, without the square root operation, the algorithm performs much worse.</p>
+<p>Drawback: The accumulated sum keeps growing during training and causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</p>
+<h3 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h3><p>$$\Delta \theta_t = - \dfrac{RMS[\Delta \theta]<em>{t-1}}{RMS[g]</em>{t}} g_{t} \<br>\theta_{t+1} = \theta_t + \Delta \theta_t<br>$$</p>
+<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>Approximate the learning rate with the RMS of parameter updates until the previous time step. </p>
+<p>$$E[g^2]<em>t = 0.9 E[g^2]</em>{t-1} + 0.1 g^2_t \<br>\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]<em>t + \epsilon}} g</em>{t}<br>$$</p>
+<p>It still accumulates the gradient while it also depends on the current gradient and the updates do not get monotonically smaller.<br>RMSProp still modulates the learning rate of each weight based on the magnitudes of its gradients, which has a beneficial equalizing effect.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank" rel="noopener">An overview of gradient descent optimization<br>algorithms</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/Network-in-Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/Network-in-Network/" itemprop="url">Network_in_Network</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T22:02:36+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/seq2seq/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -531,6 +1049,7 @@
 <li><p>higher layers extract features related to style**</p>
 </li>
 </ul>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h3><h3 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h3><p>DenseNet is a modified ResNet. Resnet employ add for x and f(x) while DenseNet employ concat for x and f(x) so that upper layers have each output from lower layers.</p>
 
           
         
@@ -1101,602 +1620,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Word-Representation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/01/Word-Representation/" itemprop="url">Word_Representation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T11:02:22+08:00">
-                2018-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Deep-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/Deep-Learning/" itemprop="url">Deep_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T11:33:09+08:00">
-                2018-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="multi-class-classification-problem"><a href="#multi-class-classification-problem" class="headerlink" title="multi-class classification problem"></a>multi-class classification problem</h2><p>Solutions:</p>
-<ul>
-<li>Train multiple classifiers and predict the label one by ont</li>
-<li>Learn the representation and compare. (clustering, or simply compare distance)</li>
-</ul>
-<p>Training step is actually a mini-batch. An epoch is the entire training set.</p>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>Before training, calculate the memory consumption of the neural network and make sure the GPU has enough memory.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/feature-selection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/30/feature-selection/" itemprop="url">feature_selection</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:46:18+08:00">
-                2018-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Mutual-Information"><a href="#Mutual-Information" class="headerlink" title="Mutual Information"></a>Mutual Information</h2><p>$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>This could be used as the heuristic of feature selection. Higher mutual information means the feature do relates to the class, which is helpful in classfication.</p>
-<h2 id="chi-squared-test"><a href="#chi-squared-test" class="headerlink" title="chi-squared test"></a>chi-squared test</h2><p>$$X^2(D,t,c)=\sum_{e_t\in {0,1}} \sum_{e_c\in {0,1}} \frac{(N_{e_te_c}-E_{e_te_c})^2}{E_{e_te_c}}$$</p>
-<p>N is the observed frequency in D and E the expected frequency. </p>
-<p>chi-squared test is a measure of how much expected counts E and observed counts N deviate from each other. A high value indicates that the hypothesis of independence is incorrect.</p>
-<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h4><p>For a test with one degree of freedom, the so-called Yates correction should be used, which makes it harder to reach statistical significance. <strong>degree of freedom</strong> = (num of columns -1) * (num of rows -1)</p>
-<p>Also, whenever a statistical test is used multiple times, then the probability of getting at least one error increases. If 1,000 hypotheses are rejected, each with 0.05 error probability, then 0.05 × 1000 = 50 calls of the test will be wrong on average. </p>
-<h2 id="Frequency-based-feature-selection"><a href="#Frequency-based-feature-selection" class="headerlink" title="Frequency-based feature selection"></a>Frequency-based feature selection</h2><p>select the feature that occurs usually. When many thousands of features are selected, then frequency-based feature selection often does well.</p>
-<h2 id="Feature-selection-for-multiple-classifiers"><a href="#Feature-selection-for-multiple-classifiers" class="headerlink" title="Feature selection for multiple classifiers"></a>Feature selection for multiple classifiers</h2><p>Commonly, feature selection statistics are first computed separately for each class on the two-class classification task c versus not c and then combined. </p>
-<p>One combination method computes a single figure of merit for each feature, for example, by averaging the values A(t, c) for feature t, and then selects the k features with highest figures of merit.</p>
-<p>Another frequently used combination method selects the top k/n features for each of n classifiers and then combines these n sets into one global feature set.</p>
-<h2 id="Comparison-of-feature-selection-methods"><a href="#Comparison-of-feature-selection-methods" class="headerlink" title="Comparison of feature selection methods"></a>Comparison of feature selection methods</h2><p>Mutual information prefer common terms while chi-squared test prefer rare terms. Because A single occurrence is not very informative according to the information-theoretic definition of information.</p>
-<p>All three methods are greedy methods.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/WordVectors/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/WordVectors/" itemprop="url">Word_Vectors</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h1 id="Two-types-of-word-vectors"><a href="#Two-types-of-word-vectors" class="headerlink" title="Two types of word vectors"></a>Two types of word vectors</h1><ul>
-<li>count-based: LSA, LDA, Glove</li>
-<li>window-based: word2vec</li>
-</ul>
-<p>Drawback of count-based method:</p>
-<ul>
-<li>unstable, may change if there is a new word.</li>
-<li>high dimension \(V \times V\) although dimension could be decreased by SVD.</li>
-</ul>
-<p>Word vectors are application-specific.</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>Input vectors are also named context vectors.<br>Output vectors are also named word vectors.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2 <em> R words which is less than C are used as correct label. this step contains sampling 2 </em> R words from C word. </p>
-<p>There are two kinds of vectors for each word. They are context vectors and word vectors respectively. Normally the final word vectors could be the sum of two vectors or simply the word vector.</p>
-<h3 id="Modification"><a href="#Modification" class="headerlink" title="Modification"></a>Modification</h3><p>In skip-gram and CBOW, softmax is extremely expensive.</p>
-<p>Take skip-gram as an example. The objective is to maximize the following ojective function:</p>
-<p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
-<p>where c is the size of the training context.</p>
-<p>The p is defined as :</p>
-<p>$$p(o|c)=\frac{exp(<br>{u_o}^Tv_{c})}{\sum_{w=1}^{W}exp({u_{w}}^T*v_{c})}$$</p>
-<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
-<h4 id="2-choices-to-improve-softmax"><a href="#2-choices-to-improve-softmax" class="headerlink" title="2 choices to improve softmax"></a>2 choices to improve softmax</h4><h5 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h5><p>Turn all words into a tree so that the height of tree is log2(V).</p>
-<h5 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h5><p>Noise Contrastive Estimation (NCE) states that a good model is able to differentiate data from noise by means of logistic regression.</p>
-<p>The skip-gram model only focus on leanring good word vectors.</p>
-<p>Here the noise is words that are outside of the context.</p>
-<p>Simplified version of NCE:</p>
-<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
-<p>$$P_n(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}  {f(w_j)}^{3/4}}$$</p>
-<p>where n is total number of words in the corpus.</p>
-<h4 id="Subsampling-of-Frequent-Words"><a href="#Subsampling-of-Frequent-Words" class="headerlink" title="Subsampling of Frequent Words"></a>Subsampling of Frequent Words</h4><p>The frequent words may contain less information. During training, it would discard words in the context by chance using the below formula</p>
-<p>$$P(w_i)=1-\sqrt{\frac{t}{f(w_i)}} $$</p>
-<p>In the implementation code, the formula is</p>
-<p>$$P(w_i) = (\sqrt{\frac{z(w_i)}{0.001}} + 1) \cdot \frac{0.001}{z(w_i)}$$</p>
-<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><p>Utilize statistical information in co-occurrence matrix.</p>
-<p>Utilize a third word to determine whether two words are related or not. If two words are not correlated,</p>
-<p>$$\frac{P_{ik}}{P_{jk}} \approx 1$$</p>
-<p>where \(P_{ik}\) is conditional probability \(P(k|i)\).</p>
-<p>The objective is to find a function to represent the relationship between word vectors and conditional probability.</p>
-<p>$$F(w_i,w_j,\tilde{w}<em>k)=\frac{P</em>{ik}}{P_{jk}}$$</p>
-<p>The function F has to satisfy certain requirements:</p>
-<ol>
-<li>preserve linear structure</li>
-<li>exchangeable</li>
-</ol>
-<p>Finally, weight counts because rare co- occurrences may carry less information.</p>
-<p>$$J(\theta)=\frac{1}{2}\sum_{i,j=1}^{W}f(P_{ij})(u_i^Tv_j-log P_{ij})^2$$</p>
-<h2 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h2><p>It is a model derived from word2vec. In order to better represent morphological words, each word is now represent by a set of n-gram characters. Each word is added two symbols ‘&lt;’ and ‘&gt;’ respectively to indicate start and end of the word.</p>
-<p>For example, word ‘FastText’ becomes word ‘<fasttext>‘. 3-gram set is (&lt;Fa,Fas,ast,stT,tTe,Tex,ext,xt&gt;).</fasttext></p>
-<p>Negetive sampling of word2vec:</p>
-<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
-<p>In word2vec, each word is an unique unit. Each word has the unique word vectors representation which lose the morphological information. In FastText, subword model is employed, in which each word is now represent by a set of n-gram characters to utilize morphological information.</p>
-<p>The objective function is:</p>
-<p>$$\log\sigma{(\sum_{g\in G_{o}}{z_g}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-\sum_{g\in G_{j}}{z_{gj}}^Tv_{c})}$$</p>
-<p>where \(G_{o}\) is the set of n-grams character of word \(w_o\), \(z_{g}\) is the vector representation of the specific n-gram characters. </p>
-<p>$$u_o = \sum_{g\in G_{o}}{z_g}$$</p>
-<p>The word vector for each word is then the sum of its all n-gram vector representation.</p>
-<h2 id="WordRank"><a href="#WordRank" class="headerlink" title="WordRank"></a>WordRank</h2><p>Turn the problem into a ranking problem.</p>
-<h2 id="Character-level-embedding"><a href="#Character-level-embedding" class="headerlink" title="Character-level embedding"></a>Character-level embedding</h2><p>Advantages:</p>
-<ul>
-<li>better in terms of morphological languages</li>
-<li>In some languages such as Chinese, each sentence is composed of characters directly. Character-level embedding is also better in this case.</li>
-<li>OOV(out of vocabulary words). Able to handle OOV.</li>
-</ul>
-<h4 id="OOV-Handling"><a href="#OOV-Handling" class="headerlink" title="OOV Handling"></a>OOV Handling</h4><ul>
-<li>Character-level embedding</li>
-<li>Initialize the unknown word as the sum of all context vectors and refine it with a high learning rate</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1751,7 +1674,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

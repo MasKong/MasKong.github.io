@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Usually recall increase, precision decrease and vice versa. Reall measure how many examples are predicted to False if the examples are True. Precision measure how many examples are predicted to True i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-01T17:17:30.991Z">
+<meta property="og:updated_time" content="2019-02-24T07:16:39.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine_Learning">
 <meta name="twitter:description" content="Usually recall increase, precision decrease and vice versa. Reall measure how many examples are predicted to False if the examples are True. Precision measure how many examples are predicted to True i">
@@ -372,6 +372,66 @@
 <p>AUCPR: area under predicsion and recall line</p>
 <p>Cross-validation is used to select model or parameters. In deep learning, it is 1-fold validation while cross-validation is k-fold validation and take the mean.</p>
 <p>Bias term is able to add information. For example, if an user likes movies a lot, then add a high bias and vice versa. If a movie is liked in general by most people, it also has a high bias.</p>
+<h2 id="Bias-Variance-tradeoff"><a href="#Bias-Variance-tradeoff" class="headerlink" title="Bias-Variance tradeoff"></a>Bias-Variance tradeoff</h2><p>The more complex the model, the higher the variance. For a complex model, if the data changes a bit, the model output is likely to change a lot correspondingly. A simple model with sparse connectivity rather than dense connectivity like fully-connect network is not that likely to change a lot if the data changes a bit due to sparse connectivity(please feel it intuitively). But a simple model tends to have high bias which is underfitting.</p>
+<p>In a nutshell, simple models tend to have high bias and low variance while complex models tend to have low bias(accurate) and high variance.</p>
+<p>This is so-called Bias-Variance tradeoff.</p>
+<h2 id="KL"><a href="#KL" class="headerlink" title="KL"></a>KL</h2><h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>important parameters:</p>
+<ul>
+<li>eta:learning_rate</li>
+<li>max_depth: max_depth of tree </li>
+<li>lambda: prevent overfitting</li>
+</ul>
+<p>subsample: sample part of training data which prevent overfitting<br>colsample: subsample the columns, like random forest</p>
+<p>Induction of xgboost:</p>
+<ol>
+<li>greedy algorithm, choose the tree that reduce the loss as much as possible</li>
+<li>use taylor expansion to approximate the gradient</li>
+<li>calculate the optimal tree structure</li>
+</ol>
+<p>The xgboost is a kind of greedy algorithm because each time it add the best tree structure.</p>
+<p>It employs CART as base learner. The final output of CART are values. So the output of leaves of xgboost are actually values. It is the sum of all trees.<br>$$<br>\hat{y}<em>i = \sum</em>{k=1}^K f_k(x_i), f_k \in \mathcal{F}<br>$$</p>
+<p>$$<br>w_j^\ast = -\frac{G_j}{H_j+\lambda}<br>$$<br>The above equation calculates the best tree structure from the first and second order gradients. It employ tailor expansion to approximate gradients so that all kinds of self-define loss functions could be supported.</p>
+<p>$$<br>\text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T<br>$$<br>The above equation is used to measure how good is the current tree structure.</p>
+<p>$$<br>Gain = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}] - \gamma<br>$$<br>The above equation serves as a kind of pruning. Other tree methods usually put pruning out of the training process.</p>
+<p>other tricks that xgboost employ:</p>
+<ol>
+<li>subsample data: sample a portion of the whole training set to train a tree like bagging.</li>
+<li>subsample columns: sample some columns to train like random forest.</li>
+</ol>
+<p>parameters tuning:</p>
+<ol>
+<li>set depth to 3~5</li>
+<li>number of trees to ~500</li>
+<li>learning step \(\eta\) from 0.02~0.1</li>
+<li>run the algorithm until overfitting</li>
+<li>if not overfitting, check the dataset. The feature engineering may not be enough. Otherwise, start pruning. Increase the \(\lambda, \gamma\) and so on.</li>
+</ol>
+<h1 id="Decesion-Tree"><a href="#Decesion-Tree" class="headerlink" title="Decesion Tree"></a>Decesion Tree</h1><h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3 use entropy and information gain to measure whether a split is good or not. It is a kind of greedy algorithm and tends to choose splits with a lot of features whose information gain would be greater. And this may lead to overfitting.</p>
+<p>$$<br>Ent(D)=- \sum_{k=1}^{K} p_k\cdot  log_{2}p_k<br>$$</p>
+<p>$$<br>Gain(D, a)=Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
+<h3 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h3><p>It is a kind of modified ID3. It employs to be the criteria to avoid the shortage of ID3 which choose the split with more features.</p>
+<p>$$<br>GainRatio(D,T)=\frac{Gain（D,T)}{IV(T)}<br>$$</p>
+<h3 id="Classification-and-Regression-tree-CART"><a href="#Classification-and-Regression-tree-CART" class="headerlink" title="Classification and Regression tree(CART)"></a>Classification and Regression tree(CART)</h3><p>CART is a binary tree. At each split, it would choose a feature and divide the dataset according to yes and no feature. It would choose the split with the least gini.</p>
+<p>GINI index is used to measure how good is the split.</p>
+<p>$$<br>gini(T_{i})=1-\sum_{j=1}^{n} p_{j}^{2}<br>$$</p>
+<p>$$<br>Gini_{split}(T)=\sum_{i=1}^{2}\frac{N_{i}}{N}gini(T_{i})<br>$$</p>
+<p>For regression tree, it separate the continuous feature using {x&gt;T} and {x&gt;T} where T is the threshold. The decision boundaries of the CART are staright lines.</p>
+<h2 id="Comparision"><a href="#Comparision" class="headerlink" title="Comparision"></a>Comparision</h2><p>ID3 and C4.5 could only be applied to classification task while CART could be applied to both regression and classification task.</p>
+<p>ID3 and C4.5 rely on pruning.</p>
+<p>ID3 and C4.5 derive complex trees and features could not be reusing while CART derives binary trees and the features could be reusing.</p>
+<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><p>Pruning is significantly important in decision trees. Usually we would grow the DT fully and do post-pruning to avoid overfitting and a better DT with better generalization ability.</p>
+<h3 id="Cost-Complexity-Pruning-CCP"><a href="#Cost-Complexity-Pruning-CCP" class="headerlink" title="Cost-Complexity Pruning(CCP)"></a>Cost-Complexity Pruning(CCP)</h3><p>It is used in CART pruning.<br>$$<br>\alpha = \frac{R(T) - R(T_t)}{L(T_t)-1}<br>$$<br>where \(L(T_t)\) is the number of leaves in the subtree that is going to be pruned. \(R(T_t)\) and \(R(T)\) are the error rate of the tree. It is the number of samples that are classified wrong.</p>
+<p>It compares the error before and after pruning. Choose the pruning with the least error increased.</p>
+<p>The pruning could be performed on a separate pruning dataset or simply k-fold cross-validation.</p>
+<h3 id="Reduced-Error-Pruning-REP"><a href="#Reduced-Error-Pruning-REP" class="headerlink" title="Reduced Error Pruning(REP)"></a>Reduced Error Pruning(REP)</h3><p>$$<br>f(T)=-\sum_{t \in T}e(t)<br>$$</p>
+<p>$$<br>f(T’)=-\sum_{t \in T’}e(t)<br>$$<br>where T is the original tree and T’ is the pruned tree and f() is the number of samples that are classified wrong. Its intuition is to prune the tree so that the error date decrease. If \(f(T) \leqslant f(T’)\), do pruning.</p>
+<h3 id="Pessimistic-Error-Pruning-PEP"><a href="#Pessimistic-Error-Pruning-PEP" class="headerlink" title="Pessimistic Error Pruning(PEP)"></a>Pessimistic Error Pruning(PEP)</h3><p>Top-down pruning. It bases on the training set to do pruning. The 1/2 is a bias to rectify the bias that the pruning is performed based on training set.</p>
+<p>$$<br>E(T) = \sum_{t \in T}\frac{e(t)+1/2}{N(t)}<br>$$</p>
+<p>$$<br>E(T’)=\sum_{t \in T, excep K}\frac{e(t)+1/2}{N(t)}<br>$$<br>where e(t) is the samples that are classified wrong in the subtree start from node t. N(t) is the number of samples in the subtree start from node t.</p>
+<h3 id="Minimum-Error-Pruning-MEP"><a href="#Minimum-Error-Pruning-MEP" class="headerlink" title="Minimum Error Pruning(MEP)"></a>Minimum Error Pruning(MEP)</h3><p>There are several definitions about how to calculate the error rate of pruning\(E_s\). Below is one kind of method.</p>
+<p>$$<br>E_s=1-\frac{n_c+p_{\alpha c}m}{N+m}=\frac{N-n_c+(1-p_{\alpha c})m}{N+m}<br>$$</p>
+<p>$$<br>E_{split-s}=\sum_{split=1}^M \frac{|S_{split}|}{|S|}*E_{split-s}<br>$$</p>
+<p>Compare the error rate of pruning and not pruning. If the pruning error rate\(E_s\) &lt; not pruning error rate, do the pruning.</p>
 
       
     </div>
@@ -470,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -490,7 +559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -526,6 +595,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-Variance-tradeoff"><span class="nav-number">1.</span> <span class="nav-text">Bias-Variance tradeoff</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KL"><span class="nav-number">2.</span> <span class="nav-text">KL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost"><span class="nav-number">3.</span> <span class="nav-text">XGBoost</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decesion-Tree"><span class="nav-number"></span> <span class="nav-text">Decesion Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3"><span class="nav-number">0.1.</span> <span class="nav-text">ID3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5"><span class="nav-number">0.2.</span> <span class="nav-text">C4.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification-and-Regression-tree-CART"><span class="nav-number">0.3.</span> <span class="nav-text">Classification and Regression tree(CART)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparision"><span class="nav-number">1.</span> <span class="nav-text">Comparision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pruning"><span class="nav-number">2.</span> <span class="nav-text">Pruning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-Complexity-Pruning-CCP"><span class="nav-number">2.1.</span> <span class="nav-text">Cost-Complexity Pruning(CCP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reduced-Error-Pruning-REP"><span class="nav-number">2.2.</span> <span class="nav-text">Reduced Error Pruning(REP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pessimistic-Error-Pruning-PEP"><span class="nav-number">2.3.</span> <span class="nav-text">Pessimistic Error Pruning(PEP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimum-Error-Pruning-MEP"><span class="nav-number">2.4.</span> <span class="nav-text">Minimum Error Pruning(MEP)</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

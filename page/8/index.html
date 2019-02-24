@@ -296,6 +296,603 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/Semantics-with-Dense-Vectors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/03/Semantics-with-Dense-Vectors/" itemprop="url">Semantics_with_Dense_Vectors</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-03T19:28:55+08:00">
+                2018-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Skip-gram-Model"><a href="#Skip-gram-Model" class="headerlink" title="Skip-gram Model"></a>Skip-gram Model</h2><p>Given a center word, predict its neighbor word(context word). There are two matrices, one is context matrix and the other is word matrix.</p>
+<p>The training objective of the Skip-gram model is to find word representations that are useful for predicting the surrounding words in a sentence or a document.<br>The objective of the Skip-gram model is to maximize the average log probability \(\frac{1}{T}\sum_{t=1}^T\sum_{−c≤j≤c,j\neq 0}\log p(w_{t+j}|w_t) \)</p>
+<p>The basic Skip-gram formulation defines \(p(w_{t+j} |w_t)\) using the softmax function:<br>$$p(w_{O}|w_I) = \frac{exp({v’_{w_O}}^Tv_{w_I})}{\sum_{w=1}^Wexp({v’<em>w}^Tv</em>{w_I})}$$</p>
+<h2 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h2><p>Noise Contrastive Estimation (NCE). NCE posits that a good model should be able to differentiate data from noise by means of logistic regression. </p>
+<p>While NCE can be shown to approximately maximize the log probability of the softmax, the Skipgram model is only concerned with learning high-quality vector representations, so we are free to<br>simplify NCE.<br>Here is <strong>Negative Sampling</strong>, its <strong>objective funtion</strong>:</p>
+<p>$$\log\sigma({v’_{w_O}}^Tv_{w_I})+\sum_{i=1}^kE_{w_i\sim P_n(w)}[\log\sigma({-v’_{w_i}}^Tv_{w_I})]$$</p>
+<p>The above objective function is used to replace every \(\log P(w_O|w_I )\) term in the Skip-gram objective. Thus the task is to<br>distinguish the target word \(w_O\) from draws from the noise distribution \(P_n(w)\) using logistic regression, where there are k negative samples for each data sample. k in the range 5–20 are useful for small training datasets, while for large datasets the k 2–5. The main difference between the Negative sampling and NCE is that NCE needs both samples and the numerical probabilities of the noise distribution, while Negative sampling uses only samples. And NCE approximately maximizes the log probability of the softmax, this property is not important for our application.</p>
+<p>Essentially, the probability for selecting a word as a negative sample is related to its frequency, with more frequent words being more likely to be selected as negative samples.Raise to the power of 3/4 is an emprical result.</p>
+<p>$$P(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}\left(  {f(w_j)}^{3/4} \right) }$$</p>
+<p>To counter the imbalance between the rare and frequent words, we used a simple subsampling approach: each word \(w_i\)<br>in the training set is discarded with probability computed by the formula</p>
+<p>$$p(w_i)=1-\sqrt{\frac{t}{f(w_i)}}$$</p>
+<p>where \(f(w_i)\) is the frequency of word \(w_i\) and t is a chosen threshold, typically around \(10^{−5}\).</p>
+<p>Another implementation:<br>$$p(w_i)=(\sqrt{\frac{z(w_i)}{0.001}}+1)\cdot \frac{0.001}{z(w_i)}$$</p>
+<p>0.001 is the default sample value. Smaller values of ‘sample’ mean words are less likely to be kept. \(z(w_i)\) is the frequency of the word i.</p>
+<ul>
+<li>P(wi)=1.0 (100% chance of being kept) when z(wi)&lt;=0.0026. This means that only words which represent more than 0.26% of the total words will be subsampled.</li>
+<li>P(wi)=0.5 (50% chance of being kept) when z(wi)=0.00746.</li>
+</ul>
+<p><strong>projection layer</strong> input is one-hot vector, multiplied by embedding layer, the output is the projection layer. The units in the projection layer are word vectors.</p>
+<h5 id="Hyperparameters"><a href="#Hyperparameters" class="headerlink" title="Hyperparameters"></a>Hyperparameters</h5><p>a context window size L</p>
+<h2 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h2><p>continuous bag of words </p>
+<p>Reversed version of skip-grams, predicting the current word \(w_j\) from the context window of 2L words around it</p>
+<p>$$p(w_{c,j}|w_j) = \frac{exp(c_k\cdot v_j)}{\sum_{i\in|V|}exp(c_i\cdot v_j)}$$</p>
+<p>\(c_k\)means the \(k_{th}\) context word. \(v_j\)means the word vector of given word \(w_j\). The computing of demoninator \(\sum_{i\in|V|}exp(c_i\cdot v_j)\) is extremely expensive because it requires computing for each given word \(w_j\).</p>
+<h3 id="Relationship-between-Word-Vectors"><a href="#Relationship-between-Word-Vectors" class="headerlink" title="Relationship between Word Vectors"></a>Relationship between Word Vectors</h3><p>Word vector matrix W and context word vector matrix C multiply together would produce a |V|*|V| matrix X.<br>Skip-gram’s optimal value occurs when<br>this learned matrix X is actually a version of the PMI matrix, with the values shifted<br>by logk (where k is the number of negative samples):<br>$$WC = X^{PMI} −\log k$$</p>
+<p>In other words, skip-gram is implicitly factorizing a (shifted version of the) PMI<br>matrix into the two embedding matrices W and C, just as SVD did, albeit with a different kind of factorization.</p>
+<p>Once the embeddings are learned, for each word \(w_i\), there is a word vector \(v_i\) and a context word vector \(c_i\). We can choose to throw away the C matrix and just keep W, as we did with SVD.<br>Alternatively we can add the two embeddings together, using the summed embedding<br>\(v_i + c_i\) as the new d-dimensional embedding, or we can concatenate them<br>into an embedding of dimensionality 2d.</p>
+<p>As with the simple count-based methods like PPMI, the context window size<br>L effects the performance of skip-gram embeddings, and experiments often tune<br>the parameter L on a dev set. As with PPMI, window sizing leads to qualitative<br>differences: smaller windows capture more syntactic information, larger ones more<br>semantic and relational information. One difference from the count-based methods<br>is that for skip-grams, the larger the window size the more computation the algorithm requires for training.</p>
+<h3 id="Properties-of-embeddings"><a href="#Properties-of-embeddings" class="headerlink" title="Properties of embeddings"></a>Properties of embeddings</h3><p><strong>Offsets</strong> between vector embeddings<br>can capture some relations between words.</p>
+<h3 id="Brown-Clustering"><a href="#Brown-Clustering" class="headerlink" title="Brown Clustering"></a>Brown Clustering</h3><p>Brown clustering is an agglomerative clustering algorithm for deriving vector representations of words by clustering words based on their associations with the preceding or following words.</p>
+<ul>
+<li><ol>
+<li>Each word is initially assigned to its own cluster.</li>
+</ol>
+</li>
+<li><ol start="2">
+<li>merge each pair of clusters. The pair whose merger results in the smallest decrease in the likelihood of the corpus (according to the class-based language model) is merged.</li>
+</ol>
+</li>
+<li><ol start="3">
+<li>Clustering proceeds until all words are in one big cluster</li>
+</ol>
+</li>
+</ul>
+<p>Each cluster contains words that are  contextually similar(similar meaning/sense).After clustering, a word can be represented by the binary string that corresponds to its path from the root node.<br>Each prefix represents a cluster that the word belongs to.These prefixes can then be used as a vector representation for the word; the shorter the prefix, the more abstract the cluster.</p>
+<p>(i.e.:the string 0001 represents the names of common nouns for corporate executives {chairman, president}, 1 is verbs {run, sprint, walk}, and 0 is nouns.)</p>
+<p>The length of the vector representation can thus be adjusted to fit the needs of the particular task. a 4-6 bit prefix to capture part of speech information and a full bit string to represent words. The first 8 or<br>9-bits of a Brown clustering perform well at grammar induction. Because they are<br>based on immediately neighboring words, Brown clusters are most commonly used<br>for representing the syntactic properties of words, and hence are commonly used as<br>a feature in parsers. Nonetheless, the clusters do represent some semantic properties as well.</p>
+<p>Note that the naive version of the Brown clustering algorithm described above is<br>extremely inefficient — \(O(n^5)\): at each of n iterations, the algorithm considers each of \(O(n^2)\) merges, and for each merge, compute the value of the clustering by summing over \(O(n^2)\)terms. because it has to consider every possible pair of merges. In practice<br>we use more efficient \(O(n^3)\) algorithms that use tables to pre-compute the values for each merge.</p>
+<p><strong>hard clustering</strong> algorithm:each word has only one cluster</p>
+<h4 id="class-based-language-model"><a href="#class-based-language-model" class="headerlink" title="class-based language model"></a>class-based language model</h4><p>a model in which each word \(w\in V\) belongs to a class \(c\in C\) with a probability P(w|c).<br>Class based LMs assigns a probability to a pair of words \(w_{i−1}\) and \(w_i\) by modeling the transition between classes rather than between words:<br>$$P(w_i|w_{i−1}) = P(w_i|c_i)P(c_i|c_{i−1})$$</p>
+<p>Given the class label of word \(c_{i-1})\), compute the transition probability and then given the new transition, the probability of current word \(w_i\).</p>
+<p>The class-based LM can be used to assign a probability to an entire corpus given<br>a particularly clustering C as follows:</p>
+<p>$$P(corpus|C) = \prod_{i−1}^nP(c_i<br>|c_{i−1})P(w_i|c_i)$$</p>
+<p>Class-based language models are generally not used as a language model for applications like machine translation or speech recognition because they don’t work<br>as well as standard n-grams or neural language models.</p>
+<h2 id="LSA-latent-semantic-analysis"><a href="#LSA-latent-semantic-analysis" class="headerlink" title="LSA(latent semantic analysis)"></a>LSA(latent semantic analysis)</h2><p>:applying SVD to the term-document matrix </p>
+<p>LSA is a particular application of SVD to a |V| × c term-document matrix X representing |V| words and their co-occurrence with c documents or contexts.<br>SVD factorizes any such rectangular |V| × c matrix X into the product of three matrices<br>W, \(\sum\), and \(C^T\). In the matrix W, each of the w rows still represents a word, but each column represents one of m dimensions in a latent space, such that the m column vectors are orthogonal to each other and the columns are ordered by the amount of variance in the original dataset. The number of such dimensions m is the rank of X (the rank of a matrix is the number<br>of linearly independent rows). \(\sum\) is a diagonal matrix, with singular values<br>along the diagonal, expressing the importance of each dimension. The matrix<br>\(C^T\) still represents documents or contexts, but each row now represents one of the new latent dimensions and the m row vectors are orthogonal to each other.<br>By using only the first k dimensions instead of all m dimensions, the product of these 3 matrices becomes a least-squares approximation to the original X. Since the first dimensions encode the most variance, one way to view the reconstruction is as modeling the most important information in the original dataset.</p>
+<p>Using only the top k dimensions leads to a reduced |V| ×k matrix \(W_k\), with one k-dimensioned row per word. This row now acts as a dense k-dimensional vector (embedding) representing that word, substituting for the very high-dimensional rows of the original X.</p>
+<p>LSA implementations generally use a particular weighting of each co-occurrence cell that multiplies two weights called the local and global weights for each cell (i, j)—term i in document j. The local weight of each term i is its log frequency: log f(i, j) +1. The global weight of term i is a version of its entropy: $$1+\frac{\sum_jp(i,j)\log p(i,j)}{\log D}$$<br>D is the number of documents.</p>
+<p><strong>Advantages</strong>: Solve the problem of one word multiple senses or one sense multiple words by reduce the demensionality and extract the key information. Information extraction is to project the original co-occurence data to a new axes which could be viewed as a semantic space.</p>
+<p><strong>Disadvantages</strong>: SVD requires lots of time to compute.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf" target="_blank" rel="noopener">Distributed Representations of Words and Phrases<br>and their Compositionality</a><br><a href="http://mccormickml.com/2017/01/11/word2vec-tutorial-part-2-negative-sampling/" target="_blank" rel="noopener">Word2Vec Tutorial Part 2 - Negative Sampling</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/Neural-Networks-and-Neural-Language-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/01/Neural-Networks-and-Neural-Language-Model/" itemprop="url">Neural_Networks_and_Neural_Language_Model</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-01T10:05:55+08:00">
+                2018-07-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>A neural network with one hidden layer can be shown to learn any function.</p>
+<h3 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h3><p><strong><strong>is to choose a training example or a batch of examples to compute the gradients rather than use the entire training set.</strong></strong></p>
+<h3 id="XOR-Problem"><a href="#XOR-Problem" class="headerlink" title="XOR Problem"></a>XOR Problem</h3><p><strong>not linearly separable</strong><br>a hidden layer rotates the axis or converts the original data to another plane.</p>
+<h3 id="Cross-Entropy-Loss"><a href="#Cross-Entropy-Loss" class="headerlink" title="Cross Entropy Loss"></a>Cross Entropy Loss</h3><p>$$L(\hat{y}, y) = \log p(\hat{y}_i) $$<br>If \(\hat{y}\) != y, it doesn’t contribute to the loss. Only the true class would contribute the loss. If \(p(\hat{y})\) =1, \(\log p(\hat{y}_i)=0\). If \(p(\hat{y})\) =0, \(\log p(\hat{y}_i)=\infty\).<br>\(\hat{y}\) means output of the network.</p>
+<h3 id="Embedding-Layer"><a href="#Embedding-Layer" class="headerlink" title="Embedding Layer"></a>Embedding Layer</h3><p>Could be understood as a weight matrix. Because the one-hot vector is multiplied by the embedding layer to get the word vector, so the embedding layer is actually also a weight matrix. Via back propagation, it could also be trained simultaneously with other weights in the neural network.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Logistic-Regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Logistic-Regression/" itemprop="url">Logistic_Regression</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T14:35:03+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Binomial-Logistic-Regression"><a href="#Binomial-Logistic-Regression" class="headerlink" title="Binomial Logistic Regression"></a>Binomial Logistic Regression</h2><p>$$p(1|x) = \frac{\exp(\vec{w} \cdot \vec{x})}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
+<p>$$p(0|x) = \frac{1}{1+\exp(\vec{w} \cdot \vec{x})}$$</p>
+<p><strong>odds</strong>: the probability that an event occur divided by the probability that an event doesn’t occur. \(\frac{p}{1-p}\)</p>
+<p><strong>log odds</strong>: take log of odds. \(\log \frac{p}{1-p}\). In terms of logistic regression, \(\log \frac{p}{1-p}=\vec{w} \cdot \vec{x}\).</p>
+<p>Actually logistic regression turns the linear function \(\vec{w} \cdot \vec{x}\) into probability distribution. So logistic regression is acutually a linear classification model with some operations to turn the output into probability distribution. The final output label is the one with the highest value.</p>
+<h3 id="Parameters-Estimation"><a href="#Parameters-Estimation" class="headerlink" title="Parameters Estimation"></a>Parameters Estimation</h3><p>Use gradient descent.</p>
+<h2 id="Multinomial-Logistic-Regression"><a href="#Multinomial-Logistic-Regression" class="headerlink" title="Multinomial Logistic Regression"></a>Multinomial Logistic Regression</h2><p>multinomial logistic regression, sometimes referred to within language processing as MaxEnt entropy modeling, MaxEnt for short. Logistic regression belongs to the family of classifiers known as the exponential or log-linear classifiers.<br>Technically, logistic regression refers to a classifier that classifies<br>an observation into one of two classes, and multinomial logistic regression is used when classifying into more than two classes</p>
+<p>First, wrap the exp function around the weight-feature dot-product \(w\cdot f\) , which will make the values positive.</p>
+<p>A discriminative model discriminative<br>model takes this direct approach, computing P(y|x) by discriminating among the different possible values of the class y rather than first computing a likelihood.</p>
+<p>Logistic Regression </p>
+<p>$$p(c|x) = \frac{\exp(\sum_iw_if_i(c,x))}{\sum_{c’ \in C}\exp(\sum_{i=1}^N w_if_i(c’,x)}$$</p>
+<p>In vector from:</p>
+<p>$$p(c|x) = \frac{\exp(\vec{w} \cdot \vec{f(c,x)})}{\sum_{c’ \in C}\exp(\vec{w}\cdot \vec{f(c,x)})}$$</p>
+<p>Here c actually range from 1 to N+1. And by default \(\exp(\sum_{i=1}^N w_if_i(N+1,x)=0\)</p>
+<p>exp is to make to result greater than 0.<br>\(f_i(c, x)\), meaning feature i for a particular class c for a given observation x. In NLP, x is usually a document. Feature i usually means whether a specific word \(x_i\) has shown in the document for a particular class. \(w_i\) is the weight corresponding to the feature i. For example, in sentiment analysis, classes are 0 and 1 corresponding to positive and negative. The word best is a feature, namely \(\ f_1\), its value for class 1 coube be +10 and -10 for class 0.</p>
+<p>Computing the actual probability rather than just choosing the best class is useful when the classifier is embedded in a larger system. Otherwise compute the nominater is sufficient to do classification. \(\hat{c}={argmax}<em>{c\in C}\sum</em>{i=1}^N w_if_i(c,x)\)</p>
+<h3 id="Learning-weights"><a href="#Learning-weights" class="headerlink" title="Learning weights"></a>Learning weights</h3><p>The intuition is to choose weights that make the classes of the training examples more likely. Indeed, logistic regression is trained with conditional maximum likelihood estimation. This means we choose the parameters w that maximize the (log) probability of the y labels in the training data given the observations x.</p>
+<p>$$\hat{w} = {argmax}_w\sum_jlogP(y^{(j)}|x^{(j)})$$</p>
+<p>It means given a training set, we choose weights that maximize the probability of \(j^{th}\) training example \(x^{(j)}\) is classified to the lable \(y^{(j)}\).</p>
+<p>The objective function L that we are maximizing is thus<br>$$L(w) = \frac{\exp(\sum_i^Nw_if_i(y^{(j)},x^{(j)}))}{\sum_{y’ \in Y}\exp(\sum_{i=1}^N w_if_i(y’^{(j)},x^{(j)})}$$</p>
+<h3 id="Max-Entropy"><a href="#Max-Entropy" class="headerlink" title="Max Entropy"></a>Max Entropy</h3><p>When there is no training data available, the model assign the same probability to each class. If there is training data, the model try to reach the max entropy with the constraint that satisfy the training data.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
+<p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Machine-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/29/Machine-Learning/" itemprop="url">Machine_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-29T13:01:38+08:00">
+                2018-06-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>contingency table</strong> consists of 4 entries: True Positive, True Negative, False Positive, False Negative.</p>
+<p>Accuracy doesn’t work well when<br>the classes are unbalanced.</p>
+<p>Precision measures the percentage of the items that the system detected that are in fact positive. In other words, precision measures the percentage that the system makes correct classfication over total samples that are classified as correct. Precision is defined as<br>$$ Precision =\frac{true\ positives}{true\ positives + false\ positives}$$</p>
+<p>Recall measures the percentage of items actually present in the input that were<br>correctly identified by the system. In other words, recall measures the percentage that the system makes correct classfication over total correct samples. Recall is defined as<br>$$Recall =\frac{true\ positives}{true\ positives + false\ negatives}$$</p>
+<p>precision and recall, unlike accuracy, emphasize true positives: finding the things that we are supposed to be looking for.<br>In practice, we generally combine precision and recall into a single metric called<br>F-measure the F-measure that is defined as:<br>$$F_\beta =\frac{(\beta^2 +1)PR}{\beta^2P+R}$$</p>
+<p>The β parameter differentially weights the importance of recall and precision. Values of β &gt; 1 favor recall, while values of β &lt; 1 favor precision. When β = 1, precision and recall are equally balF1<br>anced; this is the most frequently used metric, and is called \(F_{\beta}=1\) or just \(F_1\).F-measure comes from a weighted harmonic mean of precision and recall.</p>
+<p>Harmonic mean is used because it is a conservative metric; the harmonic mean of<br>two values is closer to the minimum of the two values than the arithmetic mean is.<br>Thus it weighs the lower of the two numbers more heavily.</p>
+<p>In <strong>any-of</strong> or <strong>multi-label</strong> classification, each document or item can be assigned more than one label. Solve any-of classification by building separate binary classifiers for each class c. Given a test document or item d, then each classifier makes their decision independently, and we may assign multiple labels to d.</p>
+<p><strong>one-of</strong> or <strong>multinomial</strong> classification, multinomial classification in which the classes are mutually exclusive and each document or item appears in<br>exactly one class. Build a separate binary classifier trained on positive<br>examples from c and negative examples from all other classes. Now given a test<br>document or item d, we run all the classifiers and choose the label from the classifier with the highest score. </p>
+<p>In <strong>macroaveraging</strong>, we compute the performance for each class, and then average over classes. In <strong>microaveraging</strong>, we collect the decisions for all classes into a single contingency table, and compute precision and recall from that table(sum the number of decision like true for all classfiers and divide by total number of decision). A microaverage is dominated by the more frequent class, since the counts are pooled. The macroaverage better reflects the statistics of the smaller classes, and so is more appropriate when performance on all the classes is equally important.</p>
+<p>The only problem with cross-validation is that because all the data is used for<br>testing, we need the whole corpus to be blind; we can’t examine any of the data<br>to suggest possible features and in general see what’s going on. But looking at the<br>corpus is often important for designing the system. For this reason, it is common<br>to create a fixed training set and test set, then do 10-fold cross-validation inside the training set, but compute error rate the normal way in the test set.</p>
+<h3 id="regularization-used-to-penalize-large-weights"><a href="#regularization-used-to-penalize-large-weights" class="headerlink" title="regularization: used to penalize large weights"></a><strong>regularization</strong>: used to penalize large weights</h3><p>L1 regularization is called ‘the lasso’ or lasso regression and L2 regression is called ridge regression, and both are commonly used in language processing. L2 regularization is easier to optimize because of its simple derivative, while L1 regularization is more complex (the derivative of |w| is noncontinuous<br>at zero). </p>
+<p>But where L2 prefers weight vectors with many small weights, L1 prefers sparse solutions with some larger weights but many more weights set to zero. Thus L1 regularization leads to much sparser weight vectors, that is, far fewer features.</p>
+<p>L2 regularization:$$\sum_{j=1}^Nw_j^2$$</p>
+<p>L1 regularization:$$\sum_{j=1}^N|w_j|$$</p>
+<p>Both L1 and L2 regularization have Bayesian interpretations as constraints on the prior of how weights should look. L1 regularization can be viewed as a Laplace<br>prior on the weights. L2 regularization corresponds to assuming that weights are<br>distributed according to a gaussian distribution with mean µ = 0.</p>
+<p>The regularization technique is useful for avoiding overfitting by removing or downweighting features that are unlikely to generalize well. Many kinds of classifiers including naive Bayes do not have regularization, and so instead feature selection is used to choose the important features and remove the rest. The basis of feature selection is to assign some metric<br>of goodness to each feature, rank the features, and keep the best ones. The number of features to keep is a meta-parameter that can be optimized on a dev set.</p>
+<h3 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a>Feature Selection</h3><p>Features are generally ranked by how informative they are about the classification decision. A very common metric is information gain. Information gain tells us how many bits of information the presence of the word gives us for guessing the class, and can be computed as follows (where ci is the ith class and ¯w means that a document does not contain the word \(w^-\)):</p>
+<p>While feature selection is important for unregularized classifiers, it is sometimes<br>also used in regularized classifiers in applications where speed is critical, since it is often possible to get equivalent performance with orders of magnitude fewer features.</p>
+<p>The overly strong conditional independence assumptions of Naive Bayes mean that if two features are correlated naive Bayes will multiply them, overestimating the evidence. Logistic regression is much more robust to correlated features; if two features f1 and f2 are perfectly correlated, regression will simply assign half the weight to w1 and half to w2.</p>
+<p>naive Bayes works extremely well (even better than logistic regression or SVMs) on small datasets or short documents.<br>Furthermore, naive Bayes is easy to implement and very fast to train. Nonetheless, algorithms like logistic regression and SVMs generally work better on larger documents<br>or datasets.</p>
+<h3 id="bias-variance-tradeoff"><a href="#bias-variance-tradeoff" class="headerlink" title="bias-variance tradeoff"></a>bias-variance tradeoff</h3><p>The <strong>bias of a classifier</strong> indicates how accurate it is at modeling different training sets.<br>The <strong>variance of a classifier</strong> indicates how much its decisions are affected by small changes<br>in training sets.</p>
+<p>Models with <em>low bias</em> (like SVMs with polynomial or RBF kernels) are very accurate at modeling the training data. Models with <em>low variance</em> (like naive<br>Bayes) are likely to come to the same classification decision even from slightly different training data. </p>
+<p>low-bias models tend to overfit, and do not generalize well to very different test sets.<br>low-variance models tend to generalize so well that they may not have sufficient accuracy.<br>Thus model trades off bias and variance. Adding more features decreases bias by making it possible to more accurately model the training data, but<br>increases variance because of overfitting. Regularization and feature selection are<br>ways to improve (lower) the variance of classifier by downweighting or removing<br>features that are likely to overfit.</p>
+<p>In addition to the choice of a classifier, the key to successful classification is the<br>design of appropriate features. Features are generally designed by examining the<br>training set with an eye to linguistic intuitions and the linguistic literature on the domain. </p>
+<p>For some tasks it is especially helpful to build complex features that are combinations<br>of more primitive features. For logistic regression and naive Bayes these<br>combination features or feature interactions have to be designed by hand. </p>
+<p><strong>feature interactions</strong><br>Some other machine learning models can automatically model the interactions<br>between features. For tasks where these combinations of features are important<br>(especially when combination of categorical features and real-valued features might<br>be helpful), the most useful classifiers may be such classifiers,including Support<br>SVMs Vector Machines (SVMs) with polynomial or RBF kernels, and random forests</p>
+<h3 id="dimensionality-reduction-PCA-SVD"><a href="#dimensionality-reduction-PCA-SVD" class="headerlink" title="dimensionality reduction(PCA,SVD)"></a>dimensionality reduction(PCA,SVD)</h3><p>First rotate the axes of the original dataset into a new space. The new space is chosen so that the highest order dimension<br>captures the most variance in the original dataset, the next dimension captures the next most variance, and so on. In this new space, the data if represented with a smaller number of dimensions and still<br>capture much of the variation in the original data.</p>
+<p>For binary classification, sigmoid would suffice the requirement.</p>
+<h3 id="Softmax-Logistic-Regression"><a href="#Softmax-Logistic-Regression" class="headerlink" title="Softmax(Logistic Regression)"></a>Softmax(Logistic Regression)</h3><p>Linear decision boundary.</p>
+<h3 id="Bias-Term"><a href="#Bias-Term" class="headerlink" title="Bias Term"></a>Bias Term</h3><p>Bias is significant because it allows the activation function to shift left and right. The weight is to change the steepness of the activation function.</p>
+<p><a href="https://stackoverflow.com/questions/2480650/role-of-bias-in-neural-networks" target="_blank" rel="noopener">Role of Bias in Neural Networks</a></p>
+<h3 id="Max-margin-Objective-function"><a href="#Max-margin-Objective-function" class="headerlink" title="Max-margin Objective function"></a>Max-margin Objective function</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/29/Sentiment-Classification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1213,517 +1810,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Port-Stemmer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/25/Port-Stemmer/" itemprop="url">Port_Stemmer</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-25T14:28:00+08:00">
-                2018-06-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Lemmatization"><a href="#Lemmatization" class="headerlink" title="Lemmatization"></a>Lemmatization</h2><p>Lemmatization is the task to determine whether two words have the same root. If proper lemmatization has been applied, number of tokens could be reduced significantly and understanding of the text could also be facilitated.</p>
-<h4 id="Problem-of-suffix-stripping"><a href="#Problem-of-suffix-stripping" class="headerlink" title="Problem of suffix stripping"></a>Problem of suffix stripping</h4><p><em>probe</em> and <em>probate</em><br><em>wand</em> and <em>wander</em><br>Sometimes removal of suffix could affect the original meaning and degrade the performance.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/07/Sort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/07/Sort/" itemprop="url">Sort</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T17:37:39+08:00">
-                2018-06-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Quick-Sort"><a href="#Quick-Sort" class="headerlink" title="Quick Sort"></a>Quick Sort</h2><p>Partition the array into two parts such that elements in part a &lt; that of part b. Recursively invoke quick sort to do in-place sorting. Average performance is the best in practice. O(nlogn). The worst case happens when the array is inversely sorted, which leads the subarray after partition is extremely imbalanced. Time complexity is O(n^2).</p>
-<h2 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h2><p>Divide and conquer. Divide the array into two parts and then merge recursively. The process of sorting is just like building a binary tree in a top-down manner and then merge the array bottom-up.</p>
-<h2 id="Heap-Sort"><a href="#Heap-Sort" class="headerlink" title="Heap Sort"></a>Heap Sort</h2><p>build a max heap so that the first element in the heap is always the largest. Sorting is just switching the largest value with the last element in the array and maintain a heap. after poping the element, reduce the heap size by one.</p>
-<p>##Performance<br>Qucik sort is the fastest. After it is merge sort. And then heap sort. build a heap takes considerable time. Buble sort and insertion sort are far slower.<br>Random an array of length 1000000, quick sort took 5.30535101890564 seconds and merge sort took 5.918827056884766 seconds. Their perfomance are quite good and close to each other. Heap sort took 13.471954822540283 seconds.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sort</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, l = None)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> l <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">assert</span> type(l) == list,(<span class="string">"please input a list"</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l = self._generate()</span><br><span class="line">        self.l = l</span><br><span class="line">        self.result = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(self)</span>:</span></span><br><span class="line">        l = self.l      <span class="comment">#add new reference to self.l, change l would change self.l</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(l)):   <span class="comment">#use built-in methods to insert</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">                <span class="keyword">if</span> l[i] &lt; l[j]:</span><br><span class="line">                    <span class="keyword">if</span> j == <span class="number">0</span>:</span><br><span class="line">                        l.insert(j,l[i])</span><br><span class="line">                        <span class="keyword">del</span>(l[i+<span class="number">1</span>])</span><br><span class="line">                    <span class="keyword">elif</span> l[i] &gt;= l[j<span class="number">-1</span>]:</span><br><span class="line">                        l.insert(j, l[i])</span><br><span class="line">                        <span class="keyword">del</span> (l[i + <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_sort_v1</span><span class="params">(self)</span>:</span>   <span class="comment">#much slower than using built-in method</span></span><br><span class="line">        l = self.l      <span class="comment">#add new reference to self.l, change l would change self.l</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(l)):   <span class="comment">#switch position</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">                <span class="keyword">if</span> l[j+<span class="number">1</span>] &lt; l[j]:</span><br><span class="line">                    l[j], l[j+<span class="number">1</span>] = l[j+<span class="number">1</span>], l[j]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(self)</span>:</span></span><br><span class="line">        l = self.l</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(l)<span class="number">-1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,len(l)-i<span class="number">-1</span>):</span><br><span class="line">                <span class="keyword">if</span> l[j] &gt; l[j+<span class="number">1</span>]:</span><br><span class="line">                    l[j], l[j+<span class="number">1</span>] = l[j+<span class="number">1</span>], l[j]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(self, p=None, r=None)</span>:</span></span><br><span class="line">        <span class="string">'''extra space usage'''</span></span><br><span class="line">        <span class="string">'''divide the original into two parts such that elements in part a &lt; that of part b'''</span></span><br><span class="line">        <span class="keyword">if</span> p <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> r <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            p = <span class="number">0</span></span><br><span class="line">            r = len(self.l)</span><br><span class="line">        <span class="comment"># print("p ",p)</span></span><br><span class="line">        <span class="comment"># print("r ", r)</span></span><br><span class="line">        <span class="keyword">if</span> p&lt;r<span class="number">-1</span>:</span><br><span class="line">            q = self._quick_sort_partition(p, r)</span><br><span class="line">            <span class="comment"># print("q ", q)</span></span><br><span class="line">            self.quick_sort(p,q)</span><br><span class="line">            self.quick_sort(q,r)</span><br><span class="line">            <span class="comment"># self._quick_sort_partition(p, q)</span></span><br><span class="line">            <span class="comment"># self._quick_sort_partition(q, r)</span></span><br><span class="line">        <span class="comment"># q = self._quick_sort_partition(p, r)</span></span><br><span class="line">        <span class="comment"># print(q)</span></span><br><span class="line">        <span class="comment"># while True:</span></span><br><span class="line">        <span class="comment">#     if self._quick_sort_partition(p, q) == 0:</span></span><br><span class="line">        <span class="comment">#         break</span></span><br><span class="line">        <span class="comment"># while True:</span></span><br><span class="line">        <span class="comment">#     if self._quick_sort_partition(q, r) == r-1:</span></span><br><span class="line">        <span class="comment">#         break</span></span><br><span class="line">            <span class="comment"># q = self._quick_sort_partition(0,len(self.l))</span></span><br><span class="line">        <span class="comment"># self.quick_sort(p,q)</span></span><br><span class="line">        <span class="comment"># self.quick_sort(q,r)</span></span><br><span class="line">        <span class="comment"># else:</span></span><br><span class="line">        <span class="comment">#     q = self._quick_sort_partition(p, r)</span></span><br><span class="line">        <span class="comment">#     self.quick_sort(p, q - 1)</span></span><br><span class="line">        <span class="comment">#     self.quick_sort(q, r)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_quick_sort_partition</span><span class="params">(self, p, r)</span>:</span></span><br><span class="line">        <span class="comment"># l = list(self.l)</span></span><br><span class="line">        l = self.l</span><br><span class="line">        i = p<span class="number">-1</span></span><br><span class="line">        pivot = l[r<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(p,r<span class="number">-1</span>):      <span class="comment">#in-place exchange without memory overhead</span></span><br><span class="line">            <span class="keyword">if</span> l[j] &lt;= pivot:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">                l[i], l[j] = l[j], l[i]</span><br><span class="line">        <span class="comment"># print(i)</span></span><br><span class="line">        <span class="comment"># print(l)</span></span><br><span class="line">        l[i+<span class="number">1</span>], l[r<span class="number">-1</span>] = l[r<span class="number">-1</span>], l[i+<span class="number">1</span>]</span><br><span class="line">        <span class="comment"># print(l)</span></span><br><span class="line">        <span class="comment"># print(self.l)</span></span><br><span class="line">        <span class="comment"># print("i ",i)</span></span><br><span class="line">        <span class="keyword">return</span> i+<span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(self, p=None, r=None)</span>:</span></span><br><span class="line">        l = self.l</span><br><span class="line">        <span class="keyword">if</span> p <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> r <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            p = <span class="number">0</span></span><br><span class="line">            r = len(l)      <span class="comment">#not include r</span></span><br><span class="line">        <span class="keyword">if</span> p &lt; r<span class="number">-1</span>:</span><br><span class="line">            q = int((p+r)/<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">            self.merge_sort(p,q)</span><br><span class="line">            self.merge_sort(q, r)</span><br><span class="line">            self.merge(p,q,r)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(self, p,q,r)</span>:</span></span><br><span class="line">        l = self.l</span><br><span class="line">        L = l[p:q]</span><br><span class="line">        R = l[q:r]</span><br><span class="line">        L.append(float(<span class="string">'inf'</span>))</span><br><span class="line">        R.append(float(<span class="string">'inf'</span>))</span><br><span class="line">        i,j = <span class="number">0</span>,<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(p,r):    <span class="comment">#r = len(list), not include r</span></span><br><span class="line">            <span class="keyword">if</span> L[i] &lt; R[j]:</span><br><span class="line">                l[k] = L[i]</span><br><span class="line">                i+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l[k] = R[j]</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">merge_two_lists</span><span class="params">(self,l1,l2)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> l1 <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> l2 <span class="keyword">is</span> <span class="keyword">None</span>,(<span class="string">"empty list"</span>)</span><br><span class="line">        l = []</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i&lt;len(l1) <span class="keyword">and</span> j&lt;len(l2):</span><br><span class="line">            <span class="keyword">if</span> l1[i] &lt; l2[j]:</span><br><span class="line">                l.append(l1[i])</span><br><span class="line">                i+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                l.append(l2[j])</span><br><span class="line">                j += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> i == len(l1):</span><br><span class="line">            l.extend(l2[j:])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            l.extend(l1[i:])</span><br><span class="line">        <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(self)</span>:</span></span><br><span class="line">        l = self.l</span><br><span class="line">        self.heap_size = len(l)</span><br><span class="line">        self.build_heap()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(l)<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):  <span class="comment">#no need to include 0. change with itself is meaningless</span></span><br><span class="line">            l[i], l[<span class="number">0</span>] = l[<span class="number">0</span>], l[i]</span><br><span class="line">            self.heap_size -= <span class="number">1</span></span><br><span class="line">            self.max_heaplify(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build_heap</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#bottom up. the first level of the tree has no child, no need to maintain</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(int(self.heap_size/<span class="number">2</span>),<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">            self.max_heaplify(i)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">max_heaplify</span><span class="params">(self,i)</span>:</span></span><br><span class="line">        l = self.l</span><br><span class="line">        left = <span class="number">2</span>*i +<span class="number">1</span></span><br><span class="line">        right = <span class="number">2</span>*i +<span class="number">2</span></span><br><span class="line">        largest = i</span><br><span class="line">        <span class="keyword">if</span> left &lt; self.heap_size <span class="keyword">and</span> l[left] &gt; l[i]:</span><br><span class="line">            largest = left</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> right &lt; self.heap_size <span class="keyword">and</span> l[right] &gt; l[largest]:</span><br><span class="line">            largest = right</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> largest != i:</span><br><span class="line">            <span class="string">'''if position changes, need to recursively run max_heaplify to guarantee</span></span><br><span class="line"><span class="string">            the descendant are also max heap'''</span></span><br><span class="line">            l[i], l[largest] = l[largest], l[i]</span><br><span class="line">            self.max_heaplify(largest)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_evaluate</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.result <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.result = self.l</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,len(self.result)):</span><br><span class="line">            <span class="keyword">if</span> self.result[i] &lt; self.result[i<span class="number">-1</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_generate</span><span class="params">(self,length = None)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">import</span> random</span><br><span class="line">            <span class="keyword">if</span> length <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                length = random.randint(<span class="number">0</span>, <span class="number">1000</span>)</span><br><span class="line">                <span class="comment"># length = random.randint(0,100000)</span></span><br><span class="line">            l = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(length):</span><br><span class="line">                l.append(random.randint(-length,length))</span><br><span class="line">            <span class="keyword">return</span> l</span><br><span class="line">        <span class="keyword">except</span> ImportError:</span><br><span class="line">            print(<span class="string">"no random module, please input a sequence"</span>)</span><br><span class="line"></span><br><span class="line">l = [<span class="number">4</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">-9</span>,<span class="number">0</span>,<span class="number">5</span>,]</span><br><span class="line"><span class="comment"># l = [4,6,10,23,-1,-6]</span></span><br><span class="line"><span class="comment"># s = Sort(l)</span></span><br><span class="line"><span class="comment"># print(s._quick_sort_partition(0,len(l)))</span></span><br><span class="line"><span class="comment"># print(s.l)</span></span><br><span class="line">s = Sort()</span><br><span class="line"><span class="comment"># s.quick_sort()</span></span><br><span class="line">print(<span class="string">"length "</span>,len(s.l))</span><br><span class="line">s.heap_sort()</span><br><span class="line"><span class="comment"># s.build_heap()</span></span><br><span class="line"><span class="comment"># s.merge_sort()</span></span><br><span class="line"><span class="comment"># s.insert_sort_v1()</span></span><br><span class="line"><span class="comment"># s.insert_sort()</span></span><br><span class="line">print(s._evaluate())</span><br><span class="line"><span class="comment"># s._quick_sort_partition(0,len(l))</span></span><br><span class="line">print(s.l)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">compare_time</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">import</span> time</span><br><span class="line">    print(<span class="string">"**************compare time**************"</span>)</span><br><span class="line">    s = Sort()</span><br><span class="line">    l = s._generate(<span class="number">1000000</span>)</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    Sort(l).quick_sort()</span><br><span class="line">    print(<span class="string">"--- %s seconds ---"</span> % (time.time() - start_time))</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    Sort(l).merge_sort()</span><br><span class="line">    print(<span class="string">'--- &#123;&#125; seconds ---'</span>.format(time.time() - start_time))</span><br><span class="line">    start_time = time.time()</span><br><span class="line">    Sort(l).heap_sort()</span><br><span class="line">    print(<span class="string">'--- &#123;&#125; seconds ---'</span>.format(time.time() - start_time))</span><br><span class="line"></span><br><span class="line">compare_time()</span><br></pre></td></tr></table></figure>
-<p>###Reference: Introduction to Algorithms</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/05/Remove-Duplicates-from-Sorted-List-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/Remove-Duplicates-from-Sorted-List-II/" itemprop="url">Remove_Duplicates_from_Sorted_List_II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-05T15:41:07+08:00">
-                2018-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>##Remove Duplicates from Sorted List II:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteDuplicates</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        node = head</span><br><span class="line">        <span class="keyword">if</span> head == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> head.next == <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        <span class="keyword">if</span> head.next.val != head.val:   <span class="comment">#the first two elements are not the same</span></span><br><span class="line">            current_node = node</span><br><span class="line">            node = node.next</span><br><span class="line">            <span class="keyword">while</span> node != <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                    current_node.next = node</span><br><span class="line">                    <span class="keyword">return</span> head</span><br><span class="line">                <span class="keyword">if</span> node.next.val != node.val:</span><br><span class="line">                    current_node.next = node</span><br><span class="line">                    current_node = node</span><br><span class="line">                <span class="keyword">else</span>:   <span class="comment"># when next node is the same as the current node</span></span><br><span class="line">                    <span class="keyword">while</span> node != <span class="keyword">None</span>:</span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            node = node.next</span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">if</span> node.val != node.next.val:</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                node = node.next</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            current_node = <span class="keyword">None</span>     <span class="comment">#the first two elements are same, pointers point to None</span></span><br><span class="line">            <span class="keyword">while</span> node != <span class="keyword">None</span>:</span><br><span class="line">                <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                    <span class="keyword">if</span> current_node == <span class="keyword">None</span>:    <span class="comment"># all elements includes the first few elements are same</span></span><br><span class="line">                        <span class="keyword">return</span> node             <span class="comment">#return None</span></span><br><span class="line">                    current_node.next = node    <span class="comment">#add the last node to the linked list</span></span><br><span class="line">                    <span class="keyword">return</span> head</span><br><span class="line">                <span class="keyword">if</span> node.next.val != node.val:   <span class="comment">#current node is to record the last node in the linked list</span></span><br><span class="line">                    <span class="keyword">if</span> current_node == <span class="keyword">None</span>:    <span class="comment">#which is identical in the list</span></span><br><span class="line">                        current_node = node</span><br><span class="line">                        head = current_node</span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        current_node.next = node</span><br><span class="line">                        current_node = node</span><br><span class="line">                <span class="keyword">else</span>:   <span class="comment"># when next node is the same as the current node</span></span><br><span class="line">                    <span class="keyword">while</span> node != <span class="keyword">None</span>:         <span class="comment"># if the node is the same with next node</span></span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:   <span class="comment"># this loop is to skip the node</span></span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            node = node.next</span><br><span class="line">                        <span class="keyword">if</span> node.next == <span class="keyword">None</span>:</span><br><span class="line">                            <span class="keyword">if</span> current_node == <span class="keyword">None</span>:</span><br><span class="line">                                <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">                            current_node.next = <span class="keyword">None</span></span><br><span class="line">                            <span class="keyword">return</span> head</span><br><span class="line">                        <span class="keyword">if</span> node.val != node.next.val:</span><br><span class="line">                            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                node = node.next</span><br><span class="line"></span><br><span class="line">s = Solution()</span><br><span class="line">l = [<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line"><span class="comment"># l = [1,2,3,3,4,4,5,5]</span></span><br><span class="line"><span class="comment"># l = [2,2,3,4,5,5]</span></span><br><span class="line">LN = ListNode(l[<span class="number">0</span>])</span><br><span class="line"><span class="comment"># for i in range(1,len(l)):</span></span><br><span class="line"><span class="comment">#     LN.next</span></span><br><span class="line">node_list = list(map(ListNode,l))</span><br><span class="line"><span class="comment"># print(node_list[0])</span></span><br><span class="line"><span class="comment"># print(ListNode(l[0]))</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(node_list)<span class="number">-1</span>):</span><br><span class="line">    node_list[i].next = node_list[i+<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">h = s.deleteDuplicates(node_list[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">while</span> h!= <span class="keyword">None</span>:</span><br><span class="line">    print(h.val)</span><br><span class="line">    h = h.next</span><br></pre></td></tr></table></figure>
-<p>This version uses three pointer to do the same thing. From leetcode.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">deleteDuplicates</span><span class="params">(self, head)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> head <span class="keyword">or</span> <span class="keyword">not</span> head.next:</span><br><span class="line">            <span class="keyword">return</span> head</span><br><span class="line">        fakehead = ListNode(<span class="number">0</span>)</span><br><span class="line">        fakehead.next = head</span><br><span class="line">        prev = fakehead</span><br><span class="line">        slow = head</span><br><span class="line">        fast = head.next</span><br><span class="line">        <span class="keyword">while</span> fast:</span><br><span class="line">            <span class="keyword">if</span> fast.val == slow.val:</span><br><span class="line">                <span class="keyword">while</span> fast <span class="keyword">and</span> fast.val == slow.val:</span><br><span class="line">                    fast = fast.next</span><br><span class="line">                slow = prev</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                prev = slow</span><br><span class="line">                slow = slow.next</span><br><span class="line">                slow.val = fast.val</span><br><span class="line">                fast = fast.next</span><br><span class="line">        slow.next = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">return</span> fakehead.next</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/27/Sentence-Similarity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/27/Sentence-Similarity/" itemprop="url">Sentence_Similarity</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-27T02:23:18+08:00">
-                2018-05-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="NLP-typical-Step"><a href="#NLP-typical-Step" class="headerlink" title="NLP typical Step:"></a>NLP typical Step:</h2><p>Tokenize: separate the words in the sentence</p>
-<p>Convert the sentence to vector: the sentence has been divided into several words, and load word2vec model and convert each word to a vector</p>
-<h2 id="Similarity-Measurement"><a href="#Similarity-Measurement" class="headerlink" title="Similarity Measurement"></a>Similarity Measurement</h2><p>TF-IDF model: convert the sentence to a vector of words, use cosine similarity to measure. In this applicatoin, not very good.</p>
-<p>Bag of words:</p>
-<p>Modern way: NLP step as above. Use pre-train word vectors to represent a sentence. Compute distance. Huge amount of computation. In this application, extract several keywords first as heuristic to rule out a lot of sentences and then start using this method to reduce computation amount. The best accuracy in this application. Change pre-train vectors and brute-force computation would increase the accuracy.</p>
-<h2 id="Some-Notes"><a href="#Some-Notes" class="headerlink" title="Some Notes"></a>Some Notes</h2><p>Tokenize: separate the words in the sentence </p>
-<p>Bag of words: just count the frequency of words that appear in the sentence and neglect the sequence of words</p>
-<p>Word representation: one-hot representation<br>Not easy to extract connection because dot product between any two words are 0</p>
-<p>Featurized representation: word embedding. Using a matrix to represent values of features, and stand for a word. It could be understood as a word embedded in a high dimensional space </p>
-<p>Analogy of word embedding. Use cosine similarity to measure whether two words are similar. Take the dot product of two words vectors and divide multiplication of their lengths.</p>
-<p>Embedding matrix: num of features * number of words. Each column is a feature vector. Use one-hot vector to multiply embedding matrix get the corresponding feature vector</p>
-<p>Word2vec:<br>Skip-gram: randomly choose a context word and corresponding target word. Target word is in the window(like 5 words before or after the context word) of context word<br>Target is to learn good word embedding rather than perform good supervised learning<br>How to sample context word? Employ some techniques to avoid commonly appeared word like the ,a and so on</p>
-<p>Negative sampling: one positive sample and k randomly chosen negative sample to simplify computation </p>
-<p>Content of word d: means the range of plus or minus 5 words</p>
-<p>Sequence to sequence:<br>Machine translation: input sentence to encoder, and output is a decoder. Conditional language model. Green part is encoder, purple is decoder</p>
-<p>Beam search: a kind of approximate optimization algorithm<br>beam width n: track The most possible n sequences with the highest probability. Larger n, the algorithm runs better but need more memory. Smaller n: more efficient, less accurate<br>unlike BFS and DFS, beam search do not guarantee to find the best solution. It’s not complete because it only track a few states.<br>Start by choosing the first word for n sentences, and then second…….</p>
-<p>Maximize this probability to find the most possible sequence<br>Multiplication of several values that are less than one leads to numerical problem. Take Log on it solve this problem.</p>
-<p>Error analysis: working to optimize some sort of cost function/objective function that is output by a learning algorithm like RNN<br>RNN output the p(y|x) for sentences and beam search choose argmaxP(y|x). if RNN output the correct probability but beam search choose the wrong one, beam is at fault. And vise versa, if RNN output the wrong probability for sentences, RNN is at fault. Correct probability means P(correct sentence | x) &gt; P(wrong sentence | x)<br>Compare beam search with RNN, find which one is at fault. And then modify and improve it.</p>
-<p>Attention model:<br>Just focus on a few words around rather than the whole sentence to translate. Divide and conquer, get better result.</p>
-<p>Speech recognition:<br>Turn time domain signal to frequency domain signal<br>Usually input is much larger than output</p>
-<p>CTC cost:<br>Basic idea: collapse repeated characters not separated by “blank”</p>
-<h3 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h3><p>puts pieces of information in a standard format, so that they can be compared to other pieces of information. </p>
-<p>An example of nor- malization is formatting dates and times in a stan- dard way, so that “12pm”, “noon” and “12.00h” all map to the same representation.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1778,7 +1864,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">87</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
