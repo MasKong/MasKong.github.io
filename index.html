@@ -392,6 +392,7 @@
 <li>Tri-letter hashing to reduce the vocabulary size less susceptical to misspelling, inflection.</li>
 <li>Each query and document are represented as a feature vector and propagated to a neural network to generate new feature vectors. Compute the cos similarity between query and document feature vectors and feed them to the softmax and max the probability of the clicked document and query.</li>
 </ol>
+<h2 id="Sentence-Similarity"><a href="#Sentence-Similarity" class="headerlink" title="Sentence Similarity"></a>Sentence Similarity</h2><p>openAI-GPT: use transformer to encode two sentences. Two sentences are concat together. There is no natural structure for two sentences. So sen1[sep]sen2 and sen2[sep]sen1 are fed to transformer to compute feature vectors and added together. And then feed to a linear layer to compute similarity.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
