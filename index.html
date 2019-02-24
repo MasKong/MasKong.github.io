@@ -367,7 +367,31 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>lexical matching: search engine matching terms in documents with those in a search query, sort according to similarity<sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a>“&gt;[1]</a></sup></p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="lexical-matching"><a href="#lexical-matching" class="headerlink" title="lexical matching"></a>lexical matching</h2><p>lexical matching: search engine matching terms in documents with those in a search query, sort according to similarity<sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a>“&gt;[1]</a></sup></p>
+<h2 id="Semantic-modeling"><a href="#Semantic-modeling" class="headerlink" title="Semantic modeling"></a>Semantic modeling</h2><p>Early approaches: LSA, LDA, PLSA. LSA extracts abstract semantic content using SVD</p>
+<p>Recent improvements: </p>
+<ul>
+<li>Go deeper: e.g., semantic hashing (Hinton and Salakhutdinov 2011)</li>
+<li>Go beyond documents: e.g., using click signals (Gao et al. 2010; Gao et al. 2011</li>
+</ul>
+<p>State of the art document ranking approaches that use models trained on clickthrough data. </p>
+<ul>
+<li>Oriented PCA (Diamantaras et al., 1996) </li>
+<li>Word Translation Model (Gao et al. 2010) </li>
+<li>Bilingual Topic Model (Gao et al. 2011) </li>
+<li>Discriminative Projection Model (Yih et al. 2011; Gao et al. 2011)</li>
+</ul>
+<p>Deep learning approach:<br>Train an auto encoder to learn internal representations through minimizing reconstruction error.</p>
+<p>During application or testing, input a query and a document and calculate the similarity directly. Like word vectors, project the word to a space and calculate the distance in that space to measure similarity.</p>
+<p>Two shortages:</p>
+<ol>
+<li>learning objective problem: Model is trained by reconstructing the document, not for relevance measure</li>
+<li>Scalability problem: Model size increases rapidly along the vocabulary size</li>
+</ol>
+<h3 id="DSSM"><a href="#DSSM" class="headerlink" title="DSSM"></a>DSSM</h3><ol>
+<li>Tri-letter hashing to reduce the vocabulary size less susceptical to misspelling, inflection.</li>
+<li>Each query and document are represented as a feature vector and propagated to a neural network to generate new feature vectors. Compute the cos similarity between query and document feature vectors and feed them to the softmax and max the probability of the clicked document and query.</li>
+</ol>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
