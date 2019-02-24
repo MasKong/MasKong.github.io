@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="CTR(Click-Through-Rate). Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-21T08:44:27.364Z">
+<meta property="og:updated_time" content="2019-02-24T15:49:49.680Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Recommendation_System">
 <meta name="twitter:description" content="CTR(Click-Through-Rate). Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the">
@@ -373,7 +373,7 @@
 <p>For wide part, features are transformed to one-hot sparse feature and fed to a linear transformation. </p>
 <p>Feature transformation:<br>$$<br>\varnothing_k(x)=\prod^d_{i=1}x_i^{c_{ki}}<br>$$</p>
 <p>Linear transformation:<br>$$<br>\mathbf{w}_{wide}^T[ \mathbf{x},\phi  ( \mathbf{x}  )]<br>$$<br>where \([ \mathbf{x},\phi  ( \mathbf{x}  )]\) is concatenation of original features and transformmed features.</p>
-<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P\left ( Y=1\mid \mathbf{x} \right )=\sigma \left ( \mathbf{w}<em>{wide}^T\left [ \mathbf{x},\phi \left ( \mathbf{x} \right ) \right ] + \mathbf{w}</em>{deep}^Ta^{\left ( l_f \right )}+b \right )<br>$$</p>
+<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P(Y=1\mid \mathbf{x})=\sigma ( \mathbf{w}<em>{wide}^T[\mathbf{x},\phi ( \mathbf{x} )] + \mathbf{w}</em>{deep}^Ta^{( l_f )}+b)<br>$$</p>
 <h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><p>DeepFM substitutes the wide part in wide&amp;deep with <strong>Factorization Machines(FM)</strong>. It is able to model high-level feature combination by transforming the sparse feature to dense and low-dimension features. It models feature interaction as inner product of embeddings.</p>
 <p>A feature \(x_i\) is associated with a weight vector(embedding) \(v_i\) and feature interaction or feature combination is computed as \(&lt;v_i,v_j&gt;\). Intuitively, in stead of computing feature combination directly, it insert an embedding layer to the network so as to convert features to embeddings. Compuing the dot product of embedding to model feature combination.</p>
 <h2 id="DCN-Deep-Cross-Network"><a href="#DCN-Deep-Cross-Network" class="headerlink" title="DCN(Deep Cross Network)"></a>DCN(Deep Cross Network)</h2><p>The features are usually sparse, it is unable to represent those sparse features with one-hot vector if the size of vocabulary is huge. Therefore embedding layer is employed to convert sparse features to dense features which are real-value vectors like Natural Language Processing. After that, those vectors are stacked or concatenated with other dense features.</p>
