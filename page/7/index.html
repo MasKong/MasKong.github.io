@@ -296,6 +296,128 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/Recurrent-Neural-Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/Recurrent-Neural-Network/" itemprop="url">Recurrent_Neural_Network</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-25T11:09:32+08:00">
+                2018-07-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Gradient vanishing or exploding:<br>Since the time step 1 would have effect on time step n, when doing back propagation, according to the chain rule, the same weight matrix W would be multiplied by n times which is W to the power of n. So the norm of W is greater than 1, there is gradient exploding. And vice versa, gradient vanishing if the norm of W is smaller than 1.</p>
+<p>Solution to gradient vanishing:<br>Initialize weight matrix to identity matrix  rather than a matrix of random values. And use Relu as activation function. The intuition of this is to take average of input and hidden state. Then start to optimize the weight matrix.</p>
+<h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><p>The input includes all or some of the hidden states in the encoder. Utilize a score function to weight importance of those hidden states and feed into the decoder with the input word.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Tensorflow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1760,136 +1882,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/Hierarchical-Softmax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/04/Hierarchical-Softmax/" itemprop="url">Hierarchical_Softmax</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T11:22:43+08:00">
-                2018-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Hierarchical-softmax"><a href="#Hierarchical-softmax" class="headerlink" title="Hierarchical softmax"></a>Hierarchical softmax</h3><p>It truns the normal softmax to a tree structure to avoid computing every context word with the center word.</p>
-<p>Normal softmax requires normalization which is extremely expensive especially in the case of Natural Language Processing that there are usually millions or billions of tokens in the corpus. Normal softmax would squeeze the values of these millions or billions of tokens into a probability distribution each time predicting the context word.</p>
-<p>Normal softmax computes P(Y |X) directly which needs normalization, the author chooses to assign Y to different clusters such that there is a function mapping X to different clusters. Given the cluster, compute the conditional probability to avoid normalization over the entire X.<br>$$P(Y = y|X = x) =P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
-<p>Prove:<br>$$P(Y |X) = \sum_i P(Y, C = i|X) = \sum_i P(Y |C =i, X)P(C = i|X) = P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
-<p>C(Y) is a function to classify Y into C classes. \(P(Y |C = c(Y ), X)P(C =c(Y )|X)\) is equivalent to \(\sum_i P(Y |C =i, X)P(C = i|X)\) if every Y is classified into a class and the probablities of assign a Y to a cluster are multiplied together.</p>
-<p>To utilize the architecture of binary trees, do hierarchical clustering such that each time two clusters are mergerd. Initially each word is a cluster. As a result, each level consists of a number of cluster. From the root to the leaf, multiply the probabilities together and we get the probability.</p>
-<p>Each word v must be represented by a bit vector \((b_1(v), . . . b_m(v))\) (where m depends on v)</p>
-<p>$$P(v|w_{t−1}, . . . , w_{t−n+1}) =\prod_{j=1}^mP(b_j(v)|b_1(v), . . . , b_{j−1}(v), w_{t−1}, . . . , w_{t−n+1})$$</p>
-<p>\(b_j(v)\) is the intermediate vector in the tree. The intermediate node is in fact a cluster. Each leaf node is a word.</p>
-<p>Each intermediate note could be viewed as a group of similar-meaning words. Each node is associated with a feature vector.</p>
-<p>$$P(b = 1|node, w_{t−1}, . . . , w_{t−n+1}) =sigmoid(\alpha_{node} + \beta’\cdot tanh(c + Wx + UN_{node}))$$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1944,7 +1936,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

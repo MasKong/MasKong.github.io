@@ -296,6 +296,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/Hive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/24/Hive/" itemprop="url">Hive</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T15:58:43+08:00">
+                2018-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Hive is a data warehousing infrastructure based on <a href="http://hadoop.apache.org/" target="_blank" rel="noopener">Apache Hadoop</a>. It provides SQL for ad-hoc querying.</p>
+<p>Hive data is organized into:</p>
+<ul>
+<li><strong>Databases</strong>.</li>
+<li><strong>Tables</strong>.</li>
+<li><strong>Partitions</strong>.</li>
+<li><strong>Buckets</strong>.</li>
+</ul>
+<p>Hive supports Primitive Types. Implicit conversion is allowed for types from child to an ancestor.</p>
+<p>Complex Types is built up from primitive types.</p>
+<ul>
+<li>Structs.</li>
+<li>Maps (key-value tuples).</li>
+<li>Arrays (indexable lists).</li>
+</ul>
+<h3 id="Case-insensitive"><a href="#Case-insensitive" class="headerlink" title="Case-insensitive"></a>Case-insensitive</h3><p>All Hive keywords are case-insensitive, including the names of Hive operators and functions.</p>
+<p>MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through.</p>
+<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果。</p>
+<p>请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。</p>
+<ul>
+<li>JOIN: 如果表中有至少一个匹配，则返回行</li>
+<li>LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行</li>
+<li>RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行</li>
+<li>FULL JOIN: 只要其中一个表中存在匹配，就返回行</li>
+</ul>
+<p>${precision}<br>美元符号$引用变量，大括号{}表示变量名字。${precision}表示引用名为precision的变量。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://cwiki.apache.org/confluence/display/Hive/Tutorial" target="_blank" rel="noopener"> Hive Tutorial</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/pandas/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1523,165 +1669,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/seq2seq_tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/seq2seq_tensorflow/" itemprop="url">seq2seq_tensorflow</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T10:12:54+08:00">
-                2018-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>attention machanism is just an attention wrapper to wrap the RNN.</p>
-<p>Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout.</p>
-<p>The output of RNN has to be fed to a fully-connected neural network to convert the final hidden states to scores of the vocabulary. After that, employ a softmax function to squeeze all scores in a probability distribution.</p>
-<p>Process of constructing seq2seq model in tensorflow:</p>
-<ol>
-<li>define hyperparameters. Settings of hyperparameters could be loaded from config file or parsed from command line. Both parser and tf.app.flags could be used to parse.</li>
-<li>preprocessing data. Like batching, padding and so on.</li>
-<li>construct model. build encoder, decoder and combine them together.</li>
-<li>write a train wrapper funtion to wrap the training process.</li>
-<li>feed data to model and perform training</li>
-<li>perform validation and testing</li>
-</ol>
-<p>Loss of seq2seq: at each step, there is only one correct token given a sentence. At each time step, use softmax to calculate the loss and optimize the sum of total loss at all time steps.</p>
-<p>Given a sentence, each time step t, there is a loss \(l_t\). The total loss \(L=\sum_0^T l_i\) where T is the number of tokens in the sentence. The optimizer is actually optimize this loss.</p>
-<p>The seq2seq could be regarded as a latent structure like auto-encoder because all information of the whole sentence is encoded in the final hidden state.</p>
-<p>Latent variable: 隐藏变量</p>
-<p>To do:</p>
-<ol>
-<li>write an iterator</li>
-<li></li>
-</ol>
-<p>For regression(time series data prediction) problem, just add a scaling factor with a fully-connected layer.</p>
-<p>The decoder could use the last encoder hidden state or zero or encoder input[:-1] as initial state. </p>
-<p>The RNN decoder outputs tensor with same shape as the input. </p>
-<p>The input is batched tensor, and RNN encoder takes sequence as input. Sequence is a list of tensor with shape [batch_size, dim]. The length of the sequence is the time step.</p>
-<p>When you use Dataset to train the model, during inference, there are several ways to feed the data:</p>
-<ol>
-<li>use dataset and feed label with idiot values</li>
-<li>create two meta graph with different input, and inference graph load parameters from the other.</li>
-<li>extract the input feature and feed with inference input.</li>
-</ol>
-<p>MAPE(Mean absolute percentage error):<br>$$<br>{\displaystyle {\mbox{M}}={\frac {100\%}{n}}\sum <em>{t=1}^{n}\left|{\frac {A</em>{t}-F_{t}}{A_{t}}}\right|,}<br>$$<br>Loss of each sample is the difference divided by the sample itself.</p>
-<h4 id="Embedding-size"><a href="#Embedding-size" class="headerlink" title="Embedding size"></a>Embedding size</h4><p>Assume n is the number of categorical features, embedding size could be \(k\sqrt[4] n\) or \(\log_2 (n)\).</p>
-<p>Only normalize output but not normalize input, model diverges.</p>
-<p>There are 2 kinds of seq2seq:</p>
-<ol>
-<li>encoder hidden state is only fed to the first step of the decoder</li>
-<li>encoder hidden state is fed to each step of the decoder</li>
-</ol>
-<p>add noise to encoder is beneficial to performance</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1736,7 +1723,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

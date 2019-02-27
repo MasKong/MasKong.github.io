@@ -296,6 +296,128 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Max-Matching/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/25/Max-Matching/" itemprop="url">Max_Matching</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-25T23:36:22+08:00">
+                2018-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Max-Matching-Algorithm"><a href="#Max-Matching-Algorithm" class="headerlink" title="Max Matching Algorithm"></a>Max Matching Algorithm</h2><p>It is a kind of greedy algorithm used to tokenize sentences. It is a baseline of tokenize algorithms.</p>
+<p>It works especially well on Chinese. I think it is because that Chinese words are single word that could not be took apart while English words are sequences of characters.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_words</span><span class="params">(file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(file) <span class="keyword">as</span> f:</span><br><span class="line">        l = f.readlines()</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_matching</span><span class="params">(text, dictionary)</span>:</span></span><br><span class="line">    <span class="comment"># l = []</span></span><br><span class="line">    w = <span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(text),<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        word = text[:i]</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> dictionary:</span><br><span class="line">            w += word+<span class="string">' '</span></span><br><span class="line"></span><br><span class="line">            w += max_matching(text[i:],dictionary) + <span class="string">' '</span></span><br><span class="line">            <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">if</span> len(text) != <span class="number">0</span>:</span><br><span class="line">        w = text[<span class="number">0</span>]+<span class="string">' '</span></span><br><span class="line">        w += max_matching(text[<span class="number">1</span>:],dictionary) + <span class="string">' '</span></span><br><span class="line">        <span class="keyword">return</span> w</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    file = <span class="string">'/Users/lmk/Documents/NLP/word.csv'</span></span><br><span class="line">    l = read_words(file)</span><br><span class="line">    <span class="comment"># l = read_words(file)</span></span><br><span class="line">    l = list(map(<span class="keyword">lambda</span> i: i[<span class="number">3</span>:<span class="number">-1</span>], l))</span><br><span class="line">    l[<span class="number">0</span>] = l[<span class="number">0</span>][<span class="number">1</span>:]</span><br><span class="line">    dic = l</span><br><span class="line">    <span class="comment"># s = "ilovechina"</span></span><br><span class="line">    s = <span class="string">"is also possible to use a list as a queue, where the first"</span></span><br><span class="line">    sentence = max_matching(s,dic)</span><br><span class="line">    token = sentence.split()</span><br><span class="line">    <span class="comment"># flatten = lambda l: [item for sublist in l for item in sentence]</span></span><br><span class="line">    <span class="comment"># flat_list = [item for sublist in l for item in sublist]</span></span><br><span class="line">    print(sentence)</span><br><span class="line">    print(token)</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/Minimum-Edit-Distance/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1474,7 +1596,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

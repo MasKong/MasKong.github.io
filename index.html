@@ -296,6 +296,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/Optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/27/Optimization/" itemprop="url">Optimization</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-27T14:16:40+08:00">
+                2019-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>To alliviate the gradient exploding problem, there are two methods:</p>
+<ol>
+<li>gradient clip. If gradient is larger than a threshold, the gradient is set to a contant value</li>
+<li>weight decay(L1, L2 regularization)</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/Searching/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -675,6 +799,7 @@
 <li>disturb output representation. Turn multi-class output to multiple binary classification output.</li>
 <li>disturb algorithm parameters.</li>
 </ol>
+<p><strong>Bagging focus on reduce variance by permute training data and employ strong classifiers which are usually complex so that they have low variance and high bias while boosting focus on reduce bias by employ weak classifiers which are usually simple with high variance and low bias. That is why xgboost and GBDT are accurate even with less layers.</strong></p>
 
           
         
@@ -796,6 +921,11 @@
           
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Spatial-Temporal Graph:</p>
 <p>each node is associated with a feature vector that evolves over time.</p>
+<p>GCN classification:</p>
+<ol>
+<li>add a node that connects to all other nodes in the graph as a kind of aggregated information(global node). Run the GCN algorithm and perform classification according to the node.</li>
+<li>global pooling</li>
+</ol>
 
           
         
@@ -926,6 +1056,8 @@
 <li>sort data in each buckets</li>
 <li>merge</li>
 </ol>
+<p>Two sum:<br>use hashmap to record indexes of values in the array and perform lookup. reduce time complexity to O(n)</p>
+<p>海量数据处理 - 找出最大的n个数（top K问题)<br>建小顶堆，如果一个数大于顶部的数，将改数代替顶部的数，进行heaplify</p>
 
           
         
@@ -1209,7 +1341,13 @@
 <li>run the algorithm until overfitting</li>
 <li>if not overfitting, check the dataset. The feature engineering may not be enough. Otherwise, start pruning. Increase the \(\lambda, \gamma\) and so on.</li>
 </ol>
-<h1 id="Decesion-Tree"><a href="#Decesion-Tree" class="headerlink" title="Decesion Tree"></a>Decesion Tree</h1><h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3 use entropy and information gain to measure whether a split is good or not. It is a kind of greedy algorithm and tends to choose splits with a lot of features whose information gain would be greater. And this may lead to overfitting.</p>
+<h1 id="Decesion-Tree"><a href="#Decesion-Tree" class="headerlink" title="Decesion Tree"></a>Decesion Tree</h1><p>The reason that decision tree is a base classifier in boosting or bagging:</p>
+<ol>
+<li>unstable classifier. susceptical to training data</li>
+<li>the representation and generalization ability is easy to adjust by modifying the number of layer or leaves.</li>
+<li>easy to incorporate the weight of training samples in decision tree by adjusting training data rather than oversampling or undersampling.</li>
+</ol>
+<h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3 use entropy and information gain to measure whether a split is good or not. It is a kind of greedy algorithm and tends to choose splits with a lot of features whose information gain would be greater. And this may lead to overfitting.</p>
 <p>$$<br>Ent(D)=- \sum_{k=1}^{K} p_k\cdot  log_{2}p_k<br>$$</p>
 <p>$$<br>Gain(D, a)=Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
 <h3 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h3><p>It is a kind of modified ID3. It employs to be the criteria to avoid the shortage of ID3 which choose the split with more features.</p>
@@ -1532,152 +1670,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/Hive/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/24/Hive/" itemprop="url">Hive</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T15:58:43+08:00">
-                2018-12-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Hive is a data warehousing infrastructure based on <a href="http://hadoop.apache.org/" target="_blank" rel="noopener">Apache Hadoop</a>. It provides SQL for ad-hoc querying.</p>
-<p>Hive data is organized into:</p>
-<ul>
-<li><strong>Databases</strong>.</li>
-<li><strong>Tables</strong>.</li>
-<li><strong>Partitions</strong>.</li>
-<li><strong>Buckets</strong>.</li>
-</ul>
-<p>Hive supports Primitive Types. Implicit conversion is allowed for types from child to an ancestor.</p>
-<p>Complex Types is built up from primitive types.</p>
-<ul>
-<li>Structs.</li>
-<li>Maps (key-value tuples).</li>
-<li>Arrays (indexable lists).</li>
-</ul>
-<h3 id="Case-insensitive"><a href="#Case-insensitive" class="headerlink" title="Case-insensitive"></a>Case-insensitive</h3><p>All Hive keywords are case-insensitive, including the names of Hive operators and functions.</p>
-<p>MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through.</p>
-<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果。</p>
-<p>请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。</p>
-<ul>
-<li>JOIN: 如果表中有至少一个匹配，则返回行</li>
-<li>LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行</li>
-<li>RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行</li>
-<li>FULL JOIN: 只要其中一个表中存在匹配，就返回行</li>
-</ul>
-<p>${precision}<br>美元符号$引用变量，大括号{}表示变量名字。${precision}表示引用名为precision的变量。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://cwiki.apache.org/confluence/display/Hive/Tutorial" target="_blank" rel="noopener"> Hive Tutorial</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1732,7 +1724,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

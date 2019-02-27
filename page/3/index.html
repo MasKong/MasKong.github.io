@@ -296,6 +296,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/seq2seq_tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/seq2seq_tensorflow/" itemprop="url">seq2seq_tensorflow</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T10:12:54+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>attention machanism is just an attention wrapper to wrap the RNN.</p>
+<p>Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout.</p>
+<p>The output of RNN has to be fed to a fully-connected neural network to convert the final hidden states to scores of the vocabulary. After that, employ a softmax function to squeeze all scores in a probability distribution.</p>
+<p>Process of constructing seq2seq model in tensorflow:</p>
+<ol>
+<li>define hyperparameters. Settings of hyperparameters could be loaded from config file or parsed from command line. Both parser and tf.app.flags could be used to parse.</li>
+<li>preprocessing data. Like batching, padding and so on.</li>
+<li>construct model. build encoder, decoder and combine them together.</li>
+<li>write a train wrapper funtion to wrap the training process.</li>
+<li>feed data to model and perform training</li>
+<li>perform validation and testing</li>
+</ol>
+<p>Loss of seq2seq: at each step, there is only one correct token given a sentence. At each time step, use softmax to calculate the loss and optimize the sum of total loss at all time steps.</p>
+<p>Given a sentence, each time step t, there is a loss \(l_t\). The total loss \(L=\sum_0^T l_i\) where T is the number of tokens in the sentence. The optimizer is actually optimize this loss.</p>
+<p>The seq2seq could be regarded as a latent structure like auto-encoder because all information of the whole sentence is encoded in the final hidden state.</p>
+<p>Latent variable: 隐藏变量</p>
+<p>To do:</p>
+<ol>
+<li>write an iterator</li>
+<li></li>
+</ol>
+<p>For regression(time series data prediction) problem, just add a scaling factor with a fully-connected layer.</p>
+<p>The decoder could use the last encoder hidden state or zero or encoder input[:-1] as initial state. </p>
+<p>The RNN decoder outputs tensor with same shape as the input. </p>
+<p>The input is batched tensor, and RNN encoder takes sequence as input. Sequence is a list of tensor with shape [batch_size, dim]. The length of the sequence is the time step.</p>
+<p>When you use Dataset to train the model, during inference, there are several ways to feed the data:</p>
+<ol>
+<li>use dataset and feed label with idiot values</li>
+<li>create two meta graph with different input, and inference graph load parameters from the other.</li>
+<li>extract the input feature and feed with inference input.</li>
+</ol>
+<p>MAPE(Mean absolute percentage error):<br>$$<br>{\displaystyle {\mbox{M}}={\frac {100\%}{n}}\sum <em>{t=1}^{n}\left|{\frac {A</em>{t}-F_{t}}{A_{t}}}\right|,}<br>$$<br>Loss of each sample is the difference divided by the sample itself.</p>
+<h4 id="Embedding-size"><a href="#Embedding-size" class="headerlink" title="Embedding size"></a>Embedding size</h4><p>Assume n is the number of categorical features, embedding size could be \(k\sqrt[4] n\) or \(\log_2 (n)\).</p>
+<p>Only normalize output but not normalize input, model diverges.</p>
+<p>There are 2 kinds of seq2seq:</p>
+<ol>
+<li>encoder hidden state is only fed to the first step of the decoder</li>
+<li>encoder hidden state is fed to each step of the decoder</li>
+</ol>
+<p>add noise to encoder is beneficial to performance</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/tensorflow-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -563,7 +722,7 @@
 <p>where \(x_0\) is the concatenation of embedding features and dense features and \(^T_{embed,k}\) means the embedding of the kth feature. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
 <p>The degress of cross features is growing with the number of layers.</p>
 <p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
-<p>In a nutshell, the cross network models linear features interactions and deep network models non-linear feature interactions. They are combined together at the end. </p>
+<p>In a nutshell, the cross network models linear features interactions between high-order features and the original features while deep network models non-linear and only high-order features interactions. They are combined together at the end. The cross network could be regarded as a kind of generalization of FM.</p>
 <p><strong>wide&amp;deep, deepFM and Deep&amp;Cross are multi-task learning.</strong></p>
 <h3 id="Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb"><a href="#Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb" class="headerlink" title="Real-time Personalization using Embeddings for Search Ranking at Airbnb"></a>Real-time Personalization using Embeddings for Search Ranking at Airbnb</h3><p>Airbnb proposed to do real time personalization. They achieved this by train embeddings in a booking session. The approach is totally the same as word2vec except that they focus on predicting the final booking. As a result, in each booking session there are several sliding windows and they try to max the probability of predicting the final booking listing(here listing could be regarded as an item).</p>
 <h5 id="Adapting-Training-for-Congregated-Search"><a href="#Adapting-Training-for-Congregated-Search" class="headerlink" title="Adapting Training for Congregated Search"></a>Adapting Training for Congregated Search</h5><p>They added negative samples from the same location(e.g. Paris) so that the embeddings are able to capture location information.</p>
@@ -1529,138 +1688,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Probability/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/30/Probability/" itemprop="url">Probability</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:47:03+08:00">
-                2018-09-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="The-Binomial-Distribution"><a href="#The-Binomial-Distribution" class="headerlink" title="The Binomial Distribution"></a>The Binomial Distribution</h2><p>$${\displaystyle f(k;n,p)=\Pr(X=k)={n \choose k}p^{k}(1-p)^{n-k}}$$</p>
-<p>n trails, each trail produce one result, the result is that whether a certain event E happen or not. The event happens with probability p. The Binomial Distribution is denoted as Bin(n,p)</p>
-<h2 id="The-Multinomial-Distribution"><a href="#The-Multinomial-Distribution" class="headerlink" title="The Multinomial Distribution"></a>The Multinomial Distribution</h2><p>$$P(x_1,…,x_k|n,p_1,..p_k) = Multi(x_1,…,x_k|n,p_1,..p_k) \<br>= \dfrac{N!}{x_1!\cdots x_k!}p_i^{x_i}\<br>=\dfrac{N!}{\prod_{i=1}^kx_i!}p_i^{x_i},\<br>where\ \sum_i x_i=N,x_i&gt;0 \prod_{i=1}^d \mu_i^{m_i}$$</p>
-<p>n trails, each trail also produce one result, the result is that one of K events \(E_j\) happen. Each event happen with probability \(\pi_j\), j=1,2,….k where \(\pi_1 + \pi_2 +…..+\pi_k=1\). \(X_k\) is number of trials in which \(E_k\) occurs. \(X_1+X_2+….+X_k=n\).</p>
-<p>Multinomial models the distribution of the histogram vector which indicates how many time each outcome was observed over N trials of experiments.</p>
-<p>The individual components of a multinomial random vector are binomial and have a binomial distribution, \(X_1\sim Bin(n,\pi_1)\).</p>
-<p>The notation is \(X\sim Mult(n,\pi)\).</p>
-<h2 id="Poisson-Distribution"><a href="#Poisson-Distribution" class="headerlink" title="Poisson Distribution"></a>Poisson Distribution</h2><p>$${\displaystyle P(X=k)={\frac {e^{-\lambda }\lambda ^{k}}{k!}}}$$</p>
-<p>Poisson distribution is the limit of binomial distribution where \(\lambda =np\).  \(Bin(n,p) \sim possion(\lambda)\) when n is large and p is small. </p>
-<p>Poisson distribution is to model in a fixed time period or a fixed space, counts or events that occur randomly such as number of people buy something, number of goals in a round of match.</p>
-<p>\(\lambda \) is the parameter describing the rate, that is the mean of the distribution. In poission distribution, \(E(X) = Var(X) = \lambda\). Usually the variance is larger than \(\lambda\) because of overdispersion.</p>
-<p>Estimation of \(\lambda\): point estimation or interal estimation.</p>
-<h2 id="Gaussian-process"><a href="#Gaussian-process" class="headerlink" title="Gaussian process"></a>Gaussian process</h2><p>A Gaussian process is a stochastic process such that each combination of random variables has a multivariate normal distribution.</p>
-<h2 id="Hypothesis-Testing"><a href="#Hypothesis-Testing" class="headerlink" title="Hypothesis Testing"></a>Hypothesis Testing</h2>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1715,7 +1742,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

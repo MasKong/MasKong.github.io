@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="CTR(Click-Through-Rate). Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-25T07:43:55.111Z">
+<meta property="og:updated_time" content="2019-02-26T03:25:49.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Recommendation_System">
 <meta name="twitter:description" content="CTR(Click-Through-Rate). Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the">
@@ -389,7 +389,7 @@
 <p>where \(x_0\) is the concatenation of embedding features and dense features and \(^T_{embed,k}\) means the embedding of the kth feature. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
 <p>The degress of cross features is growing with the number of layers.</p>
 <p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
-<p>In a nutshell, the cross network models linear features interactions and deep network models non-linear feature interactions. They are combined together at the end. </p>
+<p>In a nutshell, the cross network models linear features interactions between high-order features and the original features while deep network models non-linear and only high-order features interactions. They are combined together at the end. The cross network could be regarded as a kind of generalization of FM.</p>
 <p><strong>wide&amp;deep, deepFM and Deep&amp;Cross are multi-task learning.</strong></p>
 <h3 id="Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb"><a href="#Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb" class="headerlink" title="Real-time Personalization using Embeddings for Search Ranking at Airbnb"></a>Real-time Personalization using Embeddings for Search Ranking at Airbnb</h3><p>Airbnb proposed to do real time personalization. They achieved this by train embeddings in a booking session. The approach is totally the same as word2vec except that they focus on predicting the final booking. As a result, in each booking session there are several sliding windows and they try to max the probability of predicting the final booking listing(here listing could be regarded as an item).</p>
 <h5 id="Adapting-Training-for-Congregated-Search"><a href="#Adapting-Training-for-Congregated-Search" class="headerlink" title="Adapting Training for Congregated Search"></a>Adapting Training for Congregated Search</h5><p>They added negative samples from the same location(e.g. Paris) so that the embeddings are able to capture location information.</p>
@@ -523,7 +523,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">88</span>
+                  <span class="site-state-item-count">89</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
