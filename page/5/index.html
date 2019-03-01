@@ -296,6 +296,142 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/QA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/QA/" itemprop="url">QA</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-05T11:45:50+08:00">
+                2018-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Two kinds of QA:</p>
+<ul>
+<li>IR-based question answering </li>
+<li>knowledge-based question answering</li>
+</ul>
+<p>Factoid questions: questions that can be answered with simple facts expressed in short text answers.</p>
+<h3 id="IR-based-question-answering"><a href="#IR-based-question-answering" class="headerlink" title="IR-based question answering:"></a>IR-based question answering:</h3><ul>
+<li>Question Processing: extract focus, classify the question type</li>
+<li>Answer Type Detection(Question Classification)</li>
+<li>Query Formulation: form a query from keywords and send to an information retrieval system.</li>
+<li>Passage Retrieval: retrive documents and rank them according to features such as relevance, number of keywords and so on.</li>
+<li>Answer Processing <ol>
+<li>pattern-extraction: use pattern to extract the answer from retrived document</li>
+<li>N-gram tiling</li>
+</ol>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/LSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -536,6 +672,7 @@
 <p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
 <p>Multi-head attention simulates convolutional neural network. Each head employs different weights such that different heads learn different relationship. In terms of convolution, different positions learn different features.</p>
 <p>Multi-head attention actually enrichs the features and enable a word focus on different parts of a sentence. Normal attention allows the word to focus on only a specific part.</p>
+<p><strong>Each head focus on different kinds of information.</strong> For example, one head focus on subject, one head focus on object, so on and so forth[2].</p>
 <h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
 <h4 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h4><p>The paper propose to use positional embedding to encode position information.</p>
 <h4 id="Compare-RNN-with-transformer"><a href="#Compare-RNN-with-transformer" class="headerlink" title="Compare RNN with transformer"></a>Compare RNN with transformer</h4><p>self-attention Complexity \(O(n^2\cdot d)\)</p>
@@ -549,6 +686,7 @@
 <h2 id="Universal-Transformer"><a href="#Universal-Transformer" class="headerlink" title="Universal Transformer"></a>Universal Transformer</h2><p>add adaptive computation time(ACT) to the transformer so that the model is able to spent more computation on encoding the ambiguous words.</p>
 <h3 id="Adaptive-Computation-Time"><a href="#Adaptive-Computation-Time" class="headerlink" title="Adaptive Computation Time"></a>Adaptive Computation Time</h3><p>Employ one activation function to decide the probability of continuing computation. If some steps are stopped earlier, their states are copied to the final output time step. This allow the neural network to spent more computation on those ambiguous words.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank" rel="noopener"> Attention is all you need</a></p>
+<p>[2] <a href="http://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture14-transformers.pdf" target="_blank" rel="noopener"> Self-Attention For Generative Models</a></p>
 
           
         
@@ -1317,7 +1455,8 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Prior-parameter-distribution"><a href="#Prior-parameter-distribution" class="headerlink" title="Prior parameter distribution"></a>Prior parameter distribution</h3><p>A prior probability distribution over the<br>parameters of a model is to encode our belief about what models are resonable before seeing the data.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The convolution in CNN could be regarded as a kind of weighted average over neighbors.</p>
+<h3 id="Prior-parameter-distribution"><a href="#Prior-parameter-distribution" class="headerlink" title="Prior parameter distribution"></a>Prior parameter distribution</h3><p>A prior probability distribution over the<br>parameters of a model is to encode our belief about what models are resonable before seeing the data.</p>
 <ul>
 <li>a week prior: distribution with high entropy like Gaussian with high variance. It allows the data to move parameters of model freely.</li>
 <li>a strong prior: distribution with low entropy like Gaussian with low variance. Such a prior plays a more active role in determining where the parameters end up.</li>
@@ -1522,132 +1661,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/09/activation-function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/09/activation-function/" itemprop="url">activation_function</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-09T22:38:56+08:00">
-                2018-08-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Rectified-Linear-Units"><a href="#Rectified-Linear-Units" class="headerlink" title="Rectified Linear Units"></a>Rectified Linear Units</h2><p>Easy to optimize, and train. It is a good practice to initialize the bias b to be small positive values s.t. most units are active at the beginning.</p>
-<p>Drawback: not able to learn examples that activation is zero. A large gradient could update the unit s.t. it would never be active again if the learning rate is large.</p>
-<h3 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h3><p>Make some modifications s.t. the negative part could also be learnt.</p>
-<h3 id="Maxout-units"><a href="#Maxout-units" class="headerlink" title="Maxout units"></a>Maxout units</h3><p>Generalization of ReLU and Leaky Relu. The activation function is now \(\max(w_1^T\cdot x, w_2^T\cdot x)\) where \(w_1^T\cdot x\) is Relu (when w1 are all zeros, it is Relu)and \(w_2^T\cdot x\) is Leaky Relu.</p>
-<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p>Could be used as output units for 0-1 classfication because the cost is optimized to be small to avoid saturation.</p>
-<p>Drawback: hard to train due to saturation. Not zero-centered.</p>
-<h2 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h2><p>A scaled sigmoid, zero-centered. Resemble the identity function</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1702,7 +1715,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

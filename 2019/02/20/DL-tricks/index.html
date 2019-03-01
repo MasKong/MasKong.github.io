@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Weight DecayWeight decay is equivalent to decrease the weight during training each time updating the parameters. Batch NormalizationBatch Normalization not reduce internal covariance shift(ICS), but m">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-21T08:16:06.403Z">
+<meta property="og:updated_time" content="2019-03-01T08:01:56.947Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DL_tricks">
 <meta name="twitter:description" content="Weight DecayWeight decay is equivalent to decrease the weight during training each time updating the parameters. Batch NormalizationBatch Normalization not reduce internal covariance shift(ICS), but m">
@@ -371,7 +371,7 @@
 <p>$$<br>\hat{X} = \frac{X - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}<br>$$</p>
 <p>$$<br>y^{(k)} = \gamma^{k}\hat{x}^{(k)}+\beta^{(k)}<br>$$</p>
 <p>As you can see, the effect of batch normalisation is gone when \(\beta = \mu_B,\gamma = \sigma_B^2\).</p>
-<p>BN is performed as a layer on each neuron.  For CNN, each kernel is regarded as a neuron. So the mean and variance is computed from the batch with size h<em>w as the kernel size. For example, in fully connected network, BN if performed on each neuron so that the computation is performed on a batch of data \(x_1, ….., x_{m-1}\) with size m. When it comes to CNN, the computation if performed on a batch of data \(x_1,….., x_{m</em>p*q-1}\) where p and q is the kernel size. The BN operation is performed within a batch of data across every data samples at different locations in a kernel.</p>
+<p>BN is performed as a layer on each neuron.  For CNN, each kernel is regarded as a neuron. So the mean and variance is computed from the batch with size h*w as the kernel size. For example, in fully connected network, BN if performed on each neuron so that the computation is performed on a batch of data \(x_1, ….., x_{m-1}\) with size m. When it comes to CNN, the computation if performed on a batch of data \(x_1,….., x_{m\times p\times q-1}\) where p and q is the kernel size. The BN operation is performed within a batch of data across every data samples at different locations in a kernel.</p>
 <p>During inference, the bias and variance are computed from the mean of all batches during training.<br>$$<br>E[x] = E_{\beta}[\mu_\beta]<br>$$</p>
 <p>$$<br>Var[x] = \frac{m}{m-1}E_\beta[\sigma^2_\beta]<br>$$<br>Here \(\beta\) means all batches during training.</p>
 <h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>In a standard RNN, there is a tendency for the average magnitude of the summed inputs to the recur- rent units to either grow or shrink at every time-step. Layer normalization make it invariant to it.</p>
@@ -393,7 +393,10 @@
 <p>A standard recurrent neural network tends to ether grow or shrink the magnitude of input which leads to either exploding or vanishing gradient problem. Layer normalisation enables to model to be invariant to growth or shrink in magnitude of input.</p>
 <h3 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h3><p>During training, each neuron is killed with probability p. During testing, each neuron is always presented but decrease the weight to pw.</p>
 <p>Dropout is a kind of ensemble learning because each time it train a different neural network and finally combine all of them together.</p>
-
+<h4 id="Learning-rate-warmup"><a href="#Learning-rate-warmup" class="headerlink" title="Learning rate warmup"></a>Learning rate warmup</h4><p>During the first k epochs, employ small learning rate to avoid unstable gradient and parameter updates. From k+1 epoch, employ normal learning rate.</p>
+<p>constant warmup:<br>$$<br>\hat{\eta} = k\eta<br>$$</p>
+<h4 id="Temperature"><a href="#Temperature" class="headerlink" title="Temperature"></a>Temperature</h4><p>Temperature which is usually 1 is used to scale the logits that are input to softmax[1].</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
     
@@ -520,7 +523,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -566,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Weight-Decay"><span class="nav-number">1.</span> <span class="nav-text">Weight Decay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Batch-Normalization"><span class="nav-number">2.</span> <span class="nav-text">Batch Normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layer-Normalization"><span class="nav-number">3.</span> <span class="nav-text">Layer Normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-number">4.</span> <span class="nav-text">Dropout</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Weight-Decay"><span class="nav-number">1.</span> <span class="nav-text">Weight Decay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Batch-Normalization"><span class="nav-number">2.</span> <span class="nav-text">Batch Normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Layer-Normalization"><span class="nav-number">3.</span> <span class="nav-text">Layer Normalization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-number">4.</span> <span class="nav-text">Dropout</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Learning-rate-warmup"><span class="nav-number">4.1.</span> <span class="nav-text">Learning rate warmup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Temperature"><span class="nav-number">4.2.</span> <span class="nav-text">Temperature</span></a></li></ol></li></ol></div>
             
 
           </div>

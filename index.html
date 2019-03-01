@@ -296,6 +296,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/KBQA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/01/KBQA/" itemprop="url">KBQA</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-01T17:31:36+08:00">
+                2019-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Dynamic-Memory-Network"><a href="#Dynamic-Memory-Network" class="headerlink" title="Dynamic Memory Network"></a>Dynamic Memory Network</h3><p>Input: if the input is a paragraph which is a sequence of sentences, the sentences are concat together with [sep] separating each sentence. The final resentation of the whole paragraph is concatenation of a set of [eos] representations. If there is only one sentence, the [eos] representation is employed to represent the whole sentence.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/Optimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -519,6 +639,11 @@
 <li>Each query and document are represented as a feature vector and propagated to a neural network to generate new feature vectors. Compute the cos similarity between query and document feature vectors and feed them to the softmax and max the probability of the clicked document and query.</li>
 </ol>
 <h2 id="Sentence-Similarity"><a href="#Sentence-Similarity" class="headerlink" title="Sentence Similarity"></a>Sentence Similarity</h2><p>openAI-GPT: use transformer to encode two sentences. Two sentences are concat together. There is no natural structure for two sentences. So sen1[sep]sen2 and sen2[sep]sen1 are fed to transformer to compute feature vectors and added together. And then feed to a linear layer to compute similarity.</p>
+<h4 id="Sentence-Embedding"><a href="#Sentence-Embedding" class="headerlink" title="Sentence Embedding"></a>Sentence Embedding</h4><p>Two kinds of training method:</p>
+<ol>
+<li>generation: pair sentences together, generate sentences given other sentence</li>
+<li>classification: pair sentences together, do classification, whether a sentence is the next sentence of given sentence.</li>
+</ol>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
@@ -646,7 +771,7 @@
 <p>$$<br>\hat{X} = \frac{X - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}<br>$$</p>
 <p>$$<br>y^{(k)} = \gamma^{k}\hat{x}^{(k)}+\beta^{(k)}<br>$$</p>
 <p>As you can see, the effect of batch normalisation is gone when \(\beta = \mu_B,\gamma = \sigma_B^2\).</p>
-<p>BN is performed as a layer on each neuron.  For CNN, each kernel is regarded as a neuron. So the mean and variance is computed from the batch with size h<em>w as the kernel size. For example, in fully connected network, BN if performed on each neuron so that the computation is performed on a batch of data \(x_1, ….., x_{m-1}\) with size m. When it comes to CNN, the computation if performed on a batch of data \(x_1,….., x_{m</em>p*q-1}\) where p and q is the kernel size. The BN operation is performed within a batch of data across every data samples at different locations in a kernel.</p>
+<p>BN is performed as a layer on each neuron.  For CNN, each kernel is regarded as a neuron. So the mean and variance is computed from the batch with size h*w as the kernel size. For example, in fully connected network, BN if performed on each neuron so that the computation is performed on a batch of data \(x_1, ….., x_{m-1}\) with size m. When it comes to CNN, the computation if performed on a batch of data \(x_1,….., x_{m\times p\times q-1}\) where p and q is the kernel size. The BN operation is performed within a batch of data across every data samples at different locations in a kernel.</p>
 <p>During inference, the bias and variance are computed from the mean of all batches during training.<br>$$<br>E[x] = E_{\beta}[\mu_\beta]<br>$$</p>
 <p>$$<br>Var[x] = \frac{m}{m-1}E_\beta[\sigma^2_\beta]<br>$$<br>Here \(\beta\) means all batches during training.</p>
 <h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>In a standard RNN, there is a tendency for the average magnitude of the summed inputs to the recur- rent units to either grow or shrink at every time-step. Layer normalization make it invariant to it.</p>
@@ -668,7 +793,10 @@
 <p>A standard recurrent neural network tends to ether grow or shrink the magnitude of input which leads to either exploding or vanishing gradient problem. Layer normalisation enables to model to be invariant to growth or shrink in magnitude of input.</p>
 <h3 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h3><p>During training, each neuron is killed with probability p. During testing, each neuron is always presented but decrease the weight to pw.</p>
 <p>Dropout is a kind of ensemble learning because each time it train a different neural network and finally combine all of them together.</p>
-
+<h4 id="Learning-rate-warmup"><a href="#Learning-rate-warmup" class="headerlink" title="Learning rate warmup"></a>Learning rate warmup</h4><p>During the first k epochs, employ small learning rate to avoid unstable gradient and parameter updates. From k+1 epoch, employ normal learning rate.</p>
+<p>constant warmup:<br>$$<br>\hat{\eta} = k\eta<br>$$</p>
+<h4 id="Temperature"><a href="#Temperature" class="headerlink" title="Temperature"></a>Temperature</h4><p>Temperature which is usually 1 is used to scale the logits that are input to softmax[1].</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
       
@@ -926,6 +1054,38 @@
 <li>add a node that connects to all other nodes in the graph as a kind of aggregated information(global node). Run the GCN algorithm and perform classification according to the node.</li>
 <li>global pooling</li>
 </ol>
+<p>shallow model:<br>each node is represented as a dense vector in the embedding matrix. </p>
+<p>A similarity function is used to map Node(u,v) to the embedding space such that<br>$$<br>similarity(u,v) = z_v^Tz_u<br>$$</p>
+<p>The key concept of GNN is how to aggregate neighborhood information. The computation in GNN is very intuitive. Each node is represented by its neighbors. This approach is the same as CBOW(word2vec) which employs a set of neighbor words to represent the center word. So features of a node is the aggregation of neighborhood information.</p>
+<p><strong>GNN could be trained in an unsupervised manner. The key concept is that similar nodes are with similar embeddings.</strong></p>
+<p>Model design:</p>
+<ol>
+<li>choose an approach to aggregate neighborhood information. </li>
+<li>define a loss function on embeddings</li>
+<li>training</li>
+<li>generate embeddings(possible to concatenate several layer embedding like ELMO)</li>
+</ol>
+<p>The parameters of aggregate function could be shared so as to reduce computation and generate to unseen nodes.</p>
+<p>The aggregate function could be weighted average(CNN), pooling or even RNN.</p>
+<h4 id="Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><a href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes" class="headerlink" title="Pinsage: scale the he training as well as inference of node embeddings to billions of nodes"></a>Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</h4><p>Innovations:</p>
+<ol>
+<li>On-the-fly graph convolutions(only part of network is used to do computation):  </li>
+</ol>
+<ul>
+<li>Sample the neighborhood around a node and dynamically construct a computation graph</li>
+<li>Perform a localized graph convolution around a particular node</li>
+</ul>
+<ol start="2">
+<li>Constructing convolutions via random walks </li>
+</ol>
+<ul>
+<li>pooling: select nodes that are more important</li>
+</ul>
+<ol start="3">
+<li>Efficient MapReduce inference</li>
+</ol>
+<p>Attention mechanism enables the neural network to aggregate the information according to importance of related nodes.</p>
+<p>Knowledge graphs are heterogeneous networks.</p>
 
           
         
@@ -1543,133 +1703,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/Transfer-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/03/Transfer-Learning/" itemprop="url">Transfer_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-03T17:43:34+08:00">
-                2019-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Transfer learning in NLP:<br>Hypercolumns: Embeddings at different levels are used as features, concatenated either with the word embeddings or with the inputs at intermediate layers like ELMO.</p>
-<p>Unsupervised pre-training usually improves performance. And adding a language model as auxilliary task also improves performance.</p>
-<p>Semi-supervised task: perform unsupervised pre-training and perform supervised fine-tuning.</p>
-<p>steps:</p>
-<ol>
-<li>freeze low layers and train the high layers like the last few layers</li>
-<li>unfreeze all layers and train with discriminative learning rates which means that training low layers with low learning rate and high layer with high learning rate.</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1724,7 +1757,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

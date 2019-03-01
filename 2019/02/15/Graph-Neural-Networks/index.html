@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Spatial-Temporal Graph: each node is associated with a feature vector that evolves over time. GCN classification:  add a node that connects to all other nodes in the graph as a kind of aggregated info">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-26T02:02:57.064Z">
+<meta property="og:updated_time" content="2019-03-01T02:11:42.499Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Graph_Neural_Networks">
 <meta name="twitter:description" content="Spatial-Temporal Graph: each node is associated with a feature vector that evolves over time. GCN classification:  add a node that connects to all other nodes in the graph as a kind of aggregated info">
@@ -370,6 +370,38 @@
 <li>add a node that connects to all other nodes in the graph as a kind of aggregated information(global node). Run the GCN algorithm and perform classification according to the node.</li>
 <li>global pooling</li>
 </ol>
+<p>shallow model:<br>each node is represented as a dense vector in the embedding matrix. </p>
+<p>A similarity function is used to map Node(u,v) to the embedding space such that<br>$$<br>similarity(u,v) = z_v^Tz_u<br>$$</p>
+<p>The key concept of GNN is how to aggregate neighborhood information. The computation in GNN is very intuitive. Each node is represented by its neighbors. This approach is the same as CBOW(word2vec) which employs a set of neighbor words to represent the center word. So features of a node is the aggregation of neighborhood information.</p>
+<p><strong>GNN could be trained in an unsupervised manner. The key concept is that similar nodes are with similar embeddings.</strong></p>
+<p>Model design:</p>
+<ol>
+<li>choose an approach to aggregate neighborhood information. </li>
+<li>define a loss function on embeddings</li>
+<li>training</li>
+<li>generate embeddings(possible to concatenate several layer embedding like ELMO)</li>
+</ol>
+<p>The parameters of aggregate function could be shared so as to reduce computation and generate to unseen nodes.</p>
+<p>The aggregate function could be weighted average(CNN), pooling or even RNN.</p>
+<h4 id="Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><a href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes" class="headerlink" title="Pinsage: scale the he training as well as inference of node embeddings to billions of nodes"></a>Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</h4><p>Innovations:</p>
+<ol>
+<li>On-the-fly graph convolutions(only part of network is used to do computation):  </li>
+</ol>
+<ul>
+<li>Sample the neighborhood around a node and dynamically construct a computation graph</li>
+<li>Perform a localized graph convolution around a particular node</li>
+</ul>
+<ol start="2">
+<li>Constructing convolutions via random walks </li>
+</ol>
+<ul>
+<li>pooling: select nodes that are more important</li>
+</ul>
+<ol start="3">
+<li>Efficient MapReduce inference</li>
+</ol>
+<p>Attention mechanism enables the neural network to aggregate the information according to importance of related nodes.</p>
+<p>Knowledge graphs are heterogeneous networks.</p>
 
       
     </div>
@@ -468,8 +500,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -488,7 +529,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -524,6 +565,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><span class="nav-number">1.</span> <span class="nav-text">Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

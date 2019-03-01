@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Attention is a distribution which describe how much the network should focus on each unit. The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)$$\begin{equation}p(\textbf{y})">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-13T14:12:16.647Z">
+<meta property="og:updated_time" content="2019-03-01T06:34:46.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Attention">
 <meta name="twitter:description" content="Attention is a distribution which describe how much the network should focus on each unit. The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)$$\begin{equation}p(\textbf{y})">
@@ -396,6 +396,7 @@
 <p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
 <p>Multi-head attention simulates convolutional neural network. Each head employs different weights such that different heads learn different relationship. In terms of convolution, different positions learn different features.</p>
 <p>Multi-head attention actually enrichs the features and enable a word focus on different parts of a sentence. Normal attention allows the word to focus on only a specific part.</p>
+<p><strong>Each head focus on different kinds of information.</strong> For example, one head focus on subject, one head focus on object, so on and so forth[2].</p>
 <h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
 <h4 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h4><p>The paper propose to use positional embedding to encode position information.</p>
 <h4 id="Compare-RNN-with-transformer"><a href="#Compare-RNN-with-transformer" class="headerlink" title="Compare RNN with transformer"></a>Compare RNN with transformer</h4><p>self-attention Complexity \(O(n^2\cdot d)\)</p>
@@ -409,6 +410,7 @@
 <h2 id="Universal-Transformer"><a href="#Universal-Transformer" class="headerlink" title="Universal Transformer"></a>Universal Transformer</h2><p>add adaptive computation time(ACT) to the transformer so that the model is able to spent more computation on encoding the ambiguous words.</p>
 <h3 id="Adaptive-Computation-Time"><a href="#Adaptive-Computation-Time" class="headerlink" title="Adaptive Computation Time"></a>Adaptive Computation Time</h3><p>Employ one activation function to decide the probability of continuing computation. If some steps are stopped earlier, their states are copied to the final output time step. This allow the neural network to spent more computation on those ambiguous words.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank" rel="noopener"> Attention is all you need</a></p>
+<p>[2] <a href="http://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture14-transformers.pdf" target="_blank" rel="noopener"> Self-Attention For Generative Models</a></p>
 
       
     </div>
@@ -542,7 +544,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">90</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
