@@ -296,6 +296,215 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/06/Word_Senses/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/06/Word_Senses/" itemprop="url">Word_Senses</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-06T12:43:04+08:00">
+                2018-07-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Word-sense-disambiguation-WSD"><a href="#Word-sense-disambiguation-WSD" class="headerlink" title="Word sense disambiguation(WSD)"></a>Word sense disambiguation(WSD)</h1><p>Word sense disambiguation(WSD) is significant because it is common that there are multiple senses within a word. Better word sense disambiguation would improve the performance of tasks such as question answering and machine translation.</p>
+<p>Two kinds of WSD tasks:</p>
+<ul>
+<li>lexical sample</li>
+<li>all-words</li>
+</ul>
+<p>Lexical sample: given a set of target words and with an inventory of senses from some lexicon. Supervised learning is employed to solve this problem at usual. Hand-label a small set of words and corresponding sense, and feed into a classifier.</p>
+<p>All-words: given entire texts and a lexicon that contains an inventory of senses for each entry. The objective is to disambiguate every content word in the text. It is impractical to train a classifier for each term because the number of words is large.</p>
+<h3 id="Supervised-Learning-Approach"><a href="#Supervised-Learning-Approach" class="headerlink" title="Supervised Learning Approach"></a>Supervised Learning Approach</h3><ol>
+<li>Feature Vector Extraction. Process the sentence in a context window to extract feature vector.</li>
+</ol>
+<p>There are two kinds of feature vector:</p>
+<ul>
+<li>collocation features. Multiple words in a position-specific relationship to a target word. It is effective at encoding local lexical and grammatical information that usually isolate a given sense. High performing systems generally use POS tags and word collocations of length 1,2 and 3 from a window of words 3.</li>
+<li>bag-of-words: neglecting the position information, just record number of context words in a context window. The context words could be pre-selected(frequent used words) given a target word.</li>
+</ul>
+<p><strong>Evaluation</strong>: most frequent sense as baseline. Most freauent sense usually choose the most frequently used sense given a context.</p>
+<h3 id="Dictionary-and-Thesaurus"><a href="#Dictionary-and-Thesaurus" class="headerlink" title="Dictionary and Thesaurus"></a>Dictionary and Thesaurus</h3><h5 id="The-Lesk-Algorithm"><a href="#The-Lesk-Algorithm" class="headerlink" title="The Lesk Algorithm"></a>The Lesk Algorithm</h5><p>It is a family of dictionary-based algorithms.<br>Simplified algorithm compute the number of overlapped words between a given context and all of the word senses. Output the sense with the most overlapped words.</p>
+<p>Original Lesk Algorithm compute the number of overlapped words between sense of each context word and the sense of the target word.<br>i.e.: Bank is a financial institute for deposit.<br>Simplified algorithm compute the number of overlapping words between each sense and the context [financial,institute, deposit] and output the sense with the most overlapped words.<br>The original algorithm compute all senses with all senses of each word in the context  [financial,institute, deposit] and output the sense with the most overlapped words.</p>
+<p><strong>Notes</strong>:stop-words are not taken into consideration.</p>
+<p>Problem: Entries of the dictionary for the target word are not enough which reduce the chance of overlapping.</p>
+<p>Solution: To expand the sense, include senses of similar words which may increase the number of overlapping words.</p>
+<p>The best solution is to utilize sense-tagged corpus, which is so called <strong><strong>Corpus Lesk Algorithm</strong></strong>. To expand the signature for a word sense, add all word senses with the same label. i.e.: add word sense of large, huge to big. Instead of employ a stop-list, the algorithm apply IDF to reduce the weight of function words like the,of. This algorithm is usually a baseline.</p>
+<p>The bag-of-words approach could be improved by combining the Lesk algorithm. The glosses and example sentences for the target sense in WordNet would be used as words features along with <strong>sense-tagged</strong> corpus like SemCor.</p>
+<h5 id="Graph-based-Methods"><a href="#Graph-based-Methods" class="headerlink" title="Graph-based Methods"></a>Graph-based Methods</h5><p>A graph is employed to represent words. Each sense is a node and relations between senses are edges. It is usually an undirected graph.</p>
+<p>The correct sense is the one that is central in the graph. Use degree to decide centrality.</p>
+<p>Another approach is to assign probability to nodes according to personalized page rank.</p>
+<p><strong>Problem of both supervised and dictionary-based approach</strong>: need hand-built resouces</p>
+<h3 id="Semi-Supervised-Bootstrapping"><a href="#Semi-Supervised-Bootstrapping" class="headerlink" title="Semi-Supervised: Bootstrapping"></a>Semi-Supervised: Bootstrapping</h3><ol>
+<li>Use a small set of labeled data to train the classifier. </li>
+<li>Do classification.</li>
+<li>Select the result with high confidence and add to the training set.</li>
+<li>Train the classifier and repeat step 2 and 3.</li>
+<li>Stop until there is no untagged data left or reach a specific error rate threshold.</li>
+</ol>
+<p>To construct the training set, hand-label it or use heuristic to help.</p>
+<p>Heuristic:</p>
+<ul>
+<li><strong>one sense per collocation</strong>: certain words or phrases strongly indicates a specific sense.</li>
+<li><strong>one sense per discourse</strong>:a particular word appearing multiple times in a text or discourse often appeared with the same sense. This heuristic seems to hold better for coarse-grained senses and particularly for cases of homonymy rather than polysemy.</li>
+</ul>
+<h3 id="Unsupervised-Approach-Word-Sense-Induction-WSI"><a href="#Unsupervised-Approach-Word-Sense-Induction-WSI" class="headerlink" title="Unsupervised Approach:Word Sense Induction(WSI)"></a>Unsupervised Approach:Word Sense Induction(WSI)</h3><p>It is actually a clustering of word senses. </p>
+<ol>
+<li>For each token(sense) of a word in the corpus, use context word vector \(\vec{c}\) to represent it. </li>
+<li>Do clustering s.t. there is N clusters and each token \(\vec{c}\) is assigned to a cluster. Each cluster defines a sense.</li>
+<li>Recompute the center s.t. the center vector \(\vec{s_j}\) represent a sense.</li>
+</ol>
+<p>To do word sense disambiguation:</p>
+<ol>
+<li>compute context word vector \(\vec{c}\) to represent the sense of the word. </li>
+<li>Do clustering and assign the context vector to a cluster.</li>
+</ol>
+<p>All we need is a clustering algorithm and a distance metric between vectors.</p>
+<p>A frequently used technique in language applications is known as agglomerative<br>clustering.</p>
+<p>Recent algorithms have also used topic modeling algorithms like Latent Dirichlet Allocation (LDA), another way to learn clusters of words based on their distributions.</p>
+<p>It is fair to say that no evaluation metric for this task has yet become standard.</p>
+<h1 id="Word-Similarity-Thesaurus-Methods"><a href="#Word-Similarity-Thesaurus-Methods" class="headerlink" title="Word Similarity(Thesaurus Methods)"></a>Word Similarity(Thesaurus Methods)</h1><p>Word similarity refers to meaning(synonyms).<br>Word relatedness characterizes relationships(antonyms,synonyms).</p>
+<h5 id="Path-length-based-Approach"><a href="#Path-length-based-Approach" class="headerlink" title="Path-length based Approach"></a>Path-length based Approach</h5><p>Thesaurus could be viewed as a graph.</p>
+<p>The simplest thesaurus-based algorithms use the edge between words to measure similarity.</p>
+<p>pathlen(c1, c2) = 1 + edges in the shortest path between the sense nodes c1 and c2.</p>
+<p>path-length based similarity:<br>$$sim_{path}(c_1,c_2)=\frac{1}{pathlen(c_1, c_2)}$$</p>
+<p>Path lengths are not the same in different level of the hierarchy.<br>It is possible to refine path-based algorithms with normalizations based on depth in the hierarchy. In general an approach that independently represent the distance associated with each edge it is preferred.</p>
+<p>For data without sense tag(words are not presented according to their senses), measure similarity according to senses of words. If there is a pair of senses is similar, then two words are similar.</p>
+<p>$$word_{sim}(w_1,w_2)=\max_{c_1\in senses(w_1)\  c_2\in senses(w_2)} sim(c_1, c_2)$$</p>
+<h5 id="information-content-word-similarity-algorithms"><a href="#information-content-word-similarity-algorithms" class="headerlink" title="information-content word-similarity algorithms"></a>information-content word-similarity algorithms</h5><p>still rely on the structure of the thesaurus but also add probabilistic information derived from a corpus.</p>
+<p>The corpus is represented as a set of concepts. And it is represented as a tree  structure. The leaf nodes are basic concepts and parent nodes contain the children which is a superset of concepts. Each node is assigned a probability. So p(root) = 1.</p>
+<p>$$P(c) = \frac{\sum_{w\in words(c)}count(w)}{N}$$</p>
+<p>c is a specific concept. The probability of a concept is number of words in the concept divided by total number of words.</p>
+<p><strong>information content</strong>: information content (IC) of a concept c</p>
+<p>$$IC(c) = −\log P(c) $$</p>
+<p>the lowest common subsumer(LCS) of two concepts:<br>LCS(c1, c2) = the lowest common subsumer,the lowest node in the hierarchy that subsumes both c1 and c2.(The lowest parent node of c1 and c2)</p>
+<p><strong>Resnik similarity</strong>: similarity between two words is related to their common information; the more two words have in common, the more similar they are. Resnik proposes to estimate the common amount of information by the information content of the lowest common subsumer of the two nodes. </p>
+<p>$$sim_{Resnik}(c_1,c_2)=-\log P(LCS(c_1,c_2))$$</p>
+<p><strong>Lin similarity</strong></p>
+<p>Similarity Theorem: The similarity between A and B is measured by the ratio<br>between the amount of information needed to state the commonality of A and<br>B and the information needed to fully describe what A and B are.<br>$$sim_{Lin}(A,B)=\frac{common(A,B)}{description(A,B)}$$</p>
+<p>the information in common between two concepts is twice the information in the lowest common subsumer LCS(c1, c2). Adding in the above definitions of the information content of thesaurus concepts<br>$$sim_{Lin}(C_1,C_2)=\frac{2\times \log P(LCS(c_1,c_2))}{\log P(c_1)+\log P(c_2)}$$</p>
+<p><strong>Jiang-Conrath distance</strong> express distance rather than similarity, work as well as or better than all the other thesaurus-based methods:</p>
+<p>$$dist_{JC}(c_1, c_2) = 2\times \log P(LCS(c_1, c_2))−(\log P(c_1) +\log P(c_2)) $$</p>
+<p>It could be transferred to similarity by take reciprocal.<br>$$sim_{JC}=\frac{1}{dist_{JC}}$$</p>
+<p><strong>dictionary-based method</strong>: This method makes use of glosses, which are, in general, a property of dictionaries rather than thesauruses. Two concepts/senses are similar if their glosses contain overlapping words.</p>
+<p>For each n-word phrase that occurs in both glosses, Extended Lesk adds in a<br>score of \(n^2\).(the relation is non-linear because of the Zipfian relationship between lengths of phrases and their corpus frequencies; longer overlaps are rare, so they should be weighted more heavily)</p>
+<p>Given such an overlap function, when comparing two concepts (synsets), Extended<br>Lesk not only looks for overlap between their glosses but also between the<br>glosses of the senses that are hypernyms, hyponyms, meronyms, and other relations<br>of the two concepts. </p>
+<p>If we just considered hyponyms and defined<br>gloss(hypo(A)) as the concatenation of all the glosses of all the hyponym senses of<br>A, the total relatedness between two concepts A and B might be</p>
+<p>$$similarity(A,B) = overlap(gloss(A), gloss(B))+overlap(gloss(hypo(A)), gloss(hypo(B)))+overlap(gloss(A), gloss(hypo(B)))+overlap(gloss(hypo(A)),gloss(B))$$</p>
+<p>Extended Lesk overlap measure:</p>
+<p>$$sim_{eLESK}(c_1,c_2) =\sum_{r,q\in RELS}overlap(gloss(r(c_1)),gloss(q(c_2)))$$</p>
+<p>RELS is the set of possible relations whose glosses we compare. Possible relations are  like hypernyms, hyponyms, meronyms, and other relations of the two concepts.</p>
+<h2 id="Evaluating-Thesaurus-Based-Similarity"><a href="#Evaluating-Thesaurus-Based-Similarity" class="headerlink" title="Evaluating Thesaurus-Based Similarity"></a>Evaluating Thesaurus-Based Similarity</h2><p>The most common intrinsic evaluation metric computes the correlation coefficient between an algorithm’s word similarity scores and word similarity ratings assigned by humans. </p>
+<p>Zipf’s law states that given some corpus of natural language utterances, the frequency of any word is inversely proportional to its rank in the frequency table.The most frequent word will occur approximately twice as often as the second most frequent word, three times as often as the third most frequent word.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://en.wikipedia.org/wiki/Zipf%27s_law" target="_blank" rel="noopener">Zipf’s law</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/vector-semantics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1622,195 +1831,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/NLP-Notation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/26/NLP-Notation/" itemprop="url">NLP_Notation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-26T18:59:05+08:00">
-                2018-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Language models</strong> assign a probability to each sentence</p>
-<p>\( w_1^n\) is a sequence of N words from word 1 to word N.</p>
-<p>A <strong>held-out corpus</strong> is an additional training corpus that we use to set hyperparameters.</p>
-<p><strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like graffe for giraffe). </p>
-<p><strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (real-word errors).</p>
-<p><strong>edit probability</strong> The probability of typo like deletion, insertion respectively.</p>
-<p><strong>text categorization</strong>: classifying an entire text by assigning it a text<br>categorization label drawn from some set of labels.</p>
-<p><strong>classification</strong>: take a single observation, extract some useful<br>features, and thereby classify the observation into one of a set of discrete classes.</p>
-<p><strong>Generative classifiers</strong> like naive Bayes build a model of each class. Given an observation, they return the class most likely to have generated the observation. <strong>Discriminative classifiers</strong> like logistic regression instead learn what features from the input are most useful to discriminate between the different possible classes.<br>While discriminative systems are often more accurate and hence more commonly used, generative classifiers still have a role.</p>
-<p><strong>bag-of-words</strong>: an unordered set of words with their position ignored, keeping only their frequency in the document.</p>
-<p><strong>linear classifiers</strong>: use a linear combination of the inputs to make a classification decision —like naive Bayes and also logistic regression.</p>
-<p><strong>period disambiguation</strong>: deciding if a period is the end of a sentence or part<br>of a word</p>
-<p><strong>co-occurrence matrix</strong>: a way of representing how often words co-occur.</p>
-<p><strong>term-document matrix</strong>: each row represents a word in the vocabulary and<br>each column represents a document.</p>
-<p><strong>vector space model</strong>:a document is represented as a count vector(column vector), each entry is the count of a specific word.</p>
-<p><strong>Information retrieval</strong>(IR): is the task of finding the document d from the D<br>documents in some collection that best matches a query q which is also a vector of length |V|.</p>
-<p><strong>term-context matrix</strong>: a  |V| × |V| matrix. Each entry(i,j) represent that the number of times a word i shows in the context word j. The context could be a document or a context window of length |L|.</p>
-<p><strong>WordNet</strong>(Sense-Tagged data):WordNet is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of synonyms , each expressing a distinct concept.</p>
-<p><strong>part-of-speech tags</strong>:</p>
-<ol>
-<li>CC    Coordinating conjunction</li>
-<li>CD    Cardinal number</li>
-<li>DT    Determiner</li>
-<li>EX    Existential there</li>
-<li>FW    Foreign word</li>
-<li>IN    Preposition or subordinating conjunction</li>
-<li>JJ    Adjective</li>
-<li>JJR    Adjective, comparative</li>
-<li>JJS    Adjective, superlative</li>
-<li>LS    List item marker</li>
-<li>MD    Modal</li>
-<li>NN    Noun, singular or mass</li>
-<li>NNS    Noun, plural</li>
-<li>NNP    Proper noun, singular</li>
-<li>NNPS    Proper noun, plural</li>
-<li>PDT    Predeterminer</li>
-<li>POS    Possessive ending</li>
-<li>PRP    Personal pronoun</li>
-<li>PRP$    Possessive pronoun</li>
-<li>RB    Adverb</li>
-<li>RBR    Adverb, comparative</li>
-<li>RBS    Adverb, superlative</li>
-<li>RP    Particle</li>
-<li>SYM    Symbol</li>
-<li>TO    to</li>
-<li>UH    Interjection</li>
-<li>VB    Verb, base form</li>
-<li>VBD    Verb, past tense</li>
-<li>VBG    Verb, gerund or present participle</li>
-<li>VBN    Verb, past participle</li>
-<li>VBP    Verb, non-3rd person singular present</li>
-<li>VBZ    Verb, 3rd person singular present</li>
-<li>WDT    Wh-determiner</li>
-<li>WP    Wh-pronoun</li>
-<li>WP$    Possessive wh-pronoun</li>
-<li>WRB    Wh-adverb</li>
-</ol>
-<p><strong>Lemmatization</strong> is the task of determining that two words have the same root, despite their surface differences. Usually including plural to singular, but the word form such as ing, ed would not change.</p>
-<p>This naive version of morphological analysis is called <strong>stemming</strong>. Stemming usually includes turning a word to its morpheme.</p>
-<p>Two broad classes of morphemes: </p>
-<ul>
-<li>stems: the central morpheme of the word, supplying the main meaning. i.e.: girls, girl and s are the morphemes. The central morpheme is girl.</li>
-<li>affixes: adding “additional”<br>meanings of various kinds. i.e.: homegrown, ‘home’ is added before the grown. unkind: ‘un’ is added before the word kind.</li>
-</ul>
-<p><strong>concept drift</strong> – the gradual change over time of the con- cept underlying a class like US president from Bill Clinton to George W. Bush</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1860,7 +1885,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

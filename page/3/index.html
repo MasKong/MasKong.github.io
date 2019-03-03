@@ -296,6 +296,163 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Multi-task Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/25/Multi-task Learning/" itemprop="url">Multi-task Learning(MTL)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T11:41:19+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In normal machine learning or deep learning task, we optimize a specific metric, which loses information from other tasks that may be desirable to improve the original task. This kind of information comes from related tasks. And this kind of shared representations may be helpful to our original task because it actually utilise much more data than the original task.</p>
+<p>Generally, as soon as you find yourself optimizing more than one loss function, you are effectively doing multi-task learning (in contrast to single-task learning). In those scenarios, it helps to think about what you are trying to do explicitly in terms of MTL and to draw insights from it.</p>
+<p>“MTL improves generalization by leveraging the domain-specific information contained in the training signals of related tasks”.</p>
+<p><strong>Inductive Bias</strong><br>A model prefer some hypotheses over others. For instance, a common form of inductive bias is l1 regularization, which leads to a preference for sparse solutions.</p>
+<p>In the case of MTL, the inductive bias is introduced by other auxiliary tasks, which leads the model to prefer hypotheses that explain more than one task. This in general leads to better generalization ability.</p>
+<h2 id="Hard-parameter-sharing-Multi-output"><a href="#Hard-parameter-sharing-Multi-output" class="headerlink" title="Hard parameter sharing(Multi-output)"></a>Hard parameter sharing(Multi-output)</h2><p>Multiple tasks share the same hidden layers. Each task has its own output. The risk of overfitting the shared parameters is an order N – where N is the number of tasks – smaller than overfitting the task-specific parameters.</p>
+<h2 id="Soft-parameter-sharing"><a href="#Soft-parameter-sharing" class="headerlink" title="Soft parameter sharing"></a>Soft parameter sharing</h2><p>Each task has its own model, parameters and output. There are constraints between parameters such that the parameters are similar. A sample constraint is L2 distance between parameters.</p>
+<h3 id="Advantages-of-MTL"><a href="#Advantages-of-MTL" class="headerlink" title="Advantages of MTL"></a>Advantages of MTL</h3><ol>
+<li>Data Augmentation. Training multiple tasks together enables the model to employ more data in training.</li>
+<li>Data are noisy. MTL is able to regularize the model to learn efficient and effective representations that are desirable for multiple tasks.</li>
+<li>Eavesdropping. The model might be easier to learn some specific features from some specific dataset. MTL is able to help the model to learn easier from different tasks or dataset.</li>
+<li>Representation bias. MTL biases the model to prefer representations that other tasks also prefer. This will also help the model to generalize to new tasks as a hypothesis space that performs well for many tasks will also perform well for learning novel tasks as long as they are from the same environment</li>
+<li>Regularization. MTL acts as a regularizer by introducing an inductive bias. As such, it reduces the risk of overfitting as well as the Rademacher complexity of the model</li>
+</ol>
+<h3 id="Technique-to-do-MTL"><a href="#Technique-to-do-MTL" class="headerlink" title="Technique to do MTL"></a>Technique to do MTL</h3><ol>
+<li>Block-sparse regularization. For related tasks, use regularization like L1 or other modified regularization to enforce the model learn sparse features which would be utilised to do inference for multiple tasks.</li>
+<li>Learn the relationships between tasks: clustering, KNN, Bayesian methods.</li>
+</ol>
+<p>In MTL for computer vision, approaches often share the convolutional layers, while learning task- specific fully-connected layers. Deep Relationship Networks add matrix priors on the fully connected layers.</p>
+<h3 id="Auxiliary-tasks"><a href="#Auxiliary-tasks" class="headerlink" title="Auxiliary tasks"></a>Auxiliary tasks</h3><p>Use Auxiliary tasks so that to achieve better result on the main task.</p>
+<ol>
+<li>Related task</li>
+<li>Adversarial task. Maximize the training error using a gradient reversal layer</li>
+<li>Hints. Predicting features as an Hints as an auxiliary task. MTL could be used to learn features that are not easy to learn. </li>
+<li>Predicting inputs. In some cases, some inputs might not be useful for the task but they might be able to guide the learning. Use them as output might help the task.</li>
+<li>Representation learning. employing a task that is known to enable a model to learn transferable representations(language modeling)</li>
+</ol>
+<p>There are many definitions about related tasks.</p>
+<ol>
+<li>use the same features to make a decision</li>
+<li>related tasks share a common optimal hypothesis class</li>
+</ol>
+<h2 id="MTL-in-NLP"><a href="#MTL-in-NLP" class="headerlink" title="MTL in NLP"></a>MTL in NLP</h2><p>add a language modeling objective to the model that is trained jointly with the main task model.</p>
+<p>The scale of loss for different tasks are supposed to be same, otherwise task with large loss would dominate the backpropagation so that the neural network would bias to the worst task rather than learn a good representation for all tasks.</p>
+<h3 id="Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding"><a href="#Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding" class="headerlink" title="Multi-Task Deep Neural Networks for Natural Language Understanding"></a>Multi-Task Deep Neural Networks for Natural Language Understanding</h3><p>It employs the same structure like bert to do pre-training. And then add a specific fine-tuning layer for each task and do fine-tuning together. </p>
+<p>For each task, the model would update the parameters including the task-specific layer and pre-training layer. Each eopch the model would be trained on all tasks separately which means their loss is not added together.</p>
+<h3 id="Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics"><a href="#Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics" class="headerlink" title="Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics"></a>Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics</h3><p>It proposes to employ the variance of outputs to be the weight of the combined loss.</p>
+<h1 id="Core-of-MTL-what-to-share-All-parameters"><a href="#Core-of-MTL-what-to-share-All-parameters" class="headerlink" title="Core of MTL: what to share? All parameters?"></a>Core of MTL: what to share? All parameters?</h1><p>In conclusion, hard parameters sharing is still pervasive for neural-network based MTL. Recent advances on learning what to share, however, are promising. At the same time, our understanding of tasks – their similarity, relationship, hierarchy, and benefit for MTL – is still limited</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1527,131 +1684,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/CNN-NLP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/03/CNN-NLP/" itemprop="url">CNN_NLP</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-03T09:43:34+08:00">
-                2018-10-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>CNN is good at capture semantic information in a contextual window due to local connectivity. It requires lots of data to train because it includes many parameters. Inability to model long-distance contextual information.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1701,7 +1738,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

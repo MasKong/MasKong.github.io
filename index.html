@@ -296,6 +296,151 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/Unsupervised-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/03/Unsupervised-Learning/" itemprop="url">Unsupervised_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-03T17:16:18+08:00">
+                2019-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h2><p>shortage:</p>
+<ol>
+<li>suscepticle to noise and initialization</li>
+<li>choose of K</li>
+<li>perform poor on unbalanced data</li>
+<li>each data point belongs to only one cluster(hard clustering)</li>
+</ol>
+<p>Improvement:</p>
+<ul>
+<li>Choose K with sum squared error(SSE). Find the k that SSE decreases dramatically.</li>
+<li>Gap Statistic</li>
+</ul>
+<p>$$<br>Gap(k)=E(logD_k)-logD_k<br>$$<br>where \(E(logD_k)\) is generated from Monte Carlo simulation. We generate the same number of data samples from uniform distribution and calculate the error. \(logD_k\) is the kmeans error. Therefore, the better the clustering, the large the Gap(k). This approach is automatic.</p>
+<h3 id="Kmeans-1"><a href="#Kmeans-1" class="headerlink" title="Kmeans++"></a>Kmeans++</h3><p>Choose the first cluster center randomly, and choose other center as far as posssible.</p>
+<h3 id="ISODATA"><a href="#ISODATA" class="headerlink" title="ISODATA"></a>ISODATA</h3><p>Suitable for massive amount of data.</p>
+<ul>
+<li>split the cluster when variance is high</li>
+<li>eliminate the cluster if number of data samples is small</li>
+</ul>
+<h2 id="Expectation-Maximization-Algorithm-EM"><a href="#Expectation-Maximization-Algorithm-EM" class="headerlink" title="Expectation-Maximization Algorithm(EM)"></a>Expectation-Maximization Algorithm(EM)</h2><p>It’s used to find a set of parameters that max the probability of given data samples with latent variables. In the context of kmeans, the latent variable is the number of K.</p>
+<ol>
+<li>initialize \(\theta\)</li>
+<li>E step Evaluate \(p(Z|X, θ_{old})\). Calculate the expectation of latent variable given data samples and parameters.</li>
+<li>M step Evaluate \(θ^{new}\)</li>
+</ol>
+<p>We employ the expectation of latent variables given data samples and parameters to substitute the real knowledge of latent variables. And do maximum likelihood to find the optimal parameter sets.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/KBQA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -796,7 +941,7 @@
 <p>Dropout is a kind of ensemble learning because each time it train a different neural network and finally combine all of them together.</p>
 <h4 id="Learning-rate-warmup"><a href="#Learning-rate-warmup" class="headerlink" title="Learning rate warmup"></a>Learning rate warmup</h4><p>During the first k epochs, employ small learning rate to avoid unstable gradient and parameter updates. From k+1 epoch, employ normal learning rate.</p>
 <p>constant warmup:<br>$$<br>\hat{\eta} = k\eta<br>$$</p>
-<h4 id="Temperature"><a href="#Temperature" class="headerlink" title="Temperature"></a>Temperature</h4><p>Temperature which is usually 1 is used to scale the logits that are input to softmax<sup id="fnref:1"><a href="#fn:1" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”<a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a>“&gt;[1]</a></sup>.</p>
+<h4 id="Temperature"><a href="#Temperature" class="headerlink" title="Temperature"></a>Temperature</h4><p>Temperature which is usually 1 is used to scale the logits that are input to softmax[1].</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
@@ -1569,146 +1714,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/shell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/13/shell/" itemprop="url">shell</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-13T14:50:38+08:00">
-                2019-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>注意，变量名和等号之间不能有空格.</p>
-<p>引用变量需要在变量前加美元符号$<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">your_name="qinjx"</span><br><span class="line">echo $&#123;your_name&#125;</span><br></pre></td></tr></table></figure></p>
-<p>变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界</p>
-<p>以“#”开头的行就是注释，会被解释器忽略。</p>
-<p>sh里没有多行注释，只能每一行加一个#号.</p>
-<p>多行注释：把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有地方调用这个函数，这块代码就不会执行，达到了和注释一样的效果。</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>单引号字符串的限制：</p>
-<ul>
-<li>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的</li>
-<li>单引号字串中不能出现单引号（对单引号使用转义符后也不行）</li>
-</ul>
-<p>双引号</p>
-<ul>
-<li>双引号里可以有变量</li>
-<li>双引号里可以出现转义字符</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1758,7 +1768,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

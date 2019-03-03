@@ -296,6 +296,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/Linux-Management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/06/Linux-Management/" itemprop="url">Linux_Management</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-06T14:55:42+08:00">
+                2018-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>remotely run sth after disconnection</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup command ......</span><br></pre></td></tr></table></figure>
+<p>check runing process</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef</span><br></pre></td></tr></table></figure>
+<p>check runing process and find a specific process</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep python</span><br></pre></td></tr></table></figure>
+<p>kill a process</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill pid</span><br></pre></td></tr></table></figure>
+<p>count number of files</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -type f | wc -l</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stat</span><br></pre></td></tr></table></figure>
+<p>print information like creation time of a file</p>
+<p>install trash packages<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install trash-cli</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trash-put somefiles</span><br></pre></td></tr></table></figure>
+<p>move files to trash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">restore-trash</span><br></pre></td></tr></table></figure>
+<p>restore files from trash</p>
+<p>print environmental variable:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printenv abc</span><br><span class="line">printenv | grep &quot;.*JAVA.*&quot;</span><br></pre></td></tr></table></figure></p>
+<p>“printenv abc” print the variable named abc<br>“printenv | grep “.<em>JAVA.</em>“”  print variables whose name match the pattern  .<em>JAVA.</em></p>
+<p>~/.bash_profile  用户登录时被读取，其中包含的命令被执行</p>
+<p>~/.bashrc  启动新的shell时被读取，并执行</p>
+<p>~/.bash_logout  shell 登录退出时被读取</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/QA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1525,147 +1666,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/RNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/10/RNN/" itemprop="url">RNN</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:31+08:00">
-                2018-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RNN allows information flow.</p>
-<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>The same set of parameters are used to compute the hidden states at the current time step given input and the hidden state of last time step.</p>
-<p>A output layer may be added to each time step to extract information and make predictions.</p>
-<h3 id="Back-propagation"><a href="#Back-propagation" class="headerlink" title="Back-propagation"></a>Back-propagation</h3><p>Cannot be parallelized because gradient has to computed one by one in terms of time steps.</p>
-<h4 id="Recurrent-Connectiong-from-output-to-hidden"><a href="#Recurrent-Connectiong-from-output-to-hidden" class="headerlink" title="Recurrent Connectiong from output to hidden"></a>Recurrent Connectiong from output to hidden</h4><p>Training can be parallelized because the label is known and could be fed to hidden states directly. Trained with <strong>Teacher Forcing</strong> which is that given the input sequence and ground truth label in the last time step, produce the output in the current time step.</p>
-<p>Drawback: require the output to capture the past information, which is difficult because the output dosen’t contains those information.</p>
-<h2 id="RNN-as-graphical-model"><a href="#RNN-as-graphical-model" class="headerlink" title="RNN as graphical model"></a>RNN as graphical model</h2><p>RNN could be viewed as a graphical model. Compared to the graphical model, the number of parameters is far less than that of the graphical model due to parameter sharing.</p>
-<p>Basic assumption of RNN is that the sequence is stationary.</p>
-<p><strong>stationary</strong> The relationship between the previous time step and the current time step is not dependent on t.</p>
-<p>RNN could model long dependency while normal graphical model would make <strong>Markov assumption</strong> to simplify the parameters which makes them less powerful in terms of long dependency. Long dependency makes RNN hard to optimize.</p>
-<p>RNN introduce hidden states h s.t. the dependency structure is simpler than the normal graphical model because hidden state encodes information including dependency which graphical model utilizes edges to represent dependency directly(too many parameters to optimize).</p>
-<h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
-<h4 id="vector-to-sequence-RNN"><a href="#vector-to-sequence-RNN" class="headerlink" title="vector-to-sequence RNN"></a>vector-to-sequence RNN</h4><p>The vector could be fed into the RNN at the beginning or fed into each hidden state at each time step.</p>
-<h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
-<h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1715,7 +1720,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">90</span>
+                  <span class="site-state-item-count">91</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
