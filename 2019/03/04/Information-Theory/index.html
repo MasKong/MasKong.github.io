@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="Passionate about NLP">
-<meta property="og:type" content="website">
-<meta property="og:title">
-<meta property="og:url" content="http://yoursite.com/archives/2018/07/page/3/index.html">
+<meta name="description" content="Shannon entropy$$H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)$$Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Information_Theory">
+<meta property="og:url" content="http://yoursite.com/2019/03/04/Information-Theory/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="Passionate about NLP">
+<meta property="og:description" content="Shannon entropy$$H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)$$Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-04T07:58:12.078Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title">
-<meta name="twitter:description" content="Passionate about NLP">
+<meta name="twitter:title" content="Information_Theory">
+<meta name="twitter:description" content="Shannon entropy$$H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)$$Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/07/page/3/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/04/Information-Theory/"/>
 
 
 
 
 
-  <title>Archive | </title>
+  <title>Information_Theory | </title>
   
 
 
@@ -143,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,77 +282,149 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-         
-          
-        Good! 93 posts in total. Keep on posting.
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/Information-Theory/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/07/01/Neural-Networks-and-Neural-Language-Model/" itemprop="url">
-              
-                <span itemprop="name">Neural_Networks_and_Neural_Language_Model</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Information_Theory</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-01T10:05:55+08:00"
-              content="2018-07-01" >
-          07-01
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-04T15:36:45+08:00">
+                2019-03-04
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Shannon entropy<br>$$<br>H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)<br>$$<br>Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the more bits would be required to identify a data sample.</p>
+<p>KL divergence:<br>$$<br>D_{KL} (P || Q) = E_{x\sim P}\log\frac{P(x)}{Q(x)}=E_{x\sim P}[logP(x)-logQ(x)]<br>$$</p>
+<p>Note that data sample x is drawn from probability distribution P and P, Q are different probability distribution. Therefore \(D_{KL} (P || Q) \neq  D_{KL} (Q || P)\). KL divergence is used to measure the amount of difference between two distributions. It could be regarded as a kind of distance except that the KL divergence is asymmetric. </p>
+<p>cross-entropy:<br>$$<br>H(P,Q)=-E_{x\sim P}logQ(x)<br>$$<br>Note: \(H(P,Q)=H(P)+D_{KL} (P || Q)\). Minimizing the cross-entropy with respect to Q is equivalent to minimizing the KL divergence, because Q does not participate in the omitted term.</p>
+<p>Cross-entropy means how many bits are required to identify data samples drawn from distribution P using an approximate distribution Q. In the context of deep learning, assume the real distribution is P, and learnt distribution is Q, cross-entropy means the number of bits is required to identify a data samples drawn from real distribution P. The higher the entropy, more bits are required, the worse the learnt distribution and the model.</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/03/Unsupervised-Learning/" rel="next" title="Unsupervised_Learning">
+                <i class="fa fa-chevron-left"></i> Unsupervised_Learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/07/Relational-inductive-biases/" rel="prev" title="Relational_inductive_biases">
+                Relational_inductive_biases <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/07/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/07/">1</a><a class="page-number" href="/archives/2018/07/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -359,6 +432,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -575,6 +662,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -590,6 +681,18 @@
 
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/03/04/Information-Theory/';
+          this.page.identifier = '2019/03/04/Information-Theory/';
+          this.page.title = 'Information_Theory';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://MasKong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

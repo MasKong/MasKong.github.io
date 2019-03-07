@@ -296,6 +296,268 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/Relational-inductive-biases/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/07/Relational-inductive-biases/" itemprop="url">Relational_inductive_biases</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-07T11:05:38+08:00">
+                2019-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Fully connected network imposes weak relational inductive biases which is that each output is able to interact with input.</p>
+<p>CNN impose locality and translation invariance relational biases.</p>
+<p>RNN could also be regarded as a kind of CNN because the update rules are shared across all time steps. The difference is that there are Markov dependence between hidden states which is that update of \(h_t\) depends on \(h_{t-1}\) and x. This reflects the relational inductive bias of temporal invariance.</p>
+<p>sets and graphs: Invariance to ordering. Ordering is not always meaningful. There is not useful information in ordering of graphs.</p>
+<p>Graph Network relational inductive bias:</p>
+<ol>
+<li>invariant to permutation</li>
+<li>can express arbitrary relationships among entities</li>
+<li>per-node, per-edge functions are reused across all edges and nodes</li>
+</ol>
+<p>Generally, the step of a graph network :</p>
+<ol>
+<li>update each edge indivisually</li>
+<li>aggregate the edge information from the prospective of a single node</li>
+<li>update each node individually</li>
+<li>aggregate the edge information to be used in global attribute prediction</li>
+<li>aggregate the node information to be used in global attribute prediction</li>
+<li>Compute updated global attribute</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/Information-Theory/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/04/Information-Theory/" itemprop="url">Information_Theory</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-04T15:36:45+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Shannon entropy<br>$$<br>H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)<br>$$<br>Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the more bits would be required to identify a data sample.</p>
+<p>KL divergence:<br>$$<br>D_{KL} (P || Q) = E_{x\sim P}\log\frac{P(x)}{Q(x)}=E_{x\sim P}[logP(x)-logQ(x)]<br>$$</p>
+<p>Note that data sample x is drawn from probability distribution P and P, Q are different probability distribution. Therefore \(D_{KL} (P || Q) \neq  D_{KL} (Q || P)\). KL divergence is used to measure the amount of difference between two distributions. It could be regarded as a kind of distance except that the KL divergence is asymmetric. </p>
+<p>cross-entropy:<br>$$<br>H(P,Q)=-E_{x\sim P}logQ(x)<br>$$<br>Note: \(H(P,Q)=H(P)+D_{KL} (P || Q)\). Minimizing the cross-entropy with respect to Q is equivalent to minimizing the KL divergence, because Q does not participate in the omitted term.</p>
+<p>Cross-entropy means how many bits are required to identify data samples drawn from distribution P using an approximate distribution Q. In the context of deep learning, assume the real distribution is P, and learnt distribution is Q, cross-entropy means the number of bits is required to identify a data samples drawn from real distribution P. The higher the entropy, more bits are required, the worse the learnt distribution and the model.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/Unsupervised-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -389,11 +651,17 @@
 <h2 id="Expectation-Maximization-Algorithm-EM"><a href="#Expectation-Maximization-Algorithm-EM" class="headerlink" title="Expectation-Maximization Algorithm(EM)"></a>Expectation-Maximization Algorithm(EM)</h2><p>It’s used to find a set of parameters that max the probability of given data samples with latent variables. In the context of kmeans, the latent variable is the number of K.</p>
 <ol>
 <li>initialize \(\theta\)</li>
-<li>E step Evaluate \(p(Z|X, θ_{old})\). Calculate the expectation of latent variable given data samples and parameters.</li>
-<li>M step Evaluate \(θ^{new}\)</li>
+<li>E step Evaluate \(Q_i(z_i)=p(z_i|x_i;\theta)\). Calculate the expectation of latent variable given data samples and parameters.</li>
+<li>M step Evaluate \(\hat \theta=argmax\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\)</li>
 </ol>
 <p>We employ the expectation of latent variables given data samples and parameters to substitute the real knowledge of latent variables. And do maximum likelihood to find the optimal parameter sets.</p>
-
+<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>\sum_ilogp(x_i;\theta)&amp;=\sum_ilog\sum_{z_i}p(x_i,z_i;\theta)\<br>&amp;=\sum_ilog\sum_{z_i}Q_i(z_i)\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\<br>&amp;\ge\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\<br>\end{align} %]]&gt;<br>$$<br>where greater than and equal to results from jensen inequality. Because \(Q_i(z_i)\) is a probability distribution Q() over latent variable z, \(Q_i(z_i)\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\) could be regarded as a weighted summarization of term \(\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\). Therefore the inequality is derived from \(<br>{\varphi \left({\frac {\sum a_{i}x_{i}}{\sum a_{i}}}\right)\leq {\frac {\sum a_{i}\varphi (x_{i})}{\sum a_{i}}}\qquad \qquad}\).</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>Q_i(z_i)&amp;=\frac{p(x_i,z_i;\theta)}{\sum_zp(x_i,z;\theta)}\<br>&amp;=\frac{p(x_i,z_i;\theta)}{p(x_i;\theta)}\<br>&amp;=p(z_i|x_i;\theta)\<br>\end{align} %]]&gt;<br>$$<br>where \(Q_i(z_i)\) is a probability distribution Q() over latent variable z.</p>
+<h4 id="Convergence-of-EM-Algorithm"><a href="#Convergence-of-EM-Algorithm" class="headerlink" title="Convergence of EM Algorithm:"></a>Convergence of EM Algorithm:</h4><p>Well, suppose \(\theta^{(t)}\) and \(\theta^{(t+1)}\) are the parameters from two successive iterations of EM.<br>$$<br>% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t)})&amp;=\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}<br>\end{align} %]]&gt;<br>$$</p>
+<p>The parameters \(\theta^{(t+1)}\) are then obtained by maximizing the right hand side of the equation above.</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t+1)})&amp;\ge\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t+1)})}{Q_i(z_i)}\<br>&amp;\ge \sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}\<br>=L(\theta^{(t)})<br>\end{align} %]]&gt;<br>$$<br>This first inequality comes from the fact that \(% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t)})&amp;\ge \sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}<br>\end{align} %]]&gt;\)</p>
+<p>holds for any values of \(Q_i\) and \(\theta\), and in particular holds for \(Q_i\) = \(Q_i^{(t)}\),   \(\theta=\theta^{(t+1)}\). The second equation is derived from \(\theta^{(t+1)}=argmax\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\).</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf" target="_blank" rel="noopener">CS229 Lecture notes</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
       
@@ -514,7 +782,8 @@
           
             <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Dynamic-Memory-Network"><a href="#Dynamic-Memory-Network" class="headerlink" title="Dynamic Memory Network"></a>Dynamic Memory Network</h3><p>Input: if the input is a paragraph which is a sequence of sentences, the sentences are concat together with [sep] separating each sentence. The final resentation of the whole paragraph is concatenation of a set of [eos] representations. If there is only one sentence, the [eos] representation is employed to represent the whole sentence.</p>
 <p>The episodic memory unit performs multiple rounds of update to enable iterative focusing of important knowledge.</p>
-
+<h4 id="TransE"><a href="#TransE" class="headerlink" title="TransE"></a>TransE</h4><p>Turn entities and relationships to embeddings. Its intuition is to maximize the loss that between positive examples and negative examples like negative sampling. The negative samples are get by replacing head or tail randomly(not simultaneously).</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1506.07285.pdf" target="_blank" rel="noopener">Ask Me Anything: Dynamic Memory Networks for Natural Language Processing</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
       
@@ -942,7 +1211,7 @@
 <h4 id="Learning-rate-warmup"><a href="#Learning-rate-warmup" class="headerlink" title="Learning rate warmup"></a>Learning rate warmup</h4><p>During the first k epochs, employ small learning rate to avoid unstable gradient and parameter updates. From k+1 epoch, employ normal learning rate.</p>
 <p>constant warmup:<br>$$<br>\hat{\eta} = k\eta<br>$$</p>
 <h4 id="Temperature"><a href="#Temperature" class="headerlink" title="Temperature"></a>Temperature</h4><p>Temperature which is usually 1 is used to scale the logits that are input to softmax[1].</p>
-<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
       
@@ -1399,321 +1668,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/13/data-warehouse/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/13/data-warehouse/" itemprop="url">data_warehouse</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-13T22:06:00+08:00">
-                2019-02-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>A data warehouse is where you store data from multiple data sources to be used for historical and trend analysis reporting.</p>
-<p>A data mart serves the same purpose but comprises only one subject area.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/Machine-Learning-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/18/Machine-Learning-1/" itemprop="url">Machine_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T17:56:57+08:00">
-                2019-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Usually recall increase, precision decrease and vice versa.</p>
-<p>Reall measure how many examples are predicted to False if the examples are True.</p>
-<p>Precision measure how many examples are predicted to True if the examples are False.</p>
-<p>An ROC curve plots TPR vs. FPR at different classification thresholds. </p>
-<p><strong>AUC</strong> stands for “Area under the ROC Curve.” Measures the area underneath the entire ROC curve.</p>
-<p>AUC provides an aggregate measure of performance across all possible classification thresholds. One way of interpreting AUC is as the probability that the model ranks a random positive example more highly than a random negative example.</p>
-<p>AUCPR: area under predicsion and recall line</p>
-<p>Cross-validation is used to select model or parameters. In deep learning, it is 1-fold validation while cross-validation is k-fold validation and take the mean.</p>
-<p>Bias term is able to add information. For example, if an user likes movies a lot, then add a high bias and vice versa. If a movie is liked in general by most people, it also has a high bias.</p>
-<h2 id="Bias-Variance-tradeoff"><a href="#Bias-Variance-tradeoff" class="headerlink" title="Bias-Variance tradeoff"></a>Bias-Variance tradeoff</h2><p>The more complex the model, the higher the variance. For a complex model, if the data changes a bit, the model output is likely to change a lot correspondingly. A simple model with sparse connectivity rather than dense connectivity like fully-connect network is not that likely to change a lot if the data changes a bit due to sparse connectivity(please feel it intuitively). But a simple model tends to have high bias which is underfitting.</p>
-<p>In a nutshell, simple models tend to have high bias and low variance while complex models tend to have low bias(accurate) and high variance.</p>
-<p>This is so-called Bias-Variance tradeoff.</p>
-<h2 id="KL"><a href="#KL" class="headerlink" title="KL"></a>KL</h2><h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>important parameters:</p>
-<ul>
-<li>eta:learning_rate</li>
-<li>max_depth: max_depth of tree </li>
-<li>lambda: prevent overfitting</li>
-</ul>
-<p>subsample: sample part of training data which prevent overfitting<br>colsample: subsample the columns, like random forest</p>
-<p>Induction of xgboost:</p>
-<ol>
-<li>greedy algorithm, choose the tree that reduce the loss as much as possible</li>
-<li>use taylor expansion to approximate the gradient</li>
-<li>calculate the optimal tree structure</li>
-</ol>
-<p>The xgboost is a kind of greedy algorithm because each time it add the best tree structure.</p>
-<p>It employs CART as base learner. The final output of CART are values. So the output of leaves of xgboost are actually values. It is the sum of all trees.<br>$$<br>\hat{y}<em>i = \sum</em>{k=1}^K f_k(x_i), f_k \in \mathcal{F}<br>$$</p>
-<p>$$<br>w_j^\ast = -\frac{G_j}{H_j+\lambda}<br>$$<br>The above equation calculates the best tree structure from the first and second order gradients. It employ tailor expansion to approximate gradients so that all kinds of self-define loss functions could be supported.</p>
-<p>$$<br>\text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T<br>$$<br>The above equation is used to measure how good is the current tree structure.</p>
-<p>$$<br>Gain = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}] - \gamma<br>$$<br>The above equation serves as a kind of pruning. Other tree methods usually put pruning out of the training process.</p>
-<p>other tricks that xgboost employ:</p>
-<ol>
-<li>subsample data: sample a portion of the whole training set to train a tree like bagging.</li>
-<li>subsample columns: sample some columns to train like random forest.</li>
-</ol>
-<p>parameters tuning:</p>
-<ol>
-<li>set depth to 3~5</li>
-<li>number of trees to ~500</li>
-<li>learning step \(\eta\) from 0.02~0.1</li>
-<li>run the algorithm until overfitting</li>
-<li>if not overfitting, check the dataset. The feature engineering may not be enough. Otherwise, start pruning. Increase the \(\lambda, \gamma\) and so on.</li>
-</ol>
-<h1 id="Decesion-Tree"><a href="#Decesion-Tree" class="headerlink" title="Decesion Tree"></a>Decesion Tree</h1><p>The reason that decision tree is a base classifier in boosting or bagging:</p>
-<ol>
-<li>unstable classifier. susceptical to training data</li>
-<li>the representation and generalization ability is easy to adjust by modifying the number of layer or leaves.</li>
-<li>easy to incorporate the weight of training samples in decision tree by adjusting training data rather than oversampling or undersampling.</li>
-</ol>
-<h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3 use entropy and information gain to measure whether a split is good or not. It is a kind of greedy algorithm and tends to choose splits with a lot of features whose information gain would be greater. And this may lead to overfitting.</p>
-<p>$$<br>Ent(D)=- \sum_{k=1}^{K} p_k\cdot  log_{2}p_k<br>$$</p>
-<p>$$<br>Gain(D, a)=Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
-<h3 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h3><p>It is a kind of modified ID3. It employs to be the criteria to avoid the shortage of ID3 which choose the split with more features.</p>
-<p>$$<br>GainRatio(D,T)=\frac{Gain（D,T)}{IV(T)}<br>$$</p>
-<h3 id="Classification-and-Regression-tree-CART"><a href="#Classification-and-Regression-tree-CART" class="headerlink" title="Classification and Regression tree(CART)"></a>Classification and Regression tree(CART)</h3><p>CART is a binary tree. At each split, it would choose a feature and divide the dataset according to yes and no feature. It would choose the split with the least gini.</p>
-<p>GINI index is used to measure how good is the split.</p>
-<p>$$<br>gini(T_{i})=1-\sum_{j=1}^{n} p_{j}^{2}<br>$$</p>
-<p>$$<br>Gini_{split}(T)=\sum_{i=1}^{2}\frac{N_{i}}{N}gini(T_{i})<br>$$</p>
-<p>For regression tree, it separate the continuous feature using {x&gt;T} and {x&gt;T} where T is the threshold. The decision boundaries of the CART are staright lines.</p>
-<h2 id="Comparision"><a href="#Comparision" class="headerlink" title="Comparision"></a>Comparision</h2><p>ID3 and C4.5 could only be applied to classification task while CART could be applied to both regression and classification task.</p>
-<p>ID3 and C4.5 rely on pruning.</p>
-<p>ID3 and C4.5 derive complex trees and features could not be reusing while CART derives binary trees and the features could be reusing.</p>
-<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><p>Pruning is significantly important in decision trees. Usually we would grow the DT fully and do post-pruning to avoid overfitting and a better DT with better generalization ability.</p>
-<h3 id="Cost-Complexity-Pruning-CCP"><a href="#Cost-Complexity-Pruning-CCP" class="headerlink" title="Cost-Complexity Pruning(CCP)"></a>Cost-Complexity Pruning(CCP)</h3><p>It is used in CART pruning.<br>$$<br>\alpha = \frac{R(T) - R(T_t)}{L(T_t)-1}<br>$$<br>where \(L(T_t)\) is the number of leaves in the subtree that is going to be pruned. \(R(T_t)\) and \(R(T)\) are the error rate of the tree. It is the number of samples that are classified wrong.</p>
-<p>It compares the error before and after pruning. Choose the pruning with the least error increased.</p>
-<p>The pruning could be performed on a separate pruning dataset or simply k-fold cross-validation.</p>
-<h3 id="Reduced-Error-Pruning-REP"><a href="#Reduced-Error-Pruning-REP" class="headerlink" title="Reduced Error Pruning(REP)"></a>Reduced Error Pruning(REP)</h3><p>$$<br>f(T)=-\sum_{t \in T}e(t)<br>$$</p>
-<p>$$<br>f(T’)=-\sum_{t \in T’}e(t)<br>$$<br>where T is the original tree and T’ is the pruned tree and f() is the number of samples that are classified wrong. Its intuition is to prune the tree so that the error date decrease. If \(f(T) \leqslant f(T’)\), do pruning.</p>
-<h3 id="Pessimistic-Error-Pruning-PEP"><a href="#Pessimistic-Error-Pruning-PEP" class="headerlink" title="Pessimistic Error Pruning(PEP)"></a>Pessimistic Error Pruning(PEP)</h3><p>Top-down pruning. It bases on the training set to do pruning. The 1/2 is a bias to rectify the bias that the pruning is performed based on training set.</p>
-<p>$$<br>E(T) = \sum_{t \in T}\frac{e(t)+1/2}{N(t)}<br>$$</p>
-<p>$$<br>E(T’)=\sum_{t \in T, excep K}\frac{e(t)+1/2}{N(t)}<br>$$<br>where e(t) is the samples that are classified wrong in the subtree start from node t. N(t) is the number of samples in the subtree start from node t.</p>
-<h3 id="Minimum-Error-Pruning-MEP"><a href="#Minimum-Error-Pruning-MEP" class="headerlink" title="Minimum Error Pruning(MEP)"></a>Minimum Error Pruning(MEP)</h3><p>There are several definitions about how to calculate the error rate of pruning\(E_s\). Below is one kind of method.</p>
-<p>$$<br>E_s=1-\frac{n_c+p_{\alpha c}m}{N+m}=\frac{N-n_c+(1-p_{\alpha c})m}{N+m}<br>$$</p>
-<p>$$<br>E_{split-s}=\sum_{split=1}^M \frac{|S_{split}|}{|S|}*E_{split-s}<br>$$</p>
-<p>Compare the error rate of pruning and not pruning. If the pruning error rate\(E_s\) &lt; not pruning error rate, do the pruning.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1768,7 +1722,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

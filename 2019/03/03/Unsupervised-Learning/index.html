@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Kmeansshortage:  suscepticle to noise and initialization choose of K perform poor on unbalanced data each data point belongs to only one cluster(hard clustering)  Improvement:  Choose K with sum squar">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-03T10:43:13.276Z">
+<meta property="og:updated_time" content="2019-03-04T07:09:43.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unsupervised_Learning">
 <meta name="twitter:description" content="Kmeansshortage:  suscepticle to noise and initialization choose of K perform poor on unbalanced data each data point belongs to only one cluster(hard clustering)  Improvement:  Choose K with sum squar">
@@ -385,11 +385,17 @@
 <h2 id="Expectation-Maximization-Algorithm-EM"><a href="#Expectation-Maximization-Algorithm-EM" class="headerlink" title="Expectation-Maximization Algorithm(EM)"></a>Expectation-Maximization Algorithm(EM)</h2><p>It’s used to find a set of parameters that max the probability of given data samples with latent variables. In the context of kmeans, the latent variable is the number of K.</p>
 <ol>
 <li>initialize \(\theta\)</li>
-<li>E step Evaluate \(p(Z|X, θ_{old})\). Calculate the expectation of latent variable given data samples and parameters.</li>
-<li>M step Evaluate \(θ^{new}\)</li>
+<li>E step Evaluate \(Q_i(z_i)=p(z_i|x_i;\theta)\). Calculate the expectation of latent variable given data samples and parameters.</li>
+<li>M step Evaluate \(\hat \theta=argmax\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\)</li>
 </ol>
 <p>We employ the expectation of latent variables given data samples and parameters to substitute the real knowledge of latent variables. And do maximum likelihood to find the optimal parameter sets.</p>
-
+<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>\sum_ilogp(x_i;\theta)&amp;=\sum_ilog\sum_{z_i}p(x_i,z_i;\theta)\<br>&amp;=\sum_ilog\sum_{z_i}Q_i(z_i)\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\<br>&amp;\ge\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\<br>\end{align} %]]&gt;<br>$$<br>where greater than and equal to results from jensen inequality. Because \(Q_i(z_i)\) is a probability distribution Q() over latent variable z, \(Q_i(z_i)\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\) could be regarded as a weighted summarization of term \(\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\). Therefore the inequality is derived from \(<br>{\varphi \left({\frac {\sum a_{i}x_{i}}{\sum a_{i}}}\right)\leq {\frac {\sum a_{i}\varphi (x_{i})}{\sum a_{i}}}\qquad \qquad}\).</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>Q_i(z_i)&amp;=\frac{p(x_i,z_i;\theta)}{\sum_zp(x_i,z;\theta)}\<br>&amp;=\frac{p(x_i,z_i;\theta)}{p(x_i;\theta)}\<br>&amp;=p(z_i|x_i;\theta)\<br>\end{align} %]]&gt;<br>$$<br>where \(Q_i(z_i)\) is a probability distribution Q() over latent variable z.</p>
+<h4 id="Convergence-of-EM-Algorithm"><a href="#Convergence-of-EM-Algorithm" class="headerlink" title="Convergence of EM Algorithm:"></a>Convergence of EM Algorithm:</h4><p>Well, suppose \(\theta^{(t)}\) and \(\theta^{(t+1)}\) are the parameters from two successive iterations of EM.<br>$$<br>% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t)})&amp;=\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}<br>\end{align} %]]&gt;<br>$$</p>
+<p>The parameters \(\theta^{(t+1)}\) are then obtained by maximizing the right hand side of the equation above.</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t+1)})&amp;\ge\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t+1)})}{Q_i(z_i)}\<br>&amp;\ge \sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}\<br>=L(\theta^{(t)})<br>\end{align} %]]&gt;<br>$$<br>This first inequality comes from the fact that \(% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t)})&amp;\ge \sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}<br>\end{align} %]]&gt;\)</p>
+<p>holds for any values of \(Q_i\) and \(\theta\), and in particular holds for \(Q_i\) = \(Q_i^{(t)}\),   \(\theta=\theta^{(t+1)}\). The second equation is derived from \(\theta^{(t+1)}=argmax\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\).</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf" target="_blank" rel="noopener">CS229 Lecture notes</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
       
     </div>
     
@@ -422,6 +428,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/04/Information-Theory/" rel="prev" title="Information_Theory">
+                Information_Theory <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -512,7 +522,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -558,7 +568,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kmeans"><span class="nav-number">1.</span> <span class="nav-text">Kmeans</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kmeans-1"><span class="nav-number">1.1.</span> <span class="nav-text">Kmeans++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISODATA"><span class="nav-number">1.2.</span> <span class="nav-text">ISODATA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Expectation-Maximization-Algorithm-EM"><span class="nav-number">2.</span> <span class="nav-text">Expectation-Maximization Algorithm(EM)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Kmeans"><span class="nav-number">1.</span> <span class="nav-text">Kmeans</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kmeans-1"><span class="nav-number">1.1.</span> <span class="nav-text">Kmeans++</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISODATA"><span class="nav-number">1.2.</span> <span class="nav-text">ISODATA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Expectation-Maximization-Algorithm-EM"><span class="nav-number">2.</span> <span class="nav-text">Expectation-Maximization Algorithm(EM)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Convergence-of-EM-Algorithm"><span class="nav-number">2.0.1.</span> <span class="nav-text">Convergence of EM Algorithm:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.1.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>

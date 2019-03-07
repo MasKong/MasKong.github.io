@@ -296,6 +296,321 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/13/data-warehouse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/13/data-warehouse/" itemprop="url">data_warehouse</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-13T22:06:00+08:00">
+                2019-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>A data warehouse is where you store data from multiple data sources to be used for historical and trend analysis reporting.</p>
+<p>A data mart serves the same purpose but comprises only one subject area.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/Machine-Learning-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/18/Machine-Learning-1/" itemprop="url">Machine_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T17:56:57+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Usually recall increase, precision decrease and vice versa.</p>
+<p>Reall measure how many examples are predicted to False if the examples are True.</p>
+<p>Precision measure how many examples are predicted to True if the examples are False.</p>
+<p>An ROC curve plots TPR vs. FPR at different classification thresholds. </p>
+<p><strong>AUC</strong> stands for “Area under the ROC Curve.” Measures the area underneath the entire ROC curve.</p>
+<p>AUC provides an aggregate measure of performance across all possible classification thresholds. One way of interpreting AUC is as the probability that the model ranks a random positive example more highly than a random negative example.</p>
+<p>AUCPR: area under predicsion and recall line</p>
+<p>Cross-validation is used to select model or parameters. In deep learning, it is 1-fold validation while cross-validation is k-fold validation and take the mean.</p>
+<p>Bias term is able to add information. For example, if an user likes movies a lot, then add a high bias and vice versa. If a movie is liked in general by most people, it also has a high bias.</p>
+<h2 id="Bias-Variance-tradeoff"><a href="#Bias-Variance-tradeoff" class="headerlink" title="Bias-Variance tradeoff"></a>Bias-Variance tradeoff</h2><p>The more complex the model, the higher the variance. For a complex model, if the data changes a bit, the model output is likely to change a lot correspondingly. A simple model with sparse connectivity rather than dense connectivity like fully-connect network is not that likely to change a lot if the data changes a bit due to sparse connectivity(please feel it intuitively). But a simple model tends to have high bias which is underfitting.</p>
+<p>In a nutshell, simple models tend to have high bias and low variance while complex models tend to have low bias(accurate) and high variance.</p>
+<p>This is so-called Bias-Variance tradeoff.</p>
+<h2 id="KL"><a href="#KL" class="headerlink" title="KL"></a>KL</h2><h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>important parameters:</p>
+<ul>
+<li>eta:learning_rate</li>
+<li>max_depth: max_depth of tree </li>
+<li>lambda: prevent overfitting</li>
+</ul>
+<p>subsample: sample part of training data which prevent overfitting<br>colsample: subsample the columns, like random forest</p>
+<p>Induction of xgboost:</p>
+<ol>
+<li>greedy algorithm, choose the tree that reduce the loss as much as possible</li>
+<li>use taylor expansion to approximate the gradient</li>
+<li>calculate the optimal tree structure</li>
+</ol>
+<p>The xgboost is a kind of greedy algorithm because each time it add the best tree structure.</p>
+<p>It employs CART as base learner. The final output of CART are values. So the output of leaves of xgboost are actually values. It is the sum of all trees.<br>$$<br>\hat{y}<em>i = \sum</em>{k=1}^K f_k(x_i), f_k \in \mathcal{F}<br>$$</p>
+<p>$$<br>w_j^\ast = -\frac{G_j}{H_j+\lambda}<br>$$<br>The above equation calculates the best tree structure from the first and second order gradients. It employ tailor expansion to approximate gradients so that all kinds of self-define loss functions could be supported.</p>
+<p>$$<br>\text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T<br>$$<br>The above equation is used to measure how good is the current tree structure.</p>
+<p>$$<br>Gain = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}] - \gamma<br>$$<br>The above equation serves as a kind of pruning. Other tree methods usually put pruning out of the training process.</p>
+<p>other tricks that xgboost employ:</p>
+<ol>
+<li>subsample data: sample a portion of the whole training set to train a tree like bagging.</li>
+<li>subsample columns: sample some columns to train like random forest.</li>
+</ol>
+<p>parameters tuning:</p>
+<ol>
+<li>set depth to 3~5</li>
+<li>number of trees to ~500</li>
+<li>learning step \(\eta\) from 0.02~0.1</li>
+<li>run the algorithm until overfitting</li>
+<li>if not overfitting, check the dataset. The feature engineering may not be enough. Otherwise, start pruning. Increase the \(\lambda, \gamma\) and so on.</li>
+</ol>
+<h1 id="Decesion-Tree"><a href="#Decesion-Tree" class="headerlink" title="Decesion Tree"></a>Decesion Tree</h1><p>The reason that decision tree is a base classifier in boosting or bagging:</p>
+<ol>
+<li>unstable classifier. susceptical to training data</li>
+<li>the representation and generalization ability is easy to adjust by modifying the number of layer or leaves.</li>
+<li>easy to incorporate the weight of training samples in decision tree by adjusting training data rather than oversampling or undersampling.</li>
+</ol>
+<h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3 use entropy and information gain to measure whether a split is good or not. It is a kind of greedy algorithm and tends to choose splits with a lot of features whose information gain would be greater. And this may lead to overfitting.</p>
+<p>$$<br>Ent(D)=- \sum_{k=1}^{K} p_k\cdot  log_{2}p_k<br>$$</p>
+<p>$$<br>Gain(D, a)=Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
+<h3 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h3><p>It is a kind of modified ID3. It employs to be the criteria to avoid the shortage of ID3 which choose the split with more features.</p>
+<p>$$<br>GainRatio(D,T)=\frac{Gain（D,T)}{IV(T)}<br>$$</p>
+<h3 id="Classification-and-Regression-tree-CART"><a href="#Classification-and-Regression-tree-CART" class="headerlink" title="Classification and Regression tree(CART)"></a>Classification and Regression tree(CART)</h3><p>CART is a binary tree. At each split, it would choose a feature and divide the dataset according to yes and no feature. It would choose the split with the least gini.</p>
+<p>GINI index is used to measure how good is the split.</p>
+<p>$$<br>gini(T_{i})=1-\sum_{j=1}^{n} p_{j}^{2}<br>$$</p>
+<p>$$<br>Gini_{split}(T)=\sum_{i=1}^{2}\frac{N_{i}}{N}gini(T_{i})<br>$$</p>
+<p>For regression tree, it separate the continuous feature using {x&gt;T} and {x&gt;T} where T is the threshold. The decision boundaries of the CART are staright lines.</p>
+<h2 id="Comparision"><a href="#Comparision" class="headerlink" title="Comparision"></a>Comparision</h2><p>ID3 and C4.5 could only be applied to classification task while CART could be applied to both regression and classification task.</p>
+<p>ID3 and C4.5 rely on pruning.</p>
+<p>ID3 and C4.5 derive complex trees and features could not be reusing while CART derives binary trees and the features could be reusing.</p>
+<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><p>Pruning is significantly important in decision trees. Usually we would grow the DT fully and do post-pruning to avoid overfitting and a better DT with better generalization ability.</p>
+<h3 id="Cost-Complexity-Pruning-CCP"><a href="#Cost-Complexity-Pruning-CCP" class="headerlink" title="Cost-Complexity Pruning(CCP)"></a>Cost-Complexity Pruning(CCP)</h3><p>It is used in CART pruning.<br>$$<br>\alpha = \frac{R(T) - R(T_t)}{L(T_t)-1}<br>$$<br>where \(L(T_t)\) is the number of leaves in the subtree that is going to be pruned. \(R(T_t)\) and \(R(T)\) are the error rate of the tree. It is the number of samples that are classified wrong.</p>
+<p>It compares the error before and after pruning. Choose the pruning with the least error increased.</p>
+<p>The pruning could be performed on a separate pruning dataset or simply k-fold cross-validation.</p>
+<h3 id="Reduced-Error-Pruning-REP"><a href="#Reduced-Error-Pruning-REP" class="headerlink" title="Reduced Error Pruning(REP)"></a>Reduced Error Pruning(REP)</h3><p>$$<br>f(T)=-\sum_{t \in T}e(t)<br>$$</p>
+<p>$$<br>f(T’)=-\sum_{t \in T’}e(t)<br>$$<br>where T is the original tree and T’ is the pruned tree and f() is the number of samples that are classified wrong. Its intuition is to prune the tree so that the error date decrease. If \(f(T) \leqslant f(T’)\), do pruning.</p>
+<h3 id="Pessimistic-Error-Pruning-PEP"><a href="#Pessimistic-Error-Pruning-PEP" class="headerlink" title="Pessimistic Error Pruning(PEP)"></a>Pessimistic Error Pruning(PEP)</h3><p>Top-down pruning. It bases on the training set to do pruning. The 1/2 is a bias to rectify the bias that the pruning is performed based on training set.</p>
+<p>$$<br>E(T) = \sum_{t \in T}\frac{e(t)+1/2}{N(t)}<br>$$</p>
+<p>$$<br>E(T’)=\sum_{t \in T, excep K}\frac{e(t)+1/2}{N(t)}<br>$$<br>where e(t) is the samples that are classified wrong in the subtree start from node t. N(t) is the number of samples in the subtree start from node t.</p>
+<h3 id="Minimum-Error-Pruning-MEP"><a href="#Minimum-Error-Pruning-MEP" class="headerlink" title="Minimum Error Pruning(MEP)"></a>Minimum Error Pruning(MEP)</h3><p>There are several definitions about how to calculate the error rate of pruning\(E_s\). Below is one kind of method.</p>
+<p>$$<br>E_s=1-\frac{n_c+p_{\alpha c}m}{N+m}=\frac{N-n_c+(1-p_{\alpha c})m}{N+m}<br>$$</p>
+<p>$$<br>E_{split-s}=\sum_{split=1}^M \frac{|S_{split}|}{|S|}*E_{split-s}<br>$$</p>
+<p>Compare the error rate of pruning and not pruning. If the pruning error rate\(E_s\) &lt; not pruning error rate, do the pruning.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/shell/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1392,259 +1707,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/Feature Cross/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/02/Feature Cross/" itemprop="url">Feature Cross</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-02T18:33:55+08:00">
-                2018-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Feature cross is dot-product of two or more features. It transform linear features to non-linear features.</p>
-<p>A <strong>feature cross</strong> is a synthetic feature that encodes nonlinearity in the feature space by multiplying two or more input features together.</p>
-<p>$$<br>x_3 = x_1x_2<br>$$<br>where \(x_3\) is a new feature and it is fed to the classifier as a feature.</p>
-<p>$$<br>y = b + w_1x_1 + w_2x_2 + w_3x_3<br>$$</p>
-<p>Feature cross introduces non-linearity as well as richer features.</p>
-<p>Feature crossing is usually employed in categorical features rather than continuous features.</p>
-<p>Deep Cross Network models features cross as matrix multiplication. In the context of deep learning, sparse features are transformed to embeddings. Therefore dot-product of embeddings is actually a kind of feature crossing. It resembles SVM that apply a kernel to the original features. The original features are sparse features and the kernel is a look-up table. After that, sparse features are transformed to dense features.</p>
-<p>Deep cross also utilizes residual connection because it adds \(x_l\) after feature crossing. And multiple layers of feature crossing is able to model higher level of feature crossing like \([x_1,x_2……x_n]\).</p>
-<p>Detailed introduction of DCN is in Recommendation System.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/share_meeting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/share_meeting/" itemprop="url">Share_meeting</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-26T16:10:13+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>MEMM</p>
-<p>CRF考虑全局信息而不是局部标记，但是计算量比较大，参数多，不容易部署</p>
-<p>收入  GMV</p>
-<p>TransE algor<br>TransH algor<br>GAUSSIAN EMBEDDING</p>
-<p>调度主要看工具，四轮车调度，其他车算找摆<br>按规模划分调度还是脚摆</p>
-<p>优先保障性任务，保证效率<br>干预性任务，算收益</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1699,7 +1761,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
