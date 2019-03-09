@@ -505,12 +505,21 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Shannon entropy<br>$$<br>H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)<br>$$<br>Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the more bits would be required to identify a data sample.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Entropy:<br>number of bits required to encode message.</p>
+<p>Joint Entropy:<br>$$<br>H(X,Y) = -\sum_{x,y} p(x,y) \log p(x,y)<br>$$</p>
+<p>Conditional Entropy:<br>$$<br>H(Y|X) = -\sum_{x,y} p(x,y) \log p(y|x)<br>$$</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>H(X,Y) &amp;= -\sum_{x,y} p(x,y) \log p(x,y) \<br>&amp;= -\sum_{x,y} p(x,y) \log {p(x)p(y|x)} \<br>&amp;= -\sum_{x,y} p(x,y) \log p(y|x) - \sum_{x,y} p(x,y) \log p(x) \<br>&amp;= H(Y|X) - \sum_x p(x) \log p(x) \<br>&amp;= H(Y|X) + H(X)<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
+<p>Self-information is used to quantify information in a way that less likely events should have higher information content and independent events should have additive information:<br>$$<br>I(x)=-\log P(x)<br>$$</p>
+<p>Shannon entropy<br>$$<br>H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)<br>$$<br>Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the more bits would be required to identify a data sample.</p>
 <p>KL divergence:<br>$$<br>D_{KL} (P || Q) = E_{x\sim P}\log\frac{P(x)}{Q(x)}=E_{x\sim P}[logP(x)-logQ(x)]<br>$$</p>
 <p>Note that data sample x is drawn from probability distribution P and P, Q are different probability distribution. Therefore \(D_{KL} (P || Q) \neq  D_{KL} (Q || P)\). KL divergence is used to measure the amount of difference between two distributions. It could be regarded as a kind of distance except that the KL divergence is asymmetric. </p>
 <p>cross-entropy:<br>$$<br>H(P,Q)=-E_{x\sim P}logQ(x)<br>$$<br>Note: \(H(P,Q)=H(P)+D_{KL} (P || Q)\). Minimizing the cross-entropy with respect to Q is equivalent to minimizing the KL divergence, because Q does not participate in the omitted term.</p>
+<p>Mutual Information</p>
+<p>It is KL divergence of joint probability distribution and multiplication of two distributions.</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= KL(p(x, y) || p(x)p(y)) \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}}<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}} \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)}{p(x|y)}} \<br>&amp;= H(X) - H(X|Y) \<br>&amp;= I(X, Y) = H(Y) - H(Y|X)<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
 <p>Cross-entropy means how many bits are required to identify data samples drawn from distribution P using an approximate distribution Q. In the context of deep learning, assume the real distribution is P, and learnt distribution is Q, cross-entropy means the number of bits is required to identify a data samples drawn from real distribution P. The higher the entropy, more bits are required, the worse the learnt distribution and the model.</p>
-
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://leijun00.github.io/2014/07/information-theory/" target="_blank" rel="noopener"># 信息论基础</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
       
