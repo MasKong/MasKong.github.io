@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Usually recall increase, precision decrease and vice versa. Reall measure how many examples are predicted to False if the examples are True. Precision measure how many examples are predicted to True i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-27T02:45:26.686Z">
+<meta property="og:updated_time" content="2019-03-09T10:11:53.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine_Learning">
 <meta name="twitter:description" content="Usually recall increase, precision decrease and vice versa. Reall measure how many examples are predicted to False if the examples are True. Precision measure how many examples are predicted to True i">
@@ -438,6 +438,10 @@
 <p>$$<br>E_s=1-\frac{n_c+p_{\alpha c}m}{N+m}=\frac{N-n_c+(1-p_{\alpha c})m}{N+m}<br>$$</p>
 <p>$$<br>E_{split-s}=\sum_{split=1}^M \frac{|S_{split}|}{|S|}*E_{split-s}<br>$$</p>
 <p>Compare the error rate of pruning and not pruning. If the pruning error rate\(E_s\) &lt; not pruning error rate, do the pruning.</p>
+<h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p>Linear regression:<br>$$<br>w^Tx<br>$$</p>
+<p>Linear classification:<br>$$<br>sign(w^Tx)<br>$$<br>if \(w^Tx\) &gt; 0, the label is one and vise versa. This would not output a probability which could be regarded as a kind of confidence.</p>
+<p>Logistic regression output a value that is confidence between [0,1] by squeeze  \(w^Tx\) to sigmoid function.</p>
+<h5 id="Why-sigmoid-in-logistic-regression"><a href="#Why-sigmoid-in-logistic-regression" class="headerlink" title="Why sigmoid in logistic regression"></a>Why sigmoid in logistic regression</h5><p>We care about P(y=1|x). But real world data samples are only (x1, 1), (x2,-1)……</p>
 
       
     </div>
@@ -565,7 +569,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-count">92</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -611,7 +615,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-Variance-tradeoff"><span class="nav-number">1.</span> <span class="nav-text">Bias-Variance tradeoff</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KL"><span class="nav-number">2.</span> <span class="nav-text">KL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost"><span class="nav-number">3.</span> <span class="nav-text">XGBoost</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decesion-Tree"><span class="nav-number"></span> <span class="nav-text">Decesion Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3"><span class="nav-number">0.1.</span> <span class="nav-text">ID3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5"><span class="nav-number">0.2.</span> <span class="nav-text">C4.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification-and-Regression-tree-CART"><span class="nav-number">0.3.</span> <span class="nav-text">Classification and Regression tree(CART)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparision"><span class="nav-number">1.</span> <span class="nav-text">Comparision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pruning"><span class="nav-number">2.</span> <span class="nav-text">Pruning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-Complexity-Pruning-CCP"><span class="nav-number">2.1.</span> <span class="nav-text">Cost-Complexity Pruning(CCP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reduced-Error-Pruning-REP"><span class="nav-number">2.2.</span> <span class="nav-text">Reduced Error Pruning(REP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pessimistic-Error-Pruning-PEP"><span class="nav-number">2.3.</span> <span class="nav-text">Pessimistic Error Pruning(PEP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimum-Error-Pruning-MEP"><span class="nav-number">2.4.</span> <span class="nav-text">Minimum Error Pruning(MEP)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-Variance-tradeoff"><span class="nav-number">1.</span> <span class="nav-text">Bias-Variance tradeoff</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KL"><span class="nav-number">2.</span> <span class="nav-text">KL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost"><span class="nav-number">3.</span> <span class="nav-text">XGBoost</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decesion-Tree"><span class="nav-number"></span> <span class="nav-text">Decesion Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3"><span class="nav-number">0.1.</span> <span class="nav-text">ID3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5"><span class="nav-number">0.2.</span> <span class="nav-text">C4.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification-and-Regression-tree-CART"><span class="nav-number">0.3.</span> <span class="nav-text">Classification and Regression tree(CART)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparision"><span class="nav-number">1.</span> <span class="nav-text">Comparision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pruning"><span class="nav-number">2.</span> <span class="nav-text">Pruning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-Complexity-Pruning-CCP"><span class="nav-number">2.1.</span> <span class="nav-text">Cost-Complexity Pruning(CCP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reduced-Error-Pruning-REP"><span class="nav-number">2.2.</span> <span class="nav-text">Reduced Error Pruning(REP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pessimistic-Error-Pruning-PEP"><span class="nav-number">2.3.</span> <span class="nav-text">Pessimistic Error Pruning(PEP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimum-Error-Pruning-MEP"><span class="nav-number">2.4.</span> <span class="nav-text">Minimum Error Pruning(MEP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.5.</span> <span class="nav-text">Linear Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Why-sigmoid-in-logistic-regression"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">Why sigmoid in logistic regression</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
