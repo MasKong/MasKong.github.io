@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Spatial-Temporal Graph: each node is associated with a feature vector that evolves over time. GCN classification:  add a node that connects to all other nodes in the graph as a kind of aggregated info">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-01T02:11:42.499Z">
+<meta property="og:updated_time" content="2019-03-12T01:15:52.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Graph_Neural_Networks">
 <meta name="twitter:description" content="Spatial-Temporal Graph: each node is associated with a feature vector that evolves over time. GCN classification:  add a node that connects to all other nodes in the graph as a kind of aggregated info">
@@ -402,6 +402,15 @@
 </ol>
 <p>Attention mechanism enables the neural network to aggregate the information according to importance of related nodes.</p>
 <p>Knowledge graphs are heterogeneous networks.</p>
+<p><strong>homogeneous graph</strong>: all nodes and all edges are associated with only one type.</p>
+<p>Challenge: how to preserve the information as much as possible? Only structural information is available in homogeneous graph.</p>
+<p><strong>heterogeneous graph(like Knowledge Graphs)</strong>: nodes and edges belong to more than one type. The set of node or edge attributes is larger than one.</p>
+<p><strong>first-order proximity</strong>: the distance between two nodes.</p>
+<p><strong>second-order proximity</strong>: similarity between neighbourhood node.</p>
+<h2 id="Graph-Embedding"><a href="#Graph-Embedding" class="headerlink" title="Graph Embedding"></a>Graph Embedding</h2><h4 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h4><p>Given a graph, map the graph to low-dimension vector and preserve the graph property. The ouput could be a single vector that represent the whole graph or a set of vectors that represent nodes and edges.</p>
+<p>there are many types of Graph Embedding. It is possible to adjust the representation of the graph and get graph embeddings in different granularities.</p>
+<p>Shortage of TranE:<br>train graph embedding separately, cannot utilize the information in the whole graph.</p>
+<h2 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h2><p>Graph Neural Network is able to perform neural network operation on the whole graph, subgraphs or nodes, edges. GNN basically utilize information in the nodes between a specific node to represent a node.</p>
 
       
     </div>
@@ -575,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><span class="nav-number">1.</span> <span class="nav-text">Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><span class="nav-number">1.</span> <span class="nav-text">Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Embedding"><span class="nav-number"></span> <span class="nav-text">Graph Embedding</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Neural-Network"><span class="nav-number"></span> <span class="nav-text">Graph Neural Network</span></a></div>
             
 
           </div>

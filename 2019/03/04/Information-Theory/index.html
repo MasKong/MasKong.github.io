@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Entropy:number of bits required to encode message. Joint Entropy:$$H(X,Y) = -\sum_{x,y} p(x,y) \log p(x,y)$$ Conditional Entropy:$$H(Y|X) = -\sum_{x,y} p(x,y) \log p(y|x)$$ $$% &amp;lt;![CDATA[\begin{equa">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-09T13:40:05.393Z">
+<meta property="og:updated_time" content="2019-03-09T13:44:57.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Information_Theory">
 <meta name="twitter:description" content="Entropy:number of bits required to encode message. Joint Entropy:$$H(X,Y) = -\sum_{x,y} p(x,y) \log p(x,y)$$ Conditional Entropy:$$H(Y|X) = -\sum_{x,y} p(x,y) \log p(y|x)$$ $$% &amp;lt;![CDATA[\begin{equa">
@@ -375,7 +375,7 @@
 <p>Mutual Information</p>
 <p>It is KL divergence of joint probability distribution and multiplication of two distributions.</p>
 <p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= KL(p(x, y) || p(x)p(y)) \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}}<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
-<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}} \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)}{p(x|y)}} \<br>&amp;= H(X) - H(X|Y) \<br>&amp;= I(X, Y) = H(Y) - H(Y|X)<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
+<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}} \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)}{p(x|y)}} \<br>&amp;= H(X) - H(X|Y) \<br>&amp;= H(Y) - H(Y|X)<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
 <p>Cross-entropy means how many bits are required to identify data samples drawn from distribution P using an approximate distribution Q. In the context of deep learning, assume the real distribution is P, and learnt distribution is Q, cross-entropy means the number of bits is required to identify a data samples drawn from real distribution P. The higher the entropy, more bits are required, the worse the learnt distribution and the model.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://leijun00.github.io/2014/07/information-theory/" target="_blank" rel="noopener"># 信息论基础</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
       
