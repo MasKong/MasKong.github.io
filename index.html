@@ -296,6 +296,255 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/Probabilistic-Graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/14/Probabilistic-Graph/" itemprop="url">Probabilistic_Graph</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-14T23:11:10+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Both Markovian random field and Conditional random field have the same type of functions. The difference is that Markovian random field is a generative model while CRF is a discriminative model.</p>
+<p><strong>generative model</strong> calculate the distribution over all variables.</p>
+<p><strong>discriminative model</strong> calculate the conditional probability directly.</p>
+<p>EM算法本质可看作先根据参数\(\theta\)计算出关于z的概率分布Q(z)=\(p(z|x,\theta)\),然后用这个z的概率分布去计算似然函数，选择使似然函数最大的参数集\(\theta\).</p>
+<h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><p>概率图的推断可采用变量消除法，变量消除的顺序对计算量有着非常重要的影响。一种改进就是消息传播法，将概率图中的变量表示成一棵树，选取一个变量作为根结点，所有其他节点将信息传播至根结点后，根结点再将信息往下传播，直到叶子节点，叶子节点是我们关心的变量。</p>
+<p>变量消除法或消息传播法都是精确计算，一种替代方式是通过采样来进行近似计算。</p>
+<h5 id="Markov-Chain-Monte-Carlo-MCMC"><a href="#Markov-Chain-Monte-Carlo-MCMC" class="headerlink" title="Markov Chain Monte Carlo(MCMC)"></a>Markov Chain Monte Carlo(MCMC)</h5>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/VAE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/13/VAE/" itemprop="url">VAE</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T15:10:27+08:00">
+                2019-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Auto-Encoder"><a href="#Auto-Encoder" class="headerlink" title="Auto Encoder"></a>Auto Encoder</h2><p>Encoder is used to map input to hidden states while decoder is supposed to reconstruct input from hidden states.</p>
+<p>Auto encoder is supposed to capture used information in input rather than simply copying data. It could be regarded that the decoder is simply an auxiliary task.</p>
+<p>An autoencoder whose code(hidden states) dimension is less than the input dimension is called <strong>undercomplete</strong>. It is supposed to learn the most salient features of data distribution. </p>
+<p>If the capacity of encoder and decoder is too much, it is possible that encoder simply map the input to an unique code(like hash with collision) while decoder simply reconstruct input from that code without leanring useful information.</p>
+<p>Tricks to train auto encoder including regularizing the auto encoder such that features are sparse.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/Relational-inductive-biases/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1387,305 +1636,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/15/Graph-Neural-Networks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/15/Graph-Neural-Networks/" itemprop="url">Graph_Neural_Networks</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-15T14:30:36+08:00">
-                2019-02-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Spatial-Temporal Graph:</p>
-<p>each node is associated with a feature vector that evolves over time.</p>
-<p>GCN classification:</p>
-<ol>
-<li>add a node that connects to all other nodes in the graph as a kind of aggregated information(global node). Run the GCN algorithm and perform classification according to the node.</li>
-<li>global pooling</li>
-</ol>
-<p>shallow model:<br>each node is represented as a dense vector in the embedding matrix. </p>
-<p>A similarity function is used to map Node(u,v) to the embedding space such that<br>$$<br>similarity(u,v) = z_v^Tz_u<br>$$</p>
-<p>The key concept of GNN is how to aggregate neighborhood information. The computation in GNN is very intuitive. Each node is represented by its neighbors. This approach is the same as CBOW(word2vec) which employs a set of neighbor words to represent the center word. So features of a node is the aggregation of neighborhood information.</p>
-<p><strong>GNN could be trained in an unsupervised manner. The key concept is that similar nodes are with similar embeddings.</strong></p>
-<p>Model design:</p>
-<ol>
-<li>choose an approach to aggregate neighborhood information. </li>
-<li>define a loss function on embeddings</li>
-<li>training</li>
-<li>generate embeddings(possible to concatenate several layer embedding like ELMO)</li>
-</ol>
-<p>The parameters of aggregate function could be shared so as to reduce computation and generate to unseen nodes.</p>
-<p>The aggregate function could be weighted average(CNN), pooling or even RNN.</p>
-<h4 id="Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><a href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes" class="headerlink" title="Pinsage: scale the he training as well as inference of node embeddings to billions of nodes"></a>Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</h4><p>Innovations:</p>
-<ol>
-<li>On-the-fly graph convolutions(only part of network is used to do computation):  </li>
-</ol>
-<ul>
-<li>Sample the neighborhood around a node and dynamically construct a computation graph</li>
-<li>Perform a localized graph convolution around a particular node</li>
-</ul>
-<ol start="2">
-<li>Constructing convolutions via random walks </li>
-</ol>
-<ul>
-<li>pooling: select nodes that are more important</li>
-</ul>
-<ol start="3">
-<li>Efficient MapReduce inference</li>
-</ol>
-<p>Attention mechanism enables the neural network to aggregate the information according to importance of related nodes.</p>
-<p>Knowledge graphs are heterogeneous networks.</p>
-<p><strong>homogeneous graph</strong>: all nodes and all edges are associated with only one type.</p>
-<p>Challenge: how to preserve the information as much as possible? Only structural information is available in homogeneous graph.</p>
-<p><strong>heterogeneous graph(like Knowledge Graphs)</strong>: nodes and edges belong to more than one type. The set of node or edge attributes is larger than one.</p>
-<p><strong>first-order proximity</strong>: the distance between two nodes.</p>
-<p><strong>second-order proximity</strong>: similarity between neighbourhood node.</p>
-<h2 id="Graph-Embedding"><a href="#Graph-Embedding" class="headerlink" title="Graph Embedding"></a>Graph Embedding</h2><h4 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h4><p>Given a graph, map the graph to low-dimension vector and preserve the graph property. The ouput could be a single vector that represent the whole graph or a set of vectors that represent nodes and edges.</p>
-<p>there are many types of Graph Embedding. It is possible to adjust the representation of the graph and get graph embeddings in different granularities.</p>
-<p>Shortage of TranE:<br>train graph embedding separately, cannot utilize the information in the whole graph.</p>
-<h2 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h2><p>Graph Neural Network is able to perform neural network operation on the whole graph, subgraphs or nodes, edges. GNN basically utilize information in the nodes between a specific node to represent a node.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/Algorithms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/14/Algorithms/" itemprop="url">Algorithms</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T22:21:42+08:00">
-                2019-02-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Recursion:<br>reduce a problem to one or more smaller problems and hand those problems to a black box.<br>There is absolutely no need to care about the black box. It’s worthwhile to note that if there is impossible to simplify the problem, just solve it. And there must be an end for the recursion.</p>
-<p>heap:</p>
-<p>Heaplify should start from the end. BUILD-MAX-HEAP starts from the last second layer because the last layer has no children.</p>
-<p>If there are several same records and the records are exchanged during sorting, the sorting algorithm isn’t stable, otherwise it is stable</p>
-<p>bucket sort assumes data are uniformly distributed in [0,1) so that data are uniformly assigned to each bucket.</p>
-<ol>
-<li>create bucket</li>
-<li>assign data to buckets [0.1~0.2) to the 1 bucket and [0.2~0.3) to the 2 buckets</li>
-<li>sort data in each buckets</li>
-<li>merge</li>
-</ol>
-<p>Two sum:<br>use hashmap to record indexes of values in the array and perform lookup. reduce time complexity to O(n)</p>
-<p>海量数据处理 - 找出最大的n个数（top K问题)<br>建小顶堆，如果一个数大于顶部的数，将改数代替顶部的数，进行heaplify</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1740,7 +1690,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

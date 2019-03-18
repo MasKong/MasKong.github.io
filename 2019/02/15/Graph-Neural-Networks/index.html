@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Spatial-Temporal Graph: each node is associated with a feature vector that evolves over time. GCN classification:  add a node that connects to all other nodes in the graph as a kind of aggregated info">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-12T01:15:52.987Z">
+<meta property="og:updated_time" content="2019-03-13T05:35:30.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Graph_Neural_Networks">
 <meta name="twitter:description" content="Spatial-Temporal Graph: each node is associated with a feature vector that evolves over time. GCN classification:  add a node that connects to all other nodes in the graph as a kind of aggregated info">
@@ -410,6 +410,14 @@
 <h2 id="Graph-Embedding"><a href="#Graph-Embedding" class="headerlink" title="Graph Embedding"></a>Graph Embedding</h2><h4 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h4><p>Given a graph, map the graph to low-dimension vector and preserve the graph property. The ouput could be a single vector that represent the whole graph or a set of vectors that represent nodes and edges.</p>
 <p>there are many types of Graph Embedding. It is possible to adjust the representation of the graph and get graph embeddings in different granularities.</p>
 <p>Shortage of TranE:<br>train graph embedding separately, cannot utilize the information in the whole graph.</p>
+<h5 id="Node-Embedding"><a href="#Node-Embedding" class="headerlink" title="Node Embedding"></a>Node Embedding</h5><p>The intuition to train node embedding is that “close” nodes are supposed to have similar embeddings. The problem is how to define closeness which is proximity.</p>
+<h5 id="Edge-Embedding"><a href="#Edge-Embedding" class="headerlink" title="Edge Embedding"></a>Edge Embedding</h5><p>It is useful for tasks like link prediction and knowledge graph entity/relation prediction. </p>
+<p>The challenge is how to define similarity(i.e. similar edges may share many common or similar nodes) and asymmetric property(directed edge).</p>
+<h5 id="knowledge-graph-embedding"><a href="#knowledge-graph-embedding" class="headerlink" title="knowledge graph embedding"></a><strong>knowledge graph embedding</strong></h5><p>learns both the node and edge embeddings. Each knowledge graph is a triplet &lt; h, r, t &gt;. The embedding is learnt to preserve r between h and t in the embedded space, so that a missing entity/relation can be correctly predicted given the other two components in &lt; h,r,t &gt;.</p>
+<h5 id="Hybrid-Embedding"><a href="#Hybrid-Embedding" class="headerlink" title="Hybrid Embedding"></a>Hybrid Embedding</h5><p>It is a combination of nodes and edges embedding. Subgraph embedding could be trained as a whole structure or aggregation of component embeddings. Embedding with different granularities could reinforce each other. Reasonable edge and node embeddings are supposed to contain the substructure information. And vice versa, better clustering of communites or substructure could be detected when there are good embeddings.</p>
+<p>Challenges: generation of substructure, mapping of different embeddings to the same space.</p>
+<h5 id="Whole-Graph-Embedding"><a href="#Whole-Graph-Embedding" class="headerlink" title="Whole-Graph Embedding"></a>Whole-Graph Embedding</h5><p>The whole graph is mapped to a vector. A possible solution is to train the graph embedding with hierachical architecture like ELMO and concat them. But this is expensive. Whole-Graph Embedding facilitate graph-level classification and similarity calculation.</p>
+<p>Challenge: How to capture the properties of a whole graph and how to make a trade-off between expressiveness and efficiency?</p>
 <h2 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h2><p>Graph Neural Network is able to perform neural network operation on the whole graph, subgraphs or nodes, edges. GNN basically utilize information in the nodes between a specific node to represent a node.</p>
 
       
@@ -538,7 +546,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -584,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><span class="nav-number">1.</span> <span class="nav-text">Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Embedding"><span class="nav-number"></span> <span class="nav-text">Graph Embedding</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Neural-Network"><span class="nav-number"></span> <span class="nav-text">Graph Neural Network</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><span class="nav-number">1.</span> <span class="nav-text">Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Embedding"><span class="nav-number"></span> <span class="nav-text">Graph Embedding</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Node-Embedding"><span class="nav-number">1.1.</span> <span class="nav-text">Node Embedding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Edge-Embedding"><span class="nav-number">1.2.</span> <span class="nav-text">Edge Embedding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#knowledge-graph-embedding"><span class="nav-number">1.3.</span> <span class="nav-text">knowledge graph embedding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Hybrid-Embedding"><span class="nav-number">1.4.</span> <span class="nav-text">Hybrid Embedding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Whole-Graph-Embedding"><span class="nav-number">1.5.</span> <span class="nav-text">Whole-Graph Embedding</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Neural-Network"><span class="nav-number"></span> <span class="nav-text">Graph Neural Network</span></a></div>
             
 
           </div>

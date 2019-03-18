@@ -296,6 +296,288 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/sctipts_python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/06/sctipts_python/" itemprop="url">scripts_python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T20:25:03+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>remove file from a directory<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'visual/train'</span>, <span class="string">'visual/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    list(map(<span class="keyword">lambda</span> i: os.remove(os.path.join(dir_to_search, i)),os.listdir(dir_to_search)))</span><br><span class="line"><span class="comment">#     l = list(map(lambda i: os.path.join(dir_to_search, i),os.listdir(dir_to_search)))</span></span><br></pre></td></tr></table></figure></p>
+<p>move newest files to another dir<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line">    time_l.sort()</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        dst = <span class="string">'visual/train'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dst = <span class="string">'visual/val'</span></span><br><span class="line">    shutil.copyfile(d[time_l[<span class="number">-1</span>]], os.path.join(dst, d[time_l[<span class="number">-1</span>]].split(<span class="string">'/'</span>)[<span class="number">-1</span>] ))</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"><span class="comment">#     '''delete'''</span></span><br><span class="line"><span class="comment">#     for i in range(len(time_l)-1):</span></span><br><span class="line"><span class="comment">#         os.remove(d[time_l[i]])</span></span><br></pre></td></tr></table></figure></p>
+<p>delect old files</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line"><span class="comment">#     print(file_l)</span></span><br><span class="line">    time_l.sort()</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line">    <span class="string">'''delete'''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(time_l)<span class="number">-1</span>):</span><br><span class="line">        os.remove(d[time_l[i]])</span><br><span class="line"><span class="comment">#     print(d[time_l[-1]])</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">#               if datetime.datetime.now() - file_modified &gt; datetime.timedelta(hours=24):</span></span><br><span class="line"><span class="comment">#                   os.remove(curpath)</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/Data Preprocessing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/04/Data Preprocessing/" itemprop="url">Data Preprocessing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T14:09:33+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.</p>
+<ol>
+<li>Features selection according to experience or something like that.</li>
+<li>Features processing. Features are in original data, some steps are necessary to preprocess the data and get corresponding features.</li>
+<li>Data cleaning.</li>
+<li>Data sampling and filtering. Not all data would be used to train a model. Then you need to sample the data points. Methods include random sampling and others. Filtering is to detect and remove outliers. Common methods are KNN, clustering.</li>
+<li>Features classification. </li>
+<li>Feature processing and analysis.</li>
+</ol>
+<p>Features classification:</p>
+<ol>
+<li>Low-level and high-level features. Low-level features are mainly original features like user ID, time, weather. High-level features are processed features like sentiment.</li>
+<li>Static features and dynamic features. Static features are stable or seldom changed like age, height. Dynamic features change frequently like distance, temperature.</li>
+<li>0-1 features, one-hot(categorical) features, continuous features.</li>
+</ol>
+<p>Feature processing:</p>
+<ol>
+<li>features normalization</li>
+<li>features discretization</li>
+<li>missing values. </li>
+</ol>
+<p>Dimensionality reduction:</p>
+<ol>
+<li>Sometimes increasing the dimensionality of features is good for classification.</li>
+<li>Common methods to reduce dimensionality are PCA, LDA.</li>
+</ol>
+<p>Features selection:</p>
+<ol>
+<li>features generation.</li>
+<li>Evaluation.</li>
+</ol>
+<p>Features generation:</p>
+<ol>
+<li>Complete search. BFS, Branch and Bound.</li>
+<li>Heuristic. SFS, Sequential Forward Selection; SBS,Sequential Backward Selection; LRS,Plus-L Minus-R Selection.</li>
+<li>Random. RGSS, Random Generation plus Sequential Selection; SA, Simulated Annealing; GA, Genetic Algorithms.</li>
+</ol>
+<p>Feature normalization: if there is not feature normalization, some features with larger range like [0, +10000] compared to [0,3] would impose more influence on the model. </p>
+<p>During deployment, performance(real-time, low-delay) is signifiacnt. There would be tradeoff between the amount of data and performance(accuracy). A possible solution is to construct a tree for features like hierachical softmax so that finding a feature is more efficient.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://tech.meituan.com/machinelearning_data_feature_process.html" target="_blank" rel="noopener"># 机器学习中的数据清洗与特征处理综述</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/Feature Cross/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1423,264 +1705,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Hyper-Para-Search/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/05/Hyper-Para-Search/" itemprop="url">Hyper_Para_Search</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T20:48:27+08:00">
-                2018-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Hyper-parameters-Searching"><a href="#Hyper-parameters-Searching" class="headerlink" title="Hyper-parameters Searching"></a>Hyper-parameters Searching</h1><h2 id="Random-Search"><a href="#Random-Search" class="headerlink" title="Random Search"></a>Random Search</h2><p>It is heavily used in deep learning. There are tons of parameters in deep learning. Grid search is computation-intensive because it tunes parameters one by one which change only a parameter and keep the others unchanged. Each time for each parameter, random search samples a value from normal distribution. It is always the case that some parameters like leanring rate are more important than other parameters. Random search could discover a pretty good setting of hyperparameters.</p>
-<p>For example, let’s assume there are only 3 parameters. The algorithm has been run for 9 times both random search and grid search. For random search, each parameter has been tested for 9 times. For grid search, each parameter has been tested for only 3 times because it keep the other two parameters unchanged when tuning a parameter.</p>
-<p>Advantages:<br>efficient</p>
-<h2 id="Grid-Search"><a href="#Grid-Search" class="headerlink" title="Grid Search"></a>Grid Search</h2><p>Grid search is to generate a list of candidate parameters for each parameter. Each time only changes a parameter and keep other parameters invariant. It is systematic but it is only appropriate for low dimension. When the dimension increase, the computation would also increase dramatically. It would waste computation resource because each time only a parameter is changed.</p>
-<p>Advantages:<br>Systematic.<br>Precise.</p>
-<h2 id="Bayes-Optimization"><a href="#Bayes-Optimization" class="headerlink" title="Bayes Optimization"></a>Bayes Optimization</h2><p>The third one is Bayes Optimization. Bayes optimization is powerful but it is not widely employed because it is application-specific. There is not a good software to facilitate the coding process until now. Its general idea is to do some experiments on a few settings of parameters. After that choose the setting that has high variance to evaluate so as to achieve better performance. High variance means that the parameters has the potential to be better or worse. If the performance is degraded, it doesn’t matter. It resemble the greedy algorithm to some extend. </p>
-<p>This method assumes that the similar inputs gives similar outputs. It’s a kind of weak prior. Its intuition is that to evaluate those unknown but possibly better combinations of parameters rather than try all of them.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://mp.weixin.qq.com/s/l6uzHwGSTY5xRSkPD_B2rw" target="_blank" rel="noopener">深度学习模型超参数搜索实用指南</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Technical-Analysis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/05/Technical-Analysis/" itemprop="url">Technical_Analysis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T15:14:07+08:00">
-                2018-10-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Price-based:</p>
-<p>Moving average lines are heavily used to smooth the short-term fluctuations in the price charts. It is regarded as a support line where the price would not go lower than it in an uptrend. Points where the longer-term moving average crosses below the short-term moving average reveals an emerging uptrend.</p>
-<p>Bollinger bands are constructed from n standard deviation of closing prices. The high and low bands are the prices that moving average plus or minus n standard deviation. The prices in the area between the high and low bands are considered as resonable fluctuation of prices. If the price go beyond the area, it reveals overbought or oversold which means that the price is likely to decrease and increase respectively in the near future. It is the time where contrarian strategy comes into play. It is basically a strategy to buy or sell when most investors sell or buy.</p>
-<p>Oscillators:</p>
-<p>Oscillators are a set of indicators that oscillate around a specific value or in a range. Oscillator charts could be employed to detect convergence or divergence between oscillator and market prices. Convergence reveals that the current trend would continue and divergence suggests the change of the current trend.</p>
-<p>Sample indicators:</p>
-<p>Relative Strength Index(RSI): the rations of increase in price to decrease in price in a period of time. High values indicates overbought and low values suggest oversold.</p>
-<p>Moving Average Convergence Divergence(MACD): It is constructed from two lines. The MACD line is the difference between two expoentially moving average lines while the signal line is the expoentially moving average of the MACD line. The MACD could be employed to show both convergence or divergence and overbought or oversold. A buy signal is gerated when the MACD line cross above the signal line.</p>
-<p>Williams %R:<br>It indicates the relation between the closing price and the highest and lowest price in the previous days. It also reveals overbought or oversold.</p>
-<p>Accumulation/Distribution Line(AD):<br>Calculated from Money Flow Multiplier and Money Flow Volume. It takes volume into consideration. Volume is a significant indicator in technical analysis. It basically measure the money flow of the underlying asset. A pending revesal trend is indicated when divergence occurs between price and AD. Bullish Crosses occur when AD crosses above zero.</p>
-<p>Non-Price-Based Indicators<br>Put/call ratio</p>
-<p>Volatility Index</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1735,7 +1759,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

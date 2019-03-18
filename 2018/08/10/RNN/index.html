@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="RNN allows information flow. Gradient vanishing or exploding:Since the time step 1 would have effect on time step n, when doing back propagation, according to the chain rule, the same weight matrix W">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-09T10:12:37.735Z">
+<meta property="og:updated_time" content="2019-03-12T10:29:03.093Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RNN">
 <meta name="twitter:description" content="RNN allows information flow. Gradient vanishing or exploding:Since the time step 1 would have effect on time step n, when doing back propagation, according to the chain rule, the same weight matrix W">
@@ -383,7 +383,7 @@
 <h4 id="vector-to-sequence-RNN"><a href="#vector-to-sequence-RNN" class="headerlink" title="vector-to-sequence RNN"></a>vector-to-sequence RNN</h4><p>The vector could be fed into the RNN at the beginning or fed into each hidden state at each time step.</p>
 <h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
 <h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
-<p>Tanh is employed in LSTM because the candidate cell state could “reduce” information. If sigmoid is employed, the only thing you could do is to add information.</p>
+<p>Tanh is employed in LSTM because the candidate cell state could “reduce” information so that the scale of C(t) is more stable rather than increment only. If sigmoid is employed, the only thing you could do is to add information.</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
 
       
@@ -518,7 +518,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">94</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
