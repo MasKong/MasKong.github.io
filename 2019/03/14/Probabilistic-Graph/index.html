@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Both Markovian random field and Conditional random field have the same type of functions. The difference is that Markovian random field is a generative model while CRF is a discriminative model. gener">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-15T10:34:15.014Z">
+<meta property="og:updated_time" content="2019-03-22T07:08:36.280Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Probabilistic_Graph">
 <meta name="twitter:description" content="Both Markovian random field and Conditional random field have the same type of functions. The difference is that Markovian random field is a generative model while CRF is a discriminative model. gener">
@@ -367,6 +367,7 @@
 <p><strong>generative model</strong> calculate the distribution over all variables.</p>
 <p><strong>discriminative model</strong> calculate the conditional probability directly.</p>
 <p>EM算法本质可看作先根据参数\(\theta\)计算出关于z的概率分布Q(z)=\(p(z|x,\theta)\),然后用这个z的概率分布去计算似然函数，选择使似然函数最大的参数集\(\theta\).</p>
+<p>EM算法缺点：收敛到局部极值点</p>
 <h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><p>概率图的推断可采用变量消除法，变量消除的顺序对计算量有着非常重要的影响。一种改进就是消息传播法，将概率图中的变量表示成一棵树，选取一个变量作为根结点，所有其他节点将信息传播至根结点后，根结点再将信息往下传播，直到叶子节点，叶子节点是我们关心的变量。</p>
 <p>变量消除法或消息传播法都是精确计算，一种替代方式是通过采样来进行近似计算。</p>
 <h5 id="Markov-Chain-Monte-Carlo-MCMC"><a href="#Markov-Chain-Monte-Carlo-MCMC" class="headerlink" title="Markov Chain Monte Carlo(MCMC)"></a>Markov Chain Monte Carlo(MCMC)</h5>

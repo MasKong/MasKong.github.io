@@ -895,6 +895,16 @@
 <p>write to pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">favorite_color = &#123; <span class="string">"lion"</span>: <span class="string">"yellow"</span>, <span class="string">"kitty"</span>: <span class="string">"red"</span> &#125;</span><br><span class="line">pickle.dump( favorite_color, open( <span class="string">"save.p"</span>, <span class="string">"wb"</span> ) )</span><br></pre></td></tr></table></figure></p>
 <p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;We are the &#123;&#125; who say &#123;&#125;!&apos;.format(&apos;knights&apos;, &apos;Ni&apos;)</span><br></pre></td></tr></table></figure></p>
 <p>check whether an object has an attribute.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if hasattr(a, &apos;property&apos;):</span><br><span class="line">    a.property</span><br></pre></td></tr></table></figure></p>
+<p>迭代器和生成器</p>
+<p>迭代器实现迭代器协议，用于迭代。</p>
+<p>生成器自动实现了迭代器协议，生成结果中间过程函数被挂起，性能更好，下一次从中断的地方开始继续执行，生成器只能迭代一次。</p>
+<p>convert a list of strings to a single string</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="string">'[SEP]'</span>.join(l)</span><br></pre></td></tr></table></figure>
+<p>The result is ‘a[SEP]b[SEP]c’.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ast.literal_eval(s)</span><br></pre></td></tr></table></figure>
+<p>convert a string which is a kind of data structure in python like set, list and so on.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval()</span><br></pre></td></tr></table></figure>
+<p>evaluate the string and output the result.</p>
 
           
         
