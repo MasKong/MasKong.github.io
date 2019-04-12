@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Gamma Functionthe gamma function is an extension of the factorial function to real and complex numbers.  If n is a positive integer $$\Gamma(n)=(n-1)!$$ For complex number z whose real part is greater">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-12T03:07:15.679Z">
+<meta property="og:updated_time" content="2019-04-12T03:53:34.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Math">
 <meta name="twitter:description" content="Gamma Functionthe gamma function is an extension of the factorial function to real and complex numbers.  If n is a positive integer $$\Gamma(n)=(n-1)!$$ For complex number z whose real part is greater">
@@ -418,6 +418,8 @@
 <h4 id="Jensen’s-inequality"><a href="#Jensen’s-inequality" class="headerlink" title="Jensen’s inequality"></a>Jensen’s inequality</h4><p>$$<br>{\varphi \left({\frac {\sum a_{i}x_{i}}{\sum a_{i}}}\right)\leq {\frac {\sum a_{i}\varphi (x_{i})}{\sum a_{i}}}\qquad \qquad}<br>$$<br>Equality holds if and only if \(x_{1}=x_{2}=\cdots =x_{n} or \varphi\) is linear.</p>
 <h4 id="The-exponential-family"><a href="#The-exponential-family" class="headerlink" title="The exponential family"></a>The exponential family</h4><p>$$p(\mathbf{x} | \boldsymbol{\eta})=h(\mathbf{x}) g(\boldsymbol{\eta}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right}​$$</p>
 <p>Where $\eta^T​$ is the transpose of the parameter vector $\eta​$.</p>
+<p>$\eta$ could be estimated using the maximum estimation technique. </p>
+<p>$$-\nabla \ln g(\boldsymbol{\eta})=\mathbb{E}[\mathbf{u}(\mathbf{x})]$$</p>
 <h5 id="The-Bernoulli-distribution"><a href="#The-Bernoulli-distribution" class="headerlink" title="The Bernoulli distribution"></a>The Bernoulli distribution</h5><p>$$\begin{aligned} p(x | \mu) &amp;=\mu^{x}(1-\mu)^{1-x} \&amp;=\exp {x \ln \mu+(1-x) \ln (1-\mu)} \ &amp;=(1-\mu) \exp \left{\ln \left(\frac{\mu}{1-\mu}\right) x\right} \end{aligned}$$</p>
 <p>So in the context of the Bernoulli distribution, $\mu​$ is the measure of probability. $\eta=\ln \left(\frac{\mu}{1-\mu}\right)​$ and $\mu=\sigma(\eta)​$. </p>
 <p>$$\begin{aligned} u(x) &amp;=x \ h(x) &amp;=1 \ g(\eta) &amp;=\sigma(-\eta) \end{aligned}​$$</p>

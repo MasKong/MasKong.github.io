@@ -1052,6 +1052,8 @@
 <h4 id="Jensen’s-inequality"><a href="#Jensen’s-inequality" class="headerlink" title="Jensen’s inequality"></a>Jensen’s inequality</h4><p>$$<br>{\varphi \left({\frac {\sum a_{i}x_{i}}{\sum a_{i}}}\right)\leq {\frac {\sum a_{i}\varphi (x_{i})}{\sum a_{i}}}\qquad \qquad}<br>$$<br>Equality holds if and only if \(x_{1}=x_{2}=\cdots =x_{n} or \varphi\) is linear.</p>
 <h4 id="The-exponential-family"><a href="#The-exponential-family" class="headerlink" title="The exponential family"></a>The exponential family</h4><p>$$p(\mathbf{x} | \boldsymbol{\eta})=h(\mathbf{x}) g(\boldsymbol{\eta}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right}​$$</p>
 <p>Where $\eta^T​$ is the transpose of the parameter vector $\eta​$.</p>
+<p>$\eta$ could be estimated using the maximum estimation technique. </p>
+<p>$$-\nabla \ln g(\boldsymbol{\eta})=\mathbb{E}[\mathbf{u}(\mathbf{x})]$$</p>
 <h5 id="The-Bernoulli-distribution"><a href="#The-Bernoulli-distribution" class="headerlink" title="The Bernoulli distribution"></a>The Bernoulli distribution</h5><p>$$\begin{aligned} p(x | \mu) &amp;=\mu^{x}(1-\mu)^{1-x} \&amp;=\exp {x \ln \mu+(1-x) \ln (1-\mu)} \ &amp;=(1-\mu) \exp \left{\ln \left(\frac{\mu}{1-\mu}\right) x\right} \end{aligned}$$</p>
 <p>So in the context of the Bernoulli distribution, $\mu​$ is the measure of probability. $\eta=\ln \left(\frac{\mu}{1-\mu}\right)​$ and $\mu=\sigma(\eta)​$. </p>
 <p>$$\begin{aligned} u(x) &amp;=x \ h(x) &amp;=1 \ g(\eta) &amp;=\sigma(-\eta) \end{aligned}​$$</p>
