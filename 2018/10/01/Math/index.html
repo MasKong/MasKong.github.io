@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Gamma Functionthe gamma function is an extension of the factorial function to real and complex numbers.  If n is a positive integer $$\Gamma(n)=(n-1)!$$ For complex number z whose real part is greater">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-02T03:23:21.812Z">
+<meta property="og:updated_time" content="2019-04-12T03:07:15.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Math">
 <meta name="twitter:description" content="Gamma Functionthe gamma function is an extension of the factorial function to real and complex numbers.  If n is a positive integer $$\Gamma(n)=(n-1)!$$ For complex number z whose real part is greater">
@@ -416,11 +416,12 @@
 <p>then the series converges in H, in the sense that the partial sums converge to an element of H.</p>
 <p>泰勒公式通过展开估算领域的值。机器学习中将损失函数进行展开，估算更新后的参数的损失。</p>
 <h4 id="Jensen’s-inequality"><a href="#Jensen’s-inequality" class="headerlink" title="Jensen’s inequality"></a>Jensen’s inequality</h4><p>$$<br>{\varphi \left({\frac {\sum a_{i}x_{i}}{\sum a_{i}}}\right)\leq {\frac {\sum a_{i}\varphi (x_{i})}{\sum a_{i}}}\qquad \qquad}<br>$$<br>Equality holds if and only if \(x_{1}=x_{2}=\cdots =x_{n} or \varphi\) is linear.</p>
-<p>$x_{1}=x_{2}=\cdots =x_{n} or \varphi​$   Test </p>
-<h4 id="The-exponential-family"><a href="#The-exponential-family" class="headerlink" title="The exponential family"></a>The exponential family</h4><p>new</p>
-<p>$${\displaystyle f_{X}(x\mid \eta)=h(x)\exp \left(\eta (T )\cdot T(x)-A(\eta )\right)}​$$</p>
-<p>The function A(η) is known as the cumulant function.<br>Integrating Eq. (??) with respect to the measure ν</p>
-<p>$${\displaystyle A(\eta )=\log \left(\int _{x}h(x)\exp(\eta (\theta )\cdot T(x))\,\mathrm {d} x\right)}​$$</p>
+<h4 id="The-exponential-family"><a href="#The-exponential-family" class="headerlink" title="The exponential family"></a>The exponential family</h4><p>$$p(\mathbf{x} | \boldsymbol{\eta})=h(\mathbf{x}) g(\boldsymbol{\eta}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right}​$$</p>
+<p>Where $\eta^T​$ is the transpose of the parameter vector $\eta​$.</p>
+<h5 id="The-Bernoulli-distribution"><a href="#The-Bernoulli-distribution" class="headerlink" title="The Bernoulli distribution"></a>The Bernoulli distribution</h5><p>$$\begin{aligned} p(x | \mu) &amp;=\mu^{x}(1-\mu)^{1-x} \&amp;=\exp {x \ln \mu+(1-x) \ln (1-\mu)} \ &amp;=(1-\mu) \exp \left{\ln \left(\frac{\mu}{1-\mu}\right) x\right} \end{aligned}$$</p>
+<p>So in the context of the Bernoulli distribution, $\mu​$ is the measure of probability. $\eta=\ln \left(\frac{\mu}{1-\mu}\right)​$ and $\mu=\sigma(\eta)​$. </p>
+<p>$$\begin{aligned} u(x) &amp;=x \ h(x) &amp;=1 \ g(\eta) &amp;=\sigma(-\eta) \end{aligned}​$$</p>
+<p>For Bernoulli distribution, the measure of probability is the logistic function of parameter $\eta$ while that of multinomial distribution is the softmax function of parameter $\eta$.</p>
 
       
     </div>
@@ -600,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gamma-Function"><span class="nav-number">1.</span> <span class="nav-text">Gamma Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Properties"><span class="nav-number">1.0.1.</span> <span class="nav-text">Properties</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Beta-Function"><span class="nav-number">2.</span> <span class="nav-text">Beta Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conjugate-prior-distribution"><span class="nav-number">3.</span> <span class="nav-text">Conjugate prior distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Euclidean-space"><span class="nav-number">4.</span> <span class="nav-text">Euclidean space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplex"><span class="nav-number">5.</span> <span class="nav-text">Simplex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hilbert-space"><span class="nav-number">6.</span> <span class="nav-text">Hilbert space</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Jensen’s-inequality"><span class="nav-number">6.0.1.</span> <span class="nav-text">Jensen’s inequality</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-exponential-family"><span class="nav-number">6.0.2.</span> <span class="nav-text">The exponential family</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gamma-Function"><span class="nav-number">1.</span> <span class="nav-text">Gamma Function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Properties"><span class="nav-number">1.0.1.</span> <span class="nav-text">Properties</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Beta-Function"><span class="nav-number">2.</span> <span class="nav-text">Beta Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conjugate-prior-distribution"><span class="nav-number">3.</span> <span class="nav-text">Conjugate prior distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Euclidean-space"><span class="nav-number">4.</span> <span class="nav-text">Euclidean space</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Simplex"><span class="nav-number">5.</span> <span class="nav-text">Simplex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hilbert-space"><span class="nav-number">6.</span> <span class="nav-text">Hilbert space</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Jensen’s-inequality"><span class="nav-number">6.0.1.</span> <span class="nav-text">Jensen’s inequality</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-exponential-family"><span class="nav-number">6.0.2.</span> <span class="nav-text">The exponential family</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#The-Bernoulli-distribution"><span class="nav-number">6.0.2.1.</span> <span class="nav-text">The Bernoulli distribution</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>

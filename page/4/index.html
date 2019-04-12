@@ -1050,11 +1050,12 @@
 <p>then the series converges in H, in the sense that the partial sums converge to an element of H.</p>
 <p>泰勒公式通过展开估算领域的值。机器学习中将损失函数进行展开，估算更新后的参数的损失。</p>
 <h4 id="Jensen’s-inequality"><a href="#Jensen’s-inequality" class="headerlink" title="Jensen’s inequality"></a>Jensen’s inequality</h4><p>$$<br>{\varphi \left({\frac {\sum a_{i}x_{i}}{\sum a_{i}}}\right)\leq {\frac {\sum a_{i}\varphi (x_{i})}{\sum a_{i}}}\qquad \qquad}<br>$$<br>Equality holds if and only if \(x_{1}=x_{2}=\cdots =x_{n} or \varphi\) is linear.</p>
-<p>$x_{1}=x_{2}=\cdots =x_{n} or \varphi​$   Test </p>
-<h4 id="The-exponential-family"><a href="#The-exponential-family" class="headerlink" title="The exponential family"></a>The exponential family</h4><p>new</p>
-<p>$${\displaystyle f_{X}(x\mid \eta)=h(x)\exp \left(\eta (T )\cdot T(x)-A(\eta )\right)}​$$</p>
-<p>The function A(η) is known as the cumulant function.<br>Integrating Eq. (??) with respect to the measure ν</p>
-<p>$${\displaystyle A(\eta )=\log \left(\int _{x}h(x)\exp(\eta (\theta )\cdot T(x))\,\mathrm {d} x\right)}​$$</p>
+<h4 id="The-exponential-family"><a href="#The-exponential-family" class="headerlink" title="The exponential family"></a>The exponential family</h4><p>$$p(\mathbf{x} | \boldsymbol{\eta})=h(\mathbf{x}) g(\boldsymbol{\eta}) \exp \left{\boldsymbol{\eta}^{\mathrm{T}} \mathbf{u}(\mathbf{x})\right}​$$</p>
+<p>Where $\eta^T​$ is the transpose of the parameter vector $\eta​$.</p>
+<h5 id="The-Bernoulli-distribution"><a href="#The-Bernoulli-distribution" class="headerlink" title="The Bernoulli distribution"></a>The Bernoulli distribution</h5><p>$$\begin{aligned} p(x | \mu) &amp;=\mu^{x}(1-\mu)^{1-x} \&amp;=\exp {x \ln \mu+(1-x) \ln (1-\mu)} \ &amp;=(1-\mu) \exp \left{\ln \left(\frac{\mu}{1-\mu}\right) x\right} \end{aligned}$$</p>
+<p>So in the context of the Bernoulli distribution, $\mu​$ is the measure of probability. $\eta=\ln \left(\frac{\mu}{1-\mu}\right)​$ and $\mu=\sigma(\eta)​$. </p>
+<p>$$\begin{aligned} u(x) &amp;=x \ h(x) &amp;=1 \ g(\eta) &amp;=\sigma(-\eta) \end{aligned}​$$</p>
+<p>For Bernoulli distribution, the measure of probability is the logistic function of parameter $\eta$ while that of multinomial distribution is the softmax function of parameter $\eta$.</p>
 
           
         

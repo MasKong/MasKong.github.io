@@ -875,7 +875,19 @@
 <p>Linear classification:<br>$$<br>sign(w^Tx)<br>$$<br>if \(w^Tx\) &gt; 0, the label is one and vise versa. This would not output a probability which could be regarded as a kind of confidence.</p>
 <p>Logistic regression output a value that is confidence between [0,1] by squeeze  \(w^Tx\) to sigmoid function.</p>
 <h5 id="Why-sigmoid-in-logistic-regression"><a href="#Why-sigmoid-in-logistic-regression" class="headerlink" title="Why sigmoid in logistic regression"></a>Why sigmoid in logistic regression</h5><p>Sigmoid is the function with maximum-entropy in the context of multi-category classification. The intuition of maximum-entropy is to contain more hypothesis and alleviate over-fitting[1,2].</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.zhihu.com/question/35322351/answer/67193153" target="_blank" rel="noopener">为什么 LR 模型要使用 sigmoid 函数，背后的数学原理是什么？</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://www.win-vector.com/dfiles/LogisticRegressionMaxEnt.pdf" target="_blank" rel="noopener">The equivalence of logistic regression and maximum entropy models</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
+<h4 id="Imbalanced-Learning"><a href="#Imbalanced-Learning" class="headerlink" title="Imbalanced Learning"></a>Imbalanced Learning</h4><ol>
+<li><p>Sampling.</p>
+<ul>
+<li><p>Random Oversampling/Random Undersampling. Oversampling is prone to overfitting because data is simply repeated. Undersampling leads to missing training data.</p>
+</li>
+<li><p>Synthetic Minority Oversampling Technique (SMOTE). A kind of oversampling that achieves reasonable performance. $\mathrm{x}<em>{\text { new }}=x</em>{i}+\left(\mathrm{x}<em>{\mathrm{t}}-x</em>{i}\right) \times \sigma​$</p>
+</li>
+<li></li>
+</ul>
+</li>
+<li></li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.zhihu.com/question/35322351/answer/67193153" target="_blank" rel="noopener">为什么 LR 模型要使用 sigmoid 函数，背后的数学原理是什么？</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://www.win-vector.com/dfiles/LogisticRegressionMaxEnt.pdf" target="_blank" rel="noopener">The equivalence of logistic regression and maximum entropy models</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<http://lamda.nju.edu.cn/liyf/dm14/111220005.pdf>">不平衡分类学习综述</a><a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<<https://arxiv.org/pdf/1710.05381.pdf>>">A systematic study of the class imbalance problem in convolutional neural networks</a><a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
       
