@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="Entropy:number of bits required to encode message. Joint Entropy:$$H(X,Y) = -\sum_{x,y} p(x,y) \log p(x,y)$$ Conditional Entropy:$$H(Y|X) = -\sum_{x,y} p(x,y) \log p(y|x)$$ $$% &amp;lt;![CDATA[\begin{equa">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-09T13:44:57.757Z">
+<meta property="og:updated_time" content="2019-04-16T03:38:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Information_Theory">
 <meta name="twitter:description" content="Entropy:number of bits required to encode message. Joint Entropy:$$H(X,Y) = -\sum_{x,y} p(x,y) \log p(x,y)$$ Conditional Entropy:$$H(Y|X) = -\sum_{x,y} p(x,y) \log p(y|x)$$ $$% &amp;lt;![CDATA[\begin{equa">
@@ -372,6 +372,7 @@
 <p>KL divergence:<br>$$<br>D_{KL} (P || Q) = E_{x\sim P}\log\frac{P(x)}{Q(x)}=E_{x\sim P}[logP(x)-logQ(x)]<br>$$</p>
 <p>Note that data sample x is drawn from probability distribution P and P, Q are different probability distribution. Therefore \(D_{KL} (P || Q) \neq  D_{KL} (Q || P)\). KL divergence is used to measure the amount of difference between two distributions. It could be regarded as a kind of distance except that the KL divergence is asymmetric. </p>
 <p>cross-entropy:<br>$$<br>H(P,Q)=-E_{x\sim P}logQ(x)<br>$$<br>Note: \(H(P,Q)=H(P)+D_{KL} (P || Q)\). Minimizing the cross-entropy with respect to Q is equivalent to minimizing the KL divergence, because Q does not participate in the omitted term.</p>
+<p>cross-entropy could be regarded as a measure of distance between two distributions(hypothesis distribution and the “golden” distribution).</p>
 <p>Mutual Information</p>
 <p>It is KL divergence of joint probability distribution and multiplication of two distributions.</p>
 <p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= KL(p(x, y) || p(x)p(y)) \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}}<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>

@@ -423,7 +423,13 @@
 <h5 id="Whole-Graph-Embedding"><a href="#Whole-Graph-Embedding" class="headerlink" title="Whole-Graph Embedding"></a>Whole-Graph Embedding</h5><p>The whole graph is mapped to a vector. A possible solution is to train the graph embedding with hierachical architecture like ELMO and concat them. But this is expensive. Whole-Graph Embedding facilitate graph-level classification and similarity calculation.</p>
 <p>Challenge: How to capture the properties of a whole graph and how to make a trade-off between expressiveness and efficiency?</p>
 <h2 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h2><p>Graph Neural Network is able to perform neural network operation on the whole graph, subgraphs or nodes, edges. GNN basically utilize information in the nodes between a specific node to represent a node.</p>
-
+<h4 id="DeepWalk"><a href="#DeepWalk" class="headerlink" title="DeepWalk"></a>DeepWalk</h4><p>Deepwalk is the graph version of skip-gram. Each word is regarded as a vertex and the context is modeled by the random walk. The rest are the same. Noted that the Hierarchical Softmax could also be negative sampling.</p>
+<p>Advantages:</p>
+<ol>
+<li>local exploration is easy to parallelize. Several random walkers can simultaneously explore different parts of the same graph. </li>
+<li>relying on information obtained from short random walks make it possible to accommodate small changes in the graph structure without the need for global recomputation.</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<http://www.perozzi.net/publications/14_kdd_deepwalk.pdf>">DeepWalk: Online Learning of Social Representations</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<<http://www.www2015.it/documents/proceedings/proceedings/p1067.pdf>>">LINE: Large-scale Information Network Embedding</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
           
         
       

@@ -86,7 +86,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="tf.feature_column.bucketized_column divides coutinuous values into several ranges such that they are able to be represented as categorical features. 1tf.feature_column.categorical_column_with_vocabul">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-11T01:50:44.506Z">
+<meta property="og:updated_time" content="2019-04-16T04:46:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow_1">
 <meta name="twitter:description" content="tf.feature_column.bucketized_column divides coutinuous values into several ranges such that they are able to be represented as categorical features. 1tf.feature_column.categorical_column_with_vocabul">
@@ -414,6 +414,9 @@
 <p>[<code>tf.nn.dynamic_rnn</code>] is used for sequence with unknown length.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.map_fn()</span><br></pre></td></tr></table></figure>
 <p>The output should have the same shape as input. If input is a sequence, the output has to be a sequence.</p>
+<p>callback:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,</span><br><span class="line">                    validation_split = <span class="number">0.2</span>, verbose=<span class="number">0</span>, callbacks=[early_stop, PrintDot()])</span><br></pre></td></tr></table></figure>
+<p>callback is used to perform specific operation during training. Model.fit() returns a set of values(loss, accuracy) during training.</p>
 
       
     </div>

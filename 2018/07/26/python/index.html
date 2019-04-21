@@ -87,7 +87,7 @@
 <meta property="og:site_name">
 <meta property="og:description" content="DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionar">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-01T07:28:25.326Z">
+<meta property="og:updated_time" content="2019-04-15T04:02:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python">
 <meta name="twitter:description" content="DictionaryFind the key that has the largest value in a dictionary. Assume stats is the dictionary. 123max(stats, key=stats.get)max_key = max(stats, key=lambda k: stats[k]) map dictionary:1my_dictionar">
@@ -421,10 +421,15 @@
 <p>convert a list of strings to a single string</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="string">'[SEP]'</span>.join(l)</span><br></pre></td></tr></table></figure>
 <p>The result is ‘a[SEP]b[SEP]c’.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span>.join(<span class="string">"1"</span>)</span><br><span class="line"><span class="string">''</span>.join(<span class="string">"123"</span>)</span><br></pre></td></tr></table></figure>
+<p>simply return ‘1’ and ‘123’. It return a string. It means nothing is in between the iterable strings.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">' '</span>.join(<span class="string">"123"</span>)</span><br></pre></td></tr></table></figure>
+<p>returns ‘1 2 3’. It insert ‘ ‘(space) between the iterable strings.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ast.literal_eval(s)</span><br></pre></td></tr></table></figure>
 <p>convert a string which is a kind of data structure in python like set, list and so on.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval()</span><br></pre></td></tr></table></figure>
 <p>evaluate the string and output the result.</p>
+<p>dict.get() allows to set default value if the key is missing.</p>
 
       
     </div>
