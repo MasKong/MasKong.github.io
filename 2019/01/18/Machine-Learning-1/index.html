@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Usually recall increase, precision decrease and vice versa. Reall measure how many examples are predicted to False if the examples are True. Precision measure how many examples are predicted to True i">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine_Learning_1">
+<meta property="og:url" content="http://yoursite.com/2019/01/18/Machine-Learning-1/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="Usually recall increase, precision decrease and vice versa. Reall measure how many examples are predicted to False if the examples are True. Precision measure how many examples are predicted to True i">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-04T12:36:30.389Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Machine_Learning_1">
+<meta name="twitter:description" content="Usually recall increase, precision decrease and vice versa. Reall measure how many examples are predicted to False if the examples are True. Precision measure how many examples are predicted to True i">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'PJWL3PD75I',
+      apiKey: '5589833aa2fa703729b4e7e939ac7dec',
+      indexName: 'test_index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/18/Machine-Learning-1/"/>
+
+
+
+
+
+  <title>Machine_Learning_1 | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/Machine-Learning-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Machine_Learning_1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T17:56:57+08:00">
+                2019-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Usually recall increase, precision decrease and vice versa.</p>
+<p>Reall measure how many examples are predicted to False if the examples are True.</p>
+<p>Precision measure how many examples are predicted to True if the examples are False.</p>
+<p>An ROC curve plots TPR vs. FPR at different classification thresholds. </p>
+<p><strong>AUC</strong> stands for “Area under the ROC Curve.” Measures the area underneath the entire ROC curve.</p>
+<p>AUC provides an aggregate measure of performance across all possible classification thresholds. One way of interpreting AUC is as the probability that the model ranks a random positive example more highly than a random negative example.</p>
+<p>AUCPR: area under predicsion and recall line</p>
+<p>Cross-validation is used to select model or parameters. In deep learning, it is 1-fold validation while cross-validation is k-fold validation and take the mean.</p>
+<p>Bias term is able to add information. For example, if an user likes movies a lot, then add a high bias and vice versa. If a movie is liked in general by most people, it also has a high bias.</p>
+<h2 id="Bias-Variance-tradeoff"><a href="#Bias-Variance-tradeoff" class="headerlink" title="Bias-Variance tradeoff"></a>Bias-Variance tradeoff</h2><p>The more complex the model, the higher the variance. For a complex model, if the data changes a bit, the model output is likely to change a lot correspondingly. A simple model with sparse connectivity rather than dense connectivity like fully-connect network is not that likely to change a lot if the data changes a bit due to sparse connectivity(please feel it intuitively). But a simple model tends to have high bias which is underfitting.</p>
+<p>In a nutshell, simple models tend to have high bias and low variance while complex models tend to have low bias(accurate) and high variance.</p>
+<p>This is so-called Bias-Variance tradeoff.</p>
+<h2 id="KL"><a href="#KL" class="headerlink" title="KL"></a>KL</h2><h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>important parameters:</p>
+<ul>
+<li>eta:learning_rate</li>
+<li>max_depth: max_depth of tree </li>
+<li>lambda: prevent overfitting</li>
+</ul>
+<p>subsample: sample part of training data which prevent overfitting<br>colsample: subsample the columns, like random forest</p>
+<p>Induction of xgboost:</p>
+<ol>
+<li>greedy algorithm, choose the tree that reduce the loss as much as possible</li>
+<li>use taylor expansion to approximate the gradient</li>
+<li>calculate the optimal tree structure</li>
+</ol>
+<p>The xgboost is a kind of greedy algorithm because each time it add the best tree structure.</p>
+<p>It employs CART as base learner. The final output of CART are values. So the output of leaves of xgboost are actually values. It is the sum of all trees.<br>$$<br>\hat{y}<em>i = \sum</em>{k=1}^K f_k(x_i), f_k \in \mathcal{F}<br>$$</p>
+<p>$$<br>w_j^\ast = -\frac{G_j}{H_j+\lambda}<br>$$<br>The above equation calculates the best tree structure from the first and second order gradients. It employ tailor expansion to approximate gradients so that all kinds of self-define loss functions could be supported.</p>
+<p>$$<br>\text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T<br>$$<br>The above equation is used to measure how good is the current tree structure.</p>
+<p>$$<br>Gain = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}] - \gamma<br>$$<br>The above equation serves as a kind of pruning. Other tree methods usually put pruning out of the training process.</p>
+<p>other tricks that xgboost employ:</p>
+<ol>
+<li>subsample data: sample a portion of the whole training set to train a tree like bagging.</li>
+<li>subsample columns: sample some columns to train like random forest.</li>
+</ol>
+<p>parameters tuning:</p>
+<ol>
+<li>set depth to 3~5</li>
+<li>number of trees to ~500</li>
+<li>learning step \(\eta\) from 0.02~0.1</li>
+<li>run the algorithm until overfitting</li>
+<li>if not overfitting, check the dataset. The feature engineering may not be enough. Otherwise, start pruning. Increase the \(\lambda, \gamma\) and so on.</li>
+</ol>
+<h1 id="Decesion-Tree"><a href="#Decesion-Tree" class="headerlink" title="Decesion Tree"></a>Decesion Tree</h1><p>The reason that decision tree is a base classifier in boosting or bagging:</p>
+<ol>
+<li>unstable classifier. susceptical to training data</li>
+<li>the representation and generalization ability is easy to adjust by modifying the number of layer or leaves.</li>
+<li>easy to incorporate the weight of training samples in decision tree by adjusting training data rather than oversampling or undersampling.</li>
+</ol>
+<h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3 use entropy and information gain to measure whether a split is good or not. It is a kind of greedy algorithm and tends to choose splits with a lot of features whose information gain would be greater. And this may lead to overfitting.</p>
+<p>$$<br>Ent(D)=- \sum_{k=1}^{K} p_k\cdot  log_{2}p_k<br>$$</p>
+<p>$$<br>Gain(D, a)=Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
+<h3 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h3><p>It is a kind of modified ID3. It employs to be the criteria to avoid the shortage of ID3 which choose the split with more features.</p>
+<p>$$<br>GainRatio(D,T)=\frac{Gain（D,T)}{IV(T)}<br>$$</p>
+<h3 id="Classification-and-Regression-tree-CART"><a href="#Classification-and-Regression-tree-CART" class="headerlink" title="Classification and Regression tree(CART)"></a>Classification and Regression tree(CART)</h3><p>CART is a binary tree. At each split, it would choose a feature and divide the dataset according to yes and no feature. It would choose the split with the least gini.</p>
+<p>GINI index is used to measure how good is the split.</p>
+<p>$$<br>gini(T_{i})=1-\sum_{j=1}^{n} p_{j}^{2}<br>$$</p>
+<p>$$<br>Gini_{split}(T)=\sum_{i=1}^{2}\frac{N_{i}}{N}gini(T_{i})<br>$$</p>
+<p>For regression tree, it separate the continuous feature using {x&gt;T} and {x&gt;T} where T is the threshold. The decision boundaries of the CART are staright lines.</p>
+<h2 id="Comparision"><a href="#Comparision" class="headerlink" title="Comparision"></a>Comparision</h2><p>ID3 and C4.5 could only be applied to classification task while CART could be applied to both regression and classification task.</p>
+<p>ID3 and C4.5 rely on pruning.</p>
+<p>ID3 and C4.5 derive complex trees and features could not be reusing while CART derives binary trees and the features could be reusing.</p>
+<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><p>Pruning is significantly important in decision trees. Usually we would grow the DT fully and do post-pruning to avoid overfitting and a better DT with better generalization ability.</p>
+<h3 id="Cost-Complexity-Pruning-CCP"><a href="#Cost-Complexity-Pruning-CCP" class="headerlink" title="Cost-Complexity Pruning(CCP)"></a>Cost-Complexity Pruning(CCP)</h3><p>It is used in CART pruning.<br>$$<br>\alpha = \frac{R(T) - R(T_t)}{L(T_t)-1}<br>$$<br>where \(L(T_t)\) is the number of leaves in the subtree that is going to be pruned. \(R(T_t)\) and \(R(T)\) are the error rate of the tree. It is the number of samples that are classified wrong.</p>
+<p>It compares the error before and after pruning. Choose the pruning with the least error increased.</p>
+<p>The pruning could be performed on a separate pruning dataset or simply k-fold cross-validation.</p>
+<h3 id="Reduced-Error-Pruning-REP"><a href="#Reduced-Error-Pruning-REP" class="headerlink" title="Reduced Error Pruning(REP)"></a>Reduced Error Pruning(REP)</h3><p>$$<br>f(T)=-\sum_{t \in T}e(t)<br>$$</p>
+<p>$$<br>f(T’)=-\sum_{t \in T’}e(t)<br>$$<br>where T is the original tree and T’ is the pruned tree and f() is the number of samples that are classified wrong. Its intuition is to prune the tree so that the error date decrease. If \(f(T) \leqslant f(T’)\), do pruning.</p>
+<h3 id="Pessimistic-Error-Pruning-PEP"><a href="#Pessimistic-Error-Pruning-PEP" class="headerlink" title="Pessimistic Error Pruning(PEP)"></a>Pessimistic Error Pruning(PEP)</h3><p>Top-down pruning. It bases on the training set to do pruning. The 1/2 is a bias to rectify the bias that the pruning is performed based on training set.</p>
+<p>$$<br>E(T) = \sum_{t \in T}\frac{e(t)+1/2}{N(t)}<br>$$</p>
+<p>$$<br>E(T’)=\sum_{t \in T, excep K}\frac{e(t)+1/2}{N(t)}<br>$$<br>where e(t) is the samples that are classified wrong in the subtree start from node t. N(t) is the number of samples in the subtree start from node t.</p>
+<h3 id="Minimum-Error-Pruning-MEP"><a href="#Minimum-Error-Pruning-MEP" class="headerlink" title="Minimum Error Pruning(MEP)"></a>Minimum Error Pruning(MEP)</h3><p>There are several definitions about how to calculate the error rate of pruning\(E_s\). Below is one kind of method.</p>
+<p>$$<br>E_s=1-\frac{n_c+p_{\alpha c}m}{N+m}=\frac{N-n_c+(1-p_{\alpha c})m}{N+m}<br>$$</p>
+<p>$$<br>E_{split-s}=\sum_{split=1}^M \frac{|S_{split}|}{|S|}*E_{split-s}<br>$$</p>
+<p>Compare the error rate of pruning and not pruning. If the pruning error rate\(E_s\) &lt; not pruning error rate, do the pruning.</p>
+<h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p>Linear regression:<br>$$<br>w^Tx<br>$$</p>
+<p>Linear classification:<br>$$<br>sign(w^Tx)<br>$$<br>if \(w^Tx\) &gt; 0, the label is one and vise versa. This would not output a probability which could be regarded as a kind of confidence.</p>
+<p>Logistic regression output a value that is confidence between [0,1] by squeeze  \(w^Tx\) to sigmoid function.</p>
+<h5 id="Why-sigmoid-in-logistic-regression"><a href="#Why-sigmoid-in-logistic-regression" class="headerlink" title="Why sigmoid in logistic regression"></a>Why sigmoid in logistic regression</h5><p>Sigmoid is the function with maximum-entropy in the context of multi-category classification. The intuition of maximum-entropy is to contain more hypothesis and alleviate over-fitting[1,2].</p>
+<h4 id="Imbalanced-Learning"><a href="#Imbalanced-Learning" class="headerlink" title="Imbalanced Learning"></a>Imbalanced Learning</h4><ol>
+<li><p>Sampling.</p>
+<ul>
+<li><p>Random Oversampling/Random Undersampling. Oversampling is prone to overfitting because data is simply repeated. Undersampling leads to missing training data.</p>
+</li>
+<li><p>Synthetic Minority Oversampling Technique (SMOTE). A kind of oversampling that achieves reasonable performance. $\mathrm{x}<em>{\text { new }}=x</em>{i}+\left(\mathrm{x}<em>{\mathrm{t}}-x</em>{i}\right) \times \sigma$</p>
+</li>
+<li></li>
+</ul>
+</li>
+<li></li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.zhihu.com/question/35322351/answer/67193153" target="_blank" rel="noopener">为什么 LR 模型要使用 sigmoid 函数，背后的数学原理是什么？</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://www.win-vector.com/dfiles/LogisticRegressionMaxEnt.pdf" target="_blank" rel="noopener">The equivalence of logistic regression and maximum entropy models</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<http://lamda.nju.edu.cn/liyf/dm14/111220005.pdf>">不平衡分类学习综述</a><a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<<https://arxiv.org/pdf/1710.05381.pdf>>">A systematic study of the class imbalance problem in convolutional neural networks</a><a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/13/shell/" rel="next" title="shell">
+                <i class="fa fa-chevron-left"></i> shell
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/13/data-warehouse/" rel="prev" title="data_warehouse">
+                data_warehouse <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="MK_LEE" />
+            
+              <p class="site-author-name" itemprop="name">MK_LEE</p>
+              <p class="site-description motion-element" itemprop="description">Passionate about NLP</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bias-Variance-tradeoff"><span class="nav-number">1.</span> <span class="nav-text">Bias-Variance tradeoff</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KL"><span class="nav-number">2.</span> <span class="nav-text">KL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost"><span class="nav-number">3.</span> <span class="nav-text">XGBoost</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Decesion-Tree"><span class="nav-number"></span> <span class="nav-text">Decesion Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3"><span class="nav-number">0.1.</span> <span class="nav-text">ID3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5"><span class="nav-number">0.2.</span> <span class="nav-text">C4.5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification-and-Regression-tree-CART"><span class="nav-number">0.3.</span> <span class="nav-text">Classification and Regression tree(CART)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparision"><span class="nav-number">1.</span> <span class="nav-text">Comparision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pruning"><span class="nav-number">2.</span> <span class="nav-text">Pruning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cost-Complexity-Pruning-CCP"><span class="nav-number">2.1.</span> <span class="nav-text">Cost-Complexity Pruning(CCP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reduced-Error-Pruning-REP"><span class="nav-number">2.2.</span> <span class="nav-text">Reduced Error Pruning(REP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pessimistic-Error-Pruning-PEP"><span class="nav-number">2.3.</span> <span class="nav-text">Pessimistic Error Pruning(PEP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minimum-Error-Pruning-MEP"><span class="nav-number">2.4.</span> <span class="nav-text">Minimum Error Pruning(MEP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-Model"><span class="nav-number">2.5.</span> <span class="nav-text">Linear Model</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Why-sigmoid-in-logistic-regression"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">Why sigmoid in logistic regression</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Imbalanced-Learning"><span class="nav-number">2.5.1.</span> <span class="nav-text">Imbalanced Learning</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number">2.6.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MK_LEE</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/01/18/Machine-Learning-1/';
+          this.page.identifier = '2019/01/18/Machine-Learning-1/';
+          this.page.title = 'Machine_Learning_1';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://MasKong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

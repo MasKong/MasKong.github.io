@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/seq2seq/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/share_meeting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -315,7 +315,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/11/seq2seq/" itemprop="url">seq2seq</a></h1>
+                <a class="post-title-link" href="/2018/11/26/share_meeting/" itemprop="url">Share_meeting</a></h1>
         
 
         <div class="post-meta">
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-11T13:01:17+08:00">
-                2018-08-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-26T16:10:13+08:00">
+                2018-11-26
               </time>
             
 
@@ -367,18 +367,9 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output</p>
-<ul>
-<li>Fixed-length vector</li>
-<li>Sequence with the same length as the input sequence.</li>
-</ul>
-<p>seq2seq could output a sequence of variable length. It simply utilize an encoder to encode the information given an input, which output a representation C that is a semantic summary of the input(usually fixed-length). After that, the decoder take the representation as input and output a sequence.</p>
-<p>The decoder is a RNN language model that is conditioned on the input which is the current the previous input word and the hidden state.</p>
-<h3 id="Reverse-the-input-sequence"><a href="#Reverse-the-input-sequence" class="headerlink" title="Reverse the input sequence"></a>Reverse the input sequence</h3><p>Doing so would make the optimization much easier because it introduces short term dependencies.</p>
-<p>i.e.: a,b,c maps to d,e,f. With reversed input sequence, c,b,a maps to d,e,f. At present, a is much closer than d which is the correct mapping. Since the long dependency c to f may be learnt from previous mapping, longer dependency for it may not be a problem.</p>
-<h3 id="Encoding-Context-C"><a href="#Encoding-Context-C" class="headerlink" title="Encoding Context C"></a>Encoding Context C</h3><p>The context C that is used to encode the input sequence do capture the meaning of the sequence.</p>
-<h3 id="Lmitatoin"><a href="#Lmitatoin" class="headerlink" title="Lmitatoin"></a>Lmitatoin</h3><p>The context C might be to small to encode the semantic information of a long sentence.</p>
-<h3 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h3><p>The decoding could employ beam search. The procedure is actually to maximize the log probability of target sentence given the input sentence.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>MEMM</p>
+<p>CRF考虑全局信息而不是局部标记，但是计算量比较大，参数多，不容易部署</p>
+<p>TransE algor<br>TransH algor<br>GAUSSIAN EMBEDDING</p>
 
           
         
@@ -427,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/CNN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Multi-task Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -446,7 +437,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/10/CNN/" itemprop="url">CNN</a></h1>
+                <a class="post-title-link" href="/2018/11/25/Multi-task Learning/" itemprop="url">Multi-task Learning(MTL)</a></h1>
         
 
         <div class="post-meta">
@@ -458,8 +449,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:36+08:00">
-                2018-08-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T11:41:19+08:00">
+                2018-11-25
               </time>
             
 
@@ -498,1184 +489,509 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The convolution in CNN could be regarded as a kind of weighted average over neighbors.</p>
-<h3 id="Prior-parameter-distribution"><a href="#Prior-parameter-distribution" class="headerlink" title="Prior parameter distribution"></a>Prior parameter distribution</h3><p>A prior probability distribution over the<br>parameters of a model is to encode our belief about what models are resonable before seeing the data.</p>
-<ul>
-<li>a week prior: distribution with high entropy like Gaussian with high variance. It allows the data to move parameters of model freely.</li>
-<li>a strong prior: distribution with low entropy like Gaussian with low variance. Such a prior plays a more active role in determining where the parameters end up.</li>
-</ul>
-<h4 id="Infinitely-Strong-Prior"><a href="#Infinitely-Strong-Prior" class="headerlink" title="Infinitely Strong Prior"></a>Infinitely Strong Prior</h4><ul>
-<li>An infinitely strong prior places zero probability on some parameters</li>
-<li>It says that some parameter values are forbidden regardless of support from data.</li>
-</ul>
-<h3 id="Convolution-as-infinitely-strong-prior"><a href="#Convolution-as-infinitely-strong-prior" class="headerlink" title="Convolution as infinitely strong prior"></a>Convolution as infinitely strong prior</h3><p>Convolution introduces an infinitely strong prior probability distribution over the parameters of a layer which says that the function the layer should learn contains only local interactions and is equivariant to translation.</p>
-<h3 id="Pooling-as-an-Infinitely-strong-prior"><a href="#Pooling-as-an-Infinitely-strong-prior" class="headerlink" title="Pooling as an Infinitely strong prior"></a>Pooling as an Infinitely strong prior</h3><p>The use of pooling is an infinitely strong prior that each unit should be invariant to small translations.</p>
-<p>High Bias/Underfit can be countered by:</p>
-<ol>
-<li>Add hidden layers</li>
-<li>Increase hidden units/layer</li>
-<li>Decrease regularize parameter.</li>
-<li>Add features </li>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In normal machine learning or deep learning task, we optimize a specific metric, which loses information from other tasks that may be desirable to improve the original task. This kind of information comes from related tasks. And this kind of shared representations may be helpful to our original task because it actually utilise much more data than the original task.</p>
+<p>Generally, as soon as you find yourself optimizing more than one loss function, you are effectively doing multi-task learning (in contrast to single-task learning). In those scenarios, it helps to think about what you are trying to do explicitly in terms of MTL and to draw insights from it.</p>
+<p>“MTL improves generalization by leveraging the domain-specific information contained in the training signals of related tasks”.</p>
+<p><strong>Inductive Bias</strong><br>A model prefer some hypotheses over others. For instance, a common form of inductive bias is l1 regularization, which leads to a preference for sparse solutions.</p>
+<p>In the case of MTL, the inductive bias is introduced by other auxiliary tasks, which leads the model to prefer hypotheses that explain more than one task. This in general leads to better generalization ability.</p>
+<h2 id="Hard-parameter-sharing-Multi-output"><a href="#Hard-parameter-sharing-Multi-output" class="headerlink" title="Hard parameter sharing(Multi-output)"></a>Hard parameter sharing(Multi-output)</h2><p>Multiple tasks share the same hidden layers. Each task has its own output. The risk of overfitting the shared parameters is an order N – where N is the number of tasks – smaller than overfitting the task-specific parameters.</p>
+<h2 id="Soft-parameter-sharing"><a href="#Soft-parameter-sharing" class="headerlink" title="Soft parameter sharing"></a>Soft parameter sharing</h2><p>Each task has its own model, parameters and output. There are constraints between parameters such that the parameters are similar. A sample constraint is L2 distance between parameters.</p>
+<h3 id="Advantages-of-MTL"><a href="#Advantages-of-MTL" class="headerlink" title="Advantages of MTL"></a>Advantages of MTL</h3><ol>
+<li>Data Augmentation. Training multiple tasks together enables the model to employ more data in training.</li>
+<li>Data are noisy. MTL is able to regularize the model to learn efficient and effective representations that are desirable for multiple tasks.</li>
+<li>Eavesdropping. The model might be easier to learn some specific features from some specific dataset. MTL is able to help the model to learn easier from different tasks or dataset.</li>
+<li>Representation bias. MTL biases the model to prefer representations that other tasks also prefer. This will also help the model to generalize to new tasks as a hypothesis space that performs well for many tasks will also perform well for learning novel tasks as long as they are from the same environment</li>
+<li>Regularization. MTL acts as a regularizer by introducing an inductive bias. As such, it reduces the risk of overfitting as well as the Rademacher complexity of the model</li>
 </ol>
-<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><p><a href="https://cedar.buffalo.edu/~srihari/CSE676/9.4%20ConvPoolAsPrior.pdf" target="_blank" rel="noopener">Deep Learning Slides</a></p>
-<h3 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h3><p>Each convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias.</p>
-<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>Parameters in a kernel are used to do convolution in the whole image. In terms of fully connect, for each pixel, there would be a different parameters.</p>
-<h3 id="Local-Connectivity"><a href="#Local-Connectivity" class="headerlink" title="Local Connectivity"></a>Local Connectivity</h3><p>The neural network only contains regional connection which means the neurons in the next layer focus on part of neurons in the last layer.</p>
-<h3 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h3><p>The employment of pooling layer is significant. It reduce the size of representation so as to reduce the computation and control overfitting. Max pooling could be regarded as extraction of the most useful characteristic. Pooling could be performed on spatial regions, or over the multi-layer outputs. For example, max pooling is performed on feature maps which is a spatial region while 1*1 convolution is performed on the multi-channel feature maps which is usually used to reduce dimension and compress information. When performed on spatial regions, it yields the same output dimension with smaller filter size. This would enable the neural network to be invariant to local small translations of the input, which is useful in case of whether a feature is present is more important than where the feature is. When performed on the multi-layer outputs, it yields the same filter size with fewer dimensionality. This would enable the neural network to be invariant to transformation such as rotation of images. In a nutshell, pooling summarises the response of activation over a region. It improves the computational and statistical efficiency. It is also used in hadling inputs of varying size.</p>
-<h4 id="Memory-Consumption-Calculation"><a href="#Memory-Consumption-Calculation" class="headerlink" title="Memory Consumption Calculation"></a>Memory Consumption Calculation</h4><p>Activation needs to be stored for back-propagation. So it would be the major memory consumption.</p>
-<p>i.e.: an image of 224 <em>224</em>3. The activation would be 224<em> 224</em>3=150000 floating numbers. Each floating number would use 4 bytes to store, so its size is actually 600000 bytes which is 600KB for only the first layer in the network.</p>
-<p>Convolution is a function derived from two given functions by integration that expresses how the shape of one is modified by the other. It is how an input is transformed by a kernel.</p>
-<p>Feature visualization have shown that:</p>
+<h3 id="Technique-to-do-MTL"><a href="#Technique-to-do-MTL" class="headerlink" title="Technique to do MTL"></a>Technique to do MTL</h3><ol>
+<li>Block-sparse regularization. For related tasks, use regularization like L1 or other modified regularization to enforce the model learn sparse features which would be utilised to do inference for multiple tasks.</li>
+<li>Learn the relationships between tasks: clustering, KNN, Bayesian methods.</li>
+</ol>
+<p>In MTL for computer vision, approaches often share the convolutional layers, while learning task- specific fully-connected layers. Deep Relationship Networks add matrix priors on the fully connected layers.</p>
+<h3 id="Auxiliary-tasks"><a href="#Auxiliary-tasks" class="headerlink" title="Auxiliary tasks"></a>Auxiliary tasks</h3><p>Use Auxiliary tasks so that to achieve better result on the main task.</p>
+<ol>
+<li>Related task</li>
+<li>Adversarial task. Maximize the training error using a gradient reversal layer</li>
+<li>Hints. Predicting features as an Hints as an auxiliary task. MTL could be used to learn features that are not easy to learn. </li>
+<li>Predicting inputs. In some cases, some inputs might not be useful for the task but they might be able to guide the learning. Use them as output might help the task.</li>
+<li>Representation learning. employing a task that is known to enable a model to learn transferable representations(language modeling)</li>
+</ol>
+<p>There are many definitions about related tasks.</p>
+<ol>
+<li>use the same features to make a decision</li>
+<li>related tasks share a common optimal hypothesis class</li>
+</ol>
+<h2 id="MTL-in-NLP"><a href="#MTL-in-NLP" class="headerlink" title="MTL in NLP"></a>MTL in NLP</h2><p>add a language modeling objective to the model that is trained jointly with the main task model.</p>
+<p>The scale of loss for different tasks are supposed to be same, otherwise task with large loss would dominate the backpropagation so that the neural network would bias to the worst task rather than learn a good representation for all tasks.</p>
+<h3 id="Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding"><a href="#Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding" class="headerlink" title="Multi-Task Deep Neural Networks for Natural Language Understanding"></a>Multi-Task Deep Neural Networks for Natural Language Understanding</h3><p>It employs the same structure like bert to do pre-training. And then add a specific fine-tuning layer for each task and do fine-tuning together. </p>
+<p>For each task, the model would update the parameters including the task-specific layer and pre-training layer. Each eopch the model would be trained on all tasks separately which means their loss is not added together.</p>
+<h3 id="Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics"><a href="#Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics" class="headerlink" title="Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics"></a>Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics</h3><p>It proposes to employ the variance of outputs to be the weight of the combined loss.</p>
+<h1 id="Core-of-MTL-what-to-share-All-parameters"><a href="#Core-of-MTL-what-to-share-All-parameters" class="headerlink" title="Core of MTL: what to share? All parameters?"></a>Core of MTL: what to share? All parameters?</h1><p>In conclusion, hard parameters sharing is still pervasive for neural-network based MTL. Recent advances on learning what to share, however, are promising. At the same time, our understanding of tasks – their similarity, relationship, hierarchy, and benefit for MTL – is still limited</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/git/" itemprop="url">git</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T16:29:37+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>swtich to a branch.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<p>add all to buffer</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m “comment”</span><br></pre></td></tr></table></figure>
+<p> commit the change and add comment</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;</span><br></pre></td></tr></table></figure>
+<p> push local branch to remote branch.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>update files from remote</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/seq2seq_tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/seq2seq_tensorflow/" itemprop="url">seq2seq_tensorflow</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T10:12:54+08:00">
+                2018-11-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>attention machanism is just an attention wrapper to wrap the RNN.</p>
+<p>Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout.</p>
+<p>The output of RNN has to be fed to a fully-connected neural network to convert the final hidden states to scores of the vocabulary. After that, employ a softmax function to squeeze all scores in a probability distribution.</p>
+<p>Process of constructing seq2seq model in tensorflow:</p>
+<ol>
+<li>define hyperparameters. Settings of hyperparameters could be loaded from config file or parsed from command line. Both parser and tf.app.flags could be used to parse.</li>
+<li>preprocessing data. Like batching, padding and so on.</li>
+<li>construct model. build encoder, decoder and combine them together.</li>
+<li>write a train wrapper funtion to wrap the training process.</li>
+<li>feed data to model and perform training</li>
+<li>perform validation and testing</li>
+</ol>
+<p>Loss of seq2seq: at each step, there is only one correct token given a sentence. At each time step, use softmax to calculate the loss and optimize the sum of total loss at all time steps.</p>
+<p>Given a sentence, each time step t, there is a loss \(l_t\). The total loss \(L=\sum_0^T l_i\) where T is the number of tokens in the sentence. The optimizer is actually optimize this loss.</p>
+<p>The seq2seq could be regarded as a latent structure like auto-encoder because all information of the whole sentence is encoded in the final hidden state.</p>
+<p>Latent variable: 隐藏变量</p>
+<p>To do:</p>
+<ol>
+<li>write an iterator</li>
+<li></li>
+</ol>
+<p>For regression(time series data prediction) problem, just add a scaling factor with a fully-connected layer.</p>
+<p>The decoder could use the last encoder hidden state or zero or encoder input[:-1] as initial state. </p>
+<p>The RNN decoder outputs tensor with same shape as the input. </p>
+<p>The input is batched tensor, and RNN encoder takes sequence as input. Sequence is a list of tensor with shape [batch_size, dim]. The length of the sequence is the time step.</p>
+<p>When you use Dataset to train the model, during inference, there are several ways to feed the data:</p>
+<ol>
+<li>use dataset and feed label with idiot values</li>
+<li>create two meta graph with different input, and inference graph load parameters from the other.</li>
+<li>extract the input feature and feed with inference input.</li>
+</ol>
+<p>MAPE(Mean absolute percentage error):<br>$$<br>{\displaystyle {\mbox{M}}={\frac {100\%}{n}}\sum <em>{t=1}^{n}\left|{\frac {A</em>{t}-F_{t}}{A_{t}}}\right|,}<br>$$<br>Loss of each sample is the difference divided by the sample itself.</p>
+<h4 id="Embedding-size"><a href="#Embedding-size" class="headerlink" title="Embedding size"></a>Embedding size</h4><p>Assume n is the number of categorical features, embedding size could be \(k\sqrt[4] n\) or \(\log_2 (n)\).</p>
+<p>Only normalize output but not normalize input, model diverges.</p>
+<p>There are 2 kinds of seq2seq:</p>
+<ol>
+<li>encoder hidden state is only fed to the first step of the decoder</li>
+<li>encoder hidden state is fed to each step of the decoder</li>
+</ol>
+<p>add noise to encoder is beneficial to performance</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/tensorflow-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/tensorflow-1/" itemprop="url">tensorflow_1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T20:48:46+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p> tf.feature_column.bucketized_column divides coutinuous values into several ranges such that they are able to be represented as categorical features.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.feature_column.categorical_column_with_vocabulary_file(    key,    vocabulary_file,    vocabulary_size=None,    num_oov_buckets=0,    default_value=None,    dtype=tf.string)</span><br></pre></td></tr></table></figure>
+<p>maps each word in the vocabulary to an one-hot vector.</p>
+<p>tf.feature_column.categorical_column_with_hash_bucket maps features to specified number of features using hash(for example, mapping 1000 words to 100 embeddings means some words would share the same embedding.). In machine learning, this kind of hash often works well in practice. That’s because hash categories provide the model with some separation. The model can use additional features to further separate kitchenware from sports.</p>
+<p>tf.feature_column.crossed_column is able to combine features together. Somewhat counterintuitively, when creating feature crosses, you typically still should include the original (uncrossed) features in your model (as in the preceding code snippet). The independent latitude and longitude features help the model distinguish between examples where a hash collision has occurred in the crossed feature.</p>
+<p>As a rule of thumb,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">embedding_dimensions =  number_of_categories**0.25</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">categorical_column = ... <span class="comment"># Create any categorical column</span></span><br><span class="line"><span class="comment"># Represent the categorical column as an embedding column.</span></span><br><span class="line"><span class="comment"># This means creating an embedding vector lookup table with one element for each category.</span></span><br><span class="line">embedding_column = tf.feature_column.embedding_column(    categorical_column=categorical_column,    dimension=embedding_dimensions)</span><br></pre></td></tr></table></figure>
+<p>tf.train.Features is used to wrap features of input.</p>
+<p><strong>tf.train.Example(features=features)</strong> is used to wrap examples.</p>
+<p>using TFRecord is more efficient. A parse function is used to parse a single example.</p>
+<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><p>Most software could only process up to 120 tokens. Longer sequences are supposed to be truncated.</p>
+<p><strong>The padded labels change the total loss, which affects the gradients</strong>.<br>Two methods to alleviate this problem:</p>
+<ol>
+<li>Maintain a mask</li>
+</ol>
 <ul>
-<li><p>lower layers extract features related to content</p>
+<li><p>Maintain a mask (True for real, False for padded tokens)</p>
 </li>
-<li><p>higher layers extract features related to style**</p>
+<li><p>Run your model on both the real/padded tokens (model will predict labels for the padded tokens as well)</p>
+</li>
+<li><p>Only take into account the loss caused by the real elements</p>
 </li>
 </ul>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h3><h3 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h3><p>DenseNet is a modified ResNet. Resnet employ add for x and f(x) while DenseNet employ concat for x and f(x) so that upper layers have each output from lower layers.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/SVM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/05/SVM/" itemprop="url">SVM</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-05T14:20:17+08:00">
-                2018-08-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Derivation of SVM:</p>
-<ul>
-<li>write down the equation. $$\max \limits_{w,b} {1\over ||w||}$$ such that $$ {(w^Tx_i+b)*y_i}\ge1$$</li>
-<li>Lagrange multipliers to solve the dual problem and get the answer of the primal problem if the problem satisfy KKT condition.</li>
-<li>$$\begin{cases}<br>{\partial L \over \partial w}=0 &amp; \<br>{\partial L \over \partial b}=0 &amp;<br>\end{cases} \Longrightarrow<br>\begin{cases}<br>w=\sum \limits_{i=1}^m\alpha_ix_iy_i &amp; \<br>0=\sum \limits_{i=1}^m\alpha_iy_i &amp;<br>\end{cases}$$<br>$$\begin{cases}<br>w^<em>=\sum \limits_{i=1}^m\alpha_i^</em>x_iy_i &amp; \<br>b^<em>=y_j-\sum \limits_{i=1}^m\alpha_i^</em>y_i(x_i\cdot x_j) &amp;<br>\end{cases}$$</li>
-</ul>
-<p>$$y_j(w^<em>\cdot x_j+b^</em>)-1=0$$ substitute the w with aforementioned equation and multiply \(y_j\) simultaneously.\(y_j^2=1\)</p>
-<ul>
-<li>Most \(\alpha_i\)=0, for those \(\alpha_j \neq 0 \), their training samples \(x_i\) are so called support vector.</li>
-<li>Slove the problem</li>
-</ul>
-<p>For problems that are not linearly separatable, add a slack variable.</p>
-<p>Above is so called linear SVM.</p>
-<h2 id="Non-Linear-SVM"><a href="#Non-Linear-SVM" class="headerlink" title="Non-Linear SVM"></a>Non-Linear SVM</h2><p>Apply a kernel function K(x,z) to substitute the original inner product \(x_i\cdot x_j\). Affine the original variables in Euclidean space to another feature space to transfer the problem from non-linear to linear.</p>
-<h2 id="Hinge-Loss"><a href="#Hinge-Loss" class="headerlink" title="Hinge Loss"></a>Hinge Loss</h2><p>Anything falls between the margin would contribute to the loss. Those classified wrong would contribute more than classfied correct but with low confidence level. It is the upper bound of 0-1 loss.</p>
-<h2 id="Perceptron-Loss"><a href="#Perceptron-Loss" class="headerlink" title="Perceptron Loss"></a>Perceptron Loss</h2><p>Between 0-1 loss and hinge loss. The loss would be zero if classification is right. If the classification is wrong within the margin, the loss between 0 and 1. If the classification is wrong and outside the margin, the loss greater than 1.</p>
-<h2 id="0-1-Loss"><a href="#0-1-Loss" class="headerlink" title="0-1 Loss"></a>0-1 Loss</h2><p>The loss is only 0 or 1 corresponds to wrong or correct classification. Not continuously differentiable.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/Word-Representation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/01/Word-Representation/" itemprop="url">Word_Representation</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T11:02:22+08:00">
-                2018-08-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2<em>R words which is less than C are used as correct label. this step contains sampling 2</em>R words from C word. </p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://web.stanford.edu/~jurafsky/slp3/" target="_blank" rel="noopener">Speech and Language Processing</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/feature-selection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/30/feature-selection/" itemprop="url">feature_selection</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:46:18+08:00">
-                2018-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Mutual-Information"><a href="#Mutual-Information" class="headerlink" title="Mutual Information"></a>Mutual Information</h2><p>$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>This could be used as the heuristic of feature selection. Higher mutual information means the feature do relates to the class, which is helpful in classfication.</p>
-<h2 id="chi-squared-test"><a href="#chi-squared-test" class="headerlink" title="chi-squared test"></a>chi-squared test</h2><p>$$X^2(D,t,c)=\sum_{e_t\in {0,1}} \sum_{e_c\in {0,1}} \frac{(N_{e_te_c}-E_{e_te_c})^2}{E_{e_te_c}}$$</p>
-<p>N is the observed frequency in D and E the expected frequency. </p>
-<p>chi-squared test is a measure of how much expected counts E and observed counts N deviate from each other. A high value indicates that the hypothesis of independence is incorrect.</p>
-<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h4><p>For a test with one degree of freedom, the so-called Yates correction should be used, which makes it harder to reach statistical significance. <strong>degree of freedom</strong> = (num of columns -1) * (num of rows -1)</p>
-<p>Also, whenever a statistical test is used multiple times, then the probability of getting at least one error increases. If 1,000 hypotheses are rejected, each with 0.05 error probability, then 0.05 × 1000 = 50 calls of the test will be wrong on average. </p>
-<h2 id="Frequency-based-feature-selection"><a href="#Frequency-based-feature-selection" class="headerlink" title="Frequency-based feature selection"></a>Frequency-based feature selection</h2><p>select the feature that occurs usually. When many thousands of features are selected, then frequency-based feature selection often does well.</p>
-<h2 id="Feature-selection-for-multiple-classifiers"><a href="#Feature-selection-for-multiple-classifiers" class="headerlink" title="Feature selection for multiple classifiers"></a>Feature selection for multiple classifiers</h2><p>Commonly, feature selection statistics are first computed separately for each class on the two-class classification task c versus not c and then combined. </p>
-<p>One combination method computes a single figure of merit for each feature, for example, by averaging the values A(t, c) for feature t, and then selects the k features with highest figures of merit.</p>
-<p>Another frequently used combination method selects the top k/n features for each of n classifiers and then combines these n sets into one global feature set.</p>
-<h2 id="Comparison-of-feature-selection-methods"><a href="#Comparison-of-feature-selection-methods" class="headerlink" title="Comparison of feature selection methods"></a>Comparison of feature selection methods</h2><p>Mutual information prefer common terms while chi-squared test prefer rare terms. Because A single occurrence is not very informative according to the information-theoretic definition of information.</p>
-<p>All three methods are greedy methods.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/Boosting/" itemprop="url">Boosting</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h2><p>For each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set.</p>
-<p>Each trial a classifier \(C^t\) is trained. The final classifier \(C^*\) aggregate those T classfiers together.</p>
-<p>To classify an instance x, a vote for class k is recorded by every classier for which \(C^t(x)=k\) and \(C^*(x)\) is then the class with the most votes. (Ties being resolve arbitrarily)</p>
-<p>An <strong>order􏲵-correct</strong> classifier-learning system is one that􏲬 over many training sets􏲬 tends to predict the correct class of a test instance more frequently than any other class􏲮.</p>
-<p>Aggre􏲵gating classifiers produced by an order-correct learner results in an optimal classi􏲻er</p>
-<p><strong>Requirement of bagging</strong>:each single classifier is unstable – that is, it has high variance, small change to the training set leads to different classifiers.</p>
-<h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>Intuition of Boosting: Train several weak classifier and combine together to get a strong classifier.</p>
-<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>Usually employed in classification problem</p>
-<p>Step:</p>
-<ul>
-<li>Initially, each training sample is assigned an equal weight. </li>
-<li>Train a classifier on the training set</li>
-<li>Compute the error rate</li>
-<li>Compute the coefficient of the classifier</li>
-<li>Change the weight of the training samples. Increase the weights of the samples that are classified wrong, pay more attention to them. Decrease the weights of the samples that are classified correct. Here the calculation of the new weight is actually a softmax to make the weight a probability distribution.</li>
-<li>Train another classifier on the training set with new weight and repeat the above several steps.</li>
-<li>Finally, combine the classifiers.</li>
-</ul>
-<p>The output of the final classifiers(absolute value) is the confidence level of the classfication result. More iterations, higher confidence level.</p>
-<p>AdaBoost could be viewed as forward stagewise algorithm which optimize the set os parameters step by step.</p>
-<h4 id="Toy-Model"><a href="#Toy-Model" class="headerlink" title="Toy Model"></a>Toy Model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smaller_than</span><span class="params">(x,y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> y-x &gt; <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifier</span><span class="params">(x, v, flag=<span class="number">1</span>)</span>:</span>   <span class="comment">#threshold v</span></span><br><span class="line">    <span class="string">'''flag = 1: x&lt;v are classified as 1, x&gt;v are classified as -1</span></span><br><span class="line"><span class="string">       flag = 0: x&lt;v are classified as -1, x&gt;v are classified as 1'''</span></span><br><span class="line">    threshold = int(np.floor(v)+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> flag == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">1</span></span><br><span class="line">        x[threshold:] = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">-1</span></span><br><span class="line">        x[threshold:] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_best_split</span><span class="params">(x,y,weight)</span>:</span></span><br><span class="line">    error = <span class="number">1</span></span><br><span class="line">    best_result = <span class="keyword">None</span></span><br><span class="line">    best_classifier = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(x.shape[<span class="number">0</span>]+<span class="number">1</span>):</span><br><span class="line">            r = classifier(np.array(x,copy=<span class="keyword">True</span>),j<span class="number">-0.5</span>,f)</span><br><span class="line">            <span class="comment"># print("j", j)</span></span><br><span class="line">            <span class="comment"># print("classify_result", r)</span></span><br><span class="line">            p_error = np.sum((r!=y)*weight)<span class="comment"># /float(len(x))</span></span><br><span class="line">            <span class="comment"># print("p_error", p_error)</span></span><br><span class="line">            <span class="comment"># if p_error &lt; error:</span></span><br><span class="line">            <span class="comment"># if np.log(p_error)-np.log(error) &lt; 0:</span></span><br><span class="line">            <span class="keyword">if</span> smaller_than(p_error,error):     <span class="comment">#for the sake of numerical stability</span></span><br><span class="line">                error = p_error</span><br><span class="line">                best_result = np.array(r, copy=<span class="keyword">True</span>)</span><br><span class="line">                best_classifier = (j<span class="number">-0.5</span>, f)</span><br><span class="line">            <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">            <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">    <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="keyword">return</span> best_result, error, best_classifier</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    x = np.arange(<span class="number">10</span>)</span><br><span class="line">    y = np.array([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>])</span><br><span class="line">    iterations = <span class="number">10</span></span><br><span class="line">    weight = np.ones((x.shape)) / float(len(x))</span><br><span class="line">    coefficient_l = []</span><br><span class="line">    c_l = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line">        best_result, error, best_classifier = find_best_split(np.array(x,copy=<span class="keyword">True</span>),y,weight)</span><br><span class="line">        c_l.append(best_classifier)</span><br><span class="line">        <span class="comment"># print("best_result", best_result)</span></span><br><span class="line">        <span class="comment"># print("error", error)</span></span><br><span class="line">        alpha = <span class="number">1</span>/<span class="number">2.0</span> * np.log((<span class="number">1</span>-error)/error)</span><br><span class="line">        coefficient_l.append(alpha)</span><br><span class="line">        numerator = np.exp(-alpha*y*best_result)</span><br><span class="line">        denominator_weight = np.sum(weight * numerator)</span><br><span class="line">        <span class="comment"># print("weight ", weight)</span></span><br><span class="line">        weight = weight * numerator/ denominator_weight</span><br><span class="line">        <span class="comment"># print("weight_updated ", weight)</span></span><br><span class="line">    <span class="comment"># print(coefficient_l)</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''Final classifier'''</span></span><br><span class="line">    final_error = <span class="keyword">None</span></span><br><span class="line">    final_result = np.zeros(x.shape)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(c_l)):</span><br><span class="line">        final_result += coefficient_l[i]*classifier(np.array(x,copy=<span class="keyword">True</span>),</span><br><span class="line">                                                    v=c_l[i][<span class="number">0</span>],flag=c_l[i][<span class="number">1</span>])</span><br><span class="line">    print(final_result)</span><br><span class="line">    final_result[final_result&gt;<span class="number">0</span>]=<span class="number">1</span></span><br><span class="line">    final_result[final_result&lt;<span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">    final_error = np.sum(final_result!=y)/float(len(x))</span><br><span class="line">    print(final_error)</span><br></pre></td></tr></table></figure>
-<h3 id="Boosting-Tree"><a href="#Boosting-Tree" class="headerlink" title="Boosting Tree"></a>Boosting Tree</h3><p>When ths base classifier is the base function, boosting is named boosting tree.</p>
-<h3 id="Gradient-Boosting"><a href="#Gradient-Boosting" class="headerlink" title="Gradient Boosting"></a>Gradient Boosting</h3><p>It is not easy to optimize normal loss function for boosting tree. Gradient boosting is employed to solve this problem.<br>For regression problem, utilize the the negative gradient of the loss function to approximate the residual error so as to approximate a boosting tree.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://pdfs.semanticscholar.org/79ea/6a5a68e05065f82acd11a478aa7eac5f6c06.pdf" target="_blank" rel="noopener">Bagging􏰀 Boosting􏰀 and C4.5􏰁􏰂􏰃</a></p>
-<p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/WordVectors/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/WordVectors/" itemprop="url">Word_Vectors</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h1 id="Two-types-of-word-vectors"><a href="#Two-types-of-word-vectors" class="headerlink" title="Two types of word vectors"></a>Two types of word vectors</h1><ul>
-<li>count-based: LSA, LDA, Glove</li>
-<li>window-based: word2vec</li>
-</ul>
-<p>Drawback of count-based method:</p>
-<ul>
-<li>unstable, may change if there is a new word.</li>
-<li>high dimension \(V \times V\) although dimension could be decreased by SVD.</li>
-</ul>
-<p>Word vectors are application-specific.</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>Input vectors are also named context vectors.<br>Output vectors are also named word vectors.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2 <em> R words which is less than C are used as correct label. this step contains sampling 2 </em> R words from C word. </p>
-<p>There are two kinds of vectors for each word. They are context vectors and word vectors respectively. Normally the final word vectors could be the sum of two vectors or simply the word vector.</p>
-<h3 id="Modification"><a href="#Modification" class="headerlink" title="Modification"></a>Modification</h3><p>In skip-gram and CBOW, softmax is extremely expensive.</p>
-<p>Take skip-gram as an example. The objective is to maximize the following ojective function:</p>
-<p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
-<p>where c is the size of the training context.</p>
-<p>The p is defined as :</p>
-<p>$$p(o|c)=\frac{exp(<br>{u_o}^Tv_{c})}{\sum_{w=1}^{W}exp({u_{w}}^T*v_{c})}$$</p>
-<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
-<h4 id="2-choices-to-improve-softmax"><a href="#2-choices-to-improve-softmax" class="headerlink" title="2 choices to improve softmax"></a>2 choices to improve softmax</h4><h5 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h5><p>Turn all words into a tree so that the height of tree is log2(V).</p>
-<h5 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h5><p>Noise Contrastive Estimation (NCE) states that a good model is able to differentiate data from noise by means of logistic regression.</p>
-<p>The skip-gram model only focus on leanring good word vectors.</p>
-<p>Here the noise is words that are outside of the context.</p>
-<p>Simplified version of NCE:</p>
-<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
-<p>$$P_n(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}  {f(w_j)}^{3/4}}$$</p>
-<p>where n is total number of words in the corpus.</p>
-<h4 id="Subsampling-of-Frequent-Words"><a href="#Subsampling-of-Frequent-Words" class="headerlink" title="Subsampling of Frequent Words"></a>Subsampling of Frequent Words</h4><p>The frequent words may contain less information. During training, it would discard words in the context by chance using the below formula</p>
-<p>$$P(w_i)=1-\sqrt{\frac{t}{f(w_i)}} $$</p>
-<p>In the implementation code, the formula is</p>
-<p>$$P(w_i) = (\sqrt{\frac{z(w_i)}{0.001}} + 1) \cdot \frac{0.001}{z(w_i)}$$</p>
-<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><p>Utilize statistical information in co-occurrence matrix.</p>
-<p>Utilize a third word to determine whether two words are related or not. If two words are not correlated,</p>
-<p>$$\frac{P_{ik}}{P_{jk}} \approx 1$$</p>
-<p>where \(P_{ik}\) is conditional probability \(P(k|i)\).</p>
-<p>The objective is to find a function to represent the relationship between word vectors and conditional probability.</p>
-<p>$$F(w_i,w_j,\tilde{w}<em>k)=\frac{P</em>{ik}}{P_{jk}}$$</p>
-<p>The function F has to satisfy certain requirements:</p>
-<ol>
-<li>preserve linear structure</li>
-<li>exchangeable</li>
-</ol>
-<p>Finally, weight counts because rare co- occurrences may carry less information.</p>
-<p>$$J(\theta)=\frac{1}{2}\sum_{i,j=1}^{W}f(P_{ij})(u_i^Tv_j-log P_{ij})^2$$</p>
-<h2 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h2><p>It is a model derived from word2vec. In order to better represent morphological words, each word is now represent by a set of n-gram characters. Each word is added two symbols ‘&lt;’ and ‘&gt;’ respectively to indicate start and end of the word.</p>
-<p>For example, word ‘FastText’ becomes word ‘<fasttext>‘. 3-gram set is (&lt;Fa,Fas,ast,stT,tTe,Tex,ext,xt&gt;).</fasttext></p>
-<p>Negetive sampling of word2vec:</p>
-<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
-<p>In word2vec, each word is an unique unit. Each word has the unique word vectors representation which lose the morphological information. In FastText, subword model is employed, in which each word is now represent by a set of n-gram characters to utilize morphological information.</p>
-<p>The objective function is:</p>
-<p>$$\log\sigma{(\sum_{g\in G_{o}}{z_g}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-\sum_{g\in G_{j}}{z_{gj}}^Tv_{c})}$$</p>
-<p>where \(G_{o}\) is the set of n-grams character of word \(w_o\), \(z_{g}\) is the vector representation of the specific n-gram characters. </p>
-<p>$$u_o = \sum_{g\in G_{o}}{z_g}$$</p>
-<p>The word vector for each word is then the sum of its all n-gram vector representation.</p>
-<h2 id="WordRank"><a href="#WordRank" class="headerlink" title="WordRank"></a>WordRank</h2><p>Turn the problem into a ranking problem.</p>
-<h2 id="Character-level-embedding"><a href="#Character-level-embedding" class="headerlink" title="Character-level embedding"></a>Character-level embedding</h2><p>Advantages:</p>
-<ul>
-<li>better in terms of morphological languages</li>
-<li>In some languages such as Chinese, each sentence is composed of characters directly. Character-level embedding is also better in this case.</li>
-<li>OOV(out of vocabulary words). Able to handle OOV.</li>
-</ul>
-<h4 id="OOV-Handling"><a href="#OOV-Handling" class="headerlink" title="OOV Handling"></a>OOV Handling</h4><ul>
-<li>Character-level embedding</li>
-<li>Initialize the unknown word as the sum of all context vectors and refine it with a high learning rate</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Numpy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/26/Numpy/" itemprop="url">Numpy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:31:33+08:00">
-                2018-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>numpy.ufunc.at. apply function at given index.</p>
-<p>np.add.at(a, [0, 1, 2, 2], 1): add 1 to array a at index [0, 1, 2, 2]</p>
-<p>numpy.random.permutation(x):Randomly permute a sequence, or return a permuted range. 即把一序列打成乱序输出</p>
-<p>numpy.outer(a, b, out=None);Compute the outer product of two vectors.    </p>
-<p>operator *: element-wise multuply</p>
-<p>Axis = 0 is column. Axis = 1 is row</p>
-<p>a[:6:2] means the first element of every two elements from 0 to 5</p>
-<p>array dimension: count the bracket</p>
-<p>flat attribute which is an iterator over all the elements of the array:</p>
-<p>np.nditer(a, flags=[‘f_index’]) is used to iterate elements</p>
-<p>access multiple columns elements: a[b,c] while b is from 0 to n, c shows in each line which element you want to access.</p>
-<p><a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating</a></p>
-<p>access nth column: a[:,n]</p>
-<p>transpose an one-dimension array: a.reshape(n,len(a))</p>
-<p>multi-dimensional array, count the dimension from low to high</p>
-<p>np.argsort()Returns the indices that would sort an array.<br>numpy.bincount<br>Count number of occurrences of each value in array of non-negative ints.</p>
-<p>Np.argmax()  Returns the indices of the maximum values along an axis.<br>Np.nonzero() return tuple that consists of arrays. The first array indicates dimension, the second one indicates location(index)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.array(x,copy=True)</span><br></pre></td></tr></table></figure>
-<p>copy an array to a new variable. </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/Tensorflow/" itemprop="url">Tensorflow</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T14:42:47+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Characteristic: Lazy evaluation like scala</p>
-<p>Two steps to build and run a model:</p>
-<ul>
-<li>assemble a graph</li>
-<li>use a session to execute operations in the graph</li>
-</ul>
-<p>Placeholder: a node to store variable which would not be modified during backpropagation</p>
-<p>Variable: a node that would be modified during backpropagation</p>
-<p>Constant: values that cannot be changed</p>
-<p>Running parts need to be encapsulated into session.run(). session.run() is evaluation of the graph.</p>
-<p>Variables could have name and scope.</p>
-<p>Use TF DType to accelerate the computation or tensorflow has to infer the type.</p>
-<p>create variables with tf.get_variable</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = tf.get_variable(&quot;matrix&quot;, initializer=tf.constant([[0, 1], [2, 3]]))</span><br></pre></td></tr></table></figure>
-<p>rather than </p>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Before running, variables need to be initialized.</span><br></pre></td></tr></table></figure>
-<p>initializer = tf.global_variables_initializer()<br>with tf.Session() as sess:<br>    sess.run(initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a subset of variables:</span><br></pre></td></tr></table></figure></p>
-<p>with tf.Session() as sess:<br>    sess.run([a,b])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a single variable:</span><br></pre></td></tr></table></figure></p>
-<p>m=tf.get_variable(“matrix”,initializer=tf.constant([[0, 1], [2, 3]]))<br>with tf.Session() as sess:<br>    sess.run(m.initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">W.assign(100) creates an assign operation that assign 100 to variable W. The operation needs to be executed in a session to take effect.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tensorflow separates definitions of computation and execution. It first assembles a graph. Second use a session to execute.</span><br><span class="line"></span><br><span class="line">Nodes are operators, variables, and constants</span><br><span class="line"></span><br><span class="line">Edges are tensors.</span><br><span class="line"></span><br><span class="line">A Session object encapsulates the environment in which Operation objects are executed, and Tensor objects are evaluated.  Session will also allocate memory to store the current values of variables.</span><br></pre></td></tr></table></figure></p>
-<p>tf.Session.run(fetches,    feed_dict=None,    options=None,    run_metadata=None)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">fetches is a list of tensors whose values you want. tensorflow would return the values you want and skip computing unnecessary values.</span><br><span class="line"></span><br><span class="line">Multiple graphs require multiple sessions, each will try to use all available resources by default</span><br><span class="line"></span><br><span class="line">why graphs:</span><br><span class="line">1. break computation to facilitate auto-differentiation.</span><br><span class="line">2. save computation. only compute necessary values</span><br><span class="line">3. easier to distribute</span><br><span class="line">4. ML models visulised as graphs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Can&apos;t pass data between them without passing them through python/numpy, which doesn&apos;t work in distributed</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Create the summary writer after graph definition and before running your session.</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># The default path for saving event files is the same folder of this python file.</span><br><span class="line">tf.app.flags.DEFINE_string(</span><br><span class="line">&apos;log_dir&apos;, os.path.dirname(os.path.abspath(__file__)) + &apos;/logs&apos;,</span><br><span class="line">&apos;Directory where event logs are written to.&apos;)</span><br><span class="line"></span><br><span class="line"># Store all elements in FLAG structure!</span><br><span class="line">FLAGS = tf.app.flags.FLAGS</span><br><span class="line"></span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    writer = tf.summary.FileWriter(os.path.expanduser(FLAGS.log_dir), sess.graph)</span><br><span class="line">    .....</span><br><span class="line"># Closing the writer.</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure></p>
-<p>These codes are used to specify the path of logs directory and store all elements in FLAG structure.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clean flag name</span></span><br><span class="line"><span class="keyword">from</span> absl <span class="keyword">import</span> flags</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> list(flags.FLAGS):</span><br><span class="line">  delattr(flags.FLAGS, name)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnrecognizedFlagError: Unknown command line flag <span class="string">'f'</span></span><br></pre></td></tr></table></figure>
-<p>To solve this problem, just add a flag. In coommand line, there is not such a problem.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(<span class="string">'f'</span>, <span class="string">''</span>, <span class="string">'kernel'</span>)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(&apos;str_name&apos;, &apos;def_v_1&apos;,&quot;descrip1&quot;)</span><br></pre></td></tr></table></figure>
-<p>tf.app.flags is used to assign a name to a variable and parse variables in command line. The first argument is the variable name. The second argument is the default value. The third argument is a description. argparse module in python could also be employed to parse arguments.</p>
-<p>Any evaluation of variable must be run in a session.</p>
-<p>Three ways to initialize variables:</p>
-<ol>
-<li>Initializing Specific Variables.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># &quot;variable_list_custom&quot; is the list of variables that we want to initialize.</span><br><span class="line">variable_list_custom = [weights, custom_variable]</span><br><span class="line"></span><br><span class="line"># The initializer</span><br><span class="line">init_custom_op = tf.variables_initializer(var_list=all_variables_list)</span><br></pre></td></tr></table></figure>
-<p>This enable us to initialize specific variables. We are supposed to initialize all variables after specific initialization.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">full_loss = tf.nn.softmax_cross_entropy_with_logits(preds, labels)</span><br><span class="line">loss = tf.reduce_mean(tf.boolean_mask(full_loss, mask))</span><br></pre></td></tr></table></figure>
 <ol start="2">
-<li>Global variable initialization. This operation has to be done after the construction of a model.</li>
-<li>Initialization of a variables using other existing variables. New variables can be initialized using other existing variables’ initial values by taking the values using initialized_value().<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create another variable with the same value as 'weights'.</span></span><br><span class="line">WeightsNew = tf.Variable(weights.initialized_value(), name=<span class="string">"WeightsNew"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now, the variable must be initialized.</span></span><br><span class="line">init_WeightsNew_op = tf.variables_initializer(var_list=[WeightsNew])</span><br></pre></td></tr></table></figure>
+<li>Let your model know the real sequence length so it only predict the labels for the real tokens.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cell = tf.nn.rnn_cell.GRUCell(hidden_size)</span><br><span class="line"></span><br><span class="line">rnn_cells = tf.nn.rnn_cell.MultiRNNCell([cell] * num_layers)</span><br><span class="line"></span><br><span class="line">tf.reduce_sum(tf.reduce_max(tf.sign(seq), <span class="number">2</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">output, out_state = tf.nn.dynamic_rnn(cell, seq, length, initial_state)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>tf.one_hot() The axis argument determines which axis is the one-hot vector. </p>
-<p>Name scope is for grouping nodes together to facilitate visulisation in Tensorboard. Name scope is for reusing of operations while variable scope is for reusing of variables. </p>
-<p>Name scope is able to assign names to a set of variables. It is equivalent to add “name_scope/” to the variable name as prefix.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;outer&quot;):  c_2 = tf.constant(2, name=&quot;c&quot;)  # =&gt; operation named &quot;outer/c&quot;</span><br></pre></td></tr></table></figure>
-<p>An <code>Operation</code> is a node in a TensorFlow <code>Graph</code> that takes zero or more <code>Tensor</code> objects as input, and produces zero or more <code>Tensor</code> objects as output. Objects of type <code>Operation</code> are created by calling a Python op constructor (such as [<code>tf.matmul</code>] or [<code>tf.Graph.create_op</code>].</p>
-<p>A <code>Tensor</code> is a symbolic handle to one of the outputs of an <code>Operation</code>. It does not hold the values of that operation’s output, but instead provides a means of computing those values in a TensorFlow [<code>tf.Session</code>].</p>
-<p>Note that [<code>tf.Tensor</code>] objects are implicitly named after the [<code>tf.Operation</code>]that produces the tensor as output. A tensor name has the form <code>&quot;&lt;OP_NAME&gt;:&lt;i&gt;&quot;</code>.</p>
-<p>tf.get_variable would search the variable with the given name. If there is not such a variable, it would create a new variable.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.reduce_mean()</span><br></pre></td></tr></table></figure>
-<p>Sum over a vector in a particular dimension and compute the mean. The axis argument is used to specify the particular dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.softmax_cross_entropy_with_logits_v2()</span><br></pre></td></tr></table></figure>
-<p>Take unscaled log probabilities as input and perform softmax. After that, compute cross entropy loss. This functino allows gradient to backpropagated to labels.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cast()</span><br></pre></td></tr></table></figure>
-<p>Casts a tensor to a new type.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1.8, 2.2], dtype=tf.float32)tf.cast(x, tf.int32)  # [1, 2], dtype=tf.int32</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tf.Graph().as_default():</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
-<p>There is a default graph in tensorflow. All operations and variables are added to the graph if not specified. This line of code use another graph and add variables to that graph. Outside the code block, variables would be added to the default graph.</p>
-<p> TensorFlow will create a new [<code>tf.Tensor</code>]each time you use the same tensor-like object. If the tensor-like object is large (e.g. a <code>numpy.ndarray</code> containing a set of training examples) and you use it multiple times, you may run out of memory.</p>
-<p>By default, tf.Session is bounded to the default graph. If there is multiple graphs, specify graph parameter in tf.Session().</p>
-<p>The allow_soft_placement flag allows the switching back-and-forth between different devices. In tensorflow, not all operations are supported in GPU. The log_device_placement flag is to present which operations are set on what devices.</p>
-<p>The <strong>max_to_keep</strong> flags determine the maximum number of the saved models that the TensorFlow keeps and its default is set to ‘5’ by TensorFlow.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)</span><br></pre></td></tr></table></figure>
-<p>create a tensor filled with zero with the same shape as input_tensor</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.fill(dims, value, name=None)</span><br></pre></td></tr></table></figure>
-<p>create a tensor filled with a scalar value</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf.lin_space(start, stop, num, name=None)</span><br><span class="line"></span><br><span class="line">tf.range(start, limit=None, delta=1, dtype=None, name=&apos;range&apos;)</span><br></pre></td></tr></table></figure>
-<p>create a tensor with a sequence of values</p>
-<p>scalars are treated like tensors with zero dimension</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = sess.run(a)    #use a_out = sess.run(a) instead for the sake of memory</span><br></pre></td></tr></table></figure>
-<p>Use TF DType whenever possible for computation convenience.</p>
-<p> Each session maintains its own copy of variables</p>
-<p>tf.constant is an op. tf.Variable is a class with many ops.</p>
-<p>Only use tf.constant for primitive type. Otherwise the loading of graphs would be expensive.</p>
-<p>Constant values are stored in the graph definition.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = tf.get_variable(&quot;scalar&quot;, initializer=tf.constant(2))  #is preferred</span><br><span class="line"></span><br><span class="line">s = tf.Variable(2)</span><br></pre></td></tr></table></figure>
-<p>Initializer is an op. You need to execute it within the context of a session.</p>
-<p>Each variable has its own initializer.</p>
-<p>Sessions allocate memory to store variable values.</p>
-<p>Eval() a variable is equivalent to sess.run(a variable)</p>
-<p>tf.Variable.assign() is an op.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder(dtype, shape=None, name=None)</span><br></pre></td></tr></table></figure>
-<p>shape=None is easy to construct graphs but it is difficult for debugging.</p>
-<p>tensors could be fed with some dummy values for testing purpose.</p>
-<p>Lazy loading would make the graph bloated and hard to load. <strong>Remeber to seperate definition of a graph from computing/running ops</strong>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, shape=None, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
-<p>InvalidArgumentError (see above for traceback): You must feed a value for placeholder tensor ‘x’ with dtype float.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
-<p>works…….</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cond( pred, true_fn=None, false_fn=None,    strict=False, name=None)</span><br></pre></td></tr></table></figure>
-<p>tf.cond: pred is an expression. true_fn and flase_fn are callable function. If the expression is true, return the result of true_fn and vise versa.</p>
-<p>tf.placeholder is pythonic, but it is also easy to become bottleneck if running in single thread.</p>
-<p>tf.data is preferred. For prototyping, feed dict can be faster and easier to write (pythonic). But tf.data is tricky to use when you have complicated preprocessing or multiple data sources.</p>
-<p>Session looks at all trainable variables that optimizer depends on and update them.</p>
-<p>NCE guarantees approximation to softmax but Negative Sampling doesn’t.</p>
-<p>tf.train.Saver saves graph’s variables in binary files. It saves session rather than graph. When re-using parameters, it is necessart to construct the graph first and then restore the parameters.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;summaries&quot;): </span><br><span class="line">  tf.summary.scalar(&quot;loss&quot;, self.loss)</span><br><span class="line">  tf.summary.scalar(&quot;accuracy&quot;, self.accuracy)</span><br><span class="line">  tf.summary.histogram(&quot;histogram loss&quot;, self.loss)</span><br><span class="line">  summary_op = tf.summary.merge_all()</span><br></pre></td></tr></table></figure>
-<p>merge them all into one summary op to make managing them easier.</p>
-<p>Like everything else in TF, summaries are ops. For the summaries to be built, you have to run it in a session</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss_batch, _, summary = sess.run([loss, optimizer, summary_op])</span><br><span class="line"></span><br><span class="line">writer.add_summary(summary, global_step=step)</span><br></pre></td></tr></table></figure>
-<p>Randomization:</p>
-<ol>
-<li>operation level. my_var = tf.Variable(tf.truncated_normal((-1.0,1.0), stddev=0.1, seed=0))</li>
-<li>graph level. tf.set_random_seed(2)</li>
-</ol>
-<p>tf dataset:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.from_tensor_slices()</span><br></pre></td></tr></table></figure>
-<p>constructs a dataset from one or more <code>tf.Tensor</code> objects. It slices the first dimension of the tensor.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.batch()</span><br></pre></td></tr></table></figure>
-<p>or<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.map()</span><br></pre></td></tr></table></figure></p>
-<p>apply a transformation to a dataset and create another dataset.</p>
-<p>A [<code>tf.data.Dataset</code>] represents a sequence of elements, in which each element contains one or more <code>Tensor</code>objects. For example, an element could be an image corresponds to a label or a sequence of tokens correspond to another sequence of tokens or only a simple label.</p>
-<p>A <a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator" target="_blank" rel="noopener"><code>tf.data.Iterator</code></a> provides the main way to extract elements from a dataset. The operation returned by <code>Iterator.get_next()</code> yields the next element of a <code>Dataset</code> when executed, and typically acts as the interface between input pipeline code and your model. For more sophisticated uses, the <code>Iterator.initializer</code>operation enables you to reinitialize and parameterize an iterator with different datasets, so that you can, for example, iterate over training and validation data multiple times in the same program.</p>
-<p> <a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset" target="_blank" rel="noopener"><code>tf.data.TFRecordDataset</code></a> constructs dataset from files if the files are on disk in the recommended TFRecord format.</p>
-<p>If the iterator reaches the end of the dataset, executing the <code>Iterator.get_next()</code> operation will raise a <a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError" target="_blank" rel="noopener"><code>tf.errors.OutOfRangeError</code></a>. After this point the iterator will be in an unusable state, and you must initialize it again if you want to use it further.</p>
-<p>A common pattern is to wrap the “training loop” in a <code>try</code>-<code>except</code> block:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(iterator.initializer)<span class="keyword">while</span> <span class="keyword">True</span>:  <span class="keyword">try</span>:    sess.run(result)  <span class="keyword">except</span> tf.errors.OutOfRangeError:    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p>A <strong>reinitializable</strong> iterator can be initialized from multiple different <code>Dataset</code> objects. For example, you might have a training input pipeline that uses random perturbations to the input images to improve generalization, and a validation input pipeline that evaluates predictions on unmodified data. These pipelines will typically use different <code>Dataset</code> objects that have the same structure (i.e. the same types and compatible shapes for each component).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iterator = tf.data.Iterator.from_structure(training_dataset.output_types,                                           training_dataset.output_shapes)</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
-<p>A <strong>one-shot</strong> iterator is the simplest form of iterator, which only supports iterating once through a dataset, with no need for explicit initialization. One-shot iterators handle almost all of the cases that the existing queue-based input pipelines support, but they do not support parameterization. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataset = tf.data.Dataset.range(<span class="number">100</span>)</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
-<p>An <strong>initializable</strong> iterator requires you to run an explicit <code>iterator.initializer</code> operation before using it. In exchange for this inconvenience, it enables you to <em>parameterize</em> the definition of the dataset, using one or more <code>tf.placeholder()</code>tensors that can be fed when you initialize the iterator.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">max_value = tf.placeholder(tf.int64, shape=[])</span><br><span class="line">dataset = tf.data.Dataset.range(max_value)</span><br><span class="line">iterator = dataset.make_initializable_iterator()</span><br><span class="line">next_element = iterator.get_next()<span class="comment"># Initialize an iterator over a dataset with 10 elements.</span></span><br><span class="line">sess.run(iterator.initializer, feed_dict=&#123;max_value: <span class="number">10</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):  </span><br><span class="line">  value = sess.run(next_element)  </span><br><span class="line">  <span class="keyword">assert</span> i == value</span><br></pre></td></tr></table></figure>
-<p>The <code>Iterator.get_next()</code> method returns one or more <a href="https://www.tensorflow.org/api_docs/python/tf/Tensor" target="_blank" rel="noopener"><code>tf.Tensor</code></a> objects that correspond to the symbolic next element of an iterator. Each time these tensors are evaluated, they take the value of the next element in the underlying dataset. Note that the iterator does not get to the next element immediately. The returned element is suuposed to be passed to  <code>tf.Session.run()</code> to get the next elements and advance the iterator.</p>
-<p>Applying arbitrary Python logic with <code>tf.py_func()</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.stack(    values,    axis=0,    name=&apos;stack&apos;)</span><br></pre></td></tr></table></figure>
-<p>concatenate tensors along specified dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.padded_batch()</span><br></pre></td></tr></table></figure>
-<p>padded_shapes is None, the component will be padded out to the maximum length of all elements in that dimension.</p>
-<p>Estimators are high-level abstraction of low-level tensorflow operation. It enables easier training, testing on different kinds of devices and modes like training on a single PC or a cluster.</p>
-<p>4 steps to use pre-made Estimators</p>
-<ol>
-<li>write function to import dataset</li>
-<li>Define the feature columns.</li>
-<li>Instantiate the relevant pre-made Estimator like specifying number of hidden layers, output features</li>
-<li>There are training and evaluation methods for Estimators. Call a training, evaluation, or inference method.</li>
-</ol>
-<p>tf.feature_column could be regarded as a kind of interface between the dataset and model in Estimators. It could abstract continuous values or categorical values.</p>
+<p>tensorflow seq2seq resembles caffe that use a file or string to define model parameters and perform training/inference.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.contrib.rnn.MultiRNNCell(    [lstm_cell() for _ in range(number_of_layers)])</span><br></pre></td></tr></table></figure>
+<p>is a RNN cell with a number of layers. In pytorch, you only need to input the number of layers.</p>
+<p>Sample code using tf.name_scope and tf.variable_scope.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"Train"</span>):</span><br><span class="line">      train_input = PTBInput(config=config, data=train_data, name=<span class="string">"TrainInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">None</span>, initializer=initializer):</span><br><span class="line">        m = PTBModel(is_training=<span class="keyword">True</span>, config=config, input_=train_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Training Loss"</span>, m.cost)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Learning Rate"</span>, m.lr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Valid"</span>):</span><br><span class="line">      valid_input = PTBInput(config=config, data=valid_data, name=<span class="string">"ValidInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mvalid = PTBModel(is_training=<span class="keyword">False</span>, config=config, input_=valid_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Validation Loss"</span>, mvalid.cost)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Test"</span>):</span><br><span class="line">      test_input = PTBInput(</span><br><span class="line">          config=eval_config, data=test_data, name=<span class="string">"TestInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mtest = PTBModel(is_training=<span class="keyword">False</span>, config=eval_config,</span><br><span class="line">                         input_=test_input)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(name, reuse=<span class="keyword">None</span>, initializer=initializer, reuse=tf.AUTO_REUSE):</span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p>The above code enable reusing of variables such that subgraphs would not be constructed.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.identity(    input,    name=None)</span><br></pre></td></tr></table></figure>
+<p>return a tensor that is identical with input tensor.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder_with_default(    input,    shape,    name=None)</span><br></pre></td></tr></table></figure>
+<p>If there is no value fed to placeholder, the placeholder would take input value as input. The input is actually a default value.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.sign(    x,    name=None)</span><br></pre></td></tr></table></figure>
+<p>return a tensor to indicate whether x is greater than 0 or not.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.reduce_max(    input_tensor,    axis=None,    keepdims=None,    name=None,    reduction_indices=None,    keep_dims=None)</span><br></pre></td></tr></table></figure>
+<p>Computes the maximum of elements across dimensions of a tensor. </p>
+<p>Attention mechanism in tensorflow is to use an attention_wrapper to wrap the RNNcell.</p>
+<p>tf.layers.dense() apply a fully connected layer to given inputs and return result.<br>tf.layers.Dense() return an abstract layer.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.tile(    input,    multiples,    name=None)</span><br></pre></td></tr></table></figure>
+<p>create a tensor that repeats input multiples times. The multiples argument has to specify how many times you want to repeat for each dimension.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.concat()</span><br></pre></td></tr></table></figure>
+<p>shape 0 of tensors must be equal.</p>
+<p>[<code>tf.nn.dynamic_rnn</code>] is used for sequence with unknown length.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.map_fn()</span><br></pre></td></tr></table></figure>
+<p>The output should have the same shape as input. If input is a sequence, the output has to be a sequence.</p>
+<p>callback:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,</span><br><span class="line">                    validation_split = <span class="number">0.2</span>, verbose=<span class="number">0</span>, callbacks=[early_stop, PrintDot()])</span><br></pre></td></tr></table></figure>
+<p>callback is used to perform specific operation during training. Model.fit() returns a set of values(loss, accuracy) during training.</p>
+<h3 id="Tf-Serving"><a href="#Tf-Serving" class="headerlink" title="Tf Serving"></a>Tf Serving</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python tensorflow/python/tools/saved_model_cli.py show --dir ./ssd_mobilenet_v1_coco_2017_11_17/saved_model --all</span><br></pre></td></tr></table></figure>
+<p>show information of a saved model.</p>
+<h6 id="employ-cli-to-do-sanity-check-for-tf-serving"><a href="#employ-cli-to-do-sanity-check-for-tf-serving" class="headerlink" title="employ cli to do sanity check for tf serving"></a>employ cli to do sanity check for tf serving</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">saved_model_cli run --dir /tmp/saved_model_dir --tag_set serve \</span><br><span class="line">--signature_def x1_x2_to_y</span><br><span class="line">--input_exprs 'x2=np.ones((3,1));x3=np.ones((5,8))'</span><br></pre></td></tr></table></figure>
+<p><strong>no space in the expression!!!</strong></p>
 
           
         
@@ -1724,7 +1040,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Dependency-Parsing/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/Recommendation-System-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1743,7 +1059,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/23/Dependency-Parsing/" itemprop="url">Dependency_Parsing</a></h1>
+                <a class="post-title-link" href="/2018/11/16/Recommendation-System-1/" itemprop="url">Recommendation_System</a></h1>
         
 
         <div class="post-meta">
@@ -1755,8 +1071,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T12:23:44+08:00">
-                2018-07-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T11:07:40+08:00">
+                2018-11-16
               </time>
             
 
@@ -1795,29 +1111,552 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Transition-Based-Dependency-Parsing"><a href="#Transition-Based-Dependency-Parsing" class="headerlink" title="Transition-Based Dependency Parsing"></a>Transition-Based Dependency Parsing</h2><p>Linear time, greedy algorithm, no backtracking.</p>
-<p>A configuration is a stack, a buffer of token lists and an oracle. The key is to train the oracle. </p>
-<p>The algorithm is intuitive. If there is a match in the candidate relation set, pop the words and add the relation to the result set. Push the words in the buffer into the stack. repeat until no word left.</p>
-<h3 id="Creating-an-Oracle"><a href="#Creating-an-Oracle" class="headerlink" title="Creating an Oracle"></a>Creating an Oracle</h3><p>Supervised learning is employed to do this.</p>
-<h4 id="Generating-Training-Data"><a href="#Generating-Training-Data" class="headerlink" title="Generating Training Data"></a>Generating Training Data</h4><p>given a reference parse and a configuration, the training oracle proceeds as follows:</p>
-<ul>
-<li>Choose LEFTARC if it produces a correct head-dependent relation </li>
-<li>Otherwise, choose RIGHTARC if (1) it produces a correct head-dependent relation<br>and (2) all of its dependents in the buffer have already been assigned.</li>
-<li>Otherwise, choose SHIFT.</li>
-</ul>
-<h4 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h4><p>create feature sets.</p>
-<h4 id="Learning"><a href="#Learning" class="headerlink" title="Learning"></a>Learning</h4><p>The dominant approaches to training transition-based dependency parsers have been multinomial logistic regression and support vector machines, both of which can make effective use of large numbers of sparse features.</p>
-<p>Deep learning approaches have been applied successfully to transition-based parsing. These approaches eliminate the need for complex, hand-crafted features and have been particularly effective at overcoming the data sparsity issues normally associated training transition-based<br>parsers.</p>
-<h3 id="Alternative-Transition-Systems"><a href="#Alternative-Transition-Systems" class="headerlink" title="Alternative Transition Systems"></a>Alternative Transition Systems</h3><p><strong>arc eager</strong> transition system is just a modified version of the oracle.</p>
-<p>The operation of the oracle:</p>
-<ul>
-<li>LEFTARC: Assert a head-dependent relation between the word at the front of<br>the input buffer and the word at the top of the stack; pop the stack.</li>
-<li>RIGHTARC: Assert a head-dependent relation between the word on the top of<br>the stack and the word at front of the input buffer; shift the word at the front<br>of the input buffer to the stack.</li>
-<li>SHIFT: Remove the word from the front of the input buffer and push it onto<br>the stack.</li>
-<li>REDUCE: Pop the stack.</li>
-</ul>
-<h3 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h3><p>BFS with a heuristic filter that prunes the search frontier to stay within a fixed-size beam width.</p>
-<h3 id="Graph-Based"><a href="#Graph-Based" class="headerlink" title="Graph-Based"></a>Graph-Based</h3>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>CTR</strong>(<strong>Click-Through-Rate</strong>).</p>
+<p>Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the candidate items and return some items with high scores.</p>
+<p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
+<p><strong>Generalization</strong> is loosely defined as discovering of underlying features from existing co-occurence so that new feature combinations could be inferred from existing co-occurence.</p>
+<p>data for Web-scale recommender systems is mostly <strong>discrete and categorical</strong>, leading to a large and sparse feature space that is challenging for feature exploration. For continuous data, a common method is to divide the continuous range into several continuous range such that one-hot vector could be employed to represent a range.</p>
+<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.</p>
+<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2><p>Factorization machine and DNN requires no or less feature engineering because it is able to learn dense and low-dimension embedding. But it would over-generate so that recommendation would be unrelevent. Wide refers to logistic regression. It is able to simply remember some rules. Wide&amp;Deep combines them together. </p>
+<p>For wide part, features are transformed to one-hot sparse feature and fed to a linear transformation. The wide part is actually a logistic regression. Here the feature transformation is actually a set of hand-craft feature combination.</p>
+<p>Feature transformation:<br>$$<br>\varnothing_k(x)=\prod^d_{i=1}x_i^{c_{ki}}<br>$$<br>where \(\varnothing_k(x)\) is feature transformations.For binary features, a cross-product transformation (e.g., “AND(gender=female, language=en)”) is 1 if and only if the constituent features (“gender=female” and “language=en”) are all 1, and 0 otherwise.</p>
+<p>Linear transformation:<br>$$<br>\mathbf{w}_{wide}^T[ \mathbf{x},\phi  ( \mathbf{x}  )]<br>$$<br>where \([ \mathbf{x},\phi  ( \mathbf{x}  )]\) is concatenation of original features and transformmed features.</p>
+<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P(Y=1| \mathbf{x})=\sigma (\mathbf{w}<em>{wide}^T[\mathbf{x},\phi ( \mathbf{x} )] + \mathbf{w}</em>{deep}^Ta^{( l_f )}+b)<br>$$</p>
+<h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><p>In pytorch, * operator means element-wise multiplication and would be broadcasted automatically.</p>
+<h4 id="Factorization-Machines-FM"><a href="#Factorization-Machines-FM" class="headerlink" title="Factorization Machines(FM)"></a>Factorization Machines(FM)</h4><p>Naive version of feature cross is like below formula:<br>$$<br>y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n}\sum_{j=i+1}^nw_{ij}x_ix_j<br>$$<br>where \(x_i, x_j\) are features. But this kind of computation is expensive. Factorization Machines project the feature to vector space so as to reduce computation complexity.</p>
+<p>$$<br>y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n}\sum_{j=i+1}^n&lt;V_i,V_j&gt; x_ix_j<br>$$<br>$$<br>\sum_{i=1}^{n}\sum_{j=i+1}^n&lt;V_i,V_j&gt; x_ix_j<br>$$<br>$$<br>=\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^n&lt;V_i,V_j&gt; x_ix_j -\frac{1}{2}\sum_{i=1}^n&lt;V_i,V_i&gt;x_ix_i<br>$$<br>$$<br>=\frac{1}{2}(\sum_{i=1}^n\sum_{j=1}^{n}\sum_{f=1}^kv_{if}v_{jf}x_ix_j - \sum_{i=1}^{n}\sum_{f=1}^kv_{if}v_{if}x_ix_i)<br>$$<br>$$<br>=\frac{1}{2}\sum_{f=1}^{k}((\sum_{i=1}^nv_{if}x_i)(\sum_{j=1}^nv_{jf}x_j) - \sum_{i=1}^nv_{if}^2x_i^2)<br>$$<br>$$<br>=\frac{1}{2}\sum_{f=1}^{k}((\sum_{i=1}^nv_{if}x_i)^2 - \sum_{i=1}^nv_{if}^2x_i^2))<br>$$</p>
+<p>The above deduction reduces the computation complexity from \(O(kn^2)\) to \(O(kn)\)[1]  where k is the dimensionality of vectors. \(\sum_{i=1}^{n}\sum_{j=i+1}^n&lt;V_i,V_j&gt; x_ix_j\) models feature interaction and \(&lt;V_i,V_j&gt;\),which are the vectors of the original input, serve as the weight matrix \(w_{ij}\) in the original equation becasue they are also parameters. As a result, the feature interaction is actually the multiplication of the original features with the learnt parameters.</p>
+<h3 id="Field-aware-Factorization-Machines-FFM"><a href="#Field-aware-Factorization-Machines-FFM" class="headerlink" title="Field-aware Factorization Machines(FFM)"></a>Field-aware Factorization Machines(FFM)</h3><p>Each latent vector is associated with several field which means other kinds of knowledge.<br>$$<br>y = w_0 + \sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j=i+1}^n&lt;V_{i,f_j},V_{j,f_i}&gt;x_ix_j<br>$$</p>
+<p>For example, \(\phi_{FM}（V,x） = &lt;V_{ESPN},V_{Nike}&gt;+&lt;V_{ESPN},V_{Male}&gt;+&lt;V_{Nike},V_{Male}&gt;\) is the feature cross of FM while \(\phi_{FFM}（V,x） = &lt;V_{ESPN,A},V_{Nike,P}&gt;+&lt;V_{ESPN,G},V_{Male,P}&gt;+&lt;V_{Nike,G},V_{Male,A}&gt;\) is the feature cross of FFM.</p>
+<p>DeepFM substitutes the wide part in wide&amp;deep with <strong>Factorization Machines(FM)</strong>. It is able to model high-level feature combination by transforming the sparse feature to dense and low-dimension features. It models feature interaction as inner product of embeddings.</p>
+<p>A feature \(x_i\) is associated with a weight vector(embedding) \(v_i\) and feature interaction or feature combination is computed as \(&lt;v_i,v_j&gt;\). Intuitively, in stead of computing feature combination directly, it insert an embedding layer to the network so as to convert features to embeddings. Compuing the dot product of embedding to model feature combination.</p>
+<p>FM and FFM are low-rank models. They are able to capture low-order(first and second order) feature interactions. DNN are high-rank models that are able to capture high-order feature interactions.</p>
+<p><strong>DeepFM combines low-rank and high-rank models together to capture both low-order and high-order feature interactions. Wide&amp;Deep requires manual feature engineering for wide part and DeepFM is an end-to-end model.</strong></p>
+<h2 id="DCN-Deep-Cross-Network"><a href="#DCN-Deep-Cross-Network" class="headerlink" title="DCN(Deep Cross Network)"></a>DCN(Deep Cross Network)</h2><p>The features are usually sparse, it is unable to represent those sparse features with one-hot vector if the size of vocabulary is huge. Therefore embedding layer is employed to convert sparse features to dense features which are real-value vectors like Natural Language Processing. After that, those vectors are stacked or concatenated with other dense features.</p>
+<p>It also utilises matrix multiplication to implement feature combination.<br>$$<br>x_{l+1} = x_0 x_l^T w_l + b_l + x_l = f(x_l, w_l, b_l) + x_l<br>$$</p>
+<p>$$<br>x_0 = [x^T_{embed,1}, . . . , x^T_{embed,k}, x^T_{dense}]<br>$$</p>
+<p>where \(x_0\) is the concatenation of embedding features and dense features and \(^T_{embed,k}\) means the embedding of the kth feature. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
+<p>The degress of cross features is growing with the number of layers.</p>
+<p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
+<p>In a nutshell, the cross network models linear features interactions between high-order features and the original features while deep network models non-linear and only high-order features interactions. They are combined together at the end. The cross network could be regarded as a kind of generalization of FM.</p>
+<p>The implementation of DCN is also element-wise multiplication. The difference is that it sum the dim1 so that the matrix becomes a vector.</p>
+<p><strong>wide&amp;deep, deepFM and Deep&amp;Cross are multi-task learning.</strong></p>
+<h3 id="Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb"><a href="#Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb" class="headerlink" title="Real-time Personalization using Embeddings for Search Ranking at Airbnb"></a>Real-time Personalization using Embeddings for Search Ranking at Airbnb</h3><p>Airbnb proposed to do real time personalization. They achieved this by train embeddings in a booking session. The approach is totally the same as word2vec except that they focus on predicting the final booking. As a result, in each booking session there are several sliding windows and they try to max the probability of predicting the final booking listing(here listing could be regarded as an item).</p>
+<h5 id="Adapting-Training-for-Congregated-Search"><a href="#Adapting-Training-for-Congregated-Search" class="headerlink" title="Adapting Training for Congregated Search"></a>Adapting Training for Congregated Search</h5><p>They added negative samples from the same location(e.g. Paris) so that the embeddings are able to capture location information.</p>
+<h5 id="Cold-start"><a href="#Cold-start" class="headerlink" title="Cold start"></a>Cold start</h5><p>To deal with cold start problem, they identified the most similar several items within a certain range and averaged them.</p>
+<h4 id="User-type-amp-Listing-type-Embeddings"><a href="#User-type-amp-Listing-type-Embeddings" class="headerlink" title="User-type &amp; Listing-type Embeddings"></a>User-type &amp; Listing-type Embeddings</h4><p>User-type Embeddings are used to capture the long-time interest. But most user books only several or even one time. So there are far less training data. They proposed to employ rule-based mapping to map different used to the same used embedding so as to get enough training data. They did the same thing to Listing-type Embeddings.</p>
+<p>Given learnt embeddings, use cos similarities to do recommendation.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://blog.csdn.net/John_xyz/article/details/78933253" target="_blank" rel="noopener"># CTR预估算法之FM, FFM, DeepFM及实践</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/SVM-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/09/SVM-2/" itemprop="url">SVM_2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-09T11:04:55+08:00">
+                2018-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>$$margin={1\over \left|{\boldsymbol {w}}\right|} = \sqrt{w_1^2+w_2^2+…+w_n^2}=\left|{\boldsymbol {w}}\right|_{2}$$</p>
+<p>optimal hyperplane:</p>
+<p>$$sign(w_1x_1+w_2x_2+…+w_nx_n+b)=sign(\boldsymbol {w}^Tx)$$</p>
+<h2 id="Quadratic-Programming"><a href="#Quadratic-Programming" class="headerlink" title="Quadratic Programming"></a>Quadratic Programming</h2><p>minimize a (convex) quadratic function, subject to linear inequality constraints.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Hyper-Para-Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/05/Hyper-Para-Search/" itemprop="url">Hyper_Para_Search</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T20:48:27+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Hyper-parameters-Searching"><a href="#Hyper-parameters-Searching" class="headerlink" title="Hyper-parameters Searching"></a>Hyper-parameters Searching</h1><h2 id="Random-Search"><a href="#Random-Search" class="headerlink" title="Random Search"></a>Random Search</h2><p>It is heavily used in deep learning. There are tons of parameters in deep learning. Grid search is computation-intensive because it tunes parameters one by one which change only a parameter and keep the others unchanged. Each time for each parameter, random search samples a value from normal distribution. It is always the case that some parameters like leanring rate are more important than other parameters. Random search could discover a pretty good setting of hyperparameters.</p>
+<p>For example, let’s assume there are only 3 parameters. The algorithm has been run for 9 times both random search and grid search. For random search, each parameter has been tested for 9 times. For grid search, each parameter has been tested for only 3 times because it keep the other two parameters unchanged when tuning a parameter.</p>
+<p>Advantages:<br>efficient</p>
+<h2 id="Grid-Search"><a href="#Grid-Search" class="headerlink" title="Grid Search"></a>Grid Search</h2><p>Grid search is to generate a list of candidate parameters for each parameter. Each time only changes a parameter and keep other parameters invariant. It is systematic but it is only appropriate for low dimension. When the dimension increase, the computation would also increase dramatically. It would waste computation resource because each time only a parameter is changed.</p>
+<p>Advantages:<br>Systematic.<br>Precise.</p>
+<h2 id="Bayes-Optimization"><a href="#Bayes-Optimization" class="headerlink" title="Bayes Optimization"></a>Bayes Optimization</h2><p>The third one is Bayes Optimization. Bayes optimization is powerful but it is not widely employed because it is application-specific. There is not a good software to facilitate the coding process until now. Its general idea is to do some experiments on a few settings of parameters. After that choose the setting that has high variance to evaluate so as to achieve better performance. High variance means that the parameters has the potential to be better or worse. If the performance is degraded, it doesn’t matter. It resemble the greedy algorithm to some extend. </p>
+<p>This method assumes that the similar inputs gives similar outputs. It’s a kind of weak prior. Its intuition is that to evaluate those unknown but possibly better combinations of parameters rather than try all of them.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://mp.weixin.qq.com/s/l6uzHwGSTY5xRSkPD_B2rw" target="_blank" rel="noopener">深度学习模型超参数搜索实用指南</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Technical-Analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/05/Technical-Analysis/" itemprop="url">Technical_Analysis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T15:14:07+08:00">
+                2018-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Price-based:</p>
+<p>Moving average lines are heavily used to smooth the short-term fluctuations in the price charts. It is regarded as a support line where the price would not go lower than it in an uptrend. Points where the longer-term moving average crosses below the short-term moving average reveals an emerging uptrend.</p>
+<p>Bollinger bands are constructed from n standard deviation of closing prices. The high and low bands are the prices that moving average plus or minus n standard deviation. The prices in the area between the high and low bands are considered as resonable fluctuation of prices. If the price go beyond the area, it reveals overbought or oversold which means that the price is likely to decrease and increase respectively in the near future. It is the time where contrarian strategy comes into play. It is basically a strategy to buy or sell when most investors sell or buy.</p>
+<p>Oscillators:</p>
+<p>Oscillators are a set of indicators that oscillate around a specific value or in a range. Oscillator charts could be employed to detect convergence or divergence between oscillator and market prices. Convergence reveals that the current trend would continue and divergence suggests the change of the current trend.</p>
+<p>Sample indicators:</p>
+<p>Relative Strength Index(RSI): the rations of increase in price to decrease in price in a period of time. High values indicates overbought and low values suggest oversold.</p>
+<p>Moving Average Convergence Divergence(MACD): It is constructed from two lines. The MACD line is the difference between two expoentially moving average lines while the signal line is the expoentially moving average of the MACD line. The MACD could be employed to show both convergence or divergence and overbought or oversold. A buy signal is gerated when the MACD line cross above the signal line.</p>
+<p>Williams %R:<br>It indicates the relation between the closing price and the highest and lowest price in the previous days. It also reveals overbought or oversold.</p>
+<p>Accumulation/Distribution Line(AD):<br>Calculated from Money Flow Multiplier and Money Flow Volume. It takes volume into consideration. Volume is a significant indicator in technical analysis. It basically measure the money flow of the underlying asset. A pending revesal trend is indicated when divergence occurs between price and AD. Bullish Crosses occur when AD crosses above zero.</p>
+<p>Non-Price-Based Indicators<br>Put/call ratio</p>
+<p>Volatility Index</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/BLEU/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/BLEU/" itemprop="url">BLEU</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-04T11:11:42+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Bilingual-Evaluation-Understudy-BLEU"><a href="#Bilingual-Evaluation-Understudy-BLEU" class="headerlink" title="Bilingual Evaluation Understudy(BLEU)"></a>Bilingual Evaluation Understudy(BLEU)</h3><p>$$p_{n}=\frac{\sum_{c_{\in candidates}}\sum_{n-gram_{\in c}}Count_{clip}(n-gram)}{\sum_{c^{‘}<em>{\in candidates}}\sum</em>{n-gram^{‘}_{\in c^{‘}}}Count(n-gram^{‘})}$$</p>
+<p>First count the n-gram match sentence by sentence. After that truncate the count which is to clip the count by maximum reference count. Finally add all the n-gram for all sentences together and divided by  all the n-gram for all reference sentences.</p>
+<p>$$Count_{clip}=min(Count,Max_Ref_Count)$$</p>
+<p>Max_Ref_Count is the largest count of a word in a single reference sentence.</p>
+<p>The machine could cheat by output short sentences. So penalty has to be added for short sentence.</p>
+<p>$$BP= \begin{cases}<br>1 &amp; \text{if c&gt;r}\<br>e^{1-r/c} &amp; {if}\  c \le r<br>\end{cases}$$</p>
+<p>If the length of the output sentence c is greater than the length of the reference, no penalty.</p>
+<p>The final version of BLEU:</p>
+<p>$$BLEU=BP\cdot exp(\sum_{n=1}^N w_n logP_n)$$</p>
+<p>BLEU computes the geometric average of the modified n-gram precisions and penalized short sentences. Usually N = 4 and the weight \(w_n=\frac{1}{N}\)</p>
+
           
         
       
@@ -1856,7 +1695,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1906,7 +1745,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
