@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/sctipts_python/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/TextRank/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -315,7 +315,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/06/sctipts_python/" itemprop="url">scripts_python</a></h1>
+                <a class="post-title-link" href="/2018/09/29/TextRank/" itemprop="url">TextRank</a></h1>
         
 
         <div class="post-meta">
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T20:25:03+08:00">
-                2018-12-06
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-29T20:10:34+08:00">
+                2018-09-29
               </time>
             
 
@@ -367,10 +367,9 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>remove file from a directory<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'visual/train'</span>, <span class="string">'visual/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    list(map(<span class="keyword">lambda</span> i: os.remove(os.path.join(dir_to_search, i)),os.listdir(dir_to_search)))</span><br><span class="line"><span class="comment">#     l = list(map(lambda i: os.path.join(dir_to_search, i),os.listdir(dir_to_search)))</span></span><br></pre></td></tr></table></figure></p>
-<p>move newest files to another dir<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line">    time_l.sort()</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        dst = <span class="string">'visual/train'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dst = <span class="string">'visual/val'</span></span><br><span class="line">    shutil.copyfile(d[time_l[<span class="number">-1</span>]], os.path.join(dst, d[time_l[<span class="number">-1</span>]].split(<span class="string">'/'</span>)[<span class="number">-1</span>] ))</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"><span class="comment">#     '''delete'''</span></span><br><span class="line"><span class="comment">#     for i in range(len(time_l)-1):</span></span><br><span class="line"><span class="comment">#         os.remove(d[time_l[i]])</span></span><br></pre></td></tr></table></figure></p>
-<p>delect old files</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line"><span class="comment">#     print(file_l)</span></span><br><span class="line">    time_l.sort()</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line">    <span class="string">'''delete'''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(time_l)<span class="number">-1</span>):</span><br><span class="line">        os.remove(d[time_l[i]])</span><br><span class="line"><span class="comment">#     print(d[time_l[-1]])</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">#               if datetime.datetime.now() - file_modified &gt; datetime.timedelta(hours=24):</span></span><br><span class="line"><span class="comment">#                   os.remove(curpath)</span></span><br></pre></td></tr></table></figure>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>TextRank is actuaaly the same as PageRank. The only difference is that the unit in the PageRank is a webpage while the unit in the TextRank is word or sentence.</p>
+<h2 id="Keyword-Extraction"><a href="#Keyword-Extraction" class="headerlink" title="Keyword Extraction"></a>Keyword Extraction</h2><p>Each word is a vertex in the graph. Set up a context window. If two words co-occur in a context window, there is a link between those two words. The rest is the same as PageRank.</p>
+<h2 id="Sentence-Extraction"><a href="#Sentence-Extraction" class="headerlink" title="Sentence Extraction"></a>Sentence Extraction</h2><p>Each sentence is a vertex in the graph. The difference with keyword extraction is that now all sentences are considered connected with a weight. The weight is sentence similarity. The graph becomes a weighted graph which means there is a weight associated with each edge. </p>
 
           
         
@@ -419,7 +418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/Data Preprocessing/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Paper-review/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -438,7 +437,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/04/Data Preprocessing/" itemprop="url">Data Preprocessing</a></h1>
+                <a class="post-title-link" href="/2018/09/18/Paper-review/" itemprop="url">Paper_review</a></h1>
         
 
         <div class="post-meta">
@@ -450,8 +449,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T14:09:33+08:00">
-                2018-12-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T16:51:27+08:00">
+                2018-09-18
               </time>
             
 
@@ -490,46 +489,8 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.</p>
-<ol>
-<li>Features selection according to experience or something like that.</li>
-<li>Features processing. Features are in original data, some steps are necessary to preprocess the data and get corresponding features.</li>
-<li>Data cleaning.</li>
-<li>Data sampling and filtering. Not all data would be used to train a model. Then you need to sample the data points. Methods include random sampling and others. Filtering is to detect and remove outliers. Common methods are KNN, clustering.</li>
-<li>Features classification. </li>
-<li>Feature processing and analysis.</li>
-</ol>
-<p>Features classification:</p>
-<ol>
-<li>Low-level and high-level features. Low-level features are mainly original features like user ID, time, weather. High-level features are processed features like sentiment.</li>
-<li>Static features and dynamic features. Static features are stable or seldom changed like age, height. Dynamic features change frequently like distance, temperature.</li>
-<li>0-1 features, one-hot(categorical) features, continuous features.</li>
-</ol>
-<p>Feature processing:</p>
-<ol>
-<li>features normalization</li>
-<li>features discretization</li>
-<li>missing values. </li>
-</ol>
-<p>Dimensionality reduction:</p>
-<ol>
-<li>Sometimes increasing the dimensionality of features is good for classification.</li>
-<li>Common methods to reduce dimensionality are PCA, LDA.</li>
-</ol>
-<p>Features selection:</p>
-<ol>
-<li>features generation.</li>
-<li>Evaluation.</li>
-</ol>
-<p>Features generation:</p>
-<ol>
-<li>Complete search. BFS, Branch and Bound.</li>
-<li>Heuristic. SFS, Sequential Forward Selection; SBS,Sequential Backward Selection; LRS,Plus-L Minus-R Selection.</li>
-<li>Random. RGSS, Random Generation plus Sequential Selection; SA, Simulated Annealing; GA, Genetic Algorithms.</li>
-</ol>
-<p>Feature normalization: if there is not feature normalization, some features with larger range like [0, +10000] compared to [0,3] would impose more influence on the model. </p>
-<p>During deployment, performance(real-time, low-delay) is signifiacnt. There would be tradeoff between the amount of data and performance(accuracy). A possible solution is to construct a tree for features like hierachical softmax so that finding a feature is more efficient.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://tech.meituan.com/machinelearning_data_feature_process.html" target="_blank" rel="noopener"># 机器学习中的数据清洗与特征处理综述</a></p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Bidirectional LSTM-CRF for sequence tagging: CRF utilize sentence-level information. In CRF input and output are connected directly. Bidirectional LSTM-CRF connect all output together with a transition matrix from one state to another state.</p>
+<p>A Deep reinforced model for abstractive summarization: Use reinforcement leanring to derive a policy. Some critirion such as BLEU could not back-propagate directly. Employing reinforcement leanring could alleviate this problem.</p>
 
           
         
@@ -578,7 +539,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/Feature Cross/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Writing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -597,7 +558,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/02/Feature Cross/" itemprop="url">Feature Cross</a></h1>
+                <a class="post-title-link" href="/2018/09/18/Writing/" itemprop="url">Writing</a></h1>
         
 
         <div class="post-meta">
@@ -609,8 +570,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-02T18:33:55+08:00">
-                2018-12-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T13:32:29+08:00">
+                2018-09-18
               </time>
             
 
@@ -649,755 +610,285 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Feature cross is dot-product of two or more features. It transform linear features to non-linear features.</p>
-<p>A <strong>feature cross</strong> is a synthetic feature that encodes nonlinearity in the feature space by multiplying two or more input features together.</p>
-<p>$$<br>x_3 = x_1x_2<br>$$<br>where \(x_3\) is a new feature and it is fed to the classifier as a feature.</p>
-<p>$$<br>y = b + w_1x_1 + w_2x_2 + w_3x_3<br>$$</p>
-<p>Feature cross introduces non-linearity as well as richer features.</p>
-<p>Feature crossing is usually employed in categorical features rather than continuous features.</p>
-<p>Deep Cross Network models features cross as matrix multiplication. In the context of deep learning, sparse features are transformed to embeddings. Therefore dot-product of embeddings is actually a kind of feature crossing. It resembles SVM that apply a kernel to the original features. The original features are sparse features and the kernel is a look-up table. After that, sparse features are transformed to dense features.</p>
-<p>Deep cross also utilizes residual connection because it adds \(x_l\) after feature crossing. And multiple layers of feature crossing is able to model higher level of feature crossing like \([x_1,x_2……x_n]\).</p>
-<p>Detailed introduction of DCN is in Recommendation System.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/26/share_meeting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/26/share_meeting/" itemprop="url">Share_meeting</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-26T16:10:13+08:00">
-                2018-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>MEMM</p>
-<p>CRF考虑全局信息而不是局部标记，但是计算量比较大，参数多，不容易部署</p>
-<p>TransE algor<br>TransH algor<br>GAUSSIAN EMBEDDING</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Multi-task Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/25/Multi-task Learning/" itemprop="url">Multi-task Learning(MTL)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T11:41:19+08:00">
-                2018-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In normal machine learning or deep learning task, we optimize a specific metric, which loses information from other tasks that may be desirable to improve the original task. This kind of information comes from related tasks. And this kind of shared representations may be helpful to our original task because it actually utilise much more data than the original task.</p>
-<p>Generally, as soon as you find yourself optimizing more than one loss function, you are effectively doing multi-task learning (in contrast to single-task learning). In those scenarios, it helps to think about what you are trying to do explicitly in terms of MTL and to draw insights from it.</p>
-<p>“MTL improves generalization by leveraging the domain-specific information contained in the training signals of related tasks”.</p>
-<p><strong>Inductive Bias</strong><br>A model prefer some hypotheses over others. For instance, a common form of inductive bias is l1 regularization, which leads to a preference for sparse solutions.</p>
-<p>In the case of MTL, the inductive bias is introduced by other auxiliary tasks, which leads the model to prefer hypotheses that explain more than one task. This in general leads to better generalization ability.</p>
-<h2 id="Hard-parameter-sharing-Multi-output"><a href="#Hard-parameter-sharing-Multi-output" class="headerlink" title="Hard parameter sharing(Multi-output)"></a>Hard parameter sharing(Multi-output)</h2><p>Multiple tasks share the same hidden layers. Each task has its own output. The risk of overfitting the shared parameters is an order N – where N is the number of tasks – smaller than overfitting the task-specific parameters.</p>
-<h2 id="Soft-parameter-sharing"><a href="#Soft-parameter-sharing" class="headerlink" title="Soft parameter sharing"></a>Soft parameter sharing</h2><p>Each task has its own model, parameters and output. There are constraints between parameters such that the parameters are similar. A sample constraint is L2 distance between parameters.</p>
-<h3 id="Advantages-of-MTL"><a href="#Advantages-of-MTL" class="headerlink" title="Advantages of MTL"></a>Advantages of MTL</h3><ol>
-<li>Data Augmentation. Training multiple tasks together enables the model to employ more data in training.</li>
-<li>Data are noisy. MTL is able to regularize the model to learn efficient and effective representations that are desirable for multiple tasks.</li>
-<li>Eavesdropping. The model might be easier to learn some specific features from some specific dataset. MTL is able to help the model to learn easier from different tasks or dataset.</li>
-<li>Representation bias. MTL biases the model to prefer representations that other tasks also prefer. This will also help the model to generalize to new tasks as a hypothesis space that performs well for many tasks will also perform well for learning novel tasks as long as they are from the same environment</li>
-<li>Regularization. MTL acts as a regularizer by introducing an inductive bias. As such, it reduces the risk of overfitting as well as the Rademacher complexity of the model</li>
-</ol>
-<h3 id="Technique-to-do-MTL"><a href="#Technique-to-do-MTL" class="headerlink" title="Technique to do MTL"></a>Technique to do MTL</h3><ol>
-<li>Block-sparse regularization. For related tasks, use regularization like L1 or other modified regularization to enforce the model learn sparse features which would be utilised to do inference for multiple tasks.</li>
-<li>Learn the relationships between tasks: clustering, KNN, Bayesian methods.</li>
-</ol>
-<p>In MTL for computer vision, approaches often share the convolutional layers, while learning task- specific fully-connected layers. Deep Relationship Networks add matrix priors on the fully connected layers.</p>
-<h3 id="Auxiliary-tasks"><a href="#Auxiliary-tasks" class="headerlink" title="Auxiliary tasks"></a>Auxiliary tasks</h3><p>Use Auxiliary tasks so that to achieve better result on the main task.</p>
-<ol>
-<li>Related task</li>
-<li>Adversarial task. Maximize the training error using a gradient reversal layer</li>
-<li>Hints. Predicting features as an Hints as an auxiliary task. MTL could be used to learn features that are not easy to learn. </li>
-<li>Predicting inputs. In some cases, some inputs might not be useful for the task but they might be able to guide the learning. Use them as output might help the task.</li>
-<li>Representation learning. employing a task that is known to enable a model to learn transferable representations(language modeling)</li>
-</ol>
-<p>There are many definitions about related tasks.</p>
-<ol>
-<li>use the same features to make a decision</li>
-<li>related tasks share a common optimal hypothesis class</li>
-</ol>
-<h2 id="MTL-in-NLP"><a href="#MTL-in-NLP" class="headerlink" title="MTL in NLP"></a>MTL in NLP</h2><p>add a language modeling objective to the model that is trained jointly with the main task model.</p>
-<p>The scale of loss for different tasks are supposed to be same, otherwise task with large loss would dominate the backpropagation so that the neural network would bias to the worst task rather than learn a good representation for all tasks.</p>
-<h3 id="Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding"><a href="#Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding" class="headerlink" title="Multi-Task Deep Neural Networks for Natural Language Understanding"></a>Multi-Task Deep Neural Networks for Natural Language Understanding</h3><p>It employs the same structure like bert to do pre-training. And then add a specific fine-tuning layer for each task and do fine-tuning together. </p>
-<p>For each task, the model would update the parameters including the task-specific layer and pre-training layer. Each eopch the model would be trained on all tasks separately which means their loss is not added together.</p>
-<h3 id="Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics"><a href="#Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics" class="headerlink" title="Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics"></a>Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics</h3><p>It proposes to employ the variance of outputs to be the weight of the combined loss.</p>
-<h1 id="Core-of-MTL-what-to-share-All-parameters"><a href="#Core-of-MTL-what-to-share-All-parameters" class="headerlink" title="Core of MTL: what to share? All parameters?"></a>Core of MTL: what to share? All parameters?</h1><p>In conclusion, hard parameters sharing is still pervasive for neural-network based MTL. Recent advances on learning what to share, however, are promising. At the same time, our understanding of tasks – their similarity, relationship, hierarchy, and benefit for MTL – is still limited</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/git/" itemprop="url">git</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T16:29:37+08:00">
-                2018-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
-<p>swtich to a branch.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
-<p>add all to buffer</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m “comment”</span><br></pre></td></tr></table></figure>
-<p> commit the change and add comment</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;</span><br></pre></td></tr></table></figure>
-<p> push local branch to remote branch.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
-<p>update files from remote</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/seq2seq_tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/23/seq2seq_tensorflow/" itemprop="url">seq2seq_tensorflow</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T10:12:54+08:00">
-                2018-11-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>attention machanism is just an attention wrapper to wrap the RNN.</p>
-<p>Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout.</p>
-<p>The output of RNN has to be fed to a fully-connected neural network to convert the final hidden states to scores of the vocabulary. After that, employ a softmax function to squeeze all scores in a probability distribution.</p>
-<p>Process of constructing seq2seq model in tensorflow:</p>
-<ol>
-<li>define hyperparameters. Settings of hyperparameters could be loaded from config file or parsed from command line. Both parser and tf.app.flags could be used to parse.</li>
-<li>preprocessing data. Like batching, padding and so on.</li>
-<li>construct model. build encoder, decoder and combine them together.</li>
-<li>write a train wrapper funtion to wrap the training process.</li>
-<li>feed data to model and perform training</li>
-<li>perform validation and testing</li>
-</ol>
-<p>Loss of seq2seq: at each step, there is only one correct token given a sentence. At each time step, use softmax to calculate the loss and optimize the sum of total loss at all time steps.</p>
-<p>Given a sentence, each time step t, there is a loss \(l_t\). The total loss \(L=\sum_0^T l_i\) where T is the number of tokens in the sentence. The optimizer is actually optimize this loss.</p>
-<p>The seq2seq could be regarded as a latent structure like auto-encoder because all information of the whole sentence is encoded in the final hidden state.</p>
-<p>Latent variable: 隐藏变量</p>
-<p>To do:</p>
-<ol>
-<li>write an iterator</li>
-<li></li>
-</ol>
-<p>For regression(time series data prediction) problem, just add a scaling factor with a fully-connected layer.</p>
-<p>The decoder could use the last encoder hidden state or zero or encoder input[:-1] as initial state. </p>
-<p>The RNN decoder outputs tensor with same shape as the input. </p>
-<p>The input is batched tensor, and RNN encoder takes sequence as input. Sequence is a list of tensor with shape [batch_size, dim]. The length of the sequence is the time step.</p>
-<p>When you use Dataset to train the model, during inference, there are several ways to feed the data:</p>
-<ol>
-<li>use dataset and feed label with idiot values</li>
-<li>create two meta graph with different input, and inference graph load parameters from the other.</li>
-<li>extract the input feature and feed with inference input.</li>
-</ol>
-<p>MAPE(Mean absolute percentage error):<br>$$<br>{\displaystyle {\mbox{M}}={\frac {100\%}{n}}\sum <em>{t=1}^{n}\left|{\frac {A</em>{t}-F_{t}}{A_{t}}}\right|,}<br>$$<br>Loss of each sample is the difference divided by the sample itself.</p>
-<h4 id="Embedding-size"><a href="#Embedding-size" class="headerlink" title="Embedding size"></a>Embedding size</h4><p>Assume n is the number of categorical features, embedding size could be \(k\sqrt[4] n\) or \(\log_2 (n)\).</p>
-<p>Only normalize output but not normalize input, model diverges.</p>
-<p>There are 2 kinds of seq2seq:</p>
-<ol>
-<li>encoder hidden state is only fed to the first step of the decoder</li>
-<li>encoder hidden state is fed to each step of the decoder</li>
-</ol>
-<p>add noise to encoder is beneficial to performance</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/tensorflow-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/16/tensorflow-1/" itemprop="url">tensorflow_1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T20:48:46+08:00">
-                2018-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p> tf.feature_column.bucketized_column divides coutinuous values into several ranges such that they are able to be represented as categorical features.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.feature_column.categorical_column_with_vocabulary_file(    key,    vocabulary_file,    vocabulary_size=None,    num_oov_buckets=0,    default_value=None,    dtype=tf.string)</span><br></pre></td></tr></table></figure>
-<p>maps each word in the vocabulary to an one-hot vector.</p>
-<p>tf.feature_column.categorical_column_with_hash_bucket maps features to specified number of features using hash(for example, mapping 1000 words to 100 embeddings means some words would share the same embedding.). In machine learning, this kind of hash often works well in practice. That’s because hash categories provide the model with some separation. The model can use additional features to further separate kitchenware from sports.</p>
-<p>tf.feature_column.crossed_column is able to combine features together. Somewhat counterintuitively, when creating feature crosses, you typically still should include the original (uncrossed) features in your model (as in the preceding code snippet). The independent latitude and longitude features help the model distinguish between examples where a hash collision has occurred in the crossed feature.</p>
-<p>As a rule of thumb,<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">embedding_dimensions =  number_of_categories**0.25</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">categorical_column = ... <span class="comment"># Create any categorical column</span></span><br><span class="line"><span class="comment"># Represent the categorical column as an embedding column.</span></span><br><span class="line"><span class="comment"># This means creating an embedding vector lookup table with one element for each category.</span></span><br><span class="line">embedding_column = tf.feature_column.embedding_column(    categorical_column=categorical_column,    dimension=embedding_dimensions)</span><br></pre></td></tr></table></figure>
-<p>tf.train.Features is used to wrap features of input.</p>
-<p><strong>tf.train.Example(features=features)</strong> is used to wrap examples.</p>
-<p>using TFRecord is more efficient. A parse function is used to parse a single example.</p>
-<h3 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h3><p>Most software could only process up to 120 tokens. Longer sequences are supposed to be truncated.</p>
-<p><strong>The padded labels change the total loss, which affects the gradients</strong>.<br>Two methods to alleviate this problem:</p>
-<ol>
-<li>Maintain a mask</li>
-</ol>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Writting is to explain an idea clearly and convince others. Presentation basically is trying to tell a story.</p>
+<p>Is the sentence easy to understand?<br>Is the sentence enjoyable and interesting to read?  </p>
+<p>Principles of writing:</p>
 <ul>
-<li><p>Maintain a mask (True for real, False for padded tokens)</p>
-</li>
-<li><p>Run your model on both the real/padded tokens (model will predict labels for the padded tokens as well)</p>
-</li>
-<li><p>Only take into account the loss caused by the real elements</p>
+<li>Cut unnecessary words and phrases; learn to part with your words!</li>
+<li>Use the active voice (subject + verb + object)</li>
+<li>Write with verbs: use strong verbs, avoid turning verbs into nouns, and don’t bury the main verb!</li>
+</ul>
+<h4 id="Cut-unnecessary-words"><a href="#Cut-unnecessary-words" class="headerlink" title="Cut unnecessary words"></a>Cut unnecessary words</h4><ul>
+<li>Dead weight words and phrases</li>
+<li>Empty words and phrases</li>
+<li>Long words or phrases that could be short</li>
+<li>Unnecessary jargon and acronyms</li>
+<li>Repetitive words or phrases</li>
+<li>Adverbs</li>
+</ul>
+<ol>
+<li>Eliminate negatives</li>
+<li>Eliminate superfluous uses of “there<br>are/there is”</li>
+<li>Omit needless prepositions</li>
+</ol>
+<h4 id="Use-active-voice"><a href="#Use-active-voice" class="headerlink" title="Use active voice"></a>Use active voice</h4><p>More clearly.<br>In method section, it’s fine to use passive voice.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/scrapy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/scrapy/" itemprop="url">scrapy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T12:40:44+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"stat_chart"</span></span><br></pre></td></tr></table></figure>
+<p>name is used to identify the spider name.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/05/QA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/05/QA/" itemprop="url">QA</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-05T11:45:50+08:00">
+                2018-09-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Two kinds of QA:</p>
+<ul>
+<li>IR-based question answering </li>
+<li>knowledge-based question answering</li>
+</ul>
+<p>Factoid questions: questions that can be answered with simple facts expressed in short text answers.</p>
+<h3 id="IR-based-question-answering"><a href="#IR-based-question-answering" class="headerlink" title="IR-based question answering:"></a>IR-based question answering:</h3><ul>
+<li>Question Processing: extract focus, classify the question type</li>
+<li>Answer Type Detection(Question Classification)</li>
+<li>Query Formulation: form a query from keywords and send to an information retrieval system.</li>
+<li>Passage Retrieval: retrive documents and rank them according to features such as relevance, number of keywords and so on.</li>
+<li>Answer Processing <ol>
+<li>pattern-extraction: use pattern to extract the answer from retrived document</li>
+<li>N-gram tiling</li>
+</ol>
 </li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">full_loss = tf.nn.softmax_cross_entropy_with_logits(preds, labels)</span><br><span class="line">loss = tf.reduce_mean(tf.boolean_mask(full_loss, mask))</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>Let your model know the real sequence length so it only predict the labels for the real tokens.<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cell = tf.nn.rnn_cell.GRUCell(hidden_size)</span><br><span class="line"></span><br><span class="line">rnn_cells = tf.nn.rnn_cell.MultiRNNCell([cell] * num_layers)</span><br><span class="line"></span><br><span class="line">tf.reduce_sum(tf.reduce_max(tf.sign(seq), <span class="number">2</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">output, out_state = tf.nn.dynamic_rnn(cell, seq, length, initial_state)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>tensorflow seq2seq resembles caffe that use a file or string to define model parameters and perform training/inference.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.contrib.rnn.MultiRNNCell(    [lstm_cell() for _ in range(number_of_layers)])</span><br></pre></td></tr></table></figure>
-<p>is a RNN cell with a number of layers. In pytorch, you only need to input the number of layers.</p>
-<p>Sample code using tf.name_scope and tf.variable_scope.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">"Train"</span>):</span><br><span class="line">      train_input = PTBInput(config=config, data=train_data, name=<span class="string">"TrainInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">None</span>, initializer=initializer):</span><br><span class="line">        m = PTBModel(is_training=<span class="keyword">True</span>, config=config, input_=train_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Training Loss"</span>, m.cost)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Learning Rate"</span>, m.lr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Valid"</span>):</span><br><span class="line">      valid_input = PTBInput(config=config, data=valid_data, name=<span class="string">"ValidInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mvalid = PTBModel(is_training=<span class="keyword">False</span>, config=config, input_=valid_input)</span><br><span class="line">      tf.summary.scalar(<span class="string">"Validation Loss"</span>, mvalid.cost)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> tf.name_scope(<span class="string">"Test"</span>):</span><br><span class="line">      test_input = PTBInput(</span><br><span class="line">          config=eval_config, data=test_data, name=<span class="string">"TestInput"</span>)</span><br><span class="line">      <span class="keyword">with</span> tf.variable_scope(<span class="string">"Model"</span>, reuse=<span class="keyword">True</span>, initializer=initializer):</span><br><span class="line">        mtest = PTBModel(is_training=<span class="keyword">False</span>, config=eval_config,</span><br><span class="line">                         input_=test_input)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> tf.variable_scope(name, reuse=<span class="keyword">None</span>, initializer=initializer, reuse=tf.AUTO_REUSE):</span><br><span class="line">  <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<p>The above code enable reusing of variables such that subgraphs would not be constructed.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.identity(    input,    name=None)</span><br></pre></td></tr></table></figure>
-<p>return a tensor that is identical with input tensor.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder_with_default(    input,    shape,    name=None)</span><br></pre></td></tr></table></figure>
-<p>If there is no value fed to placeholder, the placeholder would take input value as input. The input is actually a default value.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.sign(    x,    name=None)</span><br></pre></td></tr></table></figure>
-<p>return a tensor to indicate whether x is greater than 0 or not.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.math.reduce_max(    input_tensor,    axis=None,    keepdims=None,    name=None,    reduction_indices=None,    keep_dims=None)</span><br></pre></td></tr></table></figure>
-<p>Computes the maximum of elements across dimensions of a tensor. </p>
-<p>Attention mechanism in tensorflow is to use an attention_wrapper to wrap the RNNcell.</p>
-<p>tf.layers.dense() apply a fully connected layer to given inputs and return result.<br>tf.layers.Dense() return an abstract layer.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.tile(    input,    multiples,    name=None)</span><br></pre></td></tr></table></figure>
-<p>create a tensor that repeats input multiples times. The multiples argument has to specify how many times you want to repeat for each dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.concat()</span><br></pre></td></tr></table></figure>
-<p>shape 0 of tensors must be equal.</p>
-<p>[<code>tf.nn.dynamic_rnn</code>] is used for sequence with unknown length.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.map_fn()</span><br></pre></td></tr></table></figure>
-<p>The output should have the same shape as input. If input is a sequence, the output has to be a sequence.</p>
-<p>callback:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,</span><br><span class="line">                    validation_split = <span class="number">0.2</span>, verbose=<span class="number">0</span>, callbacks=[early_stop, PrintDot()])</span><br></pre></td></tr></table></figure>
-<p>callback is used to perform specific operation during training. Model.fit() returns a set of values(loss, accuracy) during training.</p>
 
           
         
@@ -1446,7 +937,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/Recommendation-System-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/30/LSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1465,7 +956,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/16/Recommendation-System-1/" itemprop="url">Recommendation_System</a></h1>
+                <a class="post-title-link" href="/2018/08/30/LSTM/" itemprop="url">LSTM</a></h1>
         
 
         <div class="post-meta">
@@ -1477,8 +968,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T11:07:40+08:00">
-                2018-11-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-30T15:39:41+08:00">
+                2018-08-30
               </time>
             
 
@@ -1517,42 +1008,25 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>CTR</strong>(<strong>Click-Through-Rate</strong>).</p>
-<p>Recommendation system could be regarded as a search-ranking problem. First the system retrives a list of candidate items according to the a query. Second the system ranks the candidate items and return some items with high scores.</p>
-<p><strong>Memorization</strong> is loosely defined as recommeding according to co-occurence of items or features. It could recommend items directly(some one buy a medical app after a sport app, then recommend a medical app if someone buy a sport app) or with data mining of those co-occurence(some one with features \(x_m\)buy a medical app after a sport app, then only recommend a medical app to an user who bought a sport app if his/her user profile matches \(x_m\)).</p>
-<p><strong>Generalization</strong> is loosely defined as discovering of underlying features from existing co-occurence so that new feature combinations could be inferred from existing co-occurence.</p>
-<p>data for Web-scale recommender systems is mostly <strong>discrete and categorical</strong>, leading to a large and sparse feature space that is challenging for feature exploration. For continuous data, a common method is to divide the continuous range into several continuous range such that one-hot vector could be employed to represent a range.</p>
-<h4 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h4><p>AUC - ROC curve is a performance measurement for classification problem at various thresholds settings. ROC is a probability curve and AUC represents degree or measure of separability. It tells how much model is capable of distinguishing between classes. Higher the AUC, better the model is at predicting 0s as 0s and 1s as 1s. By analogy, Higher the AUC, better the model is at distinguishing between patients with disease and no disease.</p>
-<h2 id="Wide-amp-Deep"><a href="#Wide-amp-Deep" class="headerlink" title="Wide&amp;Deep"></a>Wide&amp;Deep</h2><p>Factorization machine and DNN requires no or less feature engineering because it is able to learn dense and low-dimension embedding. But it would over-generate so that recommendation would be unrelevent. Wide refers to logistic regression. It is able to simply remember some rules. Wide&amp;Deep combines them together. </p>
-<p>For wide part, features are transformed to one-hot sparse feature and fed to a linear transformation. The wide part is actually a logistic regression. Here the feature transformation is actually a set of hand-craft feature combination.</p>
-<p>Feature transformation:<br>$$<br>\varnothing_k(x)=\prod^d_{i=1}x_i^{c_{ki}}<br>$$<br>where \(\varnothing_k(x)\) is feature transformations.For binary features, a cross-product transformation (e.g., “AND(gender=female, language=en)”) is 1 if and only if the constituent features (“gender=female” and “language=en”) are all 1, and 0 otherwise.</p>
-<p>Linear transformation:<br>$$<br>\mathbf{w}_{wide}^T[ \mathbf{x},\phi  ( \mathbf{x}  )]<br>$$<br>where \([ \mathbf{x},\phi  ( \mathbf{x}  )]\) is concatenation of original features and transformmed features.</p>
-<p>At last, values of wide part and deep part are added together and fed to a sigmoid function to do binary classification. The result is in [0,1] which is the probability that the user would click the recommended item.<br>$$<br>P(Y=1| \mathbf{x})=\sigma (\mathbf{w}<em>{wide}^T[\mathbf{x},\phi ( \mathbf{x} )] + \mathbf{w}</em>{deep}^Ta^{( l_f )}+b)<br>$$</p>
-<h2 id="DeepFM"><a href="#DeepFM" class="headerlink" title="DeepFM"></a>DeepFM</h2><p>In pytorch, * operator means element-wise multiplication and would be broadcasted automatically.</p>
-<h4 id="Factorization-Machines-FM"><a href="#Factorization-Machines-FM" class="headerlink" title="Factorization Machines(FM)"></a>Factorization Machines(FM)</h4><p>Naive version of feature cross is like below formula:<br>$$<br>y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n}\sum_{j=i+1}^nw_{ij}x_ix_j<br>$$<br>where \(x_i, x_j\) are features. But this kind of computation is expensive. Factorization Machines project the feature to vector space so as to reduce computation complexity.</p>
-<p>$$<br>y = w_0 + \sum_{i=1}^nw_ix_i + \sum_{i=1}^{n}\sum_{j=i+1}^n&lt;V_i,V_j&gt; x_ix_j<br>$$<br>$$<br>\sum_{i=1}^{n}\sum_{j=i+1}^n&lt;V_i,V_j&gt; x_ix_j<br>$$<br>$$<br>=\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^n&lt;V_i,V_j&gt; x_ix_j -\frac{1}{2}\sum_{i=1}^n&lt;V_i,V_i&gt;x_ix_i<br>$$<br>$$<br>=\frac{1}{2}(\sum_{i=1}^n\sum_{j=1}^{n}\sum_{f=1}^kv_{if}v_{jf}x_ix_j - \sum_{i=1}^{n}\sum_{f=1}^kv_{if}v_{if}x_ix_i)<br>$$<br>$$<br>=\frac{1}{2}\sum_{f=1}^{k}((\sum_{i=1}^nv_{if}x_i)(\sum_{j=1}^nv_{jf}x_j) - \sum_{i=1}^nv_{if}^2x_i^2)<br>$$<br>$$<br>=\frac{1}{2}\sum_{f=1}^{k}((\sum_{i=1}^nv_{if}x_i)^2 - \sum_{i=1}^nv_{if}^2x_i^2))<br>$$</p>
-<p>The above deduction reduces the computation complexity from \(O(kn^2)\) to \(O(kn)\)[1]  where k is the dimensionality of vectors. \(\sum_{i=1}^{n}\sum_{j=i+1}^n&lt;V_i,V_j&gt; x_ix_j\) models feature interaction and \(&lt;V_i,V_j&gt;\),which are the vectors of the original input, serve as the weight matrix \(w_{ij}\) in the original equation becasue they are also parameters. As a result, the feature interaction is actually the multiplication of the original features with the learnt parameters.</p>
-<h3 id="Field-aware-Factorization-Machines-FFM"><a href="#Field-aware-Factorization-Machines-FFM" class="headerlink" title="Field-aware Factorization Machines(FFM)"></a>Field-aware Factorization Machines(FFM)</h3><p>Each latent vector is associated with several field which means other kinds of knowledge.<br>$$<br>y = w_0 + \sum_{i=1}^nw_ix_i+\sum_{i=1}^n\sum_{j=i+1}^n&lt;V_{i,f_j},V_{j,f_i}&gt;x_ix_j<br>$$</p>
-<p>For example, \(\phi_{FM}（V,x） = &lt;V_{ESPN},V_{Nike}&gt;+&lt;V_{ESPN},V_{Male}&gt;+&lt;V_{Nike},V_{Male}&gt;\) is the feature cross of FM while \(\phi_{FFM}（V,x） = &lt;V_{ESPN,A},V_{Nike,P}&gt;+&lt;V_{ESPN,G},V_{Male,P}&gt;+&lt;V_{Nike,G},V_{Male,A}&gt;\) is the feature cross of FFM.</p>
-<p>DeepFM substitutes the wide part in wide&amp;deep with <strong>Factorization Machines(FM)</strong>. It is able to model high-level feature combination by transforming the sparse feature to dense and low-dimension features. It models feature interaction as inner product of embeddings.</p>
-<p>A feature \(x_i\) is associated with a weight vector(embedding) \(v_i\) and feature interaction or feature combination is computed as \(&lt;v_i,v_j&gt;\). Intuitively, in stead of computing feature combination directly, it insert an embedding layer to the network so as to convert features to embeddings. Compuing the dot product of embedding to model feature combination.</p>
-<p>FM and FFM are low-rank models. They are able to capture low-order(first and second order) feature interactions. DNN are high-rank models that are able to capture high-order feature interactions.</p>
-<p><strong>DeepFM combines low-rank and high-rank models together to capture both low-order and high-order feature interactions. Wide&amp;Deep requires manual feature engineering for wide part and DeepFM is an end-to-end model.</strong></p>
-<h2 id="DCN-Deep-Cross-Network"><a href="#DCN-Deep-Cross-Network" class="headerlink" title="DCN(Deep Cross Network)"></a>DCN(Deep Cross Network)</h2><p>The features are usually sparse, it is unable to represent those sparse features with one-hot vector if the size of vocabulary is huge. Therefore embedding layer is employed to convert sparse features to dense features which are real-value vectors like Natural Language Processing. After that, those vectors are stacked or concatenated with other dense features.</p>
-<p>It also utilises matrix multiplication to implement feature combination.<br>$$<br>x_{l+1} = x_0 x_l^T w_l + b_l + x_l = f(x_l, w_l, b_l) + x_l<br>$$</p>
-<p>$$<br>x_0 = [x^T_{embed,1}, . . . , x^T_{embed,k}, x^T_{dense}]<br>$$</p>
-<p>where \(x_0\) is the concatenation of embedding features and dense features and \(^T_{embed,k}\) means the embedding of the kth feature. \(f(x_l, w_l, b_l)\) is the feature cross between feature \(x_l\) and the original feature \(x_0\). After feature cross, the layer feature \(x_l\) is added to the next layer feature so that the feature cross \(f(x_l, w_l, b_l)\) is a kind of residual connection.</p>
-<p>The degress of cross features is growing with the number of layers.</p>
-<p>At last, outputs of the deep network and the cross network are also concatenated together and fed to the logistic regression.</p>
-<p>In a nutshell, the cross network models linear features interactions between high-order features and the original features while deep network models non-linear and only high-order features interactions. They are combined together at the end. The cross network could be regarded as a kind of generalization of FM.</p>
-<p>The implementation of DCN is also element-wise multiplication. The difference is that it sum the dim1 so that the matrix becomes a vector.</p>
-<p><strong>wide&amp;deep, deepFM and Deep&amp;Cross are multi-task learning.</strong></p>
-<h3 id="Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb"><a href="#Real-time-Personalization-using-Embeddings-for-Search-Ranking-at-Airbnb" class="headerlink" title="Real-time Personalization using Embeddings for Search Ranking at Airbnb"></a>Real-time Personalization using Embeddings for Search Ranking at Airbnb</h3><p>Airbnb proposed to do real time personalization. They achieved this by train embeddings in a booking session. The approach is totally the same as word2vec except that they focus on predicting the final booking. As a result, in each booking session there are several sliding windows and they try to max the probability of predicting the final booking listing(here listing could be regarded as an item).</p>
-<h5 id="Adapting-Training-for-Congregated-Search"><a href="#Adapting-Training-for-Congregated-Search" class="headerlink" title="Adapting Training for Congregated Search"></a>Adapting Training for Congregated Search</h5><p>They added negative samples from the same location(e.g. Paris) so that the embeddings are able to capture location information.</p>
-<h5 id="Cold-start"><a href="#Cold-start" class="headerlink" title="Cold start"></a>Cold start</h5><p>To deal with cold start problem, they identified the most similar several items within a certain range and averaged them.</p>
-<h4 id="User-type-amp-Listing-type-Embeddings"><a href="#User-type-amp-Listing-type-Embeddings" class="headerlink" title="User-type &amp; Listing-type Embeddings"></a>User-type &amp; Listing-type Embeddings</h4><p>User-type Embeddings are used to capture the long-time interest. But most user books only several or even one time. So there are far less training data. They proposed to employ rule-based mapping to map different used to the same used embedding so as to get enough training data. They did the same thing to Listing-type Embeddings.</p>
-<p>Given learnt embeddings, use cos similarities to do recommendation.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://blog.csdn.net/John_xyz/article/details/78933253" target="_blank" rel="noopener"># CTR预估算法之FM, FFM, DeepFM及实践</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><p>Forget gate, input gate and output gate controls the last hidden state, current input, and current output respectively.</p>
+<p>The cell state propagates the information through the network. It runs straight down the entire chain, with only some minor linear interactions. It’s very easy for information to just flow along it unchanged.</p>
+<p>Forget gate controls how much the network forgets about the previous cell state. The output of forget gate do element-wise multiplication with the last cell state.</p>
+<p>$$f_t=\sigma(W_f\cdot [h_{t-1},x_t]+b_f)$$</p>
+<p>The input gate controls how much the network utilize the current cell state to update the last cell state. The current cell state is also compute by the last hidden state and current input with just the different weight and bias matrix.</p>
+<p>$$i_t=\sigma(W_i\cdot [h_{t-1},x_t]+b_i)$$</p>
+<p>$$\tilde{C_t}=tanh(W_C\cdot [h_{t-1},x_t]+b_C)$$</p>
+<p>Update of the cell state:</p>
+<p>$$C_t=f_t<em>C_{t-1}+i_t</em>\tilde$$</p>
+<p>The final output gate controls hou much the network outputs the current cell state after novation. The network puts the cell state through tanh (to push the values to be between −1 and 1) and multiply it by the output of the sigmoid gate, so that it only outputs the parts we decided to.</p>
+<p>$$o_t=\sigma(W_o\cdot [h_{t-1},x_t]+b_o)\ h_t = o_t*tanh(C_t)$$</p>
+<h2 id="Variant-of-LSTM"><a href="#Variant-of-LSTM" class="headerlink" title="Variant of LSTM"></a>Variant of LSTM</h2><p>$$C_t=f_t<em>C_{t-1}+(1-f_t)</em>\tilde$$</p>
+<p>Utilize \(1-f_t\) to substitutes the input gate.</p>
+<h3 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h3><p>With a single update gate to control whether the last hidden state or the current state is the output. A reset gate is used to control how much the past hidden units affect the current output.</p>
+<p>$$z_t=\sigma(W_z\cdot [h_{t-1},x_t]+b_z)\ r_t=\sigma(W_r\cdot [h_{t-1},x_r]+b_i)\ \tilde{h_t}=tanh(W\cdot [r_t<em>h_{t-1},x_t]) \ h_t = (1-z_t)</em>h_{t-1}+z_t*\tilde{h_t}<br>$$</p>
+<p>Here reset gate resembles the forget gate in LSTM. It decides how much the last hidden state contributes to the current hidden state. And the final output hidden state is controlled by the update gate which resembles the ouput gate in LSTM. Simpler than LSTM.</p>
+<h3 id="Peephole-connection"><a href="#Peephole-connection" class="headerlink" title="Peephole connection"></a>Peephole connection</h3><p>The value of gate is now controled by cell state, hidden state and current input. </p>
+<p>$$o_t=\sigma(W_o\cdot [C_t,h_{t-1},x_t]+b_o)\ i_t=\sigma(W_i\cdot [C_{t-1},h_{t-1},x_t]+b_i)\ _t=\sigma(W_f\cdot [C_{t-1},h_{t-1},x_t]+b_f)<br>$$</p>
+
           
         
       
@@ -1600,7 +1074,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/SVM-2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1619,7 +1093,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/09/SVM-2/" itemprop="url">SVM_2</a></h1>
+                <a class="post-title-link" href="/2018/08/25/NN-Architecture/" itemprop="url">NN_Architecture</a></h1>
         
 
         <div class="post-meta">
@@ -1631,8 +1105,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-09T11:04:55+08:00">
-                2018-10-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
+                2018-08-25
               </time>
             
 
@@ -1671,11 +1145,406 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>$$margin={1\over \left|{\boldsymbol {w}}\right|} = \sqrt{w_1^2+w_2^2+…+w_n^2}=\left|{\boldsymbol {w}}\right|_{2}$$</p>
-<p>optimal hyperplane:</p>
-<p>$$sign(w_1x_1+w_2x_2+…+w_nx_n+b)=sign(\boldsymbol {w}^Tx)$$</p>
-<h2 id="Quadratic-Programming"><a href="#Quadratic-Programming" class="headerlink" title="Quadratic Programming"></a>Quadratic Programming</h2><p>minimize a (convex) quadratic function, subject to linear inequality constraints.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
+<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
+<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
+<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
+</ul>
+<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
+<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/training-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/training-problem/" itemprop="url">training_problem</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T17:11:10+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="Cuda-Out-of-Memory"><a href="#Cuda-Out-of-Memory" class="headerlink" title="Cuda Out of Memory"></a>Cuda Out of Memory</h4><p>Solution: </p>
+<ul>
+<li>reduce batch size</li>
+<li>reduce model size(reduce number of activation, increase filter size, decrease filter number)</li>
+<li>For RNN, reduce the length</li>
+</ul>
+<h3 id="Validation-accuracy-aigzagging"><a href="#Validation-accuracy-aigzagging" class="headerlink" title="Validation accuracy aigzagging"></a>Validation accuracy aigzagging</h3><ul>
+<li>Data is not normalized, taking some steps would deviate from the local minimum</li>
+<li>training step size is too large.</li>
+</ul>
+<h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><p>Assign high probability to <s> and <e>.</e></s></p>
+<p>ber: </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/22/gradient-descent/" itemprop="url">gradient_descent</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T11:45:16+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Vanilla-gradient-descent"><a href="#Vanilla-gradient-descent" class="headerlink" title="Vanilla gradient descent"></a>Vanilla gradient descent</h2><p>Calculate the gradient of the whole dataset and average the gradient by the size of the dataset. </p>
+<p>Drawback: Time-consuming, compute gradients redundantly.</p>
+<h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>Take a batch of examples and calculate the gradient. After that, average the gradient by the batch size.</p>
+<h2 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h2><p>Take a single example and calculate the gradient. </p>
+<p>Drawback: High variance, fluctuate a lot.<br>In high dimension, some directions would have larger gradients and zigzag a lot. The direction of gradient would deviate from the best direction.</p>
+<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>Momentum would accumulate gradient if the direction is the same and reduce the gradient if the direction zigzag a lot such that the overall direction would point to the local/global minimum with less zigzagging.</p>
+<p>$$v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta)$$</p>
+<p>$$\theta = \theta + v_t$$</p>
+<p>\(\theta\) is the gradient and \(\gamma\) is the momentum which is usually 0.9. \(\eta\) is the learning rate.</p>
+<h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>It is a lookahead version of momentum. The gradient would be updated using momentum, and a estimate of the future gradient after normal momentum update\(\nabla_\theta J( \theta - \gamma v_{t-1} )\) would be added to the current update of gradient so as to accelerate convergence. <strong>It significantly increased the performance of RNNs.</strong></p>
+<p>$$<br>v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta + \gamma v_{t-1} ) \<br>\theta = \theta + v_t$$</p>
+<h3 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h3><p>It adapts the learning rate to the parameters, performing larger updates for infrequent and smaller updates for frequent<br>parameters.</p>
+<p>$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$</p>
+<p>\(G_{t} \in \mathbb{R}^{d \times d}\) is a diagonal matrix where each diagonal element i,i is the sum of the squares of the gradients w.r.t. \(\theta_i\) up to time step t, while \(\epsilon\) is a smoothing term that avoids division by zero (usually on the order of 1e−8). Interestingly, without the square root operation, the algorithm performs much worse.</p>
+<p>Drawback: The accumulated sum keeps growing during training and causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</p>
+<h3 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h3><p>$$\Delta \theta_t = - \dfrac{RMS[\Delta \theta]<em>{t-1}}{RMS[g]</em>{t}} g_{t} \<br>\theta_{t+1} = \theta_t + \Delta \theta_t<br>$$</p>
+<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>Approximate the learning rate with the RMS of parameter updates until the previous time step. </p>
+<p>$$E[g^2]<em>t = 0.9 E[g^2]</em>{t-1} + 0.1 g^2_t \<br>\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]<em>t + \epsilon}} g</em>{t}<br>$$</p>
+<p>It still accumulates the gradient while it also depends on the current gradient and the updates do not get monotonically smaller.<br>RMSProp still modulates the learning rate of each weight based on the magnitudes of its gradients, which has a beneficial equalizing effect.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank" rel="noopener">An overview of gradient descent optimization<br>algorithms</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/Network-in-Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/Network-in-Network/" itemprop="url">Network_in_Network</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T22:02:36+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
           
         
       
@@ -1714,7 +1583,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1764,7 +1633,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -296,1229 +296,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/Probabilistic-Graph/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/14/Probabilistic-Graph/" itemprop="url">Probabilistic_Graph</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-14T23:11:10+08:00">
-                2019-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Both Markovian random field and Conditional random field have the same type of functions. The difference is that Markovian random field is a generative model while CRF is a discriminative model.</p>
-<p><strong>generative model</strong> calculate the distribution over all variables.</p>
-<p><strong>discriminative model</strong> calculate the conditional probability directly.</p>
-<p>EM算法本质可看作先根据参数\(\theta\)计算出关于z的概率分布Q(z)=\(p(z|x,\theta)\),然后用这个z的概率分布去计算似然函数，选择使似然函数最大的参数集\(\theta\).</p>
-<p>EM算法缺点：收敛到局部极值点</p>
-<h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><p>概率图的推断可采用变量消除法，变量消除的顺序对计算量有着非常重要的影响。一种改进就是消息传播法，将概率图中的变量表示成一棵树，选取一个变量作为根结点，所有其他节点将信息传播至根结点后，根结点再将信息往下传播，直到叶子节点，叶子节点是我们关心的变量。</p>
-<p>变量消除法或消息传播法都是精确计算，一种替代方式是通过采样来进行近似计算。</p>
-<h5 id="Markov-Chain-Monte-Carlo-MCMC"><a href="#Markov-Chain-Monte-Carlo-MCMC" class="headerlink" title="Markov Chain Monte Carlo(MCMC)"></a>Markov Chain Monte Carlo(MCMC)</h5>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/VAE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/VAE/" itemprop="url">VAE</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T15:10:27+08:00">
-                2019-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Auto-Encoder"><a href="#Auto-Encoder" class="headerlink" title="Auto Encoder"></a>Auto Encoder</h2><p>Encoder is used to map input to hidden states while decoder is supposed to reconstruct input from hidden states.</p>
-<p>Auto encoder is supposed to capture used information in input rather than simply copying data. It could be regarded that the decoder is simply an auxiliary task.</p>
-<p>An autoencoder whose code(hidden states) dimension is less than the input dimension is called <strong>undercomplete</strong>. It is supposed to learn the most salient features of data distribution. </p>
-<p>If the capacity of encoder and decoder is too much, it is possible that encoder simply map the input to an unique code(like hash with collision) while decoder simply reconstruct input from that code without leanring useful information.</p>
-<p>Tricks to train auto encoder including regularizing the auto encoder such that features are sparse.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/07/Relational-inductive-biases/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/07/Relational-inductive-biases/" itemprop="url">Relational_inductive_biases</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-07T11:05:38+08:00">
-                2019-03-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Fully connected network imposes weak relational inductive biases which is that each output is able to interact with input.</p>
-<p>CNN impose locality and translation invariance relational biases.</p>
-<p>RNN could also be regarded as a kind of CNN because the update rules are shared across all time steps. The difference is that there are Markov dependence between hidden states which is that update of \(h_t\) depends on \(h_{t-1}\) and x. This reflects the relational inductive bias of temporal invariance.</p>
-<p>sets and graphs: Invariance to ordering. Ordering is not always meaningful. There is not useful information in ordering of graphs.</p>
-<p>Graph Network relational inductive bias:</p>
-<ol>
-<li>invariant to permutation</li>
-<li>can express arbitrary relationships among entities</li>
-<li>per-node, per-edge functions are reused across all edges and nodes</li>
-</ol>
-<p>Generally, the step of a graph network :</p>
-<ol>
-<li>update each edge indivisually</li>
-<li>aggregate the edge information from the prospective of a single node</li>
-<li>update each node individually</li>
-<li>aggregate the edge information to be used in global attribute prediction</li>
-<li>aggregate the node information to be used in global attribute prediction</li>
-<li>Compute updated global attribute</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/04/Information-Theory/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/04/Information-Theory/" itemprop="url">Information_Theory</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-04T15:36:45+08:00">
-                2019-03-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Entropy:<br>number of bits required to encode message.</p>
-<p>Joint Entropy:<br>$$<br>H(X,Y) = -\sum_{x,y} p(x,y) \log p(x,y)<br>$$</p>
-<p>Conditional Entropy:<br>$$<br>H(Y|X) = -\sum_{x,y} p(x,y) \log p(y|x)<br>$$</p>
-<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>H(X,Y) &amp;= -\sum_{x,y} p(x,y) \log p(x,y) \<br>&amp;= -\sum_{x,y} p(x,y) \log {p(x)p(y|x)} \<br>&amp;= -\sum_{x,y} p(x,y) \log p(y|x) - \sum_{x,y} p(x,y) \log p(x) \<br>&amp;= H(Y|X) - \sum_x p(x) \log p(x) \<br>&amp;= H(Y|X) + H(X)<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
-<p>Self-information is used to quantify information in a way that less likely events should have higher information content and independent events should have additive information:<br>$$<br>I(x)=-\log P(x)<br>$$</p>
-<p>Shannon entropy<br>$$<br>H = - \sum_{i=1}^{N} p(x_i) \log p(x_i)<br>$$<br>Shannon entropy is the number of bits needed to identify a data sample drawn from the distribution. A distribution with more uncertainty, the more bits would be required to identify a data sample.</p>
-<p>KL divergence:<br>$$<br>D_{KL} (P || Q) = E_{x\sim P}\log\frac{P(x)}{Q(x)}=E_{x\sim P}[logP(x)-logQ(x)]<br>$$</p>
-<p>Note that data sample x is drawn from probability distribution P and P, Q are different probability distribution. Therefore \(D_{KL} (P || Q) \neq  D_{KL} (Q || P)\). KL divergence is used to measure the amount of difference between two distributions. It could be regarded as a kind of distance except that the KL divergence is asymmetric. </p>
-<p>cross-entropy:<br>$$<br>H(P,Q)=-E_{x\sim P}logQ(x)<br>$$<br>Note: \(H(P,Q)=H(P)+D_{KL} (P || Q)\). Minimizing the cross-entropy with respect to Q is equivalent to minimizing the KL divergence, because Q does not participate in the omitted term.</p>
-<p>cross-entropy could be regarded as a measure of distance between two distributions(hypothesis distribution and the “golden” distribution).</p>
-<p>Mutual Information</p>
-<p>It is KL divergence of joint probability distribution and multiplication of two distributions.</p>
-<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= KL(p(x, y) || p(x)p(y)) \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}}<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
-<p>$$<br>% &lt;![CDATA[<br>\begin{equation<em>}<br>\begin{split}<br>I(X, Y) &amp;= -\sum p(x, y) \log {\frac {p(x)p(y)} {p(x, y)}} \<br>&amp;= -\sum p(x, y) \log {\frac {p(x)}{p(x|y)}} \<br>&amp;= H(X) - H(X|Y) \<br>&amp;= H(Y) - H(Y|X)<br>\end{split}<br>\end{equation</em>} %]]&gt;<br>$$</p>
-<p>Cross-entropy means how many bits are required to identify data samples drawn from distribution P using an approximate distribution Q. In the context of deep learning, assume the real distribution is P, and learnt distribution is Q, cross-entropy means the number of bits is required to identify a data samples drawn from real distribution P. The higher the entropy, more bits are required, the worse the learnt distribution and the model.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://leijun00.github.io/2014/07/information-theory/" target="_blank" rel="noopener"># 信息论基础</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/03/Unsupervised-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/03/Unsupervised-Learning/" itemprop="url">Unsupervised_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-03T17:16:18+08:00">
-                2019-03-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h2><p>shortage:</p>
-<ol>
-<li>suscepticle to noise and initialization</li>
-<li>choose of K</li>
-<li>perform poor on unbalanced data</li>
-<li>each data point belongs to only one cluster(hard clustering)</li>
-</ol>
-<p>Improvement:</p>
-<ul>
-<li>Choose K with sum squared error(SSE). Find the k that SSE decreases dramatically.</li>
-<li>Gap Statistic</li>
-</ul>
-<p>$$<br>Gap(k)=E(logD_k)-logD_k<br>$$<br>where \(E(logD_k)\) is generated from Monte Carlo simulation. We generate the same number of data samples from uniform distribution and calculate the error. \(logD_k\) is the kmeans error. Therefore, the better the clustering, the large the Gap(k). This approach is automatic.</p>
-<h3 id="Kmeans-1"><a href="#Kmeans-1" class="headerlink" title="Kmeans++"></a>Kmeans++</h3><p>Choose the first cluster center randomly, and choose other center as far as posssible.</p>
-<h3 id="ISODATA"><a href="#ISODATA" class="headerlink" title="ISODATA"></a>ISODATA</h3><p>Suitable for massive amount of data.</p>
-<ul>
-<li>split the cluster when variance is high</li>
-<li>eliminate the cluster if number of data samples is small</li>
-</ul>
-<h2 id="Expectation-Maximization-Algorithm-EM"><a href="#Expectation-Maximization-Algorithm-EM" class="headerlink" title="Expectation-Maximization Algorithm(EM)"></a>Expectation-Maximization Algorithm(EM)</h2><p>It’s used to find a set of parameters that max the probability of given data samples with latent variables. In the context of kmeans, the latent variable is the number of K.</p>
-<ol>
-<li>initialize \(\theta\)</li>
-<li>E step Evaluate \(Q_i(z_i)=p(z_i|x_i;\theta)\). Calculate the expectation of latent variable given data samples and parameters.</li>
-<li>M step Evaluate \(\hat \theta=argmax\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\)</li>
-</ol>
-<p>We employ the expectation of latent variables given data samples and parameters to substitute the real knowledge of latent variables. And do maximum likelihood to find the optimal parameter sets.</p>
-<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>\sum_ilogp(x_i;\theta)&amp;=\sum_ilog\sum_{z_i}p(x_i,z_i;\theta)\<br>&amp;=\sum_ilog\sum_{z_i}Q_i(z_i)\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\<br>&amp;\ge\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\<br>\end{align} %]]&gt;<br>$$<br>where greater than and equal to results from jensen inequality. Because \(Q_i(z_i)\) is a probability distribution Q() over latent variable z, \(Q_i(z_i)\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\) could be regarded as a weighted summarization of term \(\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\). Therefore the inequality is derived from \(<br>{\varphi \left({\frac {\sum a_{i}x_{i}}{\sum a_{i}}}\right)\leq {\frac {\sum a_{i}\varphi (x_{i})}{\sum a_{i}}}\qquad \qquad}\).</p>
-<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>Q_i(z_i)&amp;=\frac{p(x_i,z_i;\theta)}{\sum_zp(x_i,z;\theta)}\<br>&amp;=\frac{p(x_i,z_i;\theta)}{p(x_i;\theta)}\<br>&amp;=p(z_i|x_i;\theta)\<br>\end{align} %]]&gt;<br>$$<br>where \(Q_i(z_i)\) is a probability distribution Q() over latent variable z.</p>
-<h4 id="Convergence-of-EM-Algorithm"><a href="#Convergence-of-EM-Algorithm" class="headerlink" title="Convergence of EM Algorithm:"></a>Convergence of EM Algorithm:</h4><p>Well, suppose \(\theta^{(t)}\) and \(\theta^{(t+1)}\) are the parameters from two successive iterations of EM.<br>$$<br>% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t)})&amp;=\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}<br>\end{align} %]]&gt;<br>$$</p>
-<p>The parameters \(\theta^{(t+1)}\) are then obtained by maximizing the right hand side of the equation above.</p>
-<p>$$<br>% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t+1)})&amp;\ge\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t+1)})}{Q_i(z_i)}\<br>&amp;\ge \sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}\<br>=L(\theta^{(t)})<br>\end{align} %]]&gt;<br>$$<br>This first inequality comes from the fact that \(% &lt;![CDATA[<br>\begin{align}<br>L(\theta^{(t)})&amp;\ge \sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta^{(t)})}{Q_i(z_i)}<br>\end{align} %]]&gt;\)</p>
-<p>holds for any values of \(Q_i\) and \(\theta\), and in particular holds for \(Q_i\) = \(Q_i^{(t)}\),   \(\theta=\theta^{(t+1)}\). The second equation is derived from \(\theta^{(t+1)}=argmax\sum_i\sum_{z_i}Q_i(z_i)log\frac{p(x_i,z_i;\theta)}{Q_i(z_i)}\).</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf" target="_blank" rel="noopener">CS229 Lecture notes</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<https://deepmind.com/blog/unsupervised-learning/>">Unsupervised learning: the curious pupil</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/KBQA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/01/KBQA/" itemprop="url">KBQA</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-01T17:31:36+08:00">
-                2019-03-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Dynamic-Memory-Network"><a href="#Dynamic-Memory-Network" class="headerlink" title="Dynamic Memory Network"></a>Dynamic Memory Network</h3><p>Input: if the input is a paragraph which is a sequence of sentences, the sentences are concat together with [sep] separating each sentence. The final resentation of the whole paragraph is concatenation of a set of [eos] representations. If there is only one sentence, the [eos] representation is employed to represent the whole sentence.</p>
-<p>The episodic memory unit performs multiple rounds of update to enable iterative focusing of important knowledge.</p>
-<h4 id="TransE"><a href="#TransE" class="headerlink" title="TransE"></a>TransE</h4><p>Turn entities and relationships to embeddings. Its intuition is to maximize the loss that between positive examples and negative examples like negative sampling. The negative samples are get by replacing head or tail randomly(not simultaneously).</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1506.07285.pdf" target="_blank" rel="noopener">Ask Me Anything: Dynamic Memory Networks for Natural Language Processing</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/27/Optimization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/27/Optimization/" itemprop="url">Optimization</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-27T14:16:40+08:00">
-                2019-02-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>To alliviate the gradient exploding problem, there are two methods:</p>
-<ol>
-<li>gradient clip. If gradient is larger than a threshold, the gradient is set to a contant value</li>
-<li>weight decay(L1, L2 regularization)</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/24/Searching/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/24/Searching/" itemprop="url">Searching</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T22:48:53+08:00">
-                2019-02-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="lexical-matching"><a href="#lexical-matching" class="headerlink" title="lexical matching"></a>lexical matching</h2><p>lexical matching: search engine matching terms in documents with those in a search query, sort according to similarity.[1]</p>
-<p>shortage: susceptical to different language structure and words</p>
-<p>Below is improvement.</p>
-<h2 id="Semantic-modeling"><a href="#Semantic-modeling" class="headerlink" title="Semantic modeling"></a>Semantic modeling</h2><p>Early approaches: LSA, LDA, PLSA. LSA extracts abstract semantic content using SVD</p>
-<p>Recent improvements: </p>
-<ul>
-<li>Go deeper: e.g., semantic hashing (Hinton and Salakhutdinov 2011)</li>
-<li>Go beyond documents: e.g., using click signals (Gao et al. 2010; Gao et al. 2011</li>
-</ul>
-<p>State of the art document ranking approaches that use models trained on clickthrough data. </p>
-<ul>
-<li>Oriented PCA (Diamantaras et al., 1996) </li>
-<li>Word Translation Model (Gao et al. 2010) </li>
-<li>Bilingual Topic Model (Gao et al. 2011) </li>
-<li>Discriminative Projection Model (Yih et al. 2011; Gao et al. 2011)</li>
-</ul>
-<p>Deep learning approach:<br>Train an auto encoder to learn internal representations through minimizing reconstruction error.</p>
-<p>During application or testing, input a query and a document and calculate the similarity directly. Like word vectors, project the word to a space and calculate the distance in that space to measure similarity.</p>
-<p>Two shortages:</p>
-<ol>
-<li>learning objective problem: Model is trained by reconstructing the document, not for relevance measure</li>
-<li>Scalability problem: Model size increases rapidly along the vocabulary size</li>
-</ol>
-<h3 id="DSSM"><a href="#DSSM" class="headerlink" title="DSSM"></a>DSSM</h3><ol>
-<li>Tri-letter hashing to reduce the vocabulary size less susceptical to misspelling, inflection.</li>
-<li>Each query and document are represented as a feature vector and propagated to a neural network to generate new feature vectors. Compute the cos similarity between query and document feature vectors and feed them to the softmax and max the probability of the clicked document and query.</li>
-</ol>
-<h2 id="Sentence-Similarity"><a href="#Sentence-Similarity" class="headerlink" title="Sentence Similarity"></a>Sentence Similarity</h2><p>openAI-GPT: use transformer to encode two sentences. Two sentences are concat together. There is no natural structure for two sentences. So sen1[sep]sen2 and sen2[sep]sen1 are fed to transformer to compute feature vectors and added together. And then feed to a linear layer to compute similarity.</p>
-<h4 id="Sentence-Embedding"><a href="#Sentence-Embedding" class="headerlink" title="Sentence Embedding"></a>Sentence Embedding</h4><p>Two kinds of training method:</p>
-<ol>
-<li>generation: pair sentences together, generate sentences given other sentence</li>
-<li>classification: pair sentences together, do classification, whether a sentence is the next sentence of given sentence.</li>
-</ol>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/DSSM_cikm13_talk_v4.pdf" target="_blank" rel="noopener">Learning deep structured Semantic models for web search using clickthrough data</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/DL-tricks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/20/DL-tricks/" itemprop="url">DL_tricks</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-20T21:57:19+08:00">
-                2019-02-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Weight-Decay-L2-regularization"><a href="#Weight-Decay-L2-regularization" class="headerlink" title="Weight Decay(L2 regularization)"></a>Weight Decay(L2 regularization)</h3><p>Weight decay is equivalent to decrease the weight during training each time updating the parameters.</p>
-<h3 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h3><p>Batch Normalization not reduce internal covariance shift(ICS), but make the optimization landscape smoother so that the gradient and loss are not that bumpy.</p>
-<p>BN is performed after affine functions and before activation function.</p>
-<p>$$<br>\mu_B = \frac{1}{B} \sum_i^B \mu_i<br>$$</p>
-<p>$$<br>\sigma_B^2 = \frac{1}{B - 1} \sum_i^B \sigma^2_i<br>$$</p>
-<p>$$<br>\hat{X} = \frac{X - \mu_B}{\sqrt{\sigma_B^2 + \epsilon}}<br>$$</p>
-<p>$$<br>y^{(k)} = \gamma^{k}\hat{x}^{(k)}+\beta^{(k)}<br>$$</p>
-<p>As you can see, the effect of batch normalisation is gone when \(\beta = \mu_B,\gamma = \sigma_B^2\).</p>
-<p>BN is performed as a layer on each neuron.  For CNN, each kernel is regarded as a neuron. So the mean and variance is computed from the batch with size h*w as the kernel size. For example, in fully connected network, BN if performed on each neuron so that the computation is performed on a batch of data \(x_1, ….., x_{m-1}\) with size m. When it comes to CNN, the computation if performed on a batch of data \(x_1,….., x_{m\times p\times q-1}\) where p and q is the kernel size. The BN operation is performed within a batch of data across every data samples at different locations in a kernel.</p>
-<p>During inference, the bias and variance are computed from the mean of all batches during training.<br>$$<br>E[x] = E_{\beta}[\mu_\beta]<br>$$</p>
-<p>$$<br>Var[x] = \frac{m}{m-1}E_\beta[\sigma^2_\beta]<br>$$<br>Here \(\beta\) means all batches during training.</p>
-<h3 id="Layer-Normalization"><a href="#Layer-Normalization" class="headerlink" title="Layer Normalization"></a>Layer Normalization</h3><p>In a standard RNN, there is a tendency for the average magnitude of the summed inputs to the recur- rent units to either grow or shrink at every time-step. Layer normalization make it invariant to it.</p>
-<p>Layer normalization performs normalization on each time step separately over all hidden units. It use inputs to the hidden units to compute \(\mu, \sigma\). It resembles batch normalization on CNN.</p>
-<p>The computation of a neural network is:</p>
-<p>$$<br>\alpha_i^l={w_i^l}^Th^l<br>$$</p>
-<p>$$<br>\quad h_i^{l+1}=f(\alpha_i^l+b_i^l)<br>$$</p>
-<p>where f() is an activation function.</p>
-<p>We present the computation of batch normalisation and rewrite it for comparison purpose.</p>
-<p>$$<br>\bar{a}_i^l = g_i^{l}\frac{a_i^l - \mu_i^l}{\sigma_i^l}<br>$$</p>
-<p>$$<br>\mu_i^l = \mathbb{E}[a_i^l]<br>$$</p>
-<p>$$<br>\sigma_i^l = \sqrt{\mathbb{E}[(a_i^l - \mu_i^l)^2]}<br>$$</p>
-<p>where g is a normalisation term such that the neural network is able to recover the original distribution.</p>
-<p>The computation of layer normalisation:</p>
-<p>$$<br>\mu^l = \frac{1}{H}\sum_{i = 1}^H a_i^l<br>$$</p>
-<p>$$<br>\sigma^l = \sqrt{\frac{1}{H} \sum_{i = 1}^H (a_i^l - \mu^l)^2}<br>$$</p>
-<p>From above functions, you can see that the normalisation terms \(\mu \text{and} \sigma\) is computed from all the hidden units rather than a mini-batch and shared across all hidden units. With different training examples, \(\sum_{i = 1}^H a_i^l\) would be different so that the normalisation terms \(\mu\) and \(\sigma\) are also different. In the context of recurrent neural network, the equation is rewritten as:</p>
-<p>$$<br>h^t=f[\frac{g}{\sigma^t}\odot (a^t-\mu^t+b)]<br>$$</p>
-<p>A standard recurrent neural network tends to ether grow or shrink the magnitude of input which leads to either exploding or vanishing gradient problem. Layer normalisation enables to model to be invariant to growth or shrink in magnitude of input.</p>
-<h3 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h3><p>During training, each neuron is killed with probability p. During testing, each neuron is always presented but decrease the weight to pw.</p>
-<p>Dropout is a kind of ensemble learning because each time it train a different neural network and finally combine all of them together.</p>
-<h4 id="Learning-rate-warmup"><a href="#Learning-rate-warmup" class="headerlink" title="Learning rate warmup"></a>Learning rate warmup</h4><p>During the first k epochs, employ small learning rate to avoid unstable gradient and parameter updates. From k+1 epoch, employ normal learning rate.</p>
-<p>constant warmup:<br>$$<br>\hat{\eta} = k\eta<br>$$</p>
-<h4 id="Temperature"><a href="#Temperature" class="headerlink" title="Temperature"></a>Temperature</h4><p>Temperature which is usually 1 is used to scale the logits that are input to softmax[1].</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">Distilling the Knowledge in a Neural Network</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/20/Ensemble-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1638,11 +415,1213 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/13/data-warehouse/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/13/data-warehouse/" itemprop="url">data_warehouse</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-13T22:06:00+08:00">
+                2019-02-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>A data warehouse is where you store data from multiple data sources to be used for historical and trend analysis reporting.</p>
+<p>A data mart serves the same purpose but comprises only one subject area.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/Transfer-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/03/Transfer-Learning/" itemprop="url">Transfer_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-03T17:43:34+08:00">
+                2019-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Transfer learning in NLP:<br>Hypercolumns: Embeddings at different levels are used as features, concatenated either with the word embeddings or with the inputs at intermediate layers like ELMO.</p>
+<p>Unsupervised pre-training usually improves performance. And adding a language model as auxilliary task also improves performance.</p>
+<p>Semi-supervised task: perform unsupervised pre-training and perform supervised fine-tuning.</p>
+<p>steps:</p>
+<ol>
+<li>freeze low layers and train the high layers like the last few layers</li>
+<li>unfreeze all layers and train with discriminative learning rates which means that training low layers with low learning rate and high layer with high learning rate.</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/Hive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/24/Hive/" itemprop="url">Hive</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T15:58:43+08:00">
+                2018-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Hive is a data warehousing infrastructure based on <a href="http://hadoop.apache.org/" target="_blank" rel="noopener">Apache Hadoop</a>. It provides SQL for ad-hoc querying.</p>
+<p>Hive data is organized into:</p>
+<ul>
+<li><strong>Databases</strong>.</li>
+<li><strong>Tables</strong>.</li>
+<li><strong>Partitions</strong>.</li>
+<li><strong>Buckets</strong>.</li>
+</ul>
+<p>Hive supports Primitive Types. Implicit conversion is allowed for types from child to an ancestor.</p>
+<p>Complex Types is built up from primitive types.</p>
+<ul>
+<li>Structs.</li>
+<li>Maps (key-value tuples).</li>
+<li>Arrays (indexable lists).</li>
+</ul>
+<h3 id="Case-insensitive"><a href="#Case-insensitive" class="headerlink" title="Case-insensitive"></a>Case-insensitive</h3><p>All Hive keywords are case-insensitive, including the names of Hive operators and functions.</p>
+<p>MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through.</p>
+<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果。</p>
+<p>请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。</p>
+<ul>
+<li>JOIN: 如果表中有至少一个匹配，则返回行</li>
+<li>LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行</li>
+<li>RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行</li>
+<li>FULL JOIN: 只要其中一个表中存在匹配，就返回行</li>
+</ul>
+<p>${precision}<br>美元符号$引用变量，大括号{}表示变量名字。${precision}表示引用名为precision的变量。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://cwiki.apache.org/confluence/display/Hive/Tutorial" target="_blank" rel="noopener"> Hive Tutorial</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/pandas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/21/pandas/" itemprop="url">pandas</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T16:56:05+08:00">
+                2018-12-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandas.cut(x, bins)</span><br></pre></td></tr></table></figure>
+<p>turn continuous features to categorical features.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/tf_visualization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/tf_visualization/" itemprop="url">tf_visualization</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-19T12:21:41+08:00">
+                2018-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>tf histrogram:<br>x-axis represents the exact value. y-axis represents number of step. It represent frequency of a parameter. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/sctipts_python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/06/sctipts_python/" itemprop="url">scripts_python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T20:25:03+08:00">
+                2018-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>remove file from a directory<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'visual/train'</span>, <span class="string">'visual/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    list(map(<span class="keyword">lambda</span> i: os.remove(os.path.join(dir_to_search, i)),os.listdir(dir_to_search)))</span><br><span class="line"><span class="comment">#     l = list(map(lambda i: os.path.join(dir_to_search, i),os.listdir(dir_to_search)))</span></span><br></pre></td></tr></table></figure></p>
+<p>move newest files to another dir<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line">    time_l.sort()</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">0</span>:</span><br><span class="line">        dst = <span class="string">'visual/train'</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        dst = <span class="string">'visual/val'</span></span><br><span class="line">    shutil.copyfile(d[time_l[<span class="number">-1</span>]], os.path.join(dst, d[time_l[<span class="number">-1</span>]].split(<span class="string">'/'</span>)[<span class="number">-1</span>] ))</span><br><span class="line">    i += <span class="number">1</span></span><br><span class="line"><span class="comment">#     '''delete'''</span></span><br><span class="line"><span class="comment">#     for i in range(len(time_l)-1):</span></span><br><span class="line"><span class="comment">#         os.remove(d[time_l[i]])</span></span><br></pre></td></tr></table></figure></p>
+<p>delect old files</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line">dir_l = [<span class="string">'summary/train'</span>, <span class="string">'summary/val'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir_to_search <span class="keyword">in</span> dir_l:</span><br><span class="line">    time_l = []</span><br><span class="line">    file_l = []</span><br><span class="line">    d = &#123;&#125;</span><br><span class="line"><span class="comment">#dir_to_search = os.path.curdir</span></span><br><span class="line">    <span class="keyword">for</span> dirpath, dirnames, filenames <span class="keyword">in</span> os.walk(dir_to_search):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> filenames:</span><br><span class="line">            curpath = os.path.join(dirpath, file)</span><br><span class="line">            file_modified = datetime.datetime.fromtimestamp(os.path.getmtime(curpath))</span><br><span class="line"><span class="comment">#             print(file_modified)</span></span><br><span class="line"><span class="comment">#             print(file)</span></span><br><span class="line">            time_l.append(file_modified)</span><br><span class="line">            file_l.append(curpath)</span><br><span class="line">            d[file_modified] = curpath</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line"><span class="comment">#     print(file_l)</span></span><br><span class="line">    time_l.sort()</span><br><span class="line"><span class="comment">#     print(time_l)</span></span><br><span class="line">    <span class="string">'''delete'''</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(time_l)<span class="number">-1</span>):</span><br><span class="line">        os.remove(d[time_l[i]])</span><br><span class="line"><span class="comment">#     print(d[time_l[-1]])</span></span><br><span class="line">            </span><br><span class="line"><span class="comment">#               if datetime.datetime.now() - file_modified &gt; datetime.timedelta(hours=24):</span></span><br><span class="line"><span class="comment">#                   os.remove(curpath)</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/04/Data Preprocessing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/04/Data Preprocessing/" itemprop="url">Data Preprocessing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-04T14:09:33+08:00">
+                2018-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>sklearn.preprocessing.StandardScaler() transform the data to zero mean and unit variance.</p>
+<ol>
+<li>Features selection according to experience or something like that.</li>
+<li>Features processing. Features are in original data, some steps are necessary to preprocess the data and get corresponding features.</li>
+<li>Data cleaning.</li>
+<li>Data sampling and filtering. Not all data would be used to train a model. Then you need to sample the data points. Methods include random sampling and others. Filtering is to detect and remove outliers. Common methods are KNN, clustering.</li>
+<li>Features classification. </li>
+<li>Feature processing and analysis.</li>
+</ol>
+<p>Features classification:</p>
+<ol>
+<li>Low-level and high-level features. Low-level features are mainly original features like user ID, time, weather. High-level features are processed features like sentiment.</li>
+<li>Static features and dynamic features. Static features are stable or seldom changed like age, height. Dynamic features change frequently like distance, temperature.</li>
+<li>0-1 features, one-hot(categorical) features, continuous features.</li>
+</ol>
+<p>Feature processing:</p>
+<ol>
+<li>features normalization</li>
+<li>features discretization</li>
+<li>missing values. </li>
+</ol>
+<p>Dimensionality reduction:</p>
+<ol>
+<li>Sometimes increasing the dimensionality of features is good for classification.</li>
+<li>Common methods to reduce dimensionality are PCA, LDA.</li>
+</ol>
+<p>Features selection:</p>
+<ol>
+<li>features generation.</li>
+<li>Evaluation.</li>
+</ol>
+<p>Features generation:</p>
+<ol>
+<li>Complete search. BFS, Branch and Bound.</li>
+<li>Heuristic. SFS, Sequential Forward Selection; SBS,Sequential Backward Selection; LRS,Plus-L Minus-R Selection.</li>
+<li>Random. RGSS, Random Generation plus Sequential Selection; SA, Simulated Annealing; GA, Genetic Algorithms.</li>
+</ol>
+<p>Feature normalization: if there is not feature normalization, some features with larger range like [0, +10000] compared to [0,3] would impose more influence on the model. </p>
+<p>During deployment, performance(real-time, low-delay) is signifiacnt. There would be tradeoff between the amount of data and performance(accuracy). A possible solution is to construct a tree for features like hierachical softmax so that finding a feature is more efficient.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://tech.meituan.com/machinelearning_data_feature_process.html" target="_blank" rel="noopener"># 机器学习中的数据清洗与特征处理综述</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/02/Feature Cross/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/02/Feature Cross/" itemprop="url">Feature Cross</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-02T18:33:55+08:00">
+                2018-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Feature cross is dot-product of two or more features. It transform linear features to non-linear features.</p>
+<p>A <strong>feature cross</strong> is a synthetic feature that encodes nonlinearity in the feature space by multiplying two or more input features together.</p>
+<p>$$<br>x_3 = x_1x_2<br>$$<br>where \(x_3\) is a new feature and it is fed to the classifier as a feature.</p>
+<p>$$<br>y = b + w_1x_1 + w_2x_2 + w_3x_3<br>$$</p>
+<p>Feature cross introduces non-linearity as well as richer features.</p>
+<p>Feature crossing is usually employed in categorical features rather than continuous features.</p>
+<p>Deep Cross Network models features cross as matrix multiplication. In the context of deep learning, sparse features are transformed to embeddings. Therefore dot-product of embeddings is actually a kind of feature crossing. It resembles SVM that apply a kernel to the original features. The original features are sparse features and the kernel is a look-up table. After that, sparse features are transformed to dense features.</p>
+<p>Deep cross also utilizes residual connection because it adds \(x_l\) after feature crossing. And multiple layers of feature crossing is able to model higher level of feature crossing like \([x_1,x_2……x_n]\).</p>
+<p>Detailed introduction of DCN is in Recommendation System.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/25/Multi-task Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/25/Multi-task Learning/" itemprop="url">Multi-task Learning(MTL)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-25T11:41:19+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>In normal machine learning or deep learning task, we optimize a specific metric, which loses information from other tasks that may be desirable to improve the original task. This kind of information comes from related tasks. And this kind of shared representations may be helpful to our original task because it actually utilise much more data than the original task.</p>
+<p>Generally, as soon as you find yourself optimizing more than one loss function, you are effectively doing multi-task learning (in contrast to single-task learning). In those scenarios, it helps to think about what you are trying to do explicitly in terms of MTL and to draw insights from it.</p>
+<p>“MTL improves generalization by leveraging the domain-specific information contained in the training signals of related tasks”.</p>
+<p><strong>Inductive Bias</strong><br>A model prefer some hypotheses over others. For instance, a common form of inductive bias is l1 regularization, which leads to a preference for sparse solutions.</p>
+<p>In the case of MTL, the inductive bias is introduced by other auxiliary tasks, which leads the model to prefer hypotheses that explain more than one task. This in general leads to better generalization ability.</p>
+<h2 id="Hard-parameter-sharing-Multi-output"><a href="#Hard-parameter-sharing-Multi-output" class="headerlink" title="Hard parameter sharing(Multi-output)"></a>Hard parameter sharing(Multi-output)</h2><p>Multiple tasks share the same hidden layers. Each task has its own output. The risk of overfitting the shared parameters is an order N – where N is the number of tasks – smaller than overfitting the task-specific parameters.</p>
+<h2 id="Soft-parameter-sharing"><a href="#Soft-parameter-sharing" class="headerlink" title="Soft parameter sharing"></a>Soft parameter sharing</h2><p>Each task has its own model, parameters and output. There are constraints between parameters such that the parameters are similar. A sample constraint is L2 distance between parameters.</p>
+<h3 id="Advantages-of-MTL"><a href="#Advantages-of-MTL" class="headerlink" title="Advantages of MTL"></a>Advantages of MTL</h3><ol>
+<li>Data Augmentation. Training multiple tasks together enables the model to employ more data in training.</li>
+<li>Data are noisy. MTL is able to regularize the model to learn efficient and effective representations that are desirable for multiple tasks.</li>
+<li>Eavesdropping. The model might be easier to learn some specific features from some specific dataset. MTL is able to help the model to learn easier from different tasks or dataset.</li>
+<li>Representation bias. MTL biases the model to prefer representations that other tasks also prefer. This will also help the model to generalize to new tasks as a hypothesis space that performs well for many tasks will also perform well for learning novel tasks as long as they are from the same environment</li>
+<li>Regularization. MTL acts as a regularizer by introducing an inductive bias. As such, it reduces the risk of overfitting as well as the Rademacher complexity of the model</li>
+</ol>
+<h3 id="Technique-to-do-MTL"><a href="#Technique-to-do-MTL" class="headerlink" title="Technique to do MTL"></a>Technique to do MTL</h3><ol>
+<li>Block-sparse regularization. For related tasks, use regularization like L1 or other modified regularization to enforce the model learn sparse features which would be utilised to do inference for multiple tasks.</li>
+<li>Learn the relationships between tasks: clustering, KNN, Bayesian methods.</li>
+</ol>
+<p>In MTL for computer vision, approaches often share the convolutional layers, while learning task- specific fully-connected layers. Deep Relationship Networks add matrix priors on the fully connected layers.</p>
+<h3 id="Auxiliary-tasks"><a href="#Auxiliary-tasks" class="headerlink" title="Auxiliary tasks"></a>Auxiliary tasks</h3><p>Use Auxiliary tasks so that to achieve better result on the main task.</p>
+<ol>
+<li>Related task</li>
+<li>Adversarial task. Maximize the training error using a gradient reversal layer</li>
+<li>Hints. Predicting features as an Hints as an auxiliary task. MTL could be used to learn features that are not easy to learn. </li>
+<li>Predicting inputs. In some cases, some inputs might not be useful for the task but they might be able to guide the learning. Use them as output might help the task.</li>
+<li>Representation learning. employing a task that is known to enable a model to learn transferable representations(language modeling)</li>
+</ol>
+<p>There are many definitions about related tasks.</p>
+<ol>
+<li>use the same features to make a decision</li>
+<li>related tasks share a common optimal hypothesis class</li>
+</ol>
+<h2 id="MTL-in-NLP"><a href="#MTL-in-NLP" class="headerlink" title="MTL in NLP"></a>MTL in NLP</h2><p>add a language modeling objective to the model that is trained jointly with the main task model.</p>
+<p>The scale of loss for different tasks are supposed to be same, otherwise task with large loss would dominate the backpropagation so that the neural network would bias to the worst task rather than learn a good representation for all tasks.</p>
+<h3 id="Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding"><a href="#Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding" class="headerlink" title="Multi-Task Deep Neural Networks for Natural Language Understanding"></a>Multi-Task Deep Neural Networks for Natural Language Understanding</h3><p>It employs the same structure like bert to do pre-training. And then add a specific fine-tuning layer for each task and do fine-tuning together. </p>
+<p>For each task, the model would update the parameters including the task-specific layer and pre-training layer. Each eopch the model would be trained on all tasks separately which means their loss is not added together.</p>
+<h3 id="Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics"><a href="#Multi-Task-Learning-Using-Uncertainty-to-Weigh-Losses-for-Scene-Geometry-and-Semantics" class="headerlink" title="Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics"></a>Multi-Task Learning Using Uncertainty to Weigh Losses for Scene Geometry and Semantics</h3><p>It proposes to employ the variance of outputs to be the weight of the combined loss.</p>
+<h1 id="Core-of-MTL-what-to-share-All-parameters"><a href="#Core-of-MTL-what-to-share-All-parameters" class="headerlink" title="Core of MTL: what to share? All parameters?"></a>Core of MTL: what to share? All parameters?</h1><p>In conclusion, hard parameters sharing is still pervasive for neural-network based MTL. Recent advances on learning what to share, however, are promising. At the same time, our understanding of tasks – their similarity, relationship, hierarchy, and benefit for MTL – is still limited</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1692,7 +1671,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

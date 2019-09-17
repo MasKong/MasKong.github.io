@@ -296,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/15/Graph-Neural-Networks/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -315,7 +315,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/15/Graph-Neural-Networks/" itemprop="url">Graph_Neural_Networks</a></h1>
+                <a class="post-title-link" href="/2018/11/23/git/" itemprop="url">git</a></h1>
         
 
         <div class="post-meta">
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-15T14:30:36+08:00">
-                2019-02-15
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T16:29:37+08:00">
+                2018-11-23
               </time>
             
 
@@ -367,201 +367,16 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Spatial-Temporal Graph:</p>
-<p>each node is associated with a feature vector that evolves over time.</p>
-<p>GCN classification:</p>
-<ol>
-<li>add a node that connects to all other nodes in the graph as a kind of aggregated information(global node). Run the GCN algorithm and perform classification according to the node.</li>
-<li>global pooling</li>
-</ol>
-<p>shallow model:<br>each node is represented as a dense vector in the embedding matrix. </p>
-<p>A similarity function is used to map Node(u,v) to the embedding space such that<br>$$<br>similarity(u,v) = z_v^Tz_u<br>$$</p>
-<p>The key concept of GNN is how to aggregate neighborhood information. The computation in GNN is very intuitive. Each node is represented by its neighbors. This approach is the same as CBOW(word2vec) which employs a set of neighbor words to represent the center word. So features of a node is the aggregation of neighborhood information.</p>
-<p><strong>GNN could be trained in an unsupervised manner. The key concept is that similar nodes are with similar embeddings.</strong></p>
-<p>Model design:</p>
-<ol>
-<li>choose an approach to aggregate neighborhood information. </li>
-<li>define a loss function on embeddings</li>
-<li>training</li>
-<li>generate embeddings(possible to concatenate several layer embedding like ELMO)</li>
-</ol>
-<p>The parameters of aggregate function could be shared so as to reduce computation and generate to unseen nodes.</p>
-<p>The aggregate function could be weighted average(CNN), pooling or even RNN.</p>
-<h4 id="Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes"><a href="#Pinsage-scale-the-he-training-as-well-as-inference-of-node-embeddings-to-billions-of-nodes" class="headerlink" title="Pinsage: scale the he training as well as inference of node embeddings to billions of nodes"></a>Pinsage: scale the he training as well as inference of node embeddings to billions of nodes</h4><p>Innovations:</p>
-<ol>
-<li>On-the-fly graph convolutions(only part of network is used to do computation):  </li>
-</ol>
-<ul>
-<li>Sample the neighborhood around a node and dynamically construct a computation graph</li>
-<li>Perform a localized graph convolution around a particular node</li>
-</ul>
-<ol start="2">
-<li>Constructing convolutions via random walks </li>
-</ol>
-<ul>
-<li>pooling: select nodes that are more important</li>
-</ul>
-<ol start="3">
-<li>Efficient MapReduce inference</li>
-</ol>
-<p>Attention mechanism enables the neural network to aggregate the information according to importance of related nodes.</p>
-<p>Knowledge graphs are heterogeneous networks.</p>
-<p><strong>homogeneous graph</strong>: all nodes and all edges are associated with only one type.</p>
-<p>Challenge: how to preserve the information as much as possible? Only structural information is available in homogeneous graph.</p>
-<p><strong>heterogeneous graph(like Knowledge Graphs)</strong>: nodes and edges belong to more than one type. The set of node or edge attributes is larger than one.</p>
-<p><strong>first-order proximity</strong>: the distance between two nodes.</p>
-<p><strong>second-order proximity</strong>: similarity between neighbourhood node.</p>
-<h2 id="Graph-Embedding"><a href="#Graph-Embedding" class="headerlink" title="Graph Embedding"></a>Graph Embedding</h2><h4 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h4><p>Given a graph, map the graph to low-dimension vector and preserve the graph property. The ouput could be a single vector that represent the whole graph or a set of vectors that represent nodes and edges.</p>
-<p>there are many types of Graph Embedding. It is possible to adjust the representation of the graph and get graph embeddings in different granularities.</p>
-<p>Shortage of TranE:<br>train graph embedding separately, cannot utilize the information in the whole graph.</p>
-<h5 id="Node-Embedding"><a href="#Node-Embedding" class="headerlink" title="Node Embedding"></a>Node Embedding</h5><p>The intuition to train node embedding is that “close” nodes are supposed to have similar embeddings. The problem is how to define closeness which is proximity.</p>
-<h5 id="Edge-Embedding"><a href="#Edge-Embedding" class="headerlink" title="Edge Embedding"></a>Edge Embedding</h5><p>It is useful for tasks like link prediction and knowledge graph entity/relation prediction. </p>
-<p>The challenge is how to define similarity(i.e. similar edges may share many common or similar nodes) and asymmetric property(directed edge).</p>
-<h5 id="knowledge-graph-embedding"><a href="#knowledge-graph-embedding" class="headerlink" title="knowledge graph embedding"></a><strong>knowledge graph embedding</strong></h5><p>learns both the node and edge embeddings. Each knowledge graph is a triplet &lt; h, r, t &gt;. The embedding is learnt to preserve r between h and t in the embedded space, so that a missing entity/relation can be correctly predicted given the other two components in &lt; h,r,t &gt;.</p>
-<h5 id="Hybrid-Embedding"><a href="#Hybrid-Embedding" class="headerlink" title="Hybrid Embedding"></a>Hybrid Embedding</h5><p>It is a combination of nodes and edges embedding. Subgraph embedding could be trained as a whole structure or aggregation of component embeddings. Embedding with different granularities could reinforce each other. Reasonable edge and node embeddings are supposed to contain the substructure information. And vice versa, better clustering of communites or substructure could be detected when there are good embeddings.</p>
-<p>Challenges: generation of substructure, mapping of different embeddings to the same space.</p>
-<h5 id="Whole-Graph-Embedding"><a href="#Whole-Graph-Embedding" class="headerlink" title="Whole-Graph Embedding"></a>Whole-Graph Embedding</h5><p>The whole graph is mapped to a vector. A possible solution is to train the graph embedding with hierachical architecture like ELMO and concat them. But this is expensive. Whole-Graph Embedding facilitate graph-level classification and similarity calculation.</p>
-<p>Challenge: How to capture the properties of a whole graph and how to make a trade-off between expressiveness and efficiency?</p>
-<h2 id="Graph-Neural-Network"><a href="#Graph-Neural-Network" class="headerlink" title="Graph Neural Network"></a>Graph Neural Network</h2><p>Graph Neural Network is able to perform neural network operation on the whole graph, subgraphs or nodes, edges. GNN basically utilize information in the nodes between a specific node to represent a node.</p>
-<h4 id="DeepWalk"><a href="#DeepWalk" class="headerlink" title="DeepWalk"></a>DeepWalk</h4><p>Deepwalk is the graph version of skip-gram. Each word is regarded as a vertex and the context is modeled by the random walk. The rest are the same. Noted that the Hierarchical Softmax could also be negative sampling.</p>
-<p>Advantages:</p>
-<ol>
-<li>local exploration is easy to parallelize. Several random walkers can simultaneously explore different parts of the same graph. </li>
-<li>relying on information obtained from short random walks make it possible to accommodate small changes in the graph structure without the need for global recomputation.</li>
-</ol>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<http://www.perozzi.net/publications/14_kdd_deepwalk.pdf>">DeepWalk: Online Learning of Social Representations</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<<http://www.www2015.it/documents/proceedings/proceedings/p1067.pdf>>">LINE: Large-scale Information Network Embedding</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/Algorithms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/14/Algorithms/" itemprop="url">Algorithms</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T22:21:42+08:00">
-                2019-02-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Recursion:<br>reduce a problem to one or more smaller problems and hand those problems to a black box.<br>There is absolutely no need to care about the black box. It’s worthwhile to note that if there is impossible to simplify the problem, just solve it. And there must be an end for the recursion.</p>
-<p>heap:</p>
-<p>Heaplify should start from the end. BUILD-MAX-HEAP starts from the last second layer because the last layer has no children.</p>
-<p>If there are several same records and the records are exchanged during sorting, the sorting algorithm isn’t stable, otherwise it is stable</p>
-<p>bucket sort assumes data are uniformly distributed in [0,1) so that data are uniformly assigned to each bucket.</p>
-<ol>
-<li>create bucket</li>
-<li>assign data to buckets [0.1~0.2) to the 1 bucket and [0.2~0.3) to the 2 buckets</li>
-<li>sort data in each buckets</li>
-<li>merge</li>
-</ol>
-<p>Two sum:<br>use hashmap to record indexes of values in the array and perform lookup. reduce time complexity to O(n)</p>
-<p>海量数据处理 - 找出最大的n个数（top K问题)<br>建小顶堆，如果一个数大于顶部的数，将改数代替顶部的数，进行heaplify</p>
-<p>回溯法很适合用递归来实现</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout &lt;branch&gt;</span><br></pre></td></tr></table></figure>
+<p>swtich to a branch.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+<p>add all to buffer</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m “comment”</span><br></pre></td></tr></table></figure>
+<p> commit the change and add comment</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin &lt;local_branch&gt;:&lt;remote_branch&gt;</span><br></pre></td></tr></table></figure>
+<p> push local branch to remote branch.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>update files from remote</p>
 
           
         
@@ -610,7 +425,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/13/data-warehouse/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/23/seq2seq_tensorflow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -629,7 +444,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/13/data-warehouse/" itemprop="url">data_warehouse</a></h1>
+                <a class="post-title-link" href="/2018/11/23/seq2seq_tensorflow/" itemprop="url">seq2seq_tensorflow</a></h1>
         
 
         <div class="post-meta">
@@ -641,8 +456,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-13T22:06:00+08:00">
-                2019-02-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-23T10:12:54+08:00">
+                2018-11-23
               </time>
             
 
@@ -681,480 +496,46 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>A data warehouse is where you store data from multiple data sources to be used for historical and trend analysis reporting.</p>
-<p>A data mart serves the same purpose but comprises only one subject area.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/Machine-Learning-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/18/Machine-Learning-1/" itemprop="url">Machine_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-18T17:56:57+08:00">
-                2019-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Usually recall increase, precision decrease and vice versa.</p>
-<p>Reall measure how many examples are predicted to False if the examples are True.</p>
-<p>Precision measure how many examples are predicted to True if the examples are False.</p>
-<p>An ROC curve plots TPR vs. FPR at different classification thresholds. </p>
-<p><strong>AUC</strong> stands for “Area under the ROC Curve.” Measures the area underneath the entire ROC curve.</p>
-<p>AUC provides an aggregate measure of performance across all possible classification thresholds. One way of interpreting AUC is as the probability that the model ranks a random positive example more highly than a random negative example.</p>
-<p>AUCPR: area under predicsion and recall line</p>
-<p>Cross-validation is used to select model or parameters. In deep learning, it is 1-fold validation while cross-validation is k-fold validation and take the mean.</p>
-<p>Bias term is able to add information. For example, if an user likes movies a lot, then add a high bias and vice versa. If a movie is liked in general by most people, it also has a high bias.</p>
-<h2 id="Bias-Variance-tradeoff"><a href="#Bias-Variance-tradeoff" class="headerlink" title="Bias-Variance tradeoff"></a>Bias-Variance tradeoff</h2><p>The more complex the model, the higher the variance. For a complex model, if the data changes a bit, the model output is likely to change a lot correspondingly. A simple model with sparse connectivity rather than dense connectivity like fully-connect network is not that likely to change a lot if the data changes a bit due to sparse connectivity(please feel it intuitively). But a simple model tends to have high bias which is underfitting.</p>
-<p>In a nutshell, simple models tend to have high bias and low variance while complex models tend to have low bias(accurate) and high variance.</p>
-<p>This is so-called Bias-Variance tradeoff.</p>
-<h2 id="KL"><a href="#KL" class="headerlink" title="KL"></a>KL</h2><h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><p>important parameters:</p>
-<ul>
-<li>eta:learning_rate</li>
-<li>max_depth: max_depth of tree </li>
-<li>lambda: prevent overfitting</li>
-</ul>
-<p>subsample: sample part of training data which prevent overfitting<br>colsample: subsample the columns, like random forest</p>
-<p>Induction of xgboost:</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>attention machanism is just an attention wrapper to wrap the RNN.</p>
+<p>Dropout is also a wrapper to wrap RNN. During training, keep_prob = p. During testing and predict, keep_prob = 1, No dropout.</p>
+<p>The output of RNN has to be fed to a fully-connected neural network to convert the final hidden states to scores of the vocabulary. After that, employ a softmax function to squeeze all scores in a probability distribution.</p>
+<p>Process of constructing seq2seq model in tensorflow:</p>
 <ol>
-<li>greedy algorithm, choose the tree that reduce the loss as much as possible</li>
-<li>use taylor expansion to approximate the gradient</li>
-<li>calculate the optimal tree structure</li>
+<li>define hyperparameters. Settings of hyperparameters could be loaded from config file or parsed from command line. Both parser and tf.app.flags could be used to parse.</li>
+<li>preprocessing data. Like batching, padding and so on.</li>
+<li>construct model. build encoder, decoder and combine them together.</li>
+<li>write a train wrapper funtion to wrap the training process.</li>
+<li>feed data to model and perform training</li>
+<li>perform validation and testing</li>
 </ol>
-<p>The xgboost is a kind of greedy algorithm because each time it add the best tree structure.</p>
-<p>It employs CART as base learner. The final output of CART are values. So the output of leaves of xgboost are actually values. It is the sum of all trees.<br>$$<br>\hat{y}<em>i = \sum</em>{k=1}^K f_k(x_i), f_k \in \mathcal{F}<br>$$</p>
-<p>$$<br>w_j^\ast = -\frac{G_j}{H_j+\lambda}<br>$$<br>The above equation calculates the best tree structure from the first and second order gradients. It employ tailor expansion to approximate gradients so that all kinds of self-define loss functions could be supported.</p>
-<p>$$<br>\text{obj}^\ast = -\frac{1}{2} \sum_{j=1}^T \frac{G_j^2}{H_j+\lambda} + \gamma T<br>$$<br>The above equation is used to measure how good is the current tree structure.</p>
-<p>$$<br>Gain = \frac{1}{2}[\frac{G_L^2}{H_L+\lambda}+\frac{G_R^2}{H_R+\lambda}-\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}] - \gamma<br>$$<br>The above equation serves as a kind of pruning. Other tree methods usually put pruning out of the training process.</p>
-<p>other tricks that xgboost employ:</p>
+<p>Loss of seq2seq: at each step, there is only one correct token given a sentence. At each time step, use softmax to calculate the loss and optimize the sum of total loss at all time steps.</p>
+<p>Given a sentence, each time step t, there is a loss \(l_t\). The total loss \(L=\sum_0^T l_i\) where T is the number of tokens in the sentence. The optimizer is actually optimize this loss.</p>
+<p>The seq2seq could be regarded as a latent structure like auto-encoder because all information of the whole sentence is encoded in the final hidden state.</p>
+<p>Latent variable: 隐藏变量</p>
+<p>To do:</p>
 <ol>
-<li>subsample data: sample a portion of the whole training set to train a tree like bagging.</li>
-<li>subsample columns: sample some columns to train like random forest.</li>
-</ol>
-<p>parameters tuning:</p>
-<ol>
-<li>set depth to 3~5</li>
-<li>number of trees to ~500</li>
-<li>learning step \(\eta\) from 0.02~0.1</li>
-<li>run the algorithm until overfitting</li>
-<li>if not overfitting, check the dataset. The feature engineering may not be enough. Otherwise, start pruning. Increase the \(\lambda, \gamma\) and so on.</li>
-</ol>
-<h1 id="Decesion-Tree"><a href="#Decesion-Tree" class="headerlink" title="Decesion Tree"></a>Decesion Tree</h1><p>The reason that decision tree is a base classifier in boosting or bagging:</p>
-<ol>
-<li>unstable classifier. susceptical to training data</li>
-<li>the representation and generalization ability is easy to adjust by modifying the number of layer or leaves.</li>
-<li>easy to incorporate the weight of training samples in decision tree by adjusting training data rather than oversampling or undersampling.</li>
-</ol>
-<h3 id="ID3"><a href="#ID3" class="headerlink" title="ID3"></a>ID3</h3><p>ID3 use entropy and information gain to measure whether a split is good or not. It is a kind of greedy algorithm and tends to choose splits with a lot of features whose information gain would be greater. And this may lead to overfitting.</p>
-<p>$$<br>Ent(D)=- \sum_{k=1}^{K} p_k\cdot  log_{2}p_k<br>$$</p>
-<p>$$<br>Gain(D, a)=Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{|D|}Ent(D^v)<br>$$</p>
-<h3 id="C4-5"><a href="#C4-5" class="headerlink" title="C4.5"></a>C4.5</h3><p>It is a kind of modified ID3. It employs to be the criteria to avoid the shortage of ID3 which choose the split with more features.</p>
-<p>$$<br>GainRatio(D,T)=\frac{Gain（D,T)}{IV(T)}<br>$$</p>
-<h3 id="Classification-and-Regression-tree-CART"><a href="#Classification-and-Regression-tree-CART" class="headerlink" title="Classification and Regression tree(CART)"></a>Classification and Regression tree(CART)</h3><p>CART is a binary tree. At each split, it would choose a feature and divide the dataset according to yes and no feature. It would choose the split with the least gini.</p>
-<p>GINI index is used to measure how good is the split.</p>
-<p>$$<br>gini(T_{i})=1-\sum_{j=1}^{n} p_{j}^{2}<br>$$</p>
-<p>$$<br>Gini_{split}(T)=\sum_{i=1}^{2}\frac{N_{i}}{N}gini(T_{i})<br>$$</p>
-<p>For regression tree, it separate the continuous feature using {x&gt;T} and {x&gt;T} where T is the threshold. The decision boundaries of the CART are staright lines.</p>
-<h2 id="Comparision"><a href="#Comparision" class="headerlink" title="Comparision"></a>Comparision</h2><p>ID3 and C4.5 could only be applied to classification task while CART could be applied to both regression and classification task.</p>
-<p>ID3 and C4.5 rely on pruning.</p>
-<p>ID3 and C4.5 derive complex trees and features could not be reusing while CART derives binary trees and the features could be reusing.</p>
-<h2 id="Pruning"><a href="#Pruning" class="headerlink" title="Pruning"></a>Pruning</h2><p>Pruning is significantly important in decision trees. Usually we would grow the DT fully and do post-pruning to avoid overfitting and a better DT with better generalization ability.</p>
-<h3 id="Cost-Complexity-Pruning-CCP"><a href="#Cost-Complexity-Pruning-CCP" class="headerlink" title="Cost-Complexity Pruning(CCP)"></a>Cost-Complexity Pruning(CCP)</h3><p>It is used in CART pruning.<br>$$<br>\alpha = \frac{R(T) - R(T_t)}{L(T_t)-1}<br>$$<br>where \(L(T_t)\) is the number of leaves in the subtree that is going to be pruned. \(R(T_t)\) and \(R(T)\) are the error rate of the tree. It is the number of samples that are classified wrong.</p>
-<p>It compares the error before and after pruning. Choose the pruning with the least error increased.</p>
-<p>The pruning could be performed on a separate pruning dataset or simply k-fold cross-validation.</p>
-<h3 id="Reduced-Error-Pruning-REP"><a href="#Reduced-Error-Pruning-REP" class="headerlink" title="Reduced Error Pruning(REP)"></a>Reduced Error Pruning(REP)</h3><p>$$<br>f(T)=-\sum_{t \in T}e(t)<br>$$</p>
-<p>$$<br>f(T’)=-\sum_{t \in T’}e(t)<br>$$<br>where T is the original tree and T’ is the pruned tree and f() is the number of samples that are classified wrong. Its intuition is to prune the tree so that the error date decrease. If \(f(T) \leqslant f(T’)\), do pruning.</p>
-<h3 id="Pessimistic-Error-Pruning-PEP"><a href="#Pessimistic-Error-Pruning-PEP" class="headerlink" title="Pessimistic Error Pruning(PEP)"></a>Pessimistic Error Pruning(PEP)</h3><p>Top-down pruning. It bases on the training set to do pruning. The 1/2 is a bias to rectify the bias that the pruning is performed based on training set.</p>
-<p>$$<br>E(T) = \sum_{t \in T}\frac{e(t)+1/2}{N(t)}<br>$$</p>
-<p>$$<br>E(T’)=\sum_{t \in T, excep K}\frac{e(t)+1/2}{N(t)}<br>$$<br>where e(t) is the samples that are classified wrong in the subtree start from node t. N(t) is the number of samples in the subtree start from node t.</p>
-<h3 id="Minimum-Error-Pruning-MEP"><a href="#Minimum-Error-Pruning-MEP" class="headerlink" title="Minimum Error Pruning(MEP)"></a>Minimum Error Pruning(MEP)</h3><p>There are several definitions about how to calculate the error rate of pruning\(E_s\). Below is one kind of method.</p>
-<p>$$<br>E_s=1-\frac{n_c+p_{\alpha c}m}{N+m}=\frac{N-n_c+(1-p_{\alpha c})m}{N+m}<br>$$</p>
-<p>$$<br>E_{split-s}=\sum_{split=1}^M \frac{|S_{split}|}{|S|}*E_{split-s}<br>$$</p>
-<p>Compare the error rate of pruning and not pruning. If the pruning error rate\(E_s\) &lt; not pruning error rate, do the pruning.</p>
-<h3 id="Linear-Model"><a href="#Linear-Model" class="headerlink" title="Linear Model"></a>Linear Model</h3><p>Linear regression:<br>$$<br>w^Tx<br>$$</p>
-<p>Linear classification:<br>$$<br>sign(w^Tx)<br>$$<br>if \(w^Tx\) &gt; 0, the label is one and vise versa. This would not output a probability which could be regarded as a kind of confidence.</p>
-<p>Logistic regression output a value that is confidence between [0,1] by squeeze  \(w^Tx\) to sigmoid function.</p>
-<h5 id="Why-sigmoid-in-logistic-regression"><a href="#Why-sigmoid-in-logistic-regression" class="headerlink" title="Why sigmoid in logistic regression"></a>Why sigmoid in logistic regression</h5><p>Sigmoid is the function with maximum-entropy in the context of multi-category classification. The intuition of maximum-entropy is to contain more hypothesis and alleviate over-fitting[1,2].</p>
-<h4 id="Imbalanced-Learning"><a href="#Imbalanced-Learning" class="headerlink" title="Imbalanced Learning"></a>Imbalanced Learning</h4><ol>
-<li><p>Sampling.</p>
-<ul>
-<li><p>Random Oversampling/Random Undersampling. Oversampling is prone to overfitting because data is simply repeated. Undersampling leads to missing training data.</p>
-</li>
-<li><p>Synthetic Minority Oversampling Technique (SMOTE). A kind of oversampling that achieves reasonable performance. $\mathrm{x}<em>{\text { new }}=x</em>{i}+\left(\mathrm{x}<em>{\mathrm{t}}-x</em>{i}\right) \times \sigma​$</p>
-</li>
-<li></li>
-</ul>
-</li>
+<li>write an iterator</li>
 <li></li>
 </ol>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.zhihu.com/question/35322351/answer/67193153" target="_blank" rel="noopener">为什么 LR 模型要使用 sigmoid 函数，背后的数学原理是什么？</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://www.win-vector.com/dfiles/LogisticRegressionMaxEnt.pdf" target="_blank" rel="noopener">The equivalence of logistic regression and maximum entropy models</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<http://lamda.nju.edu.cn/liyf/dm14/111220005.pdf>">不平衡分类学习综述</a><a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="<<https://arxiv.org/pdf/1710.05381.pdf>>">A systematic study of the class imbalance problem in convolutional neural networks</a><a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/shell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/13/shell/" itemprop="url">shell</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-13T14:50:38+08:00">
-                2019-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>注意，变量名和等号之间不能有空格.</p>
-<p>引用变量需要在变量前加美元符号$<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">your_name="qinjx"</span><br><span class="line">echo $&#123;your_name&#125;</span><br></pre></td></tr></table></figure></p>
-<p>变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界</p>
-<p>以“#”开头的行就是注释，会被解释器忽略。</p>
-<p>sh里没有多行注释，只能每一行加一个#号.</p>
-<p>多行注释：把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有地方调用这个函数，这块代码就不会执行，达到了和注释一样的效果。</p>
-<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>单引号字符串的限制：</p>
-<ul>
-<li>单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的</li>
-<li>单引号字串中不能出现单引号（对单引号使用转义符后也不行）</li>
-</ul>
-<p>双引号</p>
-<ul>
-<li>双引号里可以有变量</li>
-<li>双引号里可以出现转义字符</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/Transfer-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/03/Transfer-Learning/" itemprop="url">Transfer_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-03T17:43:34+08:00">
-                2019-01-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Transfer learning in NLP:<br>Hypercolumns: Embeddings at different levels are used as features, concatenated either with the word embeddings or with the inputs at intermediate layers like ELMO.</p>
-<p>Unsupervised pre-training usually improves performance. And adding a language model as auxilliary task also improves performance.</p>
-<p>Semi-supervised task: perform unsupervised pre-training and perform supervised fine-tuning.</p>
-<p>steps:</p>
+<p>For regression(time series data prediction) problem, just add a scaling factor with a fully-connected layer.</p>
+<p>The decoder could use the last encoder hidden state or zero or encoder input[:-1] as initial state. </p>
+<p>The RNN decoder outputs tensor with same shape as the input. </p>
+<p>The input is batched tensor, and RNN encoder takes sequence as input. Sequence is a list of tensor with shape [batch_size, dim]. The length of the sequence is the time step.</p>
+<p>When you use Dataset to train the model, during inference, there are several ways to feed the data:</p>
 <ol>
-<li>freeze low layers and train the high layers like the last few layers</li>
-<li>unfreeze all layers and train with discriminative learning rates which means that training low layers with low learning rate and high layer with high learning rate.</li>
+<li>use dataset and feed label with idiot values</li>
+<li>create two meta graph with different input, and inference graph load parameters from the other.</li>
+<li>extract the input feature and feed with inference input.</li>
 </ol>
+<p>MAPE(Mean absolute percentage error):<br>$$<br>{\displaystyle {\mbox{M}}={\frac {100\%}{n}}\sum <em>{t=1}^{n}\left|{\frac {A</em>{t}-F_{t}}{A_{t}}}\right|,}<br>$$<br>Loss of each sample is the difference divided by the sample itself.</p>
+<h4 id="Embedding-size"><a href="#Embedding-size" class="headerlink" title="Embedding size"></a>Embedding size</h4><p>Assume n is the number of categorical features, embedding size could be \(k\sqrt[4] n\) or \(\log_2 (n)\).</p>
+<p>Only normalize output but not normalize input, model diverges.</p>
+<p>There are 2 kinds of seq2seq:</p>
+<ol>
+<li>encoder hidden state is only fed to the first step of the decoder</li>
+<li>encoder hidden state is fed to each step of the decoder</li>
+</ol>
+<p>add noise to encoder is beneficial to performance</p>
 
           
         
@@ -1203,7 +584,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/24/Hive/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/09/SVM-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1222,7 +603,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/24/Hive/" itemprop="url">Hive</a></h1>
+                <a class="post-title-link" href="/2018/10/09/SVM-2/" itemprop="url">SVM_2</a></h1>
         
 
         <div class="post-meta">
@@ -1234,8 +615,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-24T15:58:43+08:00">
-                2018-12-24
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-09T11:04:55+08:00">
+                2018-10-09
               </time>
             
 
@@ -1274,33 +655,10 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Hive is a data warehousing infrastructure based on <a href="http://hadoop.apache.org/" target="_blank" rel="noopener">Apache Hadoop</a>. It provides SQL for ad-hoc querying.</p>
-<p>Hive data is organized into:</p>
-<ul>
-<li><strong>Databases</strong>.</li>
-<li><strong>Tables</strong>.</li>
-<li><strong>Partitions</strong>.</li>
-<li><strong>Buckets</strong>.</li>
-</ul>
-<p>Hive supports Primitive Types. Implicit conversion is allowed for types from child to an ancestor.</p>
-<p>Complex Types is built up from primitive types.</p>
-<ul>
-<li>Structs.</li>
-<li>Maps (key-value tuples).</li>
-<li>Arrays (indexable lists).</li>
-</ul>
-<h3 id="Case-insensitive"><a href="#Case-insensitive" class="headerlink" title="Case-insensitive"></a>Case-insensitive</h3><p>All Hive keywords are case-insensitive, including the names of Hive operators and functions.</p>
-<p>MAPJOINs are processed by loading the smaller table into an in-memory hash map and matching keys with the larger table as they are streamed through.</p>
-<p>UNION 操作符用于合并两个或多个 SELECT 语句的结果。</p>
-<p>请注意，UNION 内部的 SELECT 语句必须拥有相同数量的列。列也必须拥有相似的数据类型。同时，每条 SELECT 语句中的列的顺序必须相同。</p>
-<ul>
-<li>JOIN: 如果表中有至少一个匹配，则返回行</li>
-<li>LEFT JOIN: 即使右表中没有匹配，也从左表返回所有的行</li>
-<li>RIGHT JOIN: 即使左表中没有匹配，也从右表返回所有的行</li>
-<li>FULL JOIN: 只要其中一个表中存在匹配，就返回行</li>
-</ul>
-<p>${precision}<br>美元符号$引用变量，大括号{}表示变量名字。${precision}表示引用名为precision的变量。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://cwiki.apache.org/confluence/display/Hive/Tutorial" target="_blank" rel="noopener"> Hive Tutorial</a></p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>$$margin={1\over \left|{\boldsymbol {w}}\right|} = \sqrt{w_1^2+w_2^2+…+w_n^2}=\left|{\boldsymbol {w}}\right|_{2}$$</p>
+<p>optimal hyperplane:</p>
+<p>$$sign(w_1x_1+w_2x_2+…+w_nx_n+b)=sign(\boldsymbol {w}^Tx)$$</p>
+<h2 id="Quadratic-Programming"><a href="#Quadratic-Programming" class="headerlink" title="Quadratic Programming"></a>Quadratic Programming</h2><p>minimize a (convex) quadratic function, subject to linear inequality constraints.</p>
 
           
         
@@ -1349,7 +707,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/pandas/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Hyper-Para-Search/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1368,7 +726,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/21/pandas/" itemprop="url">pandas</a></h1>
+                <a class="post-title-link" href="/2018/10/05/Hyper-Para-Search/" itemprop="url">Hyper_Para_Search</a></h1>
         
 
         <div class="post-meta">
@@ -1380,8 +738,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T16:56:05+08:00">
-                2018-12-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T20:48:27+08:00">
+                2018-10-05
               </time>
             
 
@@ -1420,8 +778,14 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandas.cut(x, bins)</span><br></pre></td></tr></table></figure>
-<p>turn continuous features to categorical features.</p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Hyper-parameters-Searching"><a href="#Hyper-parameters-Searching" class="headerlink" title="Hyper-parameters Searching"></a>Hyper-parameters Searching</h1><h2 id="Random-Search"><a href="#Random-Search" class="headerlink" title="Random Search"></a>Random Search</h2><p>It is heavily used in deep learning. There are tons of parameters in deep learning. Grid search is computation-intensive because it tunes parameters one by one which change only a parameter and keep the others unchanged. Each time for each parameter, random search samples a value from normal distribution. It is always the case that some parameters like leanring rate are more important than other parameters. Random search could discover a pretty good setting of hyperparameters.</p>
+<p>For example, let’s assume there are only 3 parameters. The algorithm has been run for 9 times both random search and grid search. For random search, each parameter has been tested for 9 times. For grid search, each parameter has been tested for only 3 times because it keep the other two parameters unchanged when tuning a parameter.</p>
+<p>Advantages:<br>efficient</p>
+<h2 id="Grid-Search"><a href="#Grid-Search" class="headerlink" title="Grid Search"></a>Grid Search</h2><p>Grid search is to generate a list of candidate parameters for each parameter. Each time only changes a parameter and keep other parameters invariant. It is systematic but it is only appropriate for low dimension. When the dimension increase, the computation would also increase dramatically. It would waste computation resource because each time only a parameter is changed.</p>
+<p>Advantages:<br>Systematic.<br>Precise.</p>
+<h2 id="Bayes-Optimization"><a href="#Bayes-Optimization" class="headerlink" title="Bayes Optimization"></a>Bayes Optimization</h2><p>The third one is Bayes Optimization. Bayes optimization is powerful but it is not widely employed because it is application-specific. There is not a good software to facilitate the coding process until now. Its general idea is to do some experiments on a few settings of parameters. After that choose the setting that has high variance to evaluate so as to achieve better performance. High variance means that the parameters has the potential to be better or worse. If the performance is degraded, it doesn’t matter. It resemble the greedy algorithm to some extend. </p>
+<p>This method assumes that the similar inputs gives similar outputs. It’s a kind of weak prior. Its intuition is that to evaluate those unknown but possibly better combinations of parameters rather than try all of them.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://mp.weixin.qq.com/s/l6uzHwGSTY5xRSkPD_B2rw" target="_blank" rel="noopener">深度学习模型超参数搜索实用指南</a></p>
 
           
         
@@ -1470,7 +834,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/tf_visualization/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/05/Technical-Analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1489,7 +853,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/19/tf_visualization/" itemprop="url">tf_visualization</a></h1>
+                <a class="post-title-link" href="/2018/10/05/Technical-Analysis/" itemprop="url">Technical_Analysis</a></h1>
         
 
         <div class="post-meta">
@@ -1501,8 +865,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-19T12:21:41+08:00">
-                2018-12-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-05T15:14:07+08:00">
+                2018-10-05
               </time>
             
 
@@ -1541,7 +905,18 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>tf histrogram:<br>x-axis represents the exact value. y-axis represents number of step. It represent frequency of a parameter. </p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Price-based:</p>
+<p>Moving average lines are heavily used to smooth the short-term fluctuations in the price charts. It is regarded as a support line where the price would not go lower than it in an uptrend. Points where the longer-term moving average crosses below the short-term moving average reveals an emerging uptrend.</p>
+<p>Bollinger bands are constructed from n standard deviation of closing prices. The high and low bands are the prices that moving average plus or minus n standard deviation. The prices in the area between the high and low bands are considered as resonable fluctuation of prices. If the price go beyond the area, it reveals overbought or oversold which means that the price is likely to decrease and increase respectively in the near future. It is the time where contrarian strategy comes into play. It is basically a strategy to buy or sell when most investors sell or buy.</p>
+<p>Oscillators:</p>
+<p>Oscillators are a set of indicators that oscillate around a specific value or in a range. Oscillator charts could be employed to detect convergence or divergence between oscillator and market prices. Convergence reveals that the current trend would continue and divergence suggests the change of the current trend.</p>
+<p>Sample indicators:</p>
+<p>Relative Strength Index(RSI): the rations of increase in price to decrease in price in a period of time. High values indicates overbought and low values suggest oversold.</p>
+<p>Moving Average Convergence Divergence(MACD): It is constructed from two lines. The MACD line is the difference between two expoentially moving average lines while the signal line is the expoentially moving average of the MACD line. The MACD could be employed to show both convergence or divergence and overbought or oversold. A buy signal is gerated when the MACD line cross above the signal line.</p>
+<p>Williams %R:<br>It indicates the relation between the closing price and the highest and lowest price in the previous days. It also reveals overbought or oversold.</p>
+<p>Accumulation/Distribution Line(AD):<br>Calculated from Money Flow Multiplier and Money Flow Volume. It takes volume into consideration. Volume is a significant indicator in technical analysis. It basically measure the money flow of the underlying asset. A pending revesal trend is indicated when divergence occurs between price and AD. Bullish Crosses occur when AD crosses above zero.</p>
+<p>Non-Price-Based Indicators<br>Put/call ratio</p>
+<p>Volatility Index</p>
 
           
         
@@ -1590,7 +965,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/11/Pytorch/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/BLEU/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -1609,7 +984,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/12/11/Pytorch/" itemprop="url">Pytorch</a></h1>
+                <a class="post-title-link" href="/2018/10/04/BLEU/" itemprop="url">BLEU</a></h1>
         
 
         <div class="post-meta">
@@ -1621,8 +996,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-11T12:50:53+08:00">
-                2018-12-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-04T11:11:42+08:00">
+                2018-10-04
               </time>
             
 
@@ -1661,65 +1036,544 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>reshape in pytorch: torch.view</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">z = x.view(<span class="number">-1</span>, <span class="number">8</span>)  <span class="comment"># the size -1 is inferred from other dimensions</span></span><br><span class="line">z.size()</span><br><span class="line"><span class="comment">### torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
-<p>torch.view() doesn’t change the data. torch.resize() may change the data.</p>
-<p>torch.unsqueeze(input, dim, out=None) insert a dimension at specified dimension. Negative dimension means the dimension is counted backward.</p>
-<p>Converting a Torch Tensor to a NumPy Array</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = a.numpy()</span><br></pre></td></tr></table></figure>
-<p>Converting NumPy Array to Torch Tensor</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b = torch.from_numpy(a)</span><br></pre></td></tr></table></figure>
-<p>Tensors can be moved onto any device or converted to another dtype using the .to method.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = x.to(device)</span><br></pre></td></tr></table></figure>
-<p>torch.Tensor is the central class of the package. If you set its attribute .requires_grad as True, it starts to track all operations on it. When you finish your computation you can call .backward() and have all the gradients computed automatically. The gradient for this tensor will be accumulated into .grad attribute.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with torch.no_grad():</span><br><span class="line">  y = x * 2</span><br></pre></td></tr></table></figure>
-<p>wrap the code in with no_grad() code block to prevent grad.</p>
-<p>To stop a tensor from tracking history, you can call .detach() to detach it from the computation history, and to prevent future computation from being tracked.</p>
-<p>To prevent tracking history (and using memory), you can also wrap the code block in with torch.no_grad():. This can be particularly helpful when evaluating a model because the model may have trainable parameters with requires_grad=True, but for which we don’t need the gradients.</p>
-<p>Each tensor has a .grad_fn attribute that references a Function that has created the Tensor</p>
-<p>Gradient in Pytorch is accumulated. use .zero_grad() to clear gradient.</p>
-<p>dtype=torch.long is for integers.</p>
-<p>Input to Pytorch must in batch. X with shape (N-sample,……)</p>
-<p>torch.nn only supports mini-batches. The entire torch.nn package only supports inputs that are a mini-batch of samples, and not a single sample.</p>
-<p>For example, nn.Conv2d will take in a 4D Tensor of n Samples x n Channels x Height x Width.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torchvision.datasets.ImageFolder(root=data_path,transform=torchvision.transforms.ToTensor())</span><br></pre></td></tr></table></figure>
-<p>Transform image dataset to tensors. Foldeds’ names are classes.</p>
-<p>Display an image in pytorch: </p>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Bilingual-Evaluation-Understudy-BLEU"><a href="#Bilingual-Evaluation-Understudy-BLEU" class="headerlink" title="Bilingual Evaluation Understudy(BLEU)"></a>Bilingual Evaluation Understudy(BLEU)</h3><p>$$p_{n}=\frac{\sum_{c_{\in candidates}}\sum_{n-gram_{\in c}}Count_{clip}(n-gram)}{\sum_{c^{‘}<em>{\in candidates}}\sum</em>{n-gram^{‘}_{\in c^{‘}}}Count(n-gram^{‘})}$$</p>
+<p>First count the n-gram match sentence by sentence. After that truncate the count which is to clip the count by maximum reference count. Finally add all the n-gram for all sentences together and divided by  all the n-gram for all reference sentences.</p>
+<p>$$Count_{clip}=min(Count,Max_Ref_Count)$$</p>
+<p>Max_Ref_Count is the largest count of a word in a single reference sentence.</p>
+<p>The machine could cheat by output short sentences. So penalty has to be added for short sentence.</p>
+<p>$$BP= \begin{cases}<br>1 &amp; \text{if c&gt;r}\<br>e^{1-r/c} &amp; {if}\  c \le r<br>\end{cases}$$</p>
+<p>If the length of the output sentence c is greater than the length of the reference, no penalty.</p>
+<p>The final version of BLEU:</p>
+<p>$$BLEU=BP\cdot exp(\sum_{n=1}^N w_n logP_n)$$</p>
+<p>BLEU computes the geometric average of the modified n-gram precisions and penalized short sentences. Usually N = 4 and the weight \(w_n=\frac{1}{N}\)</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/04/Evaluation-NLP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/04/Evaluation-NLP/" itemprop="url">Evaluation_NLP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-04T10:16:48+08:00">
+                2018-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Automatic-Evaluation"><a href="#Automatic-Evaluation" class="headerlink" title="Automatic Evaluation:"></a>Automatic Evaluation:</h2><h3 id="Word-Error-Rate-WER"><a href="#Word-Error-Rate-WER" class="headerlink" title="Word Error Rate(WER)"></a>Word Error Rate(WER)</h3><p>It is the Levenshtein distance between output and reference divided by the length of the reference. Dynamic programming is employed to compute the Levenshtein distance so as to determine the best alignment between the output and the reference. </p>
+<p>Deletion is a reference word aligned to nothing and insertion is a output word align to nothing. Substitution is word that dose not match the reference word.</p>
+<p>WER is actually edit distance normalized by length.</p>
+<p>$${\displaystyle {\mathit {WER}}={\frac {S+D+I}{N}}={\frac {S+D+I}{S+D+C}}}$$</p>
+<h3 id="Position-independent-Error-Rate-PER"><a href="#Position-independent-Error-Rate-PER" class="headerlink" title="Position-independent Error Rate(PER)"></a>Position-independent Error Rate(PER)</h3><p>It treats the reference and the output as bag of words so that words could be alighed directly without alighment of two sentences. It is definitely smaller than or equal to WER.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/03/CNN-NLP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/03/CNN-NLP/" itemprop="url">CNN_NLP</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-03T09:43:34+08:00">
+                2018-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>CNN is good at capture semantic information in a contextual window due to local connectivity. It requires lots of data to train because it includes many parameters. Inability to model long-distance contextual information.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Topic-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/30/Topic-Model/" itemprop="url">Topic_Model</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:31+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="LDA"><a href="#LDA" class="headerlink" title="LDA"></a>LDA</h2><p>$$p(\theta,z,w|\alpha,\beta)=p(\theta|\alpha) \prod_{n=1}^N p(z_n|\theta)p(w_n|z_n,\beta)$$</p>
+<p>where \(p(\theta|\alpha)\) is the estimation of parameters \(\theta\), \(p(z_n|\theta)\) is probability distribution of topics \(z_n\) given parameters \(\theta\), \(p(w_n|z_n,\beta)\) is probability distribution of words \(w_n\) over topics z.</p>
+<p>It is actually a bayes network, compute the probability distribution of topics first, and given the topics distribution, each word would belongs to one or more topics. Compute the probability distribution over words given topics distribution.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Clustering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/30/Clustering/" itemprop="url">Clustering</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:10+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Two kinds of clustering:</p>
+<ol>
+<li>parametric: K-means</li>
+<li>non-parametric: Dense-based</li>
+</ol>
+<p>hree types of clustering:</p>
 <ul>
-<li>transform the array</li>
-<li>transform to numpy array</li>
-<li>display</li>
+<li>Hard Clustering. Each instance belongs to only one cluster</li>
+<li>Hierachical clustering. Nested clusters.</li>
+<li>Soft/Fuzzy Clustering</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> im <span class="keyword">in</span> images:</span><br><span class="line">    new = transforms.ToPILImage()</span><br><span class="line">    pilima = new(im)</span><br><span class="line">    plt.imshow(np.array(pilima))</span><br></pre></td></tr></table></figure>
-<p>Images in pytorch are arranged as (N,C,H,W).<br>Normal Images are (W,H,C).</p>
-<p>nn.Sequential is a wrapper for constructing neural network conviniently.</p>
-<p>Dimension specified as 0 but tensor has no dimensions. For CrossEntropyLoss, the target has to be one dimension tensor rather than just a value.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.nn.utils.rnn.pack_padded_sequence()</span><br></pre></td></tr></table></figure>
-<p>Pack the padded sequence. When calculating loss, we don’t want to calculate loss of token like <pad>. Pack the padded sequence would eliminate these tokens and calculate the loss.</pad></p>
-<p>Example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_sequence</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>c = torch.tensor([<span class="number">6</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>pack_sequence([a, b, c])</span><br><span class="line">PackedSequence(data=tensor([ <span class="number">1</span>,  <span class="number">4</span>,  <span class="number">6</span>,  <span class="number">2</span>,  <span class="number">5</span>,  <span class="number">3</span>]), batch_sizes=tensor([ <span class="number">3</span>,  <span class="number">2</span>,  <span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.numel(input)</span><br></pre></td></tr></table></figure>
-<p>return the total number of elements in the input tensor.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.topk(_input_, _k_, _dim=None_, _largest=True_, _sorted=True_, _out=<span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
-<p>Returns the <code>k</code> largest elements of the given <code>input</code> tensor along a given dimension.</p>
-<p>RuntimeError: Expected object of scalar type Float but got scalar type Double for argument.<br>change tensor to float with<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensor.to(torch.float)</span><br></pre></td></tr></table></figure></p>
-<p>nn.CrossEntropyLoss(): The first argument is model output and the second argument is label. The label has to be shape of [batch_size].</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.ne(_input_, _other_, _out=None_)</span><br></pre></td></tr></table></figure>
-<p>perform element-wise computation between two tensors. If two elements are different, return 1,else 0.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.tril(b, diagonal=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>return upper triangular matrix of a tensor. diagonal = 1 exclude more values. diagonal = -1 include more values.</p>
-<p>rnn batch_first=True doesn’t affect output hidden state.</p>
-<p>hidden states of shape (num_layers * num_directions, batch, hidden_size)</p>
-<p>ONNX does not support batch_first……</p>
-<p>torch.reshape(), 这与 numpy.reshape 的功能类似。它大致相当于 tensor.contiguous().view()</p>
-<p>print model parameters:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> name, param <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">    <span class="keyword">if</span> param.requires_grad:</span><br><span class="line">        <span class="keyword">print</span> (name, param.data)</span><br></pre></td></tr></table></figure>
-<p>From 0.4, Variable is equivalent to tensor.</p>
-<p>Pytorch prediction: each time predict an example, it would load all parameters to memory. If increase the batch size, it would reduce the times of loading parameters so as to increase prediction time.</p>
-<p>torch.matmul is basically the same as torch.bmm. Their broadcast behaviors are different.</p>
-<p>resize never copies memory.<br>reshape always copies memory.<br>view never copies memory.</p>
-<p>Permute is a multidimensional rotation saying somehow. It keeps the data ordering. View (which is another reshaping method) maps from one dimensionality to another sequentially reading data from the upper dimensions to the lower ones.</p>
-<p>So if you want fuse two dimensions into one, you have to apply it over contiguous dimensions or u will modify the data ordering</p>
+<h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>In center-based approach, density is defined as: given a radius and a central point, the number of points in the circle including the central points.</p>
+<p>core points: Within an area that contains multiple points. The area has to satisfy some requirement with user specified parameters. For example, with radius(Eps) 5, if the number of points in the area exceeds like 7, then the core point is defined as a core point.</p>
+<p>border points: falls within the neighborhood of a core point. Border points could not be core points.</p>
+<p>noise points: not core points nor border points.</p>
+<p>Algorithm:</p>
+<ol>
+<li>label all points as core, border, or noise points.</li>
+<li>Eliminate noise points.</li>
+<li>Put an edge between all core points that are within Eps of each other.</li>
+<li>Merge each group of connected core points into a separate cluster.</li>
+<li>Assign each border point to one of the clusters of its associatedcore points.</li>
+</ol>
+<p>Selection of DBSCAN Parameters<br>k-dist: the distance between the core point and the kth nearest point. plot the the k-dist graph and select the k as MinPts(min points in a cluster) and the dramatically change point as distance.</p>
+<p>Strength: </p>
+<ol>
+<li>resistant to noise and can handle clusters of arbitrary shapesand size</li>
+</ol>
+<p>Weakness:</p>
+<ol>
+<li>has trouble when the clusters have widely varying densities. </li>
+<li>has trouble with high-dimensional data because density is more difficult to definefor such data. </li>
+<li>DBSCAN can be expensive when the computation of nearest neighbors requires computing all pairwise proximities, as is usually the case for high-dimensional data.</li>
+</ol>
+<h2 id="HDBSCAN"><a href="#HDBSCAN" class="headerlink" title="HDBSCAN"></a>HDBSCAN</h2><ol>
+<li>Transform the space. Increase the distance between noise points and core points by <strong>mutual reachability distance</strong>.</li>
+<li>Build the minimum spanning tree. The points could be viewed as a graph. The points are vertices and weighted edges are mutual reachability distance. The longer the distance, the higher the weight.</li>
+<li>Build the cluster hierarchy. At beginning, each point is in the same cluster. After that, remove edges one by one according to the weights of edges in decreasing order.(remove long distence edge first) If there are ties, remove them all together.</li>
+<li>After removal, assign a new cluster label to a component if it still has at least one edge, else assign it a null label (“noise”).</li>
+<li>Extract the clusters</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Introduction to Data Mining</p>
+<p><a href="http://producao.usp.br/bitstream/handle/BDPI/51005/2709770.pdf?sequence=1" target="_blank" rel="noopener">Hierarchical density estimates for data clustering, visualization, and outlier detection</a></p>
 
           
         
@@ -1759,7 +1613,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1809,7 +1663,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
