@@ -296,6 +296,795 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Topic-Model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/30/Topic-Model/" itemprop="url">Topic_Model</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:31+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="LDA"><a href="#LDA" class="headerlink" title="LDA"></a>LDA</h2><p>$$p(\theta,z,w|\alpha,\beta)=p(\theta|\alpha) \prod_{n=1}^N p(z_n|\theta)p(w_n|z_n,\beta)$$</p>
+<p>where \(p(\theta|\alpha)\) is the estimation of parameters \(\theta\), \(p(z_n|\theta)\) is probability distribution of topics \(z_n\) given parameters \(\theta\), \(p(w_n|z_n,\beta)\) is probability distribution of words \(w_n\) over topics z.</p>
+<p>It is actually a bayes network, compute the probability distribution of topics first, and given the topics distribution, each word would belongs to one or more topics. Compute the probability distribution over words given topics distribution.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/Clustering/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/30/Clustering/" itemprop="url">Clustering</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T12:03:10+08:00">
+                2018-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Two kinds of clustering:</p>
+<ol>
+<li>parametric: K-means</li>
+<li>non-parametric: Dense-based</li>
+</ol>
+<p>hree types of clustering:</p>
+<ul>
+<li>Hard Clustering. Each instance belongs to only one cluster</li>
+<li>Hierachical clustering. Nested clusters.</li>
+<li>Soft/Fuzzy Clustering</li>
+</ul>
+<h2 id="DBSCAN"><a href="#DBSCAN" class="headerlink" title="DBSCAN"></a>DBSCAN</h2><p>In center-based approach, density is defined as: given a radius and a central point, the number of points in the circle including the central points.</p>
+<p>core points: Within an area that contains multiple points. The area has to satisfy some requirement with user specified parameters. For example, with radius(Eps) 5, if the number of points in the area exceeds like 7, then the core point is defined as a core point.</p>
+<p>border points: falls within the neighborhood of a core point. Border points could not be core points.</p>
+<p>noise points: not core points nor border points.</p>
+<p>Algorithm:</p>
+<ol>
+<li>label all points as core, border, or noise points.</li>
+<li>Eliminate noise points.</li>
+<li>Put an edge between all core points that are within Eps of each other.</li>
+<li>Merge each group of connected core points into a separate cluster.</li>
+<li>Assign each border point to one of the clusters of its associatedcore points.</li>
+</ol>
+<p>Selection of DBSCAN Parameters<br>k-dist: the distance between the core point and the kth nearest point. plot the the k-dist graph and select the k as MinPts(min points in a cluster) and the dramatically change point as distance.</p>
+<p>Strength: </p>
+<ol>
+<li>resistant to noise and can handle clusters of arbitrary shapesand size</li>
+</ol>
+<p>Weakness:</p>
+<ol>
+<li>has trouble when the clusters have widely varying densities. </li>
+<li>has trouble with high-dimensional data because density is more difficult to definefor such data. </li>
+<li>DBSCAN can be expensive when the computation of nearest neighbors requires computing all pairwise proximities, as is usually the case for high-dimensional data.</li>
+</ol>
+<h2 id="HDBSCAN"><a href="#HDBSCAN" class="headerlink" title="HDBSCAN"></a>HDBSCAN</h2><ol>
+<li>Transform the space. Increase the distance between noise points and core points by <strong>mutual reachability distance</strong>.</li>
+<li>Build the minimum spanning tree. The points could be viewed as a graph. The points are vertices and weighted edges are mutual reachability distance. The longer the distance, the higher the weight.</li>
+<li>Build the cluster hierarchy. At beginning, each point is in the same cluster. After that, remove edges one by one according to the weights of edges in decreasing order.(remove long distence edge first) If there are ties, remove them all together.</li>
+<li>After removal, assign a new cluster label to a component if it still has at least one edge, else assign it a null label (“noise”).</li>
+<li>Extract the clusters</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>Introduction to Data Mining</p>
+<p><a href="http://producao.usp.br/bitstream/handle/BDPI/51005/2709770.pdf?sequence=1" target="_blank" rel="noopener">Hierarchical density estimates for data clustering, visualization, and outlier detection</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/29/TextRank/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/29/TextRank/" itemprop="url">TextRank</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-29T20:10:34+08:00">
+                2018-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>TextRank is actuaaly the same as PageRank. The only difference is that the unit in the PageRank is a webpage while the unit in the TextRank is word or sentence.</p>
+<h2 id="Keyword-Extraction"><a href="#Keyword-Extraction" class="headerlink" title="Keyword Extraction"></a>Keyword Extraction</h2><p>Each word is a vertex in the graph. Set up a context window. If two words co-occur in a context window, there is a link between those two words. The rest is the same as PageRank.</p>
+<h2 id="Sentence-Extraction"><a href="#Sentence-Extraction" class="headerlink" title="Sentence Extraction"></a>Sentence Extraction</h2><p>Each sentence is a vertex in the graph. The difference with keyword extraction is that now all sentences are considered connected with a weight. The weight is sentence similarity. The graph becomes a weighted graph which means there is a weight associated with each edge. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Paper-review/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/18/Paper-review/" itemprop="url">Paper_review</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T16:51:27+08:00">
+                2018-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Bidirectional LSTM-CRF for sequence tagging: CRF utilize sentence-level information. In CRF input and output are connected directly. Bidirectional LSTM-CRF connect all output together with a transition matrix from one state to another state.</p>
+<p>A Deep reinforced model for abstractive summarization: Use reinforcement leanring to derive a policy. Some critirion such as BLEU could not back-propagate directly. Employing reinforcement leanring could alleviate this problem.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/18/Writing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/18/Writing/" itemprop="url">Writing</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-18T13:32:29+08:00">
+                2018-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Writting is to explain an idea clearly and convince others. Presentation basically is trying to tell a story.</p>
+<p>Is the sentence easy to understand?<br>Is the sentence enjoyable and interesting to read?  </p>
+<p>Principles of writing:</p>
+<ul>
+<li>Cut unnecessary words and phrases; learn to part with your words!</li>
+<li>Use the active voice (subject + verb + object)</li>
+<li>Write with verbs: use strong verbs, avoid turning verbs into nouns, and don’t bury the main verb!</li>
+</ul>
+<h4 id="Cut-unnecessary-words"><a href="#Cut-unnecessary-words" class="headerlink" title="Cut unnecessary words"></a>Cut unnecessary words</h4><ul>
+<li>Dead weight words and phrases</li>
+<li>Empty words and phrases</li>
+<li>Long words or phrases that could be short</li>
+<li>Unnecessary jargon and acronyms</li>
+<li>Repetitive words or phrases</li>
+<li>Adverbs</li>
+</ul>
+<ol>
+<li>Eliminate negatives</li>
+<li>Eliminate superfluous uses of “there<br>are/there is”</li>
+<li>Omit needless prepositions</li>
+</ol>
+<h4 id="Use-active-voice"><a href="#Use-active-voice" class="headerlink" title="Use active voice"></a>Use active voice</h4><p>More clearly.<br>In method section, it’s fine to use passive voice.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/scrapy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/09/12/scrapy/" itemprop="url">scrapy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T12:40:44+08:00">
+                2018-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StatSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"stat_chart"</span></span><br></pre></td></tr></table></figure>
+<p>name is used to identify the spider name.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/Linux-Management/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -713,7 +1502,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/27/Attention/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="MK_LEE">
@@ -732,7 +1521,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/25/NN-Architecture/" itemprop="url">NN_Architecture</a></h1>
+                <a class="post-title-link" href="/2018/08/27/Attention/" itemprop="url">Attention</a></h1>
         
 
         <div class="post-meta">
@@ -744,8 +1533,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
-                2018-08-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-27T10:43:33+08:00">
+                2018-08-27
               </time>
             
 
@@ -784,842 +1573,57 @@
       
         
           
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
-<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
-<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
-<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
-<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
-<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Attention is a distribution which describe how much the network should focus on each unit.</p>
+<p>The decoder computes the probability of a sequence of words\({y_{1},…,y_{t}}\)<br>$$<br>\begin{equation}<br>p(\textbf{y}) = \prod_{t=1}^{T}p(y_{t} \bracevert {y_{1},…,y_{t-1}},c)<br>\end{equation}<br>$$</p>
+<p>For each \(y_t\),<br>$$<br>\begin{equation}<br>p(y_{t} \bracevert {y_{1},…,y_{t-1}},c) = g(y_{t-1},s_{t},c)<br>\end{equation}<br>$$<br>where \(s_t\) is the decoder hidden state,<br>$$<br>s_i=f(s_{i−1},y_{i−1},c_i)<br>$$</p>
+<p>\(y_{t-1}\) is the output of the last time step, \(h_j\) is the encoder hidden state at time step j. c is the context vector, which is the weighted sum of all encoder outputs.<br>$$<br>\begin{equation}<br>c_{i} = \sum_{j=1}^{T_{x}}\alpha_{ij}h_{j}<br>\end{equation}<br>$$<br>where \(a_{ij}\) is computed from<br>$$<br>\begin{equation}<br>\alpha_{ij}= \frac{\exp(e_{ij})}{\sum_{k=1}^{T_{x}}\exp(e_{ik})}<br>\end{equation}<br>$$</p>
+<h4 id="Bahdanau-et-al-model"><a href="#Bahdanau-et-al-model" class="headerlink" title="Bahdanau et al. model"></a>Bahdanau et al. model</h4><p>global and local attention: the “attention”<br>is placed on all source positions or on only a few<br>source positions.</p>
+<p>$$<br>e_{ij} = a(s_{i−1}, h_j)<br>$$<br>a() is a feed forward neural network.</p>
+<h4 id="Luong-et-al-models"><a href="#Luong-et-al-models" class="headerlink" title="Luong et al. models"></a>Luong et al. models</h4><p>$$<br>a_t(s) = aligh(h_t, \overline{h_s})=\frac{exp(score(h_t,\overline{h_s})}{\sum_{s’}score(h_t,\overline{h_{s’}})}<br>$$<br>where \(h_t\) is decoder hidden state and \(\overline{h_s}\) is encoder hidden state. This align model computes the scores between the current hidden state with each encoder hidden state and put it in a softmax.</p>
+<p>There are three kinds of score functions, please refer to the paper.</p>
+<p>After that, the context vector is computed as<br>$$<br>c_t = a_t \cdot \overline{h_{s}}<br>$$<br>a weighted sum of encoder hidden state.</p>
+<p>At the end, the attentional vector is computed as:<br>$$<br>\widetilde{h_t}=tanh(W_c[c_t;h_t])<br>$$<br>concat context vector and hidden state, then feed it to transformations.</p>
+<p>$$<br>p(y_t|y_{&lt;t}, x)=softmax(W_s,\widetilde{h_t})<br>$$</p>
+<h3 id="content-based"><a href="#content-based" class="headerlink" title="content-based"></a>content-based</h3><p>The attending RNN generates a query describing what it wants to focus on. Each item is dot-producted with the query to produce a score, describing how well it matches the query. The scores are fed into a softmax to create the attention distribution.</p>
+<h3 id="location-based"><a href="#location-based" class="headerlink" title="location-based"></a>location-based</h3><h3 id="Neural-Turing-Machines"><a href="#Neural-Turing-Machines" class="headerlink" title="Neural Turing Machines"></a>Neural Turing Machines</h3><p>Neural Turing Machines combine a RNN with an external memory bank. Since vectors are the natural language of neural networks, the memory is an array of vectors. Every step, NTMs read and write everywhere, just to different extents.</p>
+<p>Read operation is a weighted sum of the distribution.</p>
+<p>Similarly, NTMs write everywhere at once to different extents. Again, an attention distribution describes how much NTMs write at every location. The new value of a position in memory is a convex combination of the old memory content and the new write value.</p>
+<h4 id="Attention-Mechanism"><a href="#Attention-Mechanism" class="headerlink" title="Attention Mechanism"></a>Attention Mechanism</h4><ul>
+<li>The RNN controller gives a query vector.</li>
+<li>Each memory entry is scored for similarity with the query(dot product).</li>
+<li>The scores are then converted into a distribution using softmax.</li>
+<li>Interpolate the attention from the previous time step with the current distribution controlled by intepolation amount.</li>
+<li>Convolve the attention with a shift filter which allows the controller to move its focus.</li>
+<li>Sharpen the attention distribution. This final attention distribution is fed to the read or write operation.</li>
 </ul>
-<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
-<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/training-problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/25/training-problem/" itemprop="url">training_problem</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T17:11:10+08:00">
-                2018-08-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="Cuda-Out-of-Memory"><a href="#Cuda-Out-of-Memory" class="headerlink" title="Cuda Out of Memory"></a>Cuda Out of Memory</h4><p>Solution: </p>
-<ul>
-<li>reduce batch size</li>
-<li>reduce model size(reduce number of activation, increase filter size, decrease filter number)</li>
-<li>For RNN, reduce the length</li>
-</ul>
-<h3 id="Validation-accuracy-aigzagging"><a href="#Validation-accuracy-aigzagging" class="headerlink" title="Validation accuracy aigzagging"></a>Validation accuracy aigzagging</h3><ul>
-<li>Data is not normalized, taking some steps would deviate from the local minimum</li>
-<li>training step size is too large.</li>
-</ul>
-<h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><p>Assign high probability to <s> and <e>.</e></s></p>
-<p>ber: </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/22/gradient-descent/" itemprop="url">gradient_descent</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T11:45:16+08:00">
-                2018-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Vanilla-gradient-descent"><a href="#Vanilla-gradient-descent" class="headerlink" title="Vanilla gradient descent"></a>Vanilla gradient descent</h2><p>Calculate the gradient of the whole dataset and average the gradient by the size of the dataset. </p>
-<p>Drawback: Time-consuming, compute gradients redundantly.</p>
-<h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>Take a batch of examples and calculate the gradient. After that, average the gradient by the batch size.</p>
-<h2 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h2><p>Take a single example and calculate the gradient. </p>
-<p>Drawback: High variance, fluctuate a lot.<br>In high dimension, some directions would have larger gradients and zigzag a lot. The direction of gradient would deviate from the best direction.</p>
-<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>Momentum would accumulate gradient if the direction is the same and reduce the gradient if the direction zigzag a lot such that the overall direction would point to the local/global minimum with less zigzagging.</p>
-<p>$$v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta)$$</p>
-<p>$$\theta = \theta + v_t$$</p>
-<p>\(\theta\) is the gradient and \(\gamma\) is the momentum which is usually 0.9. \(\eta\) is the learning rate.</p>
-<h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>It is a lookahead version of momentum. The gradient would be updated using momentum, and a estimate of the future gradient after normal momentum update\(\nabla_\theta J( \theta - \gamma v_{t-1} )\) would be added to the current update of gradient so as to accelerate convergence. <strong>It significantly increased the performance of RNNs.</strong></p>
-<p>$$<br>v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta + \gamma v_{t-1} ) \<br>\theta = \theta + v_t$$</p>
-<h3 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h3><p>It adapts the learning rate to the parameters, performing larger updates for infrequent and smaller updates for frequent<br>parameters.</p>
-<p>$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$</p>
-<p>\(G_{t} \in \mathbb{R}^{d \times d}\) is a diagonal matrix where each diagonal element i,i is the sum of the squares of the gradients w.r.t. \(\theta_i\) up to time step t, while \(\epsilon\) is a smoothing term that avoids division by zero (usually on the order of 1e−8). Interestingly, without the square root operation, the algorithm performs much worse.</p>
-<p>Drawback: The accumulated sum keeps growing during training and causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</p>
-<h3 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h3><p>$$\Delta \theta_t = - \dfrac{RMS[\Delta \theta]<em>{t-1}}{RMS[g]</em>{t}} g_{t} \<br>\theta_{t+1} = \theta_t + \Delta \theta_t<br>$$</p>
-<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>Approximate the learning rate with the RMS of parameter updates until the previous time step. </p>
-<p>$$E[g^2]<em>t = 0.9 E[g^2]</em>{t-1} + 0.1 g^2_t \<br>\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]<em>t + \epsilon}} g</em>{t}<br>$$</p>
-<p>It still accumulates the gradient while it also depends on the current gradient and the updates do not get monotonically smaller.<br>RMSProp still modulates the learning rate of each weight based on the magnitudes of its gradients, which has a beneficial equalizing effect.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank" rel="noopener">An overview of gradient descent optimization<br>algorithms</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/Network-in-Network/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/18/Network-in-Network/" itemprop="url">Network_in_Network</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T22:02:36+08:00">
-                2018-08-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/seq2seq/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/11/seq2seq/" itemprop="url">seq2seq</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-11T13:01:17+08:00">
-                2018-08-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output</p>
-<ul>
-<li>Fixed-length vector</li>
-<li>Sequence with the same length as the input sequence.</li>
-</ul>
-<p>seq2seq could output a sequence of variable length. It simply utilize an encoder to encode the information given an input, which output a representation C that is a semantic summary of the input(usually fixed-length). After that, the decoder take the representation as input and output a sequence.</p>
-<p>The decoder is a RNN language model that is conditioned on the input which is the current the previous input word and the hidden state.</p>
-<h3 id="Reverse-the-input-sequence"><a href="#Reverse-the-input-sequence" class="headerlink" title="Reverse the input sequence"></a>Reverse the input sequence</h3><p>Doing so would make the optimization much easier because it introduces short term dependencies.</p>
-<p>i.e.: a,b,c maps to d,e,f. With reversed input sequence, c,b,a maps to d,e,f. At present, a is much closer than d which is the correct mapping. Since the long dependency c to f may be learnt from previous mapping, longer dependency for it may not be a problem.</p>
-<h3 id="Encoding-Context-C"><a href="#Encoding-Context-C" class="headerlink" title="Encoding Context C"></a>Encoding Context C</h3><p>The context C that is used to encode the input sequence do capture the meaning of the sequence.</p>
-<h3 id="Lmitatoin"><a href="#Lmitatoin" class="headerlink" title="Lmitatoin"></a>Lmitatoin</h3><p>The context C might be to small to encode the semantic information of a long sentence.</p>
-<h3 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h3><p>The decoding could employ beam search. The procedure is actually to maximize the log probability of target sentence given the input sentence.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/CNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/10/CNN/" itemprop="url">CNN</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:36+08:00">
-                2018-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The convolution in CNN could be regarded as a kind of weighted average over neighbors.</p>
-<h3 id="Prior-parameter-distribution"><a href="#Prior-parameter-distribution" class="headerlink" title="Prior parameter distribution"></a>Prior parameter distribution</h3><p>A prior probability distribution over the<br>parameters of a model is to encode our belief about what models are resonable before seeing the data.</p>
-<ul>
-<li>a week prior: distribution with high entropy like Gaussian with high variance. It allows the data to move parameters of model freely.</li>
-<li>a strong prior: distribution with low entropy like Gaussian with low variance. Such a prior plays a more active role in determining where the parameters end up.</li>
-</ul>
-<h4 id="Infinitely-Strong-Prior"><a href="#Infinitely-Strong-Prior" class="headerlink" title="Infinitely Strong Prior"></a>Infinitely Strong Prior</h4><ul>
-<li>An infinitely strong prior places zero probability on some parameters</li>
-<li>It says that some parameter values are forbidden regardless of support from data.</li>
-</ul>
-<h3 id="Convolution-as-infinitely-strong-prior"><a href="#Convolution-as-infinitely-strong-prior" class="headerlink" title="Convolution as infinitely strong prior"></a>Convolution as infinitely strong prior</h3><p>Convolution introduces an infinitely strong prior probability distribution over the parameters of a layer which says that the function the layer should learn contains only local interactions and is equivariant to translation.</p>
-<h3 id="Pooling-as-an-Infinitely-strong-prior"><a href="#Pooling-as-an-Infinitely-strong-prior" class="headerlink" title="Pooling as an Infinitely strong prior"></a>Pooling as an Infinitely strong prior</h3><p>The use of pooling is an infinitely strong prior that each unit should be invariant to small translations.</p>
-<p>High Bias/Underfit can be countered by:</p>
-<ol>
-<li>Add hidden layers</li>
-<li>Increase hidden units/layer</li>
-<li>Decrease regularize parameter.</li>
-<li>Add features </li>
-</ol>
-<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><p><a href="https://cedar.buffalo.edu/~srihari/CSE676/9.4%20ConvPoolAsPrior.pdf" target="_blank" rel="noopener">Deep Learning Slides</a></p>
-<h3 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h3><p>Each convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias.</p>
-<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>Parameters in a kernel are used to do convolution in the whole image. In terms of fully connect, for each pixel, there would be a different parameters.</p>
-<h3 id="Local-Connectivity"><a href="#Local-Connectivity" class="headerlink" title="Local Connectivity"></a>Local Connectivity</h3><p>The neural network only contains regional connection which means the neurons in the next layer focus on part of neurons in the last layer.</p>
-<h3 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h3><p>The employment of pooling layer is significant. It reduce the size of representation so as to reduce the computation and control overfitting. Max pooling could be regarded as extraction of the most useful characteristic. Pooling could be performed on spatial regions, or over the multi-layer outputs. For example, max pooling is performed on feature maps which is a spatial region while 1*1 convolution is performed on the multi-channel feature maps which is usually used to reduce dimension and compress information. When performed on spatial regions, it yields the same output dimension with smaller filter size. This would enable the neural network to be invariant to local small translations of the input, which is useful in case of whether a feature is present is more important than where the feature is. When performed on the multi-layer outputs, it yields the same filter size with fewer dimensionality. This would enable the neural network to be invariant to transformation such as rotation of images. In a nutshell, pooling summarises the response of activation over a region. It improves the computational and statistical efficiency. It is also used in hadling inputs of varying size.</p>
-<h4 id="Memory-Consumption-Calculation"><a href="#Memory-Consumption-Calculation" class="headerlink" title="Memory Consumption Calculation"></a>Memory Consumption Calculation</h4><p>Activation needs to be stored for back-propagation. So it would be the major memory consumption.</p>
-<p>i.e.: an image of 224 <em>224</em>3. The activation would be 224<em> 224</em>3=150000 floating numbers. Each floating number would use 4 bytes to store, so its size is actually 600000 bytes which is 600KB for only the first layer in the network.</p>
-<p>Convolution is a function derived from two given functions by integration that expresses how the shape of one is modified by the other. It is how an input is transformed by a kernel.</p>
-<p>Feature visualization have shown that:</p>
-<ul>
-<li><p>lower layers extract features related to content</p>
-</li>
-<li><p>higher layers extract features related to style**</p>
-</li>
-</ul>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h3><h3 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h3><p>DenseNet is a modified ResNet. Resnet employ add for x and f(x) while DenseNet employ concat for x and f(x) so that upper layers have each output from lower layers.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/RNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/10/RNN/" itemprop="url">RNN</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:31+08:00">
-                2018-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RNN allows information flow.</p>
-<p>Gradient vanishing or exploding:<br>Since the time step 1 would have effect on time step n, when doing back propagation, according to the chain rule, the same weight matrix W would be multiplied by n times which is W to the power of n. So the norm of W is greater than 1, there is gradient exploding. And vice versa, gradient vanishing if the norm of W is smaller than 1.</p>
-<p>Solution to gradient vanishing:<br>Initialize weight matrix to identity matrix  rather than a matrix of random values. And use Relu as activation function. The intuition of this is to take average of input and hidden state. Then start to optimize the weight matrix.</p>
-<h3 id="RNN-detail"><a href="#RNN-detail" class="headerlink" title="RNN detail"></a>RNN detail</h3><p>RNN could be regarded as a fully connected neural network because inside the computing block, it is.<br>$$<br>\boldsymbol{H}_t = \phi(\boldsymbol{X}<em>t \boldsymbol{W}</em>{xh} + \boldsymbol{H}<em>{t-1} \boldsymbol{W}</em>{hh}  + \boldsymbol{b}_h).<br>$$<br>The output is<br>$$<br>\boldsymbol{O}_t = \boldsymbol{H}<em>t \boldsymbol{W}</em>{hq} + \boldsymbol{b}<em>q.<br>$$<br>**RNN shares weight parameters $W</em>{xh}$ and $W_{hh}$ across all time steps**.</p>
-<h5 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h5><p>Input x and hidden state of last time step $H_{t-1}$ is concat and multiplied with concat weight matrix.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nd.dot(nd.concat(X, H, dim=<span class="number">1</span>), nd.concat(W_xh, W_hh, dim=<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
-<p>Two kinds of sampling of char-level language model:</p>
-<ol>
-<li>random sampling</li>
-<li>sequential partitioning. able to reuse hidden states, but easier to lead to gradient exploration or vanishing due to longer range of dependency.</li>
-</ol>
-<p>Perplexity? Cross entropy loss mean?</p>
-<h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h4><h6 id="Reset-gate"><a href="#Reset-gate" class="headerlink" title="Reset gate"></a>Reset gate</h6><p>The reset gate is used to update the past hidden state. 0 means reset(drop) past hidden states while 1 means retain.</p>
-<h6 id="Update-gate"><a href="#Update-gate" class="headerlink" title="Update gate"></a>Update gate</h6><p>The update gate is used to update the current hidden states using past hidden states and the current candidate hidden states. 0 means using only the candidate hidden states while 1 means using only the past hidden states.</p>
-<p><strong>update gate is used to capture long-term dependency while reset gate is used to capture short-term dependency</strong>.</p>
-<h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><p>The input includes all or some of the hidden states in the encoder. Utilize a score function to weight importance of those hidden states and feed into the decoder with the input word.</p>
-<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>The same set of parameters are used to compute the hidden states at the current time step given input and the hidden state of last time step.</p>
-<p>A output layer may be added to each time step to extract information and make predictions.</p>
-<h3 id="Back-propagation"><a href="#Back-propagation" class="headerlink" title="Back-propagation"></a>Back-propagation</h3><p>Cannot be parallelized because gradient has to computed one by one in terms of time steps.</p>
-<h4 id="Recurrent-Connectiong-from-output-to-hidden"><a href="#Recurrent-Connectiong-from-output-to-hidden" class="headerlink" title="Recurrent Connectiong from output to hidden"></a>Recurrent Connectiong from output to hidden</h4><p>Training can be parallelized because the label is known and could be fed to hidden states directly. Trained with <strong>Teacher Forcing</strong> which is that given the input sequence and ground truth label in the last time step, produce the output in the current time step.</p>
-<p>Drawback: require the output to capture the past information, which is difficult because the output dosen’t contains those information.</p>
-<h2 id="RNN-as-graphical-model"><a href="#RNN-as-graphical-model" class="headerlink" title="RNN as graphical model"></a>RNN as graphical model</h2><p>RNN could be viewed as a graphical model. Compared to the graphical model, the number of parameters is far less than that of the graphical model due to parameter sharing.</p>
-<p>Basic assumption of RNN is that the sequence is stationary.</p>
-<p><strong>stationary</strong> The relationship between the previous time step and the current time step is not dependent on t.</p>
-<p>RNN could model long dependency while normal graphical model would make <strong>Markov assumption</strong> to simplify the parameters which makes them less powerful in terms of long dependency. Long dependency makes RNN hard to optimize.</p>
-<p>RNN introduce hidden states h s.t. the dependency structure is simpler than the normal graphical model because hidden state encodes information including dependency which graphical model utilizes edges to represent dependency directly(too many parameters to optimize).</p>
-<h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
-<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
-<h4 id="vector-to-sequence-RNN"><a href="#vector-to-sequence-RNN" class="headerlink" title="vector-to-sequence RNN"></a>vector-to-sequence RNN</h4><p>The vector could be fed into the RNN at the beginning or fed into each hidden state at each time step.</p>
-<h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
-<h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
-<p>Tanh is employed in LSTM because the candidate cell state could “reduce” information so that the scale of C(t) is more stable rather than increment only. If sigmoid is employed, the only thing you could do is to add information.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
+<h3 id="Attentional-Interfaces"><a href="#Attentional-Interfaces" class="headerlink" title="Attentional Interfaces"></a>Attentional Interfaces</h3><p>Between connection of RNN or (RNN,CNN), there would be attentional interfaces which decides which units in the previous layer should pay attention to.</p>
+<h2 id="Attention-is-all-you-need-Transformer"><a href="#Attention-is-all-you-need-Transformer" class="headerlink" title="Attention is all you need(Transformer)"></a>Attention is all you need(Transformer)</h2><p>The encoder is composed of N=6 identical layers. Each layer has two sub-layers</p>
+<h4 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h4><p>Attention function could be described as a function to map query, key and values to a weighted sum. Attention is actually a query. The output is a weighted sum of values and each weight is the dot product of the query and the key.</p>
+<h4 id="Scaled-Dot-Product-Attention"><a href="#Scaled-Dot-Product-Attention" class="headerlink" title="Scaled Dot-Product Attention"></a>Scaled Dot-Product Attention</h4><p>In the paper, scaled dot-product attention is actually the attention function scaled by \(\frac{1}{\sqrt d_k}\)</p>
+<p>Mask operation is for masking the values in decoder outputs so that the model can only pay attention to leftward information/</p>
+<h4 id="Multi-Head-Attention"><a href="#Multi-Head-Attention" class="headerlink" title="Multi-Head Attention"></a>Multi-Head Attention</h4><p>Linearly project query, key, value with learnable weights. After that apply attention function to projected query, key, value. This is one head. MultiHead is concatenation of MultiHead and apply a linear transformation to the concatenation.</p>
+<p><strong>Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions.</strong></p>
+<p>Multi-head attention simulates convolutional neural network. Each head employs different weights such that different heads learn different relationship. In terms of convolution, different positions learn different features.</p>
+<p>Multi-head attention actually enrichs the features and enable a word focus on different parts of a sentence. Normal attention allows the word to focus on only a specific part.</p>
+<p><strong>Each head focus on different kinds of information.</strong> For example, one head focus on subject, one head focus on object, so on and so forth[2].</p>
+<h4 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h4><p>Increase or decrease the dimention of representation.</p>
+<h4 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h4><p>The paper propose to use positional embedding to encode position information.</p>
+<h4 id="Compare-RNN-with-transformer"><a href="#Compare-RNN-with-transformer" class="headerlink" title="Compare RNN with transformer"></a>Compare RNN with transformer</h4><p>self-attention Complexity \(O(n^2\cdot d)\)</p>
+<p>Because self-attention compute score according to, say encoder self-attention, encoder input(key) and encoder input(query). Each query has to do dot-product computation with every key. So the complexity is \(O(n^2\cdot d)\) where n is the sequence length and d is the dimension(n keys and n querys).</p>
+<p>RNN Complexity \(O(n\cdot d^2)\)</p>
+<p>RNN compute hidden states according to the previous hidden states and the current hidden states. There n times computation. So  the complexity is \(O(n\cdot d^2)\) where n is the sequence length and d is the dimension(n times computation and each computation is d*d).</p>
+<p>During decoding, transformer would output</p>
+<p>BERT is ‘real’ bidirectional because self-attention mechanism utilize information from both sides. The traditional bi-LSTM just concat computation result from both directions.</p>
+<p>BERT performs fine-tuning for each indivisual task.</p>
+<h2 id="Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding"><a href="#Multi-Task-Deep-Neural-Networks-for-Natural-Language-Understanding" class="headerlink" title="Multi-Task Deep Neural Networks for Natural Language Understanding"></a>Multi-Task Deep Neural Networks for Natural Language Understanding</h2><p>This paper performs multi-task learning(MTL) for multiple tasks which is the main difference between it and BERT.</p>
+<h2 id="Universal-Transformer"><a href="#Universal-Transformer" class="headerlink" title="Universal Transformer"></a>Universal Transformer</h2><p>add adaptive computation time(ACT) to the transformer so that the model is able to spent more computation on encoding the ambiguous words.</p>
+<h3 id="Adaptive-Computation-Time"><a href="#Adaptive-Computation-Time" class="headerlink" title="Adaptive Computation Time"></a>Adaptive Computation Time</h3><p>Employ one activation function to decide the probability of continuing computation. If some steps are stopped earlier, their states are copied to the final output time step. This allow the neural network to spent more computation on those ambiguous words.</p>
+<h3 id="Transformer-XL-3"><a href="#Transformer-XL-3" class="headerlink" title="Transformer-XL[3]"></a><strong>Transformer-XL</strong>[3]</h3><p>Transformer has to compute within a fix length. Transformer-XL is able to compute variable length because it is able to reuse previous hidden states by concatenation. Vanilla method is just repeat computing. </p>
+<p>Tansfomer-XL is faster when appling to long context. But in the context of short text, its speed is the same as vanilla transformer.</p>
+<h5 id="Relative-Positional-Encodings"><a href="#Relative-Positional-Encodings" class="headerlink" title="Relative Positional Encodings"></a>Relative Positional Encodings</h5><p>It is used to determine whether two positions are in the same segment. Unlike the absolute segment embedding like BERT, the number of segment could be arbitrarily.<br>$$<br>a_{i j}=\left(\mathbf{q}<em>{i}+\mathbf{b}\right)^{\top} \mathbf{s}</em>{i j}<br>$$<br>q is the query vector. And relative positional encoding add this result to the attention. $s_{ij}$ is the relative positional encoding from position i to position j.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1706.03762.pdf" target="_blank" rel="noopener"> Attention is all you need</a></p>
+<p>[2] <a href="http://web.stanford.edu/class/cs224n/slides/cs224n-2019-lecture14-transformers.pdf" target="_blank" rel="noopener"> Self-Attention For Generative Models</a></p>
+<p>[3] <a href="https://arxiv.org/pdf/1901.02860.pdf" target="_blank" rel="noopener"> Transformer-XL: Attentive Language Models Beyond a Fixed-Length Context</a></p>
 
           
         
@@ -1659,7 +1663,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1709,7 +1713,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

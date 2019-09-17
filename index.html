@@ -296,6 +296,168 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/14/AutoML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/14/AutoML/" itemprop="url">AutoML</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-14T16:00:00+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Data-Preparation"><a href="#Data-Preparation" class="headerlink" title="Data Preparation"></a>Data Preparation</h3><h4 id="Data-collection"><a href="#Data-collection" class="headerlink" title="Data collection"></a>Data collection</h4><h5 id="1-Data-Synthesis-for-NLP"><a href="#1-Data-Synthesis-for-NLP" class="headerlink" title="1. Data Synthesis(for NLP):"></a>1. Data Synthesis(for NLP):</h5><ol>
+<li>synonym insertion</li>
+<li>translate to another language and then translate back.</li>
+</ol>
+<h5 id="2-Data-Searching"><a href="#2-Data-Searching" class="headerlink" title="2. Data Searching"></a>2. Data Searching</h5><p>search data from web and perform filtering and so on. The other method is to perform semi-supervised ot unsupervised method to label data.</p>
+<h4 id="Data-Cleaning"><a href="#Data-Cleaning" class="headerlink" title="Data Cleaning"></a>Data Cleaning</h4><h3 id="FEATURE-ENGINEERING"><a href="#FEATURE-ENGINEERING" class="headerlink" title="FEATURE ENGINEERING"></a>FEATURE ENGINEERING</h3><h4 id="Feature-Selection"><a href="#Feature-Selection" class="headerlink" title="Feature Selection"></a>Feature Selection</h4><p>The general pipeline of feature selection includes several steps:</p>
+<ol>
+<li><p>searching</p>
+<p>a. Complete search(Breadth First Search, Branch and Bound, Beam Search, and Best First Search)</p>
+<p>​    I. Exhaustic</p>
+<p>​    II. non-exhaustive</p>
+<p>b. heuristic search(Sequential Forward Selection (SFS), Sequential Backward Selection (SBS), and Bidirectional Search (BS)). SFS and SBS iteratively delete features from a full set or add features to an empty set.</p>
+<p>c. random search(Simulated Annealing (SA) and Genetic Algorithms (GA))</p>
+</li>
+<li><p>Evaluation </p>
+<ol>
+<li>Filter method. Scores each feature according to correlation or divergence and then select by threshold. The scoring commonly employs variance, correlation coefficient, Chisquare test, and mutual information as criteria.</li>
+<li>Wrapper method. Perform classification on a sample dataset with selected label and use accuracy or sth like that as criteria.</li>
+<li>Embedded method. Perform variable selection as part of learning procedure like Regularization, decision tree, and deep learning .</li>
+</ol>
+</li>
+</ol>
+<h4 id="Feature-Construction"><a href="#Feature-Construction" class="headerlink" title="Feature Construction"></a>Feature Construction</h4><p>Usually requires expertise.</p>
+<p>Wide&amp;Deep? DeepFM?</p>
+<h4 id="Feature-Extraction"><a href="#Feature-Extraction" class="headerlink" title="Feature Extraction"></a>Feature Extraction</h4><p>1.Traditional method:</p>
+<p>Principal Component Analysis (PCA), independent component analysis, isomap, nonlinear dimensionality reduction, Linear discriminant analysis (LDA).</p>
+<p>2.Neural Network:feed-forward neural networks  or autoencoder</p>
+<h3 id="MODEL-GENERATION"><a href="#MODEL-GENERATION" class="headerlink" title="MODEL GENERATION"></a>MODEL GENERATION</h3><h4 id="A-Model-Structures"><a href="#A-Model-Structures" class="headerlink" title="A. Model Structures"></a>A. Model Structures</h4><h5 id="1-Entire-structure"><a href="#1-Entire-structure" class="headerlink" title="1)Entire structure"></a><em>1)Entire structure</em></h5><p>search the entire network from scratch. Search space is huge and cannot share the same structure for both small and huge dataset.</p>
+<h5 id="2-Cell-based-structure"><a href="#2-Cell-based-structure" class="headerlink" title="2) Cell-based structure"></a><em>2) Cell-based structure</em></h5><p>search space is much smaller than the above one. For large dataset, simply stach more layers.</p>
+<h5 id="3-Hierarchical-Structure"><a href="#3-Hierarchical-Structure" class="headerlink" title="3) Hierarchical Structure"></a><em>3) Hierarchical Structure</em></h5><p>The low level structure is the base for generating the upper level structure.</p>
+<h5 id="4-Network-Morphism-based-structure"><a href="#4-Network-Morphism-based-structure" class="headerlink" title="4) Network Morphism based structure"></a><em>4) Network Morphism based structure</em></h5><p>is the way of transferring the information stored in an existing neural network into a new neural network.</p>
+<h4 id="B-hyperparameter-optimization-HPO"><a href="#B-hyperparameter-optimization-HPO" class="headerlink" title="B. hyperparameter optimization(HPO)"></a><em>B. hyperparameter optimization</em>(HPO)</h4><h5 id="1-Grid-amp-Random-Search"><a href="#1-Grid-amp-Random-Search" class="headerlink" title="1) Grid &amp; Random Search"></a><em>1) Grid &amp; Random Search</em></h5><ol>
+<li><p>grid search: Traditional grid search wastes a lot of computation resource because not all parameters are important. Modified grid search: search in a coarse area, and then perform a finer grid search.</p>
+</li>
+<li><p>random search: it is hard to determine whether the found parameters is the best set.</p>
+</li>
+</ol>
+<h5 id="2-Reinforcement-Learning"><a href="#2-Reinforcement-Learning" class="headerlink" title="2) Reinforcement Learning"></a>2) <em>Reinforcement Learning</em></h5><h5 id="3-Evolutionary-Algorithm"><a href="#3-Evolutionary-Algorithm" class="headerlink" title="3) Evolutionary Algorithm"></a><em>3) Evolutionary Algorithm</em></h5><h5 id="4-Bayesian-Optimization"><a href="#4-Bayesian-Optimization" class="headerlink" title="4) Bayesian Optimization"></a><em>4) Bayesian Optimization</em></h5><p>build a probability model of the objective function and employ the model to select the most promising hyperparameters. Finally evaluating the choosen hyperparameters on the true objective function.</p>
+<h5 id="5-Gradient-Descent"><a href="#5-Gradient-Descent" class="headerlink" title="5) Gradient Descent"></a><em>5) Gradient Descent</em></h5><h3 id="Model-Estimation"><a href="#Model-Estimation" class="headerlink" title="Model Estimation"></a>Model Estimation</h3><p>model evaluation is expensive. Therefore different kinds of acceleration for model evaluation is proposed.</p>
+<h4 id="A-Low-fidelity"><a href="#A-Low-fidelity" class="headerlink" title="A. Low fidelity"></a><em>A. Low fidelity</em></h4><p>Use modified dataset(less examples, smaller model)</p>
+<h4 id="B-Transfer-learning"><a href="#B-Transfer-learning" class="headerlink" title="B. Transfer learning"></a><em>B. Transfer learning</em></h4><p>share parameters between child networks or inherit weights from previous design.</p>
+<h4 id="C-Surrogate"><a href="#C-Surrogate" class="headerlink" title="C. Surrogate"></a><em>C. Surrogate</em></h4><p>try to approximate the original expensive objective rather than directly evaluation.</p>
+<h4 id="D-Early-stopping"><a href="#D-Early-stopping" class="headerlink" title="D. Early stopping"></a><em>D. Early stopping</em></h4><h3 id="NAS-PERFORMANCE-SUMMARY"><a href="#NAS-PERFORMANCE-SUMMARY" class="headerlink" title="NAS PERFORMANCE SUMMARY"></a>NAS PERFORMANCE SUMMARY</h3><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p>[1]<a href="https://arxiv.org/pdf/1908.00709.pdf" target="_blank" rel="noopener"> AutoML: A Survey of the State-of-the-Art</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/Decision-Tree/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -828,6 +990,293 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/07/03/cpp/" itemprop="url">cpp</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-03T11:08:24+08:00">
+                2019-07-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>同步调用：需等待调用的函数返回值才能执行下一步</p>
+<p>异步调用：调用以后可以立即执行下一步，当被调用的函数完成计算以后，通过回调函数通知程序去取结果。</p>
+<p>回调函数：主函数异步调用时将回调函数作为异步调用的参数一起传过去，计算结束时通过回调函数返回结果。</p>
+<p>c++ 中有两种形式表示字符串:</p>
+<ol>
+<li>char[]: 沿用c语言的char数组</li>
+<li>string: string支持更复杂的操作</li>
+</ol>
+<h6 id="静态链接库和动态链接库"><a href="#静态链接库和动态链接库" class="headerlink" title="静态链接库和动态链接库"></a>静态链接库和动态链接库</h6><p>静态链接库将所有编译生成的.o文件和依赖文件一起打包到可执行文件里面（编译阶段就执行）</p>
+<p>优点:</p>
+<ol>
+<li>方便移植，无依赖问题</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>占用内存大</li>
+<li>更新不方便，需要全量更新</li>
+</ol>
+<p>动态链接库是程序运行的时候才load，所以可以多个程序共享一份依赖文件，节省空间。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/CWS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/29/CWS/" itemprop="url">CWS</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-29T22:07:25+08:00">
+                2019-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h6 id="Shortage-of-word-based-training-method-in-deep-learning-5"><a href="#Shortage-of-word-based-training-method-in-deep-learning-5" class="headerlink" title="Shortage of word-based training method in deep learning[5]"></a>Shortage of word-based training method in deep learning[5]</h6><ol>
+<li>Word-based data is very sparse according to Zipf’s law. Many words appears only one time in the corpus while very few words take up 50% of the occurrence. Note that a word is properly trained only when it shows up several times. This is why set a frequency bar to filter infrequent words improve performance.</li>
+<li>unrealistic to maintain a huge word-vector table so that many words are treated as OOV. And more words means more parameters which leads to overfitting.</li>
+<li>CWS is not good enough so that word-based model would bias down-stream tasks.</li>
+</ol>
+<h6 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h6><p>The simplest but remarkably robust model is the maximum matching model which matching the longest word in the dict each time(greedy algorithm).</p>
+<p>In terms statistical machine learning and Neural CWS Models, word segmentation is turned to tagging problem that tagging each char with BMES label which corresponding to beginning, middle, end of a word and word with a single char.</p>
+<p>Usually unigram and bigram features are fed to embedding layer and then the model.</p>
+<h6 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h6><p>[1] employs transformer to perform feature extraction with pre-train BERT word vectors as input. The extracted feature vectors are the input of domain projection layer which is used to do multi-task learning. A shared feature vector is added to domain-specific feature vectors. Finally, CRF is employed to perform tagging. Does Multi-Criteria Learning help to solve basic and phrase level segmentation?</p>
+<p>[2] performs error analysis. OOV is a great challenge in CWS. And also inconsistency in word segnmentation also leads to problems. </p>
+<p>SOTA model: LSTM-CRF. LSTM is used to output feature vector and CRF is employed to perform tagging.</p>
+<p>[3] employs both word-level and char-level features to perform sequence tagging.(Note that problems like NER, CWS are sequence tagging problems). The difference is that it involves an extra LSTM to compute the information from word-level features and an extra input gate to decide what kinds of information should be incorporated into the corresponding feature vector(hidden state).</p>
+<p>F1 against sentence length: longer sentences indicates lower accuracy in terms of word segmentation so that the performance of word-based models degrade with larger sequence lengths. But pure char-based models remain the same performance.</p>
+<p>[4] is basically the same as [3]. The difference is that [4] employs subword encoding. For example,  <strong>中国科学院院士</strong>, [3] takes the embedding of <strong>科学院</strong> as lattice LSTM input while [4] takes the embedding of <strong>科学院</strong> and <strong>学院</strong> as lattice LSTM input.</p>
+<p>[6] takes pre-traning features as extra features to the model and perform multi-task learning to improve performance. The training is based on beam search and the loss function resembles negative sampling.</p>
+<p>Experiment:</p>
+<p>Different model: bilstm-crf,  transformer(pruning layers), bi-lstm, use dictionary?</p>
+<p>Embedding: fast-text, glove, BERT.  (Fine-tuning embedding or not?)</p>
+<p>Multi-task learning to solve different Granularity, cross-domain problem?</p>
+<p>How language model help CWS?</p>
+<p>how to improve performance?</p>
+<p>how to Eval? how to tag training data?</p>
+<h4 id="unsupervised-method"><a href="#unsupervised-method" class="headerlink" title="unsupervised method:"></a>unsupervised method:</h4><p>use lexicon as additional information. Given an unlabeled sentence, try to perform word segmentation so that lexicons could be discovered. This is actually a kind of regularisation[7].</p>
+<h4 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h4><p>[1] <a href="https://arxiv.org/pdf/1903.04190.pdf" target="_blank" rel="noopener">Toward Fast and Accurate Neural Chinese Word Segmentation with Multi-Criteria Learning</a></p>
+<p>[2] <a href="https://aclweb.org/anthology/D18-1529" target="_blank" rel="noopener">State-of-the-art Chinese Word Segmentation with Bi-LSTMs</a></p>
+<p>[3] <a href="https://arxiv.org/pdf/1805.02023.pdf" target="_blank" rel="noopener">Chinese NER Using Lattice LSTM</a></p>
+<p>[4] <a href="https://arxiv.org/pdf/1810.12594.pdf" target="_blank" rel="noopener">Subword Encoding in Lattice LSTM for Chinese Word Segmentation</a></p>
+<p>[5] <a href="https://arxiv.org/pdf/1905.05526.pdf" target="_blank" rel="noopener">Is Word Segmentation Necessary for Deep Learning of Chinese Representations?</a></p>
+<p>[6] <a href="https://arxiv.org/pdf/1704.08960.pdf" target="_blank" rel="noopener">Neural Word Segmentation with Rich Pretraining</a></p>
+<p>[7] <a href="https://arxiv.org/pdf/1905.01963.pdf" target="_blank" rel="noopener">Neural Chinese Word Segmentation with Lexicon and Unlabeled Data via Posterior Regularization</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/Data-Structure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -907,6 +1356,126 @@
 <p>并查集:</p>
 <p>解决路径连通等问题。并查集就是一棵树，记录一个根结点下面跟它连通的节点。要查询两个节点是否连通，查询父节点是否同一个即可。</p>
 <p>并查集的合并就是将一个父节点作为另一个父节点的子节点即可。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/16/cmake/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/16/cmake/" itemprop="url">cmake</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-16T10:55:43+08:00">
+                2019-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>cmake是跨平台工具，将CMakeLists.txt文件转化为make所需要的makefile文件，最后用make命令编译源码生成可执行程序或共享库（so(shared object))</p>
 
           
         
@@ -1121,519 +1690,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/search-engine/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/04/search-engine/" itemprop="url">search_engine</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-04T22:40:22+08:00">
-                2019-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>紧密度：衡量切词后词在文档中出现位置的距离。紧密度高，切词后在doc出现相隔的距离不能太远。</p>
-<h3 id="semantic-matching-语义匹配"><a href="#semantic-matching-语义匹配" class="headerlink" title="semantic matching(语义匹配)"></a>semantic matching(语义匹配)</h3><h5 id="表示层多粒度融合"><a href="#表示层多粒度融合" class="headerlink" title="表示层多粒度融合"></a>表示层多粒度融合</h5><p>在表示层切词的地方，同时输入基础和短语粒度的切词结果作为输入</p>
-<h5 id="增加先验信息"><a href="#增加先验信息" class="headerlink" title="增加先验信息"></a>增加先验信息</h5><p>比如词语共现信息，collocation等等[1].</p>
-<h4 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h4><p>“精度”的分母是所有提取了的文档数目，而“召回”的分母则是所有相关的文档数目。</p>
-<p>Pointwise VS. Pairwise</p>
-<p>Pointwise是给定单个输入，输出对应单个label(评分之类的)</p>
-<p>pairwise是给定一对输入，输出对应是否输入的句子对是否相关</p>
-<p>Listwise 是给定一堆输入，输出这堆输入对应的分数(例如相关性)，损失函数就是衡量两个分布差异的东西。</p>
-<h4 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h4><p>PV:Page View, 页面浏览量</p>
-<p>UV:unique visitor即独立访客数</p>
-<p>QV:query view, 用户输入query次数</p>
-<p><strong>转化率=转化次数/访问次数</strong></p>
-<p><strong>点击量/展现量=点击率</strong></p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://www.jiqizhixin.com/articles/2017-06-15-5" target="_blank" rel="noopener">百度NLP | 神经网络语义匹配技术</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/30/spark/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/30/spark/" itemprop="url">spark</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-30T10:36:47+08:00">
-                2019-04-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Support for gzip input files should work the same as it does in Hadoop. For example, <code>sc.textFile(&quot;myFile.gz&quot;)</code> should automatically decompress and read gzip-compressed files (<code>textFile()</code> is actually <a href="https://github.com/mesos/spark/blob/v0.7.0/core/src/main/scala/spark/SparkContext.scala#L239" target="_blank" rel="noopener">implemented</a> using Hadoop’s <code>TextInputFormat</code>, which supports gzip-compressed files).</p>
-<p>note that if you call <code>sc.textFile()</code> on a gzipped file, Spark will give you an RDD with only 1 partition (as of 0.9.0). This is because gzipped files are <a href="http://mail-archives.apache.org/mod_mbox/spark-user/201310.mbox/" target="_blank" rel="noopener">not splittable</a>. Therefore processing of a gzipped file has to be in a worker. After processing, it could be repartitioned. If you don’t repartition the RDD somehow, any operations on that RDD will be limited to a single core.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rdd.getNumPartitions()</span><br></pre></td></tr></table></figure>
-<p>Get the number of partitions of a rdd.</p>
-<p>spark hdfs location <figure class="highlight plain"><figcaption><span>there is another slash after two consecutive slashes!!!</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##### Dependency of spark</span><br><span class="line"></span><br><span class="line">It is fine to zip your dependency and use —py-file to submit the dependency. Make sure to figure out the path of the unzipped files and import them. ```sc.addFile``` or ```sc.addPyFile``` is able to broadcast the dependency files to all workers.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### Differences between coalesce and repartition</span><br><span class="line"></span><br><span class="line">The repartition algorithm does a full shuffle of the data and creates equal sized partitions of data. coalesce combines existing partitions to avoid a full shuffle.[1]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Row of pyspark resembles dict. Accessing values like dict.</span><br><span class="line"></span><br><span class="line">## Hadoop</span><br><span class="line"></span><br><span class="line">```sh</span><br><span class="line">hadoop dfs -test -d ....</span><br></pre></td></tr></table></figure></p>
-<p>test whether a directory exist or not.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://medium.com/@mrpowers/managing-spark-partitions-with-coalesce-and-repartition-4050c57ad5c4" target="_blank" rel="noopener">Managing Spark Partitions with Coalesce and Repartition</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/Probabilistic-Graph/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/14/Probabilistic-Graph/" itemprop="url">Probabilistic_Graph</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-14T23:11:10+08:00">
-                2019-03-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Both Markovian random field and Conditional random field have the same type of functions. The difference is that Markovian random field is a generative model while CRF is a discriminative model.</p>
-<p><strong>generative model</strong> calculate the distribution over all variables.</p>
-<p><strong>discriminative model</strong> calculate the conditional probability directly.</p>
-<p>EM算法本质可看作先根据参数\(\theta\)计算出关于z的概率分布Q(z)=\(p(z|x,\theta)\),然后用这个z的概率分布去计算似然函数，选择使似然函数最大的参数集\(\theta\).</p>
-<p>EM算法缺点：收敛到局部极值点</p>
-<h3 id="Inference"><a href="#Inference" class="headerlink" title="Inference"></a>Inference</h3><p>概率图的推断可采用变量消除法，变量消除的顺序对计算量有着非常重要的影响。一种改进就是消息传播法，将概率图中的变量表示成一棵树，选取一个变量作为根结点，所有其他节点将信息传播至根结点后，根结点再将信息往下传播，直到叶子节点，叶子节点是我们关心的变量。</p>
-<p>变量消除法或消息传播法都是精确计算，一种替代方式是通过采样来进行近似计算。</p>
-<h5 id="Markov-Chain-Monte-Carlo-MCMC"><a href="#Markov-Chain-Monte-Carlo-MCMC" class="headerlink" title="Markov Chain Monte Carlo(MCMC)"></a>Markov Chain Monte Carlo(MCMC)</h5>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/13/VAE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/13/VAE/" itemprop="url">VAE</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-13T15:10:27+08:00">
-                2019-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Auto-Encoder"><a href="#Auto-Encoder" class="headerlink" title="Auto Encoder"></a>Auto Encoder</h2><p>Encoder is used to map input to hidden states while decoder is supposed to reconstruct input from hidden states.</p>
-<p>Auto encoder is supposed to capture used information in input rather than simply copying data. It could be regarded that the decoder is simply an auxiliary task.</p>
-<p>An autoencoder whose code(hidden states) dimension is less than the input dimension is called <strong>undercomplete</strong>. It is supposed to learn the most salient features of data distribution. </p>
-<p>If the capacity of encoder and decoder is too much, it is possible that encoder simply map the input to an unique code(like hash with collision) while decoder simply reconstruct input from that code without leanring useful information.</p>
-<p>Tricks to train auto encoder including regularizing the auto encoder such that features are sparse.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1683,7 +1744,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

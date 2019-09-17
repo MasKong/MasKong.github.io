@@ -296,6 +296,1358 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Deep-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/31/Deep-Learning/" itemprop="url">Deep_Learning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T11:33:09+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="multi-class-classification-problem"><a href="#multi-class-classification-problem" class="headerlink" title="multi-class classification problem"></a>multi-class classification problem</h2><p>Solutions:</p>
+<ul>
+<li>Train multiple classifiers and predict the label one by ont</li>
+<li>Learn the representation and compare. (clustering, or simply compare distance)</li>
+</ul>
+<p>Training step is actually a mini-batch. An epoch is the entire training set.</p>
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>Before training, calculate the memory consumption of the neural network and make sure the GPU has enough memory.</p>
+<h2 id="On-line-learning"><a href="#On-line-learning" class="headerlink" title="On-line learning"></a>On-line learning</h2><p>train the model on each data sample and those data samples come in a sequential order.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/feature-selection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/30/feature-selection/" itemprop="url">feature_selection</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:46:18+08:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Mutual-Information"><a href="#Mutual-Information" class="headerlink" title="Mutual Information"></a>Mutual Information</h2><p>$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
+<p>This could be used as the heuristic of feature selection. Higher mutual information means the feature do relates to the class, which is helpful in classfication.</p>
+<h2 id="chi-squared-test"><a href="#chi-squared-test" class="headerlink" title="chi-squared test"></a>chi-squared test</h2><p>$$X^2(D,t,c)=\sum_{e_t\in {0,1}} \sum_{e_c\in {0,1}} \frac{(N_{e_te_c}-E_{e_te_c})^2}{E_{e_te_c}}$$</p>
+<p>N is the observed frequency in D and E the expected frequency. </p>
+<p>chi-squared test is a measure of how much expected counts E and observed counts N deviate from each other. A high value indicates that the hypothesis of independence is incorrect.</p>
+<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h4><p>For a test with one degree of freedom, the so-called Yates correction should be used, which makes it harder to reach statistical significance. <strong>degree of freedom</strong> = (num of columns -1) * (num of rows -1)</p>
+<p>Also, whenever a statistical test is used multiple times, then the probability of getting at least one error increases. If 1,000 hypotheses are rejected, each with 0.05 error probability, then 0.05 × 1000 = 50 calls of the test will be wrong on average. </p>
+<h2 id="Frequency-based-feature-selection"><a href="#Frequency-based-feature-selection" class="headerlink" title="Frequency-based feature selection"></a>Frequency-based feature selection</h2><p>select the feature that occurs usually. When many thousands of features are selected, then frequency-based feature selection often does well.</p>
+<h2 id="Feature-selection-for-multiple-classifiers"><a href="#Feature-selection-for-multiple-classifiers" class="headerlink" title="Feature selection for multiple classifiers"></a>Feature selection for multiple classifiers</h2><p>Commonly, feature selection statistics are first computed separately for each class on the two-class classification task c versus not c and then combined. </p>
+<p>One combination method computes a single figure of merit for each feature, for example, by averaging the values A(t, c) for feature t, and then selects the k features with highest figures of merit.</p>
+<p>Another frequently used combination method selects the top k/n features for each of n classifiers and then combines these n sets into one global feature set.</p>
+<h2 id="Comparison-of-feature-selection-methods"><a href="#Comparison-of-feature-selection-methods" class="headerlink" title="Comparison of feature selection methods"></a>Comparison of feature selection methods</h2><p>Mutual information prefer common terms while chi-squared test prefer rare terms. Because A single occurrence is not very informative according to the information-theoretic definition of information.</p>
+<p>All three methods are greedy methods.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/WordVectors/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/28/WordVectors/" itemprop="url">Word_Vectors</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
+<h1 id="Two-types-of-word-vectors"><a href="#Two-types-of-word-vectors" class="headerlink" title="Two types of word vectors"></a>Two types of word vectors</h1><ul>
+<li>count-based: LSA, LDA, Glove</li>
+<li>window-based: word2vec</li>
+</ul>
+<p>Drawback of count-based method:</p>
+<ul>
+<li>unstable, may change if there is a new word.</li>
+<li>high dimension \(V \times V\) although dimension could be decreased by SVD.</li>
+</ul>
+<p>Word vectors are application-specific.</p>
+<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>Input vectors are also named context vectors.<br>Output vectors are also named word vectors.</p>
+<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
+<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
+<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
+<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
+<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
+<p>The training complexity of this architecture is proportional to</p>
+<p>Q = N × D + D × log2(V ).</p>
+<p>C is the context size.</p>
+<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
+<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
+<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
+<p>The training complexity of this architecture is proportional to</p>
+<p>Q = C × (D + D × log2(V ))</p>
+<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
+<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
+<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2 <em> R words which is less than C are used as correct label. this step contains sampling 2 </em> R words from C word. </p>
+<p>There are two kinds of vectors for each word. They are context vectors and word vectors respectively. Normally the final word vectors could be the sum of two vectors or simply the word vector.</p>
+<h3 id="Modification"><a href="#Modification" class="headerlink" title="Modification"></a>Modification</h3><p>In skip-gram and CBOW, softmax is extremely expensive.</p>
+<p>Take skip-gram as an example. The objective is to maximize the following ojective function:</p>
+<p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
+<p>where c is the size of the training context.</p>
+<p>The p is defined as :</p>
+<p>$$p(o|c)=\frac{exp(<br>{u_o}^Tv_{c})}{\sum_{w=1}^{W}exp({u_{w}}^T*v_{c})}$$</p>
+<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
+<h4 id="2-choices-to-improve-softmax"><a href="#2-choices-to-improve-softmax" class="headerlink" title="2 choices to improve softmax"></a>2 choices to improve softmax</h4><h5 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h5><p>Turn all words into a tree so that the height of tree is log2(V).</p>
+<h5 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h5><p>Noise Contrastive Estimation (NCE) states that a good model is able to differentiate data from noise by means of logistic regression.</p>
+<p>The skip-gram model only focus on leanring good word vectors.</p>
+<p>Here the noise is words that are outside of the context.</p>
+<p>Simplified version of NCE:</p>
+<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
+<p>$$P_n(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}  {f(w_j)}^{3/4}}$$</p>
+<p>where n is total number of words in the corpus.</p>
+<h4 id="Subsampling-of-Frequent-Words"><a href="#Subsampling-of-Frequent-Words" class="headerlink" title="Subsampling of Frequent Words"></a>Subsampling of Frequent Words</h4><p>The frequent words may contain less information. During training, it would discard words in the context by chance using the below formula</p>
+<p>$$P(w_i)=1-\sqrt{\frac{t}{f(w_i)}} $$</p>
+<p>In the implementation code, the formula is</p>
+<p>$$P(w_i) = (\sqrt{\frac{z(w_i)}{0.001}} + 1) \cdot \frac{0.001}{z(w_i)}$$</p>
+<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><p>Utilize statistical information in co-occurrence matrix.</p>
+<p>Utilize a third word to determine whether two words are related or not. If two words are not correlated,</p>
+<p>$$\frac{P_{ik}}{P_{jk}} \approx 1$$</p>
+<p>where \(P_{ik}\) is conditional probability \(P(k|i)\).</p>
+<p>The objective is to find a function to represent the relationship between word vectors and conditional probability.</p>
+<p>$$F(w_i,w_j,\tilde{w}<em>k)=\frac{P</em>{ik}}{P_{jk}}$$</p>
+<p>The function F has to satisfy certain requirements:</p>
+<ol>
+<li>preserve linear structure</li>
+<li>exchangeable</li>
+</ol>
+<p>Finally, weight counts because rare co- occurrences may carry less information.</p>
+<p>$$J(\theta)=\frac{1}{2}\sum_{i,j=1}^{W}f(P_{ij})(u_i^Tv_j-log P_{ij})^2$$</p>
+<h2 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h2><p>It is a model derived from word2vec. In order to better represent morphological words, each word is now represent by a set of n-gram characters. Each word is added two symbols ‘&lt;’ and ‘&gt;’ respectively to indicate start and end of the word.</p>
+<p>For example, word ‘FastText’ becomes word ‘<fasttext>‘. 3-gram set is (&lt;Fa,Fas,ast,stT,tTe,Tex,ext,xt&gt;).</fasttext></p>
+<p>Negetive sampling of word2vec:</p>
+<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
+<p>In word2vec, each word is an unique unit. Each word has the unique word vectors representation which lose the morphological information. In FastText, subword model is employed, in which each word is now represent by a set of n-gram characters to utilize morphological information.</p>
+<p>The objective function is:</p>
+<p>$$\log\sigma{(\sum_{g\in G_{o}}{z_g}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-\sum_{g\in G_{j}}{z_{gj}}^Tv_{c})}$$</p>
+<p>where \(G_{o}\) is the set of n-grams character of word \(w_o\), \(z_{g}\) is the vector representation of the specific n-gram characters. </p>
+<p>$$u_o = \sum_{g\in G_{o}}{z_g}$$</p>
+<p>The word vector for each word is then the sum of its all n-gram vector representation.</p>
+<h2 id="WordRank"><a href="#WordRank" class="headerlink" title="WordRank"></a>WordRank</h2><p>Turn the problem into a ranking problem.</p>
+<h2 id="Character-level-embedding"><a href="#Character-level-embedding" class="headerlink" title="Character-level embedding"></a>Character-level embedding</h2><p>Advantages:</p>
+<ul>
+<li>better in terms of morphological languages</li>
+<li>In some languages such as Chinese, each sentence is composed of characters directly. Character-level embedding is also better in this case.</li>
+<li>OOV(out of vocabulary words). Able to handle OOV.</li>
+</ul>
+<h4 id="OOV-Handling"><a href="#OOV-Handling" class="headerlink" title="OOV Handling"></a>OOV Handling</h4><ul>
+<li>Character-level embedding</li>
+<li>Initialize the unknown word as the sum of all context vectors and refine it with a high learning rate</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/28/Boosting/" itemprop="url">Boosting</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h2><p>For each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set.</p>
+<p>Each trial a classifier \(C^t\) is trained. The final classifier \(C^*\) aggregate those T classfiers together.</p>
+<p>To classify an instance x, a vote for class k is recorded by every classier for which \(C^t(x)=k\) and \(C^*(x)\) is then the class with the most votes. (Ties being resolve arbitrarily)</p>
+<p>An <strong>order􏲵-correct</strong> classifier-learning system is one that􏲬 over many training sets􏲬 tends to predict the correct class of a test instance more frequently than any other class􏲮.</p>
+<p>Aggre􏲵gating classifiers produced by an order-correct learner results in an optimal classi􏲻er</p>
+<p><strong>Requirement of bagging</strong>:each single classifier is unstable – that is, it has high variance, small change to the training set leads to different classifiers.</p>
+<h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>Intuition of Boosting: Train several weak classifier and combine together to get a strong classifier.</p>
+<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>Usually employed in classification problem</p>
+<p>Step:</p>
+<ul>
+<li>Initially, each training sample is assigned an equal weight. </li>
+<li>Train a classifier on the training set</li>
+<li>Compute the error rate</li>
+<li>Compute the coefficient of the classifier</li>
+<li>Change the weight of the training samples. Increase the weights of the samples that are classified wrong, pay more attention to them. Decrease the weights of the samples that are classified correct. Here the calculation of the new weight is actually a softmax to make the weight a probability distribution.</li>
+<li>Train another classifier on the training set with new weight and repeat the above several steps.</li>
+<li>Finally, combine the classifiers.</li>
+</ul>
+<p>The output of the final classifiers(absolute value) is the confidence level of the classfication result. More iterations, higher confidence level.</p>
+<p>AdaBoost could be viewed as forward stagewise algorithm which optimize the set os parameters step by step.</p>
+<h4 id="Toy-Model"><a href="#Toy-Model" class="headerlink" title="Toy Model"></a>Toy Model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smaller_than</span><span class="params">(x,y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> y-x &gt; <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifier</span><span class="params">(x, v, flag=<span class="number">1</span>)</span>:</span>   <span class="comment">#threshold v</span></span><br><span class="line">    <span class="string">'''flag = 1: x&lt;v are classified as 1, x&gt;v are classified as -1</span></span><br><span class="line"><span class="string">       flag = 0: x&lt;v are classified as -1, x&gt;v are classified as 1'''</span></span><br><span class="line">    threshold = int(np.floor(v)+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> flag == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">1</span></span><br><span class="line">        x[threshold:] = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">-1</span></span><br><span class="line">        x[threshold:] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_best_split</span><span class="params">(x,y,weight)</span>:</span></span><br><span class="line">    error = <span class="number">1</span></span><br><span class="line">    best_result = <span class="keyword">None</span></span><br><span class="line">    best_classifier = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(x.shape[<span class="number">0</span>]+<span class="number">1</span>):</span><br><span class="line">            r = classifier(np.array(x,copy=<span class="keyword">True</span>),j<span class="number">-0.5</span>,f)</span><br><span class="line">            <span class="comment"># print("j", j)</span></span><br><span class="line">            <span class="comment"># print("classify_result", r)</span></span><br><span class="line">            p_error = np.sum((r!=y)*weight)<span class="comment"># /float(len(x))</span></span><br><span class="line">            <span class="comment"># print("p_error", p_error)</span></span><br><span class="line">            <span class="comment"># if p_error &lt; error:</span></span><br><span class="line">            <span class="comment"># if np.log(p_error)-np.log(error) &lt; 0:</span></span><br><span class="line">            <span class="keyword">if</span> smaller_than(p_error,error):     <span class="comment">#for the sake of numerical stability</span></span><br><span class="line">                error = p_error</span><br><span class="line">                best_result = np.array(r, copy=<span class="keyword">True</span>)</span><br><span class="line">                best_classifier = (j<span class="number">-0.5</span>, f)</span><br><span class="line">            <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">            <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">    <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="keyword">return</span> best_result, error, best_classifier</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    x = np.arange(<span class="number">10</span>)</span><br><span class="line">    y = np.array([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>])</span><br><span class="line">    iterations = <span class="number">10</span></span><br><span class="line">    weight = np.ones((x.shape)) / float(len(x))</span><br><span class="line">    coefficient_l = []</span><br><span class="line">    c_l = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line">        best_result, error, best_classifier = find_best_split(np.array(x,copy=<span class="keyword">True</span>),y,weight)</span><br><span class="line">        c_l.append(best_classifier)</span><br><span class="line">        <span class="comment"># print("best_result", best_result)</span></span><br><span class="line">        <span class="comment"># print("error", error)</span></span><br><span class="line">        alpha = <span class="number">1</span>/<span class="number">2.0</span> * np.log((<span class="number">1</span>-error)/error)</span><br><span class="line">        coefficient_l.append(alpha)</span><br><span class="line">        numerator = np.exp(-alpha*y*best_result)</span><br><span class="line">        denominator_weight = np.sum(weight * numerator)</span><br><span class="line">        <span class="comment"># print("weight ", weight)</span></span><br><span class="line">        weight = weight * numerator/ denominator_weight</span><br><span class="line">        <span class="comment"># print("weight_updated ", weight)</span></span><br><span class="line">    <span class="comment"># print(coefficient_l)</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''Final classifier'''</span></span><br><span class="line">    final_error = <span class="keyword">None</span></span><br><span class="line">    final_result = np.zeros(x.shape)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(c_l)):</span><br><span class="line">        final_result += coefficient_l[i]*classifier(np.array(x,copy=<span class="keyword">True</span>),</span><br><span class="line">                                                    v=c_l[i][<span class="number">0</span>],flag=c_l[i][<span class="number">1</span>])</span><br><span class="line">    print(final_result)</span><br><span class="line">    final_result[final_result&gt;<span class="number">0</span>]=<span class="number">1</span></span><br><span class="line">    final_result[final_result&lt;<span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">    final_error = np.sum(final_result!=y)/float(len(x))</span><br><span class="line">    print(final_error)</span><br></pre></td></tr></table></figure>
+<h3 id="Boosting-Tree"><a href="#Boosting-Tree" class="headerlink" title="Boosting Tree"></a>Boosting Tree</h3><p>When ths base classifier is the base function, boosting is named boosting tree.</p>
+<h3 id="Gradient-Boosting"><a href="#Gradient-Boosting" class="headerlink" title="Gradient Boosting"></a>Gradient Boosting</h3><p>It is not easy to optimize normal loss function for boosting tree. Gradient boosting is employed to solve this problem.<br>For regression problem, utilize the the negative gradient of the loss function to approximate the residual error so as to approximate a boosting tree.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://pdfs.semanticscholar.org/79ea/6a5a68e05065f82acd11a478aa7eac5f6c06.pdf" target="_blank" rel="noopener">Bagging􏰀 Boosting􏰀 and C4.5􏰁􏰂􏰃</a></p>
+<p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/26/python/" itemprop="url">python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T19:56:02+08:00">
+                2018-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><p>Find the key that has the largest value in a dictionary.</p>
+<p>Assume stats is the dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure>
+<p>map dictionary:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_dictionary = dict(map(lambda kv: (kv[0], f(kv[1])), my_dictionary.items()))</span><br></pre></td></tr></table></figure></p>
+<p>build a dictionary with the same key from the other dictionary.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = dic.fromkeys(dic.keys(), 0)</span><br></pre></td></tr></table></figure>
+<p>Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage.</p>
+<p>For example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = l1</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
+<p>Now l1[2] is also 100.</p>
+<p>solution:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = copy.deepcopy(l1)</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
+<p>Now l1[2] is still 3.</p>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l2 = list(l1)</span><br></pre></td></tr></table></figure></p>
+<p>A shallow copy constructs a new compound object and inserts references into it to the objects found in the original.<br>A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.</p>
+<p>from pip import main<br>ImportError: cannot import name main</p>
+<p>solution: Roll back</p>
+<p>python3 -m pip install –user –upgrade pip==9.0.3</p>
+<p>assert condition is True, or else print the string.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> condition, <span class="string">'.....'</span></span><br></pre></td></tr></table></figure>
+<p>Decimal, Octal, Hexadecimal, Binary</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oct()</span><br><span class="line">hex()</span><br><span class="line">bin()</span><br></pre></td></tr></table></figure>
+<p>convert jupyter notebook to python file:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter nbconvert --to script [YOUR_NOTEBOOK].ipynb</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getattr(x,foo)</span><br></pre></td></tr></table></figure>
+<p>is the same as x.foo. get the attribute named foo of x.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__file__</span><br></pre></td></tr></table></figure>
+<p>is only available in running in command line mode. Not available in interactive mode like Jupyter.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.path.expanduser(path)</span><br></pre></td></tr></table></figure>
+<p>turn “~” into home directory</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip(*iterables)</span><br></pre></td></tr></table></figure>
+<p>Make an iterator that aggregates elements from each of the iterables.</p>
+<p><code>*l</code> idiom is to <strong>unpack argument lists</strong> when calling a function 解包列表中的变量传递给函数</p>
+<h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><p>Dataframe.groupby() groups the row with the same attributes together. Source: <a href="https://www.kaggle.com/crawford/python-groupby-tutorial" target="_blank" rel="noopener">https://www.kaggle.com/crawford/python-groupby-tutorial</a></p>
+<p>df.groupby(‘A’).agg({‘B’: [‘min’, ‘max’], ‘C’: ‘sum’})<br>agg is able to specify what kind of operations you want to apply to the group.</p>
+<p>pandas.DataFrame.reset_index() is used to reset index for multi-level dataframe.</p>
+<p>Basic funtions in pandas:(could be passed to agg function)</p>
+<p>| <code>count</code> | Number of non-NA observations |<br>| <code>sum</code> | Sum of values |<br>| <code>mean</code> | Mean of values |<br>| <code>mad</code> | Mean absolute deviation |<br>| <code>median</code> | Arithmetic median of values |<br>| <code>min</code> | Minimum |<br>| <code>max</code> | Maximum |<br>| <code>mode</code> | Mode |<br>| <code>abs</code> | Absolute Value |<br>| <code>prod</code> | Product of values |<br>| <code>std</code> | Bessel-corrected sample standard deviation |<br>| <code>var</code> | Unbiased variance |<br>| <code>sem</code> | Standard error of the mean |<br>| <code>skew</code> | Sample skewness (3rd moment) |<br>| <code>kurt</code> | Sample kurtosis (4th moment) |<br>| <code>quantile</code> | Sample quantile (value at %) |<br>| <code>cumsum</code> | Cumulative sum |<br>| <code>cumprod</code> | Cumulative product |<br>| <code>cummax</code> | Cumulative maximum |<br>| <code>cummin</code> | Cumulative minimum |</p>
+<p>After groupby, there are multi-level indices. use reset_inedx() to reset the indices.</p>
+<p>pd.merge()<br>Values with the keys would be kept. The difference is how to deal with values that have different keys.</p>
+<ol>
+<li>Left Merge: drop the right keys and fill left keys with nan</li>
+<li>Right Merge: drop the left keys and fill right keys with nan</li>
+<li>drop all keys </li>
+<li>fill all keys with nan</li>
+</ol>
+<p>pandas.get_dummies()  convert categorical variable into dummy/indicator variables.</p>
+<h2 id="Multiprocessing"><a href="#Multiprocessing" class="headerlink" title="Multiprocessing"></a>Multiprocessing</h2><p>pool.starmap(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>])  each element of starmap is supposed to be an iterable item.</p>
+<p>pool.map(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>]) each element of map is supposed to be a single item stored in an iterable item.</p>
+<h3 id="pickle"><a href="#pickle" class="headerlink" title="pickle"></a>pickle</h3><p>read from pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"file_path"</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    d = pickle.load(f)</span><br></pre></td></tr></table></figure></p>
+<p>write to pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">favorite_color = &#123; <span class="string">"lion"</span>: <span class="string">"yellow"</span>, <span class="string">"kitty"</span>: <span class="string">"red"</span> &#125;</span><br><span class="line">pickle.dump( favorite_color, open( <span class="string">"save.p"</span>, <span class="string">"wb"</span> ) )</span><br></pre></td></tr></table></figure></p>
+<p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;We are the &#123;&#125; who say &#123;&#125;!&apos;.format(&apos;knights&apos;, &apos;Ni&apos;)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;:.4f&#125;.format(4.555)</span><br></pre></td></tr></table></figure>
+<p>formatting a float number.</p>
+<p>check whether an object has an attribute.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if hasattr(a, &apos;property&apos;):</span><br><span class="line">    a.property</span><br></pre></td></tr></table></figure>
+<p>迭代器和生成器</p>
+<p>迭代器实现迭代器协议，用于迭代。</p>
+<p>生成器自动实现了迭代器协议，生成结果中间过程函数被挂起，性能更好，下一次从中断的地方开始继续执行，生成器只能迭代一次。</p>
+<p>convert a list of strings to a single string</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="string">'[SEP]'</span>.join(l)</span><br></pre></td></tr></table></figure>
+<p>The result is ‘a[SEP]b[SEP]c’.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span>.join(<span class="string">"1"</span>)</span><br><span class="line"><span class="string">''</span>.join(<span class="string">"123"</span>)</span><br></pre></td></tr></table></figure>
+<p>simply return ‘1’ and ‘123’. It return a string. It means nothing is in between the iterable strings.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">' '</span>.join(<span class="string">"123"</span>)</span><br></pre></td></tr></table></figure>
+<p>returns ‘1 2 3’. It insert ‘ ‘(space) between the iterable strings.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ast.literal_eval(s)</span><br></pre></td></tr></table></figure>
+<p>convert a string which is a kind of data structure in python like set, list and so on.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval()</span><br></pre></td></tr></table></figure>
+<p>evaluate the string and output the result.</p>
+<p>dict.get() allows to set default value if the key is missing.</p>
+<h3 id="Decorator"><a href="#Decorator" class="headerlink" title="Decorator"></a>Decorator</h3><p>Decorator is actually a function that takes another function as input and return a new function.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@wraps(func)</span></span><br></pre></td></tr></table></figure>
+<p>is able to convey the information like signature and time to the new function.</p>
+<p>A Signature object represents the relevant information of a function or method like how to invoke it, its return annotation as well as parameters.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__wrapped__</span><br></pre></td></tr></table></figure>
+<p>Allows you to access the original wrapper function. For internal decorator @staticmethod and @classmethod. they stored the original function in <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Implement `__repr__` for any class you implement. This should be second nature. Implement `__str__` if you think it would be useful to have a string version which errs on the side of readability. ```__repr__``` is for unambiguity while ```__str__``` is for readability.  Container’s ```__str__``` uses contained objects ```__repr__```.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```!s``` in format invoke ```__repr__```.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iterator implements ```__next__()``` and ```StopIteration``` which indicates ending. Generator enables complex looping function.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">​	```yield from``` is equivalent to loop a subgenerator. </span><br><span class="line"></span><br><span class="line">迭代器不可逆，itertools.islice 可以对生成器和迭代器实现切片.</span><br><span class="line"></span><br><span class="line">A generator is an iterator. Iterator is more general. An iterator is supposed to implement ```__iter__``` so that an iterator is usually a class while a generator usually is a function. </span><br><span class="line"></span><br><span class="line">When looping a generator, the program would stop at the **yield** expression and output the result. When ```__next__``` is invoked, the program would start again from the expression below the **yield** expression.</span><br><span class="line"></span><br><span class="line">```itertools.dropwhile(condition)``` drop the items in the iterator until the condition is False.</span><br><span class="line"></span><br><span class="line">``` defaultdict``` would create the default data structure if there is no corresponding key in the dict.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">zip() is used to iterate two or more(usually two) iterables. It would stop at the end of the shorter sequence.</span><br><span class="line"></span><br><span class="line">itertools.zip_longest() would stop at the end of the longer sequence.</span><br><span class="line"></span><br><span class="line">itertools.chain() takes multiple iterables as input and iterate the elements in each iterable one by one.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">from collections import Iterable</span><br><span class="line"></span><br><span class="line">def flatten(items, ignore_types=(str, bytes)):</span><br><span class="line">    for x in items:</span><br><span class="line">        if isinstance(x, Iterable) and not isinstance(x, ignore_types):</span><br><span class="line">            yield from flatten(x)</span><br><span class="line">        else:</span><br><span class="line">            yield x</span><br><span class="line"></span><br><span class="line">items = [1, 2, [3, 4, [5, 6], 7], 8]</span><br><span class="line"># Produces 1 2 3 4 5 6 7 8</span><br><span class="line">for x in flatten(items):</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure></p>
+<p>employ <figure class="highlight plain"><figcaption><span>from``` to flatten chained iterables.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Distribute packages</span><br><span class="line"></span><br><span class="line">setup.py:</span><br><span class="line"></span><br><span class="line">```include_package_data=True,```  would include everything in source control specified in `MANIFEST.in`. `MANIFEST.in` is supoosed to put on the top-level of the directory which is the same as setup.py. The path in MANIFEST.in is supposed to start from the top-level directory.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">from __future__ import print_function</span><br></pre></td></tr></table></figure></p>
+<p>has to be the first expression other than below code</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br></pre></td></tr></table></figure>
+<p> that specifying explainer and coding. </p>
+<p>Below code is another way to specify the data to include other than <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```python</span><br><span class="line">package_data=&#123;</span><br><span class="line">        # If any package contains *.txt files, include them:</span><br><span class="line">        &apos;&apos;: [&apos;*.txt&apos;],</span><br><span class="line">        # And include any *.dat files found in the &apos;data&apos; subdirectory</span><br><span class="line">        # of the &apos;mypkg&apos; package, also:</span><br><span class="line">        &apos;mypkg&apos;: [&apos;data/*.dat&apos;],</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>An egg package resembles .jar package in java.  It is a kind of zip file with some meta data enamed <code>.egg</code>[1]. “Python egg” is a logical structure embodying the release of a specific version of a Python project, comprising its code, resources, and metadata. It is recommended to use wheel for installation. Egg could also be used for runtime installation. </p>
+<h5 id="下划线-underscode"><a href="#下划线-underscode" class="headerlink" title="下划线(underscode)"></a>下划线(underscode)</h5><ol>
+<li><p>_xxx     不能用于’from module import’ 以单下划线开头的表示的是protected类型的变量。即保护类型只能允许其本身与子类进行访问。</p>
+</li>
+<li><p>__xxx    双下划线的表示的是私有类型的变量。只能是允许这个类本身进行访问了。连子类也不可以</p>
+</li>
+</ol>
+<p>calculate running time of a program</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()</span><br><span class="line">print(<span class="string">"--- %s seconds ---"</span> % (time.time() - start_time))</span><br></pre></td></tr></table></figure>
+<h5 id="Line-profiler"><a href="#Line-profiler" class="headerlink" title="Line_profiler"></a>Line_profiler</h5><p>it is used to print the running time of each line in the code. It facilitates analysis of performance.</p>
+<p>Usage: add “@profile” above the function to be analysed.</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@profile</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">damn_slow_function</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kernprof -l -v -o log script_to_profile.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m line_profiler log</span><br></pre></td></tr></table></figure>
+<p>to view the corresponding log.</p>
+<h6 id="Variable-Container-as-function-argument"><a href="#Variable-Container-as-function-argument" class="headerlink" title="Variable Container as function argument"></a>Variable Container as function argument</h6><p>In python, if variable containers(list, dict) are passed to a function as argument, it is their reference that are passed which means that modifying the containers in the function would also change the original.</p>
+<figure class="highlight plain"><figcaption><span>enable</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. **faster** attribute access.</span><br><span class="line">2. **space savings** in memory.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###### Import mechanism</span><br><span class="line"></span><br><span class="line">In python3, there are only absolute import. And submodule would automatically import from the root dir. For example, dir root, dir root/model, dir root/model_test. Then python file in root/model wants to import a module from root/model_test, the import code should be </span><br><span class="line"></span><br><span class="line">```py</span><br><span class="line">from model_test.import_test import test</span><br></pre></td></tr></table></figure>
+<p>rather then</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ..model_test.import_test <span class="keyword">import</span> test</span><br></pre></td></tr></table></figure>
+<p>正则表达式匹配非中文，非英文和数字的字符</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.search(<span class="string">u"[^A-Za-z0-9\u4e00-\u9fa5]+"</span>,<span class="string">"我?"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://stackoverflow.com/questions/2051192/what-is-a-python-egg" target="_blank" rel="noopener"><a href="https://stackoverflow.com/questions/2051192/what-is-a-python-egg" target="_blank" rel="noopener">What is a Python egg?</a></a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Linear-Algebra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/26/Linear-Algebra/" itemprop="url">Linear_Algebra</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:34:29+08:00">
+                2018-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>By default, vectors are column vectors.</p>
+<h4 id="Outer-Product"><a href="#Outer-Product" class="headerlink" title="Outer Product"></a>Outer Product</h4><p>\(<br>\left(\begin{array}{cc}<br>{1} \\ {2}<br>\end{array}\right) \) \(\otimes\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20<br>\end{array}\right)<br>\) = \(  \left(\begin{array}{cc}<br>{1 \times 10} &amp; {1 \times 20} \\ {2 \times 10} &amp; {2 \times 20}<br>\end{array}\right)  \)</p>
+<p>Outer product increase the dimension of the matrix. Outer product of a (a1∗a2) matrix and  a (b1∗b2) matrix is a (a1∗a2)∗(b1∗b2) matrix.</p>
+<p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1q} \\<br>y_2 &amp; \cdots &amp; y_{2q} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_p &amp; \cdots &amp; x_{pq}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_1y_{1q} &amp; x_1y_{2} &amp; \cdots &amp; x_1y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{1n}y_1 &amp; \cdots &amp; x_{1n}y_{1q} &amp; x_{1n}y_{2} &amp; \cdots &amp; x_{1n}y_{pq} \\<br>x_2y_1 &amp; \cdots &amp; x_2y_{1q} &amp; x_2y_{2} &amp; \cdots &amp; x_2y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{mn}y_1 &amp; \cdots &amp; x_{mn}y_{1q} &amp; x_{mn}y_{2} &amp; \cdots &amp; x_{mn}y_{pq}<br>\end{bmatrix}<br>\end{array}$$</p>
+<h4 id="Element-wise-Product-Hadamard-product"><a href="#Element-wise-Product-Hadamard-product" class="headerlink" title="Element-wise Product  (Hadamard product)"></a>Element-wise Product  (Hadamard product)</h4><p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1n} \\<br>y_2 &amp; \cdots &amp; y_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_{1i}y_{1i} &amp; x_{1j}y_{1j} &amp; \cdots &amp; x_{1n}y_{1n} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{m1}y_{m1} &amp; \cdots &amp; x_{mi}y_{mi} &amp; x_{mj}y_{mj} &amp; \cdots &amp; x_{mn}y_{mn}<br>\end{bmatrix}<br>\end{array}$$</p>
+<p><strong>Example</strong><br>\(<br>\left(\begin{array}{cc}<br>1 &amp; 2 \\ 3 &amp; 4<br>\end{array}\right) \) \(\odot\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20 \\ 30 &amp; 40<br>\end{array}\right) \) = \(<br>\left(\begin{array}{cc}<br>{1 \times 10} &amp; {2 \times 20} \\ {3 \times 30} &amp; {4 \times 40}<br>\end{array}\right) \)</p>
+<h4 id="Vector-Norm"><a href="#Vector-Norm" class="headerlink" title="Vector Norm"></a>Vector Norm</h4><p>L1 Norm: The sum of absolute values in the matrix. </p>
+<p>$$\lVert w \rVert_1 = \textstyle \sum_{i=1}^n |w_i|$$</p>
+<p>L2 Norm: The sqrt of the sum of squared values in the matrix. </p>
+<p>$$\lVert w \rVert_2 = \sqrt {\textstyle \sum_{i=1}^n w_i^2}$$</p>
+<h4 id="Matrix-Norm"><a href="#Matrix-Norm" class="headerlink" title="Matrix Norm"></a>Matrix Norm</h4><p>The spectral norm of a matrix A is the largest singular value of A.For example, the square root of the largest eigenvalue of the positive-semidefinite matrix \({\displaystyle A^{*}A}\).</p>
+<h4 id="Identity-Matrix"><a href="#Identity-Matrix" class="headerlink" title="Identity Matrix"></a>Identity Matrix</h4><p>An identity matrix of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.</p>
+<p>$${ I_{n}={\begin{bmatrix}\ 1&amp;0&amp;0&amp;\cdots &amp;0\\ 0&amp;1&amp;0&amp;\cdots &amp;0\\ 0&amp;0&amp;1&amp;\cdots &amp;0\\ \vdots &amp;\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\ 0&amp;0&amp;0&amp;\cdots &amp;1\end{bmatrix}}}$$</p>
+<p>矩阵乘法满足结合律，不满足交换律.</p>
+<p>如果把方阵视为线性变换，则其行列式的绝对值表示该线性变换造成的体积元的变化系数，行列式的符号反映了基底的定向变化。</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://www.cnblogs.com/steven-yang/p/6348112.html#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%98%E7%A7%AF" target="_blank" rel="noopener">机器学习中的基本数学知识</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Identity_matrix" target="_blank" rel="noopener">Identity matrix</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Numpy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/26/Numpy/" itemprop="url">Numpy</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:31:33+08:00">
+                2018-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>numpy.ufunc.at. apply function at given index.</p>
+<p>np.add.at(a, [0, 1, 2, 2], 1): add 1 to array a at index [0, 1, 2, 2]</p>
+<p>numpy.random.permutation(x):Randomly permute a sequence, or return a permuted range. 即把一序列打成乱序输出</p>
+<p>numpy.outer(a, b, out=None);Compute the outer product of two vectors.    </p>
+<p>operator *: element-wise multuply</p>
+<p>Axis = 0 is column. Axis = 1 is row</p>
+<p>a[:6:2] means the first element of every two elements from 0 to 5</p>
+<p>array dimension: count the bracket</p>
+<p>flat attribute which is an iterator over all the elements of the array:</p>
+<p>np.nditer(a, flags=[‘f_index’]) is used to iterate elements</p>
+<p>access multiple columns elements: a[b,c] while b is from 0 to n, c shows in each line which element you want to access.</p>
+<p><a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating</a></p>
+<p>access nth column: a[:,n]</p>
+<p>transpose an one-dimension array: a.reshape(n,len(a))</p>
+<p>multi-dimensional array, count the dimension from low to high</p>
+<p>np.argsort()Returns the indices that would sort an array.<br>numpy.bincount<br>Count number of occurrences of each value in array of non-negative ints.</p>
+<p>Np.argmax()  Returns the indices of the maximum values along an axis.<br>Np.nonzero() return tuple that consists of arrays. The first array indicates dimension, the second one indicates location(index)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.array(x,copy=True)</span><br></pre></td></tr></table></figure>
+<p>copy an array to a new variable. </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Tensorflow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/23/Tensorflow/" itemprop="url">Tensorflow</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T14:42:47+08:00">
+                2018-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Characteristic: Lazy evaluation like scala</p>
+<p>Two steps to build and run a model:</p>
+<ul>
+<li>assemble a graph</li>
+<li>use a session to execute operations in the graph</li>
+</ul>
+<p>Placeholder: a node to store variable which would not be modified during backpropagation</p>
+<p>Variable: a node that would be modified during backpropagation</p>
+<p>Constant: values that cannot be changed</p>
+<p>Running parts need to be encapsulated into session.run(). session.run() is evaluation of the graph.</p>
+<p>Variables could have name and scope.</p>
+<p>Use TF DType to accelerate the computation or tensorflow has to infer the type.</p>
+<p>create variables with tf.get_variable</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = tf.get_variable(&quot;matrix&quot;, initializer=tf.constant([[0, 1], [2, 3]]))</span><br></pre></td></tr></table></figure>
+<p>rather than </p>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Before running, variables need to be initialized.</span><br></pre></td></tr></table></figure>
+<p>initializer = tf.global_variables_initializer()<br>with tf.Session() as sess:<br>    sess.run(initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a subset of variables:</span><br></pre></td></tr></table></figure></p>
+<p>with tf.Session() as sess:<br>    sess.run([a,b])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a single variable:</span><br></pre></td></tr></table></figure></p>
+<p>m=tf.get_variable(“matrix”,initializer=tf.constant([[0, 1], [2, 3]]))<br>with tf.Session() as sess:<br>    sess.run(m.initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">W.assign(100) creates an assign operation that assign 100 to variable W. The operation needs to be executed in a session to take effect.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tensorflow separates definitions of computation and execution. It first assembles a graph. Second use a session to execute.</span><br><span class="line"></span><br><span class="line">Nodes are operators, variables, and constants</span><br><span class="line"></span><br><span class="line">Edges are tensors.</span><br><span class="line"></span><br><span class="line">A Session object encapsulates the environment in which Operation objects are executed, and Tensor objects are evaluated.  Session will also allocate memory to store the current values of variables.</span><br></pre></td></tr></table></figure></p>
+<p>tf.Session.run(fetches,    feed_dict=None,    options=None,    run_metadata=None)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">fetches is a list of tensors whose values you want. tensorflow would return the values you want and skip computing unnecessary values.</span><br><span class="line"></span><br><span class="line">Multiple graphs require multiple sessions, each will try to use all available resources by default</span><br><span class="line"></span><br><span class="line">why graphs:</span><br><span class="line">1. break computation to facilitate auto-differentiation.</span><br><span class="line">2. save computation. only compute necessary values</span><br><span class="line">3. easier to distribute</span><br><span class="line">4. ML models visulised as graphs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Can&apos;t pass data between them without passing them through python/numpy, which doesn&apos;t work in distributed</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Create the summary writer after graph definition and before running your session.</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># The default path for saving event files is the same folder of this python file.</span><br><span class="line">tf.app.flags.DEFINE_string(</span><br><span class="line">&apos;log_dir&apos;, os.path.dirname(os.path.abspath(__file__)) + &apos;/logs&apos;,</span><br><span class="line">&apos;Directory where event logs are written to.&apos;)</span><br><span class="line"></span><br><span class="line"># Store all elements in FLAG structure!</span><br><span class="line">FLAGS = tf.app.flags.FLAGS</span><br><span class="line"></span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    writer = tf.summary.FileWriter(os.path.expanduser(FLAGS.log_dir), sess.graph)</span><br><span class="line">    .....</span><br><span class="line"># Closing the writer.</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure></p>
+<p>These codes are used to specify the path of logs directory and store all elements in FLAG structure.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clean flag name</span></span><br><span class="line"><span class="keyword">from</span> absl <span class="keyword">import</span> flags</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> list(flags.FLAGS):</span><br><span class="line">  delattr(flags.FLAGS, name)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnrecognizedFlagError: Unknown command line flag <span class="string">'f'</span></span><br></pre></td></tr></table></figure>
+<p>To solve this problem, just add a flag. In coommand line, there is not such a problem.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(<span class="string">'f'</span>, <span class="string">''</span>, <span class="string">'kernel'</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(&apos;str_name&apos;, &apos;def_v_1&apos;,&quot;descrip1&quot;)</span><br></pre></td></tr></table></figure>
+<p>tf.app.flags is used to assign a name to a variable and parse variables in command line. The first argument is the variable name. The second argument is the default value. The third argument is a description. argparse module in python could also be employed to parse arguments.</p>
+<p>Any evaluation of variable must be run in a session.</p>
+<p>Three ways to initialize variables:</p>
+<ol>
+<li>Initializing Specific Variables.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># &quot;variable_list_custom&quot; is the list of variables that we want to initialize.</span><br><span class="line">variable_list_custom = [weights, custom_variable]</span><br><span class="line"></span><br><span class="line"># The initializer</span><br><span class="line">init_custom_op = tf.variables_initializer(var_list=all_variables_list)</span><br></pre></td></tr></table></figure>
+<p>This enable us to initialize specific variables. We are supposed to initialize all variables after specific initialization.</p>
+<ol start="2">
+<li>Global variable initialization. This operation has to be done after the construction of a model.</li>
+<li>Initialization of a variables using other existing variables. New variables can be initialized using other existing variables’ initial values by taking the values using initialized_value().<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create another variable with the same value as 'weights'.</span></span><br><span class="line">WeightsNew = tf.Variable(weights.initialized_value(), name=<span class="string">"WeightsNew"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now, the variable must be initialized.</span></span><br><span class="line">init_WeightsNew_op = tf.variables_initializer(var_list=[WeightsNew])</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>tf.one_hot() The axis argument determines which axis is the one-hot vector. </p>
+<p>Name scope is for grouping nodes together to facilitate visulisation in Tensorboard. Name scope is for reusing of operations while variable scope is for reusing of variables. </p>
+<p>Name scope is able to assign names to a set of variables. It is equivalent to add “name_scope/” to the variable name as prefix.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;outer&quot;):  c_2 = tf.constant(2, name=&quot;c&quot;)  # =&gt; operation named &quot;outer/c&quot;</span><br></pre></td></tr></table></figure>
+<p>An <code>Operation</code> is a node in a TensorFlow <code>Graph</code> that takes zero or more <code>Tensor</code> objects as input, and produces zero or more <code>Tensor</code> objects as output. Objects of type <code>Operation</code> are created by calling a Python op constructor (such as [<code>tf.matmul</code>] or [<code>tf.Graph.create_op</code>].</p>
+<p>A <code>Tensor</code> is a symbolic handle to one of the outputs of an <code>Operation</code>. It does not hold the values of that operation’s output, but instead provides a means of computing those values in a TensorFlow [<code>tf.Session</code>].</p>
+<p>Note that [<code>tf.Tensor</code>] objects are implicitly named after the [<code>tf.Operation</code>]that produces the tensor as output. A tensor name has the form <code>&quot;&lt;OP_NAME&gt;:&lt;i&gt;&quot;</code>.</p>
+<p>tf.get_variable would search the variable with the given name. If there is not such a variable, it would create a new variable.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.reduce_mean()</span><br></pre></td></tr></table></figure>
+<p>Sum over a vector in a particular dimension and compute the mean. The axis argument is used to specify the particular dimension.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.softmax_cross_entropy_with_logits_v2()</span><br></pre></td></tr></table></figure>
+<p>Take unscaled log probabilities as input and perform softmax. After that, compute cross entropy loss. This functino allows gradient to backpropagated to labels.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cast()</span><br></pre></td></tr></table></figure>
+<p>Casts a tensor to a new type.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1.8, 2.2], dtype=tf.float32)tf.cast(x, tf.int32)  # [1, 2], dtype=tf.int32</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tf.Graph().as_default():</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<p>There is a default graph in tensorflow. All operations and variables are added to the graph if not specified. This line of code use another graph and add variables to that graph. Outside the code block, variables would be added to the default graph.</p>
+<p> TensorFlow will create a new [<code>tf.Tensor</code>]each time you use the same tensor-like object. If the tensor-like object is large (e.g. a <code>numpy.ndarray</code> containing a set of training examples) and you use it multiple times, you may run out of memory.</p>
+<p>By default, tf.Session is bounded to the default graph. If there is multiple graphs, specify graph parameter in tf.Session().</p>
+<p>The allow_soft_placement flag allows the switching back-and-forth between different devices. In tensorflow, not all operations are supported in GPU. The log_device_placement flag is to present which operations are set on what devices.</p>
+<p>The <strong>max_to_keep</strong> flags determine the maximum number of the saved models that the TensorFlow keeps and its default is set to ‘5’ by TensorFlow.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)</span><br></pre></td></tr></table></figure>
+<p>create a tensor filled with zero with the same shape as input_tensor</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.fill(dims, value, name=None)</span><br></pre></td></tr></table></figure>
+<p>create a tensor filled with a scalar value</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf.lin_space(start, stop, num, name=None)</span><br><span class="line"></span><br><span class="line">tf.range(start, limit=None, delta=1, dtype=None, name=&apos;range&apos;)</span><br></pre></td></tr></table></figure>
+<p>create a tensor with a sequence of values</p>
+<p>scalars are treated like tensors with zero dimension</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = sess.run(a)    #use a_out = sess.run(a) instead for the sake of memory</span><br></pre></td></tr></table></figure>
+<p>Use TF DType whenever possible for computation convenience.</p>
+<p> Each session maintains its own copy of variables</p>
+<p>tf.constant is an op. tf.Variable is a class with many ops.</p>
+<p>Only use tf.constant for primitive type. Otherwise the loading of graphs would be expensive.</p>
+<p>Constant values are stored in the graph definition.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = tf.get_variable(&quot;scalar&quot;, initializer=tf.constant(2))  #is preferred</span><br><span class="line"></span><br><span class="line">s = tf.Variable(2)</span><br></pre></td></tr></table></figure>
+<p>Initializer is an op. You need to execute it within the context of a session.</p>
+<p>Each variable has its own initializer.</p>
+<p>Sessions allocate memory to store variable values.</p>
+<p>Eval() a variable is equivalent to sess.run(a variable)</p>
+<p>tf.Variable.assign() is an op.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder(dtype, shape=None, name=None)</span><br></pre></td></tr></table></figure>
+<p>shape=None is easy to construct graphs but it is difficult for debugging.</p>
+<p>tensors could be fed with some dummy values for testing purpose.</p>
+<p>Lazy loading would make the graph bloated and hard to load. <strong>Remeber to seperate definition of a graph from computing/running ops</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, shape=None, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
+<p>InvalidArgumentError (see above for traceback): You must feed a value for placeholder tensor ‘x’ with dtype float.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
+<p>works…….</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cond( pred, true_fn=None, false_fn=None,    strict=False, name=None)</span><br></pre></td></tr></table></figure>
+<p>tf.cond: pred is an expression. true_fn and flase_fn are callable function. If the expression is true, return the result of true_fn and vise versa.</p>
+<p>tf.placeholder is pythonic, but it is also easy to become bottleneck if running in single thread.</p>
+<p>tf.data is preferred. For prototyping, feed dict can be faster and easier to write (pythonic). But tf.data is tricky to use when you have complicated preprocessing or multiple data sources.</p>
+<p>Session looks at all trainable variables that optimizer depends on and update them.</p>
+<p>NCE guarantees approximation to softmax but Negative Sampling doesn’t.</p>
+<p>tf.train.Saver saves graph’s variables in binary files. It saves session rather than graph. When re-using parameters, it is necessart to construct the graph first and then restore the parameters.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;summaries&quot;): </span><br><span class="line">  tf.summary.scalar(&quot;loss&quot;, self.loss)</span><br><span class="line">  tf.summary.scalar(&quot;accuracy&quot;, self.accuracy)</span><br><span class="line">  tf.summary.histogram(&quot;histogram loss&quot;, self.loss)</span><br><span class="line">  summary_op = tf.summary.merge_all()</span><br></pre></td></tr></table></figure>
+<p>merge them all into one summary op to make managing them easier.</p>
+<p>Like everything else in TF, summaries are ops. For the summaries to be built, you have to run it in a session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss_batch, _, summary = sess.run([loss, optimizer, summary_op])</span><br><span class="line"></span><br><span class="line">writer.add_summary(summary, global_step=step)</span><br></pre></td></tr></table></figure>
+<p>Randomization:</p>
+<ol>
+<li>operation level. my_var = tf.Variable(tf.truncated_normal((-1.0,1.0), stddev=0.1, seed=0))</li>
+<li>graph level. tf.set_random_seed(2)</li>
+</ol>
+<p>tf dataset:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.from_tensor_slices()</span><br></pre></td></tr></table></figure>
+<p>constructs a dataset from one or more <code>tf.Tensor</code> objects. It slices the first dimension of the tensor.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.batch()</span><br></pre></td></tr></table></figure>
+<p>or<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.map()</span><br></pre></td></tr></table></figure></p>
+<p>apply a transformation to a dataset and create another dataset.</p>
+<p>A [<code>tf.data.Dataset</code>] represents a sequence of elements, in which each element contains one or more <code>Tensor</code>objects. For example, an element could be an image corresponds to a label or a sequence of tokens correspond to another sequence of tokens or only a simple label.</p>
+<p>A <a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator" target="_blank" rel="noopener"><code>tf.data.Iterator</code></a> provides the main way to extract elements from a dataset. The operation returned by <code>Iterator.get_next()</code> yields the next element of a <code>Dataset</code> when executed, and typically acts as the interface between input pipeline code and your model. For more sophisticated uses, the <code>Iterator.initializer</code>operation enables you to reinitialize and parameterize an iterator with different datasets, so that you can, for example, iterate over training and validation data multiple times in the same program.</p>
+<p> <a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset" target="_blank" rel="noopener"><code>tf.data.TFRecordDataset</code></a> constructs dataset from files if the files are on disk in the recommended TFRecord format.</p>
+<p>If the iterator reaches the end of the dataset, executing the <code>Iterator.get_next()</code> operation will raise a <a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError" target="_blank" rel="noopener"><code>tf.errors.OutOfRangeError</code></a>. After this point the iterator will be in an unusable state, and you must initialize it again if you want to use it further.</p>
+<p>A common pattern is to wrap the “training loop” in a <code>try</code>-<code>except</code> block:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(iterator.initializer)<span class="keyword">while</span> <span class="keyword">True</span>:  <span class="keyword">try</span>:    sess.run(result)  <span class="keyword">except</span> tf.errors.OutOfRangeError:    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>A <strong>reinitializable</strong> iterator can be initialized from multiple different <code>Dataset</code> objects. For example, you might have a training input pipeline that uses random perturbations to the input images to improve generalization, and a validation input pipeline that evaluates predictions on unmodified data. These pipelines will typically use different <code>Dataset</code> objects that have the same structure (i.e. the same types and compatible shapes for each component).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iterator = tf.data.Iterator.from_structure(training_dataset.output_types,                                           training_dataset.output_shapes)</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
+<p>A <strong>one-shot</strong> iterator is the simplest form of iterator, which only supports iterating once through a dataset, with no need for explicit initialization. One-shot iterators handle almost all of the cases that the existing queue-based input pipelines support, but they do not support parameterization. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataset = tf.data.Dataset.range(<span class="number">100</span>)</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
+<p>An <strong>initializable</strong> iterator requires you to run an explicit <code>iterator.initializer</code> operation before using it. In exchange for this inconvenience, it enables you to <em>parameterize</em> the definition of the dataset, using one or more <code>tf.placeholder()</code>tensors that can be fed when you initialize the iterator.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">max_value = tf.placeholder(tf.int64, shape=[])</span><br><span class="line">dataset = tf.data.Dataset.range(max_value)</span><br><span class="line">iterator = dataset.make_initializable_iterator()</span><br><span class="line">next_element = iterator.get_next()<span class="comment"># Initialize an iterator over a dataset with 10 elements.</span></span><br><span class="line">sess.run(iterator.initializer, feed_dict=&#123;max_value: <span class="number">10</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):  </span><br><span class="line">  value = sess.run(next_element)  </span><br><span class="line">  <span class="keyword">assert</span> i == value</span><br></pre></td></tr></table></figure>
+<p>The <code>Iterator.get_next()</code> method returns one or more <a href="https://www.tensorflow.org/api_docs/python/tf/Tensor" target="_blank" rel="noopener"><code>tf.Tensor</code></a> objects that correspond to the symbolic next element of an iterator. Each time these tensors are evaluated, they take the value of the next element in the underlying dataset. Note that the iterator does not get to the next element immediately. The returned element is suuposed to be passed to  <code>tf.Session.run()</code> to get the next elements and advance the iterator.</p>
+<p>Applying arbitrary Python logic with <code>tf.py_func()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.stack(    values,    axis=0,    name=&apos;stack&apos;)</span><br></pre></td></tr></table></figure>
+<p>concatenate tensors along specified dimension.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.padded_batch()</span><br></pre></td></tr></table></figure>
+<p>padded_shapes is None, the component will be padded out to the maximum length of all elements in that dimension.</p>
+<p>Estimators are high-level abstraction of low-level tensorflow operation. It enables easier training, testing on different kinds of devices and modes like training on a single PC or a cluster.</p>
+<p>4 steps to use pre-made Estimators</p>
+<ol>
+<li>write function to import dataset</li>
+<li>Define the feature columns.</li>
+<li>Instantiate the relevant pre-made Estimator like specifying number of hidden layers, output features</li>
+<li>There are training and evaluation methods for Estimators. Call a training, evaluation, or inference method.</li>
+</ol>
+<p>tf.feature_column could be regarded as a kind of interface between the dataset and model in Estimators. It could abstract continuous values or categorical values.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Dependency-Parsing/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -553,1273 +1905,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/Pagerank/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/18/Pagerank/" itemprop="url">Pagerank</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-18T12:42:01+08:00">
-                2018-07-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>A good hub page is one that points to many good authorities; a good authority page is one that is pointed to by many good hub pages.</p>
-<h2 id="PageRank"><a href="#PageRank" class="headerlink" title="PageRank"></a>PageRank</h2><h4 id="Intuition"><a href="#Intuition" class="headerlink" title="Intuition"></a>Intuition</h4><p>Pages that are visited more are given higher weight. Employ graph to represent the internet. Higher in links means visited more.</p>
-<p>PageRank values would converge to the final value regardless of the start state and it is in the range [0,1]. So the PageRank values could also be viewed as the probability of the surfer is in the node i at any time given the PageRank value of the node i.</p>
-<p>PageRank could be regarded as a random walk in the internet. Start at any state, and then walk through the out links randomly. In case of circular routes and dead end, employ the scaled version of random walk. As the random walk proceeds, some nodes are visited more often than others; intuitively, these are nodes with many links coming in from other frequently visited nodes. The idea behind PageRank is that pages visited more often in this walk are more important.</p>
-<p><strong>Teleport</strong>:if N is the total number of nodes in the web graph, the teleport operation takes the surfer to each node with probability 1/N.</p>
-<h4 id="Random-Walk-Interpretation"><a href="#Random-Walk-Interpretation" class="headerlink" title="Random Walk Interpretation"></a>Random Walk Interpretation</h4><p>Scaled version of random walk:<br>with alpha probability take teleport operation and with 1-alpha probability take the out links of the current nodes.</p>
-<p>Interpreted in terms of the (scaled) version of PageRank, <strong>Perron’s Theorem</strong> tells us that there is a unique vector y that remains fixed under the application of the scaled update rule, and that repeated application of the update rule from any starting point will converge to y.<br>This vector y thus corresponds to the limiting PageRank values we have been seeking.</p>
-<h4 id="Graph-Interpretation"><a href="#Graph-Interpretation" class="headerlink" title="Graph Interpretation"></a>Graph Interpretation</h4><p>Each vertex is a node. PageRank value is 1 in total. Initially, each node has the same pagerank value 1/N. With the different in links and out links, the pagerank value would flow through those links to different notes. So the pagerank value would change accordingly.</p>
-<p><strong>Scaled version of graph</strong>:<br>With alpha probability take teleport operation and with 1-alpha probability do the normal flow operation. In terms of graph, it discount the overall pagerank value to \(1-\alpha \) and assign the rest \(\alpha \) pagerank value to each node. So each node would get the same pagerank value \(\alpha /N\).</p>
-<p>The trainsition matrix = the original transition matrix <em> \(\alpha\) + (1-\(\alpha\)) </em> (1/N, ….1/N) which means with \(\alpha\) probability takes the normal walk and with 1-\(\alpha\) probability takes the random walk.</p>
-<h3 id="Markov-chain"><a href="#Markov-chain" class="headerlink" title="Markov chain"></a>Markov chain</h3><p>A Markov chain is a discrete-time stochastic process: a process that occurs in a series of time-steps in each of which a random choice is made. A Markov chain consists of N states. Each web page will correspond to a state in the Markov chain.</p>
-<p>A Markov chain is characterized by an N × N transition probability matrix P each of whose entries is in the interval [0, 1]; the entries in each row of P add up to 1.</p>
-<p>Transition matrix P:<br>The rows represent that given a node i, the probability of the node i transits to nodes j.(distribute the pagerank score)<br>The columns represent that given a node j, the probability of nodes i transits to node j.(incoming pagerank score)</p>
-<p><strong>ERGODIC MARKOV CHAIN</strong>:<br>Definition: A Markov chain is said to be ergodic if there exists a positive integer T0 such that for all pairs of states i, j in the Markov chain, if it is started at time 0 in state i then for all t &gt; T0, the probability of being in state j at time t is greater than 0.</p>
-<p>For a Markov chain to be ergodic, two technical conditions are required of its states and the non-zero transition probabilities; these conditions are known as <strong>irreducibility</strong> and <strong>aperiodicity</strong>.</p>
-<p><strong>irreducibility</strong> ensures that there is a sequence of transitions of non-zero probability from any state to any other.</p>
-<p><strong>aperiodicity</strong> ensures that the states are not partitioned into sets such that all state transitions occur cyclically from one set to another.</p>
-<p>Scaled version of random walk which take teleport operation with alpha probability guarantees transition probability are greater than 0 and no loop transitions.(irreducibility and aperiodicity)</p>
-<h3 id="Compute-PageRank"><a href="#Compute-PageRank" class="headerlink" title="Compute PageRank"></a>Compute PageRank</h3><ul>
-<li>Iteratively compute \(\vec{x}P^t\) s.t. \(\vec{x}\) becomes unchanged.</li>
-<li>Compute the eigenvector coresponding to the largest eigenvalue 1 which is the PageRank. But compute the eigenvector could be computationally expensive.</li>
-</ul>
-<h4 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h4><h5 id="Matrix-Multiplication-version-of-PageRank"><a href="#Matrix-Multiplication-version-of-PageRank" class="headerlink" title="Matrix-Multiplication version of PageRank:"></a>Matrix-Multiplication version of PageRank:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pagerank</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, N=<span class="number">0</span>, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.alpha = alpha</span><br><span class="line">        self.N = N</span><br><span class="line">        self.pg_vector = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''derive transition matrix from adjacency matrix'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">derive_transition</span><span class="params">(self,adjacency_matrix,alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.alpha != <span class="number">0</span>:</span><br><span class="line">            alpha = self.alpha</span><br><span class="line"></span><br><span class="line">        N = adjacency_matrix.shape[<span class="number">0</span>]</span><br><span class="line">        transition_m = np.zeros(adjacency_matrix.shape)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(adjacency_matrix.shape[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">if</span> np.sum(adjacency_matrix[i,:]) == <span class="number">0</span>:</span><br><span class="line">                transition_m[i,:] = np.array([<span class="number">1</span>/N]*N)   <span class="comment">#this node is a dead end, transit to one of all nodes in the graph</span></span><br><span class="line">            <span class="keyword">else</span>:           <span class="comment"># with alpha probability transit to one of all nodes, 1-alpha take normal random walk</span></span><br><span class="line">                transition_m[i, :] = alpha * np.array([<span class="number">1</span> / N] * N) + (<span class="number">1</span>-alpha) * adjacency_matrix[i,:] / np.sum(adjacency_matrix[i,:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> transition_m</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">propagate_transition</span><span class="params">(self, transition_m, pg_vector=None)</span>:</span>  <span class="comment">#pg_vector is column vectors</span></span><br><span class="line">        <span class="keyword">if</span> pg_vector <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">return</span> np.dot(transition_m.T, pg_vector)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> self.pg_vector <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">                self.initialize_pg_vector()</span><br><span class="line"></span><br><span class="line">            self.pg_vector = np.dot(transition_m.T, self.pg_vector)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> self.pg_vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">initialize_pg_vector</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> self.N != <span class="number">0</span>, <span class="string">"Please input number of Nodes N"</span></span><br><span class="line">        self.pg_vector = np.ones((self.N)).T</span><br><span class="line">        self.pg_vector /= self.N</span><br><span class="line">        print(self.pg_vector)</span><br></pre></td></tr></table></figure>
-<h5 id="Graph-version-of-PageRank"><a href="#Graph-version-of-PageRank" class="headerlink" title="Graph version of PageRank:"></a>Graph version of PageRank:</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Graph</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d, vertex=None)</span>:</span></span><br><span class="line">        <span class="keyword">assert</span> isinstance(d,dict), <span class="string">"please input a dict"</span></span><br><span class="line">        self.edges = d</span><br><span class="line">        self.d = d</span><br><span class="line">        self.vertexes = self.get_vertexes()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_vertexes</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> list(self.d.keys())</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_edges</span><span class="params">(self)</span>:</span></span><br><span class="line">        l = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                l.append(k+<span class="string">'-'</span>+v)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__matrix_to_dict</span><span class="params">(self, matrix)</span>:</span>     <span class="comment">#convert adjacency matrix to dict</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">BFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> self.d.keys():</span><br><span class="line">            <span class="keyword">if</span> k <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(k)</span><br><span class="line">            <span class="keyword">for</span> v <span class="keyword">in</span> self.d[k]:</span><br><span class="line">                <span class="keyword">if</span> v <span class="keyword">in</span> done:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    done.append(v)</span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                l.extend(list(self.d[current]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">DFS_recursive</span><span class="params">(self)</span>:</span></span><br><span class="line">        done = []</span><br><span class="line">        l = list(self.d.keys())</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">recursive</span><span class="params">(element)</span>:</span></span><br><span class="line">            waiting_l = self.d[element]</span><br><span class="line">            <span class="keyword">for</span> e <span class="keyword">in</span> waiting_l:</span><br><span class="line">                <span class="keyword">if</span> e <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                    done.append(e)</span><br><span class="line">                    recursive(e)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> len(l) != <span class="number">0</span>:</span><br><span class="line">            current = l.pop()</span><br><span class="line">            <span class="keyword">if</span> current <span class="keyword">not</span> <span class="keyword">in</span> done:</span><br><span class="line">                done.append(current)</span><br><span class="line">                recursive(current)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> done</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PageRank</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, graph)</span>:</span></span><br><span class="line">        self.g = graph</span><br><span class="line">        self.vertexes = graph.vertexes</span><br><span class="line">        self.pr_value = &#123;&#125;</span><br><span class="line">        self.num_points = len(self.vertexes)</span><br><span class="line">        self.__pr_value_initialization__()</span><br><span class="line">        self.new_pr_value = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.pr_value[ver] = <span class="number">1.0</span> / self.num_points</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new_pr_value_initialization__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            self.new_pr_value[ver] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update_a_round</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.__new_pr_value_initialization__()</span><br><span class="line">        <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">            <span class="keyword">if</span> len(self.g.edges[ver]) == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">                <span class="comment"># self.new_pr_value[ver] = self.pr_value[ver]</span></span><br><span class="line">            value_flow = self.pr_value[ver] / len(self.g.edges[ver])</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> child <span class="keyword">in</span> self.g.edges[ver]:</span><br><span class="line">                self.new_pr_value[child] += value_flow</span><br><span class="line">        <span class="keyword">if</span> alpha != <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">for</span> ver <span class="keyword">in</span> self.vertexes:</span><br><span class="line">                self.new_pr_value[ver] = alpha * <span class="number">1.0</span> / self.num_points + (<span class="number">1</span>-alpha) * self.new_pr_value[ver]</span><br><span class="line"></span><br><span class="line">        self.pr_value = copy.deepcopy(self.new_pr_value)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">propagate_transition</span><span class="params">(self, alpha=<span class="number">0</span>)</span>:</span></span><br><span class="line">        last = np.zeros((self.num_points))</span><br><span class="line">        <span class="comment"># for i in range(100):</span></span><br><span class="line">        <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">            self.update_a_round(alpha)</span><br><span class="line">            current = np.array(list(self.pr_value.values()))</span><br><span class="line">            error = abs(current - last)</span><br><span class="line">            <span class="comment"># print('last', last)</span></span><br><span class="line">            <span class="comment"># print('current', current)</span></span><br><span class="line">            <span class="comment"># print('i', i)</span></span><br><span class="line">            <span class="comment"># print('error: ', error)</span></span><br><span class="line">            <span class="keyword">if</span> np.sum(error) &lt; <span class="number">1e-6</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            last = current</span><br><span class="line"></span><br><span class="line"><span class="string">'''Test'''</span></span><br><span class="line"></span><br><span class="line">d_map = &#123;&#125;</span><br><span class="line">d = &#123;<span class="string">'A'</span>:[<span class="string">'B'</span>,<span class="string">'C'</span>],<span class="string">'B'</span>:[<span class="string">'D'</span>,<span class="string">'E'</span>],<span class="string">'C'</span>:[<span class="string">'F'</span>,<span class="string">'G'</span>],<span class="string">'D'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'E'</span>:[<span class="string">'H'</span>,<span class="string">'A'</span>],<span class="string">'F'</span>:[<span class="string">'A'</span>],<span class="string">'G'</span>:[<span class="string">'A'</span>],<span class="string">'H'</span>:[<span class="string">'A'</span>],<span class="string">'P'</span>:[]&#125;</span><br><span class="line"><span class="comment"># d = &#123;'A':['B'],'B':['A','C'],'C':['B']&#125;</span></span><br><span class="line">g = Graph(d)</span><br><span class="line">pg = PageRank(g)</span><br><span class="line">pg.propagate_transition()</span><br><span class="line">print(pg.pr_value)</span><br></pre></td></tr></table></figure>
-<h3 id="Topic-Specific-PageRank"><a href="#Topic-Specific-PageRank" class="headerlink" title="Topic Specific PageRank"></a>Topic Specific PageRank</h3><p>Start at a random page in the topic and also end at a random page in the topic. \(\vec{x}_{sports}\) is a topic specific pagerank vector where for pages belongs to sports, there is a topic specific pagerank and pagerank of other pages are 0.</p>
-<p>The only difference is that topic specific pagerank do not take random walk to all pages with the same probability. It only take random walk to s set of topic pages \(S_{sports}\) and \(S_{politics}\). For example, the probability is \(\alpha\) and peference on sports is 0.6 while peference on politics is 0.4. Then the probability of teleport to sports is \(\alpha<em>0.6\) while probability of teleport to politics is \(\alpha</em>0.4\). </p>
-<p>Calculate the PageRank of a page with regard to topics. The only difference is that the teleportation is different. The naive teleport go to a node in the graph with probability 1/N. The teleportation of topic specific pagerank is to go to a page in a specific topic with probability alpha. Given the number of pages S in the topic T, the probability is \(\frac{1}{S}\) rather than \(\frac{1}{N}\).</p>
-<p>i.e.:<br>Let s be [A,B,C,D]. A belongs to topic 1. B,C and D belongs to topic 2.<br>When calculating the topic specific pagerank, for topic 2, the formula is still \(\vec{x}P^t\). But here \(P\) for topic 2 is \(\alpha M + (1-\alpha)\frac{1}{S}\) rather than     \(\alpha M + (1-\alpha)\frac{1}{N}\). Actually the formula for topic 2 is \(\alpha M + (1-\alpha)[0,\frac{1}{3},\frac{1}{3},\frac{1}{3}]\) and in normal PageRank it should be \(\alpha M + (1-\alpha)[\frac{1}{4},\frac{1}{4},\frac{1}{4},\frac{1}{4}]\).</p>
-<h3 id="Personalized-PageRank"><a href="#Personalized-PageRank" class="headerlink" title="Personalized PageRank"></a>Personalized PageRank</h3><p>Now the difference is still the teleportation. The teleportation is tailored according to the users’ interest. Let’s assume the interest of a person is sports and finance. Their weights are 0.8,0.2 specifically. The teleportation is to go to a topic with the corresponding weight and then a page in the specific topic with probability alpha. This could also be viewed as a linear combination of topic specific vectors. In this example, the formula would be \(\alpha M + (1-\alpha) [0.8\vec{x_{sports}} + 0.2\vec{x_{finance}}]\).</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://www.cs.cornell.edu/home/kleinber/networks-book/" target="_blank" rel="noopener">Networks, Crowds, and Markets: Reasoning About a Highly Connected World</a></p>
-<p><a href="https://nlp.stanford.edu/IR-book/" target="_blank" rel="noopener">Introduction to Information Retrieval</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/Parsing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/13/Parsing/" itemprop="url">Parsing</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-13T14:44:51+08:00">
-                2018-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><strong>Context-Free Grammar(CFG)</strong></p>
-<p>The symbols that correspond to words in the language (“the”, “nightclub”) are called <strong>terminal</strong> symbols. They are left nodes in a parse tree. </p>
-<p>The lexicon is the set of rules that introduce these terminal symbols. </p>
-<p>The symbols that express abstractions over these terminals are called <strong>non-terminals</strong>. Ther are the non-left  </p>
-<p>Each grammar must have one designated start symbol, which is often called S &lt;\s&gt;.</p>
-<h2 id="Formal-Definition-of-CFG"><a href="#Formal-Definition-of-CFG" class="headerlink" title="Formal Definition of CFG"></a>Formal Definition of CFG</h2><p>G=(T,N,S,R)</p>
-<ul>
-<li>T is a set of terminal symbols.</li>
-<li>N is a set of nonterminal symbols</li>
-<li>S is the start symbol (S \(\in\) N)</li>
-<li>R is a set of rules/productions of the form X -&gt; \(\gamma\).</li>
-</ul>
-<p>A grammar G generates a language L.</p>
-<h2 id="Conversion-to-CNF"><a href="#Conversion-to-CNF" class="headerlink" title="Conversion to CNF"></a>Conversion to CNF</h2><p><strong>Chomsky Normal Form(CNF)</strong>: for each non-terminal, only two non-ternimal or single terminal could be derived from it.</p>
-<p><strong>Unit Production</strong>: Rules with a single non-terminal on the right.</p>
-<p>three situations needed to address in any generic grammar: </p>
-<ul>
-<li>rules that mix terminals with non-terminals on the right-hand side</li>
-<li>rules that have a single non-terminal on the right-hand side</li>
-<li>rules in which the length of the right-hand side is greater than 2</li>
-</ul>
-<p>rules that mix terminals and non-terminals is to introduce a new dummy non-terminal to substitute the original terminal. For example, a rule for an infinitive verb phrase such as INF-VP → to VP would be replaced by the<br>two rules INF-VP → TO VP and TO → to.</p>
-<p>To eliminate unit production:if A<br>-&gt;&gt; B by a chain of one or more unit productions and B → \(\gamma\) is a non-unit production in our grammar, then we add A → γ for each such rule in the grammar and discard all the intervening unit productions. </p>
-<p>Rules with right-hand sides longer than 2 are normalized through the introduction<br>of new non-terminals that substitute the longer sequences iteratively.</p>
-<p>i.e.: A → B C D. After transformation, A → X D and X -&gt;B C</p>
-<p>The entire conversion process can be summarized as follows:</p>
-<ul>
-<li>Copy all conforming rules to the new grammar unchanged.</li>
-<li>Convert terminals within rules to dummy non-terminals.</li>
-<li>Convert unit-productions.</li>
-<li>Make all rules binary and add them to new grammar.</li>
-</ul>
-<h3 id="Learn-PCFG-Rules"><a href="#Learn-PCFG-Rules" class="headerlink" title="Learn PCFG Rules"></a>Learn PCFG Rules</h3><p><strong>Count-based</strong></p>
-<p>For unambiguous parsing, just count each rule showed in the resulting parsing tree and get the probability like language model.</p>
-<p>For ambiguous parsing, initialize the parsing s.t. each rule is assigned the equal probability. And then parse the sentece an calculate probability of each parsing. Update the weight. Iteratively doing this, an extension of EM algorithm.</p>
-<h3 id="Problems-of-PCFG"><a href="#Problems-of-PCFG" class="headerlink" title="Problems of PCFG"></a>Problems of PCFG</h3><ul>
-<li>Lack of Sensitivity to Lexical Dependencies</li>
-<li>Independence Assumptions Miss Structural Dependencies Between Rules. For different location, each rule may be expanded differently.</li>
-</ul>
-<h3 id="Improving-PCFGs-by-Splitting-Non-Terminals"><a href="#Improving-PCFGs-by-Splitting-Non-Terminals" class="headerlink" title="Improving PCFGs by Splitting Non-Terminals"></a>Improving PCFGs by Splitting Non-Terminals</h3><ul>
-<li>split the NP non-terminal into two versions: one for subjects, one for objects.</li>
-<li>parent annotation</li>
-</ul>
-<p>This method also induce new problem. More rules lead to less training which may cause overfitting.</p>
-<p>Modern models automatically search for the optimal splits. The split and merge algorithm  for example, starts with a simple X-bar grammar, alternately splits the non-terminals, and merges non-terminals, finding the set of annotated nodes that maximizes the likelihood of the training set treebank.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/13/CKY/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/13/CKY/" itemprop="url">CKY</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-13T12:38:09+08:00">
-                2018-07-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>CKY is to initialize a matrix and fill in the upper right triangular matrix. Each word is filled into the matrix from left to right and bottom to up. </p>
-<p>There is a probability distribution about contituent for each word. And then the matrix is filled up using viterbi algorithm. Take the max probability.</p>
-<p>Transfer the rules to binary reduce the complexity.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Language-Model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/09/Language-Model/" itemprop="url">Language_Model</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-09T20:57:26+08:00">
-                2018-07-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Language model is able to capture information and predict next word. It is aware of world information.</p>
-<p>probability of a sentence(unigram):</p>
-<p>$$\mathrm{P}\left(W_{1 : n}\right)=\Pi_{k=1 : n} \mathrm{P}\left(W_{k} | W_{1 : k-1}\right)$$</p>
-<p>$$\text { best }=\operatorname{argmax}_{c \in \text { candidates }} \mathrm{P}(c)$$</p>
-<h2 id="Unigram"><a href="#Unigram" class="headerlink" title="Unigram"></a>Unigram</h2><p>$$p(w_i) = \frac{c(w_i)}{N}$$</p>
-<p>\(c(w_i)\) is the count of the word. N is the total number of word.</p>
-<h2 id="Bigram"><a href="#Bigram" class="headerlink" title="Bigram"></a>Bigram</h2><p>$$p(w_i|w_{i-1}) = \frac{c(w_iw_{i-1})}{c(w_{i-1})}$$</p>
-<h2 id="N-Gram"><a href="#N-Gram" class="headerlink" title="N-Gram"></a>N-Gram</h2><p>Given the previous N words, estimate the probability of the current word.</p>
-<p>$$p(w_i|w_{i-N-1}^{N-1}) = \frac{c(w_iw_{i-N-1}^{N-1})}{c(w_{i-N-1}^{N-1})}$$</p>
-<h2 id="Deal-with-Unknown-Words"><a href="#Deal-with-Unknown-Words" class="headerlink" title="Deal with Unknown Words"></a>Deal with Unknown Words</h2><p>There are two common ways to train the probabilities of the unknown word model <unk>. </unk></p>
-<p>The first one is to turn the problem back into a closed vocabulary one by choosing a fixed vocabulary in advance:</p>
-<ul>
-<li>Choose a vocabulary (word list) that is fixed in advance.</li>
-<li>Convert in the training set any word that is not in this set to the unknown word token <unk> in a text normalization step.</unk></li>
-<li>Estimate the probabilities for <unk> from its counts just like any other regular word in the training set.</unk></li>
-</ul>
-<p>The second alternative, replacing words in the training data by <unk> based on their frequency.<br>i.e.: replace all words by <unk> that occur fewer than n times in the training set or choose the top V words by frequency and replace the rest by UNK. </unk></unk></p>
-<p>The third way:<br>$$p(w_i)=\lambda_1p_{ML}(w_i)+(1-\lambda_1)\frac{1}{N}$$</p>
-<p>Save some probability for unknown words \((\lambda_{unk} = 1-\lambda_1)\). This is in fact another kind of smoothing. Discount the probability of known words and assign to the unknown words.<br> \(\lambda\) is a hyperparameter. It is 0.95 by default. N is the total number of words.</p>
-<h2 id="Coverage"><a href="#Coverage" class="headerlink" title="Coverage"></a>Coverage</h2><p>The percentage of known words in the corpus. Usually omit the symbol of the end of a sentence .</p>
-<h2 id="Entropy-of-a-sentence"><a href="#Entropy-of-a-sentence" class="headerlink" title="Entropy of a sentence"></a>Entropy of a sentence</h2><p>$$H(S)= -\frac{1}{N}\sum_{w\in S}\log_2 P(w)$$</p>
-<h3 id="State-of-the-art-word-embeddings-or-word-tokens"><a href="#State-of-the-art-word-embeddings-or-word-tokens" class="headerlink" title="State-of-the-art word embeddings or word tokens"></a>State-of-the-art word embeddings or word tokens</h3><p>word embeddings or word tokens could be a CNN over a sequence of character embeddings or simply a token embedding.</p>
-<p>Shortage of Shallow models like word2vec：</p>
-<ol>
-<li>cannot capture contextual information. </li>
-<li>long-term dependency</li>
-<li>no hierachical information</li>
-</ol>
-<h3 id="BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding"><a href="#BERT-Pre-training-of-Deep-Bidirectional-Transformers-for-Language-Understanding" class="headerlink" title="BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"></a>BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</h3><p>BERT is designed for languange understanding and it usually pre-train only the encoder or the decoder[5].</p>
-<p>If only one sentence is input to BERT, then the segment embedding index is all 0. There are only two numbers which are 0, 1 for the segment embedding.</p>
-<p>BERT is able to somehow resolve the problem of different granularity of word segmentatin because of the self-attention machanism. </p>
-<h3 id="MASS-Masked-Sequence-to-Sequence-Pre-training-for-Language-Generation"><a href="#MASS-Masked-Sequence-to-Sequence-Pre-training-for-Language-Generation" class="headerlink" title="MASS: Masked Sequence to Sequence Pre-training for Language Generation"></a>MASS: Masked Sequence to Sequence Pre-training for Language Generation</h3><h3 id="XLNET-6"><a href="#XLNET-6" class="headerlink" title="XLNET[6]"></a><strong>XLNET</strong>[6]</h3><p>Learn bidirectional features by randomly permuting prediction dependency.</p>
-<p>Language model prediction dependency could be implemented through different mask.</p>
-<p>The content representation and the query representation share parameters. But initialization is different. Content stream is initialised to word embeddings while query stream is randomly initialized.</p>
-<p> Durinh fine-tuning, simply drop the query stream and the model becomes a standard transformer model.</p>
-<p>The query representation could only see context $h_{z&lt;t}$ and the position $z_t$.</p>
-<p>Partial Prediction: choose only a part of tokens to predict for faster convergence.</p>
-<h4 id="Difference-with-BERT-and-other-language-model"><a href="#Difference-with-BERT-and-other-language-model" class="headerlink" title="Difference with BERT and other language model"></a>Difference with BERT and other language model</h4><p>Through random permutation of dependency order, XLNET is able to capture more dependency information than traditional languange model as well as bert.(see the [New, York, is, a, city] case).</p>
-<h4 id="Transformer-XL"><a href="#Transformer-XL" class="headerlink" title="Transformer-XL"></a>Transformer-XL</h4><p>Segment-Level Recurrence with State Reuse. Each segment would generate a set of hidden state vectors $\mathbf{h}<em>{\tau}^{n-1}.$  The gradient is only flowed within a block but the hidden state vectors is used in the next segment.<br>$$<br>\begin{array}{l}{\widetilde{\mathbf{h}}</em>{\tau+1}^{n-1}=\left[\mathrm{SG}\left(\mathbf{h}<em>{\tau}^{n-1}\right) \circ \mathbf{h}</em>{\tau+1}^{n-1}\right]} \ {\mathbf{q}<em>{\tau+1}^{n}, \mathbf{k}</em>{\tau+1}^{n}, \mathbf{v}<em>{\tau+1}^{n}=\mathbf{h}</em>{\tau+1}^{n-1} \mathbf{W}<em>{q}^{\top}, \widetilde{\mathbf{h}}</em>{\tau+1}^{n-1} \mathbf{W}<em>{k}^{\top}, \widetilde{\mathbf{h}}</em>{\tau+1}^{n-1} \mathbf{W}<em>{v}^{\top}} \ {\mathbf{h}</em>{\tau+1}^{n}=\text { Transformer-Layer }\left(\mathbf{q}<em>{\tau+1}^{n}, \mathbf{k}</em>{\tau+1}^{n}, \mathbf{v}_{\tau+1}^{n}\right)}\end{array}<br>$$<br>To incorporate position information in a segment, employ relative position encoding.</p>
-<h3 id="Universal-Language-Model-Fine-tuning-ULMFiT"><a href="#Universal-Language-Model-Fine-tuning-ULMFiT" class="headerlink" title="Universal Language Model Fine-tuning (ULMFiT)"></a>Universal Language Model Fine-tuning (ULMFiT)</h3><p>First pre-train a language model, the key concept is how to fine-tune. </p>
-<ol>
-<li><p>fine-tune target task language model</p>
-<ul>
-<li>Discriminative fine-tuning. Each layer is updated separately with different learning rate. Best practice is to choose learning rate by only fine-tuning the last layer. And decrease the selected learning rate layer by layer.</li>
-<li>Slanted triangular learning rates. Quickly converge to a suitable region of the parameter space in the beginning of training and then refine its parameters. First increase learning rate to make the model converge to a suitable region. And then decrease the learning rate to fine-tune the model.</li>
-</ul>
-</li>
-<li><p>Target task classifier fine-tuning</p>
-<ul>
-<li>Concat pooling: maxpool and mean pool all hidden states, and do concatenation.</li>
-<li>Gradual unfreezing: unfreeze layer one-by-one and do fine-tuning.</li>
-</ul>
-</li>
-</ol>
-<h3 id="ELMO"><a href="#ELMO" class="headerlink" title="ELMO"></a>ELMO</h3><p>ELMO apply a bidirectional RNN to compute the hidden states that are used to predict next words. Here bidirectional means the final output to the softmax is concat of two language model outputs. So it is indeed two single directional language models rather than true bidirectional language models like BERT. For example, “i like machine learning and natural language processing”. When predicting the word “learning”, the left LSTM computes information form “i” to “machine” while the right LSTM computes information from “processing” to “and”. The input to softmax is concat of those two feature vectors.</p>
-<p>The final word vector of each word is concat of the original word vectors(the first hidden layer) and all hidden states in the middle bidirecitonal RNN.</p>
-<p>The word vectors of ELMO could be task-specific. It is a linear combination of all hidden states in the middle bidirecitonal RNN. The weight for each hidden state is different for different tasks. </p>
-<h3 id="TagLM"><a href="#TagLM" class="headerlink" title="TagLM"></a>TagLM</h3><p>将预训练过程中隐藏层的输出特征和任务过程中隐藏层的特征concat到一起，作为最后模型决策的输入特征，显著提升任务效果。<br>concat hidden state of last layer from two direction of RNN as a kind of features. After that, concat hidden states which is the output of RNN during sequence labeling and feed to another RNN as input. This actually enrich the features.<br><img src="https://res.cloudinary.com/leemasterk/image/upload/v1545457413/WX20181222-134300_2x.png" alt="cmd-markdown-logo"></p>
-<h3 id="Downstream-tasks"><a href="#Downstream-tasks" class="headerlink" title="Downstream tasks"></a>Downstream tasks</h3><p>‘’‘Word embeddings are nowadays pervasive on a wide spectrum of Natural Language Processing (NLP) and Natural Language Understanding (NLU) applications. These word representations improved downstream tasks in many domains such as machine translation, syntactic parsing, text classification, and machine comprehension, among other’‘’<br>Downstream tasks refer to any task in NLP like text classification, QA and so on.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1705.00108.pdf" target="_blank" rel="noopener"> TagLM: Semi-supervised sequence tagging with bidirectional language models</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1802.05365.pdf" target="_blank" rel="noopener"> ELMO: Deep contextualized word representations</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1802.05365.pdf" target="_blank" rel="noopener"> ULMFiT: Universal Language Model Fine-tuning for Text Classification</a><a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1810.04805.pdf" target="_blank" rel="noopener"> BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding</a><a href="#fnref:4" rev="footnote"> ↩</a></span></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">5.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1905.02450.pdf" target="_blank" rel="noopener">MASS: Masked Sequence to Sequence Pre-training for Language Generation</a><a href="#fnref:5" rev="footnote"> ↩</a></span></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">6.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://arxiv.org/pdf/1906.08237.pdf" target="_blank" rel="noopener">XLNet: Generalized Autoregressive Pretraining for Language Understanding</a><a href="#fnref:6" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/06/Word_Senses/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/06/Word_Senses/" itemprop="url">Word_Senses</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-06T12:43:04+08:00">
-                2018-07-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Word-sense-disambiguation-WSD"><a href="#Word-sense-disambiguation-WSD" class="headerlink" title="Word sense disambiguation(WSD)"></a>Word sense disambiguation(WSD)</h1><p>Word sense disambiguation(WSD) is significant because it is common that there are multiple senses within a word. Better word sense disambiguation would improve the performance of tasks such as question answering and machine translation.</p>
-<p>Two kinds of WSD tasks:</p>
-<ul>
-<li>lexical sample</li>
-<li>all-words</li>
-</ul>
-<p>Lexical sample: given a set of target words and with an inventory of senses from some lexicon. Supervised learning is employed to solve this problem at usual. Hand-label a small set of words and corresponding sense, and feed into a classifier.</p>
-<p>All-words: given entire texts and a lexicon that contains an inventory of senses for each entry. The objective is to disambiguate every content word in the text. It is impractical to train a classifier for each term because the number of words is large.</p>
-<h3 id="Supervised-Learning-Approach"><a href="#Supervised-Learning-Approach" class="headerlink" title="Supervised Learning Approach"></a>Supervised Learning Approach</h3><ol>
-<li>Feature Vector Extraction. Process the sentence in a context window to extract feature vector.</li>
-</ol>
-<p>There are two kinds of feature vector:</p>
-<ul>
-<li>collocation features. Multiple words in a position-specific relationship to a target word. It is effective at encoding local lexical and grammatical information that usually isolate a given sense. High performing systems generally use POS tags and word collocations of length 1,2 and 3 from a window of words 3.</li>
-<li>bag-of-words: neglecting the position information, just record number of context words in a context window. The context words could be pre-selected(frequent used words) given a target word.</li>
-</ul>
-<p><strong>Evaluation</strong>: most frequent sense as baseline. Most freauent sense usually choose the most frequently used sense given a context.</p>
-<h3 id="Dictionary-and-Thesaurus"><a href="#Dictionary-and-Thesaurus" class="headerlink" title="Dictionary and Thesaurus"></a>Dictionary and Thesaurus</h3><h5 id="The-Lesk-Algorithm"><a href="#The-Lesk-Algorithm" class="headerlink" title="The Lesk Algorithm"></a>The Lesk Algorithm</h5><p>It is a family of dictionary-based algorithms.<br>Simplified algorithm compute the number of overlapped words between a given context and all of the word senses. Output the sense with the most overlapped words.</p>
-<p>Original Lesk Algorithm compute the number of overlapped words between sense of each context word and the sense of the target word.<br>i.e.: Bank is a financial institute for deposit.<br>Simplified algorithm compute the number of overlapping words between each sense and the context [financial,institute, deposit] and output the sense with the most overlapped words.<br>The original algorithm compute all senses with all senses of each word in the context  [financial,institute, deposit] and output the sense with the most overlapped words.</p>
-<p><strong>Notes</strong>:stop-words are not taken into consideration.</p>
-<p>Problem: Entries of the dictionary for the target word are not enough which reduce the chance of overlapping.</p>
-<p>Solution: To expand the sense, include senses of similar words which may increase the number of overlapping words.</p>
-<p>The best solution is to utilize sense-tagged corpus, which is so called <strong><strong>Corpus Lesk Algorithm</strong></strong>. To expand the signature for a word sense, add all word senses with the same label. i.e.: add word sense of large, huge to big. Instead of employ a stop-list, the algorithm apply IDF to reduce the weight of function words like the,of. This algorithm is usually a baseline.</p>
-<p>The bag-of-words approach could be improved by combining the Lesk algorithm. The glosses and example sentences for the target sense in WordNet would be used as words features along with <strong>sense-tagged</strong> corpus like SemCor.</p>
-<h5 id="Graph-based-Methods"><a href="#Graph-based-Methods" class="headerlink" title="Graph-based Methods"></a>Graph-based Methods</h5><p>A graph is employed to represent words. Each sense is a node and relations between senses are edges. It is usually an undirected graph.</p>
-<p>The correct sense is the one that is central in the graph. Use degree to decide centrality.</p>
-<p>Another approach is to assign probability to nodes according to personalized page rank.</p>
-<p><strong>Problem of both supervised and dictionary-based approach</strong>: need hand-built resouces</p>
-<h3 id="Semi-Supervised-Bootstrapping"><a href="#Semi-Supervised-Bootstrapping" class="headerlink" title="Semi-Supervised: Bootstrapping"></a>Semi-Supervised: Bootstrapping</h3><ol>
-<li>Use a small set of labeled data to train the classifier. </li>
-<li>Do classification.</li>
-<li>Select the result with high confidence and add to the training set.</li>
-<li>Train the classifier and repeat step 2 and 3.</li>
-<li>Stop until there is no untagged data left or reach a specific error rate threshold.</li>
-</ol>
-<p>To construct the training set, hand-label it or use heuristic to help.</p>
-<p>Heuristic:</p>
-<ul>
-<li><strong>one sense per collocation</strong>: certain words or phrases strongly indicates a specific sense.</li>
-<li><strong>one sense per discourse</strong>:a particular word appearing multiple times in a text or discourse often appeared with the same sense. This heuristic seems to hold better for coarse-grained senses and particularly for cases of homonymy rather than polysemy.</li>
-</ul>
-<h3 id="Unsupervised-Approach-Word-Sense-Induction-WSI"><a href="#Unsupervised-Approach-Word-Sense-Induction-WSI" class="headerlink" title="Unsupervised Approach:Word Sense Induction(WSI)"></a>Unsupervised Approach:Word Sense Induction(WSI)</h3><p>It is actually a clustering of word senses. </p>
-<ol>
-<li>For each token(sense) of a word in the corpus, use context word vector \(\vec{c}\) to represent it. </li>
-<li>Do clustering s.t. there is N clusters and each token \(\vec{c}\) is assigned to a cluster. Each cluster defines a sense.</li>
-<li>Recompute the center s.t. the center vector \(\vec{s_j}\) represent a sense.</li>
-</ol>
-<p>To do word sense disambiguation:</p>
-<ol>
-<li>compute context word vector \(\vec{c}\) to represent the sense of the word. </li>
-<li>Do clustering and assign the context vector to a cluster.</li>
-</ol>
-<p>All we need is a clustering algorithm and a distance metric between vectors.</p>
-<p>A frequently used technique in language applications is known as agglomerative<br>clustering.</p>
-<p>Recent algorithms have also used topic modeling algorithms like Latent Dirichlet Allocation (LDA), another way to learn clusters of words based on their distributions.</p>
-<p>It is fair to say that no evaluation metric for this task has yet become standard.</p>
-<h1 id="Word-Similarity-Thesaurus-Methods"><a href="#Word-Similarity-Thesaurus-Methods" class="headerlink" title="Word Similarity(Thesaurus Methods)"></a>Word Similarity(Thesaurus Methods)</h1><p>Word similarity refers to meaning(synonyms).<br>Word relatedness characterizes relationships(antonyms,synonyms).</p>
-<h5 id="Path-length-based-Approach"><a href="#Path-length-based-Approach" class="headerlink" title="Path-length based Approach"></a>Path-length based Approach</h5><p>Thesaurus could be viewed as a graph.</p>
-<p>The simplest thesaurus-based algorithms use the edge between words to measure similarity.</p>
-<p>pathlen(c1, c2) = 1 + edges in the shortest path between the sense nodes c1 and c2.</p>
-<p>path-length based similarity:<br>$$sim_{path}(c_1,c_2)=\frac{1}{pathlen(c_1, c_2)}$$</p>
-<p>Path lengths are not the same in different level of the hierarchy.<br>It is possible to refine path-based algorithms with normalizations based on depth in the hierarchy. In general an approach that independently represent the distance associated with each edge it is preferred.</p>
-<p>For data without sense tag(words are not presented according to their senses), measure similarity according to senses of words. If there is a pair of senses is similar, then two words are similar.</p>
-<p>$$word_{sim}(w_1,w_2)=\max_{c_1\in senses(w_1)\  c_2\in senses(w_2)} sim(c_1, c_2)$$</p>
-<h5 id="information-content-word-similarity-algorithms"><a href="#information-content-word-similarity-algorithms" class="headerlink" title="information-content word-similarity algorithms"></a>information-content word-similarity algorithms</h5><p>still rely on the structure of the thesaurus but also add probabilistic information derived from a corpus.</p>
-<p>The corpus is represented as a set of concepts. And it is represented as a tree  structure. The leaf nodes are basic concepts and parent nodes contain the children which is a superset of concepts. Each node is assigned a probability. So p(root) = 1.</p>
-<p>$$P(c) = \frac{\sum_{w\in words(c)}count(w)}{N}$$</p>
-<p>c is a specific concept. The probability of a concept is number of words in the concept divided by total number of words.</p>
-<p><strong>information content</strong>: information content (IC) of a concept c</p>
-<p>$$IC(c) = −\log P(c) $$</p>
-<p>the lowest common subsumer(LCS) of two concepts:<br>LCS(c1, c2) = the lowest common subsumer,the lowest node in the hierarchy that subsumes both c1 and c2.(The lowest parent node of c1 and c2)</p>
-<p><strong>Resnik similarity</strong>: similarity between two words is related to their common information; the more two words have in common, the more similar they are. Resnik proposes to estimate the common amount of information by the information content of the lowest common subsumer of the two nodes. </p>
-<p>$$sim_{Resnik}(c_1,c_2)=-\log P(LCS(c_1,c_2))$$</p>
-<p><strong>Lin similarity</strong></p>
-<p>Similarity Theorem: The similarity between A and B is measured by the ratio<br>between the amount of information needed to state the commonality of A and<br>B and the information needed to fully describe what A and B are.<br>$$sim_{Lin}(A,B)=\frac{common(A,B)}{description(A,B)}$$</p>
-<p>the information in common between two concepts is twice the information in the lowest common subsumer LCS(c1, c2). Adding in the above definitions of the information content of thesaurus concepts<br>$$sim_{Lin}(C_1,C_2)=\frac{2\times \log P(LCS(c_1,c_2))}{\log P(c_1)+\log P(c_2)}$$</p>
-<p><strong>Jiang-Conrath distance</strong> express distance rather than similarity, work as well as or better than all the other thesaurus-based methods:</p>
-<p>$$dist_{JC}(c_1, c_2) = 2\times \log P(LCS(c_1, c_2))−(\log P(c_1) +\log P(c_2)) $$</p>
-<p>It could be transferred to similarity by take reciprocal.<br>$$sim_{JC}=\frac{1}{dist_{JC}}$$</p>
-<p><strong>dictionary-based method</strong>: This method makes use of glosses, which are, in general, a property of dictionaries rather than thesauruses. Two concepts/senses are similar if their glosses contain overlapping words.</p>
-<p>For each n-word phrase that occurs in both glosses, Extended Lesk adds in a<br>score of \(n^2\).(the relation is non-linear because of the Zipfian relationship between lengths of phrases and their corpus frequencies; longer overlaps are rare, so they should be weighted more heavily)</p>
-<p>Given such an overlap function, when comparing two concepts (synsets), Extended<br>Lesk not only looks for overlap between their glosses but also between the<br>glosses of the senses that are hypernyms, hyponyms, meronyms, and other relations<br>of the two concepts. </p>
-<p>If we just considered hyponyms and defined<br>gloss(hypo(A)) as the concatenation of all the glosses of all the hyponym senses of<br>A, the total relatedness between two concepts A and B might be</p>
-<p>$$similarity(A,B) = overlap(gloss(A), gloss(B))+overlap(gloss(hypo(A)), gloss(hypo(B)))+overlap(gloss(A), gloss(hypo(B)))+overlap(gloss(hypo(A)),gloss(B))$$</p>
-<p>Extended Lesk overlap measure:</p>
-<p>$$sim_{eLESK}(c_1,c_2) =\sum_{r,q\in RELS}overlap(gloss(r(c_1)),gloss(q(c_2)))$$</p>
-<p>RELS is the set of possible relations whose glosses we compare. Possible relations are  like hypernyms, hyponyms, meronyms, and other relations of the two concepts.</p>
-<h2 id="Evaluating-Thesaurus-Based-Similarity"><a href="#Evaluating-Thesaurus-Based-Similarity" class="headerlink" title="Evaluating Thesaurus-Based Similarity"></a>Evaluating Thesaurus-Based Similarity</h2><p>The most common intrinsic evaluation metric computes the correlation coefficient between an algorithm’s word similarity scores and word similarity ratings assigned by humans. </p>
-<p>Zipf’s law states that given some corpus of natural language utterances, the frequency of any word is inversely proportional to its rank in the frequency table.The most frequent word will occur approximately twice as often as the second most frequent word, three times as often as the third most frequent word.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://en.wikipedia.org/wiki/Zipf%27s_law" target="_blank" rel="noopener">Zipf’s law</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/vector-semantics/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/05/vector-semantics/" itemprop="url">vector_semantics</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T18:56:55+08:00">
-                2018-07-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Pointwise-Mutual-Information-PMI"><a href="#Pointwise-Mutual-Information-PMI" class="headerlink" title="Pointwise Mutual Information (PMI)"></a>Pointwise Mutual Information (PMI)</h2><p>Normal count-based word-context matrix would provide a lot of useless information. i.e.: the entry (apple, the) is large but provide useless information.</p>
-<p>Instead we’d like context words that are particularly informative about the target<br>word. The best weighting or measure of association between words should tell us<br>how much more often than chance the two words co-occur.</p>
-<p>mutual information </p>
-<p>The pointwise mutual information is a measure of how often two events x and y occur, compared with what we would expect if they were independent:<br>$$I(x,y)=\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>The pointwise mutual information of a word w and a cotext word c is:<br>$$PMI(w,c)=\log_2\frac{P(w, c)}{p(w)p(c)}$$</p>
-<p>The ratio gives us an estimate of<br>how much more the target and feature co-occur actually than just by chance.</p>
-<p><strong>Positive PMI</strong>: use 0 to substitute negetive PMI. It is used commonly because negative PMI is unreliable. Negative PMI means that the two words co-occur less than expectation which could be due to the small corpora.</p>
-<p>A normal count-based co-occurrence matrix could be turned into PPMI matrix.</p>
-<p><strong>Problem</strong>:biased toward infrequent words because the demoninator which is the frequency of the word is low.</p>
-<p>To solve this problem,change the computation for P(c).</p>
-<p>$$PPMI_\alpha(w,c)=\max(\log_2\frac{P(w, c)}{p(w)p_\alpha(c)},0)$$<br>$$p_\alpha(c) = \frac{count(c)^\alpha}{\sum_ccount(c)^\alpha}$$</p>
-<p>Usually \(\alpha\)=0.75 drawing on a similar weighting used for skipgrams.This increases the probability assigned to rare<br>contexts and solve this problem.</p>
-<p>Another solutio is Laplace smoothing.</p>
-<h3 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h3><p>IDF is used to give a higher weight to rare words because they are likely to present more information.</p>
-<p>$$idf_i = \log (\frac{N}{df_i})$$</p>
-<p>Combining term frequency with IDF results in a scheme known as tf-idf weighting of the value for word i in document j,\(w_{ij}\):\</p>
-<p>$$w_{ij}=tf_{ij}idf_i$$</p>
-<p>The tf-idf weighting is by far the dominant way of weighting co-occurrence matrices in information retrieval, but also plays a role in many other aspects of natural language processing including summarization.</p>
-<h3 id="t-test"><a href="#t-test" class="headerlink" title="t-test"></a>t-test</h3><h2 id="Similarity-Measure-for-vectors-binary"><a href="#Similarity-Measure-for-vectors-binary" class="headerlink" title="Similarity Measure for vectors(binary)"></a>Similarity Measure for vectors(binary)</h2><p><strong>Jaccard similarity</strong>:<br>$$sim_{Jaccard}=\frac{\sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N\max(v_i,w_i)}$$</p>
-<p>$$J(A,B)=\frac{|A\cap B|}{|A\cup B|}$$</p>
-<p>The min of \(v_i\) and \(w_i\)means if a feature exists in one vector but not the other vector, the result would be zero. The<br>denominator can be viewed as a normalizing factor.</p>
-<p><strong>Dice measure</strong>:<br>$$sim_{Dice}=\frac{2 \times \sum_{i=1}^N\min(v_i,w_i)}{\sum_{i=1}^N(v_i+w_i)}$$</p>
-<p><strong>KL divergence</strong><br>if two vectors, \(\vec{v}\) and \(\vec{w}\), each express a probability<br>distribution (their values sum to one), then they are are similar to the extent that these probability distributions are similar.</p>
-<p>Given two probability distribution or vectors P and Q:</p>
-<p>$$D(P||Q) = \sum_xP(x)\log \frac{P(x)}<br>{Q(x)}$$</p>
-<p>Unfortunately, the KL-divergence is undefined when Q(x) = 0 and P(x) \(\neq\) 0, which is a problem since these word-distribution vectors are generally quite sparse.</p>
-<p>Jensen-Shannon divergence solves this problem.<br>$$JS(P||Q)=D(P|\frac{Q+P}{2})+D(Q|\frac{Q+P}{2})$$</p>
-<h3 id="Using-syntax-to-define-a-word’s-context"><a href="#Using-syntax-to-define-a-word’s-context" class="headerlink" title="Using syntax to define a word’s context"></a>Using syntax to define a word’s context</h3><p>Instead of defining a word’s context by nearby words, we could instead define it by<br>the syntactic relations of these neighboring words. i.e.: the word duty could be represented by a bunch of combinations like additional,administrative(adj) or assert, assign(verb). </p>
-<h3 id="Evaluating-Vector-Models"><a href="#Evaluating-Vector-Models" class="headerlink" title="Evaluating Vector Models"></a>Evaluating Vector Models</h3><p>test their performance on similarity, and in particular on computing the correlation between an algorithm’s word similarity scores and word similarity ratings<br>assigned by humans.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/04/Hierarchical-Softmax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/04/Hierarchical-Softmax/" itemprop="url">Hierarchical_Softmax</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T11:22:43+08:00">
-                2018-07-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Hierarchical-softmax"><a href="#Hierarchical-softmax" class="headerlink" title="Hierarchical softmax"></a>Hierarchical softmax</h3><p>It truns the normal softmax to a tree structure to avoid computing every context word with the center word.</p>
-<p>Normal softmax requires normalization which is extremely expensive especially in the case of Natural Language Processing that there are usually millions or billions of tokens in the corpus. Normal softmax would squeeze the values of these millions or billions of tokens into a probability distribution each time predicting the context word.</p>
-<p>Normal softmax computes P(Y |X) directly which needs normalization, the author chooses to assign Y to different clusters such that there is a function mapping X to different clusters. Given the cluster, compute the conditional probability to avoid normalization over the entire X.<br>$$P(Y = y|X = x) =P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
-<p>Prove:<br>$$P(Y |X) = \sum_i P(Y, C = i|X) = \sum_i P(Y |C =i, X)P(C = i|X) = P(Y |C = c(Y ), X)P(C =c(Y )|X)$$</p>
-<p>C(Y) is a function to classify Y into C classes. \(P(Y |C = c(Y ), X)P(C =c(Y )|X)\) is equivalent to \(\sum_i P(Y |C =i, X)P(C = i|X)\) if every Y is classified into a class and the probablities of assign a Y to a cluster are multiplied together.</p>
-<p>To utilize the architecture of binary trees, do hierarchical clustering such that each time two clusters are mergerd. Initially each word is a cluster. As a result, each level consists of a number of cluster. From the root to the leaf, multiply the probabilities together and we get the probability.</p>
-<p>Each word v must be represented by a bit vector \((b_1(v), . . . b_m(v))\) (where m depends on v)</p>
-<p>$$P(v|w_{t−1}, . . . , w_{t−n+1}) =\prod_{j=1}^mP(b_j(v)|b_1(v), . . . , b_{j−1}(v), w_{t−1}, . . . , w_{t−n+1})$$</p>
-<p>\(b_j(v)\) is the intermediate vector in the tree. The intermediate node is in fact a cluster. Each leaf node is a word.</p>
-<p>Each intermediate note could be viewed as a group of similar-meaning words. Each node is associated with a feature vector.</p>
-<p>$$P(b = 1|node, w_{t−1}, . . . , w_{t−n+1}) =sigmoid(\alpha_{node} + \beta’\cdot tanh(c + Wx + UN_{node}))$$</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/03/sql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/03/sql/" itemprop="url">sql</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-03T21:02:07+08:00">
-                2018-07-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RDBMS stands for Relational Database Management System.</p>
-<p>Every table is broken up into smaller entities called fields which is a column in a table designed to maintain specific information about every record in the table.</p>
-<p>A record, also called a row, is each individual entry that exists in a table. A record is a horizontal entity in a table.</p>
-<p>A column is a vertical entity in a table that contains all information associated with a specific field in a table.</p>
-<p>A database most often contains one or more tables. Each table is identified by a name. Tables contain records (rows) with data.</p>
-<p>Semicolon is the standard way to separate each SQL statement in database systems that allow more than one SQL statement to be executed in the same call to the server.</p>
-<h3 id="Keywords"><a href="#Keywords" class="headerlink" title="Keywords"></a>Keywords</h3><ul>
-<li>COUNT SELECT COUNT(Country) FROM Customers; Return the number of country from table Customers</li>
-<li>Distinct SELECT Country FROM Customers; Selects all values from the “Country” column in the “Customers” table. SELECT DISTINCT <em>column1</em>, column2  FROM <em>table_name</em>; Only the records that contains the same values in column 1 and column 2 would be deleted.</li>
-<li>WHERE The WHERE clause is used to extract only those records that fulfill a specified condition. SELECT * FROM Customers WHERE Country=’Mexico’; Selects all the customers from the country “Mexico”, in the “Customers” table.</li>
-<li>AND operator displays a record if all the conditions separated by AND is TRUE.<br>The OR operator displays a record if any of the conditions separated by OR is TRUE.The NOT operator displays a record if the condition(s) is NOT TRUE.</li>
-<li>ORDER BY</li>
-<li>INSERT INTO</li>
-<li>IS NULL and IS NOT NULL to test null values</li>
-<li>SELECT TOP = Mysql SELECT column_name(s) FROM table_name WHERE condition LIMIT number;</li>
-<li>LIKE The LIKE operator is used in a WHERE clause to search for a specified pattern in a column. </li>
-<li>%:The percent sign represents zero, one, or multiple characters </li>
-<li>_:The underscore represents a single character</li>
-<li>IN: = multiple OR conditions.</li>
-<li>BETWEEN: selects values within a given range. The values can be numbers, text, or dates.It is inclusive: begin and end values are included. </li>
-<li>SQL aliases are used to give a table, or a column a temporary name. An alias only exists for the duration of the query.</li>
-<li>JOIN: SELECT column_name(s) FROM table1 INNER JOIN table2 ON table1.column_name = table2.column_name;</li>
-<li>UNION: combine the result-set of two or more SELECT statements. </li>
-<li>GROUP BY: used with aggregate functions (COUNT, MAX, MIN, SUM, AVG) to group the result-set by one or more columns.</li>
-<li>The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions.</li>
-<li>The EXISTS operator is used to test for the existence of any record in a subquery.</li>
-<li>The ANY operator returns true if any of the subquery values meet the condition.</li>
-<li>The ALL operator returns true if all of the subquery values meet the condition.</li>
-<li>The SELECT INTO statement copies data from one table into a new table.</li>
-<li>The INSERT INTO SELECT statement copies data from one table and inserts it into another table.</li>
-</ul>
-<h3 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h3><ul>
-<li>SQL keywords are NOT case sensitive: select is the same as SELECT</li>
-<li>SQL requires single quotes around text values. Numeric fields should not be enclosed in quotes:</li>
-<li>(INNER) JOIN: Returns records that have matching values in both tables</li>
-<li>LEFT (OUTER) JOIN: Return all records from the left table, and the matched records from the right table</li>
-<li>RIGHT (OUTER) JOIN: Return all records from the right table, and the matched records from the left table</li>
-<li>FULL (OUTER) JOIN: Return all records when there is a match in either left or right table</li>
-<li>Each SELECT statement within UNION must have the same number of columns.The columns must also have similar data types.The columns in each SELECT statement must also be in the same order</li>
-</ul>
-<p>SELECT xxx GROUP BY something</p>
-<p>“xxx” has to be same as something or count(*), sum(*). No other column is allowed.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1869,7 +1959,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -296,6 +296,1088 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/NN-Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/NN-Architecture/" itemprop="url">NN_Architecture</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T22:03:33+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h3><ul>
+<li>Auxiliary classifier layer is to solve the gradient vanishing problem</li>
+<li>In the higher part of neural network, the filter would concentrate on detail or high-level feature of the images. As a result, the local region should large which is why the numbers of 3 <em> 3 and 5 </em> 5 filters have to be increased.</li>
+<li>1 * 1 convolution: dimensionality reduction. If not, there would be many parameters.</li>
+<li>3 <em> 3 and 5 </em> 5 is employed because with different stride and padding, their output dimension would be the same. </li>
+<li>Different convonlution kernel means different receptive field, fileter concatenation is concatenation of features.</li>
+</ul>
+<h3 id="Residual-Network"><a href="#Residual-Network" class="headerlink" title="Residual Network"></a>Residual Network</h3><p>Learn the mapping(original function) directly would be hard, denoted by degration of accuracy if layers are simply added. Learn the residual function would nbe much easier. If the mapping is worse, the network would learn to discard the learnt mapping and simply use the skip connection. The performance would be at least as good as the shallow network.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener"><br>Deep Residual Learning for Image Recognition</a></p>
+<p><a href="https://blog.csdn.net/shuzfan/article/details/50738394" target="_blank" rel="noopener"><br>GoogLeNet系列解读</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/training-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/25/training-problem/" itemprop="url">training_problem</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-25T17:11:10+08:00">
+                2018-08-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h4 id="Cuda-Out-of-Memory"><a href="#Cuda-Out-of-Memory" class="headerlink" title="Cuda Out of Memory"></a>Cuda Out of Memory</h4><p>Solution: </p>
+<ul>
+<li>reduce batch size</li>
+<li>reduce model size(reduce number of activation, increase filter size, decrease filter number)</li>
+<li>For RNN, reduce the length</li>
+</ul>
+<h3 id="Validation-accuracy-aigzagging"><a href="#Validation-accuracy-aigzagging" class="headerlink" title="Validation accuracy aigzagging"></a>Validation accuracy aigzagging</h3><ul>
+<li>Data is not normalized, taking some steps would deviate from the local minimum</li>
+<li>training step size is too large.</li>
+</ul>
+<h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><p>Assign high probability to <s> and <e>.</e></s></p>
+<p>ber: </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/gradient-descent/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/22/gradient-descent/" itemprop="url">gradient_descent</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T11:45:16+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Vanilla-gradient-descent"><a href="#Vanilla-gradient-descent" class="headerlink" title="Vanilla gradient descent"></a>Vanilla gradient descent</h2><p>Calculate the gradient of the whole dataset and average the gradient by the size of the dataset. </p>
+<p>Drawback: Time-consuming, compute gradients redundantly.</p>
+<h2 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h2><p>Take a batch of examples and calculate the gradient. After that, average the gradient by the batch size.</p>
+<h2 id="Stochastic-gradient-descent"><a href="#Stochastic-gradient-descent" class="headerlink" title="Stochastic gradient descent"></a>Stochastic gradient descent</h2><p>Take a single example and calculate the gradient. </p>
+<p>Drawback: High variance, fluctuate a lot.<br>In high dimension, some directions would have larger gradients and zigzag a lot. The direction of gradient would deviate from the best direction.</p>
+<h3 id="Momentum"><a href="#Momentum" class="headerlink" title="Momentum"></a>Momentum</h3><p>Momentum would accumulate gradient if the direction is the same and reduce the gradient if the direction zigzag a lot such that the overall direction would point to the local/global minimum with less zigzagging.</p>
+<p>$$v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta)$$</p>
+<p>$$\theta = \theta + v_t$$</p>
+<p>\(\theta\) is the gradient and \(\gamma\) is the momentum which is usually 0.9. \(\eta\) is the learning rate.</p>
+<h3 id="Nesterov-accelerated-gradient"><a href="#Nesterov-accelerated-gradient" class="headerlink" title="Nesterov accelerated gradient"></a>Nesterov accelerated gradient</h3><p>It is a lookahead version of momentum. The gradient would be updated using momentum, and a estimate of the future gradient after normal momentum update\(\nabla_\theta J( \theta - \gamma v_{t-1} )\) would be added to the current update of gradient so as to accelerate convergence. <strong>It significantly increased the performance of RNNs.</strong></p>
+<p>$$<br>v_t = \gamma v_{t-1} - \eta \nabla_\theta J( \theta + \gamma v_{t-1} ) \<br>\theta = \theta + v_t$$</p>
+<h3 id="Adagrad"><a href="#Adagrad" class="headerlink" title="Adagrad"></a>Adagrad</h3><p>It adapts the learning rate to the parameters, performing larger updates for infrequent and smaller updates for frequent<br>parameters.</p>
+<p>$$\theta_{t+1, i} = \theta_{t, i} - \dfrac{\eta}{\sqrt{G_{t, ii} + \epsilon}} \cdot g_{t, i}$$</p>
+<p>\(G_{t} \in \mathbb{R}^{d \times d}\) is a diagonal matrix where each diagonal element i,i is the sum of the squares of the gradients w.r.t. \(\theta_i\) up to time step t, while \(\epsilon\) is a smoothing term that avoids division by zero (usually on the order of 1e−8). Interestingly, without the square root operation, the algorithm performs much worse.</p>
+<p>Drawback: The accumulated sum keeps growing during training and causes the learning rate to shrink and eventually become infinitesimally small, at which point the algorithm is no longer able to acquire additional knowledge.</p>
+<h3 id="Adadelta"><a href="#Adadelta" class="headerlink" title="Adadelta"></a>Adadelta</h3><p>$$\Delta \theta_t = - \dfrac{RMS[\Delta \theta]<em>{t-1}}{RMS[g]</em>{t}} g_{t} \<br>\theta_{t+1} = \theta_t + \Delta \theta_t<br>$$</p>
+<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>Approximate the learning rate with the RMS of parameter updates until the previous time step. </p>
+<p>$$E[g^2]<em>t = 0.9 E[g^2]</em>{t-1} + 0.1 g^2_t \<br>\theta_{t+1} = \theta_{t} - \dfrac{\eta}{\sqrt{E[g^2]<em>t + \epsilon}} g</em>{t}<br>$$</p>
+<p>It still accumulates the gradient while it also depends on the current gradient and the updates do not get monotonically smaller.<br>RMSProp still modulates the learning rate of each weight based on the magnitudes of its gradients, which has a beneficial equalizing effect.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://arxiv.org/pdf/1609.04747.pdf" target="_blank" rel="noopener">An overview of gradient descent optimization<br>algorithms</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/18/Network-in-Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/18/Network-in-Network/" itemprop="url">Network_in_Network</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-18T22:02:36+08:00">
+                2018-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/11/seq2seq/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/11/seq2seq/" itemprop="url">seq2seq</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-11T13:01:17+08:00">
+                2018-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The input is a sequence and the output is also a sequence. Normal RNN take sequence or vector as input and output</p>
+<ul>
+<li>Fixed-length vector</li>
+<li>Sequence with the same length as the input sequence.</li>
+</ul>
+<p>seq2seq could output a sequence of variable length. It simply utilize an encoder to encode the information given an input, which output a representation C that is a semantic summary of the input(usually fixed-length). After that, the decoder take the representation as input and output a sequence.</p>
+<p>The decoder is a RNN language model that is conditioned on the input which is the current the previous input word and the hidden state.</p>
+<h3 id="Reverse-the-input-sequence"><a href="#Reverse-the-input-sequence" class="headerlink" title="Reverse the input sequence"></a>Reverse the input sequence</h3><p>Doing so would make the optimization much easier because it introduces short term dependencies.</p>
+<p>i.e.: a,b,c maps to d,e,f. With reversed input sequence, c,b,a maps to d,e,f. At present, a is much closer than d which is the correct mapping. Since the long dependency c to f may be learnt from previous mapping, longer dependency for it may not be a problem.</p>
+<h3 id="Encoding-Context-C"><a href="#Encoding-Context-C" class="headerlink" title="Encoding Context C"></a>Encoding Context C</h3><p>The context C that is used to encode the input sequence do capture the meaning of the sequence.</p>
+<h3 id="Lmitatoin"><a href="#Lmitatoin" class="headerlink" title="Lmitatoin"></a>Lmitatoin</h3><p>The context C might be to small to encode the semantic information of a long sentence.</p>
+<h3 id="Decoding"><a href="#Decoding" class="headerlink" title="Decoding"></a>Decoding</h3><p>The decoding could employ beam search. The procedure is actually to maximize the log probability of target sentence given the input sentence.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/CNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/CNN/" itemprop="url">CNN</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:36+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The convolution in CNN could be regarded as a kind of weighted average over neighbors.</p>
+<h3 id="Prior-parameter-distribution"><a href="#Prior-parameter-distribution" class="headerlink" title="Prior parameter distribution"></a>Prior parameter distribution</h3><p>A prior probability distribution over the<br>parameters of a model is to encode our belief about what models are resonable before seeing the data.</p>
+<ul>
+<li>a week prior: distribution with high entropy like Gaussian with high variance. It allows the data to move parameters of model freely.</li>
+<li>a strong prior: distribution with low entropy like Gaussian with low variance. Such a prior plays a more active role in determining where the parameters end up.</li>
+</ul>
+<h4 id="Infinitely-Strong-Prior"><a href="#Infinitely-Strong-Prior" class="headerlink" title="Infinitely Strong Prior"></a>Infinitely Strong Prior</h4><ul>
+<li>An infinitely strong prior places zero probability on some parameters</li>
+<li>It says that some parameter values are forbidden regardless of support from data.</li>
+</ul>
+<h3 id="Convolution-as-infinitely-strong-prior"><a href="#Convolution-as-infinitely-strong-prior" class="headerlink" title="Convolution as infinitely strong prior"></a>Convolution as infinitely strong prior</h3><p>Convolution introduces an infinitely strong prior probability distribution over the parameters of a layer which says that the function the layer should learn contains only local interactions and is equivariant to translation.</p>
+<h3 id="Pooling-as-an-Infinitely-strong-prior"><a href="#Pooling-as-an-Infinitely-strong-prior" class="headerlink" title="Pooling as an Infinitely strong prior"></a>Pooling as an Infinitely strong prior</h3><p>The use of pooling is an infinitely strong prior that each unit should be invariant to small translations.</p>
+<p>High Bias/Underfit can be countered by:</p>
+<ol>
+<li>Add hidden layers</li>
+<li>Increase hidden units/layer</li>
+<li>Decrease regularize parameter.</li>
+<li>Add features </li>
+</ol>
+<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h5><p><a href="https://cedar.buffalo.edu/~srihari/CSE676/9.4%20ConvPoolAsPrior.pdf" target="_blank" rel="noopener">Deep Learning Slides</a></p>
+<h3 id="Convolution"><a href="#Convolution" class="headerlink" title="Convolution"></a>Convolution</h3><p>Each convolution is acutually a filter doing element-wise multiplication with a local region on all channels of the input. After that sum them up and add the bias. One filter one bias.</p>
+<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>Parameters in a kernel are used to do convolution in the whole image. In terms of fully connect, for each pixel, there would be a different parameters.</p>
+<h3 id="Local-Connectivity"><a href="#Local-Connectivity" class="headerlink" title="Local Connectivity"></a>Local Connectivity</h3><p>The neural network only contains regional connection which means the neurons in the next layer focus on part of neurons in the last layer.</p>
+<h3 id="Pooling-Layer"><a href="#Pooling-Layer" class="headerlink" title="Pooling Layer"></a>Pooling Layer</h3><p>The employment of pooling layer is significant. It reduce the size of representation so as to reduce the computation and control overfitting. Max pooling could be regarded as extraction of the most useful characteristic. Pooling could be performed on spatial regions, or over the multi-layer outputs. For example, max pooling is performed on feature maps which is a spatial region while 1*1 convolution is performed on the multi-channel feature maps which is usually used to reduce dimension and compress information. When performed on spatial regions, it yields the same output dimension with smaller filter size. This would enable the neural network to be invariant to local small translations of the input, which is useful in case of whether a feature is present is more important than where the feature is. When performed on the multi-layer outputs, it yields the same filter size with fewer dimensionality. This would enable the neural network to be invariant to transformation such as rotation of images. In a nutshell, pooling summarises the response of activation over a region. It improves the computational and statistical efficiency. It is also used in hadling inputs of varying size.</p>
+<h4 id="Memory-Consumption-Calculation"><a href="#Memory-Consumption-Calculation" class="headerlink" title="Memory Consumption Calculation"></a>Memory Consumption Calculation</h4><p>Activation needs to be stored for back-propagation. So it would be the major memory consumption.</p>
+<p>i.e.: an image of 224 <em>224</em>3. The activation would be 224<em> 224</em>3=150000 floating numbers. Each floating number would use 4 bytes to store, so its size is actually 600000 bytes which is 600KB for only the first layer in the network.</p>
+<p>Convolution is a function derived from two given functions by integration that expresses how the shape of one is modified by the other. It is how an input is transformed by a kernel.</p>
+<p>Feature visualization have shown that:</p>
+<ul>
+<li><p>lower layers extract features related to content</p>
+</li>
+<li><p>higher layers extract features related to style**</p>
+</li>
+</ul>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="ResNet"><a href="#ResNet" class="headerlink" title="ResNet"></a>ResNet</h3><h3 id="DenseNet"><a href="#DenseNet" class="headerlink" title="DenseNet"></a>DenseNet</h3><p>DenseNet is a modified ResNet. Resnet employ add for x and f(x) while DenseNet employ concat for x and f(x) so that upper layers have each output from lower layers.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/10/RNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/10/RNN/" itemprop="url">RNN</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-10T12:28:31+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>RNN allows information flow.</p>
+<p>Gradient vanishing or exploding:<br>Since the time step 1 would have effect on time step n, when doing back propagation, according to the chain rule, the same weight matrix W would be multiplied by n times which is W to the power of n. So the norm of W is greater than 1, there is gradient exploding. And vice versa, gradient vanishing if the norm of W is smaller than 1.</p>
+<p>Solution to gradient vanishing:<br>Initialize weight matrix to identity matrix  rather than a matrix of random values. And use Relu as activation function. The intuition of this is to take average of input and hidden state. Then start to optimize the weight matrix.</p>
+<h3 id="RNN-detail"><a href="#RNN-detail" class="headerlink" title="RNN detail"></a>RNN detail</h3><p>RNN could be regarded as a fully connected neural network because inside the computing block, it is.<br>$$<br>\boldsymbol{H}_t = \phi(\boldsymbol{X}<em>t \boldsymbol{W}</em>{xh} + \boldsymbol{H}<em>{t-1} \boldsymbol{W}</em>{hh}  + \boldsymbol{b}_h).<br>$$<br>The output is<br>$$<br>\boldsymbol{O}_t = \boldsymbol{H}<em>t \boldsymbol{W}</em>{hq} + \boldsymbol{b}<em>q.<br>$$<br>**RNN shares weight parameters $W</em>{xh}$ and $W_{hh}$ across all time steps**.</p>
+<h5 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h5><p>Input x and hidden state of last time step $H_{t-1}$ is concat and multiplied with concat weight matrix.</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nd.dot(nd.concat(X, H, dim=<span class="number">1</span>), nd.concat(W_xh, W_hh, dim=<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<p>Two kinds of sampling of char-level language model:</p>
+<ol>
+<li>random sampling</li>
+<li>sequential partitioning. able to reuse hidden states, but easier to lead to gradient exploration or vanishing due to longer range of dependency.</li>
+</ol>
+<p>Perplexity? Cross entropy loss mean?</p>
+<h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h4><h6 id="Reset-gate"><a href="#Reset-gate" class="headerlink" title="Reset gate"></a>Reset gate</h6><p>The reset gate is used to update the past hidden state. 0 means reset(drop) past hidden states while 1 means retain.</p>
+<h6 id="Update-gate"><a href="#Update-gate" class="headerlink" title="Update gate"></a>Update gate</h6><p>The update gate is used to update the current hidden states using past hidden states and the current candidate hidden states. 0 means using only the candidate hidden states while 1 means using only the past hidden states.</p>
+<p><strong>update gate is used to capture long-term dependency while reset gate is used to capture short-term dependency</strong>.</p>
+<h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><p>The input includes all or some of the hidden states in the encoder. Utilize a score function to weight importance of those hidden states and feed into the decoder with the input word.</p>
+<h3 id="Parameters-Sharing"><a href="#Parameters-Sharing" class="headerlink" title="Parameters Sharing"></a>Parameters Sharing</h3><p>The same set of parameters are used to compute the hidden states at the current time step given input and the hidden state of last time step.</p>
+<p>A output layer may be added to each time step to extract information and make predictions.</p>
+<h3 id="Back-propagation"><a href="#Back-propagation" class="headerlink" title="Back-propagation"></a>Back-propagation</h3><p>Cannot be parallelized because gradient has to computed one by one in terms of time steps.</p>
+<h4 id="Recurrent-Connectiong-from-output-to-hidden"><a href="#Recurrent-Connectiong-from-output-to-hidden" class="headerlink" title="Recurrent Connectiong from output to hidden"></a>Recurrent Connectiong from output to hidden</h4><p>Training can be parallelized because the label is known and could be fed to hidden states directly. Trained with <strong>Teacher Forcing</strong> which is that given the input sequence and ground truth label in the last time step, produce the output in the current time step.</p>
+<p>Drawback: require the output to capture the past information, which is difficult because the output dosen’t contains those information.</p>
+<h2 id="RNN-as-graphical-model"><a href="#RNN-as-graphical-model" class="headerlink" title="RNN as graphical model"></a>RNN as graphical model</h2><p>RNN could be viewed as a graphical model. Compared to the graphical model, the number of parameters is far less than that of the graphical model due to parameter sharing.</p>
+<p>Basic assumption of RNN is that the sequence is stationary.</p>
+<p><strong>stationary</strong> The relationship between the previous time step and the current time step is not dependent on t.</p>
+<p>RNN could model long dependency while normal graphical model would make <strong>Markov assumption</strong> to simplify the parameters which makes them less powerful in terms of long dependency. Long dependency makes RNN hard to optimize.</p>
+<p>RNN introduce hidden states h s.t. the dependency structure is simpler than the normal graphical model because hidden state encodes information including dependency which graphical model utilizes edges to represent dependency directly(too many parameters to optimize).</p>
+<h3 id="Clip-Gradient-Solution-to-gardient-explosion"><a href="#Clip-Gradient-Solution-to-gardient-explosion" class="headerlink" title="Clip Gradient(Solution to gardient explosion)"></a>Clip Gradient(Solution to gardient explosion)</h3><p>There are some cliffs which is with large gradient inside a place where surroundings are with small gradient. Due to the leanring rate is adapted, at that time, the learning rate may be large to accelerate learning s.t. at the cliffs the gradient would overshoot. Clip the gradient means if the norm of gradient is larger than a threshold, normalize the gradient. This would make the gradient a biased estimation of the gradient of the mini-batch. Larger gradient would contribute more the overall gradient. But the clipped gradient could solve the problem.</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>The output of character level or word level RNN is the probability distribution of the next character or word given previous sequences of character or word. We sample from this distribution, and feed it right back in to get the next letter. Repeat this process and you’re sampling text!</p>
+<h4 id="vector-to-sequence-RNN"><a href="#vector-to-sequence-RNN" class="headerlink" title="vector-to-sequence RNN"></a>vector-to-sequence RNN</h4><p>The vector could be fed into the RNN at the beginning or fed into each hidden state at each time step.</p>
+<h3 id="Recursive-Neural-Network"><a href="#Recursive-Neural-Network" class="headerlink" title="Recursive Neural Network"></a>Recursive Neural Network</h3><p>Tree structure neural network. Its advantage is that its depth is far shallow than normal neural network with the same length of input.</p>
+<h3 id="Challenge-of-Long-Term-Dependencies"><a href="#Challenge-of-Long-Term-Dependencies" class="headerlink" title="Challenge of Long-Term Dependencies"></a>Challenge of Long-Term Dependencies</h3><p>With long-term dependency, due to parameter sharing, the weight matrix W would be multiplied for several time which make the gradient exponentially larger or samller. Even the problem of vanishing gradient is solved, due to exponentially samller of gradient, it is very hard to train the network.</p>
+<p>Tanh is employed in LSTM because the candidate cell state could “reduce” information so that the scale of C(t) is more stable rather than increment only. If sigmoid is employed, the only thing you could do is to add information.</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/" target="_blank" rel="noopener"><br>The Unreasonable Effectiveness of Recurrent Neural Networks</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/09/activation-function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/09/activation-function/" itemprop="url">activation_function</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-09T22:38:56+08:00">
+                2018-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Rectified-Linear-Units"><a href="#Rectified-Linear-Units" class="headerlink" title="Rectified Linear Units"></a>Rectified Linear Units</h2><p>Easy to optimize, and train. It is a good practice to initialize the bias b to be small positive values s.t. most units are active at the beginning.</p>
+<p>Drawback: not able to learn examples that activation is zero. A large gradient could update the unit s.t. it would never be active again if the learning rate is large.</p>
+<h3 id="Leaky-ReLU"><a href="#Leaky-ReLU" class="headerlink" title="Leaky ReLU"></a>Leaky ReLU</h3><p>Make some modifications s.t. the negative part could also be learnt.</p>
+<h3 id="Maxout-units"><a href="#Maxout-units" class="headerlink" title="Maxout units"></a>Maxout units</h3><p>Generalization of ReLU and Leaky Relu. The activation function is now \(\max(w_1^T\cdot x, w_2^T\cdot x)\) where \(w_1^T\cdot x\) is Relu (when w1 are all zeros, it is Relu)and \(w_2^T\cdot x\) is Leaky Relu.</p>
+<h2 id="Sigmoid"><a href="#Sigmoid" class="headerlink" title="Sigmoid"></a>Sigmoid</h2><p>Could be used as output units for 0-1 classfication because the cost is optimized to be small to avoid saturation.</p>
+<p>Drawback: hard to train due to saturation. Not zero-centered.</p>
+<h2 id="Tanh"><a href="#Tanh" class="headerlink" title="Tanh"></a>Tanh</h2><p>A scaled sigmoid, zero-centered. Resemble the identity function</p>
+<h3 id="GELU"><a href="#GELU" class="headerlink" title="GELU"></a>GELU</h3><p>给激活函数添加了一点随机性，bert使用了这个激活函数。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/05/SVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -557,1363 +1639,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/Deep-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/31/Deep-Learning/" itemprop="url">Deep_Learning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T11:33:09+08:00">
-                2018-07-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="multi-class-classification-problem"><a href="#multi-class-classification-problem" class="headerlink" title="multi-class classification problem"></a>multi-class classification problem</h2><p>Solutions:</p>
-<ul>
-<li>Train multiple classifiers and predict the label one by ont</li>
-<li>Learn the representation and compare. (clustering, or simply compare distance)</li>
-</ul>
-<p>Training step is actually a mini-batch. An epoch is the entire training set.</p>
-<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><p>Before training, calculate the memory consumption of the neural network and make sure the GPU has enough memory.</p>
-<h2 id="On-line-learning"><a href="#On-line-learning" class="headerlink" title="On-line learning"></a>On-line learning</h2><p>train the model on each data sample and those data samples come in a sequential order.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/30/feature-selection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/30/feature-selection/" itemprop="url">feature_selection</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T20:46:18+08:00">
-                2018-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Mutual-Information"><a href="#Mutual-Information" class="headerlink" title="Mutual Information"></a>Mutual Information</h2><p>$$I(x,y)=\sum_{x\in {0,1}} \sum_{y\in {0,1}} p(x,y)\log_2\frac{P(x, y)}{p(x)p(y)}$$</p>
-<p>This could be used as the heuristic of feature selection. Higher mutual information means the feature do relates to the class, which is helpful in classfication.</p>
-<h2 id="chi-squared-test"><a href="#chi-squared-test" class="headerlink" title="chi-squared test"></a>chi-squared test</h2><p>$$X^2(D,t,c)=\sum_{e_t\in {0,1}} \sum_{e_c\in {0,1}} \frac{(N_{e_te_c}-E_{e_te_c})^2}{E_{e_te_c}}$$</p>
-<p>N is the observed frequency in D and E the expected frequency. </p>
-<p>chi-squared test is a measure of how much expected counts E and observed counts N deviate from each other. A high value indicates that the hypothesis of independence is incorrect.</p>
-<h4 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h4><p>For a test with one degree of freedom, the so-called Yates correction should be used, which makes it harder to reach statistical significance. <strong>degree of freedom</strong> = (num of columns -1) * (num of rows -1)</p>
-<p>Also, whenever a statistical test is used multiple times, then the probability of getting at least one error increases. If 1,000 hypotheses are rejected, each with 0.05 error probability, then 0.05 × 1000 = 50 calls of the test will be wrong on average. </p>
-<h2 id="Frequency-based-feature-selection"><a href="#Frequency-based-feature-selection" class="headerlink" title="Frequency-based feature selection"></a>Frequency-based feature selection</h2><p>select the feature that occurs usually. When many thousands of features are selected, then frequency-based feature selection often does well.</p>
-<h2 id="Feature-selection-for-multiple-classifiers"><a href="#Feature-selection-for-multiple-classifiers" class="headerlink" title="Feature selection for multiple classifiers"></a>Feature selection for multiple classifiers</h2><p>Commonly, feature selection statistics are first computed separately for each class on the two-class classification task c versus not c and then combined. </p>
-<p>One combination method computes a single figure of merit for each feature, for example, by averaging the values A(t, c) for feature t, and then selects the k features with highest figures of merit.</p>
-<p>Another frequently used combination method selects the top k/n features for each of n classifiers and then combines these n sets into one global feature set.</p>
-<h2 id="Comparison-of-feature-selection-methods"><a href="#Comparison-of-feature-selection-methods" class="headerlink" title="Comparison of feature selection methods"></a>Comparison of feature selection methods</h2><p>Mutual information prefer common terms while chi-squared test prefer rare terms. Because A single occurrence is not very informative according to the information-theoretic definition of information.</p>
-<p>All three methods are greedy methods.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/Boosting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/Boosting/" itemprop="url">Boosting</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="Bagging"><a href="#Bagging" class="headerlink" title="Bagging"></a>Bagging</h2><p>For each trial 1,2…T, a training set of size N(identical to the size of the original training set) is sampled(with replacement) from the original training set.</p>
-<p>Each trial a classifier \(C^t\) is trained. The final classifier \(C^*\) aggregate those T classfiers together.</p>
-<p>To classify an instance x, a vote for class k is recorded by every classier for which \(C^t(x)=k\) and \(C^*(x)\) is then the class with the most votes. (Ties being resolve arbitrarily)</p>
-<p>An <strong>order􏲵-correct</strong> classifier-learning system is one that􏲬 over many training sets􏲬 tends to predict the correct class of a test instance more frequently than any other class􏲮.</p>
-<p>Aggre􏲵gating classifiers produced by an order-correct learner results in an optimal classi􏲻er</p>
-<p><strong>Requirement of bagging</strong>:each single classifier is unstable – that is, it has high variance, small change to the training set leads to different classifiers.</p>
-<h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>Intuition of Boosting: Train several weak classifier and combine together to get a strong classifier.</p>
-<h3 id="AdaBoost"><a href="#AdaBoost" class="headerlink" title="AdaBoost"></a>AdaBoost</h3><p>Usually employed in classification problem</p>
-<p>Step:</p>
-<ul>
-<li>Initially, each training sample is assigned an equal weight. </li>
-<li>Train a classifier on the training set</li>
-<li>Compute the error rate</li>
-<li>Compute the coefficient of the classifier</li>
-<li>Change the weight of the training samples. Increase the weights of the samples that are classified wrong, pay more attention to them. Decrease the weights of the samples that are classified correct. Here the calculation of the new weight is actually a softmax to make the weight a probability distribution.</li>
-<li>Train another classifier on the training set with new weight and repeat the above several steps.</li>
-<li>Finally, combine the classifiers.</li>
-</ul>
-<p>The output of the final classifiers(absolute value) is the confidence level of the classfication result. More iterations, higher confidence level.</p>
-<p>AdaBoost could be viewed as forward stagewise algorithm which optimize the set os parameters step by step.</p>
-<h4 id="Toy-Model"><a href="#Toy-Model" class="headerlink" title="Toy Model"></a>Toy Model</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">smaller_than</span><span class="params">(x,y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> y-x &gt; <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classifier</span><span class="params">(x, v, flag=<span class="number">1</span>)</span>:</span>   <span class="comment">#threshold v</span></span><br><span class="line">    <span class="string">'''flag = 1: x&lt;v are classified as 1, x&gt;v are classified as -1</span></span><br><span class="line"><span class="string">       flag = 0: x&lt;v are classified as -1, x&gt;v are classified as 1'''</span></span><br><span class="line">    threshold = int(np.floor(v)+<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">if</span> flag == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">1</span></span><br><span class="line">        x[threshold:] = <span class="number">-1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> threshold &lt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> np.ones(x.shape)</span><br><span class="line">        <span class="keyword">elif</span> threshold &gt; <span class="number">9</span>:</span><br><span class="line">            <span class="keyword">return</span> -np.ones(x.shape)</span><br><span class="line">        x[:threshold] = <span class="number">-1</span></span><br><span class="line">        x[threshold:] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_best_split</span><span class="params">(x,y,weight)</span>:</span></span><br><span class="line">    error = <span class="number">1</span></span><br><span class="line">    best_result = <span class="keyword">None</span></span><br><span class="line">    best_classifier = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> range(<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(x.shape[<span class="number">0</span>]+<span class="number">1</span>):</span><br><span class="line">            r = classifier(np.array(x,copy=<span class="keyword">True</span>),j<span class="number">-0.5</span>,f)</span><br><span class="line">            <span class="comment"># print("j", j)</span></span><br><span class="line">            <span class="comment"># print("classify_result", r)</span></span><br><span class="line">            p_error = np.sum((r!=y)*weight)<span class="comment"># /float(len(x))</span></span><br><span class="line">            <span class="comment"># print("p_error", p_error)</span></span><br><span class="line">            <span class="comment"># if p_error &lt; error:</span></span><br><span class="line">            <span class="comment"># if np.log(p_error)-np.log(error) &lt; 0:</span></span><br><span class="line">            <span class="keyword">if</span> smaller_than(p_error,error):     <span class="comment">#for the sake of numerical stability</span></span><br><span class="line">                error = p_error</span><br><span class="line">                best_result = np.array(r, copy=<span class="keyword">True</span>)</span><br><span class="line">                best_classifier = (j<span class="number">-0.5</span>, f)</span><br><span class="line">            <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">            <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="comment"># print("best_result_123", best_result)</span></span><br><span class="line">    <span class="comment"># print("error_123", error)</span></span><br><span class="line">    <span class="keyword">return</span> best_result, error, best_classifier</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    x = np.arange(<span class="number">10</span>)</span><br><span class="line">    y = np.array([<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">-1</span>])</span><br><span class="line">    iterations = <span class="number">10</span></span><br><span class="line">    weight = np.ones((x.shape)) / float(len(x))</span><br><span class="line">    coefficient_l = []</span><br><span class="line">    c_l = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line">        best_result, error, best_classifier = find_best_split(np.array(x,copy=<span class="keyword">True</span>),y,weight)</span><br><span class="line">        c_l.append(best_classifier)</span><br><span class="line">        <span class="comment"># print("best_result", best_result)</span></span><br><span class="line">        <span class="comment"># print("error", error)</span></span><br><span class="line">        alpha = <span class="number">1</span>/<span class="number">2.0</span> * np.log((<span class="number">1</span>-error)/error)</span><br><span class="line">        coefficient_l.append(alpha)</span><br><span class="line">        numerator = np.exp(-alpha*y*best_result)</span><br><span class="line">        denominator_weight = np.sum(weight * numerator)</span><br><span class="line">        <span class="comment"># print("weight ", weight)</span></span><br><span class="line">        weight = weight * numerator/ denominator_weight</span><br><span class="line">        <span class="comment"># print("weight_updated ", weight)</span></span><br><span class="line">    <span class="comment"># print(coefficient_l)</span></span><br><span class="line"></span><br><span class="line">    <span class="string">'''Final classifier'''</span></span><br><span class="line">    final_error = <span class="keyword">None</span></span><br><span class="line">    final_result = np.zeros(x.shape)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(c_l)):</span><br><span class="line">        final_result += coefficient_l[i]*classifier(np.array(x,copy=<span class="keyword">True</span>),</span><br><span class="line">                                                    v=c_l[i][<span class="number">0</span>],flag=c_l[i][<span class="number">1</span>])</span><br><span class="line">    print(final_result)</span><br><span class="line">    final_result[final_result&gt;<span class="number">0</span>]=<span class="number">1</span></span><br><span class="line">    final_result[final_result&lt;<span class="number">0</span>] = <span class="number">-1</span></span><br><span class="line">    final_error = np.sum(final_result!=y)/float(len(x))</span><br><span class="line">    print(final_error)</span><br></pre></td></tr></table></figure>
-<h3 id="Boosting-Tree"><a href="#Boosting-Tree" class="headerlink" title="Boosting Tree"></a>Boosting Tree</h3><p>When ths base classifier is the base function, boosting is named boosting tree.</p>
-<h3 id="Gradient-Boosting"><a href="#Gradient-Boosting" class="headerlink" title="Gradient Boosting"></a>Gradient Boosting</h3><p>It is not easy to optimize normal loss function for boosting tree. Gradient boosting is employed to solve this problem.<br>For regression problem, utilize the the negative gradient of the loss function to approximate the residual error so as to approximate a boosting tree.</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://pdfs.semanticscholar.org/79ea/6a5a68e05065f82acd11a478aa7eac5f6c06.pdf" target="_blank" rel="noopener">Bagging􏰀 Boosting􏰀 and C4.5􏰁􏰂􏰃</a></p>
-<p><a href="http://net.pku.edu.cn/~course/cs410/2015/resource/book/2012-book-StatisticalLearning-LH.pdf" target="_blank" rel="noopener">统计学习方法</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/28/WordVectors/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/28/WordVectors/" itemprop="url">Word_Vectors</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-28T10:34:30+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>The gradient of the whole word matrix(context matrix) should be outer product rather than normal inner product because their dimensions are not matched.</p>
-<h1 id="Two-types-of-word-vectors"><a href="#Two-types-of-word-vectors" class="headerlink" title="Two types of word vectors"></a>Two types of word vectors</h1><ul>
-<li>count-based: LSA, LDA, Glove</li>
-<li>window-based: word2vec</li>
-</ul>
-<p>Drawback of count-based method:</p>
-<ul>
-<li>unstable, may change if there is a new word.</li>
-<li>high dimension \(V \times V\) although dimension could be decreased by SVD.</li>
-</ul>
-<p>Word vectors are application-specific.</p>
-<h2 id="Word2vec"><a href="#Word2vec" class="headerlink" title="Word2vec"></a>Word2vec</h2><p>Input vectors are also named context vectors.<br>Output vectors are also named word vectors.</p>
-<h3 id="Feedforward-Neural-Net-Language-Model-NNLM"><a href="#Feedforward-Neural-Net-Language-Model-NNLM" class="headerlink" title="Feedforward Neural Net Language Model (NNLM)"></a>Feedforward Neural Net Language Model (NNLM)</h3><p>Time complexity:<br>Q = N × D + N × D × H + H × V, where the dominating term is H × V.</p>
-<p>N are the N input examples, D is the dimensionality of the word vectors, H is the hidden layer size, V is the vocab size.</p>
-<p>With binary tree representations of the vocabulary, the number of output units that need to be evaluated can go down to around log2(V). Thus, most of the complexity is caused by the term N × D × H.</p>
-<p>Huffman trees assign short binary codes to frequent words, and this further reduces the number of output units that need to be evaluated: while balanced binary tree would require log2(V) outputs to be evaluated, the Huffman tree based hierarchical softmax requires only about log2(Unigram perplexity(V)).</p>
-<h3 id="Continuous-Bag-of-Words-Model-CBOW"><a href="#Continuous-Bag-of-Words-Model-CBOW" class="headerlink" title="Continuous Bag-of-Words Model(CBOW)"></a>Continuous Bag-of-Words Model(CBOW)</h3><p>Given context words, predict the central words. Average the input word vectors, which ignore the order of words, and then predict the output word.</p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = N × D + D × log2(V ).</p>
-<p>C is the context size.</p>
-<p>The order of words in the history and future does not influence the projection, like bag-of-words model.</p>
-<p>Note that the weight matrix between the input and the projection layer is shared for all word positions in the same way as in the NNLM. Here the weight matrix are the word vectors.</p>
-<h3 id="Continuous-Skip-gram-Model"><a href="#Continuous-Skip-gram-Model" class="headerlink" title="Continuous Skip-gram Model"></a>Continuous Skip-gram Model</h3><p>Similar to CBOW, in this model, input the central word and predict the context words, others are the same. This is a </p>
-<p>The training complexity of this architecture is proportional to</p>
-<p>Q = C × (D + D × log2(V ))</p>
-<p>where C is the maximum distance of the words. For each training word we will select randomly a number R in range &lt; 1; C &gt;, and then use R words from history and R words from the future of the context as correct labels. This will require us to do R × 2 word classifications, with the current word as input, and each of the R + R words as output. </p>
-<p>increasing the context size C improves quality of the resulting word vectors, but it also increases the computational complexity. </p>
-<p>Since the more distant words are usually less related to the current word than those close to it, we give less weight to the distant words by sampling less from those words in our training examples. 2 <em> R words which is less than C are used as correct label. this step contains sampling 2 </em> R words from C word. </p>
-<p>There are two kinds of vectors for each word. They are context vectors and word vectors respectively. Normally the final word vectors could be the sum of two vectors or simply the word vector.</p>
-<h3 id="Modification"><a href="#Modification" class="headerlink" title="Modification"></a>Modification</h3><p>In skip-gram and CBOW, softmax is extremely expensive.</p>
-<p>Take skip-gram as an example. The objective is to maximize the following ojective function:</p>
-<p>$$\frac{1}{T}\sum_{t=1}^{T}\sum_{-c\leq{j}\leq{c},j\neq0}\log p(w_{t+j}|w_t)$$</p>
-<p>where c is the size of the training context.</p>
-<p>The p is defined as :</p>
-<p>$$p(o|c)=\frac{exp(<br>{u_o}^Tv_{c})}{\sum_{w=1}^{W}exp({u_{w}}^T*v_{c})}$$</p>
-<p>which is an expensive softmax function to squeeze all the values into a probability distribution.</p>
-<h4 id="2-choices-to-improve-softmax"><a href="#2-choices-to-improve-softmax" class="headerlink" title="2 choices to improve softmax"></a>2 choices to improve softmax</h4><h5 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h5><p>Turn all words into a tree so that the height of tree is log2(V).</p>
-<h5 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h5><p>Noise Contrastive Estimation (NCE) states that a good model is able to differentiate data from noise by means of logistic regression.</p>
-<p>The skip-gram model only focus on leanring good word vectors.</p>
-<p>Here the noise is words that are outside of the context.</p>
-<p>Simplified version of NCE:</p>
-<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
-<p>$$P_n(w_i) = \frac{  {f(w_i)}^{3/4}  }{\sum_{j=0}^{n}  {f(w_j)}^{3/4}}$$</p>
-<p>where n is total number of words in the corpus.</p>
-<h4 id="Subsampling-of-Frequent-Words"><a href="#Subsampling-of-Frequent-Words" class="headerlink" title="Subsampling of Frequent Words"></a>Subsampling of Frequent Words</h4><p>The frequent words may contain less information. During training, it would discard words in the context by chance using the below formula</p>
-<p>$$P(w_i)=1-\sqrt{\frac{t}{f(w_i)}} $$</p>
-<p>In the implementation code, the formula is</p>
-<p>$$P(w_i) = (\sqrt{\frac{z(w_i)}{0.001}} + 1) \cdot \frac{0.001}{z(w_i)}$$</p>
-<h2 id="Glove"><a href="#Glove" class="headerlink" title="Glove"></a>Glove</h2><p>Utilize statistical information in co-occurrence matrix.</p>
-<p>Utilize a third word to determine whether two words are related or not. If two words are not correlated,</p>
-<p>$$\frac{P_{ik}}{P_{jk}} \approx 1$$</p>
-<p>where \(P_{ik}\) is conditional probability \(P(k|i)\).</p>
-<p>The objective is to find a function to represent the relationship between word vectors and conditional probability.</p>
-<p>$$F(w_i,w_j,\tilde{w}<em>k)=\frac{P</em>{ik}}{P_{jk}}$$</p>
-<p>The function F has to satisfy certain requirements:</p>
-<ol>
-<li>preserve linear structure</li>
-<li>exchangeable</li>
-</ol>
-<p>Finally, weight counts because rare co- occurrences may carry less information.</p>
-<p>$$J(\theta)=\frac{1}{2}\sum_{i,j=1}^{W}f(P_{ij})(u_i^Tv_j-log P_{ij})^2$$</p>
-<h2 id="FastText"><a href="#FastText" class="headerlink" title="FastText"></a>FastText</h2><p>It is a model derived from word2vec. In order to better represent morphological words, each word is now represent by a set of n-gram characters. Each word is added two symbols ‘&lt;’ and ‘&gt;’ respectively to indicate start and end of the word.</p>
-<p>For example, word ‘FastText’ becomes word ‘<fasttext>‘. 3-gram set is (&lt;Fa,Fas,ast,stT,tTe,Tex,ext,xt&gt;).</fasttext></p>
-<p>Negetive sampling of word2vec:</p>
-<p>$$\log\sigma{({u_o}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-{u_j}^Tv_{c})}$$</p>
-<p>In word2vec, each word is an unique unit. Each word has the unique word vectors representation which lose the morphological information. In FastText, subword model is employed, in which each word is now represent by a set of n-gram characters to utilize morphological information.</p>
-<p>The objective function is:</p>
-<p>$$\log\sigma{(\sum_{g\in G_{o}}{z_g}^Tv_{c})}+\sum_{i=1}^k E_{j\sim P_n(w)}\log\sigma{(-\sum_{g\in G_{j}}{z_{gj}}^Tv_{c})}$$</p>
-<p>where \(G_{o}\) is the set of n-grams character of word \(w_o\), \(z_{g}\) is the vector representation of the specific n-gram characters. </p>
-<p>$$u_o = \sum_{g\in G_{o}}{z_g}$$</p>
-<p>The word vector for each word is then the sum of its all n-gram vector representation.</p>
-<h2 id="WordRank"><a href="#WordRank" class="headerlink" title="WordRank"></a>WordRank</h2><p>Turn the problem into a ranking problem.</p>
-<h2 id="Character-level-embedding"><a href="#Character-level-embedding" class="headerlink" title="Character-level embedding"></a>Character-level embedding</h2><p>Advantages:</p>
-<ul>
-<li>better in terms of morphological languages</li>
-<li>In some languages such as Chinese, each sentence is composed of characters directly. Character-level embedding is also better in this case.</li>
-<li>OOV(out of vocabulary words). Able to handle OOV.</li>
-</ul>
-<h4 id="OOV-Handling"><a href="#OOV-Handling" class="headerlink" title="OOV Handling"></a>OOV Handling</h4><ul>
-<li>Character-level embedding</li>
-<li>Initialize the unknown word as the sum of all context vectors and refine it with a high learning rate</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/python/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/26/python/" itemprop="url">python</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T19:56:02+08:00">
-                2018-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><p>Find the key that has the largest value in a dictionary.</p>
-<p>Assume stats is the dictionary.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">max(stats, key=stats.get)</span><br><span class="line"></span><br><span class="line">max_key = max(stats, key=lambda k: stats[k])</span><br></pre></td></tr></table></figure>
-<p>map dictionary:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my_dictionary = dict(map(lambda kv: (kv[0], f(kv[1])), my_dictionary.items()))</span><br></pre></td></tr></table></figure></p>
-<p>build a dictionary with the same key from the other dictionary.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = dic.fromkeys(dic.keys(), 0)</span><br></pre></td></tr></table></figure>
-<p>Since in python every thing is reference, for variable instances like list array, normal assign symbol ‘=’ would add a new reference to the instance. If the value of the instance is changed, it would affect other usage.</p>
-<p>For example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = l1</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
-<p>Now l1[2] is also 100.</p>
-<p>solution:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">l1 = [1,2,3]</span><br><span class="line">l2 = copy.deepcopy(l1)</span><br><span class="line">l2[2] = 100</span><br></pre></td></tr></table></figure></p>
-<p>Now l1[2] is still 3.</p>
-<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l2 = list(l1)</span><br></pre></td></tr></table></figure></p>
-<p>A shallow copy constructs a new compound object and inserts references into it to the objects found in the original.<br>A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.</p>
-<p>from pip import main<br>ImportError: cannot import name main</p>
-<p>solution: Roll back</p>
-<p>python3 -m pip install –user –upgrade pip==9.0.3</p>
-<p>assert condition is True, or else print the string.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> condition, <span class="string">'.....'</span></span><br></pre></td></tr></table></figure>
-<p>Decimal, Octal, Hexadecimal, Binary</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">oct()</span><br><span class="line">hex()</span><br><span class="line">bin()</span><br></pre></td></tr></table></figure>
-<p>convert jupyter notebook to python file:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter nbconvert --to script [YOUR_NOTEBOOK].ipynb</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getattr(x,foo)</span><br></pre></td></tr></table></figure>
-<p>is the same as x.foo. get the attribute named foo of x.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__file__</span><br></pre></td></tr></table></figure>
-<p>is only available in running in command line mode. Not available in interactive mode like Jupyter.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.path.expanduser(path)</span><br></pre></td></tr></table></figure>
-<p>turn “~” into home directory</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zip(*iterables)</span><br></pre></td></tr></table></figure>
-<p>Make an iterator that aggregates elements from each of the iterables.</p>
-<p><code>*l</code> idiom is to <strong>unpack argument lists</strong> when calling a function 解包列表中的变量传递给函数</p>
-<h2 id="Pandas"><a href="#Pandas" class="headerlink" title="Pandas"></a>Pandas</h2><p>Dataframe.groupby() groups the row with the same attributes together. Source: <a href="https://www.kaggle.com/crawford/python-groupby-tutorial" target="_blank" rel="noopener">https://www.kaggle.com/crawford/python-groupby-tutorial</a></p>
-<p>df.groupby(‘A’).agg({‘B’: [‘min’, ‘max’], ‘C’: ‘sum’})<br>agg is able to specify what kind of operations you want to apply to the group.</p>
-<p>pandas.DataFrame.reset_index() is used to reset index for multi-level dataframe.</p>
-<p>Basic funtions in pandas:(could be passed to agg function)</p>
-<p>| <code>count</code> | Number of non-NA observations |<br>| <code>sum</code> | Sum of values |<br>| <code>mean</code> | Mean of values |<br>| <code>mad</code> | Mean absolute deviation |<br>| <code>median</code> | Arithmetic median of values |<br>| <code>min</code> | Minimum |<br>| <code>max</code> | Maximum |<br>| <code>mode</code> | Mode |<br>| <code>abs</code> | Absolute Value |<br>| <code>prod</code> | Product of values |<br>| <code>std</code> | Bessel-corrected sample standard deviation |<br>| <code>var</code> | Unbiased variance |<br>| <code>sem</code> | Standard error of the mean |<br>| <code>skew</code> | Sample skewness (3rd moment) |<br>| <code>kurt</code> | Sample kurtosis (4th moment) |<br>| <code>quantile</code> | Sample quantile (value at %) |<br>| <code>cumsum</code> | Cumulative sum |<br>| <code>cumprod</code> | Cumulative product |<br>| <code>cummax</code> | Cumulative maximum |<br>| <code>cummin</code> | Cumulative minimum |</p>
-<p>After groupby, there are multi-level indices. use reset_inedx() to reset the indices.</p>
-<p>pd.merge()<br>Values with the keys would be kept. The difference is how to deal with values that have different keys.</p>
-<ol>
-<li>Left Merge: drop the right keys and fill left keys with nan</li>
-<li>Right Merge: drop the left keys and fill right keys with nan</li>
-<li>drop all keys </li>
-<li>fill all keys with nan</li>
-</ol>
-<p>pandas.get_dummies()  convert categorical variable into dummy/indicator variables.</p>
-<h2 id="Multiprocessing"><a href="#Multiprocessing" class="headerlink" title="Multiprocessing"></a>Multiprocessing</h2><p>pool.starmap(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>])  each element of starmap is supposed to be an iterable item.</p>
-<p>pool.map(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>]) each element of map is supposed to be a single item stored in an iterable item.</p>
-<h3 id="pickle"><a href="#pickle" class="headerlink" title="pickle"></a>pickle</h3><p>read from pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open(<span class="string">"file_path"</span>, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    d = pickle.load(f)</span><br></pre></td></tr></table></figure></p>
-<p>write to pkl file:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pickle</span><br><span class="line">favorite_color = &#123; <span class="string">"lion"</span>: <span class="string">"yellow"</span>, <span class="string">"kitty"</span>: <span class="string">"red"</span> &#125;</span><br><span class="line">pickle.dump( favorite_color, open( <span class="string">"save.p"</span>, <span class="string">"wb"</span> ) )</span><br></pre></td></tr></table></figure></p>
-<p>format:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;We are the &#123;&#125; who say &#123;&#125;!&apos;.format(&apos;knights&apos;, &apos;Ni&apos;)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;:.4f&#125;.format(4.555)</span><br></pre></td></tr></table></figure>
-<p>formatting a float number.</p>
-<p>check whether an object has an attribute.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">if hasattr(a, &apos;property&apos;):</span><br><span class="line">    a.property</span><br></pre></td></tr></table></figure>
-<p>迭代器和生成器</p>
-<p>迭代器实现迭代器协议，用于迭代。</p>
-<p>生成器自动实现了迭代器协议，生成结果中间过程函数被挂起，性能更好，下一次从中断的地方开始继续执行，生成器只能迭代一次。</p>
-<p>convert a list of strings to a single string</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">l = [<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>]</span><br><span class="line"><span class="string">'[SEP]'</span>.join(l)</span><br></pre></td></tr></table></figure>
-<p>The result is ‘a[SEP]b[SEP]c’.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">''</span>.join(<span class="string">"1"</span>)</span><br><span class="line"><span class="string">''</span>.join(<span class="string">"123"</span>)</span><br></pre></td></tr></table></figure>
-<p>simply return ‘1’ and ‘123’. It return a string. It means nothing is in between the iterable strings.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">' '</span>.join(<span class="string">"123"</span>)</span><br></pre></td></tr></table></figure>
-<p>returns ‘1 2 3’. It insert ‘ ‘(space) between the iterable strings.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ast.literal_eval(s)</span><br></pre></td></tr></table></figure>
-<p>convert a string which is a kind of data structure in python like set, list and so on.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval()</span><br></pre></td></tr></table></figure>
-<p>evaluate the string and output the result.</p>
-<p>dict.get() allows to set default value if the key is missing.</p>
-<h3 id="Decorator"><a href="#Decorator" class="headerlink" title="Decorator"></a>Decorator</h3><p>Decorator is actually a function that takes another function as input and return a new function.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@wraps(func)</span></span><br></pre></td></tr></table></figure>
-<p>is able to convey the information like signature and time to the new function.</p>
-<p>A Signature object represents the relevant information of a function or method like how to invoke it, its return annotation as well as parameters.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__wrapped__</span><br></pre></td></tr></table></figure>
-<p>Allows you to access the original wrapper function. For internal decorator @staticmethod and @classmethod. they stored the original function in <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Implement `__repr__` for any class you implement. This should be second nature. Implement `__str__` if you think it would be useful to have a string version which errs on the side of readability. ```__repr__``` is for unambiguity while ```__str__``` is for readability.  Container’s ```__str__``` uses contained objects ```__repr__```.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```!s``` in format invoke ```__repr__```.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">iterator implements ```__next__()``` and ```StopIteration``` which indicates ending. Generator enables complex looping function.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">​	```yield from``` is equivalent to loop a subgenerator. </span><br><span class="line"></span><br><span class="line">迭代器不可逆，itertools.islice 可以对生成器和迭代器实现切片.</span><br><span class="line"></span><br><span class="line">A generator is an iterator. Iterator is more general. An iterator is supposed to implement ```__iter__``` so that an iterator is usually a class while a generator usually is a function. </span><br><span class="line"></span><br><span class="line">When looping a generator, the program would stop at the **yield** expression and output the result. When ```__next__``` is invoked, the program would start again from the expression below the **yield** expression.</span><br><span class="line"></span><br><span class="line">```itertools.dropwhile(condition)``` drop the items in the iterator until the condition is False.</span><br><span class="line"></span><br><span class="line">``` defaultdict``` would create the default data structure if there is no corresponding key in the dict.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">zip() is used to iterate two or more(usually two) iterables. It would stop at the end of the shorter sequence.</span><br><span class="line"></span><br><span class="line">itertools.zip_longest() would stop at the end of the longer sequence.</span><br><span class="line"></span><br><span class="line">itertools.chain() takes multiple iterables as input and iterate the elements in each iterable one by one.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">from collections import Iterable</span><br><span class="line"></span><br><span class="line">def flatten(items, ignore_types=(str, bytes)):</span><br><span class="line">    for x in items:</span><br><span class="line">        if isinstance(x, Iterable) and not isinstance(x, ignore_types):</span><br><span class="line">            yield from flatten(x)</span><br><span class="line">        else:</span><br><span class="line">            yield x</span><br><span class="line"></span><br><span class="line">items = [1, 2, [3, 4, [5, 6], 7], 8]</span><br><span class="line"># Produces 1 2 3 4 5 6 7 8</span><br><span class="line">for x in flatten(items):</span><br><span class="line">    print(x)</span><br></pre></td></tr></table></figure></p>
-<p>employ <figure class="highlight plain"><figcaption><span>from``` to flatten chained iterables.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Distribute packages</span><br><span class="line"></span><br><span class="line">setup.py:</span><br><span class="line"></span><br><span class="line">```include_package_data=True,```  would include everything in source control specified in `MANIFEST.in`. `MANIFEST.in` is supoosed to put on the top-level of the directory which is the same as setup.py. The path in MANIFEST.in is supposed to start from the top-level directory.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line">from __future__ import print_function</span><br></pre></td></tr></table></figure></p>
-<p>has to be the first expression other than below code</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># coding: utf-8</span></span><br></pre></td></tr></table></figure>
-<p> that specifying explainer and coding. </p>
-<p>Below code is another way to specify the data to include other than <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```python</span><br><span class="line">package_data=&#123;</span><br><span class="line">        # If any package contains *.txt files, include them:</span><br><span class="line">        &apos;&apos;: [&apos;*.txt&apos;],</span><br><span class="line">        # And include any *.dat files found in the &apos;data&apos; subdirectory</span><br><span class="line">        # of the &apos;mypkg&apos; package, also:</span><br><span class="line">        &apos;mypkg&apos;: [&apos;data/*.dat&apos;],</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>An egg package resembles .jar package in java.  It is a kind of zip file with some meta data enamed <code>.egg</code>[1]. “Python egg” is a logical structure embodying the release of a specific version of a Python project, comprising its code, resources, and metadata. It is recommended to use wheel for installation. Egg could also be used for runtime installation. </p>
-<h5 id="下划线-underscode"><a href="#下划线-underscode" class="headerlink" title="下划线(underscode)"></a>下划线(underscode)</h5><ol>
-<li><p>_xxx     不能用于’from module import’ 以单下划线开头的表示的是protected类型的变量。即保护类型只能允许其本身与子类进行访问。</p>
-</li>
-<li><p>__xxx    双下划线的表示的是私有类型的变量。只能是允许这个类本身进行访问了。连子类也不可以</p>
-</li>
-</ol>
-<p>calculate running time of a program</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">start_time = time.time()</span><br><span class="line">main()</span><br><span class="line">print(<span class="string">"--- %s seconds ---"</span> % (time.time() - start_time))</span><br></pre></td></tr></table></figure>
-<h5 id="Line-profiler"><a href="#Line-profiler" class="headerlink" title="Line_profiler"></a>Line_profiler</h5><p>it is used to print the running time of each line in the code. It facilitates analysis of performance.</p>
-<p>Usage: add “@profile” above the function to be analysed.</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@profile</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">damn_slow_function</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kernprof -l -v -o log script_to_profile.py</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m line_profiler log</span><br></pre></td></tr></table></figure>
-<p>to view the corresponding log.</p>
-<h6 id="Variable-Container-as-function-argument"><a href="#Variable-Container-as-function-argument" class="headerlink" title="Variable Container as function argument"></a>Variable Container as function argument</h6><p>In python, if variable containers(list, dict) are passed to a function as argument, it is their reference that are passed which means that modifying the containers in the function would also change the original.</p>
-<figure class="highlight plain"><figcaption><span>enable</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. **faster** attribute access.</span><br><span class="line">2. **space savings** in memory.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###### Import mechanism</span><br><span class="line"></span><br><span class="line">In python3, there are only absolute import. And submodule would automatically import from the root dir. For example, dir root, dir root/model, dir root/model_test. Then python file in root/model wants to import a module from root/model_test, the import code should be </span><br><span class="line"></span><br><span class="line">```py</span><br><span class="line">from model_test.import_test import test</span><br></pre></td></tr></table></figure>
-<p>rather then</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ..model_test.import_test <span class="keyword">import</span> test</span><br></pre></td></tr></table></figure>
-<p>正则表达式匹配非中文，非英文和数字的字符</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.search(<span class="string">u"[^A-Za-z0-9\u4e00-\u9fa5]+"</span>,<span class="string">"我?"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://stackoverflow.com/questions/2051192/what-is-a-python-egg" target="_blank" rel="noopener"><a href="https://stackoverflow.com/questions/2051192/what-is-a-python-egg" target="_blank" rel="noopener">What is a Python egg?</a></a><a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Linear-Algebra/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/26/Linear-Algebra/" itemprop="url">Linear_Algebra</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:34:29+08:00">
-                2018-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>By default, vectors are column vectors.</p>
-<h4 id="Outer-Product"><a href="#Outer-Product" class="headerlink" title="Outer Product"></a>Outer Product</h4><p>\(<br>\left(\begin{array}{cc}<br>{1} \\ {2}<br>\end{array}\right) \) \(\otimes\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20<br>\end{array}\right)<br>\) = \(  \left(\begin{array}{cc}<br>{1 \times 10} &amp; {1 \times 20} \\ {2 \times 10} &amp; {2 \times 20}<br>\end{array}\right)  \)</p>
-<p>Outer product increase the dimension of the matrix. Outer product of a (a1∗a2) matrix and  a (b1∗b2) matrix is a (a1∗a2)∗(b1∗b2) matrix.</p>
-<p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1q} \\<br>y_2 &amp; \cdots &amp; y_{2q} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_p &amp; \cdots &amp; x_{pq}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_1y_{1q} &amp; x_1y_{2} &amp; \cdots &amp; x_1y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{1n}y_1 &amp; \cdots &amp; x_{1n}y_{1q} &amp; x_{1n}y_{2} &amp; \cdots &amp; x_{1n}y_{pq} \\<br>x_2y_1 &amp; \cdots &amp; x_2y_{1q} &amp; x_2y_{2} &amp; \cdots &amp; x_2y_{pq} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{mn}y_1 &amp; \cdots &amp; x_{mn}y_{1q} &amp; x_{mn}y_{2} &amp; \cdots &amp; x_{mn}y_{pq}<br>\end{bmatrix}<br>\end{array}$$</p>
-<h4 id="Element-wise-Product-Hadamard-product"><a href="#Element-wise-Product-Hadamard-product" class="headerlink" title="Element-wise Product  (Hadamard product)"></a>Element-wise Product  (Hadamard product)</h4><p>$$\begin{array} \<br>x \otimes y<br>&amp; = \begin{bmatrix}<br>x_1 &amp; \cdots &amp; x_{1n} \\<br>x_2 &amp; \cdots &amp; x_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>x_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix}<br>\begin{bmatrix}<br>y_1 &amp; \cdots &amp; y_{1n} \\<br>y_2 &amp; \cdots &amp; y_{2n} \\<br>\cdots &amp; \cdots &amp; \cdots \\<br>y_m &amp; \cdots &amp; x_{mn}<br>\end{bmatrix} \<br>&amp; =<br>\begin{bmatrix}<br>x_1y_1 &amp; \cdots &amp; x_{1i}y_{1i} &amp; x_{1j}y_{1j} &amp; \cdots &amp; x_{1n}y_{1n} \\<br>\cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots &amp; \cdots \\<br>x_{m1}y_{m1} &amp; \cdots &amp; x_{mi}y_{mi} &amp; x_{mj}y_{mj} &amp; \cdots &amp; x_{mn}y_{mn}<br>\end{bmatrix}<br>\end{array}$$</p>
-<p><strong>Example</strong><br>\(<br>\left(\begin{array}{cc}<br>1 &amp; 2 \\ 3 &amp; 4<br>\end{array}\right) \) \(\odot\) \(<br>\left(\begin{array}{cc}<br>10 &amp; 20 \\ 30 &amp; 40<br>\end{array}\right) \) = \(<br>\left(\begin{array}{cc}<br>{1 \times 10} &amp; {2 \times 20} \\ {3 \times 30} &amp; {4 \times 40}<br>\end{array}\right) \)</p>
-<h4 id="Vector-Norm"><a href="#Vector-Norm" class="headerlink" title="Vector Norm"></a>Vector Norm</h4><p>L1 Norm: The sum of absolute values in the matrix. </p>
-<p>$$\lVert w \rVert_1 = \textstyle \sum_{i=1}^n |w_i|$$</p>
-<p>L2 Norm: The sqrt of the sum of squared values in the matrix. </p>
-<p>$$\lVert w \rVert_2 = \sqrt {\textstyle \sum_{i=1}^n w_i^2}$$</p>
-<h4 id="Matrix-Norm"><a href="#Matrix-Norm" class="headerlink" title="Matrix Norm"></a>Matrix Norm</h4><p>The spectral norm of a matrix A is the largest singular value of A.For example, the square root of the largest eigenvalue of the positive-semidefinite matrix \({\displaystyle A^{*}A}\).</p>
-<h4 id="Identity-Matrix"><a href="#Identity-Matrix" class="headerlink" title="Identity Matrix"></a>Identity Matrix</h4><p>An identity matrix of size n is the n × n square matrix with ones on the main diagonal and zeros elsewhere.</p>
-<p>$${ I_{n}={\begin{bmatrix}\ 1&amp;0&amp;0&amp;\cdots &amp;0\\ 0&amp;1&amp;0&amp;\cdots &amp;0\\ 0&amp;0&amp;1&amp;\cdots &amp;0\\ \vdots &amp;\vdots &amp;\vdots &amp;\ddots &amp;\vdots \\ 0&amp;0&amp;0&amp;\cdots &amp;1\end{bmatrix}}}$$</p>
-<p>矩阵乘法满足结合律，不满足交换律.</p>
-<p>如果把方阵视为线性变换，则其行列式的绝对值表示该线性变换造成的体积元的变化系数，行列式的符号反映了基底的定向变化。</p>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://www.cnblogs.com/steven-yang/p/6348112.html#%E7%9F%A9%E9%98%B5%E7%9A%84%E5%90%84%E7%A7%8D%E4%B9%98%E7%A7%AF" target="_blank" rel="noopener">机器学习中的基本数学知识</a></p>
-<p><a href="https://en.wikipedia.org/wiki/Identity_matrix" target="_blank" rel="noopener">Identity matrix</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/26/Numpy/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/26/Numpy/" itemprop="url">Numpy</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-26T15:31:33+08:00">
-                2018-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>numpy.ufunc.at. apply function at given index.</p>
-<p>np.add.at(a, [0, 1, 2, 2], 1): add 1 to array a at index [0, 1, 2, 2]</p>
-<p>numpy.random.permutation(x):Randomly permute a sequence, or return a permuted range. 即把一序列打成乱序输出</p>
-<p>numpy.outer(a, b, out=None);Compute the outer product of two vectors.    </p>
-<p>operator *: element-wise multuply</p>
-<p>Axis = 0 is column. Axis = 1 is row</p>
-<p>a[:6:2] means the first element of every two elements from 0 to 5</p>
-<p>array dimension: count the bracket</p>
-<p>flat attribute which is an iterator over all the elements of the array:</p>
-<p>np.nditer(a, flags=[‘f_index’]) is used to iterate elements</p>
-<p>access multiple columns elements: a[b,c] while b is from 0 to n, c shows in each line which element you want to access.</p>
-<p><a href="https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating" target="_blank" rel="noopener">https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-slicing-and-iterating</a></p>
-<p>access nth column: a[:,n]</p>
-<p>transpose an one-dimension array: a.reshape(n,len(a))</p>
-<p>multi-dimensional array, count the dimension from low to high</p>
-<p>np.argsort()Returns the indices that would sort an array.<br>numpy.bincount<br>Count number of occurrences of each value in array of non-negative ints.</p>
-<p>Np.argmax()  Returns the indices of the maximum values along an axis.<br>Np.nonzero() return tuple that consists of arrays. The first array indicates dimension, the second one indicates location(index)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = np.array(x,copy=True)</span><br></pre></td></tr></table></figure>
-<p>copy an array to a new variable. </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/23/Tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="MK_LEE">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/23/Tensorflow/" itemprop="url">Tensorflow</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-23T14:42:47+08:00">
-                2018-07-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Characteristic: Lazy evaluation like scala</p>
-<p>Two steps to build and run a model:</p>
-<ul>
-<li>assemble a graph</li>
-<li>use a session to execute operations in the graph</li>
-</ul>
-<p>Placeholder: a node to store variable which would not be modified during backpropagation</p>
-<p>Variable: a node that would be modified during backpropagation</p>
-<p>Constant: values that cannot be changed</p>
-<p>Running parts need to be encapsulated into session.run(). session.run() is evaluation of the graph.</p>
-<p>Variables could have name and scope.</p>
-<p>Use TF DType to accelerate the computation or tensorflow has to infer the type.</p>
-<p>create variables with tf.get_variable</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m = tf.get_variable(&quot;matrix&quot;, initializer=tf.constant([[0, 1], [2, 3]]))</span><br></pre></td></tr></table></figure>
-<p>rather than </p>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Before running, variables need to be initialized.</span><br></pre></td></tr></table></figure>
-<p>initializer = tf.global_variables_initializer()<br>with tf.Session() as sess:<br>    sess.run(initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a subset of variables:</span><br></pre></td></tr></table></figure></p>
-<p>with tf.Session() as sess:<br>    sess.run([a,b])<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Initialize only a single variable:</span><br></pre></td></tr></table></figure></p>
-<p>m=tf.get_variable(“matrix”,initializer=tf.constant([[0, 1], [2, 3]]))<br>with tf.Session() as sess:<br>    sess.run(m.initializer)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">W.assign(100) creates an assign operation that assign 100 to variable W. The operation needs to be executed in a session to take effect.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">tensorflow separates definitions of computation and execution. It first assembles a graph. Second use a session to execute.</span><br><span class="line"></span><br><span class="line">Nodes are operators, variables, and constants</span><br><span class="line"></span><br><span class="line">Edges are tensors.</span><br><span class="line"></span><br><span class="line">A Session object encapsulates the environment in which Operation objects are executed, and Tensor objects are evaluated.  Session will also allocate memory to store the current values of variables.</span><br></pre></td></tr></table></figure></p>
-<p>tf.Session.run(fetches,    feed_dict=None,    options=None,    run_metadata=None)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">fetches is a list of tensors whose values you want. tensorflow would return the values you want and skip computing unnecessary values.</span><br><span class="line"></span><br><span class="line">Multiple graphs require multiple sessions, each will try to use all available resources by default</span><br><span class="line"></span><br><span class="line">why graphs:</span><br><span class="line">1. break computation to facilitate auto-differentiation.</span><br><span class="line">2. save computation. only compute necessary values</span><br><span class="line">3. easier to distribute</span><br><span class="line">4. ML models visulised as graphs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Can&apos;t pass data between them without passing them through python/numpy, which doesn&apos;t work in distributed</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Create the summary writer after graph definition and before running your session.</span><br><span class="line"></span><br><span class="line">```python</span><br><span class="line"># The default path for saving event files is the same folder of this python file.</span><br><span class="line">tf.app.flags.DEFINE_string(</span><br><span class="line">&apos;log_dir&apos;, os.path.dirname(os.path.abspath(__file__)) + &apos;/logs&apos;,</span><br><span class="line">&apos;Directory where event logs are written to.&apos;)</span><br><span class="line"></span><br><span class="line"># Store all elements in FLAG structure!</span><br><span class="line">FLAGS = tf.app.flags.FLAGS</span><br><span class="line"></span><br><span class="line">with tf.Session() as sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    writer = tf.summary.FileWriter(os.path.expanduser(FLAGS.log_dir), sess.graph)</span><br><span class="line">    .....</span><br><span class="line"># Closing the writer.</span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure></p>
-<p>These codes are used to specify the path of logs directory and store all elements in FLAG structure.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clean flag name</span></span><br><span class="line"><span class="keyword">from</span> absl <span class="keyword">import</span> flags</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name <span class="keyword">in</span> list(flags.FLAGS):</span><br><span class="line">  delattr(flags.FLAGS, name)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UnrecognizedFlagError: Unknown command line flag <span class="string">'f'</span></span><br></pre></td></tr></table></figure>
-<p>To solve this problem, just add a flag. In coommand line, there is not such a problem.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(<span class="string">'f'</span>, <span class="string">''</span>, <span class="string">'kernel'</span>)</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.app.flags.DEFINE_string(&apos;str_name&apos;, &apos;def_v_1&apos;,&quot;descrip1&quot;)</span><br></pre></td></tr></table></figure>
-<p>tf.app.flags is used to assign a name to a variable and parse variables in command line. The first argument is the variable name. The second argument is the default value. The third argument is a description. argparse module in python could also be employed to parse arguments.</p>
-<p>Any evaluation of variable must be run in a session.</p>
-<p>Three ways to initialize variables:</p>
-<ol>
-<li>Initializing Specific Variables.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># &quot;variable_list_custom&quot; is the list of variables that we want to initialize.</span><br><span class="line">variable_list_custom = [weights, custom_variable]</span><br><span class="line"></span><br><span class="line"># The initializer</span><br><span class="line">init_custom_op = tf.variables_initializer(var_list=all_variables_list)</span><br></pre></td></tr></table></figure>
-<p>This enable us to initialize specific variables. We are supposed to initialize all variables after specific initialization.</p>
-<ol start="2">
-<li>Global variable initialization. This operation has to be done after the construction of a model.</li>
-<li>Initialization of a variables using other existing variables. New variables can be initialized using other existing variables’ initial values by taking the values using initialized_value().<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create another variable with the same value as 'weights'.</span></span><br><span class="line">WeightsNew = tf.Variable(weights.initialized_value(), name=<span class="string">"WeightsNew"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now, the variable must be initialized.</span></span><br><span class="line">init_WeightsNew_op = tf.variables_initializer(var_list=[WeightsNew])</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>tf.one_hot() The axis argument determines which axis is the one-hot vector. </p>
-<p>Name scope is for grouping nodes together to facilitate visulisation in Tensorboard. Name scope is for reusing of operations while variable scope is for reusing of variables. </p>
-<p>Name scope is able to assign names to a set of variables. It is equivalent to add “name_scope/” to the variable name as prefix.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;outer&quot;):  c_2 = tf.constant(2, name=&quot;c&quot;)  # =&gt; operation named &quot;outer/c&quot;</span><br></pre></td></tr></table></figure>
-<p>An <code>Operation</code> is a node in a TensorFlow <code>Graph</code> that takes zero or more <code>Tensor</code> objects as input, and produces zero or more <code>Tensor</code> objects as output. Objects of type <code>Operation</code> are created by calling a Python op constructor (such as [<code>tf.matmul</code>] or [<code>tf.Graph.create_op</code>].</p>
-<p>A <code>Tensor</code> is a symbolic handle to one of the outputs of an <code>Operation</code>. It does not hold the values of that operation’s output, but instead provides a means of computing those values in a TensorFlow [<code>tf.Session</code>].</p>
-<p>Note that [<code>tf.Tensor</code>] objects are implicitly named after the [<code>tf.Operation</code>]that produces the tensor as output. A tensor name has the form <code>&quot;&lt;OP_NAME&gt;:&lt;i&gt;&quot;</code>.</p>
-<p>tf.get_variable would search the variable with the given name. If there is not such a variable, it would create a new variable.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.reduce_mean()</span><br></pre></td></tr></table></figure>
-<p>Sum over a vector in a particular dimension and compute the mean. The axis argument is used to specify the particular dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.nn.softmax_cross_entropy_with_logits_v2()</span><br></pre></td></tr></table></figure>
-<p>Take unscaled log probabilities as input and perform softmax. After that, compute cross entropy loss. This functino allows gradient to backpropagated to labels.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cast()</span><br></pre></td></tr></table></figure>
-<p>Casts a tensor to a new type.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = tf.constant([1.8, 2.2], dtype=tf.float32)tf.cast(x, tf.int32)  # [1, 2], dtype=tf.int32</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tf.Graph().as_default():</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
-<p>There is a default graph in tensorflow. All operations and variables are added to the graph if not specified. This line of code use another graph and add variables to that graph. Outside the code block, variables would be added to the default graph.</p>
-<p> TensorFlow will create a new [<code>tf.Tensor</code>]each time you use the same tensor-like object. If the tensor-like object is large (e.g. a <code>numpy.ndarray</code> containing a set of training examples) and you use it multiple times, you may run out of memory.</p>
-<p>By default, tf.Session is bounded to the default graph. If there is multiple graphs, specify graph parameter in tf.Session().</p>
-<p>The allow_soft_placement flag allows the switching back-and-forth between different devices. In tensorflow, not all operations are supported in GPU. The log_device_placement flag is to present which operations are set on what devices.</p>
-<p>The <strong>max_to_keep</strong> flags determine the maximum number of the saved models that the TensorFlow keeps and its default is set to ‘5’ by TensorFlow.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)</span><br></pre></td></tr></table></figure>
-<p>create a tensor filled with zero with the same shape as input_tensor</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.fill(dims, value, name=None)</span><br></pre></td></tr></table></figure>
-<p>create a tensor filled with a scalar value</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tf.lin_space(start, stop, num, name=None)</span><br><span class="line"></span><br><span class="line">tf.range(start, limit=None, delta=1, dtype=None, name=&apos;range&apos;)</span><br></pre></td></tr></table></figure>
-<p>create a tensor with a sequence of values</p>
-<p>scalars are treated like tensors with zero dimension</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = sess.run(a)    #use a_out = sess.run(a) instead for the sake of memory</span><br></pre></td></tr></table></figure>
-<p>Use TF DType whenever possible for computation convenience.</p>
-<p> Each session maintains its own copy of variables</p>
-<p>tf.constant is an op. tf.Variable is a class with many ops.</p>
-<p>Only use tf.constant for primitive type. Otherwise the loading of graphs would be expensive.</p>
-<p>Constant values are stored in the graph definition.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = tf.get_variable(&quot;scalar&quot;, initializer=tf.constant(2))  #is preferred</span><br><span class="line"></span><br><span class="line">s = tf.Variable(2)</span><br></pre></td></tr></table></figure>
-<p>Initializer is an op. You need to execute it within the context of a session.</p>
-<p>Each variable has its own initializer.</p>
-<p>Sessions allocate memory to store variable values.</p>
-<p>Eval() a variable is equivalent to sess.run(a variable)</p>
-<p>tf.Variable.assign() is an op.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.placeholder(dtype, shape=None, name=None)</span><br></pre></td></tr></table></figure>
-<p>shape=None is easy to construct graphs but it is difficult for debugging.</p>
-<p>tensors could be fed with some dummy values for testing purpose.</p>
-<p>Lazy loading would make the graph bloated and hard to load. <strong>Remeber to seperate definition of a graph from computing/running ops</strong>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, shape=None, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
-<p>InvalidArgumentError (see above for traceback): You must feed a value for placeholder tensor ‘x’ with dtype float.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># feed 1.0 to x</span><br><span class="line">x = tf.placeholder(tf.float32, name=&apos;x&apos;)</span><br></pre></td></tr></table></figure>
-<p>works…….</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cond( pred, true_fn=None, false_fn=None,    strict=False, name=None)</span><br></pre></td></tr></table></figure>
-<p>tf.cond: pred is an expression. true_fn and flase_fn are callable function. If the expression is true, return the result of true_fn and vise versa.</p>
-<p>tf.placeholder is pythonic, but it is also easy to become bottleneck if running in single thread.</p>
-<p>tf.data is preferred. For prototyping, feed dict can be faster and easier to write (pythonic). But tf.data is tricky to use when you have complicated preprocessing or multiple data sources.</p>
-<p>Session looks at all trainable variables that optimizer depends on and update them.</p>
-<p>NCE guarantees approximation to softmax but Negative Sampling doesn’t.</p>
-<p>tf.train.Saver saves graph’s variables in binary files. It saves session rather than graph. When re-using parameters, it is necessart to construct the graph first and then restore the parameters.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">with tf.name_scope(&quot;summaries&quot;): </span><br><span class="line">  tf.summary.scalar(&quot;loss&quot;, self.loss)</span><br><span class="line">  tf.summary.scalar(&quot;accuracy&quot;, self.accuracy)</span><br><span class="line">  tf.summary.histogram(&quot;histogram loss&quot;, self.loss)</span><br><span class="line">  summary_op = tf.summary.merge_all()</span><br></pre></td></tr></table></figure>
-<p>merge them all into one summary op to make managing them easier.</p>
-<p>Like everything else in TF, summaries are ops. For the summaries to be built, you have to run it in a session</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss_batch, _, summary = sess.run([loss, optimizer, summary_op])</span><br><span class="line"></span><br><span class="line">writer.add_summary(summary, global_step=step)</span><br></pre></td></tr></table></figure>
-<p>Randomization:</p>
-<ol>
-<li>operation level. my_var = tf.Variable(tf.truncated_normal((-1.0,1.0), stddev=0.1, seed=0))</li>
-<li>graph level. tf.set_random_seed(2)</li>
-</ol>
-<p>tf dataset:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.from_tensor_slices()</span><br></pre></td></tr></table></figure>
-<p>constructs a dataset from one or more <code>tf.Tensor</code> objects. It slices the first dimension of the tensor.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.batch()</span><br></pre></td></tr></table></figure>
-<p>or<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.map()</span><br></pre></td></tr></table></figure></p>
-<p>apply a transformation to a dataset and create another dataset.</p>
-<p>A [<code>tf.data.Dataset</code>] represents a sequence of elements, in which each element contains one or more <code>Tensor</code>objects. For example, an element could be an image corresponds to a label or a sequence of tokens correspond to another sequence of tokens or only a simple label.</p>
-<p>A <a href="https://www.tensorflow.org/api_docs/python/tf/data/Iterator" target="_blank" rel="noopener"><code>tf.data.Iterator</code></a> provides the main way to extract elements from a dataset. The operation returned by <code>Iterator.get_next()</code> yields the next element of a <code>Dataset</code> when executed, and typically acts as the interface between input pipeline code and your model. For more sophisticated uses, the <code>Iterator.initializer</code>operation enables you to reinitialize and parameterize an iterator with different datasets, so that you can, for example, iterate over training and validation data multiple times in the same program.</p>
-<p> <a href="https://www.tensorflow.org/api_docs/python/tf/data/TFRecordDataset" target="_blank" rel="noopener"><code>tf.data.TFRecordDataset</code></a> constructs dataset from files if the files are on disk in the recommended TFRecord format.</p>
-<p>If the iterator reaches the end of the dataset, executing the <code>Iterator.get_next()</code> operation will raise a <a href="https://www.tensorflow.org/api_docs/python/tf/errors/OutOfRangeError" target="_blank" rel="noopener"><code>tf.errors.OutOfRangeError</code></a>. After this point the iterator will be in an unusable state, and you must initialize it again if you want to use it further.</p>
-<p>A common pattern is to wrap the “training loop” in a <code>try</code>-<code>except</code> block:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sess.run(iterator.initializer)<span class="keyword">while</span> <span class="keyword">True</span>:  <span class="keyword">try</span>:    sess.run(result)  <span class="keyword">except</span> tf.errors.OutOfRangeError:    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<p>A <strong>reinitializable</strong> iterator can be initialized from multiple different <code>Dataset</code> objects. For example, you might have a training input pipeline that uses random perturbations to the input images to improve generalization, and a validation input pipeline that evaluates predictions on unmodified data. These pipelines will typically use different <code>Dataset</code> objects that have the same structure (i.e. the same types and compatible shapes for each component).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iterator = tf.data.Iterator.from_structure(training_dataset.output_types,                                           training_dataset.output_shapes)</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
-<p>A <strong>one-shot</strong> iterator is the simplest form of iterator, which only supports iterating once through a dataset, with no need for explicit initialization. One-shot iterators handle almost all of the cases that the existing queue-based input pipelines support, but they do not support parameterization. </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataset = tf.data.Dataset.range(<span class="number">100</span>)</span><br><span class="line">iterator = dataset.make_one_shot_iterator()</span><br><span class="line">next_element = iterator.get_next()</span><br></pre></td></tr></table></figure>
-<p>An <strong>initializable</strong> iterator requires you to run an explicit <code>iterator.initializer</code> operation before using it. In exchange for this inconvenience, it enables you to <em>parameterize</em> the definition of the dataset, using one or more <code>tf.placeholder()</code>tensors that can be fed when you initialize the iterator.</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">max_value = tf.placeholder(tf.int64, shape=[])</span><br><span class="line">dataset = tf.data.Dataset.range(max_value)</span><br><span class="line">iterator = dataset.make_initializable_iterator()</span><br><span class="line">next_element = iterator.get_next()<span class="comment"># Initialize an iterator over a dataset with 10 elements.</span></span><br><span class="line">sess.run(iterator.initializer, feed_dict=&#123;max_value: <span class="number">10</span>&#125;)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):  </span><br><span class="line">  value = sess.run(next_element)  </span><br><span class="line">  <span class="keyword">assert</span> i == value</span><br></pre></td></tr></table></figure>
-<p>The <code>Iterator.get_next()</code> method returns one or more <a href="https://www.tensorflow.org/api_docs/python/tf/Tensor" target="_blank" rel="noopener"><code>tf.Tensor</code></a> objects that correspond to the symbolic next element of an iterator. Each time these tensors are evaluated, they take the value of the next element in the underlying dataset. Note that the iterator does not get to the next element immediately. The returned element is suuposed to be passed to  <code>tf.Session.run()</code> to get the next elements and advance the iterator.</p>
-<p>Applying arbitrary Python logic with <code>tf.py_func()</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.stack(    values,    axis=0,    name=&apos;stack&apos;)</span><br></pre></td></tr></table></figure>
-<p>concatenate tensors along specified dimension.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.data.Dataset.padded_batch()</span><br></pre></td></tr></table></figure>
-<p>padded_shapes is None, the component will be padded out to the maximum length of all elements in that dimension.</p>
-<p>Estimators are high-level abstraction of low-level tensorflow operation. It enables easier training, testing on different kinds of devices and modes like training on a single PC or a cluster.</p>
-<p>4 steps to use pre-made Estimators</p>
-<ol>
-<li>write function to import dataset</li>
-<li>Define the feature columns.</li>
-<li>Instantiate the relevant pre-made Estimator like specifying number of hidden layers, output features</li>
-<li>There are training and evaluation methods for Estimators. Call a training, evaluation, or inference method.</li>
-</ol>
-<p>tf.feature_column could be regarded as a kind of interface between the dataset and model in Estimators. It could abstract continuous values or categorical values.</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1963,7 +1693,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">105</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

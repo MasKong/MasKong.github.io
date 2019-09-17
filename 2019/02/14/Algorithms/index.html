@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="A “loop invariant” is something that we maintain at every iteration of the algorithm[2].  Time complexity notation: $T(n)$ is $O(g(n))$ if T(n) grows no faster than g(n) as n gets large. Upper Bound $">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithms">
+<meta property="og:url" content="http://yoursite.com/2019/02/14/Algorithms/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="A “loop invariant” is something that we maintain at every iteration of the algorithm[2].  Time complexity notation: $T(n)$ is $O(g(n))$ if T(n) grows no faster than g(n) as n gets large. Upper Bound $">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-23T03:36:40.938Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Algorithms">
+<meta name="twitter:description" content="A “loop invariant” is something that we maintain at every iteration of the algorithm[2].  Time complexity notation: $T(n)$ is $O(g(n))$ if T(n) grows no faster than g(n) as n gets large. Upper Bound $">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: 'PJWL3PD75I',
+      apiKey: '5589833aa2fa703729b4e7e939ac7dec',
+      indexName: 'test_index',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/14/Algorithms/"/>
+
+
+
+
+
+  <title>Algorithms | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/14/Algorithms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="MK_LEE">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Algorithms</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-14T22:21:42+08:00">
+                2019-02-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>A “loop invariant” is something that we maintain at every iteration of the algorithm[2]. </p>
+<p>Time complexity notation:</p>
+<p>$T(n)$ is $O(g(n))$ if T(n) grows no faster than g(n) as n gets large. <strong>Upper Bound</strong></p>
+<p>$T(n)$ is $\Omega(g(n))$ if T(n) grows at least as fast as g(n) as n gets large. <strong>Lower Bound</strong></p>
+<p>$T(n) \text { is } \Theta(g(n))$ iff both:<br>$$<br>\begin{aligned} T(n) &amp;=O(g(n)) \ &amp; \text { and } \ T(n) &amp;=\Omega(g(n)) \end{aligned}<br>$$</p>
+<p>Recursion:<br>reduce a problem to one or more smaller problems and hand those problems to a black box.<br>There is absolutely no need to care about the black box. It’s worthwhile to note that if there is impossible to simplify the problem, just solve it. And there must be an end for the recursion.</p>
+<h5 id="The-master-theorem"><a href="#The-master-theorem" class="headerlink" title="The master theorem"></a>The master theorem</h5><p>Suppose that  $a \geq 1, b&gt;1$, and d are constants (independent of n).</p>
+<p>Suppose $T(n)=a \cdot T\left(\frac{n}{b}\right)+O\left(n^{d}\right)$, Then<br>$$<br>T(n)=\left{\begin{array}{ll}{\mathrm{O}\left(n^{d} \log (n)\right)} &amp; {\text { if } a=b^{d}} \ {0\left(n^{d}\right)} &amp; {\text { if } a&lt;b^{d}} \ {\mathrm{O}\left(n^{\log _{b}(a)}\right)} &amp; {\text { if } a&gt;b^{d}}\end{array}\right.<br>$$<br>Three parameters:<br>a : number of subproblems<br>b : factor by which input size shrinks<br>d : need to do $n^d$ work to create all the subproblems and combine their solutions. </p>
+<p>The reason that there are there euqations for the master theorem is that the running time is depending on both the branching factor and the problem size. </p>
+<p>If the branching factor is huge, it causes the number of problems to explode so that most work is at the bottom. If the problem size is huge, the most work is at the top of the tree.</p>
+<h5 id="The-substitution-method"><a href="#The-substitution-method" class="headerlink" title="The substitution method"></a>The substitution method</h5><p>It works where master theorem do not. </p>
+<p>• Step 1: Guess the answer.<br>• Step 2: Prove your guess is correct. (by induction)<br>• Step 3: Profit.</p>
+<p>k-select problem</p>
+<p>It runs in $O\left(n\right)$ time for any resonable choice of pivot. If bad pivot is chosen, the worst running time is $O\left(n^{2}\right)$. Generally speaking, a random pivot is good enough. A better implementation is to choose the median of medians.(divide the array into 5 groups, choose median of each group and choose the median of the medians).</p>
+<p>BucketSort</p>
+<p>Put numbers into a set of buckets and then concatenate them. $O\left(n\right)$</p>
+<p>RadixSort</p>
+<p>Put numbers into a set of buckets. Each round sorting accoding to the least-significant digit. It’s a trade-off between space and time.</p>
+<p>bucket sort assumes data are uniformly distributed in [0,1) so that data are uniformly assigned to each bucket.</p>
+<ol>
+<li>create bucket</li>
+<li>assign data to buckets [0.1~0.2) to the 1 bucket and [0.2~0.3) to the 2 buckets</li>
+<li>sort data in each buckets</li>
+<li>merge</li>
+</ol>
+<p>Two sum:<br>use hashmap to record indexes of values in the array and perform lookup. reduce time complexity to O(n)</p>
+<p>海量数据处理 - 找出最大的n个数（top K问题)<br>建小顶堆，如果一个数大于顶部的数，将改数代替顶部的数，进行heaplify</p>
+<p>回溯法很适合用递归来实现</p>
+<h3 id="Divide-and-Conquer"><a href="#Divide-and-Conquer" class="headerlink" title="Divide and Conquer"></a>Divide and Conquer</h3><p>Karatsuba algorithm:</p>
+<p>Turn one n-digit multiplication problem to three  $\frac{n}{2}$ digit multiplication problem and so on and so forth. Therefore the time complexity is $3^{\log _{2} n}=n^{\log _{2} 3} \approx n^{1.6}$.</p>
+<h3 id="Greedy-Algorithm"><a href="#Greedy-Algorithm" class="headerlink" title="Greedy Algorithm"></a>Greedy Algorithm</h3><h5 id="Huffman-codes"><a href="#Huffman-codes" class="headerlink" title="Huffman codes"></a>Huffman codes</h5><p>merge the two least frequent nodes recursively. It is a full binary tree. </p>
+<p>Implementation: Priority Queue</p>
+<h3 id="Graph-Algorithm"><a href="#Graph-Algorithm" class="headerlink" title="Graph Algorithm"></a>Graph Algorithm</h3><h5 id="DFS"><a href="#DFS" class="headerlink" title="DFS:"></a>DFS:</h5><p>Application: </p>
+<ol>
+<li>detect cycle</li>
+<li>Topological Sort</li>
+</ol>
+<h5 id="Dynamic-Programming"><a href="#Dynamic-Programming" class="headerlink" title="Dynamic Programming"></a>Dynamic Programming</h5><p>The order of dependency could hard-coded like edit distance or using just DFS.</p>
+<p>DP环形依赖的题型:</p>
+<p>首先算出nums[1:]的最大值，再算出nums[:-1]的最大值，取max返回</p>
+<h5 id="Minimum-Spanning-Tree-MST"><a href="#Minimum-Spanning-Tree-MST" class="headerlink" title="Minimum Spanning Tree(MST)"></a>Minimum Spanning Tree(MST)</h5><p>Application: circuit design, path routing…..</p>
+<p>A tree is a connected graph with no cycles!</p>
+<p>A spanning tree is a tree that connects all of the vertices.</p>
+<p>The cost of a spanning tree is the sum of the weights on the edges.</p>
+<h6 id="Prim’s-algorithm-a-greedy-algorithm"><a href="#Prim’s-algorithm-a-greedy-algorithm" class="headerlink" title="Prim’s algorithm(a greedy algorithm)"></a>Prim’s algorithm(a greedy algorithm)</h6><p>greedily adding the edge with the minimum cost to the MST.</p>
+<p>Correctness is proven by induction.</p>
+<h6 id="Kruskal’s-algorithm"><a href="#Kruskal’s-algorithm" class="headerlink" title="Kruskal’s algorithm"></a>Kruskal’s algorithm</h6><p>Greedily growing a forest and merging them.</p>
+<p>At beginning, each vertix is a single tree. Find the edge with the minimum cost and merge two trees. If the edge would cause a loop, that means it is not merging two trees but connecting two nodes in a tree.</p>
+<h5 id="Shortest-Paths-single-source-shortest-paths"><a href="#Shortest-Paths-single-source-shortest-paths" class="headerlink" title="Shortest Paths(single-source shortest paths)"></a>Shortest Paths(single-source shortest paths)</h5><p>Shortest Path problem is usually discussed in the context of directed graph.</p>
+<h6 id="Unweighted-Graphs-Breadth-First-Search"><a href="#Unweighted-Graphs-Breadth-First-Search" class="headerlink" title="Unweighted Graphs: Breadth-First Search"></a>Unweighted Graphs: Breadth-First Search</h6><h6 id="Directed-Acyclic-Graphs-Depth-First-Search"><a href="#Directed-Acyclic-Graphs-Depth-First-Search" class="headerlink" title="Directed Acyclic Graphs: Depth-First Search"></a>Directed Acyclic Graphs: Depth-First Search</h6><p><strong><em>O</em></strong>(<strong><em>V</em></strong> + <strong><em>E</em></strong>) <strong><em>time</em></strong> because only a number of edges need to be visited if there are some edges from vertex u to vertex v.</p>
+<p>It’s a kind of dynamic programming algorithm that visit vertices in topological sorting order. Note that the update could be edges that going in or edges that going out[3] [chp 8.5].</p>
+<h6 id="Best-First-Dijkstra’s-Algorithm"><a href="#Best-First-Dijkstra’s-Algorithm" class="headerlink" title="Best-First: Dijkstra’s Algorithm"></a>Best-First: Dijkstra’s Algorithm</h6><p>It’s basically the same as BFS except that the queue is now a priority queue. The key is the distance.</p>
+<p>In Dijkstra’s Algorithm, each vertex is scanned at most once, and thus that each edge is relaxed at most once. However, unlike in breadth-first search, each distance label <em>dist</em>(<em>v</em>) can change multiple times.</p>
+<h6 id="BellmanFord"><a href="#BellmanFord" class="headerlink" title="BellmanFord"></a>BellmanFord</h6><p>BellmanFord(s): given a directed graph, find the shortest paths from the node s to every other nodes in the graph.</p>
+<p>Time Complexity: O(VE). The algortirhm iterates V-1 times because there are V-1 nodes in the graph which guarantees that every other node is reachable. Given an iteration, for each edge that is from u to v, relax the edge if it is tense.</p>
+<p>Works fine with negative edges.</p>
+<p>can detect negative cycles by running the algorithm one more time after V iterations. If the values change, there is negative cycle.</p>
+<h6 id="Floyd-Warshall-algorithm-All-Pairs-Shortest-Paths"><a href="#Floyd-Warshall-algorithm-All-Pairs-Shortest-Paths" class="headerlink" title="Floyd-Warshall algorithm (All-Pairs Shortest Paths)"></a>Floyd-Warshall algorithm (All-Pairs Shortest Paths)</h6><p>A kind of dynamic programming.</p>
+<h3 id="String-Matching"><a href="#String-Matching" class="headerlink" title="String Matching"></a>String Matching</h3><h6 id="Trie"><a href="#Trie" class="headerlink" title="Trie"></a>Trie</h6><p>Each trie node stores pointers to its children.</p>
+<h6 id="Aho-Corasick-Algorithm-AC自动机-1"><a href="#Aho-Corasick-Algorithm-AC自动机-1" class="headerlink" title="Aho-Corasick Algorithm(AC自动机)[1]"></a>Aho-Corasick Algorithm(AC自动机)[1]</h6><p>Perform string matching “in parallel” in terms of each pattern string. It is output-sensitive algorithms whose runtime depends on how much output is generated .</p>
+<p><strong>Great for the case where the patterns are fixed and the text to search changes</strong></p>
+<p><strong>Suffix links</strong>: a link from string a to string b such that b is the longest proper suffix of a in the trie.</p>
+<p><strong>output links</strong>: links that pointing to pattern strings to be output. Output links from a node actually form a linked list and all node in the linked list is supposed to be output. </p>
+<p>The Net Complexity</p>
+<p>$\Theta(n)$ to build the trie</p>
+<p>$\mathrm{O}(n)$ to fill in suffix links(actually 2n at most) and $\mathrm{O}(n)$ to fill in output links</p>
+<h6 id="Suffix-tree"><a href="#Suffix-tree" class="headerlink" title="Suffix tree"></a>Suffix tree</h6><p><strong>Great for the case where the string is fixed and the patterns to search change</strong></p>
+<p>each internal node in the suffix tree has at least two children because at least \$ and next character would be the children.</p>
+<p>Time complexity of match z pattern strings is $\mathrm{O}(z)$ because z paths are required to follow and simply following path take  $\mathrm{O}(1)$.</p>
+<p>it is a “reverse” Aho-Corasick automata because string is processed.</p>
+<p>Application: Longest Repeated Substring</p>
+<p>Generalized suffix tree:</p>
+<p>multiple strings are in a suffix tree. perform matching in parallel for multiple strings and multiple patterns.</p>
+<p>Application: </p>
+<ol>
+<li>Longest Common Substring</li>
+<li>Longest Common Extensions</li>
+<li>Longest Palindromic Substring</li>
+</ol>
+<p>Suffix trees support</p>
+<ol>
+<li>efficient detection of all matching substrings,</li>
+<li>efficient detection of duplicated substrings,</li>
+<li>efficient detection of common substrings,</li>
+<li>efficient detection of common extensions,<br>and a lot more!</li>
+</ol>
+<p>Suffix trees use space $\Theta(m)$, but with a huge<br>hidden constant factor.</p>
+<h2 id="Performance-issue"><a href="#Performance-issue" class="headerlink" title="Performance issue"></a>Performance issue</h2><ol>
+<li>python slicing would create a new list. Instead of passing a new list to recursive function, an alternative way is to pass the original array with index.</li>
+</ol>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://web.stanford.edu/class/archive/cs/cs166/cs166.1166/lectures/02/Small02.pdf" target="_blank" rel="noopener">Aho-Corasick Automata</a><br>[^2 ]: <a href="https://web.stanford.edu/class/cs161/Lectures/Lecture2/Lecture2-compressed.pdf" target="_blank" rel="noopener">Divide-and-conquer, MergeSort, and Big-O notation</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="http://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf" target="_blank" rel="noopener"><a href="http://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf" target="_blank" rel="noopener">Algorithms</a></a><a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/13/data-warehouse/" rel="next" title="data_warehouse">
+                <i class="fa fa-chevron-left"></i> data_warehouse
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/15/Graph-Neural-Networks/" rel="prev" title="Graph_Neural_Networks">
+                Graph_Neural_Networks <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="MK_LEE" />
+            
+              <p class="site-author-name" itemprop="name">MK_LEE</p>
+              <p class="site-description motion-element" itemprop="description">Passionate about NLP</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">105</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#The-master-theorem"><span class="nav-number">1.</span> <span class="nav-text">The master theorem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#The-substitution-method"><span class="nav-number">2.</span> <span class="nav-text">The substitution method</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Divide-and-Conquer"><span class="nav-number"></span> <span class="nav-text">Divide and Conquer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Greedy-Algorithm"><span class="nav-number"></span> <span class="nav-text">Greedy Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Huffman-codes"><span class="nav-number">1.</span> <span class="nav-text">Huffman codes</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graph-Algorithm"><span class="nav-number"></span> <span class="nav-text">Graph Algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DFS"><span class="nav-number">1.</span> <span class="nav-text">DFS:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dynamic-Programming"><span class="nav-number">2.</span> <span class="nav-text">Dynamic Programming</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Minimum-Spanning-Tree-MST"><span class="nav-number">3.</span> <span class="nav-text">Minimum Spanning Tree(MST)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Prim’s-algorithm-a-greedy-algorithm"><span class="nav-number">3.1.</span> <span class="nav-text">Prim’s algorithm(a greedy algorithm)</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Kruskal’s-algorithm"><span class="nav-number">3.2.</span> <span class="nav-text">Kruskal’s algorithm</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Shortest-Paths-single-source-shortest-paths"><span class="nav-number">4.</span> <span class="nav-text">Shortest Paths(single-source shortest paths)</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Unweighted-Graphs-Breadth-First-Search"><span class="nav-number">4.1.</span> <span class="nav-text">Unweighted Graphs: Breadth-First Search</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Directed-Acyclic-Graphs-Depth-First-Search"><span class="nav-number">4.2.</span> <span class="nav-text">Directed Acyclic Graphs: Depth-First Search</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Best-First-Dijkstra’s-Algorithm"><span class="nav-number">4.3.</span> <span class="nav-text">Best-First: Dijkstra’s Algorithm</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#BellmanFord"><span class="nav-number">4.4.</span> <span class="nav-text">BellmanFord</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Floyd-Warshall-algorithm-All-Pairs-Shortest-Paths"><span class="nav-number">4.5.</span> <span class="nav-text">Floyd-Warshall algorithm (All-Pairs Shortest Paths)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String-Matching"><span class="nav-number"></span> <span class="nav-text">String Matching</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Trie"><span class="nav-number">0.1.</span> <span class="nav-text">Trie</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Aho-Corasick-Algorithm-AC自动机-1"><span class="nav-number">0.2.</span> <span class="nav-text">Aho-Corasick Algorithm(AC自动机)[1]</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Suffix-tree"><span class="nav-number">0.3.</span> <span class="nav-text">Suffix tree</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Performance-issue"><span class="nav-number"></span> <span class="nav-text">Performance issue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MK_LEE</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/02/14/Algorithms/';
+          this.page.identifier = '2019/02/14/Algorithms/';
+          this.page.title = 'Algorithms';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://MasKong.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
